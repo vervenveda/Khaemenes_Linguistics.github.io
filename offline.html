@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#102238" />
+  <title>Polyglot Offline</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+      --ink: #102238;
+      --paper: #f5f0e4;
+      --panel: #fbf8f0;
+      --gold: #b79452;
+      --wine: #6c2e3b;
+      --line: rgba(16, 34, 56, .18);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --ink: #e8e1d1;
+        --paper: #081522;
+        --panel: #102238;
+        --gold: #d1ad68;
+        --wine: #c6818d;
+        --line: rgba(232, 225, 209, .18);
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, Arial, sans-serif;
+      line-height: 1.65;
+    }
+    main {
+      width: min(100%, 680px);
+      padding: clamp(30px, 7vw, 66px);
+      text-align: center;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      background: var(--panel);
+      box-shadow: 0 18px 44px rgba(8, 21, 34, .13);
+    }
+    .globe {
+      width: 88px;
+      height: 88px;
+      margin: 0 auto 24px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      font-size: 42px;
+    }
+    .eyebrow { color: var(--gold); font-size: 12px; letter-spacing: .2em; text-transform: uppercase; }
+    h1 { margin: 8px 0 14px; font: 400 clamp(36px, 8vw, 64px)/1 Georgia, serif; }
+    p { margin: 0 auto 24px; max-width: 520px; }
+    .note { color: var(--wine); font-family: Georgia, serif; font-size: 20px; }
+    button, a {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin: 5px;
+      padding: 10px 18px;
+      border: 1px solid var(--ink);
+      border-radius: 7px;
+      color: var(--panel);
+      background: var(--ink);
+      font: inherit;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    a.secondary { color: var(--ink); background: transparent; }
+    button:hover, button:focus-visible, a:hover, a:focus-visible { outline: 3px solid color-mix(in srgb, var(--gold) 55%, transparent); outline-offset: 3px; }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="globe" aria-hidden="true">◎</div>
+    <div class="eyebrow">Polyglot · Offline Study</div>
+    <h1>The world is temporarily out of reach.</h1>
+    <p>Your device is offline, and this destination was not stored for offline use. Any Polyglot pages already cached on this device may still be available.</p>
+    <p class="note">Reconnect when you can, then continue the conversation.</p>
+    <button type="button" onclick="location.reload()">Try again</button>
+    <a class="secondary" href="./">Open cached Polyglot home</a>
+  </main>
+</body>
+</html>
