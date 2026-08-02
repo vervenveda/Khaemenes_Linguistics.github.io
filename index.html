@@ -1,647 +1,343 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <link rel="manifest" href="./manifest.webmanifest" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="Polyglot — Khaemenes Academy's international language and linguistics hall for reading, writing, speaking, listening, translation, culture, and literature." />
-  <meta name="theme-color" content="#102238" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Polyglot — Khaemenes Academy's international language and linguistics hall for language study, pronunciation, writing systems, literature, and cultural understanding.">
+  <meta name="theme-color" content="#102238">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <title>Polyglot | Khaemenes Academy Linguistics Hall</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&family=Noto+Sans+Arabic:wght@300;400;500&family=Noto+Sans+Devanagari:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="manifest" href="./manifest.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&family=Noto+Sans+Arabic:wght@300;400;500&family=Noto+Sans+Devanagari:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-    :root {
-      --ink: #102238;
-      --ink-soft: #243a50;
-      --night: #081522;
-      --paper: #f5f0e4;
-      --paper-2: #fbf8f0;
-      --paper-3: #e7deca;
-      --gold: #b79452;
-      --gold-dark: #80642f;
-      --wine: #6c2e3b;
-      --teal: #275f61;
-      --sky: #dce8e7;
-      --muted: #6d746f;
-      --line: rgba(16, 34, 56, 0.16);
-      --shadow: 0 18px 44px rgba(8, 21, 34, 0.12);
-      --radius: 7px;
-      --max: 1180px;
-      --serif: "Cormorant Garamond", Georgia, "Times New Roman", serif;
-      --sans: Inter, "Noto Sans", Arial, sans-serif;
+    :root{
+      --ink:#102238;
+      --ink-soft:#2e4355;
+      --night:#081522;
+      --paper:#f5f0e4;
+      --paper-bright:#fcf9f2;
+      --paper-deep:#e7deca;
+      --gold:#b79452;
+      --gold-dark:#80642f;
+      --wine:#6c2e3b;
+      --teal:#275f61;
+      --teal-soft:#dce8e7;
+      --muted:#6d746f;
+      --line:rgba(16,34,56,.16);
+      --line-strong:rgba(16,34,56,.28);
+      --shadow:0 18px 44px rgba(8,21,34,.11);
+      --shadow-small:0 9px 24px rgba(8,21,34,.07);
+      --radius:7px;
+      --radius-large:21px;
+      --max:1210px;
+      --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+      --sans:Inter,"Noto Sans",Arial,sans-serif;
     }
 
-    html[data-theme="dark"] {
-      --ink: #e8e1d1;
-      --ink-soft: #c8d4d9;
-      --night: #050c13;
-      --paper: #0d1b28;
-      --paper-2: #122536;
-      --paper-3: #203647;
-      --gold: #d1ad68;
-      --gold-dark: #e6c887;
-      --wine: #b86b79;
-      --teal: #70aaab;
-      --sky: #18333d;
-      --muted: #a8b3b7;
-      --line: rgba(232, 225, 209, 0.16);
-      --shadow: 0 18px 44px rgba(0, 0, 0, 0.3);
+    html[data-theme="dark"]{
+      --ink:#ede5d6;
+      --ink-soft:#cad5d9;
+      --night:#050b12;
+      --paper:#0d1b28;
+      --paper-bright:#122536;
+      --paper-deep:#203647;
+      --gold:#d1ad68;
+      --gold-dark:#e6c887;
+      --wine:#b86b79;
+      --teal:#74adae;
+      --teal-soft:#17333d;
+      --muted:#a9b5b9;
+      --line:rgba(237,229,214,.16);
+      --line-strong:rgba(237,229,214,.29);
+      --shadow:0 18px 44px rgba(0,0,0,.32);
+      --shadow-small:0 9px 24px rgba(0,0,0,.23);
     }
 
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    <script src="./register-service-worker.js" defer></script>
-    body {
-      margin: 0;
-      min-height: 100%;
-      color: var(--ink);
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:108px}
+    body{
+      margin:0;
+      min-width:300px;
+      overflow-x:hidden;
+      color:var(--ink);
       background:
-        radial-gradient(circle at 12% 8%, rgba(183,148,82,.10), transparent 26rem),
-        radial-gradient(circle at 88% 20%, rgba(39,95,97,.09), transparent 28rem),
+        radial-gradient(circle at 10% 7%,rgba(183,148,82,.11),transparent 27rem),
+        radial-gradient(circle at 90% 18%,rgba(39,95,97,.09),transparent 29rem),
         var(--paper);
-      font-family: var(--sans);
-      font-size: 16px;
-      line-height: 1.65;
-      transition: color .25s ease, background-color .25s ease;
+      font-family:var(--sans);
+      font-size:16px;
+      font-weight:400;
+      line-height:1.65;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
     }
+    body.menu-open{overflow:hidden}
+    a{color:inherit;text-decoration:none}
+    button,input,select,textarea{font:inherit}
+    button{cursor:pointer}
+    img,svg{display:block;max-width:100%}
+    [hidden]{display:none!important}
+    ::selection{color:var(--night);background:#e9cf97}
+    :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 
-    a { color: inherit; }
-    button, input, select { font: inherit; }
-    button, a { -webkit-tap-highlight-color: transparent; }
+    .wrap{width:min(calc(100% - 32px),var(--max));margin-inline:auto}
+    .skip-link{
+      position:fixed;left:14px;top:12px;z-index:3000;
+      transform:translateY(-170%);
+      padding:10px 14px;border-radius:var(--radius);
+      color:#fff;background:var(--night);
+      transition:transform .18s ease;
+    }
+    .skip-link:focus{transform:none}
 
-    .skip-link {
-      position: fixed;
-      left: 14px;
-      top: -80px;
-      z-index: 9999;
-      padding: 11px 14px;
-      border-radius: var(--radius);
-      color: #fff;
-      background: var(--night);
-      text-decoration: none;
-      transition: top .2s ease;
+    .world-ribbon{
+      min-height:34px;overflow:hidden;
+      color:#f6efdf;background:linear-gradient(90deg,#07101b,#10263b 50%,#07101b);
+      border-bottom:1px solid rgba(255,255,255,.12);
     }
-    .skip-link:focus { top: 14px; }
+    .world-track{
+      width:max-content;min-width:200%;height:34px;
+      display:flex;align-items:center;
+      animation:worldPassage 42s linear infinite;
+      will-change:transform;
+    }
+    .world-set{
+      min-width:50%;display:flex;align-items:center;justify-content:space-around;
+      gap:28px;padding:0 28px;white-space:nowrap;
+      font-size:11px;letter-spacing:.06em;
+    }
+    .world-set b{color:#e8c97f;font-weight:500}
+    @keyframes worldPassage{to{transform:translateX(-50%)}}
 
-    .world-ribbon {
-      position: relative;
-      overflow: hidden;
-      border-bottom: 1px solid rgba(255,255,255,.15);
-      color: #f8f2e5;
-      background: var(--night);
+    .site-header{
+      position:sticky;top:0;z-index:1200;
+      border-bottom:1px solid var(--line);
+      background:color-mix(in srgb,var(--paper-bright) 92%,transparent);
+      backdrop-filter:blur(18px);
     }
-    .world-track {
-      width: max-content;
-      display: flex;
-      align-items: center;
-      gap: 33px;
-      min-height: 36px;
-      padding-inline: 22px;
-      font-size: 12px;
-      letter-spacing: .08em;
-      animation: passage 42s linear infinite;
+    .header-inner{
+      min-height:74px;display:grid;
+      grid-template-columns:auto minmax(0,1fr) auto;
+      align-items:center;gap:20px;
     }
-    .world-track span { white-space: nowrap; opacity: .92; }
-    .world-track b { color: #e7c980; font-weight: 500; }
-    @keyframes passage { to { transform: translateX(-50%); } }
+    .brand{display:inline-flex;align-items:center;gap:11px;min-width:0}
+    .seal{
+      width:48px;aspect-ratio:1;display:grid;place-items:center;flex:0 0 auto;
+      border:1px solid var(--gold);border-radius:50%;
+      box-shadow:inset 0 0 0 4px color-mix(in srgb,var(--gold) 13%,transparent);
+      font-family:var(--serif);font-size:20px;letter-spacing:-.04em;
+    }
+    .brand-copy{line-height:1.08}
+    .brand-copy strong{display:block;font-family:var(--serif);font-size:21px;font-weight:500}
+    .brand-copy small{display:block;margin-top:4px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+    .nav{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:2px}
+    .nav a{padding:8px 9px;border-radius:var(--radius);color:var(--ink-soft);font-size:12px}
+    .nav a:hover{background:var(--paper-deep)}
+    .header-actions{display:flex;align-items:center;justify-content:flex-end;gap:7px}
+    .icon-button,.support-small{
+      min-height:40px;border:1px solid var(--line-strong);border-radius:var(--radius);
+      color:var(--ink);background:var(--paper-bright);
+    }
+    .icon-button{width:40px;display:grid;place-items:center}
+    .support-small{display:inline-flex;align-items:center;justify-content:center;padding:7px 11px;color:#fff;background:var(--wine);border-color:var(--wine);font-size:11px;letter-spacing:.04em}
+    .support-small:hover{filter:brightness(1.08)}
+    .menu-button{display:none}
 
-    .site-header {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-      border-bottom: 1px solid var(--line);
-      background: color-mix(in srgb, var(--paper-2) 88%, transparent);
-      backdrop-filter: blur(14px);
+    .hero{position:relative;min-height:670px;display:grid;align-items:center;overflow:hidden;border-bottom:1px solid var(--line);isolation:isolate}
+    .hero::before{
+      content:"";position:absolute;inset:0;z-index:-2;opacity:.57;
+      background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+      background-size:66px 66px;mask-image:radial-gradient(circle at 50% 45%,#000,transparent 78%);
     }
-    .header-inner {
-      width: min(calc(100% - 28px), var(--max));
-      min-height: 78px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: auto 1fr auto;
-      align-items: center;
-      gap: 24px;
+    .hero::after{
+      content:"";position:absolute;z-index:-1;width:520px;height:520px;right:-155px;top:48px;
+      border:1px solid color-mix(in srgb,var(--gold) 42%,transparent);border-radius:50%;
+      box-shadow:0 0 0 66px color-mix(in srgb,var(--gold) 7%,transparent),0 0 0 132px color-mix(in srgb,var(--teal) 5%,transparent);
     }
-    .brand {
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-      text-decoration: none;
-      min-width: 0;
+    .hero-grid{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(330px,.84fr);gap:clamp(34px,7vw,88px);align-items:center;padding:92px 0 82px}
+    .eyebrow{
+      display:inline-flex;align-items:center;gap:11px;margin:0 0 17px;
+      color:var(--gold-dark);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
     }
-    .seal {
-      width: 48px;
-      aspect-ratio: 1;
-      display: grid;
-      place-items: center;
-      flex: 0 0 auto;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      box-shadow: inset 0 0 0 4px color-mix(in srgb, var(--gold) 13%, transparent);
-      font-family: var(--serif);
-      font-size: 20px;
-      letter-spacing: -.04em;
+    .eyebrow::before,.eyebrow::after{content:"";width:33px;height:1px;background:currentColor}
+    h1,h2,h3{margin:0;font-family:var(--serif);font-weight:500;line-height:1.04;text-wrap:balance}
+    h1{font-size:clamp(62px,10vw,116px);letter-spacing:-.045em}
+    .hero-subtitle{margin:8px 0 0;color:var(--wine);font-family:var(--serif);font-size:clamp(25px,3.2vw,40px);letter-spacing:.025em}
+    .hero-copy{max-width:735px;margin:24px 0 0;color:var(--ink-soft);font-size:clamp(16px,1.8vw,19px);font-weight:300}
+    .actions{display:flex;justify-content:flex-start;flex-wrap:wrap;gap:10px;margin-top:28px}
+    .button{
+      min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:8px;
+      padding:10px 17px;border:1px solid var(--ink);border-radius:var(--radius);
+      color:var(--paper-bright);background:var(--ink);
+      font-size:12px;font-weight:500;letter-spacing:.045em;transition:.18s ease;
     }
-    .brand-copy { line-height: 1.1; }
-    .brand-copy strong {
-      display: block;
-      font-family: var(--serif);
-      font-size: 21px;
-      font-weight: 500;
-      letter-spacing: .02em;
-    }
-    .brand-copy small {
-      display: block;
-      margin-top: 4px;
-      color: var(--muted);
-      font-size: 10px;
-      letter-spacing: .16em;
-      text-transform: uppercase;
-    }
+    .button:hover{transform:translateY(-2px);box-shadow:var(--shadow-small)}
+    .button.secondary{color:var(--ink);background:transparent}
+    .button.gold{color:#241b0e;background:linear-gradient(135deg,#d8b975,#f0daa8);border-color:#d8b975}
+    .button.wine{color:#fff;background:var(--wine);border-color:var(--wine)}
+    .skill-line{display:flex;flex-wrap:wrap;gap:7px;margin-top:23px}
+    .skill-line span{padding:5px 9px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:color-mix(in srgb,var(--paper-bright) 79%,transparent);font-size:10px;letter-spacing:.08em;text-transform:uppercase}
 
-    .nav {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 4px;
+    .phrase-card{padding:28px;border:1px solid color-mix(in srgb,var(--gold) 55%,var(--line));border-radius:var(--radius-large);background:color-mix(in srgb,var(--paper-bright) 95%,transparent);box-shadow:var(--shadow)}
+    .compass{
+      width:min(220px,70vw);aspect-ratio:1;position:relative;display:grid;place-items:center;margin:0 auto 23px;
+      border:1px solid var(--gold);border-radius:50%;
+      background:linear-gradient(45deg,transparent 49.7%,var(--line) 50%,transparent 50.3%),linear-gradient(-45deg,transparent 49.7%,var(--line) 50%,transparent 50.3%),radial-gradient(circle,transparent 41%,var(--line) 41.4%,transparent 42%);
     }
-    .nav a {
-      padding: 9px 11px;
-      border-radius: var(--radius);
-      color: var(--ink-soft);
-      font-size: 13px;
-      text-decoration: none;
-    }
-    .nav a:hover, .nav a:focus-visible { background: var(--paper-3); outline: none; }
+    .compass::before,.compass::after{content:"";position:absolute;width:1px;height:86%;background:var(--line)}
+    .compass::after{transform:rotate(90deg)}
+    .compass-center{width:120px;aspect-ratio:1;z-index:2;display:grid;place-items:center;border-radius:50%;color:#f9f4e9;background:var(--ink);box-shadow:0 0 0 7px color-mix(in srgb,var(--gold) 18%,transparent);text-align:center}
+    .compass-center span{font-family:var(--serif);font-size:21px;line-height:1}
+    .phrase-card h2{font-size:29px}
+    .phrase-card>p{margin:8px 0 0;color:var(--muted);font-size:13px}
+    .phrase{margin-top:17px;padding-top:17px;border-top:1px solid var(--line)}
+    .phrase-language{color:var(--gold-dark);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+    .phrase-main{margin:4px 0 0;font-family:var(--serif);font-size:30px;line-height:1.25;overflow-wrap:anywhere}
+    .phrase-translation{margin:3px 0 0;color:var(--muted);font-size:13px}
+    .phrase-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
 
-    .header-actions { display: flex; gap: 7px; align-items: center; }
-    .icon-button {
-      width: 42px;
-      height: 42px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      color: var(--ink);
-      background: var(--paper-2);
-      cursor: pointer;
+    .quick-band{padding:22px 0;background:var(--night);color:#f5eddd}
+    .quick-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+    .quick-link{
+      min-height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
+      padding:15px;border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);
+      background:rgba(255,255,255,.035);text-align:center;transition:.17s ease;
     }
-    .menu-button { display: none; }
+    .quick-link:hover{transform:translateY(-2px);border-color:#d9b66f;background:rgba(217,182,111,.09)}
+    .quick-mark{color:#e8c97f;font-family:var(--serif);font-size:23px}
+    .quick-link strong{font-family:var(--serif);font-size:19px;font-weight:500;line-height:1.05}
+    .quick-link small{color:rgba(255,255,255,.64);font-size:10px;line-height:1.35}
 
-    main { overflow: clip; }
-    section { scroll-margin-top: 98px; }
-    .wrap { width: min(calc(100% - 28px), var(--max)); margin-inline: auto; }
+    .section{padding:88px 0}
+    .section.alt{background:color-mix(in srgb,var(--paper-bright) 77%,transparent);border-block:1px solid var(--line)}
+    .section.dark{color:#f4eddf;background:var(--night)}
+    .section-heading{max-width:820px;margin:0 auto 40px;text-align:center}
+    .section-heading .eyebrow{justify-content:center}
+    .section-heading h2{font-size:clamp(40px,6vw,62px);letter-spacing:-.025em}
+    .section-heading p{margin:14px auto 0;color:var(--muted);font-weight:300}
+    .section.dark .section-heading p{color:rgba(255,255,255,.65)}
 
-    .hero {
-      position: relative;
-      min-height: 660px;
-      display: grid;
-      align-items: center;
-      border-bottom: 1px solid var(--line);
-      isolation: isolate;
+    .path-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+    .path-card{
+      min-height:260px;display:flex;flex-direction:column;align-items:center;
+      padding:25px;border:1px solid var(--line);border-radius:var(--radius-large);
+      background:var(--paper-bright);box-shadow:var(--shadow-small);text-align:center;
     }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      opacity: .58;
-      background-image:
-        linear-gradient(var(--line) 1px, transparent 1px),
-        linear-gradient(90deg, var(--line) 1px, transparent 1px);
-      background-size: 66px 66px;
-      mask-image: radial-gradient(circle at 50% 45%, #000, transparent 78%);
-    }
-    .hero::after {
-      content: "";
-      position: absolute;
-      width: 520px;
-      height: 520px;
-      right: -160px;
-      top: 50px;
-      z-index: -1;
-      border: 1px solid color-mix(in srgb, var(--gold) 40%, transparent);
-      border-radius: 50%;
-      box-shadow:
-        0 0 0 66px color-mix(in srgb, var(--gold) 7%, transparent),
-        0 0 0 132px color-mix(in srgb, var(--teal) 5%, transparent);
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.22fr) minmax(310px, .78fr);
-      gap: clamp(33px, 7vw, 88px);
-      align-items: center;
-      padding: 88px 0 78px;
-    }
-    .eyebrow {
-      display: inline-flex;
-      align-items: center;
-      gap: 11px;
-      margin: 0 0 16px;
-      color: var(--gold-dark);
-      font-size: 11px;
-      font-weight: 500;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-    }
-    .eyebrow::before, .eyebrow::after { content: ""; width: 33px; height: 1px; background: currentColor; }
-    h1, h2, h3 { font-family: var(--serif); font-weight: 500; line-height: 1.04; }
-    h1 {
-      margin: 0;
-      font-size: clamp(58px, 10vw, 112px);
-      letter-spacing: -.045em;
-    }
-    .hero-subtitle {
-      margin: 8px 0 0;
-      color: var(--wine);
-      font-family: var(--serif);
-      font-size: clamp(24px, 3vw, 38px);
-      letter-spacing: .03em;
-    }
-    .hero-copy {
-      max-width: 700px;
-      margin: 24px 0 0;
-      color: var(--ink-soft);
-      font-size: clamp(16px, 2vw, 19px);
-      font-weight: 300;
-    }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 11px; margin-top: 29px; }
-    .button {
-      min-height: 46px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
-      padding: 10px 18px;
-      border: 1px solid var(--ink);
-      border-radius: var(--radius);
-      color: var(--paper-2);
-      background: var(--ink);
-      font-size: 13px;
-      font-weight: 500;
-      letter-spacing: .04em;
-      text-decoration: none;
-      cursor: pointer;
-      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
-    }
-    .button:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(8,21,34,.16); }
-    .button.secondary { color: var(--ink); background: transparent; }
-    .button.quiet { border-color: var(--line); color: var(--ink); background: var(--paper-2); }
-    .button[aria-disabled="true"] { opacity: .68; cursor: not-allowed; transform: none; box-shadow: none; }
+    .path-mark{width:55px;height:55px;display:grid;place-items:center;margin-bottom:16px;border:1px solid var(--gold);border-radius:50%;font-family:var(--serif);font-size:23px}
+    .path-card h3{font-size:27px}
+    .path-card p{margin:10px 0 0;color:var(--muted);font-size:13px}
+    .path-card .button{width:100%;margin-top:auto}
 
-    .skill-line {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 24px;
+    .voice-shell{display:grid;grid-template-columns:.82fr 1.18fr;gap:18px;align-items:stretch}
+    .voice-intro{
+      padding:34px;border-radius:var(--radius-large);color:#f8f1e5;
+      background:linear-gradient(135deg,rgba(183,148,82,.18),transparent 45%),var(--ink);
     }
-    .skill-line span {
-      padding: 5px 10px;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--muted);
-      background: color-mix(in srgb, var(--paper-2) 78%, transparent);
-      font-size: 11px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
+    .voice-intro h2{font-size:clamp(40px,5.5vw,58px)}
+    .voice-intro p{color:rgba(255,255,255,.7)}
+    .voice-note{margin-top:25px;padding-top:18px;border-top:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.67);font-size:12px}
+    .voice-panel{padding:27px;border:1px solid var(--line);border-radius:var(--radius-large);background:var(--paper-bright);box-shadow:var(--shadow-small)}
+    .voice-status{margin:0 0 17px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--radius);color:var(--muted);background:var(--paper);font-size:12px}
+    .voice-form{display:grid;grid-template-columns:1fr 1fr;gap:13px}
+    .field-group{display:grid;gap:6px;min-width:0}
+    .field-group.full{grid-column:1/-1}
+    .field-group label{color:var(--ink-soft);font-size:11px;font-weight:500;letter-spacing:.05em;text-transform:uppercase}
+    .field,.text-area{
+      width:100%;border:1px solid var(--line-strong);border-radius:var(--radius);
+      color:var(--ink);background:var(--paper);outline:none;
     }
+    .field{min-height:45px;padding:9px 11px}
+    .text-area{min-height:122px;padding:12px;resize:vertical;line-height:1.55}
+    .field:focus,.text-area:focus{border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 17%,transparent)}
+    .range-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+    input[type="range"]{width:100%;accent-color:var(--wine)}
+    .range-value{min-width:42px;text-align:right;color:var(--muted);font-size:12px}
+    .voice-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
 
-    .compass-card {
-      position: relative;
-      padding: 28px;
-      border: 1px solid color-mix(in srgb, var(--gold) 54%, var(--line));
-      border-radius: var(--radius);
-      background: color-mix(in srgb, var(--paper-2) 94%, transparent);
-      box-shadow: var(--shadow);
+    .resource-group+.resource-group{margin-top:44px}
+    .group-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:16px;padding-bottom:13px;border-bottom:1px solid var(--line)}
+    .group-head h3{font-size:31px}
+    .group-head p{max-width:650px;margin:0;color:var(--muted);font-size:13px;text-align:right}
+    .resource-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
+    .resource-card{
+      min-height:290px;display:flex;flex-direction:column;padding:23px;
+      border:1px solid var(--line);border-radius:var(--radius-large);
+      background:var(--paper-bright);box-shadow:var(--shadow-small);transition:.17s ease;
     }
-    .compass-card::before {
-      content: "N";
-      position: absolute;
-      right: 18px;
-      top: 12px;
-      color: var(--gold);
-      font-family: var(--serif);
-      font-size: 14px;
-    }
-    .compass-ring {
-      width: min(250px, 78vw);
-      aspect-ratio: 1;
-      position: relative;
-      display: grid;
-      place-items: center;
-      margin: 0 auto 24px;
-      border: 1px solid var(--gold);
-      border-radius: 50%;
-      background:
-        linear-gradient(45deg, transparent 49.7%, var(--line) 50%, transparent 50.3%),
-        linear-gradient(-45deg, transparent 49.7%, var(--line) 50%, transparent 50.3%),
-        radial-gradient(circle, transparent 41%, var(--line) 41.4%, transparent 42%);
-    }
-    .compass-ring::before, .compass-ring::after {
-      content: "";
-      position: absolute;
-      width: 1px;
-      height: 86%;
-      background: var(--line);
-    }
-    .compass-ring::after { transform: rotate(90deg); }
-    .compass-center {
-      width: 130px;
-      aspect-ratio: 1;
-      z-index: 2;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
-      color: #f9f4e9;
-      background: var(--ink);
-      text-align: center;
-      box-shadow: 0 0 0 7px color-mix(in srgb, var(--gold) 18%, transparent);
-    }
-    .compass-center span { font-family: var(--serif); font-size: 22px; line-height: 1; }
-    .compass-card h2 { margin: 0; font-size: 30px; }
-    .compass-card p { margin: 9px 0 0; color: var(--muted); font-size: 14px; }
-    .phrase {
-      margin-top: 18px;
-      padding-top: 18px;
-      border-top: 1px solid var(--line);
-    }
-    .phrase-language { color: var(--gold-dark); font-size: 10px; letter-spacing: .16em; text-transform: uppercase; }
-    .phrase-main { margin: 4px 0 0; font-family: var(--serif); font-size: 31px; line-height: 1.2; }
-    .phrase-translation { margin: 2px 0 0; color: var(--muted); font-size: 13px; }
-    .phrase-actions { display: flex; gap: 7px; margin-top: 14px; }
+    .resource-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--gold) 70%,var(--line));box-shadow:var(--shadow)}
+    .resource-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}
+    .resource-type{color:var(--gold-dark);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
+    .live-badge{padding:3px 7px;border:1px solid color-mix(in srgb,var(--teal) 55%,var(--line));border-radius:999px;color:var(--teal);font-size:9px;letter-spacing:.08em;text-transform:uppercase}
+    .resource-card h3{margin-top:13px;font-size:28px}
+    .resource-card p{margin:10px 0 0;color:var(--muted);font-size:13px}
+    .resource-features{display:flex;flex-wrap:wrap;gap:5px;margin-top:16px}
+    .resource-features span{padding:4px 7px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:9px}
+    .resource-card .button{width:100%;margin-top:auto}
 
-    .portal-band {
-      margin-top: -1px;
-      padding: 24px 0;
-      color: #f7f1e5;
-      background: var(--ink);
+    .atlas-panel{display:grid;grid-template-columns:1.05fr .95fr;gap:15px}
+    .atlas-feature{
+      min-height:420px;position:relative;display:flex;align-items:end;overflow:hidden;padding:34px;
+      border:1px solid var(--line);border-radius:var(--radius-large);color:#f7f0e2;
+      background:linear-gradient(to top,rgba(5,12,19,.96),rgba(5,12,19,.16)),repeating-linear-gradient(60deg,#274a4b 0 22px,#2e5556 22px 44px,#7c5a33 44px 45px);
     }
-    .portal-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 11px;
-    }
-    .portal-link {
-      min-height: 76px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      padding: 14px 16px;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: var(--radius);
-      color: inherit;
-      background: rgba(255,255,255,.035);
-      text-decoration: none;
-    }
-    .portal-link:hover { background: rgba(255,255,255,.08); }
-    .portal-link strong { display: block; font-family: var(--serif); font-size: 21px; font-weight: 500; line-height: 1.1; }
-    .portal-link small { display: block; margin-top: 4px; color: rgba(255,255,255,.65); font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
-    .portal-link .arrow { color: #e7c980; font-size: 20px; }
+    .atlas-feature::before{content:"Aa · أ ب · 文 · अ · あ · Ω · Ж";position:absolute;inset:23px;color:rgba(255,255,255,.18);font-family:var(--serif);font-size:clamp(38px,8vw,88px);line-height:1.6;word-spacing:20px}
+    .atlas-feature>div{position:relative;z-index:1}
+    .atlas-feature h3{font-size:43px}
+    .atlas-feature p{max-width:670px;color:rgba(255,255,255,.72)}
+    .atlas-list{display:grid;gap:10px}
+    .atlas-item{padding:21px;border:1px solid var(--line);border-radius:var(--radius-large);background:var(--paper-bright)}
+    .atlas-item h3{font-size:24px}
+    .atlas-item p{margin:7px 0 0;color:var(--muted);font-size:12px}
 
-    .section { padding: 88px 0; }
-    .section.alt { background: color-mix(in srgb, var(--paper-2) 74%, transparent); border-block: 1px solid var(--line); }
-    .section-heading { max-width: 780px; margin: 0 auto 38px; text-align: center; }
-    .section-heading .eyebrow { justify-content: center; }
-    .section-heading h2 { margin: 0; font-size: clamp(38px, 6vw, 58px); letter-spacing: -.025em; }
-    .section-heading p { margin: 14px auto 0; color: var(--muted); font-weight: 300; }
-
-    .filter-bar {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
-      gap: 11px;
-      max-width: 780px;
-      margin: 0 auto 28px;
+    .support-panel{
+      display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;
+      padding:38px;border:1px solid rgba(255,255,255,.18);border-radius:var(--radius-large);
+      background:linear-gradient(135deg,rgba(183,148,82,.14),rgba(108,46,59,.12));
     }
-    .search-field {
-      width: 100%;
-      min-height: 48px;
-      padding: 10px 14px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      color: var(--ink);
-      background: var(--paper-2);
-      outline: none;
-    }
-    .search-field:focus { border-color: var(--gold); box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 18%, transparent); }
+    .support-panel h2{font-size:clamp(38px,5vw,56px)}
+    .support-panel p{max-width:760px;margin:13px 0 0;color:rgba(255,255,255,.68)}
 
-    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
-    .card {
-      min-width: 0;
-      min-height: 100%;
-      display: flex;
-      flex-direction: column;
-      padding: 24px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--paper-2);
-      box-shadow: 0 8px 24px rgba(8,21,34,.055);
-      transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
-    }
-    .card:hover { transform: translateY(-3px); border-color: color-mix(in srgb, var(--gold) 70%, var(--line)); box-shadow: var(--shadow); }
-    .card-number { color: var(--gold-dark); font-size: 10px; letter-spacing: .18em; }
-    .card h3 { margin: 10px 0 0; font-size: 29px; }
-    .card p { margin: 10px 0 0; color: var(--muted); font-size: 14px; }
-    .script-sample {
-      min-height: 70px;
-      display: flex;
-      align-items: center;
-      margin: 20px 0 0;
-      padding: 14px;
-      border-left: 2px solid var(--gold);
-      color: var(--ink-soft);
-      background: color-mix(in srgb, var(--paper-3) 47%, transparent);
-      font-family: var(--serif);
-      font-size: 22px;
-      line-height: 1.35;
-      overflow-wrap: anywhere;
-    }
-    .card-tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 17px 0 0; }
-    .card-tags span { padding: 4px 7px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); font-size: 10px; }
-    .card-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 22px; }
-    .mini-button {
-      min-height: 37px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 7px 10px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      color: var(--ink);
-      background: transparent;
-      font-size: 11px;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    .mini-button:hover { border-color: var(--gold); background: var(--paper-3); }
-    .mini-button.saved { color: var(--paper-2); background: var(--wine); border-color: var(--wine); }
+    .footer{padding:48px 0 28px;color:#e9e1d4;background:#050b12}
+    .footer-grid{display:grid;grid-template-columns:1.3fr repeat(3,.7fr);gap:24px}
+    .footer h2{font-size:31px}
+    .footer p{color:rgba(255,255,255,.61);font-size:12px}
+    .footer h3{margin:3px 0 11px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase}
+    .footer a{display:block;width:fit-content;margin:7px 0;color:rgba(255,255,255,.72);font-size:12px}
+    .footer a:hover{color:#fff}
+    .copyright{margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.46);font-size:10px;text-align:center}
 
-    .paths { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 10px; }
-    .path {
-      min-height: 210px;
-      padding: 19px;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      background: var(--paper-2);
-      text-align: center;
+    .toast{
+      position:fixed;left:50%;bottom:22px;z-index:2200;transform:translate(-50%,30px);
+      max-width:min(92vw,590px);padding:11px 15px;border:1px solid rgba(255,255,255,.17);border-radius:var(--radius);
+      color:#fff;background:var(--night);box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.18s ease;
     }
-    .path-mark { width: 55px; height: 55px; display: grid; place-items: center; margin: 0 auto 14px; border: 1px solid var(--gold); border-radius: 50%; font-family: var(--serif); font-size: 24px; }
-    .path h3 { margin: 0; font-size: 22px; }
-    .path p { margin: 9px 0 0; color: var(--muted); font-size: 12px; }
+    .toast.show{opacity:1;transform:translate(-50%,0)}
 
-    .studio-layout { display: grid; grid-template-columns: .8fr 1.2fr; gap: 22px; align-items: stretch; }
-    .studio-intro {
-      padding: 33px;
-      border-radius: var(--radius);
-      color: #f7f1e5;
-      background:
-        linear-gradient(135deg, rgba(183,148,82,.16), transparent 45%),
-        var(--ink);
+    @media(max-width:1040px){
+      .nav{position:absolute;left:16px;right:16px;top:calc(100% + 1px);display:none;padding:11px;border:1px solid var(--line);border-radius:var(--radius);background:var(--paper-bright);box-shadow:var(--shadow)}
+      .nav.open{display:grid}.nav a{text-align:center;padding:11px}.menu-button{display:grid}
+      .hero-grid,.voice-shell,.atlas-panel{grid-template-columns:1fr}.hero-copy-wrap{text-align:center}.actions,.skill-line{justify-content:center}
+      .quick-grid{grid-template-columns:repeat(3,1fr)}
+      .path-grid{grid-template-columns:repeat(2,1fr)}
+      .resource-grid{grid-template-columns:repeat(2,1fr)}
+      .footer-grid{grid-template-columns:repeat(2,1fr)}
     }
-    .studio-intro h2 { margin: 0; font-size: 46px; }
-    .studio-intro p { color: rgba(255,255,255,.7); }
-    .studio-intro blockquote { margin: 33px 0 0; padding: 18px 0 0; border-top: 1px solid rgba(255,255,255,.18); font-family: var(--serif); font-size: 24px; line-height: 1.3; }
-    .studio-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 11px; }
-    .studio-item { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); }
-    .studio-item h3 { margin: 0; font-size: 25px; }
-    .studio-item p { margin: 8px 0 0; color: var(--muted); font-size: 13px; }
-
-    .culture-grid { display: grid; grid-template-columns: 1.1fr .9fr; gap: 16px; }
-    .culture-feature {
-      min-height: 410px;
-      position: relative;
-      display: flex;
-      align-items: end;
-      padding: 33px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      color: #f8f2e6;
-      background:
-        linear-gradient(to top, rgba(5,12,19,.95), rgba(5,12,19,.15)),
-        repeating-linear-gradient(60deg, #274a4b 0 22px, #2e5556 22px 44px, #7c5a33 44px 45px);
+    @media(max-width:690px){
+      .world-track{animation-duration:33s}.header-inner{min-height:67px;gap:8px}.brand-copy small{display:none}.brand-copy strong{font-size:18px}.seal{width:42px}.support-small{display:none}
+      .hero{min-height:auto}.hero-grid{padding:68px 0}.hero::after{width:340px;height:340px;right:-225px}.actions .button{width:100%}
+      .quick-grid,.path-grid,.resource-grid,.footer-grid{grid-template-columns:1fr}
+      .voice-form{grid-template-columns:1fr}.group-head{display:block;text-align:center}.group-head p{margin:8px auto 0;text-align:center}
+      .section{padding:68px 0}.support-panel{grid-template-columns:1fr;text-align:center}.support-panel .button{width:100%}
+      .footer{text-align:center}.footer a{margin-inline:auto}
     }
-    .culture-feature::before {
-      content: "Aa · أ ب · 文 · अ · あ · Ω · Ж";
-      position: absolute;
-      inset: 24px;
-      color: rgba(255,255,255,.18);
-      font-family: var(--serif);
-      font-size: clamp(38px, 8vw, 90px);
-      line-height: 1.6;
-      word-spacing: 22px;
-    }
-    .culture-feature > div { position: relative; z-index: 1; }
-    .culture-feature h3 { margin: 0; font-size: 42px; }
-    .culture-feature p { max-width: 620px; color: rgba(255,255,255,.72); }
-    .culture-list { display: grid; gap: 11px; }
-    .culture-item { padding: 22px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--paper-2); }
-    .culture-item h3 { margin: 0; font-size: 25px; }
-    .culture-item p { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
-
-    .quote-band { padding: 66px 0; color: #f7f1e5; background: var(--wine); text-align: center; }
-    .quote-band blockquote { max-width: 900px; margin: 0 auto; font-family: var(--serif); font-size: clamp(29px, 5vw, 48px); line-height: 1.15; }
-    .quote-band cite { display: block; margin-top: 16px; color: rgba(255,255,255,.68); font-style: normal; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
-
-    .footer { padding: 44px 0 28px; color: #e9e2d5; background: var(--night); }
-    .footer-grid { display: grid; grid-template-columns: 1.3fr repeat(3, .7fr); gap: 24px; }
-    .footer h2 { margin: 0; font-size: 30px; }
-    .footer p { color: rgba(255,255,255,.62); font-size: 13px; }
-    .footer h3 { margin: 3px 0 11px; font-family: var(--sans); font-size: 10px; font-weight: 500; letter-spacing: .16em; text-transform: uppercase; }
-    .footer a { display: block; width: fit-content; margin: 7px 0; color: rgba(255,255,255,.72); font-size: 13px; text-decoration: none; }
-    .footer a:hover { color: #fff; }
-    .copyright { margin-top: 30px; padding-top: 22px; border-top: 1px solid rgba(255,255,255,.14); color: rgba(255,255,255,.48); font-size: 11px; text-align: center; }
-
-    dialog {
-      width: min(520px, calc(100% - 28px));
-      padding: 0;
-      border: 1px solid var(--gold);
-      border-radius: var(--radius);
-      color: var(--ink);
-      background: var(--paper-2);
-      box-shadow: 0 28px 90px rgba(0,0,0,.35);
-    }
-    dialog::backdrop { background: rgba(3,10,16,.72); backdrop-filter: blur(4px); }
-    .dialog-inner { padding: 28px; text-align: center; }
-    .dialog-inner h2 { margin: 0; font-size: 34px; }
-    .dialog-inner p { color: var(--muted); }
-
-    .toast {
-      position: fixed;
-      left: 50%;
-      bottom: 22px;
-      z-index: 2000;
-      transform: translate(-50%, 30px);
-      max-width: min(92vw, 560px);
-      padding: 11px 16px;
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: var(--radius);
-      color: #fff;
-      background: var(--night);
-      box-shadow: var(--shadow);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .2s ease, transform .2s ease;
-    }
-    .toast.show { opacity: 1; transform: translate(-50%, 0); }
-
-    [hidden] { display: none !important; }
-    :focus-visible { outline: 3px solid color-mix(in srgb, var(--gold) 65%, transparent); outline-offset: 3px; }
-
-    @media (max-width: 980px) {
-      .header-inner { grid-template-columns: auto 1fr auto; }
-      .menu-button { display: inline-grid; place-items: center; }
-      .nav {
-        position: absolute;
-        left: 14px;
-        right: 14px;
-        top: calc(100% + 1px);
-        display: none;
-        padding: 11px;
-        border: 1px solid var(--line);
-        border-radius: var(--radius);
-        background: var(--paper-2);
-        box-shadow: var(--shadow);
-      }
-      .nav.open { display: grid; }
-      .nav a { padding: 12px; text-align: center; }
-      .hero-grid, .studio-layout, .culture-grid { grid-template-columns: 1fr; }
-      .hero { min-height: auto; }
-      .hero-copy-wrap { text-align: center; }
-      .hero-actions, .skill-line { justify-content: center; }
-      .portal-grid { grid-template-columns: repeat(2, 1fr); }
-      .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-      .paths { grid-template-columns: repeat(3, 1fr); }
-      .footer-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    @media (max-width: 640px) {
-      .world-track { animation-duration: 32s; }
-      .header-inner { min-height: 68px; gap: 9px; }
-      .brand-copy small { display: none; }
-      .brand-copy strong { font-size: 18px; }
-      .seal { width: 42px; }
-      .header-actions { gap: 4px; }
-      .icon-button { width: 38px; height: 38px; }
-      .hero-grid { padding: 66px 0; }
-      .hero::after { width: 330px; height: 330px; right: -220px; }
-      .hero-actions .button { width: 100%; }
-      .compass-card { padding: 22px; }
-      .portal-grid, .cards, .paths, .studio-grid, .footer-grid { grid-template-columns: 1fr; }
-      .filter-bar { grid-template-columns: 1fr; }
-      .section { padding: 66px 0; }
-      .culture-feature { min-height: 340px; padding: 24px; }
-      .culture-feature h3 { font-size: 34px; }
-      .footer { text-align: center; }
-      .footer a { margin-inline: auto; }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
-      .world-track { width: auto; flex-wrap: wrap; justify-content: center; padding: 8px 14px; }
-      .world-track .duplicate { display: none; }
+    @media(prefers-reduced-motion:reduce){
+      html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+      .world-track{width:auto;min-width:0;height:auto;flex-wrap:wrap;justify-content:center;padding:8px 12px}.world-set{min-width:0;flex-wrap:wrap}.world-set:last-child{display:none}
     }
   </style>
 </head>
@@ -650,46 +346,36 @@
 
   <div class="world-ribbon" aria-label="Greetings from around the world">
     <div class="world-track" aria-hidden="true">
-      <span><b>Welcome</b> · English</span>
-      <span><b>Bienvenidos</b> · Español</span>
-      <span><b>Bienvenue</b> · Français</span>
-      <span lang="ar" dir="rtl" style="font-family:'Noto Sans Arabic',sans-serif"><b>أهلاً وسهلاً</b> · العربية</span>
-      <span lang="zh-Hans" style="font-family:'Noto Sans SC',sans-serif"><b>欢迎</b> · 中文</span>
-      <span lang="hi" style="font-family:'Noto Sans Devanagari',sans-serif"><b>स्वागत है</b> · हिन्दी</span>
-      <span lang="ja" style="font-family:'Noto Sans JP',sans-serif"><b>ようこそ</b> · 日本語</span>
-      <span><b>Karibu</b> · Kiswahili</span>
-      <span><b>Καλώς ήρθατε</b> · Ελληνικά</span>
-      <span class="duplicate"><b>Welcome</b> · English</span>
-      <span class="duplicate"><b>Bienvenidos</b> · Español</span>
-      <span class="duplicate"><b>Bienvenue</b> · Français</span>
-      <span class="duplicate" lang="ar" dir="rtl" style="font-family:'Noto Sans Arabic',sans-serif"><b>أهلاً وسهلاً</b> · العربية</span>
-      <span class="duplicate" lang="zh-Hans" style="font-family:'Noto Sans SC',sans-serif"><b>欢迎</b> · 中文</span>
-      <span class="duplicate" lang="hi" style="font-family:'Noto Sans Devanagari',sans-serif"><b>स्वागत है</b> · हिन्दी</span>
-      <span class="duplicate" lang="ja" style="font-family:'Noto Sans JP',sans-serif"><b>ようこそ</b> · 日本語</span>
-      <span class="duplicate"><b>Karibu</b> · Kiswahili</span>
-      <span class="duplicate"><b>Καλώς ήρθατε</b> · Ελληνικά</span>
+      <div class="world-set">
+        <span><b>Welcome</b> · English</span><span><b>Bienvenidos</b> · Español</span><span><b>Bienvenue</b> · Français</span>
+        <span lang="ar" dir="rtl" style="font-family:'Noto Sans Arabic',sans-serif"><b>أهلاً وسهلاً</b> · العربية</span>
+        <span lang="zh-Hans" style="font-family:'Noto Sans SC',sans-serif"><b>欢迎</b> · 中文</span>
+        <span lang="hi" style="font-family:'Noto Sans Devanagari',sans-serif"><b>स्वागत है</b> · हिन्दी</span>
+        <span lang="ja" style="font-family:'Noto Sans JP',sans-serif"><b>ようこそ</b> · 日本語</span><span><b>Karibu</b> · Kiswahili</span>
+      </div>
+      <div class="world-set">
+        <span><b>Welcome</b> · English</span><span><b>Bienvenidos</b> · Español</span><span><b>Bienvenue</b> · Français</span>
+        <span lang="ar" dir="rtl" style="font-family:'Noto Sans Arabic',sans-serif"><b>أهلاً وسهلاً</b> · العربية</span>
+        <span lang="zh-Hans" style="font-family:'Noto Sans SC',sans-serif"><b>欢迎</b> · 中文</span>
+        <span lang="hi" style="font-family:'Noto Sans Devanagari',sans-serif"><b>स्वागत है</b> · हिन्दी</span>
+        <span lang="ja" style="font-family:'Noto Sans JP',sans-serif"><b>ようこそ</b> · 日本語</span><span><b>Karibu</b> · Kiswahili</span>
+      </div>
     </div>
   </div>
 
   <header class="site-header">
-    <div class="header-inner">
-      <a class="brand" href="https://vervenveda.github.io/khaemenesacademy.github.io/" aria-label="Khaemenes Academy home">
+    <div class="wrap header-inner">
+      <a class="brand" href="https://vervenveda.github.io/Khaemenes_Academy.github.io/" aria-label="Khaemenes Academy home">
         <span class="seal" aria-hidden="true">KA</span>
-        <span class="brand-copy">
-          <strong>Khaemenes Academy</strong>
-          <small>Linguistics Hall</small>
-        </span>
+        <span class="brand-copy"><strong>Polyglot</strong><small>Khaemenes Academy Linguistics Hall</small></span>
       </a>
 
       <nav class="nav" id="siteNav" aria-label="Primary navigation">
-        <a href="#languages">Languages</a>
-        <a href="#pathways">Learning Paths</a>
-        <a href="#studios">Skill Studios</a>
-        <a href="#culture">Culture & Literature</a>
-        <a href="#portals">Portals</a>
+        <a href="#pathways">Pathways</a><a href="#voice-studio">Voice Studio</a><a href="#resources">Learning Apps</a><a href="#atlas">Language Atlas</a><a href="#support">Contribute</a>
       </nav>
 
       <div class="header-actions">
+        <a class="support-small" href="https://buy.stripe.com/7sY9AU9Nv6G02jj3En4AU0r" target="_blank" rel="noopener noreferrer external">Support Polyglot</a>
         <button class="icon-button" id="themeButton" type="button" aria-label="Switch color theme" title="Switch color theme">☼</button>
         <button class="icon-button menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Open navigation">☰</button>
       </div>
@@ -703,251 +389,122 @@
           <p class="eyebrow">Khaemenes Academy · International Language Studies</p>
           <h1 id="heroTitle">Polyglot</h1>
           <p class="hero-subtitle">The World in Words</p>
-          <p class="hero-copy">
-            A scholarly, welcoming hall for language, linguistics, translation, literature, and cultural understanding. Begin with one phrase, follow one language family, or build a lifelong path across the world’s living voices.
-          </p>
-          <div class="hero-actions">
-            <a class="button" href="#languages">Explore the language hall <span aria-hidden="true">→</span></a>
-            <a class="button secondary" href="#pathways">Choose a learning path</a>
+          <p class="hero-copy">A clear, connected entrance to language learning, linguistics, writing systems, pronunciation, literacy, literature, translation, and cultural understanding—from a child’s first word to advanced scholarly study.</p>
+          <div class="actions">
+            <a class="button" href="#pathways">Choose your pathway <span aria-hidden="true">→</span></a>
+            <a class="button secondary" href="#voice-studio">Choose a voice</a>
+            <a class="button gold" href="https://vervenveda.github.io/Arshif.github.io/apps/language_hall/index.html">Enter Advanced Language Hall</a>
           </div>
-          <div class="skill-line" aria-label="Core language skills">
-            <span>Listening</span><span>Speaking</span><span>Reading</span><span>Writing</span><span>Translation</span><span>Culture</span>
-          </div>
+          <div class="skill-line" aria-label="Core language skills"><span>Listening</span><span>Speaking</span><span>Reading</span><span>Writing</span><span>Translation</span><span>Culture</span><span>Linguistics</span></div>
         </div>
 
-        <aside class="compass-card" aria-labelledby="compassTitle">
-          <div class="compass-ring" aria-hidden="true">
-            <div class="compass-center"><span>Language<br />Compass</span></div>
-          </div>
-          <h2 id="compassTitle">Begin with a greeting.</h2>
-          <p>Every language opens a different doorway into thought, memory, place, and human connection.</p>
+        <aside class="phrase-card" aria-labelledby="phraseTitle">
+          <div class="compass" aria-hidden="true"><div class="compass-center"><span>Language<br>Compass</span></div></div>
+          <h2 id="phraseTitle">Begin with a greeting.</h2>
+          <p>Use the selected browser voice, hear the phrase, and move through languages one doorway at a time.</p>
           <div class="phrase" aria-live="polite">
             <div class="phrase-language" id="phraseLanguage">Swahili</div>
             <div class="phrase-main" id="phraseMain" lang="sw">Habari za leo?</div>
             <div class="phrase-translation" id="phraseTranslation">How are you today?</div>
-            <div class="phrase-actions">
-              <button class="mini-button" id="speakPhrase" type="button">Hear phrase</button>
-              <button class="mini-button" id="nextPhrase" type="button">Next phrase</button>
-            </div>
+            <div class="phrase-actions"><button class="button" id="speakPhrase" type="button">Hear phrase</button><button class="button secondary" id="nextPhrase" type="button">Next phrase</button></div>
           </div>
         </aside>
       </div>
     </section>
 
-    <section class="portal-band" id="portals" aria-label="Academy portals">
-      <div class="wrap portal-grid">
-        <a class="portal-link" href="https://vervenveda.github.io/khaemenesacademy.github.io/">
-          <span><strong>Academy Home</strong><small>Return to the central campus</small></span><span class="arrow" aria-hidden="true">↗</span>
-        </a>
-        <button class="portal-link planned-link" type="button" data-module="Student Language Portal">
-          <span><strong>Student Portal</strong><small>Courses, shelf, and progress</small></span><span class="arrow" aria-hidden="true">→</span>
-        </button>
-        <button class="portal-link planned-link" type="button" data-module="Parent & Guardian Portal">
-          <span><strong>Parent Portal</strong><small>Guidance, pacing, and records</small></span><span class="arrow" aria-hidden="true">→</span>
-        </button>
-        <button class="portal-link planned-link" type="button" data-module="Educator Commons">
-          <span><strong>Educator Commons</strong><small>Lessons, resources, and tools</small></span><span class="arrow" aria-hidden="true">→</span>
-        </button>
+    <section class="quick-band" aria-label="Quick access">
+      <div class="wrap quick-grid">
+        <a class="quick-link" href="https://vervenveda.github.io/Arshif.github.io/apps/language_hall/index.html"><span class="quick-mark">206</span><strong>Advanced Study</strong><small>Language dossiers, modules, quizzes, sources, and portfolio work</small></a>
+        <a class="quick-link" href="#young-polyglots"><span class="quick-mark">ABC</span><strong>Young Polyglots</strong><small>First words, stories, reading, spelling, and joyful practice</small></a>
+        <a class="quick-link" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/ABC_bilingual_index.html"><span class="quick-mark" lang="ar">أ ب</span><strong>Arabic Quest</strong><small>Arabic alphabet, tracing, forms, matching, and pronunciation</small></a>
+        <a class="quick-link" href="#voice-studio"><span class="quick-mark">♫</span><strong>Voice Studio</strong><small>Choose installed voices, language, speech rate, and pitch</small></a>
+        <a class="quick-link" href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#student-portal"><span class="quick-mark">S</span><strong>Student Portal</strong><small>Enter the Academy campus and learner pathways</small></a>
+        <a class="quick-link" href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#parent-portal"><span class="quick-mark">P</span><strong>Parent Portal</strong><small>Family guidance, pacing, records, and educator resources</small></a>
       </div>
     </section>
 
-    <section class="section" id="languages" aria-labelledby="languagesTitle">
+    <section class="section" id="pathways" aria-labelledby="pathwaysTitle">
       <div class="wrap">
-        <div class="section-heading">
-          <p class="eyebrow">A living international library</p>
-          <h2 id="languagesTitle">Explore language worlds.</h2>
-          <p>Browse by region, language family, script, historical tradition, or purpose. These collections are designed as organized future wings, never disguised as broken links.</p>
+        <div class="section-heading"><p class="eyebrow">Begin with the learner</p><h2 id="pathwaysTitle">Choose a purposeful pathway.</h2><p>Every entrance below leads to a verified live resource or a clearly identified section on this page.</p></div>
+        <div class="path-grid">
+          <article class="path-card"><div class="path-mark">Y</div><h3>Young Learners</h3><p>Pictures, stories, first words, alphabet sounds, spelling, narration, and child-friendly practice.</p><a class="button" href="#young-polyglots">Open Young Polyglots</a></article>
+          <article class="path-card"><div class="path-mark">A</div><h3>Advanced Scholars</h3><p>World languages, scripts, grammar, culture, heritage study, assessments, sources, and capstones.</p><a class="button" href="https://vervenveda.github.io/Arshif.github.io/apps/language_hall/index.html">Open ARSHIF Language Hall</a></article>
+          <article class="path-card"><div class="path-mark">V</div><h3>Pronunciation & Listening</h3><p>Select from the voices installed on your browser or device and practice multilingual phrases.</p><a class="button" href="#voice-studio">Open Voice Studio</a></article>
+          <article class="path-card"><div class="path-mark">F</div><h3>Families & Educators</h3><p>Enter Academy family resources, age-appropriate campuses, learning records, and support pathways.</p><a class="button" href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#parent-portal">Open Parent Portal</a></article>
         </div>
-
-        <div class="filter-bar">
-          <label>
-            <span class="skip-link">Search language collections</span>
-            <input class="search-field" id="languageSearch" type="search" placeholder="Search Spanish, Arabic, Japanese, Latin, sign language…" autocomplete="off" />
-          </label>
-          <button class="button quiet" id="showSaved" type="button">My shelf <span id="savedCount">0</span></button>
-        </div>
-
-        <div class="cards" id="languageCards">
-          <article class="card" data-search="global foundations english spanish french portuguese esl world languages">
-            <span class="card-number">COLLECTION 01</span>
-            <h3>Global Foundations</h3>
-            <p>High-access starting points for international communication, travel, study, and multilingual family learning.</p>
-            <div class="script-sample">Hello · Hola · Bonjour · Olá</div>
-            <div class="card-tags"><span>English</span><span>Spanish</span><span>French</span><span>Portuguese</span></div>
-            <div class="card-actions">
-              <button class="mini-button planned-link" type="button" data-module="Global Foundations Collection">Open collection</button>
-              <button class="mini-button save-button" type="button" data-save="Global Foundations">♡ Save</button>
-            </div>
-          </article>
-
-          <article class="card" data-search="middle east north africa arabic hebrew persian farsi turkish semitic rtl">
-            <span class="card-number">COLLECTION 02</span>
-            <h3>Middle East & North Africa</h3>
-            <p>Right-to-left scripts, calligraphic traditions, historical texts, and modern spoken language pathways.</p>
-            <div class="script-sample" lang="ar" dir="rtl" style="font-family:'Noto Sans Arabic',sans-serif">العربية · עברית · فارسی · Türkçe</div>
-            <div class="card-tags"><span>Arabic</span><span>Hebrew</span><span>Persian</span><span>Turkish</span></div>
-            <div class="card-actions">
-              <button class="mini-button planned-link" type="button" data-module="Middle East & North Africa Collection">Open collection</button>
-              <button class="mini-button save-button" type="button" data-save="Middle East & North Africa">♡ Save</button>
-            </div>
-          </article>
-
-          <article class="card" data-search="east southeast asia chinese mandarin japanese korean vietnamese thai hanzi kanji">
-            <span class="card-number">COLLECTION 03</span>
-            <h3>East & Southeast Asia</h3>
-            <p>Character systems, tonal listening, syllabaries, honorifics, and cultural context across diverse language traditions.</p>
-            <div class="script-sample" style="font-family:'Noto Sans SC','Noto Sans JP',sans-serif">中文 · 日本語 · 한국어 · Tiếng Việt</div>
-            <div class="card-tags"><span>Mandarin</span><span>Japanese</span><span>Korean</span><span>Vietnamese</span></div>
-            <div class="card-actions">
-              <button class="mini-button planned-link" type="button" data-module="East & Southeast Asia Collection">Open collection</button>
-              <button class="mini-button save-button" type="button" data-save="East & Southeast Asia">♡ Save</button>
-            </div>
-          </article>
-
-          <article class="card" data-search="south asia hindi urdu bengali tamil sanskrit devanagari india pakistan bangladesh">
-            <span class="card-number">COLLECTION 04</span>
-            <h3>South Asia</h3>
-            <p>Modern languages, classical roots, poetry, film, and the rich script traditions of the Indian subcontinent.</p>
-            <div class="script-sample" style="font-family:'Noto Sans Devanagari',sans-serif">हिन्दी · اُردُو · বাংলা · தமிழ்</div>
-            <div class="card-tags"><span>Hindi</span><span>Urdu</span><span>Bengali</span><span>Tamil</span></div>
-            <div class="card-actions">
-              <button class="mini-button planned-link" type="button" data-module="South Asia Collection">Open collection</button>
-              <button class="mini-button save-button" type="button" data-save="South Asia">♡ Save</button>
-            </div>
-          </article>
-
-          <article class="card" data-search="africa indigenous swahili yoruba zulu amharic cherokee navajo maori heritage endangered languages">
-            <span class="card-number">COLLECTION 05</span>
-            <h3>Africa & Indigenous Voices</h3>
-            <p>Living languages, oral traditions, heritage reclamation, community knowledge, and respectful preservation.</p>
-            <div class="script-sample">Kiswahili · Yorùbá · isiZulu · ᏣᎳᎩ</div>
-            <div class="card-tags"><span>Swahili</span><span>Yoruba</span><span>Zulu</span><span>Cherokee</span></div>
-            <div class="card-actions">
-              <button class="mini-button planned-link" type="button" data-module="Africa & Indigenous Voices Collection">Open collection</button>
-              <button class="mini-button save-button" type="button" data-save="Africa & Indigenous Voices">♡ Save</button>
-            </div>
-          </article>
-
-          <article class="card" data-search="classical historical latin ancient greek sanskrit old english classical arabic etymology philology">
-            <span class="card-number">COLLECTION 06</span>
-            <h3>Classical & Historical Languages</h3>
-            <p>Grammar, etymology, manuscript reading, ancient literature, and the linguistic roots beneath modern speech.</p>
-            <div class="script-sample">Latina · Ἑλληνική · संस्कृतम् · Ænglisc</div>
-            <div class="card-tags"><span>Latin</span><span>Ancient Greek</span><span>Sanskrit</span><span>Old English</span></div>
-            <div class="card-actions">
-              <button class="mini-button planned-link" type="button" data-module="Classical & Historical Languages Collection">Open collection</button>
-              <button class="mini-button save-button" type="button" data-save="Classical & Historical Languages">♡ Save</button>
-            </div>
-          </article>
-
-          <article class="card" data-search="europe german italian russian polish greek dutch celtic slavic romance germanic">
-            <span class="card-number">COLLECTION 07</span>
-            <h3>Europe & the Mediterranean</h3>
-            <p>Romance, Germanic, Slavic, Hellenic, and Celtic language families presented with history and living culture.</p>
-            <div class="script-sample">Deutsch · Italiano · Ελληνικά · Русский</div>
-            <div class="card-tags"><span>German</span><span>Italian</span><span>Greek</span><span>Russian</span></div>
-            <div class="card-actions">
-              <button class="mini-button planned-link" type="button" data-module="Europe & Mediterranean Collection">Open collection</button>
-              <button class="mini-button save-button" type="button" data-save="Europe & Mediterranean">♡ Save</button>
-            </div>
-          </article>
-
-          <article class="card" data-search="sign language asl bsl visual language deaf culture fingerspelling accessibility">
-            <span class="card-number">COLLECTION 08</span>
-            <h3>Signed Languages</h3>
-            <p>Visual grammar, fingerspelling, expression, Deaf culture, accessibility, and the diversity of signed languages.</p>
-            <div class="script-sample">ASL · BSL · LSF · International Sign</div>
-            <div class="card-tags"><span>ASL</span><span>Deaf Culture</span><span>Visual Grammar</span></div>
-            <div class="card-actions">
-              <button class="mini-button planned-link" type="button" data-module="Signed Languages Collection">Open collection</button>
-              <button class="mini-button save-button" type="button" data-save="Signed Languages">♡ Save</button>
-            </div>
-          </article>
-
-          <article class="card" data-search="linguistics phonetics phonology morphology syntax semantics sociolinguistics language science">
-            <span class="card-number">COLLECTION 09</span>
-            <h3>Linguistics & Language Science</h3>
-            <p>How language works: sound, structure, meaning, change, identity, acquisition, and communication.</p>
-            <div class="script-sample">Phonetics · Syntax · Semantics · Sociolinguistics</div>
-            <div class="card-tags"><span>IPA</span><span>Grammar</span><span>Meaning</span><span>Language Change</span></div>
-            <div class="card-actions">
-              <button class="mini-button planned-link" type="button" data-module="Linguistics & Language Science Collection">Open collection</button>
-              <button class="mini-button save-button" type="button" data-save="Linguistics & Language Science">♡ Save</button>
-            </div>
-          </article>
-        </div>
-        <p id="noResults" hidden style="text-align:center;color:var(--muted);margin-top:24px">No collection matches that search yet.</p>
       </div>
     </section>
 
-    <section class="section alt" id="pathways" aria-labelledby="pathwaysTitle">
+    <section class="section alt" id="voice-studio" aria-labelledby="voiceTitle">
+      <div class="wrap voice-shell">
+        <div class="voice-intro">
+          <p class="eyebrow" style="color:#e8c97f">Browser voice library</p>
+          <h2 id="voiceTitle">Choose the voice that helps you learn.</h2>
+          <p>Polyglot reads from the speech voices already provided by the learner’s browser and operating system. Available names and languages vary by device.</p>
+          <p class="voice-note">No voice recordings are collected or uploaded. The controls save only the selected voice name, language filter, rate, and pitch in this browser.</p>
+        </div>
+
+        <div class="voice-panel">
+          <p class="voice-status" id="voiceStatus" role="status" aria-live="polite">Loading the voices available on this device…</p>
+          <div class="voice-form">
+            <div class="field-group"><label for="voiceLanguage">Language filter</label><select class="field" id="voiceLanguage"><option value="all">All available languages</option></select></div>
+            <div class="field-group"><label for="voicePicker">Voice</label><select class="field" id="voicePicker"><option value="">Browser default voice</option></select></div>
+            <div class="field-group full"><label for="voiceText">Practice text</label><textarea class="text-area" id="voiceText" dir="auto">Welcome to Polyglot. Every language opens a new doorway.</textarea></div>
+            <div class="field-group"><label for="voiceRate">Speech rate</label><div class="range-row"><input id="voiceRate" type="range" min="0.5" max="1.5" step="0.05" value="0.85"><output class="range-value" id="rateValue" for="voiceRate">0.85×</output></div></div>
+            <div class="field-group"><label for="voicePitch">Voice pitch</label><div class="range-row"><input id="voicePitch" type="range" min="0.5" max="1.5" step="0.05" value="1"><output class="range-value" id="pitchValue" for="voicePitch">1.00</output></div></div>
+          </div>
+          <div class="voice-actions"><button class="button" id="testVoice" type="button">Hear practice text</button><button class="button secondary" id="stopVoice" type="button">Stop speech</button><button class="button secondary" id="resetVoice" type="button">Use browser default</button></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="resources" aria-labelledby="resourcesTitle">
       <div class="wrap">
-        <div class="section-heading">
-          <p class="eyebrow">Begin with the learner</p>
-          <h2 id="pathwaysTitle">Choose a purposeful path.</h2>
-          <p>Polyglot should serve the curious beginner, the serious scholar, the multilingual family, and the adult returning to study.</p>
-        </div>
-        <div class="paths">
-          <article class="path"><div class="path-mark">A</div><h3>Young Learners</h3><p>Stories, songs, sounds, pictures, and joyful first words.</p></article>
-          <article class="path"><div class="path-mark">B</div><h3>Teen Scholars</h3><p>Coursework, world literature, culture, projects, and academic credit.</p></article>
-          <article class="path"><div class="path-mark">C</div><h3>Adult Learners</h3><p>Practical pacing for work, community, travel, and lifelong study.</p></article>
-          <article class="path"><div class="path-mark">D</div><h3>Heritage Language</h3><p>Reconnect with family language, stories, and intergenerational memory.</p></article>
-          <article class="path"><div class="path-mark">E</div><h3>Traveler Path</h3><p>Useful speech, listening, etiquette, navigation, and cultural respect.</p></article>
-          <article class="path"><div class="path-mark">F</div><h3>Academic Study</h3><p>Grammar, translation, linguistics, exams, and literature research.</p></article>
-        </div>
-      </div>
-    </section>
+        <div class="section-heading"><p class="eyebrow">Verified learning destinations</p><h2 id="resourcesTitle">A clean, categorized language library.</h2><p>Each Open button below points to a confirmed file in the Verve N Veda learning network. There are no repository-browsing links and no placeholder URLs.</p></div>
 
-    <section class="section" id="studios" aria-labelledby="studiosTitle">
-      <div class="wrap studio-layout">
-        <div class="studio-intro">
-          <p class="eyebrow" style="color:#e7c980">Practice with purpose</p>
-          <h2 id="studiosTitle">Language Skill Studios</h2>
-          <p>Each studio can grow into a focused app while remaining connected to one consistent Academy learning record.</p>
-          <blockquote>“A language is not only learned. It is listened to, lived with, written through, and shared.”</blockquote>
+        <div class="resource-group">
+          <div class="group-head"><h3>Scholarly & Advanced Study</h3><p>Comprehensive language study, linguistics, assessments, source literacy, capstones, and portfolio records.</p></div>
+          <div class="resource-grid">
+            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Advanced World Language Portal</span><span class="live-badge">Live</span></div><h3>ARSHIF Language Learning Hall</h3><p>A self-contained scholarly portal with 206 dossiers, 40 modules, quizzes, assessments, sources, fluency practice, capstones, certificates, and local portfolio tools.</p><div class="resource-features"><span>World Languages</span><span>Grammar</span><span>Scripts</span><span>Culture</span><span>Assessments</span></div><a class="button" href="https://vervenveda.github.io/Arshif.github.io/apps/language_hall/index.html">Open Language Hall</a></article>
+            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Academy Learner Gateway</span><span class="live-badge">Live</span></div><h3>Student Language Portal</h3><p>Return to the central Academy portal to choose the learner’s campus, review pathways, and connect language study with the larger educational program.</p><div class="resource-features"><span>Students</span><span>Campuses</span><span>Pathways</span><span>Local Records</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#student-portal">Open Student Portal</a></article>
+            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Family & Educator Gateway</span><span class="live-badge">Live</span></div><h3>Parent & Educator Portal</h3><p>Family-facing guidance for pacing, learning support, records, accessibility, mentoring, and age-appropriate Academy entrances.</p><div class="resource-features"><span>Families</span><span>Educators</span><span>Planning</span><span>Accessibility</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#parent-portal">Open Parent Portal</a></article>
+          </div>
         </div>
-        <div class="studio-grid">
-          <article class="studio-item"><h3>Alphabet & Script Lab</h3><p>Tracing, keyboard practice, character families, diacritics, and writing direction.</p></article>
-          <article class="studio-item"><h3>Pronunciation Studio</h3><p>Sound comparison, IPA support, syllables, rhythm, tone, and listening drills.</p></article>
-          <article class="studio-item"><h3>Grammar Atelier</h3><p>Sentence-building, patterns, conjugation, cases, word order, and clear explanations.</p></article>
-          <article class="studio-item"><h3>Conversation Commons</h3><p>Role-play, everyday dialogues, polite forms, confidence practice, and speaking prompts.</p></article>
-          <article class="studio-item"><h3>Translation Workshop</h3><p>Meaning, context, register, comparison, ethics, and human-centered translation practice.</p></article>
-          <article class="studio-item"><h3>Vocabulary Conservatory</h3><p>Root systems, spaced review, thematic sets, word families, and personal dictionaries.</p></article>
-          <article class="studio-item"><h3>Reading Room</h3><p>Graded readers, parallel texts, newspapers, poetry, classics, and comprehension tools.</p></article>
-          <article class="studio-item"><h3>Writing Desk</h3><p>Journals, correspondence, composition, correction, prompts, and portfolio development.</p></article>
-        </div>
-      </div>
-    </section>
 
-    <section class="section alt" id="culture" aria-labelledby="cultureTitle">
-      <div class="wrap">
-        <div class="section-heading">
-          <p class="eyebrow">More than vocabulary</p>
-          <h2 id="cultureTitle">Culture, literature, and living context.</h2>
-          <p>Languages belong to people. Polyglot should teach them with history, humility, living voices, and room for regional difference.</p>
-        </div>
-        <div class="culture-grid">
-          <article class="culture-feature">
-            <div>
-              <h3>World Literature Reading Hall</h3>
-              <p>Parallel texts, folktales, poetry, letters, speeches, plays, oral traditions, and classics studied in cultural context.</p>
-              <button class="button planned-link" type="button" data-module="World Literature Reading Hall">Enter the reading hall</button>
-            </div>
-          </article>
-          <div class="culture-list">
-            <article class="culture-item"><h3>Living Voices</h3><p>Interviews, regional speech, oral histories, contemporary expression, and community storytelling.</p></article>
-            <article class="culture-item"><h3>Etiquette & Context</h3><p>Forms of address, gestures, hospitality, respectful communication, and social conventions.</p></article>
-            <article class="culture-item"><h3>Language & Identity</h3><p>Migration, heritage, dialect, code-switching, language preservation, and belonging.</p></article>
-            <article class="culture-item"><h3>Atlas of Language</h3><p>Language families, writing systems, migration, contact, borrowing, and historical change.</p></article>
+        <div class="resource-group" id="young-polyglots">
+          <div class="group-head"><h3>Young Polyglots & First Languages</h3><p>Child-friendly language, alphabet, vocabulary, narration, storytelling, reading, and word-play tools.</p></div>
+          <div class="resource-grid">
+            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Arabic Alphabet & Phonics</span><span class="live-badge">Live</span></div><h3>Cosmic Arabic Alphabet Quest</h3><p>A bilingual tracing, matching, and phonics experience covering Arabic letters, forms, examples, pronunciation, and locally saved progress.</p><div class="resource-features"><span>Arabic</span><span>RTL</span><span>Tracing</span><span>Pronunciation</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/ABC_bilingual_index.html">Open Arabic Quest</a></article>
+            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Vocabulary & Read Aloud</span><span class="live-badge">Live</span></div><h3>Enchanted Word Garden</h3><p>A vocabulary garden with a full browser voice chooser, word practice, local saving, and child-friendly narration.</p><div class="resource-features"><span>Vocabulary</span><span>Voice Choice</span><span>Listening</span><span>Local Progress</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/reading_learnanewword_index.html">Open Word Garden</a></article>
+            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Alphabet Storybook</span><span class="live-badge">Live</span></div><h3>ABC Story Time</h3><p>A colorful alphabet storybook with read-aloud narration for letter recognition, listening, and early literacy.</p><div class="resource-features"><span>Alphabet</span><span>Stories</span><span>Narration</span><span>Early Reading</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/ABC_Story_Time/index.html">Open Story Time</a></article>
+            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Guided Early Reader</span><span class="live-badge">Live</span></div><h3>Spire Early Reader</h3><p>A gentle reading app with narration, word highlighting, alphabet practice, and locally stored progress.</p><div class="resource-features"><span>Phonics</span><span>Highlighting</span><span>Reading</span><span>Narration</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/ABC_time_index.html">Open Early Reader</a></article>
+            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Story Composition</span><span class="live-badge">Live</span></div><h3>Storybird Grove</h3><p>A private, offline-first story garden with characters, settings, actions, feelings, narration, printing, and local-only saving.</p><div class="resource-features"><span>Storytelling</span><span>Vocabulary</span><span>Narration</span><span>Print</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/reading_storybird_grove/index.html">Open Storybird Grove</a></article>
+            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Spelling & Word Recognition</span><span class="live-badge">Live</span></div><h3>Colorful Spelling Garden</h3><p>A bright spelling game with pictures, hints, letter tiles, narration, and local progress.</p><div class="resource-features"><span>Spelling</span><span>Pictures</span><span>Hints</span><span>Narration</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/Spelling_game_index.html">Open Spelling Garden</a></article>
+            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Sight Words</span><span class="live-badge">Live</span></div><h3>Spelling Soup</h3><p>A local-only sight-word spelling game for recognition, repetition, and early reading confidence.</p><div class="resource-features"><span>Sight Words</span><span>Spelling</span><span>Local Only</span><span>Practice</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/reading_sight_words_index.html">Open Spelling Soup</a></article>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="quote-band" aria-label="Polyglot principle">
+    <section class="section alt" id="atlas" aria-labelledby="atlasTitle">
       <div class="wrap">
-        <blockquote>Many languages. Many histories. One shared human conversation.</blockquote>
-        <cite>Polyglot · Khaemenes Academy Linguistics Hall</cite>
+        <div class="section-heading"><p class="eyebrow">Many families · many scripts</p><h2 id="atlasTitle">Language, literature, and living context.</h2><p>Polyglot keeps language connected to people, history, identity, regional variation, oral tradition, and the ethical use of cultural knowledge.</p></div>
+        <div class="atlas-panel">
+          <article class="atlas-feature"><div><h3>Explore the World Language Atlas</h3><p>Enter the ARSHIF Language Learning Hall for Romance, Germanic, Slavic, Semitic, African, Asian, Indigenous, signed, classical, historical, and constructed language study.</p><a class="button gold" href="https://vervenveda.github.io/Arshif.github.io/apps/language_hall/index.html">Open the complete atlas</a></div></article>
+          <div class="atlas-list">
+            <article class="atlas-item"><h3>Writing Systems</h3><p>Alphabetic, abjad, abugida, syllabic, logographic, and signed systems studied with correct direction and cultural context.</p></article>
+            <article class="atlas-item"><h3>Grammar & Language Science</h3><p>Phonetics, phonology, morphology, syntax, semantics, pragmatics, sociolinguistics, acquisition, and language change.</p></article>
+            <article class="atlas-item"><h3>Literature & Oral Tradition</h3><p>Poetry, folktales, letters, speeches, theater, sacred texts, oral histories, and parallel reading.</p></article>
+            <article class="atlas-item"><h3>Translation & Cultural Respect</h3><p>Meaning, context, register, uncertainty, regional variation, community review, and responsible attribution.</p></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" id="support" aria-labelledby="supportTitle">
+      <div class="wrap support-panel">
+        <div><p class="eyebrow" style="color:#e8c97f">Help the learning hall grow</p><h2 id="supportTitle">Contribute to Polyglot.</h2><p>Contributions support the continued development of free language-learning pathways, accessible educational tools, curriculum review, offline resources, and the connected Khaemenes Academy learning network.</p></div>
+        <a class="button wine" href="https://buy.stripe.com/7sY9AU9Nv6G02jj3En4AU0r" target="_blank" rel="noopener noreferrer external">Contribute securely through Stripe</a>
       </div>
     </section>
   </main>
@@ -955,208 +512,156 @@
   <footer class="footer">
     <div class="wrap">
       <div class="footer-grid">
-        <div>
-          <h2>Polyglot</h2>
-          <p>A free, international language and linguistics hall within Khaemenes Academy. Built for curiosity, dignity, cultural respect, and lifelong learning.</p>
-        </div>
-        <div>
-          <h3>Academy</h3>
-          <a href="https://vervenveda.github.io/khaemenesacademy.github.io/">Khaemenes Academy</a>
-          <a href="https://vervenveda.github.io/">Verve N Veda</a>
-        </div>
-        <div>
-          <h3>Explore</h3>
-          <a href="#languages">Languages</a>
-          <a href="#pathways">Learning Paths</a>
-          <a href="#studios">Skill Studios</a>
-        </div>
-        <div>
-          <h3>Principles</h3>
-          <a href="#culture">Cultural Respect</a>
-          <button class="mini-button planned-link" type="button" data-module="Polyglot Accessibility Guide">Accessibility Guide</button>
-        </div>
+        <div><h2>Polyglot</h2><p>A free international language and linguistics hall within Khaemenes Academy, organized for curiosity, dignity, cultural respect, accessibility, and lifelong learning.</p></div>
+        <div><h3>Academy</h3><a href="https://vervenveda.github.io/Khaemenes_Academy.github.io/">Khaemenes Academy</a><a href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#student-portal">Student Portal</a><a href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#parent-portal">Parent Portal</a></div>
+        <div><h3>Language Study</h3><a href="https://vervenveda.github.io/Arshif.github.io/apps/language_hall/index.html">Advanced Language Hall</a><a href="#voice-studio">Voice Studio</a><a href="#young-polyglots">Young Polyglots</a></div>
+        <div><h3>Network & Support</h3><a href="https://vervenveda.github.io/">Verve N Veda</a><a href="https://buy.stripe.com/7sY9AU9Nv6G02jj3En4AU0r" target="_blank" rel="noopener noreferrer external">Contribute to the Site</a><a href="#main">Return to Top</a></div>
       </div>
-      <div class="copyright">Khaemenes Academy · Jennifer Kay Pearl · All Rights Reserved 2026</div>
+      <div class="copyright">Khaemenes Academy · Jennifer Kay Pearl · © <span id="year"></span> · All Rights Reserved</div>
     </div>
   </footer>
-
-  <dialog id="plannedDialog" aria-labelledby="plannedTitle">
-    <div class="dialog-inner">
-      <p class="eyebrow" style="justify-content:center">Academy growth map</p>
-      <h2 id="plannedTitle">Future Polyglot Wing</h2>
-      <p id="plannedText">This learning module is planned and has not been linked to an unfinished destination.</p>
-      <button class="button" id="closeDialog" type="button">Return to Polyglot</button>
-    </div>
-  </dialog>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script>
-    (() => {
+    (()=>{
       'use strict';
 
-      const STORAGE = {
-        theme: 'polyglot_theme_v1',
-        shelf: 'polyglot_shelf_v1'
-      };
+      const STORAGE={theme:'polyglot_theme_v2',voice:'polyglot_voice_v2'};
+      const $=(selector,root=document)=>root.querySelector(selector);
+      const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
+      const safeParse=(value,fallback)=>{try{return value?JSON.parse(value):fallback}catch{return fallback}};
 
-      const phrases = [
-        { language: 'Swahili', text: 'Habari za leo?', translation: 'How are you today?', lang: 'sw' },
-        { language: 'Spanish', text: 'El mundo está lleno de historias.', translation: 'The world is full of stories.', lang: 'es' },
-        { language: 'French', text: 'Chaque langue ouvre une porte.', translation: 'Each language opens a door.', lang: 'fr' },
-        { language: 'Arabic', text: 'اللغة جسر بين الناس', translation: 'Language is a bridge between people.', lang: 'ar', dir: 'rtl' },
-        { language: 'Mandarin Chinese', text: '语言连接世界', translation: 'Language connects the world.', lang: 'zh-Hans' },
-        { language: 'Hindi', text: 'भाषा लोगों को जोड़ती है।', translation: 'Language brings people together.', lang: 'hi' },
-        { language: 'Japanese', text: 'ことばは心をつなぎます。', translation: 'Words connect hearts.', lang: 'ja' },
-        { language: 'Greek', text: 'Η γλώσσα ενώνει τους ανθρώπους.', translation: 'Language unites people.', lang: 'el' }
-      ];
+      const themeButton=$('#themeButton');
+      const menuButton=$('#menuButton');
+      const nav=$('#siteNav');
+      const toast=$('#toast');
 
-      const $ = (selector, root = document) => root.querySelector(selector);
-      const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-
-      const themeButton = $('#themeButton');
-      const menuButton = $('#menuButton');
-      const nav = $('#siteNav');
-      const toast = $('#toast');
-      const dialog = $('#plannedDialog');
-      const plannedText = $('#plannedText');
-      const search = $('#languageSearch');
-      const noResults = $('#noResults');
-      const savedCount = $('#savedCount');
-      const showSaved = $('#showSaved');
-
-      function safeParse(value, fallback) {
-        try { return value ? JSON.parse(value) : fallback; }
-        catch { return fallback; }
+      function showToast(message){
+        toast.textContent=message;toast.classList.add('show');
+        clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>toast.classList.remove('show'),2600);
       }
 
-      function showToast(message) {
-        toast.textContent = message;
-        toast.classList.add('show');
-        clearTimeout(showToast.timer);
-        showToast.timer = setTimeout(() => toast.classList.remove('show'), 2400);
+      function applyTheme(theme){
+        document.documentElement.dataset.theme=theme;
+        themeButton.textContent=theme==='dark'?'☾':'☼';
+        themeButton.setAttribute('aria-label',theme==='dark'?'Switch to light theme':'Switch to dark theme');
       }
-
-      function applyTheme(theme) {
-        document.documentElement.dataset.theme = theme;
-        themeButton.textContent = theme === 'dark' ? '☾' : '☼';
-        themeButton.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
-      }
-
-      const preferredDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
-      applyTheme(localStorage.getItem(STORAGE.theme) || (preferredDark ? 'dark' : 'light'));
-
-      themeButton.addEventListener('click', () => {
-        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
-        localStorage.setItem(STORAGE.theme, next);
-        applyTheme(next);
+      const systemDark=window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+      applyTheme(localStorage.getItem(STORAGE.theme)||(systemDark?'dark':'light'));
+      themeButton.addEventListener('click',()=>{
+        const next=document.documentElement.dataset.theme==='dark'?'light':'dark';
+        localStorage.setItem(STORAGE.theme,next);applyTheme(next);
       });
 
-      menuButton.addEventListener('click', () => {
-        const open = nav.classList.toggle('open');
-        menuButton.setAttribute('aria-expanded', String(open));
-        menuButton.textContent = open ? '×' : '☰';
+      menuButton.addEventListener('click',()=>{
+        const open=nav.classList.toggle('open');document.body.classList.toggle('menu-open',open);
+        menuButton.setAttribute('aria-expanded',String(open));menuButton.textContent=open?'×':'☰';
       });
-
-      $$('#siteNav a').forEach(link => link.addEventListener('click', () => {
-        nav.classList.remove('open');
-        menuButton.setAttribute('aria-expanded', 'false');
-        menuButton.textContent = '☰';
+      $$('#siteNav a').forEach(link=>link.addEventListener('click',()=>{
+        nav.classList.remove('open');document.body.classList.remove('menu-open');menuButton.setAttribute('aria-expanded','false');menuButton.textContent='☰';
       }));
 
-      let phraseIndex = 0;
-      function renderPhrase() {
-        const phrase = phrases[phraseIndex];
-        $('#phraseLanguage').textContent = phrase.language;
-        $('#phraseMain').textContent = phrase.text;
-        $('#phraseMain').lang = phrase.lang;
-        $('#phraseMain').dir = phrase.dir || 'auto';
-        $('#phraseTranslation').textContent = phrase.translation;
+      const phrases=[
+        {language:'Swahili',text:'Habari za leo?',translation:'How are you today?',lang:'sw'},
+        {language:'Spanish',text:'El mundo está lleno de historias.',translation:'The world is full of stories.',lang:'es'},
+        {language:'French',text:'Chaque langue ouvre une porte.',translation:'Each language opens a door.',lang:'fr'},
+        {language:'Arabic',text:'اللغة جسر بين الناس',translation:'Language is a bridge between people.',lang:'ar',dir:'rtl'},
+        {language:'Mandarin Chinese',text:'语言连接世界',translation:'Language connects the world.',lang:'zh-CN'},
+        {language:'Hindi',text:'भाषा लोगों को जोड़ती है।',translation:'Language brings people together.',lang:'hi'},
+        {language:'Japanese',text:'ことばは心をつなぎます。',translation:'Words connect hearts.',lang:'ja'},
+        {language:'Greek',text:'Η γλώσσα ενώνει τους ανθρώπους.',translation:'Language unites people.',lang:'el'},
+        {language:'Portuguese',text:'Cada idioma revela um novo mundo.',translation:'Each language reveals a new world.',lang:'pt'},
+        {language:'German',text:'Sprache verbindet Menschen.',translation:'Language connects people.',lang:'de'}
+      ];
+      let phraseIndex=0;
+      function renderPhrase(){
+        const item=phrases[phraseIndex];
+        $('#phraseLanguage').textContent=item.language;$('#phraseMain').textContent=item.text;$('#phraseMain').lang=item.lang;$('#phraseMain').dir=item.dir||'auto';$('#phraseTranslation').textContent=item.translation;
       }
+      $('#nextPhrase').addEventListener('click',()=>{phraseIndex=(phraseIndex+1)%phrases.length;renderPhrase()});
 
-      $('#nextPhrase').addEventListener('click', () => {
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        renderPhrase();
-      });
+      const voiceLanguage=$('#voiceLanguage');
+      const voicePicker=$('#voicePicker');
+      const voiceText=$('#voiceText');
+      const voiceRate=$('#voiceRate');
+      const voicePitch=$('#voicePitch');
+      const voiceStatus=$('#voiceStatus');
+      const rateValue=$('#rateValue');
+      const pitchValue=$('#pitchValue');
+      let voices=[];
+      let stored=safeParse(localStorage.getItem(STORAGE.voice),{});
 
-      $('#speakPhrase').addEventListener('click', () => {
-        if (!('speechSynthesis' in window)) {
-          showToast('Speech playback is not available in this browser.');
-          return;
+      function languageName(code){
+        try{return new Intl.DisplayNames([document.documentElement.lang||'en'],{type:'language'}).of(code.split('-')[0])||code}catch{return code}
+      }
+      function saveVoice(){
+        localStorage.setItem(STORAGE.voice,JSON.stringify({name:voicePicker.value,filter:voiceLanguage.value,rate:Number(voiceRate.value),pitch:Number(voicePitch.value)}));
+      }
+      function buildLanguageFilters(){
+        const current=voiceLanguage.value||stored.filter||'all';
+        const map=new Map();
+        voices.forEach(v=>{const base=(v.lang||'und').split('-')[0];if(!map.has(base))map.set(base,languageName(base))});
+        voiceLanguage.innerHTML='<option value="all">All available languages</option>';
+        [...map.entries()].sort((a,b)=>a[1].localeCompare(b[1])).forEach(([code,name])=>{
+          const option=document.createElement('option');option.value=code;option.textContent=`${name} (${code})`;voiceLanguage.append(option);
+        });
+        voiceLanguage.value=[...voiceLanguage.options].some(o=>o.value===current)?current:'all';
+      }
+      function buildVoicePicker(){
+        const selected=voicePicker.value||stored.name||'';
+        const filter=voiceLanguage.value;
+        const filtered=filter==='all'?voices:voices.filter(v=>(v.lang||'').toLowerCase().startsWith(filter.toLowerCase()));
+        voicePicker.innerHTML='<option value="">Browser default voice</option>';
+        filtered.sort((a,b)=>`${a.lang} ${a.name}`.localeCompare(`${b.lang} ${b.name}`)).forEach(v=>{
+          const option=document.createElement('option');option.value=v.name;option.textContent=`${v.name} — ${v.lang||'Unknown'}${v.localService?' — Local':''}`;voicePicker.append(option);
+        });
+        voicePicker.value=[...voicePicker.options].some(o=>o.value===selected)?selected:'';
+        voiceStatus.textContent=voices.length?`${filtered.length} matching voice${filtered.length===1?'':'s'} shown from ${voices.length} available on this device.`:'No speech voices are currently available. The browser default may load after the page finishes opening.';
+      }
+      function loadVoices(){
+        if(!('speechSynthesis' in window)){
+          voiceStatus.textContent='Speech synthesis is not supported in this browser.';voicePicker.disabled=true;voiceLanguage.disabled=true;return;
         }
-        const phrase = phrases[phraseIndex];
-        speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(phrase.text);
-        utterance.lang = phrase.lang;
-        utterance.rate = 0.82;
-        speechSynthesis.speak(utterance);
-      });
-
-      $$('.planned-link').forEach(button => {
-        button.addEventListener('click', () => {
-          const module = button.dataset.module || 'This module';
-          plannedText.textContent = `${module} is part of the Polyglot growth map. It is intentionally marked as planned instead of opening a dead or unfinished link.`;
-          dialog.showModal();
-        });
-      });
-      $('#closeDialog').addEventListener('click', () => dialog.close());
-      dialog.addEventListener('click', event => {
-        if (event.target === dialog) dialog.close();
-      });
-
-      function getShelf() {
-        return new Set(safeParse(localStorage.getItem(STORAGE.shelf), []));
+        voices=window.speechSynthesis.getVoices();buildLanguageFilters();buildVoicePicker();
       }
-      function saveShelf(shelf) {
-        localStorage.setItem(STORAGE.shelf, JSON.stringify([...shelf]));
+      function chosenVoice(lang=''){
+        const exact=voices.find(v=>v.name===voicePicker.value);
+        if(exact)return exact;
+        const base=(lang||'').toLowerCase().split('-')[0];
+        return voices.find(v=>(v.lang||'').toLowerCase().startsWith(base))||null;
       }
-      function updateShelfUI() {
-        const shelf = getShelf();
-        savedCount.textContent = shelf.size;
-        $$('.save-button').forEach(button => {
-          const saved = shelf.has(button.dataset.save);
-          button.classList.toggle('saved', saved);
-          button.textContent = saved ? '♥ Saved' : '♡ Save';
-          button.setAttribute('aria-pressed', String(saved));
-        });
+      function speak(text,lang=''){
+        if(!('speechSynthesis' in window)){showToast('Speech playback is not available in this browser.');return}
+        if(!text.trim()){showToast('Enter some practice text first.');return}
+        window.speechSynthesis.cancel();
+        const utterance=new SpeechSynthesisUtterance(text.trim());
+        const voice=chosenVoice(lang);if(voice)utterance.voice=voice;
+        utterance.lang=voice?.lang||lang||document.documentElement.lang||'en-US';
+        utterance.rate=Number(voiceRate.value);utterance.pitch=Number(voicePitch.value);
+        utterance.onerror=()=>showToast('The selected voice could not play this text. Try another voice.');
+        window.speechSynthesis.speak(utterance);
       }
-      $$('.save-button').forEach(button => {
-        button.addEventListener('click', () => {
-          const shelf = getShelf();
-          const name = button.dataset.save;
-          shelf.has(name) ? shelf.delete(name) : shelf.add(name);
-          saveShelf(shelf);
-          updateShelfUI();
-          showToast(shelf.has(name) ? `${name} added to your shelf.` : `${name} removed from your shelf.`);
-        });
-      });
-      updateShelfUI();
 
-      let shelfOnly = false;
-      function filterCards() {
-        const query = search.value.trim().toLowerCase();
-        const shelf = getShelf();
-        let visible = 0;
-        $$('#languageCards .card').forEach(card => {
-          const title = card.querySelector('h3')?.textContent.trim() || '';
-          const matchesSearch = !query || card.dataset.search.includes(query) || card.textContent.toLowerCase().includes(query);
-          const matchesShelf = !shelfOnly || shelf.has(title);
-          const show = matchesSearch && matchesShelf;
-          card.hidden = !show;
-          if (show) visible += 1;
-        });
-        noResults.hidden = visible !== 0;
-      }
-      search.addEventListener('input', filterCards);
-      showSaved.addEventListener('click', () => {
-        shelfOnly = !shelfOnly;
-        showSaved.classList.toggle('secondary', shelfOnly);
-        showSaved.firstChild.textContent = shelfOnly ? 'Showing shelf ' : 'My shelf ';
-        filterCards();
+      voiceRate.value=String(stored.rate??0.85);voicePitch.value=String(stored.pitch??1);
+      rateValue.textContent=`${Number(voiceRate.value).toFixed(2)}×`;pitchValue.textContent=Number(voicePitch.value).toFixed(2);
+      loadVoices();
+      if('speechSynthesis' in window){window.speechSynthesis.onvoiceschanged=loadVoices;setTimeout(loadVoices,350)}
+      voiceLanguage.addEventListener('change',()=>{buildVoicePicker();saveVoice()});
+      voicePicker.addEventListener('change',saveVoice);
+      voiceRate.addEventListener('input',()=>{rateValue.textContent=`${Number(voiceRate.value).toFixed(2)}×`;saveVoice()});
+      voicePitch.addEventListener('input',()=>{pitchValue.textContent=Number(voicePitch.value).toFixed(2);saveVoice()});
+      $('#testVoice').addEventListener('click',()=>speak(voiceText.value,voicePicker.selectedOptions[0]?.textContent.match(/— ([a-z]{2,3}(?:-[A-Z]{2})?)/)?.[1]||''));
+      $('#stopVoice').addEventListener('click',()=>window.speechSynthesis?.cancel());
+      $('#resetVoice').addEventListener('click',()=>{
+        voiceLanguage.value='all';voicePicker.value='';voiceRate.value='0.85';voicePitch.value='1';rateValue.textContent='0.85×';pitchValue.textContent='1.00';localStorage.removeItem(STORAGE.voice);buildVoicePicker();showToast('Browser-default voice settings restored.');
       });
+      $('#speakPhrase').addEventListener('click',()=>{const item=phrases[phraseIndex];speak(item.text,item.lang)});
 
+      $('#year').textContent=new Date().getFullYear();
       renderPhrase();
     })();
   </script>
+  <script src="./register-service-worker.js" defer></script>
 </body>
 </html>
