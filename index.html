@@ -1,667 +1,323 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Polyglot — Khaemenes Academy's international language and linguistics hall for language study, pronunciation, writing systems, literature, and cultural understanding.">
-  <meta name="theme-color" content="#102238">
-  <meta name="color-scheme" content="light dark">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <title>Polyglot | Khaemenes Academy Linguistics Hall</title>
-
-  <link rel="manifest" href="./manifest.webmanifest">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&family=Noto+Sans+Arabic:wght@300;400;500&family=Noto+Sans+Devanagari:wght@300;400;500&family=Noto+Sans+JP:wght@300;400;500&family=Noto+Sans+SC:wght@300;400;500&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --ink:#102238;
-      --ink-soft:#2e4355;
-      --night:#081522;
-      --paper:#f5f0e4;
-      --paper-bright:#fcf9f2;
-      --paper-deep:#e7deca;
-      --gold:#b79452;
-      --gold-dark:#80642f;
-      --wine:#6c2e3b;
-      --teal:#275f61;
-      --teal-soft:#dce8e7;
-      --muted:#6d746f;
-      --line:rgba(16,34,56,.16);
-      --line-strong:rgba(16,34,56,.28);
-      --shadow:0 18px 44px rgba(8,21,34,.11);
-      --shadow-small:0 9px 24px rgba(8,21,34,.07);
-      --radius:7px;
-      --radius-large:21px;
-      --max:1210px;
-      --serif:"Cormorant Garamond",Georgia,"Times New Roman",serif;
-      --sans:Inter,"Noto Sans",Arial,sans-serif;
-    }
-
-    html[data-theme="dark"]{
-      --ink:#ede5d6;
-      --ink-soft:#cad5d9;
-      --night:#050b12;
-      --paper:#0d1b28;
-      --paper-bright:#122536;
-      --paper-deep:#203647;
-      --gold:#d1ad68;
-      --gold-dark:#e6c887;
-      --wine:#b86b79;
-      --teal:#74adae;
-      --teal-soft:#17333d;
-      --muted:#a9b5b9;
-      --line:rgba(237,229,214,.16);
-      --line-strong:rgba(237,229,214,.29);
-      --shadow:0 18px 44px rgba(0,0,0,.32);
-      --shadow-small:0 9px 24px rgba(0,0,0,.23);
-    }
-
-    *,*::before,*::after{box-sizing:border-box}
-    html{scroll-behavior:smooth;scroll-padding-top:108px}
-    body{
-      margin:0;
-      min-width:300px;
-      overflow-x:hidden;
-      color:var(--ink);
-      background:
-        radial-gradient(circle at 10% 7%,rgba(183,148,82,.11),transparent 27rem),
-        radial-gradient(circle at 90% 18%,rgba(39,95,97,.09),transparent 29rem),
-        var(--paper);
-      font-family:var(--sans);
-      font-size:16px;
-      font-weight:400;
-      line-height:1.65;
-      -webkit-font-smoothing:antialiased;
-      text-rendering:optimizeLegibility;
-    }
-    body.menu-open{overflow:hidden}
-    a{color:inherit;text-decoration:none}
-    button,input,select,textarea{font:inherit}
-    button{cursor:pointer}
-    img,svg{display:block;max-width:100%}
-    [hidden]{display:none!important}
-    ::selection{color:var(--night);background:#e9cf97}
-    :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
-
-    .wrap{width:min(calc(100% - 32px),var(--max));margin-inline:auto}
-    .skip-link{
-      position:fixed;left:14px;top:12px;z-index:3000;
-      transform:translateY(-170%);
-      padding:10px 14px;border-radius:var(--radius);
-      color:#fff;background:var(--night);
-      transition:transform .18s ease;
-    }
-    .skip-link:focus{transform:none}
-
-    .world-ribbon{
-      min-height:34px;overflow:hidden;
-      color:#f6efdf;background:linear-gradient(90deg,#07101b,#10263b 50%,#07101b);
-      border-bottom:1px solid rgba(255,255,255,.12);
-    }
-    .world-track{
-      width:max-content;min-width:200%;height:34px;
-      display:flex;align-items:center;
-      animation:worldPassage 42s linear infinite;
-      will-change:transform;
-    }
-    .world-set{
-      min-width:50%;display:flex;align-items:center;justify-content:space-around;
-      gap:28px;padding:0 28px;white-space:nowrap;
-      font-size:11px;letter-spacing:.06em;
-    }
-    .world-set b{color:#e8c97f;font-weight:500}
-    @keyframes worldPassage{to{transform:translateX(-50%)}}
-
-    .site-header{
-      position:sticky;top:0;z-index:1200;
-      border-bottom:1px solid var(--line);
-      background:color-mix(in srgb,var(--paper-bright) 92%,transparent);
-      backdrop-filter:blur(18px);
-    }
-    .header-inner{
-      min-height:74px;display:grid;
-      grid-template-columns:auto minmax(0,1fr) auto;
-      align-items:center;gap:20px;
-    }
-    .brand{display:inline-flex;align-items:center;gap:11px;min-width:0}
-    .seal{
-      width:48px;aspect-ratio:1;display:grid;place-items:center;flex:0 0 auto;
-      border:1px solid var(--gold);border-radius:50%;
-      box-shadow:inset 0 0 0 4px color-mix(in srgb,var(--gold) 13%,transparent);
-      font-family:var(--serif);font-size:20px;letter-spacing:-.04em;
-    }
-    .brand-copy{line-height:1.08}
-    .brand-copy strong{display:block;font-family:var(--serif);font-size:21px;font-weight:500}
-    .brand-copy small{display:block;margin-top:4px;color:var(--muted);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
-    .nav{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:2px}
-    .nav a{padding:8px 9px;border-radius:var(--radius);color:var(--ink-soft);font-size:12px}
-    .nav a:hover{background:var(--paper-deep)}
-    .header-actions{display:flex;align-items:center;justify-content:flex-end;gap:7px}
-    .icon-button,.support-small{
-      min-height:40px;border:1px solid var(--line-strong);border-radius:var(--radius);
-      color:var(--ink);background:var(--paper-bright);
-    }
-    .icon-button{width:40px;display:grid;place-items:center}
-    .support-small{display:inline-flex;align-items:center;justify-content:center;padding:7px 11px;color:#fff;background:var(--wine);border-color:var(--wine);font-size:11px;letter-spacing:.04em}
-    .support-small:hover{filter:brightness(1.08)}
-    .menu-button{display:none}
-
-    .hero{position:relative;min-height:670px;display:grid;align-items:center;overflow:hidden;border-bottom:1px solid var(--line);isolation:isolate}
-    .hero::before{
-      content:"";position:absolute;inset:0;z-index:-2;opacity:.57;
-      background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
-      background-size:66px 66px;mask-image:radial-gradient(circle at 50% 45%,#000,transparent 78%);
-    }
-    .hero::after{
-      content:"";position:absolute;z-index:-1;width:520px;height:520px;right:-155px;top:48px;
-      border:1px solid color-mix(in srgb,var(--gold) 42%,transparent);border-radius:50%;
-      box-shadow:0 0 0 66px color-mix(in srgb,var(--gold) 7%,transparent),0 0 0 132px color-mix(in srgb,var(--teal) 5%,transparent);
-    }
-    .hero-grid{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(330px,.84fr);gap:clamp(34px,7vw,88px);align-items:center;padding:92px 0 82px}
-    .eyebrow{
-      display:inline-flex;align-items:center;gap:11px;margin:0 0 17px;
-      color:var(--gold-dark);font-size:11px;font-weight:500;letter-spacing:.2em;text-transform:uppercase;
-    }
-    .eyebrow::before,.eyebrow::after{content:"";width:33px;height:1px;background:currentColor}
-    h1,h2,h3{margin:0;font-family:var(--serif);font-weight:500;line-height:1.04;text-wrap:balance}
-    h1{font-size:clamp(62px,10vw,116px);letter-spacing:-.045em}
-    .hero-subtitle{margin:8px 0 0;color:var(--wine);font-family:var(--serif);font-size:clamp(25px,3.2vw,40px);letter-spacing:.025em}
-    .hero-copy{max-width:735px;margin:24px 0 0;color:var(--ink-soft);font-size:clamp(16px,1.8vw,19px);font-weight:300}
-    .actions{display:flex;justify-content:flex-start;flex-wrap:wrap;gap:10px;margin-top:28px}
-    .button{
-      min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:8px;
-      padding:10px 17px;border:1px solid var(--ink);border-radius:var(--radius);
-      color:var(--paper-bright);background:var(--ink);
-      font-size:12px;font-weight:500;letter-spacing:.045em;transition:.18s ease;
-    }
-    .button:hover{transform:translateY(-2px);box-shadow:var(--shadow-small)}
-    .button.secondary{color:var(--ink);background:transparent}
-    .button.gold{color:#241b0e;background:linear-gradient(135deg,#d8b975,#f0daa8);border-color:#d8b975}
-    .button.wine{color:#fff;background:var(--wine);border-color:var(--wine)}
-    .skill-line{display:flex;flex-wrap:wrap;gap:7px;margin-top:23px}
-    .skill-line span{padding:5px 9px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:color-mix(in srgb,var(--paper-bright) 79%,transparent);font-size:10px;letter-spacing:.08em;text-transform:uppercase}
-
-    .phrase-card{padding:28px;border:1px solid color-mix(in srgb,var(--gold) 55%,var(--line));border-radius:var(--radius-large);background:color-mix(in srgb,var(--paper-bright) 95%,transparent);box-shadow:var(--shadow)}
-    .compass{
-      width:min(220px,70vw);aspect-ratio:1;position:relative;display:grid;place-items:center;margin:0 auto 23px;
-      border:1px solid var(--gold);border-radius:50%;
-      background:linear-gradient(45deg,transparent 49.7%,var(--line) 50%,transparent 50.3%),linear-gradient(-45deg,transparent 49.7%,var(--line) 50%,transparent 50.3%),radial-gradient(circle,transparent 41%,var(--line) 41.4%,transparent 42%);
-    }
-    .compass::before,.compass::after{content:"";position:absolute;width:1px;height:86%;background:var(--line)}
-    .compass::after{transform:rotate(90deg)}
-    .compass-center{width:120px;aspect-ratio:1;z-index:2;display:grid;place-items:center;border-radius:50%;color:#f9f4e9;background:var(--ink);box-shadow:0 0 0 7px color-mix(in srgb,var(--gold) 18%,transparent);text-align:center}
-    .compass-center span{font-family:var(--serif);font-size:21px;line-height:1}
-    .phrase-card h2{font-size:29px}
-    .phrase-card>p{margin:8px 0 0;color:var(--muted);font-size:13px}
-    .phrase{margin-top:17px;padding-top:17px;border-top:1px solid var(--line)}
-    .phrase-language{color:var(--gold-dark);font-size:10px;letter-spacing:.16em;text-transform:uppercase}
-    .phrase-main{margin:4px 0 0;font-family:var(--serif);font-size:30px;line-height:1.25;overflow-wrap:anywhere}
-    .phrase-translation{margin:3px 0 0;color:var(--muted);font-size:13px}
-    .phrase-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
-
-    .quick-band{padding:22px 0;background:var(--night);color:#f5eddd}
-    .quick-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
-    .quick-link{
-      min-height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;
-      padding:15px;border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);
-      background:rgba(255,255,255,.035);text-align:center;transition:.17s ease;
-    }
-    .quick-link:hover{transform:translateY(-2px);border-color:#d9b66f;background:rgba(217,182,111,.09)}
-    .quick-mark{color:#e8c97f;font-family:var(--serif);font-size:23px}
-    .quick-link strong{font-family:var(--serif);font-size:19px;font-weight:500;line-height:1.05}
-    .quick-link small{color:rgba(255,255,255,.64);font-size:10px;line-height:1.35}
-
-    .section{padding:88px 0}
-    .section.alt{background:color-mix(in srgb,var(--paper-bright) 77%,transparent);border-block:1px solid var(--line)}
-    .section.dark{color:#f4eddf;background:var(--night)}
-    .section-heading{max-width:820px;margin:0 auto 40px;text-align:center}
-    .section-heading .eyebrow{justify-content:center}
-    .section-heading h2{font-size:clamp(40px,6vw,62px);letter-spacing:-.025em}
-    .section-heading p{margin:14px auto 0;color:var(--muted);font-weight:300}
-    .section.dark .section-heading p{color:rgba(255,255,255,.65)}
-
-    .path-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-    .path-card{
-      min-height:260px;display:flex;flex-direction:column;align-items:center;
-      padding:25px;border:1px solid var(--line);border-radius:var(--radius-large);
-      background:var(--paper-bright);box-shadow:var(--shadow-small);text-align:center;
-    }
-    .path-mark{width:55px;height:55px;display:grid;place-items:center;margin-bottom:16px;border:1px solid var(--gold);border-radius:50%;font-family:var(--serif);font-size:23px}
-    .path-card h3{font-size:27px}
-    .path-card p{margin:10px 0 0;color:var(--muted);font-size:13px}
-    .path-card .button{width:100%;margin-top:auto}
-
-    .voice-shell{display:grid;grid-template-columns:.82fr 1.18fr;gap:18px;align-items:stretch}
-    .voice-intro{
-      padding:34px;border-radius:var(--radius-large);color:#f8f1e5;
-      background:linear-gradient(135deg,rgba(183,148,82,.18),transparent 45%),var(--ink);
-    }
-    .voice-intro h2{font-size:clamp(40px,5.5vw,58px)}
-    .voice-intro p{color:rgba(255,255,255,.7)}
-    .voice-note{margin-top:25px;padding-top:18px;border-top:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.67);font-size:12px}
-    .voice-panel{padding:27px;border:1px solid var(--line);border-radius:var(--radius-large);background:var(--paper-bright);box-shadow:var(--shadow-small)}
-    .voice-status{margin:0 0 17px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--radius);color:var(--muted);background:var(--paper);font-size:12px}
-    .voice-form{display:grid;grid-template-columns:1fr 1fr;gap:13px}
-    .field-group{display:grid;gap:6px;min-width:0}
-    .field-group.full{grid-column:1/-1}
-    .field-group label{color:var(--ink-soft);font-size:11px;font-weight:500;letter-spacing:.05em;text-transform:uppercase}
-    .field,.text-area{
-      width:100%;border:1px solid var(--line-strong);border-radius:var(--radius);
-      color:var(--ink);background:var(--paper);outline:none;
-    }
-    .field{min-height:45px;padding:9px 11px}
-    .text-area{min-height:122px;padding:12px;resize:vertical;line-height:1.55}
-    .field:focus,.text-area:focus{border-color:var(--gold);box-shadow:0 0 0 3px color-mix(in srgb,var(--gold) 17%,transparent)}
-    .range-row{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
-    input[type="range"]{width:100%;accent-color:var(--wine)}
-    .range-value{min-width:42px;text-align:right;color:var(--muted);font-size:12px}
-    .voice-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
-
-    .resource-group+.resource-group{margin-top:44px}
-    .group-head{display:flex;align-items:end;justify-content:space-between;gap:18px;margin-bottom:16px;padding-bottom:13px;border-bottom:1px solid var(--line)}
-    .group-head h3{font-size:31px}
-    .group-head p{max-width:650px;margin:0;color:var(--muted);font-size:13px;text-align:right}
-    .resource-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-    .resource-card{
-      min-height:290px;display:flex;flex-direction:column;padding:23px;
-      border:1px solid var(--line);border-radius:var(--radius-large);
-      background:var(--paper-bright);box-shadow:var(--shadow-small);transition:.17s ease;
-    }
-    .resource-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--gold) 70%,var(--line));box-shadow:var(--shadow)}
-    .resource-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}
-    .resource-type{color:var(--gold-dark);font-size:10px;letter-spacing:.15em;text-transform:uppercase}
-    .live-badge{padding:3px 7px;border:1px solid color-mix(in srgb,var(--teal) 55%,var(--line));border-radius:999px;color:var(--teal);font-size:9px;letter-spacing:.08em;text-transform:uppercase}
-    .resource-card h3{margin-top:13px;font-size:28px}
-    .resource-card p{margin:10px 0 0;color:var(--muted);font-size:13px}
-    .resource-features{display:flex;flex-wrap:wrap;gap:5px;margin-top:16px}
-    .resource-features span{padding:4px 7px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:9px}
-    .resource-card .button{width:100%;margin-top:auto}
-
-    .atlas-panel{display:grid;grid-template-columns:1.05fr .95fr;gap:15px}
-    .atlas-feature{
-      min-height:420px;position:relative;display:flex;align-items:end;overflow:hidden;padding:34px;
-      border:1px solid var(--line);border-radius:var(--radius-large);color:#f7f0e2;
-      background:linear-gradient(to top,rgba(5,12,19,.96),rgba(5,12,19,.16)),repeating-linear-gradient(60deg,#274a4b 0 22px,#2e5556 22px 44px,#7c5a33 44px 45px);
-    }
-    .atlas-feature::before{content:"Aa · أ ب · 文 · अ · あ · Ω · Ж";position:absolute;inset:23px;color:rgba(255,255,255,.18);font-family:var(--serif);font-size:clamp(38px,8vw,88px);line-height:1.6;word-spacing:20px}
-    .atlas-feature>div{position:relative;z-index:1}
-    .atlas-feature h3{font-size:43px}
-    .atlas-feature p{max-width:670px;color:rgba(255,255,255,.72)}
-    .atlas-list{display:grid;gap:10px}
-    .atlas-item{padding:21px;border:1px solid var(--line);border-radius:var(--radius-large);background:var(--paper-bright)}
-    .atlas-item h3{font-size:24px}
-    .atlas-item p{margin:7px 0 0;color:var(--muted);font-size:12px}
-
-    .support-panel{
-      display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;
-      padding:38px;border:1px solid rgba(255,255,255,.18);border-radius:var(--radius-large);
-      background:linear-gradient(135deg,rgba(183,148,82,.14),rgba(108,46,59,.12));
-    }
-    .support-panel h2{font-size:clamp(38px,5vw,56px)}
-    .support-panel p{max-width:760px;margin:13px 0 0;color:rgba(255,255,255,.68)}
-
-    .footer{padding:48px 0 28px;color:#e9e1d4;background:#050b12}
-    .footer-grid{display:grid;grid-template-columns:1.3fr repeat(3,.7fr);gap:24px}
-    .footer h2{font-size:31px}
-    .footer p{color:rgba(255,255,255,.61);font-size:12px}
-    .footer h3{margin:3px 0 11px;font-family:var(--sans);font-size:10px;font-weight:500;letter-spacing:.15em;text-transform:uppercase}
-    .footer a{display:block;width:fit-content;margin:7px 0;color:rgba(255,255,255,.72);font-size:12px}
-    .footer a:hover{color:#fff}
-    .copyright{margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.46);font-size:10px;text-align:center}
-
-    .toast{
-      position:fixed;left:50%;bottom:22px;z-index:2200;transform:translate(-50%,30px);
-      max-width:min(92vw,590px);padding:11px 15px;border:1px solid rgba(255,255,255,.17);border-radius:var(--radius);
-      color:#fff;background:var(--night);box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.18s ease;
-    }
-    .toast.show{opacity:1;transform:translate(-50%,0)}
-
-    @media(max-width:1040px){
-      .nav{position:absolute;left:16px;right:16px;top:calc(100% + 1px);display:none;padding:11px;border:1px solid var(--line);border-radius:var(--radius);background:var(--paper-bright);box-shadow:var(--shadow)}
-      .nav.open{display:grid}.nav a{text-align:center;padding:11px}.menu-button{display:grid}
-      .hero-grid,.voice-shell,.atlas-panel{grid-template-columns:1fr}.hero-copy-wrap{text-align:center}.actions,.skill-line{justify-content:center}
-      .quick-grid{grid-template-columns:repeat(3,1fr)}
-      .path-grid{grid-template-columns:repeat(2,1fr)}
-      .resource-grid{grid-template-columns:repeat(2,1fr)}
-      .footer-grid{grid-template-columns:repeat(2,1fr)}
-    }
-    @media(max-width:690px){
-      .world-track{animation-duration:33s}.header-inner{min-height:67px;gap:8px}.brand-copy small{display:none}.brand-copy strong{font-size:18px}.seal{width:42px}.support-small{display:none}
-      .hero{min-height:auto}.hero-grid{padding:68px 0}.hero::after{width:340px;height:340px;right:-225px}.actions .button{width:100%}
-      .quick-grid,.path-grid,.resource-grid,.footer-grid{grid-template-columns:1fr}
-      .voice-form{grid-template-columns:1fr}.group-head{display:block;text-align:center}.group-head p{margin:8px auto 0;text-align:center}
-      .section{padding:68px 0}.support-panel{grid-template-columns:1fr;text-align:center}.support-panel .button{width:100%}
-      .footer{text-align:center}.footer a{margin-inline:auto}
-    }
-    @media(prefers-reduced-motion:reduce){
-      html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
-      .world-track{width:auto;min-width:0;height:auto;flex-wrap:wrap;justify-content:center;padding:8px 12px}.world-set{min-width:0;flex-wrap:wrap}.world-set:last-child{display:none}
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Polyglot — Khaemenes Academy Linguistics & World Language Campus: a formal Five-Language Academy, world-language atlas, local language studios, voice practice, ESL, Arabic, German, Russian, French and language tools.">
+<meta name="theme-color" content="#102238">
+<meta name="color-scheme" content="light dark">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<link rel="manifest" href="./manifest.webmanifest">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&display=swap" rel="stylesheet">
+<title>Polyglot | Khaemenes Academy Linguistics & World Language Campus</title>
+<style>
+:root{
+ --ink:#102238;--ink-soft:#2e4355;--night:#081522;--paper:#f5f0e4;--paper-bright:#fcf9f2;--paper-deep:#e7deca;
+ --gold:#b79452;--gold-dark:#80642f;--wine:#6c2e3b;--teal:#275f61;--teal-soft:#dce8e7;--muted:#6d746f;
+ --line:rgba(16,34,56,.16);--line-strong:rgba(16,34,56,.28);--shadow:0 18px 44px rgba(8,21,34,.11);
+ --shadow-small:0 9px 24px rgba(8,21,34,.07);--radius:7px;--radius-large:21px;--max:1210px;
+ --serif:"Cinzel",Georgia,"Times New Roman",serif;--sans:"Brandon Grotesque","Avenir Next","Segoe UI",Arial,sans-serif;
+}
+html[data-theme="dark"]{
+ --ink:#ede5d6;--ink-soft:#cad5d9;--night:#050b12;--paper:#0d1b28;--paper-bright:#122536;--paper-deep:#203647;
+ --gold:#d1ad68;--gold-dark:#e6c887;--wine:#b86b79;--teal:#74adae;--teal-soft:#17333d;--muted:#a9b5b9;
+ --line:rgba(237,229,214,.16);--line-strong:rgba(237,229,214,.29);--shadow:0 18px 44px rgba(0,0,0,.32);
+ --shadow-small:0 9px 24px rgba(0,0,0,.23);
+}
+*,*::before,*::after{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:92px}
+body{margin:0;min-width:300px;overflow-x:hidden;color:var(--ink);background:radial-gradient(circle at 10% 7%,rgba(183,148,82,.11),transparent 27rem),radial-gradient(circle at 90% 18%,rgba(39,95,97,.09),transparent 29rem),var(--paper);font:400 16px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+body.menu-open{overflow:hidden}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}img,svg{max-width:100%}[hidden]{display:none!important}
+::selection{color:var(--night);background:#e9cf97}:focus-visible{outline:3px solid var(--gold);outline-offset:3px}.wrap{width:min(calc(100% - 32px),var(--max));margin-inline:auto}
+.skip-link{position:fixed;left:14px;top:12px;z-index:3000;transform:translateY(-170%);padding:10px 14px;border-radius:var(--radius);color:#fff;background:var(--night);transition:transform .18s}.skip-link:focus{transform:none}
+.world-ribbon{min-height:34px;overflow:hidden;color:#f6efdf;background:linear-gradient(90deg,#07101b,#10263b 50%,#07101b);border-bottom:1px solid rgba(255,255,255,.12)}
+.world-track{width:max-content;min-width:200%;height:34px;display:flex;align-items:center;animation:worldPassage 42s linear infinite}.world-set{min-width:50%;display:flex;align-items:center;justify-content:space-around;gap:28px;padding:0 28px;white-space:nowrap;font-size:11px;letter-spacing:.06em}.world-set b{color:#e8c97f;font-weight:500}@keyframes worldPassage{to{transform:translateX(-50%)}}
+.site-header{
+  position:sticky;top:0;z-index:1200;
+  border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--paper-bright) 94%,transparent);
+  backdrop-filter:blur(18px);
+}
+.header-main{border-bottom:1px solid var(--line)}
+.header-main-inner{
+  min-height:76px;display:flex;align-items:center;justify-content:space-between;
+  gap:33px;padding-block:10px;
+}
+.brand{display:inline-flex;align-items:center;gap:14px;min-width:0}
+.seal{
+  width:48px;aspect-ratio:1;display:grid;place-items:center;flex:0 0 auto;
+  border:1px solid var(--gold);border-radius:50%;
+  box-shadow:inset 0 0 0 4px color-mix(in srgb,var(--gold) 13%,transparent);
+  font:500 17px var(--serif);letter-spacing:.03em;
+}
+.brand-copy{line-height:1.08;min-width:0}
+.brand-copy strong{display:block;font:500 20px var(--serif);letter-spacing:.06em}
+.brand-copy small{
+  display:block;margin-top:6px;color:var(--muted);font-size:9px;font-weight:500;
+  letter-spacing:.14em;text-transform:uppercase;
+}
+.header-actions{display:flex;align-items:center;justify-content:flex-end;gap:9px;flex:0 0 auto}
+.icon-button,.support-small{
+  min-height:40px;border:1px solid var(--line-strong);border-radius:var(--radius);
+  color:var(--ink);background:var(--paper-bright);
+}
+.icon-button{width:40px;display:grid;place-items:center}
+.support-small{
+  display:inline-flex;align-items:center;justify-content:center;padding:8px 14px;
+  color:#fff;background:var(--wine);border-color:var(--wine);
+  font-size:10px;font-weight:600;letter-spacing:.05em;
+}
+.header-nav-layer{
+  min-height:50px;display:flex;align-items:center;
+  background:color-mix(in srgb,var(--paper-bright) 88%,transparent);
+}
+.nav{
+  width:min(100%,760px);min-height:50px;margin-inline:auto;
+  display:grid;grid-template-columns:repeat(5,minmax(0,1fr));
+  align-items:stretch;gap:7px;padding:7px 0;
+}
+.nav a{
+  min-height:36px;display:flex;align-items:center;justify-content:center;
+  padding:7px 10px;border-radius:var(--radius);color:var(--ink-soft);
+  font-size:10px;font-weight:600;letter-spacing:.07em;text-align:center;text-transform:uppercase;
+}
+.nav a:hover{background:var(--paper-deep)}
+.menu-button{display:none}
+.hero{position:relative;min-height:710px;display:grid;align-items:center;overflow:hidden;border-bottom:1px solid var(--line);isolation:isolate}.hero::before{content:"";position:absolute;inset:0;z-index:-2;opacity:.57;background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);background-size:66px 66px;mask-image:radial-gradient(circle at 50% 45%,#000,transparent 78%)}.hero::after{content:"";position:absolute;z-index:-1;width:520px;height:520px;right:-155px;top:48px;border:1px solid color-mix(in srgb,var(--gold) 42%,transparent);border-radius:50%;box-shadow:0 0 0 66px color-mix(in srgb,var(--gold) 7%,transparent),0 0 0 132px color-mix(in srgb,var(--teal) 5%,transparent)}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.16fr) minmax(330px,.84fr);gap:clamp(44px,7vw,99px);align-items:center;padding:111px 0 99px}.eyebrow{display:inline-flex;align-items:center;gap:11px;margin:0 0 17px;color:var(--gold-dark);font-size:10px;font-weight:600;letter-spacing:.19em;text-transform:uppercase}.eyebrow::before,.eyebrow::after{content:"";width:33px;height:1px;background:currentColor}
+h1,h2,h3{margin:0;font-family:var(--serif);font-weight:500;line-height:1.12;text-wrap:balance}h1{font-size:clamp(54px,8.2vw,96px);letter-spacing:.005em}.hero-subtitle{margin:8px 0 0;color:var(--wine);font:500 clamp(25px,3.2vw,40px) var(--serif);letter-spacing:.025em}.hero-copy{max-width:720px;margin:27px 0 0;color:var(--ink-soft);font-size:clamp(15px,1.65vw,18px);font-weight:400;line-height:1.9}.campus-line{margin-top:21px;color:var(--muted);font-size:11px;line-height:1.75;letter-spacing:.055em}.campus-line strong{color:var(--gold-dark)}
+.actions{display:flex;justify-content:flex-start;flex-wrap:wrap;gap:10px;margin-top:28px}.button{min-height:46px;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:10px 17px;border:1px solid var(--ink);border-radius:var(--radius);color:var(--paper-bright);background:var(--ink);font-size:12px;font-weight:600;letter-spacing:.035em;transition:.18s}.button:hover{transform:translateY(-2px);box-shadow:var(--shadow-small)}.button.secondary{color:var(--ink);background:transparent}.button.gold{color:#241b0e;background:linear-gradient(135deg,#d8b975,#f0daa8);border-color:#d8b975}.button.wine{color:#fff;background:var(--wine);border-color:var(--wine)}
+.skill-line{display:flex;flex-wrap:wrap;gap:7px;margin-top:23px}.skill-line span{padding:5px 9px;border:1px solid var(--line);border-radius:999px;color:var(--muted);background:color-mix(in srgb,var(--paper-bright) 79%,transparent);font-size:10px;letter-spacing:.08em;text-transform:uppercase}
+.phrase-card{padding:28px;border:1px solid color-mix(in srgb,var(--gold) 55%,var(--line));border-radius:var(--radius-large);background:color-mix(in srgb,var(--paper-bright) 95%,transparent);box-shadow:var(--shadow)}.compass{width:min(220px,70vw);aspect-ratio:1;position:relative;display:grid;place-items:center;margin:0 auto 23px;border:1px solid var(--gold);border-radius:50%;background:linear-gradient(45deg,transparent 49.7%,var(--line) 50%,transparent 50.3%),linear-gradient(-45deg,transparent 49.7%,var(--line) 50%,transparent 50.3%),radial-gradient(circle,transparent 41%,var(--line) 41.4%,transparent 42%)}.compass::before,.compass::after{content:"";position:absolute;width:1px;height:86%;background:var(--line)}.compass::after{transform:rotate(90deg)}.compass-center{width:120px;aspect-ratio:1;z-index:2;display:grid;place-items:center;border-radius:50%;color:#f9f4e9;background:var(--ink);box-shadow:0 0 0 7px color-mix(in srgb,var(--gold) 18%,transparent);text-align:center}.compass-center span{font:500 21px/1 var(--serif)}.phrase-card h2{font-size:29px}.phrase-card>p{margin:8px 0 0;color:var(--muted);font-size:13px}.phrase{margin-top:17px;padding-top:17px;border-top:1px solid var(--line)}.phrase-language{color:var(--gold-dark);font-size:10px;letter-spacing:.16em;text-transform:uppercase}.phrase-main{margin:4px 0 0;font:500 30px/1.25 var(--serif);overflow-wrap:anywhere}.phrase-translation{margin:3px 0 0;color:var(--muted);font-size:13px}.phrase-actions{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.quick-band{padding:22px 0;background:var(--night);color:#f5eddd}.quick-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}.quick-link{min-height:118px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;padding:15px;border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);background:rgba(255,255,255,.035);text-align:center;transition:.17s}.quick-link:hover{transform:translateY(-2px);border-color:#d9b66f;background:rgba(217,182,111,.09)}.quick-mark{color:#e8c97f;font:500 23px var(--serif)}.quick-link strong{font:500 18px/1.05 var(--serif)}.quick-link small{color:rgba(255,255,255,.64);font-size:10px;line-height:1.35}
+.section{padding:99px 0}.section.alt{background:color-mix(in srgb,var(--paper-bright) 77%,transparent);border-block:1px solid var(--line)}.section.dark{color:#f4eddf;background:var(--night)}.section-heading{max-width:888px;margin:0 auto 55px;text-align:center}
+.section-heading .eyebrow{
+  display:flex;justify-content:center;margin:0 auto;color:var(--gold-dark);
+  font:500 clamp(25px,3.7vw,39px)/1.2 var(--serif);
+  letter-spacing:.055em;text-transform:none;
+}
+.section-heading .eyebrow::before,.section-heading .eyebrow::after{width:44px;opacity:.72}
+.section-heading h2{
+  max-width:720px;margin:17px auto 0;color:var(--ink-soft);
+  font:400 clamp(17px,2vw,22px)/1.55 var(--sans);letter-spacing:.015em;
+}
+.section-heading p{
+  max-width:666px;margin:15px auto 0;color:var(--muted);
+  font-size:13px;font-weight:400;line-height:1.85;
+}
+.section.dark .section-heading .eyebrow{color:#e8c97f}
+.section.dark .section-heading h2{color:#f2eadc}
+.section.dark .section-heading p{color:rgba(255,255,255,.66)}
+.academy-feature{display:grid;grid-template-columns:.8fr 1.2fr;gap:21px;align-items:stretch;margin-bottom:21px}.academy-lead{min-height:410px;display:flex;flex-direction:column;justify-content:end;padding:34px;border:1px solid var(--line);border-radius:var(--radius-large);color:#f7f0e2;background:linear-gradient(150deg,rgba(7,16,27,.25),rgba(5,12,19,.95)),repeating-linear-gradient(60deg,#274a4b 0 22px,#2e5556 22px 44px,#7c5a33 44px 45px);box-shadow:var(--shadow)}.academy-lead .big{font:500 clamp(52px,8vw,92px)/.9 var(--serif);color:#f0d69a}.academy-lead h3{margin-top:10px;font-size:35px}.academy-lead p{max-width:610px;color:rgba(255,255,255,.72)}.program-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.program-card{min-height:198px;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:23px;border:1px solid var(--line);border-radius:var(--radius-large);background:var(--paper-bright);text-align:center;box-shadow:var(--shadow-small)}.program-card .glyph{font:500 35px var(--serif);color:var(--gold-dark)}.program-card h3{margin-top:7px;font-size:24px}.program-card p{margin:8px 0 0;color:var(--muted);font-size:12px}
+.search-shell{max-width:970px;margin:0 auto 30px;padding:21px;border:1px solid var(--line);border-radius:var(--radius-large);background:var(--paper-bright);box-shadow:var(--shadow-small);text-align:center}.search-row{display:grid;grid-template-columns:1fr auto;gap:9px}.field{width:100%;min-height:44px;padding:9px 12px;border:1px solid var(--line-strong);border-radius:var(--radius);color:var(--ink);background:var(--paper)}.filter-row{display:flex;flex-wrap:wrap;justify-content:center;gap:6px;margin-top:13px}.filter{min-height:34px;padding:6px 10px;border:1px solid var(--line);border-radius:999px;color:var(--ink-soft);background:transparent;font-size:10px}.filter.active{color:#22170c;background:#e6ca8b;border-color:#e6ca8b}.result-count{margin-top:11px;color:var(--muted);font-size:10px;letter-spacing:.06em;text-transform:uppercase}
+.resource-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.resource-card{min-height:315px;display:flex;flex-direction:column;align-items:center;padding:23px;border:1px solid var(--line);border-radius:var(--radius-large);background:var(--paper-bright);box-shadow:var(--shadow-small);text-align:center;transition:.17s}.resource-card:hover{transform:translateY(-3px);border-color:color-mix(in srgb,var(--gold) 70%,var(--line));box-shadow:var(--shadow)}.resource-mark{width:58px;height:58px;display:grid;place-items:center;border:1px solid var(--line-strong);border-radius:50%;color:var(--gold-dark);font:500 18px var(--serif)}.resource-type{margin-top:12px;color:var(--teal);font-size:9px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}.resource-card h3{margin-top:7px;font-size:26px}.resource-card p{margin:10px 0 0;color:var(--muted);font-size:12px}.resource-features{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;margin-top:14px}.resource-features span{padding:4px 7px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:9px}.resource-card .button{width:100%;margin-top:auto}.preference-note{margin-top:9px;color:var(--wine);font-size:10px}
+.voice-shell{display:grid;grid-template-columns:.82fr 1.18fr;gap:24px;align-items:center;padding:34px;border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-large);background:linear-gradient(135deg,rgba(183,148,82,.1),rgba(39,95,97,.13))}.voice-intro h2{font-size:clamp(37px,5vw,54px)}.voice-intro p{color:rgba(255,255,255,.65)}.voice-panel{padding:24px;border:1px solid rgba(255,255,255,.14);border-radius:var(--radius-large);background:rgba(255,255,255,.045)}.voice-status{margin:0 0 15px;color:#e8c97f;font-size:11px}.voice-form{display:grid;grid-template-columns:1fr 1fr;gap:11px}.field-group{display:grid;gap:5px}.field-group.full{grid-column:1/-1}.field-group label{color:rgba(255,255,255,.65);font-size:10px;text-transform:uppercase;letter-spacing:.09em}.voice-panel .field{color:#fff;background:#07101a;border-color:rgba(255,255,255,.18)}.text-area{min-height:100px;resize:vertical}.range-row{display:flex;align-items:center;gap:10px}.range-row input{flex:1}.range-value{min-width:48px;color:#e8c97f;font-size:11px}.voice-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.section.dark .button.secondary{color:#fff;border-color:rgba(255,255,255,.45)}
+.matrix-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}.matrix-card{min-height:245px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;border:1px solid var(--line);border-radius:var(--radius-large);background:var(--paper-bright);text-align:center}.matrix-card .matrix-mark{font:500 28px var(--serif);color:var(--gold-dark)}.matrix-card h3{margin-top:9px;font-size:25px}.matrix-card p{margin:10px 0;color:var(--muted);font-size:12px}.matrix-card .button{margin-top:auto}
+.atlas-panel{display:grid;grid-template-columns:1.05fr .95fr;gap:15px}.atlas-feature{min-height:420px;position:relative;display:flex;align-items:end;overflow:hidden;padding:34px;border:1px solid var(--line);border-radius:var(--radius-large);color:#f7f0e2;background:linear-gradient(to top,rgba(5,12,19,.96),rgba(5,12,19,.16)),repeating-linear-gradient(60deg,#274a4b 0 22px,#2e5556 22px 44px,#7c5a33 44px 45px)}.atlas-feature::before{content:"Aa · أ ب · 文 · あ · Ω · Ж · Ñ · Ç";position:absolute;inset:23px;color:rgba(255,255,255,.18);font:500 clamp(38px,8vw,88px)/1.6 var(--serif);word-spacing:20px}.atlas-feature>div{position:relative;z-index:1}.atlas-feature h3{font-size:43px}.atlas-feature p{max-width:670px;color:rgba(255,255,255,.72)}.atlas-list{display:grid;gap:10px}.atlas-item{padding:21px;border:1px solid var(--line);border-radius:var(--radius-large);background:var(--paper-bright)}.atlas-item h3{font-size:24px}.atlas-item p{margin:7px 0 0;color:var(--muted);font-size:12px}
+.support-panel{display:grid;grid-template-columns:1fr auto;gap:30px;align-items:center;padding:38px;border:1px solid rgba(255,255,255,.18);border-radius:var(--radius-large);background:linear-gradient(135deg,rgba(183,148,82,.14),rgba(108,46,59,.12))}.support-panel h2{font-size:clamp(38px,5vw,56px)}.support-panel p{max-width:760px;margin:13px 0 0;color:rgba(255,255,255,.68)}
+.footer{padding:48px 0 28px;color:#e9e1d4;background:#050b12}.footer-grid{display:grid;grid-template-columns:1.3fr repeat(3,.7fr);gap:24px}.footer h2{font-size:31px}.footer p{color:rgba(255,255,255,.61);font-size:12px}.footer h3{margin:3px 0 11px;font:600 10px var(--sans);letter-spacing:.15em;text-transform:uppercase}.footer a{display:block;width:fit-content;margin:7px 0;color:rgba(255,255,255,.72);font-size:12px}.footer a:hover{color:#fff}.copyright{margin-top:30px;padding-top:20px;border-top:1px solid rgba(255,255,255,.13);color:rgba(255,255,255,.46);font-size:10px;text-align:center}
+.toast{position:fixed;left:50%;bottom:22px;z-index:2200;transform:translate(-50%,30px);max-width:min(92vw,590px);padding:11px 15px;border:1px solid rgba(255,255,255,.17);border-radius:var(--radius);color:#fff;background:var(--night);box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.18s}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:1040px){
+  .hero-grid,.voice-shell,.academy-feature,.atlas-panel{grid-template-columns:1fr}
+  .hero-copy-wrap{text-align:center}
+  .actions,.skill-line{justify-content:center}
+  .quick-grid{grid-template-columns:repeat(3,1fr)}
+  .resource-grid{grid-template-columns:repeat(2,1fr)}
+  .matrix-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:760px){
+  html{scroll-padding-top:84px}
+  .header-main-inner{min-height:70px;gap:11px;padding-block:9px}
+  .brand{gap:10px}.seal{width:42px}
+  .brand-copy strong{font-size:17px}
+  .brand-copy small{font-size:8px;letter-spacing:.1em}
+  .support-small{display:none}
+  .menu-button{display:grid}
+  .header-nav-layer{
+    position:absolute;left:0;right:0;top:100%;
+    min-height:0;display:block;background:transparent;pointer-events:none;
+  }
+  .header-nav-layer .wrap{width:min(calc(100% - 28px),520px)}
+  .nav{
+    width:100%;min-height:0;display:none;grid-template-columns:1fr 1fr;gap:7px;
+    margin-top:8px;padding:11px;border:1px solid var(--line);
+    border-radius:var(--radius-large);background:var(--paper-bright);
+    box-shadow:var(--shadow);pointer-events:auto;
+  }
+  .nav.open{display:grid}
+  .nav a{
+    min-height:44px;padding:10px;border:1px solid var(--line);
+    background:color-mix(in srgb,var(--paper) 65%,transparent);
+  }
+  .nav a:last-child{grid-column:1/-1}
+  .hero{min-height:auto}.hero-grid{padding:77px 0 72px}
+  .hero::after{width:340px;height:340px;right:-225px}
+  .actions .button{width:100%}
+  .section{padding:77px 0}.section-heading{margin-bottom:44px}
+  .section-heading .eyebrow{font-size:clamp(24px,7vw,33px)}
+  .section-heading .eyebrow::before,.section-heading .eyebrow::after{width:26px}
+  .quick-grid,.program-grid,.resource-grid,.matrix-grid,.footer-grid{grid-template-columns:1fr}
+  .voice-form,.search-row{grid-template-columns:1fr}
+  .support-panel{grid-template-columns:1fr;text-align:center}
+  .support-panel .button{width:100%}
+  .footer{text-align:center}.footer a{margin-inline:auto}
+}
+@media(max-width:480px){
+  .brand-copy small{display:none}
+  .header-main-inner{min-height:64px}
+  h1{font-size:clamp(48px,16vw,67px)}
+  .hero-subtitle{font-size:clamp(22px,8vw,31px)}
+  .section-heading h2{font-size:16px;line-height:1.65}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}.world-track{width:auto;min-width:0;height:auto;flex-wrap:wrap;justify-content:center;padding:8px 12px}.world-set{min-width:0;flex-wrap:wrap}.world-set:last-child{display:none}}
+</style>
 </head>
 <body>
-  <a class="skip-link" href="#main">Skip to main content</a>
+<a class="skip-link" href="#main">Skip to main content</a>
+<div class="world-ribbon" aria-label="Greetings from around the world"><div class="world-track" aria-hidden="true"><div class="world-set">
+<span><b>Welcome</b> · English</span><span><b>Bienvenidos</b> · Español</span><span><b>Bienvenue</b> · Français</span><span dir="rtl"><b>أهلاً وسهلاً</b> · العربية</span><span><b>欢迎</b> · 中文</span><span><b>ようこそ</b> · 日本語</span><span><b>Willkommen</b> · Deutsch</span><span><b>Добро пожаловать</b> · Русский</span>
+</div><div class="world-set">
+<span><b>Welcome</b> · English</span><span><b>Bienvenidos</b> · Español</span><span><b>Bienvenue</b> · Français</span><span dir="rtl"><b>أهلاً وسهلاً</b> · العربية</span><span><b>欢迎</b> · 中文</span><span><b>ようこそ</b> · 日本語</span><span><b>Willkommen</b> · Deutsch</span><span><b>Добро пожаловать</b> · Русский</span>
+</div></div></div>
 
-  <div class="world-ribbon" aria-label="Greetings from around the world">
-    <div class="world-track" aria-hidden="true">
-      <div class="world-set">
-        <span><b>Welcome</b> · English</span><span><b>Bienvenidos</b> · Español</span><span><b>Bienvenue</b> · Français</span>
-        <span lang="ar" dir="rtl" style="font-family:'Noto Sans Arabic',sans-serif"><b>أهلاً وسهلاً</b> · العربية</span>
-        <span lang="zh-Hans" style="font-family:'Noto Sans SC',sans-serif"><b>欢迎</b> · 中文</span>
-        <span lang="hi" style="font-family:'Noto Sans Devanagari',sans-serif"><b>स्वागत है</b> · हिन्दी</span>
-        <span lang="ja" style="font-family:'Noto Sans JP',sans-serif"><b>ようこそ</b> · 日本語</span><span><b>Karibu</b> · Kiswahili</span>
-      </div>
-      <div class="world-set">
-        <span><b>Welcome</b> · English</span><span><b>Bienvenidos</b> · Español</span><span><b>Bienvenue</b> · Français</span>
-        <span lang="ar" dir="rtl" style="font-family:'Noto Sans Arabic',sans-serif"><b>أهلاً وسهلاً</b> · العربية</span>
-        <span lang="zh-Hans" style="font-family:'Noto Sans SC',sans-serif"><b>欢迎</b> · 中文</span>
-        <span lang="hi" style="font-family:'Noto Sans Devanagari',sans-serif"><b>स्वागत है</b> · हिन्दी</span>
-        <span lang="ja" style="font-family:'Noto Sans JP',sans-serif"><b>ようこそ</b> · 日本語</span><span><b>Karibu</b> · Kiswahili</span>
-      </div>
-    </div>
-  </div>
-
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="brand" href="https://vervenveda.github.io/Khaemenes_Academy.github.io/" aria-label="Khaemenes Academy home">
-        <span class="seal" aria-hidden="true">KA</span>
-        <span class="brand-copy"><strong>Polyglot</strong><small>Khaemenes Academy Linguistics Hall</small></span>
+<header class="site-header">
+  <div class="header-main">
+    <div class="wrap header-main-inner">
+      <a class="brand" href="./" aria-label="Polyglot home">
+        <span class="seal">KA</span>
+        <span class="brand-copy">
+          <strong>Polyglot</strong>
+          <small>Khaemenes Linguistics &amp; World Language Campus</small>
+        </span>
       </a>
-
-      <nav class="nav" id="siteNav" aria-label="Primary navigation">
-        <a href="#pathways">Pathways</a><a href="#voice-studio">Voice Studio</a><a href="#resources">Learning Apps</a><a href="#atlas">Language Atlas</a><a href="#support">Contribute</a>
-      </nav>
-
       <div class="header-actions">
         <a class="support-small" href="https://buy.stripe.com/7sY9AU9Nv6G02jj3En4AU0r" target="_blank" rel="noopener noreferrer external">Support Polyglot</a>
-        <button class="icon-button" id="themeButton" type="button" aria-label="Switch color theme" title="Switch color theme">☼</button>
+        <button class="icon-button" id="themeButton" type="button" aria-label="Switch color theme">☼</button>
         <button class="icon-button menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Open navigation">☰</button>
       </div>
     </div>
-  </header>
-
-  <main id="main">
-    <section class="hero" aria-labelledby="heroTitle">
-      <div class="wrap hero-grid">
-        <div class="hero-copy-wrap">
-          <p class="eyebrow">Khaemenes Academy · International Language Studies</p>
-          <h1 id="heroTitle">Polyglot</h1>
-          <p class="hero-subtitle">The World in Words</p>
-          <p class="hero-copy">A clear, connected entrance to language learning, linguistics, writing systems, pronunciation, literacy, literature, translation, and cultural understanding—from a child’s first word to advanced scholarly study.</p>
-          <div class="actions">
-            <a class="button" href="#pathways">Choose your pathway <span aria-hidden="true">→</span></a>
-            <a class="button secondary" href="#voice-studio">Choose a voice</a>
-            <a class="button gold" href="https://vervenveda.github.io/Arshif.github.io/apps/language_hall/index.html">Enter Advanced Language Hall</a>
-          </div>
-          <div class="skill-line" aria-label="Core language skills"><span>Listening</span><span>Speaking</span><span>Reading</span><span>Writing</span><span>Translation</span><span>Culture</span><span>Linguistics</span></div>
-        </div>
-
-        <aside class="phrase-card" aria-labelledby="phraseTitle">
-          <div class="compass" aria-hidden="true"><div class="compass-center"><span>Language<br>Compass</span></div></div>
-          <h2 id="phraseTitle">Begin with a greeting.</h2>
-          <p>Use the selected browser voice, hear the phrase, and move through languages one doorway at a time.</p>
-          <div class="phrase" aria-live="polite">
-            <div class="phrase-language" id="phraseLanguage">Swahili</div>
-            <div class="phrase-main" id="phraseMain" lang="sw">Habari za leo?</div>
-            <div class="phrase-translation" id="phraseTranslation">How are you today?</div>
-            <div class="phrase-actions"><button class="button" id="speakPhrase" type="button">Hear phrase</button><button class="button secondary" id="nextPhrase" type="button">Next phrase</button></div>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <section class="quick-band" aria-label="Quick access">
-      <div class="wrap quick-grid">
-        <a class="quick-link" href="https://vervenveda.github.io/Arshif.github.io/apps/language_hall/index.html"><span class="quick-mark">206</span><strong>Advanced Study</strong><small>Language dossiers, modules, quizzes, sources, and portfolio work</small></a>
-        <a class="quick-link" href="#young-polyglots"><span class="quick-mark">ABC</span><strong>Young Polyglots</strong><small>First words, stories, reading, spelling, and joyful practice</small></a>
-        <a class="quick-link" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/ABC_bilingual_index.html"><span class="quick-mark" lang="ar">أ ب</span><strong>Arabic Quest</strong><small>Arabic alphabet, tracing, forms, matching, and pronunciation</small></a>
-        <a class="quick-link" href="#voice-studio"><span class="quick-mark">♫</span><strong>Voice Studio</strong><small>Choose installed voices, language, speech rate, and pitch</small></a>
-        <a class="quick-link" href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#student-portal"><span class="quick-mark">S</span><strong>Student Portal</strong><small>Enter the Academy campus and learner pathways</small></a>
-        <a class="quick-link" href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#parent-portal"><span class="quick-mark">P</span><strong>Parent Portal</strong><small>Family guidance, pacing, records, and educator resources</small></a>
-      </div>
-    </section>
-
-    <section class="section" id="pathways" aria-labelledby="pathwaysTitle">
-      <div class="wrap">
-        <div class="section-heading"><p class="eyebrow">Begin with the learner</p><h2 id="pathwaysTitle">Choose a purposeful pathway.</h2><p>Every entrance below leads to a verified live resource or a clearly identified section on this page.</p></div>
-        <div class="path-grid">
-          <article class="path-card"><div class="path-mark">Y</div><h3>Young Learners</h3><p>Pictures, stories, first words, alphabet sounds, spelling, narration, and child-friendly practice.</p><a class="button" href="#young-polyglots">Open Young Polyglots</a></article>
-          <article class="path-card"><div class="path-mark">A</div><h3>Advanced Scholars</h3><p>World languages, scripts, grammar, culture, heritage study, assessments, sources, and capstones.</p><a class="button" href="https://vervenveda.github.io/Arshif.github.io/apps/language_hall/index.html">Open ARSHIF Language Hall</a></article>
-          <article class="path-card"><div class="path-mark">V</div><h3>Pronunciation & Listening</h3><p>Select from the voices installed on your browser or device and practice multilingual phrases.</p><a class="button" href="#voice-studio">Open Voice Studio</a></article>
-          <article class="path-card"><div class="path-mark">F</div><h3>Families & Educators</h3><p>Enter Academy family resources, age-appropriate campuses, learning records, and support pathways.</p><a class="button" href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#parent-portal">Open Parent Portal</a></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt" id="voice-studio" aria-labelledby="voiceTitle">
-      <div class="wrap voice-shell">
-        <div class="voice-intro">
-          <p class="eyebrow" style="color:#e8c97f">Browser voice library</p>
-          <h2 id="voiceTitle">Choose the voice that helps you learn.</h2>
-          <p>Polyglot reads from the speech voices already provided by the learner’s browser and operating system. Available names and languages vary by device.</p>
-          <p class="voice-note">No voice recordings are collected or uploaded. The controls save only the selected voice name, language filter, rate, and pitch in this browser.</p>
-        </div>
-
-        <div class="voice-panel">
-          <p class="voice-status" id="voiceStatus" role="status" aria-live="polite">Loading the voices available on this device…</p>
-          <div class="voice-form">
-            <div class="field-group"><label for="voiceLanguage">Language filter</label><select class="field" id="voiceLanguage"><option value="all">All available languages</option></select></div>
-            <div class="field-group"><label for="voicePicker">Voice</label><select class="field" id="voicePicker"><option value="">Browser default voice</option></select></div>
-            <div class="field-group full"><label for="voiceText">Practice text</label><textarea class="text-area" id="voiceText" dir="auto">Welcome to Polyglot. Every language opens a new doorway.</textarea></div>
-            <div class="field-group"><label for="voiceRate">Speech rate</label><div class="range-row"><input id="voiceRate" type="range" min="0.5" max="1.5" step="0.05" value="0.85"><output class="range-value" id="rateValue" for="voiceRate">0.85×</output></div></div>
-            <div class="field-group"><label for="voicePitch">Voice pitch</label><div class="range-row"><input id="voicePitch" type="range" min="0.5" max="1.5" step="0.05" value="1"><output class="range-value" id="pitchValue" for="voicePitch">1.00</output></div></div>
-          </div>
-          <div class="voice-actions"><button class="button" id="testVoice" type="button">Hear practice text</button><button class="button secondary" id="stopVoice" type="button">Stop speech</button><button class="button secondary" id="resetVoice" type="button">Use browser default</button></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="resources" aria-labelledby="resourcesTitle">
-      <div class="wrap">
-        <div class="section-heading"><p class="eyebrow">Verified learning destinations</p><h2 id="resourcesTitle">A clean, categorized language library.</h2><p>Each Open button below points to a confirmed file in the Verve N Veda learning network. There are no repository-browsing links and no placeholder URLs.</p></div>
-
-        <div class="resource-group">
-          <div class="group-head"><h3>Scholarly & Advanced Study</h3><p>Comprehensive language study, linguistics, assessments, source literacy, capstones, and portfolio records.</p></div>
-          <div class="resource-grid">
-            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Advanced World Language Portal</span><span class="live-badge">Live</span></div><h3>ARSHIF Language Learning Hall</h3><p>A self-contained scholarly portal with 206 dossiers, 40 modules, quizzes, assessments, sources, fluency practice, capstones, certificates, and local portfolio tools.</p><div class="resource-features"><span>World Languages</span><span>Grammar</span><span>Scripts</span><span>Culture</span><span>Assessments</span></div><a class="button" href="https://vervenveda.github.io/Arshif.github.io/apps/language_hall/index.html">Open Language Hall</a></article>
-            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Academy Learner Gateway</span><span class="live-badge">Live</span></div><h3>Student Language Portal</h3><p>Return to the central Academy portal to choose the learner’s campus, review pathways, and connect language study with the larger educational program.</p><div class="resource-features"><span>Students</span><span>Campuses</span><span>Pathways</span><span>Local Records</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#student-portal">Open Student Portal</a></article>
-            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Family & Educator Gateway</span><span class="live-badge">Live</span></div><h3>Parent & Educator Portal</h3><p>Family-facing guidance for pacing, learning support, records, accessibility, mentoring, and age-appropriate Academy entrances.</p><div class="resource-features"><span>Families</span><span>Educators</span><span>Planning</span><span>Accessibility</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#parent-portal">Open Parent Portal</a></article>
-          </div>
-        </div>
-
-        <div class="resource-group" id="young-polyglots">
-          <div class="group-head"><h3>Young Polyglots & First Languages</h3><p>Child-friendly language, alphabet, vocabulary, narration, storytelling, reading, and word-play tools.</p></div>
-          <div class="resource-grid">
-            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Arabic Alphabet & Phonics</span><span class="live-badge">Live</span></div><h3>Cosmic Arabic Alphabet Quest</h3><p>A bilingual tracing, matching, and phonics experience covering Arabic letters, forms, examples, pronunciation, and locally saved progress.</p><div class="resource-features"><span>Arabic</span><span>RTL</span><span>Tracing</span><span>Pronunciation</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/ABC_bilingual_index.html">Open Arabic Quest</a></article>
-            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Vocabulary & Read Aloud</span><span class="live-badge">Live</span></div><h3>Enchanted Word Garden</h3><p>A vocabulary garden with a full browser voice chooser, word practice, local saving, and child-friendly narration.</p><div class="resource-features"><span>Vocabulary</span><span>Voice Choice</span><span>Listening</span><span>Local Progress</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/reading_learnanewword_index.html">Open Word Garden</a></article>
-            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Alphabet Storybook</span><span class="live-badge">Live</span></div><h3>ABC Story Time</h3><p>A colorful alphabet storybook with read-aloud narration for letter recognition, listening, and early literacy.</p><div class="resource-features"><span>Alphabet</span><span>Stories</span><span>Narration</span><span>Early Reading</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/ABC_Story_Time/index.html">Open Story Time</a></article>
-            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Guided Early Reader</span><span class="live-badge">Live</span></div><h3>Spire Early Reader</h3><p>A gentle reading app with narration, word highlighting, alphabet practice, and locally stored progress.</p><div class="resource-features"><span>Phonics</span><span>Highlighting</span><span>Reading</span><span>Narration</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/ABC_time_index.html">Open Early Reader</a></article>
-            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Story Composition</span><span class="live-badge">Live</span></div><h3>Storybird Grove</h3><p>A private, offline-first story garden with characters, settings, actions, feelings, narration, printing, and local-only saving.</p><div class="resource-features"><span>Storytelling</span><span>Vocabulary</span><span>Narration</span><span>Print</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/reading_storybird_grove/index.html">Open Storybird Grove</a></article>
-            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Spelling & Word Recognition</span><span class="live-badge">Live</span></div><h3>Colorful Spelling Garden</h3><p>A bright spelling game with pictures, hints, letter tiles, narration, and local progress.</p><div class="resource-features"><span>Spelling</span><span>Pictures</span><span>Hints</span><span>Narration</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/Spelling_game_index.html">Open Spelling Garden</a></article>
-            <article class="resource-card"><div class="resource-meta"><span class="resource-type">Sight Words</span><span class="live-badge">Live</span></div><h3>Spelling Soup</h3><p>A local-only sight-word spelling game for recognition, repetition, and early reading confidence.</p><div class="resource-features"><span>Sight Words</span><span>Spelling</span><span>Local Only</span><span>Practice</span></div><a class="button" href="https://vervenveda.github.io/Khaemenes_Preschool.github.io/apps/reading_sight_words_index.html">Open Spelling Soup</a></article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section alt" id="atlas" aria-labelledby="atlasTitle">
-      <div class="wrap">
-        <div class="section-heading"><p class="eyebrow">Many families · many scripts</p><h2 id="atlasTitle">Language, literature, and living context.</h2><p>Polyglot keeps language connected to people, history, identity, regional variation, oral tradition, and the ethical use of cultural knowledge.</p></div>
-        <div class="atlas-panel">
-          <article class="atlas-feature"><div><h3>Explore the World Language Atlas</h3><p>Enter the ARSHIF Language Learning Hall for Romance, Germanic, Slavic, Semitic, African, Asian, Indigenous, signed, classical, historical, and constructed language study.</p><a class="button gold" href="https://vervenveda.github.io/Arshif.github.io/apps/language_hall/index.html">Open the complete atlas</a></div></article>
-          <div class="atlas-list">
-            <article class="atlas-item"><h3>Writing Systems</h3><p>Alphabetic, abjad, abugida, syllabic, logographic, and signed systems studied with correct direction and cultural context.</p></article>
-            <article class="atlas-item"><h3>Grammar & Language Science</h3><p>Phonetics, phonology, morphology, syntax, semantics, pragmatics, sociolinguistics, acquisition, and language change.</p></article>
-            <article class="atlas-item"><h3>Literature & Oral Tradition</h3><p>Poetry, folktales, letters, speeches, theater, sacred texts, oral histories, and parallel reading.</p></article>
-            <article class="atlas-item"><h3>Translation & Cultural Respect</h3><p>Meaning, context, register, uncertainty, regional variation, community review, and responsible attribution.</p></article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section dark" id="support" aria-labelledby="supportTitle">
-      <div class="wrap support-panel">
-        <div><p class="eyebrow" style="color:#e8c97f">Help the learning hall grow</p><h2 id="supportTitle">Contribute to Polyglot.</h2><p>Contributions support the continued development of free language-learning pathways, accessible educational tools, curriculum review, offline resources, and the connected Khaemenes Academy learning network.</p></div>
-        <a class="button wine" href="https://buy.stripe.com/7sY9AU9Nv6G02jj3En4AU0r" target="_blank" rel="noopener noreferrer external">Contribute securely through Stripe</a>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
+  </div>
+  <div class="header-nav-layer">
     <div class="wrap">
-      <div class="footer-grid">
-        <div><h2>Polyglot</h2><p>A free international language and linguistics hall within Khaemenes Academy, organized for curiosity, dignity, cultural respect, accessibility, and lifelong learning.</p></div>
-        <div><h3>Academy</h3><a href="https://vervenveda.github.io/Khaemenes_Academy.github.io/">Khaemenes Academy</a><a href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#student-portal">Student Portal</a><a href="https://vervenveda.github.io/Khaemenes_Academy.github.io/#parent-portal">Parent Portal</a></div>
-        <div><h3>Language Study</h3><a href="https://vervenveda.github.io/Arshif.github.io/apps/language_hall/index.html">Advanced Language Hall</a><a href="#voice-studio">Voice Studio</a><a href="#young-polyglots">Young Polyglots</a></div>
-        <div><h3>Network & Support</h3><a href="https://vervenveda.github.io/">Verve N Veda</a><a href="https://buy.stripe.com/7sY9AU9Nv6G02jj3En4AU0r" target="_blank" rel="noopener noreferrer external">Contribute to the Site</a><a href="#main">Return to Top</a></div>
-      </div>
-      <div class="copyright">Khaemenes Academy · Jennifer Kay Pearl · © <span id="year"></span> · All Rights Reserved</div>
+      <nav class="nav" id="siteNav" aria-label="Primary navigation">
+        <a href="#academy">Academy</a>
+        <a href="#apps">Language Apps</a>
+        <a href="#voice-studio">Voice Studio</a>
+        <a href="#atlas">World Atlas</a>
+        <a href="#matrix">Matrix</a>
+      </nav>
     </div>
-  </footer>
+  </div>
+</header>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+<main id="main">
+<section class="hero" aria-labelledby="heroTitle"><div class="wrap hero-grid">
+<div class="hero-copy-wrap"><p class="eyebrow">Khaemenes Academy · Linguistics & World Language Campus</p><h1 id="heroTitle">Polyglot</h1><p class="hero-subtitle">The World in Words</p><p class="hero-copy">One calm entrance to formal language study, linguistics, pronunciation, scripts, translation, cultural understanding and a growing library of local language applications—from first words through lower-division collegiate study.</p><p class="campus-line"><strong>Now inside this repository:</strong> 5 complete formal language pathways · 55 courses · 206 language dossiers · 40 foundations · 30 local language apps.</p><div class="actions"><a class="button gold" href="./Halls/">Enter Five-Language Academy</a><a class="button" href="#apps">Browse 30 local apps</a><a class="button secondary" href="#voice-studio">Choose a voice</a></div><div class="skill-line"><span>Listening</span><span>Speaking</span><span>Reading</span><span>Writing</span><span>Mediation</span><span>Translation</span><span>Culture</span><span>Linguistics</span></div></div>
+<aside class="phrase-card" aria-labelledby="phraseTitle"><div class="compass" aria-hidden="true"><div class="compass-center"><span>Language<br>Compass</span></div></div><h2 id="phraseTitle">Begin with a greeting.</h2><p>Hear a phrase using voices already available in the learner's browser or operating system.</p><div class="phrase" aria-live="polite"><div class="phrase-language" id="phraseLanguage">Spanish</div><div class="phrase-main" id="phraseMain" lang="es">Cada idioma abre una puerta.</div><div class="phrase-translation" id="phraseTranslation">Each language opens a door.</div><div class="phrase-actions"><button class="button" id="speakPhrase" type="button">Hear phrase</button><button class="button secondary" id="nextPhrase" type="button">Next phrase</button></div></div></aside>
+</div></section>
 
-  <script>
-    (()=>{
-      'use strict';
+<section class="quick-band" aria-label="Quick access"><div class="wrap quick-grid">
+<a class="quick-link" href="./Halls/"><span class="quick-mark">55</span><strong>Formal Academy</strong><small>Spanish · French · German · Mandarin · Japanese</small></a>
+<a class="quick-link" href="#apps" data-quick-filter="Arabic Language"><span class="quick-mark">ع</span><strong>Arabic Suite</strong><small>Letters, daily study, numbers, memory and guided practice</small></a>
+<a class="quick-link" href="#apps" data-quick-filter="English / ESL"><span class="quick-mark">EN</span><strong>English / ESL</strong><small>Mastercourse plus four young-learner apps</small></a>
+<a class="quick-link" href="#apps" data-quick-filter="German"><span class="quick-mark">DE</span><strong>German Studio</strong><small>Hub, coach, traveler and word challenge</small></a>
+<a class="quick-link" href="#apps" data-quick-filter="Russian"><span class="quick-mark">Я</span><strong>Russian Studio</strong><small>Hub, numbers and skills laboratory</small></a>
+<a class="quick-link" href="#apps" data-quick-filter="Language Tools"><span class="quick-mark">⇄</span><strong>Language Tools</strong><small>Dictionary, translation, words and practice utilities</small></a>
+</div></section>
 
-      const STORAGE={theme:'polyglot_theme_v2',voice:'polyglot_voice_v2'};
-      const $=(selector,root=document)=>root.querySelector(selector);
-      const $$=(selector,root=document)=>[...root.querySelectorAll(selector)];
-      const safeParse=(value,fallback)=>{try{return value?JSON.parse(value):fallback}catch{return fallback}};
+<section class="section" id="academy" aria-labelledby="academyTitle"><div class="wrap">
+<div class="section-heading"><p class="eyebrow">Formal Language Academy</p><h2 id="academyTitle">Five complete pathways. Middle school through College 202.</h2><p>The Five-Language Academy is now the academic centerpiece of this Linguistics repository. Its 206-dossier World Language Atlas remains open beyond these five formal programs.</p></div>
+<div class="academy-feature"><article class="academy-lead"><div class="big">5 × 11</div><h3>Five-Language Academy</h3><p>Spanish, French, German, Mandarin Chinese and Japanese each receive three middle-school courses, four high-school courses and four lower-division college courses: 101, 102, 201 and 202.</p><div class="actions"><a class="button gold" href="./Halls/">Open the Academy</a></div></article>
+<div class="program-grid">
+<article class="program-card"><div class="glyph">Ñ</div><h3>Spanish</h3><p>Pluricentric Spanish · MS 1–3 · HS I–IV · 101–202</p></article>
+<article class="program-card"><div class="glyph">Ç</div><h3>French</h3><p>Global Francophone study · MS 1–3 · HS I–IV · 101–202</p></article>
+<article class="program-card"><div class="glyph">Ä</div><h3>German</h3><p>DACH language and culture · MS 1–3 · HS I–IV · 101–202</p></article>
+<article class="program-card"><div class="glyph">中</div><h3>Mandarin Chinese</h3><p>Pinyin · tones · characters · MS 1–3 · HS I–IV · 101–202</p></article>
+<article class="program-card" style="grid-column:1/-1"><div class="glyph">日</div><h3>Japanese</h3><p>Kana · kanji · register · MS 1–3 · HS I–IV · 101–202</p></article>
+</div></div>
+</div></section>
 
-      const themeButton=$('#themeButton');
-      const menuButton=$('#menuButton');
-      const nav=$('#siteNav');
-      const toast=$('#toast');
+<section class="section alt" id="apps" aria-labelledby="appsTitle"><div class="wrap">
+<div class="section-heading"><p class="eyebrow">Language Studios &amp; Tools</p><h2 id="appsTitle">Thirty local applications for focused study, practice, play, reference and exploration.</h2><p>Search or filter the actual applications installed under <code>apps/</code>. Qur'anic resources remain clearly separated from general Arabic study so preference-aware mentoring can treat them appropriately.</p></div>
+<div class="search-shell"><div class="search-row"><input class="field" id="appSearch" type="search" placeholder="Search Arabic, German, ESL, translation, numbers, vocabulary…" aria-label="Search language apps"><button class="button secondary" id="clearSearch" type="button">Clear</button></div><div class="filter-row" id="filterRow"></div><div class="result-count" id="resultCount" role="status"></div></div>
+<div class="resource-grid" id="resourceGrid"></div>
+</div></section>
 
-      function showToast(message){
-        toast.textContent=message;toast.classList.add('show');
-        clearTimeout(showToast.timer);showToast.timer=setTimeout(()=>toast.classList.remove('show'),2600);
-      }
+<section class="section dark" id="voice-studio" aria-labelledby="voiceTitle"><div class="wrap">
+<div class="voice-shell"><div class="voice-intro"><p class="eyebrow" style="color:#e8c97f">Voice Studio</p><h2 id="voiceTitle">Choose a browser voice, pace and pitch that support your practice.</h2><p>Polyglot reads from voices already provided by the learner's browser and operating system. Voice names and quality vary by device.</p><p>No voice recordings are collected or uploaded. The page stores only the selected voice name, language filter, rate and pitch in this browser.</p></div>
+<div class="voice-panel"><p class="voice-status" id="voiceStatus" role="status" aria-live="polite">Loading the voices available on this device…</p><div class="voice-form"><div class="field-group"><label for="voiceLanguage">Language filter</label><select class="field" id="voiceLanguage"><option value="all">All available languages</option></select></div><div class="field-group"><label for="voicePicker">Voice</label><select class="field" id="voicePicker"><option value="">Browser default voice</option></select></div><div class="field-group full"><label for="voiceText">Practice text</label><textarea class="field text-area" id="voiceText" dir="auto">Welcome to Polyglot. Every language opens a new doorway.</textarea></div><div class="field-group"><label for="voiceRate">Speech rate</label><div class="range-row"><input id="voiceRate" type="range" min="0.5" max="1.5" step="0.05" value="0.85"><output class="range-value" id="rateValue">0.85×</output></div></div><div class="field-group"><label for="voicePitch">Voice pitch</label><div class="range-row"><input id="voicePitch" type="range" min="0.5" max="1.5" step="0.05" value="1"><output class="range-value" id="pitchValue">1.00</output></div></div></div><div class="voice-actions"><button class="button gold" id="testVoice" type="button">Hear practice text</button><button class="button secondary" id="stopVoice" type="button">Stop speech</button><button class="button secondary" id="resetVoice" type="button">Use browser default</button></div></div></div>
+</div></section>
 
-      function applyTheme(theme){
-        document.documentElement.dataset.theme=theme;
-        themeButton.textContent=theme==='dark'?'☾':'☼';
-        themeButton.setAttribute('aria-label',theme==='dark'?'Switch to light theme':'Switch to dark theme');
-      }
-      const systemDark=window.matchMedia?.('(prefers-color-scheme: dark)').matches;
-      applyTheme(localStorage.getItem(STORAGE.theme)||(systemDark?'dark':'light'));
-      themeButton.addEventListener('click',()=>{
-        const next=document.documentElement.dataset.theme==='dark'?'light':'dark';
-        localStorage.setItem(STORAGE.theme,next);applyTheme(next);
-      });
+<section class="section" id="atlas" aria-labelledby="atlasTitle"><div class="wrap">
+<div class="section-heading"><p class="eyebrow">World Language Atlas</p><h2 id="atlasTitle">The formal Academy begins with five pathways; the archive remains open to 206 language dossiers.</h2><p>The preserved Atlas contains 206 dossiers spanning language families, signed languages, heritage languages, classical and historical languages, scripts, acquisition, linguistics and cultural stewardship.</p></div>
+<div class="atlas-panel"><article class="atlas-feature"><div><h3>Explore 206 dossiers</h3><p>Enter the Academy and open its World Atlas chamber for comparative language study beyond the five full course systems.</p><a class="button gold" href="./Halls/">Open the World Language Atlas</a></div></article><div class="atlas-list"><article class="atlas-item"><h3>Writing Systems</h3><p>Alphabetic, abjad, abugida, syllabic, logographic and signed systems with directionality and cultural context.</p></article><article class="atlas-item"><h3>Language Science</h3><p>Phonetics, phonology, morphology, syntax, semantics, pragmatics, sociolinguistics, acquisition and change.</p></article><article class="atlas-item"><h3>Living & Heritage Languages</h3><p>Language learning stays connected to community, identity, regional variation and ethical source use.</p></article><article class="atlas-item"><h3>ASL remains visible</h3><p>American Sign Language remains in the Atlas and is identified in the Academy documentation as the priority sixth complete program.</p></article></div></div>
+</div></section>
 
-      menuButton.addEventListener('click',()=>{
-        const open=nav.classList.toggle('open');document.body.classList.toggle('menu-open',open);
-        menuButton.setAttribute('aria-expanded',String(open));menuButton.textContent=open?'×':'☰';
-      });
-      $$('#siteNav a').forEach(link=>link.addEventListener('click',()=>{
-        nav.classList.remove('open');document.body.classList.remove('menu-open');menuButton.setAttribute('aria-expanded','false');menuButton.textContent='☰';
-      }));
+<section class="section alt" id="matrix" aria-labelledby="matrixTitle"><div class="wrap">
+<div class="section-heading"><p class="eyebrow">Connected Learning Matrix</p><h2 id="matrixTitle">Language study can move naturally into research, writing, experiential learning and the wider Academy.</h2><p>These doors deliberately cross into the larger learning ecosystem only where they add something the Linguistics repository itself does not need to duplicate.</p></div>
+<div class="matrix-grid">
+<article class="matrix-card"><div class="matrix-mark">KA</div><h3>Khaemenes Academy</h3><p>Return to the central campus, student and family pathways.</p><a class="button" href="https://vervenveda.com/Khaemenes_Academy.github.io/">Open Academy</a></article>
+<article class="matrix-card"><div class="matrix-mark">F</div><h3>Field Lab</h3><p>Experiential learning engine for future language immersion missions and evidence-based scenarios.</p><a class="button" href="https://vervenveda.com/Arshif.github.io/apps/%20field-lab/">Open Field Lab</a></article>
+<article class="matrix-card"><div class="matrix-mark">P</div><h3>PROSE Editing Suite</h3><p>Move longer language research, translation notes and formal writing into the shared editing environment.</p><a class="button" href="https://vervenveda.com/proresource_hub.github.io/Protools/PROSE%E2%84%A2%20editingsuite_index.html" target="_blank" rel="noopener noreferrer">Open PROSE</a></article>
+<article class="matrix-card"><div class="matrix-mark">A</div><h3>ARSHIF</h3><p>Return to the wider archive of history, literature, philosophy, oral traditions and cultural study.</p><a class="button" href="https://vervenveda.com/Arshif.github.io/">Open ARSHIF</a></article>
+</div>
+</div></section>
 
-      const phrases=[
-        {language:'Swahili',text:'Habari za leo?',translation:'How are you today?',lang:'sw'},
-        {language:'Spanish',text:'El mundo está lleno de historias.',translation:'The world is full of stories.',lang:'es'},
-        {language:'French',text:'Chaque langue ouvre une porte.',translation:'Each language opens a door.',lang:'fr'},
-        {language:'Arabic',text:'اللغة جسر بين الناس',translation:'Language is a bridge between people.',lang:'ar',dir:'rtl'},
-        {language:'Mandarin Chinese',text:'语言连接世界',translation:'Language connects the world.',lang:'zh-CN'},
-        {language:'Hindi',text:'भाषा लोगों को जोड़ती है।',translation:'Language brings people together.',lang:'hi'},
-        {language:'Japanese',text:'ことばは心をつなぎます。',translation:'Words connect hearts.',lang:'ja'},
-        {language:'Greek',text:'Η γλώσσα ενώνει τους ανθρώπους.',translation:'Language unites people.',lang:'el'},
-        {language:'Portuguese',text:'Cada idioma revela um novo mundo.',translation:'Each language reveals a new world.',lang:'pt'},
-        {language:'German',text:'Sprache verbindet Menschen.',translation:'Language connects people.',lang:'de'}
-      ];
-      let phraseIndex=0;
-      function renderPhrase(){
-        const item=phrases[phraseIndex];
-        $('#phraseLanguage').textContent=item.language;$('#phraseMain').textContent=item.text;$('#phraseMain').lang=item.lang;$('#phraseMain').dir=item.dir||'auto';$('#phraseTranslation').textContent=item.translation;
-      }
-      $('#nextPhrase').addEventListener('click',()=>{phraseIndex=(phraseIndex+1)%phrases.length;renderPhrase()});
+<section class="section dark" id="support" aria-labelledby="supportTitle"><div class="wrap support-panel"><div><p class="eyebrow" style="color:#e8c97f">Support Polyglot</p><h2 id="supportTitle">Help the Linguistics & World Language Campus continue to grow.</h2><p>Contributions support continued development of free language pathways, accessible tools, curriculum review, offline resources and the connected Khaemenes learning network.</p></div><a class="button wine" href="https://buy.stripe.com/7sY9AU9Nv6G02jj3En4AU0r" target="_blank" rel="noopener noreferrer external">Contribute securely through Stripe</a></div></section>
+</main>
 
-      const voiceLanguage=$('#voiceLanguage');
-      const voicePicker=$('#voicePicker');
-      const voiceText=$('#voiceText');
-      const voiceRate=$('#voiceRate');
-      const voicePitch=$('#voicePitch');
-      const voiceStatus=$('#voiceStatus');
-      const rateValue=$('#rateValue');
-      const pitchValue=$('#pitchValue');
-      let voices=[];
-      let stored=safeParse(localStorage.getItem(STORAGE.voice),{});
+<footer class="footer"><div class="wrap"><div class="footer-grid">
+<div><h2>Polyglot</h2><p>Khaemenes Academy Linguistics & World Language Campus — formal courses, living language tools, language science, cultural context and lifelong learning.</p></div>
+<div><h3>Formal Study</h3><a href="./Halls/">Five-Language Academy</a><a href="./Halls/">World Language Atlas</a><a href="./apps/ESL_course_index.html">ESL Mastercourse</a></div>
+<div><h3>Local Studios</h3><a href="#apps" data-footer-filter="Arabic Language">Arabic</a><a href="#apps" data-footer-filter="German">German</a><a href="#apps" data-footer-filter="Russian">Russian</a><a href="#apps" data-footer-filter="Language Tools">Tools</a></div>
+<div><h3>Campus & Support</h3><a href="https://vervenveda.com/Khaemenes_Academy.github.io/">Khaemenes Academy</a><a href="#voice-studio">Voice Studio</a><a href="#support">Contribute</a><a href="#main">Return to Top</a></div>
+</div><div class="copyright">Khaemenes Academy · Jennifer Kay Pearl · © <span id="year"></span> · All Rights Reserved</div></div></footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
-      function languageName(code){
-        try{return new Intl.DisplayNames([document.documentElement.lang||'en'],{type:'language'}).of(code.split('-')[0])||code}catch{return code}
-      }
-      function saveVoice(){
-        localStorage.setItem(STORAGE.voice,JSON.stringify({name:voicePicker.value,filter:voiceLanguage.value,rate:Number(voiceRate.value),pitch:Number(voicePitch.value)}));
-      }
-      function buildLanguageFilters(){
-        const current=voiceLanguage.value||stored.filter||'all';
-        const map=new Map();
-        voices.forEach(v=>{const base=(v.lang||'und').split('-')[0];if(!map.has(base))map.set(base,languageName(base))});
-        voiceLanguage.innerHTML='<option value="all">All available languages</option>';
-        [...map.entries()].sort((a,b)=>a[1].localeCompare(b[1])).forEach(([code,name])=>{
-          const option=document.createElement('option');option.value=code;option.textContent=`${name} (${code})`;voiceLanguage.append(option);
-        });
-        voiceLanguage.value=[...voiceLanguage.options].some(o=>o.value===current)?current:'all';
-      }
-      function buildVoicePicker(){
-        const selected=voicePicker.value||stored.name||'';
-        const filter=voiceLanguage.value;
-        const filtered=filter==='all'?voices:voices.filter(v=>(v.lang||'').toLowerCase().startsWith(filter.toLowerCase()));
-        voicePicker.innerHTML='<option value="">Browser default voice</option>';
-        filtered.sort((a,b)=>`${a.lang} ${a.name}`.localeCompare(`${b.lang} ${b.name}`)).forEach(v=>{
-          const option=document.createElement('option');option.value=v.name;option.textContent=`${v.name} — ${v.lang||'Unknown'}${v.localService?' — Local':''}`;voicePicker.append(option);
-        });
-        voicePicker.value=[...voicePicker.options].some(o=>o.value===selected)?selected:'';
-        voiceStatus.textContent=voices.length?`${filtered.length} matching voice${filtered.length===1?'':'s'} shown from ${voices.length} available on this device.`:'No speech voices are currently available. The browser default may load after the page finishes opening.';
-      }
-      function loadVoices(){
-        if(!('speechSynthesis' in window)){
-          voiceStatus.textContent='Speech synthesis is not supported in this browser.';voicePicker.disabled=true;voiceLanguage.disabled=true;return;
-        }
-        voices=window.speechSynthesis.getVoices();buildLanguageFilters();buildVoicePicker();
-      }
-      function chosenVoice(lang=''){
-        const exact=voices.find(v=>v.name===voicePicker.value);
-        if(exact)return exact;
-        const base=(lang||'').toLowerCase().split('-')[0];
-        return voices.find(v=>(v.lang||'').toLowerCase().startsWith(base))||null;
-      }
-      function speak(text,lang=''){
-        if(!('speechSynthesis' in window)){showToast('Speech playback is not available in this browser.');return}
-        if(!text.trim()){showToast('Enter some practice text first.');return}
-        window.speechSynthesis.cancel();
-        const utterance=new SpeechSynthesisUtterance(text.trim());
-        const voice=chosenVoice(lang);if(voice)utterance.voice=voice;
-        utterance.lang=voice?.lang||lang||document.documentElement.lang||'en-US';
-        utterance.rate=Number(voiceRate.value);utterance.pitch=Number(voicePitch.value);
-        utterance.onerror=()=>showToast('The selected voice could not play this text. Try another voice.');
-        window.speechSynthesis.speak(utterance);
-      }
-
-      voiceRate.value=String(stored.rate??0.85);voicePitch.value=String(stored.pitch??1);
-      rateValue.textContent=`${Number(voiceRate.value).toFixed(2)}×`;pitchValue.textContent=Number(voicePitch.value).toFixed(2);
-      loadVoices();
-      if('speechSynthesis' in window){window.speechSynthesis.onvoiceschanged=loadVoices;setTimeout(loadVoices,350)}
-      voiceLanguage.addEventListener('change',()=>{buildVoicePicker();saveVoice()});
-      voicePicker.addEventListener('change',saveVoice);
-      voiceRate.addEventListener('input',()=>{rateValue.textContent=`${Number(voiceRate.value).toFixed(2)}×`;saveVoice()});
-      voicePitch.addEventListener('input',()=>{pitchValue.textContent=Number(voicePitch.value).toFixed(2);saveVoice()});
-      $('#testVoice').addEventListener('click',()=>speak(voiceText.value,voicePicker.selectedOptions[0]?.textContent.match(/— ([a-z]{2,3}(?:-[A-Z]{2})?)/)?.[1]||''));
-      $('#stopVoice').addEventListener('click',()=>window.speechSynthesis?.cancel());
-      $('#resetVoice').addEventListener('click',()=>{
-        voiceLanguage.value='all';voicePicker.value='';voiceRate.value='0.85';voicePitch.value='1';rateValue.textContent='0.85×';pitchValue.textContent='1.00';localStorage.removeItem(STORAGE.voice);buildVoicePicker();showToast('Browser-default voice settings restored.');
-      });
-      $('#speakPhrase').addEventListener('click',()=>{const item=phrases[phraseIndex];speak(item.text,item.lang)});
-
-      $('#year').textContent=new Date().getFullYear();
-      renderPhrase();
-    })();
-  </script>
-  <script src="./register-service-worker.js" defer></script>
-</body>
-</html>
+<script type="application/json" id="appRegistry">[{"file":"Arabic_365_index.html","title":"Arabic 365","category":"Arabic Language","mark":"365","desc":"A substantial daily Arabic learning environment built around letters, vocabulary, pronunciation and sustained practice.","features":["Arabic","Daily Practice","Letters","Pronunciation"],"audiences":["middle","high","higher-learning","adult"]},{"file":"Arabic_daily_index.html","title":"Arabic Daily","category":"Arabic Language","mark":"ع","desc":"Short-form daily Arabic practice for vocabulary, reading and consistent language contact.","features":["Arabic","Daily Practice","Vocabulary"],"audiences":["middle","high","higher-learning","adult"]},{"file":"Arabic_memory_game_index.html","title":"Arabic Memory Game","category":"Arabic Language","mark":"★","desc":"A playful memory-and-recognition game for reinforcing Arabic language forms and vocabulary.","features":["Arabic","Game","Memory"],"audiences":["elementary","middle","high"]},{"file":"Arabic_numbers_index.html","title":"Arabic Numbers","category":"Arabic Language","mark":"١٢٣","desc":"Number recognition and Arabic numeral practice with a focused mathematical-language bridge.","features":["Arabic","Numbers","Practice"],"audiences":["elementary","middle","high"]},{"file":"Arabic_temple_of_letters_index.html","title":"Temple of Letters","category":"Arabic Language","mark":"ا ب","desc":"A dedicated Arabic letter and script study environment for recognizing forms, sounds and written patterns.","features":["Arabic","Script","Letters","Literacy"],"audiences":["middle","high","higher-learning","adult"]},{"file":"Arabic_lighted_path_index.html","title":"Arabic Lighted Path","category":"Arabic Language","mark":"✦","desc":"A guided Arabic-language practice path designed for steady progression and reflective learning.","features":["Arabic","Guided Study","Practice"],"audiences":["middle","high","higher-learning","adult"]},{"file":"Arabic_numerology_index.html","title":"Arabic Numerology","category":"Letter & Symbol Studies","mark":"∞","desc":"A symbolic letter-and-number exploration kept separate from the formal language curriculum.","features":["Arabic","Letters","Symbolic Study"],"audiences":["high","higher-learning","adult"]},{"file":"Arabic_Quran_Knowledge_index.html","title":"Qur'an Knowledge","category":"Qur'anic Arabic","mark":"ق","desc":"Faith-specific Arabic textual study. Recommended only when the learner has chosen Qur'anic or faith study.","features":["Arabic","Qur'anic Study","Textual Study"],"audiences":["high","higher-learning","adult"],"preference":"faith"},{"file":"Arabic_Quran_root_explorer_index.html","title":"Qur'an Root Explorer","category":"Qur'anic Arabic","mark":"جذر","desc":"Arabic root and morphology exploration for Qur'anic textual study and source-aware language analysis.","features":["Arabic","Roots","Morphology","Text Analysis"],"audiences":["high","higher-learning","adult"],"preference":"faith"},{"file":"Arabic_Quranic_Study_index.html","title":"Qur'anic Arabic Study","category":"Qur'anic Arabic","mark":"قرآن","desc":"A focused Qur'anic Arabic learning environment for reading, vocabulary and textual understanding.","features":["Arabic","Reading","Qur'anic Study"],"audiences":["high","higher-learning","adult"],"preference":"faith"},{"file":"Arabic_Quranic_studylab_index.html","title":"Qur'anic Study Lab","category":"Qur'anic Arabic","mark":"LAB","desc":"A more laboratory-style Qur'anic Arabic study space for close reading, analysis and guided practice.","features":["Arabic","Study Lab","Text Analysis"],"audiences":["high","higher-learning","adult"],"preference":"faith"},{"file":"ESL_course_index.html","title":"ESL Mastercourse","category":"English / ESL","mark":"EN","desc":"A structured English-as-a-second-language mastercourse for adolescent, collegiate and adult learners.","features":["English","ESL","Course","Mastery"],"audiences":["middle","high","higher-learning","adult"]},{"file":"Kids_ESL_index.html","title":"Kids ESL","category":"English / ESL","mark":"ABC","desc":"A child-friendly English-learning experience for early vocabulary, listening and language confidence.","features":["English","ESL","Young Learners"],"audiences":["elementary"]},{"file":"Kids_ESL_adventure_index.html","title":"Kids ESL Adventure","category":"English / ESL","mark":"GO","desc":"An adventure-oriented English practice app for young language learners.","features":["English","ESL","Game","Young Learners"],"audiences":["elementary","middle"]},{"file":"Kids_ESL_picture_match_index.html","title":"Kids ESL Picture Match","category":"English / ESL","mark":"▦","desc":"Picture-to-word matching for vocabulary recognition and early English comprehension.","features":["English","Vocabulary","Picture Match"],"audiences":["elementary"]},{"file":"Kids_ESL_playground_index.html","title":"Kids ESL Playground","category":"English / ESL","mark":"PLAY","desc":"A playful English practice space combining beginner vocabulary and low-pressure repetition.","features":["English","ESL","Play"],"audiences":["elementary","middle"]},{"file":"French_101_index.html","title":"French 101 · Sovereign Edition","category":"French","mark":"Ç","desc":"A standalone French 101 learning app that now sits beside the full French MS–202 pathway in the Five-Language Academy.","features":["French","101","Course"],"audiences":["high","higher-learning","adult"]},{"file":"German_hub_index.html","title":"German Learning Hub","category":"German","mark":"DE","desc":"The local German hub and starting point for the repository's German practice suite.","features":["German","Hub","Language Study"],"audiences":["middle","high","higher-learning","adult"]},{"file":"German_coach_index.html","title":"German Coach","category":"German","mark":"CO","desc":"Guided German practice for vocabulary, structures and learner feedback.","features":["German","Coach","Practice"],"audiences":["middle","high","higher-learning","adult"]},{"file":"German_traveler_index.html","title":"German Traveler","category":"German","mark":"✈","desc":"Practical German for travel, navigation and everyday communication.","features":["German","Travel","Conversation"],"audiences":["middle","high","higher-learning","adult"]},{"file":"German_word_challenge_index.html","title":"German Word Challenge","category":"German","mark":"W","desc":"Vocabulary challenge practice for German recognition, recall and repetition.","features":["German","Vocabulary","Challenge"],"audiences":["middle","high","higher-learning","adult"]},{"file":"Russian_hub_index.html","title":"Russian Learning Hub","category":"Russian","mark":"Я","desc":"A dedicated Russian learning hub for language study and connection to the Russian practice suite.","features":["Russian","Hub","Language Study"],"audiences":["middle","high","higher-learning","adult"]},{"file":"Russian_numbers_index.html","title":"Russian Numbers","category":"Russian","mark":"123","desc":"Focused Russian number vocabulary and recognition practice.","features":["Russian","Numbers","Vocabulary"],"audiences":["elementary","middle","high","adult"]},{"file":"Russian_skills_lab_index.html","title":"Russian Skills Lab","category":"Russian","mark":"LAB","desc":"A Russian-language skills laboratory for structured practice and applied learning.","features":["Russian","Skills","Lab"],"audiences":["middle","high","higher-learning","adult"]},{"file":"dictionarybox_index.html","title":"Dictionary Box","category":"Language Tools","mark":"A–Z","desc":"A compact dictionary-oriented language tool for quick word reference.","features":["Dictionary","Reference","Words"],"audiences":["elementary","middle","high","higher-learning","adult"]},{"file":"translation_helper_index.html","title":"Translation Helper","category":"Language Tools","mark":"⇄","desc":"A translation-support tool for comparing wording and developing source-aware translation habits.","features":["Translation","Comparison","Writing"],"audiences":["middle","high","higher-learning","adult"]},{"file":"word_of_day_index.html","title":"Word of the Day","category":"Language Tools","mark":"W","desc":"A daily vocabulary doorway for steady word learning and language curiosity.","features":["Vocabulary","Daily Practice","Words"],"audiences":["elementary","middle","high","higher-learning","adult"]},{"file":"Scrabble_word_finder_index.html","title":"Scrabble Word Finder","category":"Language Tools","mark":"▤","desc":"A lightweight word-finding utility for spelling, vocabulary and word-game support.","features":["Words","Spelling","Game Tool"],"audiences":["middle","high","adult"]},{"file":"numina_grove_index.html","title":"Numina Grove","category":"Language Tools","mark":"N","desc":"A language-and-word exploration app within the broader Polyglot practice library.","features":["Words","Exploration","Practice"],"audiences":["middle","high","higher-learning","adult"]},{"file":"Language_learning_hall_index.html","title":"Legacy ARSHIF Language Hall","category":"Archive & Legacy","mark":"V3","desc":"The earlier local World Languages Course Portal retained as an archive while the Five-Language Academy becomes the formal curriculum center.","features":["Archive","World Languages","Legacy"],"audiences":["high","higher-learning","adult"]}]</script>
+<script>
+(()=>{'use strict';
+const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+const APPS=JSON.parse($('#appRegistry').textContent);
+const STORAGE={theme:'polyglot_theme_v2',voice:'polyglot_voice_v2',filter:'polyglot_app_filter_v3'};
+const safeParse=(v,f)=>{try{return v?JSON.parse(v):f}catch{return f}};
+const toast=$('#toast');function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>toast.classList.remove('show'),2300)}
+const themeButton=$('#themeButton');function applyTheme(theme){document.documentElement.dataset.theme=theme;themeButton.textContent=theme==='dark'?'☾':'☼';themeButton.setAttribute('aria-label',theme==='dark'?'Switch to light theme':'Switch to dark theme')}
+applyTheme(localStorage.getItem(STORAGE.theme)||(matchMedia?.('(prefers-color-scheme: dark)').matches?'dark':'light'));themeButton.onclick=()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';localStorage.setItem(STORAGE.theme,next);applyTheme(next)};
+const nav=$('#siteNav'),menu=$('#menuButton');
+function closeMenu(){nav.classList.remove('open');document.body.classList.remove('menu-open');menu.setAttribute('aria-expanded','false');menu.textContent='☰'}
+menu.onclick=()=>{const open=nav.classList.toggle('open');document.body.classList.toggle('menu-open',open);menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'×':'☰'};
+$$('#siteNav a').forEach(a=>a.onclick=closeMenu);
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu()});
+document.addEventListener('click',e=>{if(innerWidth<=760&&nav.classList.contains('open')&&!e.target.closest('.site-header'))closeMenu()});
+const phrases=[
+{language:'Spanish',text:'Cada idioma abre una puerta.',translation:'Each language opens a door.',lang:'es'},
+{language:'French',text:'Chaque langue ouvre une porte.',translation:'Each language opens a door.',lang:'fr'},
+{language:'German',text:'Jede Sprache öffnet eine Tür.',translation:'Each language opens a door.',lang:'de'},
+{language:'Mandarin Chinese',text:'每一种语言都打开一扇门。',translation:'Each language opens a door.',lang:'zh-CN'},
+{language:'Japanese',text:'どの言語も新しい扉を開きます。',translation:'Every language opens a new door.',lang:'ja'},
+{language:'Arabic',text:'كل لغة تفتح بابًا جديدًا.',translation:'Every language opens a new door.',lang:'ar',dir:'rtl'},
+{language:'Russian',text:'Каждый язык открывает новую дверь.',translation:'Every language opens a new door.',lang:'ru'}
+];let phraseIndex=0;function renderPhrase(){const p=phrases[phraseIndex];$('#phraseLanguage').textContent=p.language;$('#phraseMain').textContent=p.text;$('#phraseMain').lang=p.lang;$('#phraseMain').dir=p.dir||'auto';$('#phraseTranslation').textContent=p.translation}$('#nextPhrase').onclick=()=>{phraseIndex=(phraseIndex+1)%phrases.length;renderPhrase()};
+let voices=[],stored=safeParse(localStorage.getItem(STORAGE.voice),{});const voiceLanguage=$('#voiceLanguage'),voicePicker=$('#voicePicker'),voiceText=$('#voiceText'),voiceRate=$('#voiceRate'),voicePitch=$('#voicePitch'),voiceStatus=$('#voiceStatus');
+function languageName(code){try{return new Intl.DisplayNames([document.documentElement.lang||'en'],{type:'language'}).of(code.split('-')[0])||code}catch{return code}}
+function saveVoice(){localStorage.setItem(STORAGE.voice,JSON.stringify({name:voicePicker.value,filter:voiceLanguage.value,rate:Number(voiceRate.value),pitch:Number(voicePitch.value)}))}
+function buildLanguageFilters(){const current=voiceLanguage.value||stored.filter||'all',map=new Map();voices.forEach(v=>{const base=(v.lang||'und').split('-')[0];if(!map.has(base))map.set(base,languageName(base))});voiceLanguage.innerHTML='<option value="all">All available languages</option>';[...map].sort((a,b)=>a[1].localeCompare(b[1])).forEach(([code,name])=>{const o=document.createElement('option');o.value=code;o.textContent=`${name} (${code})`;voiceLanguage.append(o)});voiceLanguage.value=[...voiceLanguage.options].some(o=>o.value===current)?current:'all'}
+function buildVoicePicker(){const selected=voicePicker.value||stored.name||'',filter=voiceLanguage.value,filtered=filter==='all'?voices:voices.filter(v=>(v.lang||'').toLowerCase().startsWith(filter.toLowerCase()));voicePicker.innerHTML='<option value="">Browser default voice</option>';filtered.sort((a,b)=>`${a.lang} ${a.name}`.localeCompare(`${b.lang} ${b.name}`)).forEach(v=>{const o=document.createElement('option');o.value=v.name;o.textContent=`${v.name} — ${v.lang||'Unknown'}${v.localService?' — Local':''}`;voicePicker.append(o)});voicePicker.value=[...voicePicker.options].some(o=>o.value===selected)?selected:'';voiceStatus.textContent=voices.length?`${filtered.length} matching voice${filtered.length===1?'':'s'} shown from ${voices.length} available on this device.`:'No speech voices are currently available. The browser default may load after the page finishes opening.'}
+function loadVoices(){if(!('speechSynthesis' in window)){voiceStatus.textContent='Speech synthesis is not supported in this browser.';voicePicker.disabled=true;voiceLanguage.disabled=true;return}voices=speechSynthesis.getVoices();buildLanguageFilters();buildVoicePicker()}
+function chosenVoice(lang=''){const exact=voices.find(v=>v.name===voicePicker.value);if(exact)return exact;const base=lang.toLowerCase().split('-')[0];return voices.find(v=>(v.lang||'').toLowerCase().startsWith(base))||null}
+function speak(text,lang=''){if(!('speechSynthesis' in window)){showToast('Speech playback is not available in this browser.');return}if(!text.trim()){showToast('Enter some practice text first.');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text.trim()),v=chosenVoice(lang);if(v)u.voice=v;u.lang=v?.lang||lang||'en-US';u.rate=Number(voiceRate.value);u.pitch=Number(voicePitch.value);u.onerror=()=>showToast('That voice could not play this text. Try another voice.');speechSynthesis.speak(u)}
+voiceRate.value=String(stored.rate??.85);voicePitch.value=String(stored.pitch??1);$('#rateValue').textContent=`${Number(voiceRate.value).toFixed(2)}×`;$('#pitchValue').textContent=Number(voicePitch.value).toFixed(2);loadVoices();if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=loadVoices;setTimeout(loadVoices,350)}
+voiceLanguage.onchange=()=>{buildVoicePicker();saveVoice()};voicePicker.onchange=saveVoice;voiceRate.oninput=()=>{$('#rateValue').textContent=`${Number(voiceRate.value).toFixed(2)}×`;saveVoice()};voicePitch.oninput=()=>{$('#pitchValue').textContent=Number(voicePitch.value).toFixed(2);saveVoice()};$('#testVoice').onclick=()=>speak(voiceText.value,voicePicker.selectedOptions[0]?.textContent.match(/— ([a-z]{2,3}(?:-[A-Z]{2})?)/)?.[1]||'');$('#stopVoice').onclick=()=>speechSynthesis?.cancel();$('#resetVoice').onclick=()=>{voiceLanguage.value='all';voicePicker.value='';voiceRate.value='.85';voicePitch.value='1';$('#rateValue').textContent='.85×';$('#pitchValue').textContent='1.00';localStorage.removeItem(STORAGE.voice);buildVoicePicker();showToast('Browser-default voice settings restored.')};$('#speakPhrase').onclick=()=>{const p=phrases[phraseIndex];speak(p.text,p.lang)};
+const categories=['All',...new Set(APPS.map(a=>a.category))];let category=localStorage.getItem(STORAGE.filter)||'All',query='';
+function renderFilters(){$('#filterRow').innerHTML=categories.map(c=>`<button class="filter ${c===category?'active':''}" type="button" data-filter="${c.replace(/"/g,'&quot;')}">${c}</button>`).join('')}
+function renderApps(){const q=query.trim().toLowerCase();const list=APPS.filter(a=>(category==='All'||a.category===category)&&(!q||JSON.stringify(a).toLowerCase().includes(q)));$('#resultCount').textContent=`${list.length} of ${APPS.length} local applications shown`;$('#resourceGrid').innerHTML=list.map(a=>`<article class="resource-card"><div class="resource-mark">${a.mark}</div><div class="resource-type">${a.category}</div><h3>${a.title}</h3><p>${a.desc}</p><div class="resource-features">${a.features.map(f=>`<span>${f}</span>`).join('')}</div>${a.preference?'<div class="preference-note">Preference-aware: faith / Qur’anic study</div>':''}<a class="button" href="./apps/${encodeURI(a.file)}">Open ${a.title}</a></article>`).join('')}
+$('#filterRow').onclick=e=>{const b=e.target.closest('[data-filter]');if(!b)return;category=b.dataset.filter;localStorage.setItem(STORAGE.filter,category);renderFilters();renderApps()};$('#appSearch').oninput=e=>{query=e.target.value;renderApps()};$('#clearSearch').onclick=()=>{query='';category='All';$('#appSearch').value='';localStorage.removeItem(STORAGE.filter);renderFilters();renderApps()};
+function jumpFilter(c){category=c;localStorage.setItem(STORAGE.filter,c);renderFilters();renderApps();setTimeout(()=>$('#appSearch').focus(),350)};$$('[data-quick-filter],[data-footer-filter]').forEach(a=>a.addEventListener('click',()=>jumpFilter(a.dataset.quickFilter||a.dataset.footerFilter)));
+$('#year').textContent=new Date().getFullYear();renderPhrase();renderFilters();renderApps();
+})();
+</script>
+<script src="./register-service-worker.js" defer></script>
+</body></html>
