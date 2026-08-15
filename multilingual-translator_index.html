@@ -223,11 +223,11 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 
 <main class="shell">
   <section class="hero">
-    <div class="eyebrow">Sovereign Interlingual Tool · v2</div>
+    <div class="eyebrow">Sovereign Interlingual Tool · v2.1</div>
     <h1>Multilingual Translator</h1>
     <p>
       Translate privately from your local library, study language relationships, or compare literary meaning across languages.
-      Online translation is optional and never automatic.
+      Online translation is optional and never automatic. The local interlingual library now spans 75+ modern and heritage language options.
     </p>
 
     <div class="context" id="lessonContext" hidden>
@@ -366,7 +366,7 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 (() => {
 "use strict";
 
-const VERSION = "2.0";
+const VERSION = "2.1";
 const LS_LIBRARY = "khaemenes_interlingual_library_v2";
 const LS_CACHE = "khaemenes_interlingual_cache_v2";
 const LS_PREFS = "khaemenes_interlingual_prefs_v2";
@@ -375,14 +375,96 @@ const MAX_LIBRARY_PAIRS = 5000;
 const EXTERNAL_API = "https://api.mymemory.translated.net/get";
 
 const LANGUAGES = [
-  {code:"en",name:"English",dir:"ltr"},
-  {code:"ar",name:"Arabic",dir:"rtl"},
-  {code:"es",name:"Spanish",dir:"ltr"},
-  {code:"fr",name:"French",dir:"ltr"},
-  {code:"de",name:"German",dir:"ltr"},
-  {code:"ru",name:"Russian",dir:"ltr"},
-  {code:"zh-CN",name:"Chinese (Simplified)",dir:"ltr"},
-  {code:"ja",name:"Japanese",dir:"ltr"}
+  // Khaemenes core / currently emphasized
+  {code:"en",name:"English",dir:"ltr",group:"Khaemenes Core"},
+  {code:"ar",name:"Arabic",dir:"rtl",group:"Khaemenes Core"},
+  {code:"es",name:"Spanish",dir:"ltr",group:"Khaemenes Core"},
+  {code:"fr",name:"French",dir:"ltr",group:"Khaemenes Core"},
+  {code:"de",name:"German",dir:"ltr",group:"Khaemenes Core"},
+  {code:"ru",name:"Russian",dir:"ltr",group:"Khaemenes Core"},
+  {code:"zh-CN",name:"Chinese (Simplified)",dir:"ltr",group:"Khaemenes Core"},
+  {code:"zh-TW",name:"Chinese (Traditional)",dir:"ltr",group:"Khaemenes Core"},
+  {code:"ja",name:"Japanese",dir:"ltr",group:"Khaemenes Core"},
+  {code:"ko",name:"Korean",dir:"ltr",group:"Khaemenes Core"},
+
+  // Europe
+  {code:"pt",name:"Portuguese",dir:"ltr",group:"Europe"},
+  {code:"it",name:"Italian",dir:"ltr",group:"Europe"},
+  {code:"nl",name:"Dutch",dir:"ltr",group:"Europe"},
+  {code:"sv",name:"Swedish",dir:"ltr",group:"Europe"},
+  {code:"no",name:"Norwegian",dir:"ltr",group:"Europe"},
+  {code:"da",name:"Danish",dir:"ltr",group:"Europe"},
+  {code:"fi",name:"Finnish",dir:"ltr",group:"Europe"},
+  {code:"is",name:"Icelandic",dir:"ltr",group:"Europe"},
+  {code:"ga",name:"Irish",dir:"ltr",group:"Europe"},
+  {code:"cy",name:"Welsh",dir:"ltr",group:"Europe"},
+  {code:"ca",name:"Catalan",dir:"ltr",group:"Europe"},
+  {code:"eu",name:"Basque",dir:"ltr",group:"Europe"},
+  {code:"gl",name:"Galician",dir:"ltr",group:"Europe"},
+  {code:"pl",name:"Polish",dir:"ltr",group:"Europe"},
+  {code:"cs",name:"Czech",dir:"ltr",group:"Europe"},
+  {code:"sk",name:"Slovak",dir:"ltr",group:"Europe"},
+  {code:"hu",name:"Hungarian",dir:"ltr",group:"Europe"},
+  {code:"ro",name:"Romanian",dir:"ltr",group:"Europe"},
+  {code:"el",name:"Greek",dir:"ltr",group:"Europe"},
+  {code:"uk",name:"Ukrainian",dir:"ltr",group:"Europe"},
+  {code:"bg",name:"Bulgarian",dir:"ltr",group:"Europe"},
+  {code:"hr",name:"Croatian",dir:"ltr",group:"Europe"},
+  {code:"sr",name:"Serbian",dir:"ltr",group:"Europe"},
+  {code:"sl",name:"Slovenian",dir:"ltr",group:"Europe"},
+  {code:"sq",name:"Albanian",dir:"ltr",group:"Europe"},
+  {code:"lt",name:"Lithuanian",dir:"ltr",group:"Europe"},
+  {code:"lv",name:"Latvian",dir:"ltr",group:"Europe"},
+  {code:"et",name:"Estonian",dir:"ltr",group:"Europe"},
+
+  // Middle East, Caucasus & Central Asia
+  {code:"he",name:"Hebrew",dir:"rtl",group:"Middle East & Central Asia"},
+  {code:"fa",name:"Persian (Farsi)",dir:"rtl",group:"Middle East & Central Asia"},
+  {code:"tr",name:"Turkish",dir:"ltr",group:"Middle East & Central Asia"},
+  {code:"hy",name:"Armenian",dir:"ltr",group:"Middle East & Central Asia"},
+  {code:"ka",name:"Georgian",dir:"ltr",group:"Middle East & Central Asia"},
+  {code:"az",name:"Azerbaijani",dir:"ltr",group:"Middle East & Central Asia"},
+  {code:"kk",name:"Kazakh",dir:"ltr",group:"Middle East & Central Asia"},
+  {code:"uz",name:"Uzbek",dir:"ltr",group:"Middle East & Central Asia"},
+
+  // South Asia
+  {code:"hi",name:"Hindi",dir:"ltr",group:"South Asia"},
+  {code:"ur",name:"Urdu",dir:"rtl",group:"South Asia"},
+  {code:"bn",name:"Bengali",dir:"ltr",group:"South Asia"},
+  {code:"pa",name:"Punjabi",dir:"ltr",group:"South Asia"},
+  {code:"gu",name:"Gujarati",dir:"ltr",group:"South Asia"},
+  {code:"mr",name:"Marathi",dir:"ltr",group:"South Asia"},
+  {code:"ne",name:"Nepali",dir:"ltr",group:"South Asia"},
+  {code:"ta",name:"Tamil",dir:"ltr",group:"South Asia"},
+  {code:"te",name:"Telugu",dir:"ltr",group:"South Asia"},
+  {code:"kn",name:"Kannada",dir:"ltr",group:"South Asia"},
+  {code:"ml",name:"Malayalam",dir:"ltr",group:"South Asia"},
+  {code:"si",name:"Sinhala",dir:"ltr",group:"South Asia"},
+
+  // East & Southeast Asia
+  {code:"vi",name:"Vietnamese",dir:"ltr",group:"East & Southeast Asia"},
+  {code:"th",name:"Thai",dir:"ltr",group:"East & Southeast Asia"},
+  {code:"id",name:"Indonesian",dir:"ltr",group:"East & Southeast Asia"},
+  {code:"ms",name:"Malay",dir:"ltr",group:"East & Southeast Asia"},
+  {code:"tl",name:"Filipino / Tagalog",dir:"ltr",group:"East & Southeast Asia"},
+  {code:"km",name:"Khmer",dir:"ltr",group:"East & Southeast Asia"},
+  {code:"lo",name:"Lao",dir:"ltr",group:"East & Southeast Asia"},
+  {code:"my",name:"Burmese",dir:"ltr",group:"East & Southeast Asia"},
+  {code:"mn",name:"Mongolian",dir:"ltr",group:"East & Southeast Asia"},
+
+  // Africa
+  {code:"sw",name:"Swahili",dir:"ltr",group:"Africa"},
+  {code:"af",name:"Afrikaans",dir:"ltr",group:"Africa"},
+  {code:"am",name:"Amharic",dir:"ltr",group:"Africa"},
+  {code:"so",name:"Somali",dir:"ltr",group:"Africa"},
+  {code:"ha",name:"Hausa",dir:"ltr",group:"Africa"},
+  {code:"yo",name:"Yoruba",dir:"ltr",group:"Africa"},
+  {code:"ig",name:"Igbo",dir:"ltr",group:"Africa"},
+  {code:"zu",name:"Zulu",dir:"ltr",group:"Africa"},
+  {code:"xh",name:"Xhosa",dir:"ltr",group:"Africa"},
+
+  // Classical / heritage study (local-library first; online availability may vary)
+  {code:"la",name:"Latin",dir:"ltr",group:"Classical & Heritage",online:"provider-dependent"}
 ];
 
 const $ = id => document.getElementById(id);
@@ -495,10 +577,28 @@ function updateDirections(){
   els.litFrom.textContent=f.name; els.litTo.textContent=t.name;
 }
 function populateLanguages(){
-  for(const item of LANGUAGES){
-    const a=document.createElement("option"); a.value=item.code; a.textContent=item.name; els.from.appendChild(a);
-    const b=document.createElement("option"); b.value=item.code; b.textContent=item.name; els.to.appendChild(b);
+  const groups=[...new Set(LANGUAGES.map(item=>item.group || "Other"))];
+  for(const groupName of groups){
+    const fromGroup=document.createElement("optgroup");
+    const toGroup=document.createElement("optgroup");
+    fromGroup.label=groupName;
+    toGroup.label=groupName;
+
+    for(const item of LANGUAGES.filter(x=>(x.group || "Other")===groupName)){
+      const a=document.createElement("option");
+      a.value=item.code;
+      a.textContent=item.name;
+      fromGroup.appendChild(a);
+
+      const b=document.createElement("option");
+      b.value=item.code;
+      b.textContent=item.name;
+      toGroup.appendChild(b);
+    }
+    els.from.appendChild(fromGroup);
+    els.to.appendChild(toGroup);
   }
+
   const prefs=readJSON(LS_PREFS,{from:"en",to:"es",service:"offline",purpose:"translate"});
   els.from.value=LANGUAGES.some(x=>x.code===prefs.from)?prefs.from:"en";
   els.to.value=LANGUAGES.some(x=>x.code===prefs.to)?prefs.to:"es";
@@ -611,6 +711,11 @@ function closeConsent(){
 async function translateOnline(){
   const from=els.from.value,to=els.to.value,text=cleanText(els.input.value);
   if(!text){setStatus("Enter text to translate.","bad");return}
+  const onlineBytes=new TextEncoder().encode(text).length;
+  if(onlineBytes>500){
+    setStatus(`Online translation is limited to 500 UTF-8 bytes per request by the current provider. This passage is ${onlineBytes} bytes; shorten it or use the sovereign library.`, "bad");
+    return;
+  }
   if(from===to){
     els.output.textContent=text; setStatus("Source and target languages are the same.","good"); afterTranslation(); return;
   }
