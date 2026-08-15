@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sovereign Multilingual Translator</title>
+<style>
+:root{
+  --bg:#fafafa; --panel:#fff; --accent:#3b5cff;
+  --radius:12px; --shadow:0 4px 16px rgba(0,0,0,.08);
+  --ink:#222; --muted:#666; --soft:#f7f7ff; --softBorder:#e0e0ff;
+  --bad:#b42318; --good:#0f766e;
+}
+*{box-sizing:border-box}
+body{
+  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  background:var(--bg); margin:0; padding:40px;
+  display:flex; justify-content:center; align-items:center; min-height:100vh;
+  color:var(--ink);
+}
+#app{
+  background:var(--panel); padding:22px; border-radius:var(--radius);
+  box-shadow:var(--shadow); max-width:720px; width:100%;
+}
+h1{text-align:center;margin:0 0 14px;font-family:ui-serif,Georgia,serif;color:#333;}
+.row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+.row > *{flex:1}
+select,textarea,button,input{
+  width:100%;margin-top:10px;padding:10px;border-radius:var(--radius);
+  border:1px solid #ddd;font-size:15px;
+}
+textarea{resize:vertical; min-height:120px}
+button{
+  background:var(--accent);color:#fff;border:none;cursor:pointer;
+}
+button:hover{opacity:.92}
+button.secondary{
+  background:#111827;
+}
+button.ghost{
+  background:transparent; color:#111827; border:1px solid #d1d5db;
+}
+button:disabled{opacity:.55; cursor:not-allowed}
+#output{
+  margin-top:14px;white-space:pre-wrap;min-height:100px;
+  background:var(--soft);border:1px solid var(--softBorder);
+  padding:10px;border-radius:var(--radius);
+}
+.small{font-size:13px;color:var(--muted);text-align:center;margin-top:10px;}
+.kicker{font-size:12px;color:var(--muted);text-align:center;margin-top:6px}
+.badge{
+  display:inline-block; padding:4px 10px; border-radius:999px;
+  border:1px solid #ddd; font-size:12px; color:#111827; background:#fff;
+}
+.badge.good{border-color:rgba(15,118,110,.25); background:rgba(15,118,110,.08); color:var(--good);}
+.badge.bad{border-color:rgba(180,35,24,.25); background:rgba(180,35,24,.06); color:var(--bad);}
+hr{border:none;border-top:1px solid #eee;margin:14px 0}
+.status{
+  margin-top:10px;
+  padding:10px;border-radius:12px;border:1px solid #e5e7eb;
+  background:#fff; color:#111827; font-size:13px;
+}
+.status.good{border-color:rgba(15,118,110,.25); background:rgba(15,118,110,.07)}
+.status.bad{border-color:rgba(180,35,24,.25); background:rgba(180,35,24,.06)}
+.inline{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+.inline .badge{margin-left:auto}
+@media (max-width:640px){
+  body{padding:18px}
+}
+</style>
+</head>
+<body>
+<div id="app">
+  <h1>🌍 Multilingual Translator</h1>
+  <div class="kicker">Offline Library mode is fully local/sovereign. Online API mode uses the internet.</div>
+
+  <div class="inline">
+    <label class="row" style="margin-top:4px">
+      <select id="mode">
+        <option value="offline">Offline Library (Sovereign)</option>
+        <option value="online">Online API (MyMemory)</option>
+      </select>
+      <span id="modeBadge" class="badge good">SOVEREIGN</span>
+    </label>
+  </div>
+
+  <div class="row">
+    <div>
+      <label for="langFrom" class="kicker">From</label>
+      <select id="langFrom">
+        <option value="en">English</option>
+        <option value="ar">Arabic</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <option value="de">German</option>
+        <option value="ru">Russian</option>
+        <option value="zh-CN">Chinese (Simplified)</option>
+      </select>
+    </div>
+    <div>
+      <label for="langTo" class="kicker">To</label>
+      <select id="langTo">
+        <option value="ar">Arabic</option>
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <option value="de">German</option>
+        <option value="ru">Russian</option>
+        <option value="zh-CN">Chinese (Simplified)</option>
+      </select>
+    </div>
+    <div style="flex:0 0 170px">
+      <label class="kicker">&nbsp;</label>
+      <button id="swapBtn" class="ghost" title="Swap languages">⇄ Swap</button>
+    </div>
+  </div>
+
+  <textarea id="input" rows="6" placeholder="Type or paste text…"></textarea>
+
+  <div class="row">
+    <button id="btnTranslate">Translate</button>
+    <button id="btnSave" class="secondary" title="Save this translation into your Offline Library">Save to Library</button>
+    <button id="btnClear" class="ghost">Clear</button>
+  </div>
+
+  <div id="output"></div>
+
+  <div id="status" class="status">Ready.</div>
+  <div class="small" id="footerNote">Offline Library • Stored in your browser (localStorage)</div>
+</div>
+
+<script>
+/* ==========================
+   Settings / Storage Keys
+   ========================== */
+const LS_LIB   = "sv_translator_library_v1"; // offline translation library
+const LS_CACHE = "sv_translator_cache_v1";   // online cache
+const LS_MODE  = "sv_translator_mode_v1";    // user mode
+const LS_PROT  = "sv_translator_protect_v1"; // protection enabled
+
+/* ==========================
+   Elements
+   ========================== */
+const $ = (id)=>document.getElementById(id);
+const modeSel = $("mode");
+const badge   = $("modeBadge");
+const footer  = $("footerNote");
+const status  = $("status");
+const out     = $("output");
+const input   = $("input");
+const fromSel = $("langFrom");
+const toSel   = $("langTo");
+
+/* ==========================
+   Small helpers
+   ========================== */
+function setStatus(msg, kind=""){
+  status.className = "status" + (kind? " "+kind : "");
+  status.textContent = msg;
+}
+function norm(s){ return (s||"").trim().replace(/\r\n/g,"\n"); }
+function cacheKey(from,to,text){
+  // Keep it short but stable
+  return `${from}→${to}::${text}`;
+}
+function loadJSON(key, fallback){
+  try{ return JSON.parse(localStorage.getItem(key) || "") ?? fallback; }
+  catch{ return fallback; }
+}
+function saveJSON(key, val){
+  localStorage.setItem(key, JSON.stringify(val));
+}
+
+/* ==========================
+   Offline Library Model
+   ========================== */
+/*
+Library structure:
+{
+  "en→es": {
+     "Hello world": "Hola mundo",
+     "Long paragraph...": "..."
+  },
+  "es→en": { ... }
+}
+*/
+function getLibrary(){ return loadJSON(LS_LIB, {}); }
+function setLibrary(lib){ saveJSON(LS_LIB, lib); }
+function lookupOffline(from,to,text){
+  const lib = getLibrary();
+  const bucket = lib[`${from}→${to}`] || {};
+  return bucket[text] || "";
+}
+function saveOffline(from,to,src,translated){
+  const lib = getLibrary();
+  const k = `${from}→${to}`;
+  lib[k] = lib[k] || {};
+  lib[k][src] = translated;
+  setLibrary(lib);
+}
+
+/* ==========================
+   Online Cache Model
+   ========================== */
+function getCache(){ return loadJSON(LS_CACHE, {}); }
+function setCache(c){ saveJSON(LS_CACHE, c); }
+
+/* ==========================
+   Mode init
+   ========================== */
+function applyModeUI(){
+  const mode = modeSel.value;
+  if(mode === "offline"){
+    badge.textContent = "SOVEREIGN";
+    badge.className = "badge good";
+    footer.textContent = "Offline Library • Stored in your browser (localStorage)";
+    setStatus("Offline mode: translations come from your saved library.", "good");
+  }else{
+    badge.textContent = "ONLINE";
+    badge.className = "badge bad";
+    footer.textContent = "Online API • Uses MyMemory over the internet (cached locally)";
+    setStatus("Online mode: will call MyMemory API (internet required).", "bad");
+  }
+}
+modeSel.value = localStorage.getItem(LS_MODE) || "offline";
+applyModeUI();
+modeSel.addEventListener("change", ()=>{
+  localStorage.setItem(LS_MODE, modeSel.value);
+  applyModeUI();
+});
+
+/* ==========================
+   Swap Languages
+   ========================== */
+$("swapBtn").onclick = ()=>{
+  const a = fromSel.value;
+  fromSel.value = toSel.value;
+  toSel.value = a;
+  setStatus("Swapped languages.", "good");
+};
+
+/* ==========================
+   Translate action
+   ========================== */
+$("btnTranslate").onclick = async ()=>{
+  const from = fromSel.value;
+  const to   = toSel.value;
+  const text = norm(input.value);
+  if(!text){ setStatus("Enter text to translate.", "bad"); return; }
+  if(from === to){ out.textContent = text; setStatus("From/To are the same; no translation needed.", "good"); return; }
+
+  out.textContent = "Working…";
+
+  if(modeSel.value === "offline"){
+    const hit = lookupOffline(from,to,text);
+    if(hit){
+      out.textContent = hit;
+      setStatus("Offline Library hit ✓", "good");
+    }else{
+      out.textContent = "— No offline translation found for this exact text.\n\nTip: Switch to Online mode once, translate, then click “Save to Library” so it’s sovereign next time.";
+      setStatus("Offline Library miss. Add it by saving a translation.", "bad");
+    }
+    return;
+  }
+
+  // Online mode with cache
+  const ck = cacheKey(from,to,text);
+  const cache = getCache();
+  if(cache[ck]){
+    out.textContent = cache[ck];
+    setStatus("Cache hit ✓ (no API call)", "good");
+    return;
+  }
+
+  try{
+    setStatus("Calling MyMemory…", "bad");
+    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`;
+    const res = await fetch(url, { method:"GET" });
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    const data = await res.json();
+    const translated = (data && data.responseData && data.responseData.translatedText) ? String(data.responseData.translatedText) : "";
+    if(!translated) throw new Error("No translatedText in response.");
+
+    cache[ck] = translated;
+    setCache(cache);
+
+    out.textContent = translated;
+    setStatus("Translated ✓ (saved to local cache)", "good");
+  }catch(e){
+    out.textContent = "Error retrieving translation.\n\n" + (e && e.message ? e.message : "");
+    setStatus("Translation failed. Check your connection or try again.", "bad");
+  }
+};
+
+/* ==========================
+   Save to Offline Library
+   ========================== */
+$("btnSave").onclick = ()=>{
+  const from = fromSel.value;
+  const to   = toSel.value;
+  const src  = norm(input.value);
+  const dst  = norm(out.textContent);
+
+  if(!src){ setStatus("Nothing to save: input is empty.", "bad"); return; }
+  if(!dst || dst.startsWith("— No offline translation")){
+    setStatus("Nothing to save: output is empty or not a translation.", "bad");
+    return;
+  }
+
+  saveOffline(from,to,src,dst);
+  setStatus("Saved ✓ This translation is now available in Offline Library mode.", "good");
+};
+
+/* ==========================
+   Clear
+   ========================== */
+$("btnClear").onclick = ()=>{
+  input.value = "";
+  out.textContent = "";
+  setStatus("Cleared.", "good");
+};
+
+/* ==========================
+   Copy Discouragement (speed bump)
+   ========================== */
+/*
+This does NOT create true protection. Anyone can still:
+- view source
+- disable JS
+- use devtools
+- screenshot / OCR
+It simply discourages casual copy.
+*/
+(function discourageCopy(){
+  let enabled = localStorage.getItem(LS_PROT);
+  if(enabled === null) enabled = "1"; // default ON
+  localStorage.setItem(LS_PROT, enabled);
+
+  function isEditableTarget(t){
+    return t && (t.tagName==="TEXTAREA" || t.tagName==="INPUT" || t.isContentEditable);
+  }
+
+  document.addEventListener("contextmenu", (e)=>{
+    if(localStorage.getItem(LS_PROT)!=="1") return;
+    if(isEditableTarget(e.target)) return; // allow right click in input boxes
+    e.preventDefault();
+    setStatus("Right-click disabled on this view.", "bad");
+  });
+
+  document.addEventListener("keydown", (e)=>{
+    if(localStorage.getItem(LS_PROT)!=="1") return;
+    const k = (e.key||"").toLowerCase();
+    const ctrl = e.ctrlKey || e.metaKey;
+    const blocked =
+      (ctrl && ["c","x","s","u","p","a"].includes(k)) ||
+      (e.key === "F12") ||
+      (ctrl && e.shiftKey && ["i","j","c"].includes(k));
+    if(blocked){
+      // still allow copy inside the TEXTAREA so you can author
+      if(isEditableTarget(document.activeElement)) return;
+      e.preventDefault();
+      setStatus("Copy/inspect shortcut blocked on this view.", "bad");
+    }
+
+    // Secret toggle (Author Mode): Ctrl+Shift+L
+    if(ctrl && e.shiftKey && k==="l"){
+      e.preventDefault();
+      const cur = localStorage.getItem(LS_PROT)==="1";
+      localStorage.setItem(LS_PROT, cur ? "0" : "1");
+      setStatus(cur ? "Author Mode ✓ protection OFF" : "Protection ON", "good");
+    }
+  });
+
+  document.addEventListener("copy", (e)=>{
+    if(localStorage.getItem(LS_PROT)!=="1") return;
+    // allow copying from textarea while editing
+    if(isEditableTarget(document.activeElement)) return;
+    e.preventDefault();
+    setStatus("Copy disabled on this view.", "bad");
+  });
+})();
+</script>
+</body>
+</html>
