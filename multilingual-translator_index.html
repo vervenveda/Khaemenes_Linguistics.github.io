@@ -1,383 +1,881 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Sovereign Multilingual Translator</title>
+<meta name="description" content="Sovereign Interlingual Translator — offline-first translation, language learning, and literary comparison for Khaemenes Linguistics and the Verve N Veda learning ecosystem.">
+<meta name="theme-color" content="#102238">
+<meta name="color-scheme" content="light dark">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta http-equiv="Permissions-Policy" content="camera=(), geolocation=(), payment=(), usb=(), browsing-topics=()">
+<title>Sovereign Interlingual Translator | Khaemenes Linguistics</title>
 <style>
 :root{
-  --bg:#fafafa; --panel:#fff; --accent:#3b5cff;
-  --radius:12px; --shadow:0 4px 16px rgba(0,0,0,.08);
-  --ink:#222; --muted:#666; --soft:#f7f7ff; --softBorder:#e0e0ff;
-  --bad:#b42318; --good:#0f766e;
+  --ink:#102238;--ink-soft:#2e4355;--night:#081522;
+  --paper:#f5f0e4;--paper-bright:#fcf9f2;--paper-deep:#e7deca;
+  --gold:#b79452;--gold-dark:#80642f;--wine:#6c2e3b;--teal:#275f61;
+  --teal-soft:#dce8e7;--muted:#6d746f;--line:rgba(16,34,56,.16);
+  --line-strong:rgba(16,34,56,.28);--good:#176c60;--bad:#a13232;
+  --shadow:0 18px 44px rgba(8,21,34,.11);--shadow-small:0 9px 24px rgba(8,21,34,.07);
+  --radius:7px;--radius-large:21px;--max:1120px;
+  --serif:"Cinzel","Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+  --sans:"Brandon Grotesque","Avenir Next",Avenir,"Segoe UI",Arial,sans-serif;
 }
-*{box-sizing:border-box}
+html[data-theme="dark"]{
+  --ink:#ede5d6;--ink-soft:#cad5d9;--night:#050b12;--paper:#0d1b28;
+  --paper-bright:#122536;--paper-deep:#203647;--gold:#d1ad68;--gold-dark:#e6c887;
+  --wine:#b86b79;--teal:#74adae;--teal-soft:#17333d;--muted:#a9b5b9;
+  --line:rgba(237,229,214,.16);--line-strong:rgba(237,229,214,.29);
+  --shadow:0 18px 44px rgba(0,0,0,.32);--shadow-small:0 9px 24px rgba(0,0,0,.23);
+  --good:#70cdbb;--bad:#e08e8e;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
-  font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
-  background:var(--bg); margin:0; padding:40px;
-  display:flex; justify-content:center; align-items:center; min-height:100vh;
-  color:var(--ink);
+  margin:0;min-width:300px;color:var(--ink);
+  background:
+    radial-gradient(circle at 10% 7%,rgba(183,148,82,.11),transparent 27rem),
+    radial-gradient(circle at 90% 18%,rgba(39,95,97,.09),transparent 29rem),
+    var(--paper);
+  font:400 15px/1.65 var(--sans);-webkit-font-smoothing:antialiased;
 }
-#app{
-  background:var(--panel); padding:22px; border-radius:var(--radius);
-  box-shadow:var(--shadow); max-width:720px; width:100%;
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+a{color:inherit}
+[hidden]{display:none!important}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+::selection{color:var(--night);background:#e9cf97}
+.shell{width:min(calc(100% - 28px),var(--max));margin-inline:auto}
+.top-ribbon{
+  min-height:33px;display:flex;align-items:center;justify-content:center;
+  padding:7px 14px;color:#f6efdf;background:linear-gradient(90deg,#07101b,#10263b 50%,#07101b);
+  font-size:10px;letter-spacing:.08em;text-transform:uppercase;text-align:center;
 }
-h1{text-align:center;margin:0 0 14px;font-family:ui-serif,Georgia,serif;color:#333;}
-.row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-.row > *{flex:1}
-select,textarea,button,input{
-  width:100%;margin-top:10px;padding:10px;border-radius:var(--radius);
-  border:1px solid #ddd;font-size:15px;
+.site-header{
+  position:sticky;top:0;z-index:30;border-bottom:1px solid var(--line);
+  background:color-mix(in srgb,var(--paper-bright) 94%,transparent);backdrop-filter:blur(18px)
 }
-textarea{resize:vertical; min-height:120px}
-button{
-  background:var(--accent);color:#fff;border:none;cursor:pointer;
+.header-inner{
+  min-height:66px;display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 0
 }
-button:hover{opacity:.92}
-button.secondary{
-  background:#111827;
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.seal{
+  width:44px;aspect-ratio:1;display:grid;place-items:center;flex:0 0 auto;border:1px solid var(--gold);
+  border-radius:50%;box-shadow:inset 0 0 0 4px color-mix(in srgb,var(--gold) 13%,transparent);
+  font:500 16px var(--serif)
 }
-button.ghost{
-  background:transparent; color:#111827; border:1px solid #d1d5db;
+.brand strong{display:block;font:500 17px/1.05 var(--serif);letter-spacing:.04em}
+.brand small{display:block;margin-top:4px;color:var(--muted);font-size:9px;letter-spacing:.11em;text-transform:uppercase}
+.header-actions{display:flex;gap:7px}
+.icon-button{
+  min-width:40px;min-height:40px;border:1px solid var(--line-strong);border-radius:var(--radius);
+  color:var(--ink);background:var(--paper-bright)
 }
-button:disabled{opacity:.55; cursor:not-allowed}
-#output{
-  margin-top:14px;white-space:pre-wrap;min-height:100px;
-  background:var(--soft);border:1px solid var(--softBorder);
-  padding:10px;border-radius:var(--radius);
+main{padding:44px 0 70px}
+.hero{text-align:center;margin:0 auto 28px}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:11px;color:var(--gold-dark);
+  font-size:10px;font-weight:600;letter-spacing:.18em;text-transform:uppercase
 }
-.small{font-size:13px;color:var(--muted);text-align:center;margin-top:10px;}
-.kicker{font-size:12px;color:var(--muted);text-align:center;margin-top:6px}
+.eyebrow::before,.eyebrow::after{content:"";width:33px;height:1px;background:currentColor}
+h1,h2,h3{margin:0;font-family:var(--serif);font-weight:500;line-height:1.15;text-wrap:balance}
+h1{margin-top:10px;font-size:clamp(38px,6vw,66px)}
+.hero p{max-width:760px;margin:15px auto 0;color:var(--ink-soft);font-size:15px;line-height:1.85}
+.context{
+  margin:22px auto 0;padding:12px 14px;border:1px solid var(--line);border-left:3px solid var(--gold);
+  border-radius:var(--radius);background:var(--paper-bright);text-align:left;box-shadow:var(--shadow-small)
+}
+.context strong{font-family:var(--serif);font-weight:500}
+.context-meta{margin-top:4px;color:var(--muted);font-size:12px}
+.mode-tabs{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:26px 0 12px;padding:7px;
+  border:1px solid var(--line);border-radius:var(--radius-large);background:color-mix(in srgb,var(--paper-bright) 90%,transparent)
+}
+.mode-tab{
+  min-height:54px;border:1px solid transparent;border-radius:var(--radius);background:transparent;
+  font-weight:600;font-size:12px;letter-spacing:.03em
+}
+.mode-tab[aria-selected="true"]{
+  color:#fff;background:var(--ink);border-color:var(--ink);box-shadow:var(--shadow-small)
+}
+.workspace{
+  padding:24px;border:1px solid var(--line);border-radius:var(--radius-large);
+  background:color-mix(in srgb,var(--paper-bright) 95%,transparent);box-shadow:var(--shadow)
+}
+.control-grid{display:grid;grid-template-columns:1fr 1fr 132px;gap:10px;align-items:end}
+.field label{display:block;margin-bottom:6px;color:var(--muted);font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+select,textarea,input[type="text"]{
+  width:100%;border:1px solid var(--line-strong);border-radius:var(--radius);
+  background:var(--paper-bright);padding:11px 12px
+}
+select{min-height:44px}
+textarea{min-height:170px;resize:vertical;line-height:1.65}
+.swap{
+  min-height:44px;border:1px solid var(--line-strong);border-radius:var(--radius);
+  background:var(--paper-bright)
+}
+.service-row{
+  display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:15px 0 0;padding:12px;
+  border:1px solid var(--line);border-radius:var(--radius);background:color-mix(in srgb,var(--paper-deep) 45%,transparent)
+}
+.service-row select{width:auto;min-width:225px;margin:0}
 .badge{
-  display:inline-block; padding:4px 10px; border-radius:999px;
-  border:1px solid #ddd; font-size:12px; color:#111827; background:#fff;
+  display:inline-flex;align-items:center;min-height:28px;padding:4px 9px;border:1px solid var(--line-strong);
+  border-radius:999px;font-size:10px;font-weight:700;letter-spacing:.08em;text-transform:uppercase
 }
-.badge.good{border-color:rgba(15,118,110,.25); background:rgba(15,118,110,.08); color:var(--good);}
-.badge.bad{border-color:rgba(180,35,24,.25); background:rgba(180,35,24,.06); color:var(--bad);}
-hr{border:none;border-top:1px solid #eee;margin:14px 0}
+.badge.good{color:var(--good);border-color:color-mix(in srgb,var(--good) 30%,transparent);background:color-mix(in srgb,var(--good) 8%,transparent)}
+.badge.bad{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 30%,transparent);background:color-mix(in srgb,var(--bad) 7%,transparent)}
+.privacy-note{margin-left:auto;max-width:440px;color:var(--muted);font-size:11px;line-height:1.5}
+.panes{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:18px}
+.pane{min-width:0}
+.pane-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:7px}
+.pane-head strong{font:500 17px var(--serif)}
+.pane-head span{color:var(--muted);font-size:10px;text-transform:uppercase;letter-spacing:.08em}
+.output{
+  min-height:170px;white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid var(--line-strong);
+  border-radius:var(--radius);background:var(--teal-soft);padding:12px;line-height:1.65
+}
+[dir="rtl"]{text-align:right}
+.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.btn{
+  min-height:42px;padding:8px 14px;border:1px solid var(--ink);border-radius:var(--radius);
+  color:var(--paper-bright);background:var(--ink);font-size:11px;font-weight:700;letter-spacing:.04em
+}
+.btn.secondary{color:#fff;background:var(--wine);border-color:var(--wine)}
+.btn.ghost{color:var(--ink);background:transparent;border-color:var(--line-strong)}
+.btn.gold{color:#241b0e;background:linear-gradient(135deg,#d8b975,#f0daa8);border-color:#d8b975}
 .status{
-  margin-top:10px;
-  padding:10px;border-radius:12px;border:1px solid #e5e7eb;
-  background:#fff; color:#111827; font-size:13px;
+  margin-top:14px;padding:10px 12px;border:1px solid var(--line);border-radius:var(--radius);
+  color:var(--muted);background:var(--paper-bright);font-size:12px
 }
-.status.good{border-color:rgba(15,118,110,.25); background:rgba(15,118,110,.07)}
-.status.bad{border-color:rgba(180,35,24,.25); background:rgba(180,35,24,.06)}
-.inline{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-.inline .badge{margin-left:auto}
-@media (max-width:640px){
-  body{padding:18px}
+.status.good{color:var(--good);border-color:color-mix(in srgb,var(--good) 28%,var(--line))}
+.status.bad{color:var(--bad);border-color:color-mix(in srgb,var(--bad) 28%,var(--line))}
+.study-panel,.literary-panel{
+  margin-top:17px;padding:16px;border:1px solid var(--line);border-radius:var(--radius);
+  background:color-mix(in srgb,var(--paper-deep) 35%,transparent)
 }
+.study-panel h2,.literary-panel h2{font-size:20px}
+.study-panel p,.literary-panel p{color:var(--muted);font-size:12px}
+.terms{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+.term{
+  padding:7px 9px;border:1px solid var(--line);border-radius:var(--radius);background:var(--paper-bright);font-size:12px
+}
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+.note-box{margin-top:12px}
+.note-box textarea{min-height:92px}
+.utility{
+  display:grid;grid-template-columns:1.2fr .8fr;gap:14px;margin-top:18px
+}
+.utility-card{
+  padding:16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--paper-bright)
+}
+.utility-card h3{font-size:17px}
+.utility-card p{margin:6px 0 0;color:var(--muted);font-size:12px}
+.utility-card .actions{margin-top:10px}
+.file-input{display:none}
+.footer{
+  margin-top:24px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:11px;text-align:center
+}
+.dialog-backdrop{
+  position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:18px;
+  background:rgba(5,11,18,.72);backdrop-filter:blur(6px)
+}
+.dialog{
+  width:min(100%,590px);max-height:calc(100vh - 36px);overflow:auto;padding:24px;
+  border:1px solid var(--line-strong);border-top:4px solid var(--wine);border-radius:var(--radius-large);
+  background:var(--paper-bright);box-shadow:0 30px 80px rgba(0,0,0,.32)
+}
+.dialog h2{font-size:25px}
+.dialog p,.dialog li{color:var(--ink-soft);font-size:13px;line-height:1.7}
+.checkline{display:flex;gap:9px;align-items:flex-start;margin:14px 0}
+.checkline input{margin-top:4px}
+@media(max-width:760px){
+  .control-grid,.panes,.utility,.compare-grid{grid-template-columns:1fr}
+  .mode-tabs{grid-template-columns:1fr}
+  .service-row{align-items:stretch}
+  .service-row select{width:100%}
+  .privacy-note{margin-left:0}
+}
+@media(max-width:520px){
+  .brand small{display:none}
+  .workspace{padding:15px}
+  .header-actions{gap:4px}
+  .icon-button{min-width:36px}
+}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
-<div id="app">
-  <h1>🌍 Multilingual Translator</h1>
-  <div class="kicker">Offline Library mode is fully local/sovereign. Online API mode uses the internet.</div>
+<div class="top-ribbon">Khaemenes Academy Linguistics · Offline first · Translation is a tool, not a substitute for interpretation</div>
 
-  <div class="inline">
-    <label class="row" style="margin-top:4px">
-      <select id="mode">
-        <option value="offline">Offline Library (Sovereign)</option>
-        <option value="online">Online API (MyMemory)</option>
+<header class="site-header">
+  <div class="shell header-inner">
+    <a class="brand" href="./" aria-label="Khaemenes Linguistics home">
+      <span class="seal">K</span>
+      <span><strong>Polyglot</strong><small>Khaemenes Linguistics</small></span>
+    </a>
+    <div class="header-actions">
+      <button class="icon-button" id="themeBtn" type="button" title="Toggle theme" aria-label="Toggle theme">◐</button>
+      <a class="icon-button" href="./" title="Linguistics home" aria-label="Linguistics home" style="display:grid;place-items:center;text-decoration:none">⌂</a>
+    </div>
+  </div>
+</header>
+
+<main class="shell">
+  <section class="hero">
+    <div class="eyebrow">Sovereign Interlingual Tool · v2</div>
+    <h1>Multilingual Translator</h1>
+    <p>
+      Translate privately from your local library, study language relationships, or compare literary meaning across languages.
+      Online translation is optional and never automatic.
+    </p>
+
+    <div class="context" id="lessonContext" hidden>
+      <strong id="contextTitle">Current Khaemenes lesson</strong>
+      <div class="context-meta" id="contextMeta"></div>
+    </div>
+  </section>
+
+  <nav class="mode-tabs" aria-label="Translator purpose">
+    <button class="mode-tab" type="button" data-purpose="translate" aria-selected="true">Translate</button>
+    <button class="mode-tab" type="button" data-purpose="learn" aria-selected="false">Learn</button>
+    <button class="mode-tab" type="button" data-purpose="literary" aria-selected="false">Literary Compare</button>
+  </nav>
+
+  <section class="workspace" aria-label="Interlingual workspace">
+    <div class="control-grid">
+      <div class="field">
+        <label for="langFrom">From</label>
+        <select id="langFrom"></select>
+      </div>
+      <div class="field">
+        <label for="langTo">To</label>
+        <select id="langTo"></select>
+      </div>
+      <button class="swap" id="swapBtn" type="button">⇄ Swap</button>
+    </div>
+
+    <div class="service-row">
+      <select id="serviceMode" aria-label="Translation service">
+        <option value="offline">Offline Library · Sovereign</option>
+        <option value="online">Online Translation · MyMemory</option>
       </select>
-      <span id="modeBadge" class="badge good">SOVEREIGN</span>
+      <span class="badge good" id="serviceBadge">Sovereign</span>
+      <div class="privacy-note" id="privacyNote">
+        Offline mode never sends your text anywhere. Online mode requires explicit consent before a request leaves this page.
+      </div>
+    </div>
+
+    <div class="panes">
+      <div class="pane">
+        <div class="pane-head"><strong>Original</strong><span id="fromLabel">English</span></div>
+        <textarea id="input" placeholder="Type or paste text…" spellcheck="true"></textarea>
+      </div>
+      <div class="pane">
+        <div class="pane-head"><strong>Translation</strong><span id="toLabel">Spanish</span></div>
+        <div id="output" class="output" role="region" aria-live="polite"></div>
+      </div>
+    </div>
+
+    <div class="actions">
+      <button class="btn" id="translateBtn" type="button">Translate</button>
+      <button class="btn secondary" id="saveBtn" type="button">Save Verified Pair</button>
+      <button class="btn ghost" id="copyBtn" type="button">Copy Translation</button>
+      <button class="btn ghost" id="clearBtn" type="button">Clear</button>
+    </div>
+
+    <div id="studyPanel" class="study-panel" hidden>
+      <h2>Language Learning</h2>
+      <p>Known words and phrases below come only from your local verified library. The tool does not invent missing vocabulary.</p>
+      <div id="knownTerms" class="terms"></div>
+    </div>
+
+    <div id="literaryPanel" class="literary-panel" hidden>
+      <h2>Literary Comparison</h2>
+      <p>Compare the source and rendering without pretending that translation and interpretation are the same task.</p>
+      <div class="compare-grid">
+        <div>
+          <div class="pane-head"><strong>Source Text</strong><span id="litFromLabel"></span></div>
+          <div class="output" id="litSource"></div>
+        </div>
+        <div>
+          <div class="pane-head"><strong>Rendered Text</strong><span id="litToLabel"></span></div>
+          <div class="output" id="litTranslation"></div>
+        </div>
+      </div>
+      <div class="note-box">
+        <div class="field">
+          <label for="literaryNotes">Language / literary notes</label>
+          <textarea id="literaryNotes" placeholder="Record observations about voice, register, rhythm, imagery, metaphor, idiom, syntax, or cultural context."></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div id="status" class="status">Ready. Offline Library is active.</div>
+
+    <div class="utility">
+      <div class="utility-card">
+        <h3>Sovereign Language Library</h3>
+        <p>Export your saved verified translation pairs as JSON, or import a compatible language pack. Your local library stays on this device unless you export it.</p>
+        <div class="actions">
+          <button class="btn gold" id="exportBtn" type="button">Export Library</button>
+          <button class="btn ghost" id="importBtn" type="button">Import Library</button>
+          <input class="file-input" id="importFile" type="file" accept=".json,application/json">
+        </div>
+      </div>
+      <div class="utility-card">
+        <h3>Local Library Status</h3>
+        <p id="libraryStats">0 verified pairs · 0 cached online responses</p>
+        <div class="actions">
+          <button class="btn ghost" id="clearCacheBtn" type="button">Clear Online Cache</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="footer">
+    Khaemenes Academy Linguistics · Source authority for this translator ·
+    Lesson mentors may use the tool, but do not own its translation library.
+  </div>
+</main>
+
+<div class="dialog-backdrop" id="consentDialog" hidden>
+  <section class="dialog" role="dialog" aria-modal="true" aria-labelledby="consentTitle">
+    <h2 id="consentTitle">External translation request</h2>
+    <p>
+      Online mode sends the text currently in the translation box to the MyMemory translation service over the internet.
+      Do not send private student records, assessment responses, identifying information, confidential journal writing, or other sensitive material.
+    </p>
+    <ul>
+      <li>Offline mode remains available without sending text externally.</li>
+      <li>This consent applies only to this browser session.</li>
+      <li>Saved library pairs remain local unless you export them.</li>
+    </ul>
+    <label class="checkline">
+      <input type="checkbox" id="consentCheck">
+      <span>I understand that the entered text will be sent to an external translation service.</span>
     </label>
-  </div>
-
-  <div class="row">
-    <div>
-      <label for="langFrom" class="kicker">From</label>
-      <select id="langFrom">
-        <option value="en">English</option>
-        <option value="ar">Arabic</option>
-        <option value="es">Spanish</option>
-        <option value="fr">French</option>
-        <option value="de">German</option>
-        <option value="ru">Russian</option>
-        <option value="zh-CN">Chinese (Simplified)</option>
-      </select>
+    <div class="actions">
+      <button class="btn secondary" id="consentContinue" type="button" disabled>Continue Online</button>
+      <button class="btn ghost" id="consentCancel" type="button">Stay Offline</button>
     </div>
-    <div>
-      <label for="langTo" class="kicker">To</label>
-      <select id="langTo">
-        <option value="ar">Arabic</option>
-        <option value="en">English</option>
-        <option value="es">Spanish</option>
-        <option value="fr">French</option>
-        <option value="de">German</option>
-        <option value="ru">Russian</option>
-        <option value="zh-CN">Chinese (Simplified)</option>
-      </select>
-    </div>
-    <div style="flex:0 0 170px">
-      <label class="kicker">&nbsp;</label>
-      <button id="swapBtn" class="ghost" title="Swap languages">⇄ Swap</button>
-    </div>
-  </div>
-
-  <textarea id="input" rows="6" placeholder="Type or paste text…"></textarea>
-
-  <div class="row">
-    <button id="btnTranslate">Translate</button>
-    <button id="btnSave" class="secondary" title="Save this translation into your Offline Library">Save to Library</button>
-    <button id="btnClear" class="ghost">Clear</button>
-  </div>
-
-  <div id="output"></div>
-
-  <div id="status" class="status">Ready.</div>
-  <div class="small" id="footerNote">Offline Library • Stored in your browser (localStorage)</div>
+  </section>
 </div>
 
 <script>
-/* ==========================
-   Settings / Storage Keys
-   ========================== */
-const LS_LIB   = "sv_translator_library_v1"; // offline translation library
-const LS_CACHE = "sv_translator_cache_v1";   // online cache
-const LS_MODE  = "sv_translator_mode_v1";    // user mode
-const LS_PROT  = "sv_translator_protect_v1"; // protection enabled
+(() => {
+"use strict";
 
-/* ==========================
-   Elements
-   ========================== */
-const $ = (id)=>document.getElementById(id);
-const modeSel = $("mode");
-const badge   = $("modeBadge");
-const footer  = $("footerNote");
-const status  = $("status");
-const out     = $("output");
-const input   = $("input");
-const fromSel = $("langFrom");
-const toSel   = $("langTo");
+const VERSION = "2.0";
+const LS_LIBRARY = "khaemenes_interlingual_library_v2";
+const LS_CACHE = "khaemenes_interlingual_cache_v2";
+const LS_PREFS = "khaemenes_interlingual_prefs_v2";
+const MAX_CACHE_ENTRIES = 120;
+const MAX_LIBRARY_PAIRS = 5000;
+const EXTERNAL_API = "https://api.mymemory.translated.net/get";
 
-/* ==========================
-   Small helpers
-   ========================== */
-function setStatus(msg, kind=""){
-  status.className = "status" + (kind? " "+kind : "");
-  status.textContent = msg;
-}
-function norm(s){ return (s||"").trim().replace(/\r\n/g,"\n"); }
-function cacheKey(from,to,text){
-  // Keep it short but stable
-  return `${from}→${to}::${text}`;
-}
-function loadJSON(key, fallback){
-  try{ return JSON.parse(localStorage.getItem(key) || "") ?? fallback; }
-  catch{ return fallback; }
-}
-function saveJSON(key, val){
-  localStorage.setItem(key, JSON.stringify(val));
-}
+const LANGUAGES = [
+  {code:"en",name:"English",dir:"ltr"},
+  {code:"ar",name:"Arabic",dir:"rtl"},
+  {code:"es",name:"Spanish",dir:"ltr"},
+  {code:"fr",name:"French",dir:"ltr"},
+  {code:"de",name:"German",dir:"ltr"},
+  {code:"ru",name:"Russian",dir:"ltr"},
+  {code:"zh-CN",name:"Chinese (Simplified)",dir:"ltr"},
+  {code:"ja",name:"Japanese",dir:"ltr"}
+];
 
-/* ==========================
-   Offline Library Model
-   ========================== */
-/*
-Library structure:
-{
-  "en→es": {
-     "Hello world": "Hola mundo",
-     "Long paragraph...": "..."
-  },
-  "es→en": { ... }
-}
-*/
-function getLibrary(){ return loadJSON(LS_LIB, {}); }
-function setLibrary(lib){ saveJSON(LS_LIB, lib); }
-function lookupOffline(from,to,text){
-  const lib = getLibrary();
-  const bucket = lib[`${from}→${to}`] || {};
-  return bucket[text] || "";
-}
-function saveOffline(from,to,src,translated){
-  const lib = getLibrary();
-  const k = `${from}→${to}`;
-  lib[k] = lib[k] || {};
-  lib[k][src] = translated;
-  setLibrary(lib);
-}
-
-/* ==========================
-   Online Cache Model
-   ========================== */
-function getCache(){ return loadJSON(LS_CACHE, {}); }
-function setCache(c){ saveJSON(LS_CACHE, c); }
-
-/* ==========================
-   Mode init
-   ========================== */
-function applyModeUI(){
-  const mode = modeSel.value;
-  if(mode === "offline"){
-    badge.textContent = "SOVEREIGN";
-    badge.className = "badge good";
-    footer.textContent = "Offline Library • Stored in your browser (localStorage)";
-    setStatus("Offline mode: translations come from your saved library.", "good");
-  }else{
-    badge.textContent = "ONLINE";
-    badge.className = "badge bad";
-    footer.textContent = "Online API • Uses MyMemory over the internet (cached locally)";
-    setStatus("Online mode: will call MyMemory API (internet required).", "bad");
-  }
-}
-modeSel.value = localStorage.getItem(LS_MODE) || "offline";
-applyModeUI();
-modeSel.addEventListener("change", ()=>{
-  localStorage.setItem(LS_MODE, modeSel.value);
-  applyModeUI();
-});
-
-/* ==========================
-   Swap Languages
-   ========================== */
-$("swapBtn").onclick = ()=>{
-  const a = fromSel.value;
-  fromSel.value = toSel.value;
-  toSel.value = a;
-  setStatus("Swapped languages.", "good");
+const $ = id => document.getElementById(id);
+const els = {
+  from:$("langFrom"), to:$("langTo"), input:$("input"), output:$("output"),
+  status:$("status"), service:$("serviceMode"), badge:$("serviceBadge"),
+  fromLabel:$("fromLabel"), toLabel:$("toLabel"),
+  study:$("studyPanel"), known:$("knownTerms"),
+  literary:$("literaryPanel"), litSource:$("litSource"), litTranslation:$("litTranslation"),
+  litFrom:$("litFromLabel"), litTo:$("litToLabel"), notes:$("literaryNotes"),
+  context:$("lessonContext"), contextTitle:$("contextTitle"), contextMeta:$("contextMeta"),
+  stats:$("libraryStats"), dialog:$("consentDialog"), consentCheck:$("consentCheck"),
+  consentContinue:$("consentContinue")
 };
 
-/* ==========================
-   Translate action
-   ========================== */
-$("btnTranslate").onclick = async ()=>{
-  const from = fromSel.value;
-  const to   = toSel.value;
-  const text = norm(input.value);
-  if(!text){ setStatus("Enter text to translate.", "bad"); return; }
-  if(from === to){ out.textContent = text; setStatus("From/To are the same; no translation needed.", "good"); return; }
+let purpose = "translate";
+let sessionOnlineConsent = false;
+let pendingOnlineAction = null;
+let lessonContext = null;
 
-  out.textContent = "Working…";
+function readJSON(key, fallback){
+  try{
+    const raw = localStorage.getItem(key);
+    return raw ? JSON.parse(raw) : fallback;
+  }catch{return fallback}
+}
+function writeJSON(key, value){
+  localStorage.setItem(key, JSON.stringify(value));
+}
+function cleanText(value, max=12000){
+  return String(value || "").replace(/\r\n/g,"\n").trim().slice(0,max);
+}
+function lang(code){return LANGUAGES.find(item=>item.code===code) || LANGUAGES[0]}
+function pairKey(from,to){return `${from}→${to}`}
+function exactKey(text){return cleanText(text).normalize("NFC")}
+function nowIso(){return new Date().toISOString()}
 
-  if(modeSel.value === "offline"){
-    const hit = lookupOffline(from,to,text);
-    if(hit){
-      out.textContent = hit;
-      setStatus("Offline Library hit ✓", "good");
-    }else{
-      out.textContent = "— No offline translation found for this exact text.\n\nTip: Switch to Online mode once, translate, then click “Save to Library” so it’s sovereign next time.";
-      setStatus("Offline Library miss. Add it by saving a translation.", "bad");
+function emptyLibrary(){
+  return {schema:"khaemenes-interlingual-library",version:2,updatedAt:nowIso(),pairs:{}};
+}
+function getLibrary(){
+  const lib = readJSON(LS_LIBRARY, emptyLibrary());
+  if(!lib || lib.schema!=="khaemenes-interlingual-library" || Number(lib.version)!==2) return emptyLibrary();
+  if(!lib.pairs || typeof lib.pairs!=="object") lib.pairs={};
+  return lib;
+}
+function setLibrary(lib){
+  lib.updatedAt = nowIso();
+  writeJSON(LS_LIBRARY, lib);
+  updateStats();
+}
+function allLibraryEntries(lib=getLibrary()){
+  const out=[];
+  for(const [pair,bucket] of Object.entries(lib.pairs || {})){
+    for(const [source,record] of Object.entries(bucket || {})){
+      out.push({pair,source,...record});
     }
+  }
+  return out;
+}
+function lookupOffline(from,to,text){
+  const lib=getLibrary();
+  return lib.pairs?.[pairKey(from,to)]?.[exactKey(text)] || null;
+}
+function saveVerifiedPair(from,to,source,translated,meta={}){
+  source=exactKey(source); translated=cleanText(translated);
+  if(!source || !translated) return {ok:false,reason:"empty"};
+  const lib=getLibrary();
+  const existing=allLibraryEntries(lib);
+  if(existing.length>=MAX_LIBRARY_PAIRS && !lib.pairs?.[pairKey(from,to)]?.[source]){
+    return {ok:false,reason:"limit"};
+  }
+  const pk=pairKey(from,to);
+  lib.pairs[pk]=lib.pairs[pk] || {};
+  lib.pairs[pk][source]={
+    translation:translated,
+    verified:true,
+    savedAt:nowIso(),
+    source:meta.source || "user-verified",
+    purpose:meta.purpose || purpose
+  };
+  setLibrary(lib);
+  return {ok:true};
+}
+
+function getCache(){
+  const cache=readJSON(LS_CACHE,{schema:"khaemenes-interlingual-cache",version:2,entries:{}});
+  if(!cache.entries || typeof cache.entries!=="object") cache.entries={};
+  return cache;
+}
+function setCache(cache){
+  const rows=Object.entries(cache.entries || {}).sort((a,b)=>
+    String(b[1]?.savedAt||"").localeCompare(String(a[1]?.savedAt||""))
+  ).slice(0,MAX_CACHE_ENTRIES);
+  cache.entries=Object.fromEntries(rows);
+  writeJSON(LS_CACHE,cache);
+  updateStats();
+}
+function cacheKey(from,to,text){return `${pairKey(from,to)}::${exactKey(text)}`}
+
+function setStatus(message,kind=""){
+  els.status.className="status"+(kind?` ${kind}`:"");
+  els.status.textContent=message;
+}
+function updateDirections(){
+  const f=lang(els.from.value), t=lang(els.to.value);
+  els.input.dir=f.dir; els.output.dir=t.dir;
+  els.litSource.dir=f.dir; els.litTranslation.dir=t.dir;
+  els.fromLabel.textContent=f.name; els.toLabel.textContent=t.name;
+  els.litFrom.textContent=f.name; els.litTo.textContent=t.name;
+}
+function populateLanguages(){
+  for(const item of LANGUAGES){
+    const a=document.createElement("option"); a.value=item.code; a.textContent=item.name; els.from.appendChild(a);
+    const b=document.createElement("option"); b.value=item.code; b.textContent=item.name; els.to.appendChild(b);
+  }
+  const prefs=readJSON(LS_PREFS,{from:"en",to:"es",service:"offline",purpose:"translate"});
+  els.from.value=LANGUAGES.some(x=>x.code===prefs.from)?prefs.from:"en";
+  els.to.value=LANGUAGES.some(x=>x.code===prefs.to)?prefs.to:"es";
+  els.service.value=prefs.service==="online"?"online":"offline";
+  purpose=["translate","learn","literary"].includes(prefs.purpose)?prefs.purpose:"translate";
+}
+function savePrefs(){
+  writeJSON(LS_PREFS,{from:els.from.value,to:els.to.value,service:els.service.value,purpose});
+}
+function applyPurpose(){
+  document.querySelectorAll(".mode-tab").forEach(btn=>{
+    btn.setAttribute("aria-selected", String(btn.dataset.purpose===purpose));
+  });
+  els.study.hidden=purpose!=="learn";
+  els.literary.hidden=purpose!=="literary";
+  if(purpose==="learn") updateKnownTerms();
+  if(purpose==="literary") updateLiteraryPanels();
+  savePrefs();
+}
+function applyService(){
+  const online=els.service.value==="online";
+  els.badge.textContent=online?"Online":"Sovereign";
+  els.badge.className="badge "+(online?"bad":"good");
+  setStatus(
+    online
+      ?"Online translation selected. External text transmission still requires explicit consent."
+      :"Offline Library active. No text leaves this device.",
+    online?"bad":"good"
+  );
+  savePrefs();
+}
+function updateStats(){
+  const pairs=allLibraryEntries().length;
+  const cache=Object.keys(getCache().entries || {}).length;
+  els.stats.textContent=`${pairs} verified pair${pairs===1?"":"s"} · ${cache} cached online response${cache===1?"":"s"}`;
+}
+
+function knownTermsForText(text,from,to){
+  const words=[...new Set(
+    cleanText(text).toLocaleLowerCase()
+      .replace(/[^\p{L}\p{N}'’-]+/gu," ")
+      .split(/\s+/).filter(Boolean)
+  )].slice(0,120);
+  const lib=getLibrary();
+  const bucket=lib.pairs?.[pairKey(from,to)] || {};
+  const results=[];
+  for(const [source,record] of Object.entries(bucket)){
+    const normalized=source.toLocaleLowerCase();
+    if(words.includes(normalized) || (normalized.includes(" ") && cleanText(text).toLocaleLowerCase().includes(normalized))){
+      results.push({source,translation:record.translation});
+    }
+  }
+  return results.slice(0,40);
+}
+function updateKnownTerms(){
+  if(purpose!=="learn") return;
+  const rows=knownTermsForText(els.input.value,els.from.value,els.to.value);
+  els.known.innerHTML="";
+  if(!rows.length){
+    const empty=document.createElement("span");
+    empty.className="term";
+    empty.textContent="No matching verified terms are stored locally yet.";
+    els.known.appendChild(empty);
+    return;
+  }
+  for(const row of rows){
+    const chip=document.createElement("span");
+    chip.className="term";
+    chip.textContent=`${row.source} → ${row.translation}`;
+    els.known.appendChild(chip);
+  }
+}
+function updateLiteraryPanels(){
+  if(purpose!=="literary") return;
+  els.litSource.textContent=cleanText(els.input.value);
+  els.litTranslation.textContent=cleanText(els.output.textContent);
+  updateDirections();
+}
+
+async function translateOffline(){
+  const from=els.from.value,to=els.to.value,text=cleanText(els.input.value);
+  if(!text){setStatus("Enter text to translate.","bad");return}
+  if(from===to){
+    els.output.textContent=text;
+    setStatus("Source and target languages are the same.","good");
+    afterTranslation();
+    return;
+  }
+  const hit=lookupOffline(from,to,text);
+  if(hit?.translation){
+    els.output.textContent=hit.translation;
+    setStatus("Offline Library hit ✓ Verified local pair.","good");
+  }else{
+    els.output.textContent="No exact verified translation is stored locally for this text.";
+    setStatus("Offline Library miss. Use a saved pair, import a language pack, or explicitly choose Online Translation.","bad");
+  }
+  afterTranslation();
+}
+function openConsent(action){
+  pendingOnlineAction=action;
+  els.consentCheck.checked=false;
+  els.consentContinue.disabled=true;
+  els.dialog.hidden=false;
+  els.consentCheck.focus();
+}
+function closeConsent(){
+  els.dialog.hidden=true;
+  pendingOnlineAction=null;
+}
+async function translateOnline(){
+  const from=els.from.value,to=els.to.value,text=cleanText(els.input.value);
+  if(!text){setStatus("Enter text to translate.","bad");return}
+  if(from===to){
+    els.output.textContent=text; setStatus("Source and target languages are the same.","good"); afterTranslation(); return;
+  }
+  if(!sessionOnlineConsent){
+    openConsent(()=>translateOnline());
     return;
   }
 
-  // Online mode with cache
-  const ck = cacheKey(from,to,text);
-  const cache = getCache();
-  if(cache[ck]){
-    out.textContent = cache[ck];
-    setStatus("Cache hit ✓ (no API call)", "good");
+  const cache=getCache(), ck=cacheKey(from,to,text);
+  if(cache.entries[ck]?.translation){
+    els.output.textContent=cache.entries[ck].translation;
+    setStatus("Local online-cache hit ✓ No new external request was made.","good");
+    afterTranslation();
     return;
   }
 
   try{
-    setStatus("Calling MyMemory…", "bad");
-    const url = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(text)}&langpair=${from}|${to}`;
-    const res = await fetch(url, { method:"GET" });
-    if(!res.ok) throw new Error("HTTP "+res.status);
-    const data = await res.json();
-    const translated = (data && data.responseData && data.responseData.translatedText) ? String(data.responseData.translatedText) : "";
-    if(!translated) throw new Error("No translatedText in response.");
-
-    cache[ck] = translated;
+    els.output.textContent="Working…";
+    setStatus("Sending this text to MyMemory for translation…","bad");
+    const url=`${EXTERNAL_API}?q=${encodeURIComponent(text)}&langpair=${encodeURIComponent(from)}|${encodeURIComponent(to)}`;
+    const res=await fetch(url,{method:"GET",credentials:"omit",cache:"no-store",headers:{"Accept":"application/json"}});
+    if(!res.ok) throw new Error(`HTTP ${res.status}`);
+    const data=await res.json();
+    const translated=cleanText(data?.responseData?.translatedText);
+    if(!translated) throw new Error("No translation returned.");
+    cache.entries[ck]={translation:translated,savedAt:nowIso(),provider:"MyMemory"};
     setCache(cache);
-
-    out.textContent = translated;
-    setStatus("Translated ✓ (saved to local cache)", "good");
-  }catch(e){
-    out.textContent = "Error retrieving translation.\n\n" + (e && e.message ? e.message : "");
-    setStatus("Translation failed. Check your connection or try again.", "bad");
+    els.output.textContent=translated;
+    setStatus("Translated online ✓ Response cached locally. Use “Save Verified Pair” only after reviewing it.","good");
+  }catch(error){
+    els.output.textContent="";
+    setStatus(`Online translation failed: ${String(error?.message||error).slice(0,180)}`,"bad");
   }
-};
+  afterTranslation();
+}
+async function runTranslation(){
+  if(els.service.value==="offline") return translateOffline();
+  return translateOnline();
+}
+function afterTranslation(){
+  if(purpose==="learn") updateKnownTerms();
+  if(purpose==="literary") updateLiteraryPanels();
+}
 
-/* ==========================
-   Save to Offline Library
-   ========================== */
-$("btnSave").onclick = ()=>{
-  const from = fromSel.value;
-  const to   = toSel.value;
-  const src  = norm(input.value);
-  const dst  = norm(out.textContent);
-
-  if(!src){ setStatus("Nothing to save: input is empty.", "bad"); return; }
-  if(!dst || dst.startsWith("— No offline translation")){
-    setStatus("Nothing to save: output is empty or not a translation.", "bad");
-    return;
+function saveCurrentPair(){
+  const src=cleanText(els.input.value), dst=cleanText(els.output.textContent);
+  if(!src || !dst || /^No exact verified translation/.test(dst) || dst==="Working…"){
+    setStatus("There is not a completed translation to save.","bad"); return;
   }
-
-  saveOffline(from,to,src,dst);
-  setStatus("Saved ✓ This translation is now available in Offline Library mode.", "good");
-};
-
-/* ==========================
-   Clear
-   ========================== */
-$("btnClear").onclick = ()=>{
-  input.value = "";
-  out.textContent = "";
-  setStatus("Cleared.", "good");
-};
-
-/* ==========================
-   Copy Discouragement (speed bump)
-   ========================== */
-/*
-This does NOT create true protection. Anyone can still:
-- view source
-- disable JS
-- use devtools
-- screenshot / OCR
-It simply discourages casual copy.
-*/
-(function discourageCopy(){
-  let enabled = localStorage.getItem(LS_PROT);
-  if(enabled === null) enabled = "1"; // default ON
-  localStorage.setItem(LS_PROT, enabled);
-
-  function isEditableTarget(t){
-    return t && (t.tagName==="TEXTAREA" || t.tagName==="INPUT" || t.isContentEditable);
-  }
-
-  document.addEventListener("contextmenu", (e)=>{
-    if(localStorage.getItem(LS_PROT)!=="1") return;
-    if(isEditableTarget(e.target)) return; // allow right click in input boxes
-    e.preventDefault();
-    setStatus("Right-click disabled on this view.", "bad");
+  const result=saveVerifiedPair(els.from.value,els.to.value,src,dst,{
+    source:els.service.value==="online"?"reviewed-online-result":"user-entered-or-local",
+    purpose
   });
+  if(result.ok) setStatus("Saved ✓ This reviewed pair is now part of your sovereign local library.","good");
+  else if(result.reason==="limit") setStatus(`Library limit reached (${MAX_LIBRARY_PAIRS} pairs). Export the library before removing older entries.`,"bad");
+  else setStatus("Could not save this pair.","bad");
+}
+async function copyTranslation(){
+  const text=cleanText(els.output.textContent);
+  if(!text){setStatus("Nothing to copy.","bad");return}
+  try{
+    await navigator.clipboard.writeText(text);
+    setStatus("Translation copied.","good");
+  }catch{
+    setStatus("Copy was unavailable in this browser. You may select the translation manually.","bad");
+  }
+}
+function clearWorkspace(){
+  els.input.value="";els.output.textContent="";els.notes.value="";
+  updateKnownTerms();updateLiteraryPanels();
+  setStatus(els.service.value==="offline"?"Cleared. Offline Library remains active.":"Cleared.","good");
+}
 
-  document.addEventListener("keydown", (e)=>{
-    if(localStorage.getItem(LS_PROT)!=="1") return;
-    const k = (e.key||"").toLowerCase();
-    const ctrl = e.ctrlKey || e.metaKey;
-    const blocked =
-      (ctrl && ["c","x","s","u","p","a"].includes(k)) ||
-      (e.key === "F12") ||
-      (ctrl && e.shiftKey && ["i","j","c"].includes(k));
-    if(blocked){
-      // still allow copy inside the TEXTAREA so you can author
-      if(isEditableTarget(document.activeElement)) return;
-      e.preventDefault();
-      setStatus("Copy/inspect shortcut blocked on this view.", "bad");
+function exportLibrary(){
+  const data=getLibrary();
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob);
+  const a=document.createElement("a");
+  a.href=url;a.download=`khaemenes-interlingual-library-${new Date().toISOString().slice(0,10)}.json`;
+  document.body.appendChild(a);a.click();a.remove();URL.revokeObjectURL(url);
+  setStatus("Local language library exported.","good");
+}
+async function importLibrary(file){
+  try{
+    const raw=JSON.parse(await file.text());
+    if(raw?.schema!=="khaemenes-interlingual-library" || Number(raw?.version)!==2 || typeof raw?.pairs!=="object"){
+      throw new Error("Not a compatible Khaemenes Interlingual Library v2 file.");
     }
-
-    // Secret toggle (Author Mode): Ctrl+Shift+L
-    if(ctrl && e.shiftKey && k==="l"){
-      e.preventDefault();
-      const cur = localStorage.getItem(LS_PROT)==="1";
-      localStorage.setItem(LS_PROT, cur ? "0" : "1");
-      setStatus(cur ? "Author Mode ✓ protection OFF" : "Protection ON", "good");
+    const current=getLibrary();
+    let added=0;
+    for(const [pk,bucket] of Object.entries(raw.pairs || {})){
+      if(typeof bucket!=="object" || !bucket) continue;
+      current.pairs[pk]=current.pairs[pk] || {};
+      for(const [source,record] of Object.entries(bucket)){
+        if(allLibraryEntries(current).length>=MAX_LIBRARY_PAIRS) break;
+        const translation=cleanText(record?.translation);
+        if(!translation) continue;
+        current.pairs[pk][exactKey(source)]={
+          translation,
+          verified:record?.verified===true,
+          savedAt:record?.savedAt || nowIso(),
+          source:record?.source || "imported-language-pack",
+          purpose:record?.purpose || "translate"
+        };
+        added++;
+      }
     }
-  });
+    setLibrary(current);
+    setStatus(`Imported ${added} language pair${added===1?"":"s"}.`,"good");
+    updateKnownTerms();
+  }catch(error){
+    setStatus(`Import failed: ${String(error?.message||error).slice(0,180)}`,"bad");
+  }
+}
 
-  document.addEventListener("copy", (e)=>{
-    if(localStorage.getItem(LS_PROT)!=="1") return;
-    // allow copying from textarea while editing
-    if(isEditableTarget(document.activeElement)) return;
-    e.preventDefault();
-    setStatus("Copy disabled on this view.", "bad");
-  });
+function safeContext(value={}){
+  const obj=value && typeof value==="object"?value:{};
+  const pick=(v,max=180)=>String(v||"").trim().slice(0,max);
+  return {
+    school:pick(obj.school),
+    courseId:pick(obj.courseId),
+    course:pick(obj.course),
+    lessonId:pick(obj.lessonId),
+    topic:pick(obj.topic,260),
+    primaryMentor:pick(obj.primaryMentor||obj.mentor),
+    administrator:pick(obj.administrator),
+    sourceLanguage:pick(obj.interlingualContext?.sourceLanguage||obj.sourceLanguage,30),
+    targetLanguage:pick(obj.interlingualContext?.targetLanguage||obj.targetLanguage,30),
+    purpose:pick(obj.interlingualContext?.purpose||obj.purpose,40)
+  };
+}
+function applyLessonContext(raw){
+  const ctx=safeContext(raw);
+  const has=Object.values(ctx).some(Boolean);
+  if(!has) return;
+  lessonContext=ctx;
+  els.context.hidden=false;
+  els.contextTitle.textContent=ctx.topic || ctx.course || "Current Khaemenes lesson";
+  els.contextMeta.textContent=[
+    ctx.courseId||ctx.course,ctx.lessonId,
+    ctx.primaryMentor?`Mentor: ${ctx.primaryMentor}`:"",
+    ctx.administrator?`Administrator: ${ctx.administrator}`:""
+  ].filter(Boolean).join(" · ");
+  if(LANGUAGES.some(x=>x.code===ctx.sourceLanguage)) els.from.value=ctx.sourceLanguage;
+  if(LANGUAGES.some(x=>x.code===ctx.targetLanguage)) els.to.value=ctx.targetLanguage;
+  if(["translate","learn","literary"].includes(ctx.purpose)){
+    purpose=ctx.purpose;
+    applyPurpose();
+  }
+  updateDirections();
+}
+function contextFromQuery(){
+  const q=new URLSearchParams(location.search);
+  // Deliberately no "text" parameter: student writing must not travel in URLs.
+  return {
+    school:q.get("school"),courseId:q.get("courseId"),course:q.get("course"),
+    lessonId:q.get("lessonId"),topic:q.get("topic"),primaryMentor:q.get("mentor"),
+    administrator:q.get("administrator"),sourceLanguage:q.get("from"),
+    targetLanguage:q.get("to"),purpose:q.get("purpose")
+  };
+}
+function initializeContext(){
+  if(window.KHAEMENES_LEARNING_CONTEXT) applyLessonContext(window.KHAEMENES_LEARNING_CONTEXT);
+  applyLessonContext(contextFromQuery());
+  try{
+    if(window.opener && window.opener!==window && location.origin===window.opener.location.origin){
+      const ctx=window.opener.KHAEMENES_LEARNING_CONTEXT;
+      if(ctx) applyLessonContext(ctx);
+    }
+  }catch{}
+}
+window.addEventListener("message",event=>{
+  if(event.origin!==location.origin) return;
+  if(event.data?.type==="khaemenes-learning-context"){
+    applyLessonContext(event.data.context || {});
+  }
+});
+
+function initTheme(){
+  const saved=localStorage.getItem("khaemenes_linguistics_theme");
+  if(saved==="dark") document.documentElement.dataset.theme="dark";
+}
+$("themeBtn").addEventListener("click",()=>{
+  const dark=document.documentElement.dataset.theme==="dark";
+  document.documentElement.dataset.theme=dark?"light":"dark";
+  localStorage.setItem("khaemenes_linguistics_theme",dark?"light":"dark");
+});
+
+populateLanguages();
+initTheme();
+applyPurpose();
+applyService();
+updateDirections();
+updateStats();
+initializeContext();
+
+document.querySelectorAll(".mode-tab").forEach(btn=>btn.addEventListener("click",()=>{
+  purpose=btn.dataset.purpose;applyPurpose();
+}));
+els.from.addEventListener("change",()=>{updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels()});
+els.to.addEventListener("change",()=>{updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels()});
+els.input.addEventListener("input",()=>{updateKnownTerms();updateLiteraryPanels()});
+els.service.addEventListener("change",applyService);
+
+$("swapBtn").addEventListener("click",()=>{
+  const a=els.from.value;els.from.value=els.to.value;els.to.value=a;
+  const current=cleanText(els.output.textContent);
+  if(current && !/^No exact verified translation/.test(current)){
+    const source=cleanText(els.input.value);
+    els.input.value=current;els.output.textContent=source;
+  }
+  updateDirections();savePrefs();afterTranslation();
+  setStatus("Languages swapped.","good");
+});
+$("translateBtn").addEventListener("click",runTranslation);
+$("saveBtn").addEventListener("click",saveCurrentPair);
+$("copyBtn").addEventListener("click",copyTranslation);
+$("clearBtn").addEventListener("click",clearWorkspace);
+$("exportBtn").addEventListener("click",exportLibrary);
+$("importBtn").addEventListener("click",()=>$("importFile").click());
+$("importFile").addEventListener("change",event=>{
+  const file=event.target.files?.[0];
+  if(file) importLibrary(file);
+  event.target.value="";
+});
+$("clearCacheBtn").addEventListener("click",()=>{
+  localStorage.removeItem(LS_CACHE);updateStats();setStatus("Online translation cache cleared.","good");
+});
+
+els.consentCheck.addEventListener("change",()=>{
+  els.consentContinue.disabled=!els.consentCheck.checked;
+});
+els.consentContinue.addEventListener("click",()=>{
+  if(!els.consentCheck.checked) return;
+  sessionOnlineConsent=true;
+  const action=pendingOnlineAction;
+  closeConsent();
+  if(typeof action==="function") action();
+});
+$("consentCancel").addEventListener("click",()=>{
+  els.service.value="offline";applyService();closeConsent();
+});
+els.dialog.addEventListener("click",event=>{
+  if(event.target===els.dialog){
+    els.service.value="offline";applyService();closeConsent();
+  }
+});
+
+window.KhaemenesInterlingual = Object.freeze({
+  version:VERSION,
+  languages:LANGUAGES.map(x=>({...x})),
+  getContext:()=>lessonContext?{...lessonContext}:null,
+  setContext:context=>applyLessonContext(context),
+  lookupLocal:({from,to,text})=>{
+    const hit=lookupOffline(from,to,text);
+    return hit?{...hit}:null;
+  },
+  saveVerifiedPair:({from,to,source,translation,meta={}})=>saveVerifiedPair(from,to,source,translation,meta),
+  libraryStatus:()=>({
+    pairCount:allLibraryEntries().length,
+    cacheCount:Object.keys(getCache().entries||{}).length,
+    maxPairs:MAX_LIBRARY_PAIRS,
+    maxCacheEntries:MAX_CACHE_ENTRIES
+  })
+});
 })();
 </script>
 </body>
