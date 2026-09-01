@@ -14,4 +14,4 @@ The Beta widget sends only the public hostname and pathname as source metadata. 
 
 ## Added in this run
 
-- `apps/Arabic_365_index.html`
+- `apps/Arabic_course_index.html`
