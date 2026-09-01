@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Noor Pathway – 6 Week Qur'an Sandbox</title>
+<title>Noor Pathway — Faith Studies Elective: Qur’an Foundations</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="A six-week Faith Studies elective introducing Qur’an foundations through guided reading, reflection, weekly mastery checks, and a final assessment.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; font-src data:;">
 <style>
   :root{
     --bg:#020617;
@@ -25,6 +27,12 @@
     --shadow-card:0 12px 32px rgba(15,23,42,0.9);
   }
   *{box-sizing:border-box;}
+  button,input{font:inherit;}
+  button:focus-visible,input:focus-visible,[role="button"]:focus-visible{
+    outline:3px solid #fff3bf;outline-offset:3px;
+  }
+  .skip-link{position:fixed;left:12px;top:-60px;z-index:1000;padding:10px 14px;border-radius:7px;background:#fff;color:#020617;}
+  .skip-link:focus{top:12px;}
   html,body{
     margin:0;
     padding:0;
@@ -144,6 +152,9 @@
       grid-template-rows:auto auto;
     }
   }
+  @media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
+  }
   /* Sidebar */
   .sidebar{
     border-right:1px solid rgba(148,163,184,0.35);
@@ -206,6 +217,7 @@
     background:radial-gradient(circle at 0 0,rgba(250,204,107,0.18),rgba(15,23,42,0.95));
     color:var(--ink);
   }
+  .final-pill.disabled{opacity:.58;cursor:not-allowed;}
   .week-badge{
     width:8px;
     height:8px;
@@ -657,6 +669,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#mainContent">Skip to course</a>
 <div id="app">
   <div class="shell">
     <header>
@@ -664,12 +677,12 @@
         <div class="brand-orb"></div>
         <div class="brand-text">
           <h1>Noor Pathway</h1>
-          <span>QURAN FOUNDATIONS · 6 WEEKS</span>
+          <span>FAITH STUDIES ELECTIVE · QUR’AN FOUNDATIONS</span>
         </div>
       </div>
       <div class="header-right">
         <div class="pill">
-          Mode: <span>&nbsp;Sandbox · Offline</span>
+          Mode: <span>&nbsp;Local Course Shell</span>
         </div>
         <div class="pill">
           Track: <span>&nbsp;Beginner Study</span>
@@ -737,19 +750,24 @@
             <div class="week-badge"></div>
             <div>
               <div class="final-pill-title">Final Review & Test</div>
-              <div class="final-pill-status" id="finalStatus">Locked until you are ready</div>
+              <div class="final-pill-status" id="finalStatus">Locked · pass Weeks 1–6 at 80%</div>
             </div>
           </div>
         </div>
 
         <div class="sidebar-note">
-          Progress, quiz scores and certificate unlock are stored only in your browser
-          (localStorage). Clear your cache to reset.
+          Progress, quiz scores, and the certificate name stay in this browser. Assigned Qur’an
+          readings, translations, and recitation audio are not embedded; have a trusted edition
+          or teacher-approved resource available.
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">
+            <button type="button" class="btn btn-ghost" id="exportProgressBtn">Export Progress</button>
+            <button type="button" class="btn btn-ghost" id="resetProgressBtn">Reset Progress</button>
+          </div>
         </div>
       </aside>
 
       <!-- Main -->
-      <main class="main">
+      <main class="main" id="mainContent">
         <div class="week-header">
           <div class="week-header-left">
             <h2 id="weekTitle">Week 1 · Meeting the Qur'an</h2>
@@ -768,9 +786,9 @@
         </div>
 
         <div class="tabs">
-          <button class="tab-btn active" data-tab="curriculum">Curriculum</button>
-          <button class="tab-btn" data-tab="quiz">Weekly Quiz</button>
-          <button class="tab-btn disabled" data-tab="certificate" id="certTab">Certificate</button>
+          <button type="button" class="tab-btn active" data-tab="curriculum">Curriculum</button>
+          <button type="button" class="tab-btn" data-tab="quiz">Weekly Mastery Check</button>
+          <button type="button" class="tab-btn disabled" data-tab="certificate" id="certTab" aria-disabled="true">Certificate</button>
         </div>
 
         <div class="panel-area">
@@ -1060,7 +1078,7 @@
                     <div class="session-title">Session 2: Light After Difficulty</div>
                     <div class="session-tag">Sūrat ad-Duḥā and ash-Sharḥ</div>
                     <ul>
-                      <li>Read the sūrahs revealed after a period of heaviness.</li>
+                      <li>Read the two sūrahs together for their complementary themes of reassurance and relief.</li>
                       <li>Remember times Allah brought you through hardship.</li>
                       <li>Write a few lines as if these sūrahs were speaking to your past self.</li>
                     </ul>
@@ -1102,8 +1120,8 @@
                   You can re-take the final; this is a gentle check-in, not an exam of worth.
                 </small>
                 <div class="mini-note">
-                  Recommendation: complete most of the weekly quizzes first, then come back
-                  here with a cup of tea and treat the final as a celebration.
+                  The final unlocks after all six weekly mastery checks reach 80%. Return after
+                  reviewing any week that has not yet reached mastery.
                 </div>
               </section>
             </div>
@@ -1116,8 +1134,8 @@
               <div class="certificate-wrap">
                 <div class="certificate-form">
                   <span>Type your name for the certificate:</span>
-                  <input id="certName" placeholder="Your name">
-                  <button class="btn btn-outline" id="printBtn">Print Certificate</button>
+                  <input id="certName" maxlength="100" autocomplete="name" placeholder="Your name">
+                  <button type="button" class="btn btn-outline" id="printBtn">Print Certificate</button>
                 </div>
                 <div class="certificate-card">
                   <div class="certificate-inner">
@@ -1127,8 +1145,8 @@
                     </div>
                     <div class="cert-name" id="certNameDisplay">[ Your Name ]</div>
                     <div class="cert-body">
-                      has completed the six-week Noor Pathway Qur'an Foundations track,
-                      including weekly reflection and a final review assessment.
+                      has completed the six-week Noor Pathway Faith Studies elective,
+                      including six weekly mastery checks and a final assessment.
                     </div>
                     <div class="cert-footer">
                       <div>
@@ -1155,7 +1173,7 @@
     </div>
 
     <footer>
-      <div>Temple of Letters · Noor Pathway Sandbox</div>
+      <div>Temple of Letters · Faith Studies Elective</div>
       <div>Study only · Not a fatwa or legal ruling source</div>
     </footer>
   </div>
@@ -1168,7 +1186,9 @@
   const qs = (sel,root=document) => root.querySelector(sel);
   const qsa = (sel,root=document) => Array.from(root.querySelectorAll(sel));
 
-  const STORAGE_KEY = "noor_quran_pathway_v1";
+  const STORAGE_KEY = "noorFaithStudies.v2";
+  const LEGACY_STORAGE_KEY = "noor_quran_pathway_v1";
+  const MASTERY_PERCENT = 80;
 
   const QUIZZES = {
     week1: [
@@ -1311,11 +1331,11 @@
         options:[
           "Rules of trade",
           "Details of diet",
-          "Describing Allah's majesty and protection",
+          "Describing Allah's majesty, knowledge and sustaining authority",
           "Stories of travel"
         ],
         answer:2,
-        explanation:"Ayat al-Kursi is a powerful verse describing Allah's greatness and protection."
+        explanation:"Ayat al-Kursi describes Allah as Ever-Living and All-Sustaining, whose knowledge and preservation encompass creation."
       },
       {
         q:"Which practice this week connects most directly to gratitude?",
@@ -1397,15 +1417,15 @@
     ],
     week3: [
       {
-        q:"One purpose of stories in Sūrah Yūsuf (12:111) is to:",
+        q:"According to Sūrah Yūsuf 12:111, the prophetic stories contain:",
         options:[
           "Entertain without meaning",
-          "Provide examples and lessons for people of reflection",
+          "A lesson for people of reason and guidance for people of faith",
           "Replace all other knowledge",
           "Confuse the listener"
         ],
         answer:1,
-        explanation:"The verse says there are lessons and guidance for those who reflect."
+        explanation:"The verse describes a lesson for people of reason and guidance and mercy for people of faith."
       },
       {
         q:"In Yūsuf's early story, he faces:",
@@ -1744,26 +1764,26 @@
         explanation:"The surah lists four qualities: faith, good deeds, truth and patience."
       },
       {
-        q:"Sūrat ad-Duḥā and ash-Sharḥ were revealed after a time of:",
+        q:"Why does this course pair Sūrat ad-Duḥā with ash-Sharḥ?",
         options:[
-          "Constant ease",
-          "Play only",
-          "Heaviness and worry",
-          "Complete forgetfulness"
+          "They contain identical wording",
+          "They are the same sūrah",
+          "Their themes offer reassurance, relief and hope after hardship",
+          "They discuss only historical dates"
         ],
         answer:2,
-        explanation:"They comfort the Prophet after a period of sadness and silence."
+        explanation:"The course pairs their complementary themes without assigning both sūrahs one identical occasion of revelation."
       },
       {
         q:"A key message from these sūrahs is that:",
         options:[
           "Hardship never ends",
           "Allah abandons His servants",
-          "With hardship comes ease, often more than once",
+          "With hardship comes ease—the assurance is repeated",
           "Feelings do not matter"
         ],
         answer:2,
-        explanation:"The verses emphasise ease arriving with hardship."
+        explanation:"Ash-Sharḥ repeats the assurance that with hardship comes ease."
       },
       {
         q:"Sūrat ash-Shams and al-Layl discuss:",
@@ -1959,12 +1979,25 @@
 
   function loadProgress(){
     try{
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
       if(!raw) return {weeks:{}, final:null};
       const parsed = JSON.parse(raw);
       if(!parsed || typeof parsed !== "object") return {weeks:{}, final:null};
-      if(!parsed.weeks) parsed.weeks = {};
-      return parsed;
+      const clean={weeks:{},final:null,certificateName:typeof parsed.certificateName==="string"?parsed.certificateName.slice(0,100):""};
+      for(let i=1;i<=6;i++){
+        const key="week"+i;
+        const old=parsed.weeks && parsed.weeks[key];
+        if(!old || !Number.isFinite(Number(old.score))) continue;
+        const total=QUIZZES[key].length;
+        const score=Math.max(0,Math.min(total,Math.floor(Number(old.score))));
+        clean.weeks[key]={score,total,passed:(score/total)*100>=MASTERY_PERCENT,date:old.date||null};
+      }
+      if(parsed.final && Number.isFinite(Number(parsed.final.score))){
+        const total=QUIZZES.final.length;
+        const score=Math.max(0,Math.min(total,Math.floor(Number(parsed.final.score))));
+        clean.final={score,total,passed:(score/total)*100>=MASTERY_PERCENT,date:parsed.final.date||null};
+      }
+      return clean;
     }catch(e){
       return {weeks:{}, final:null};
     }
@@ -1975,6 +2008,10 @@
     try{
       localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
     }catch(e){}
+  }
+
+  function allWeeksMastered(){
+    return [1,2,3,4,5,6].every(n=>progress.weeks["week"+n]?.passed===true);
   }
 
   const state = {
@@ -2011,13 +2048,18 @@
   }
 
   function setActiveWeek(weekKey){
+    if(weekKey === "final" && !allWeeksMastered()){
+      $("finalStatus").textContent="Locked · pass Weeks 1–6 at 80%";
+      return;
+    }
     state.currentWeek = weekKey;
+    try{ localStorage.setItem("noorFaithStudies.v2.currentWeek",weekKey); }catch(error){}
     qsa(".week-item").forEach(li=>{
       li.classList.toggle("active", li.dataset.week === weekKey);
     });
     const finalNav = $("finalNav");
     if(weekKey === "final"){
-      finalNav.classList.add("completed","active");
+      finalNav.classList.add("active");
     }else{
       finalNav.classList.remove("active");
     }
@@ -2033,7 +2075,10 @@
   function switchTab(tabName){
     state.currentTab = tabName;
     qsa(".tab-btn").forEach(btn=>{
-      btn.classList.toggle("active", btn.dataset.tab === tabName);
+      const active=btn.dataset.tab === tabName;
+      btn.classList.toggle("active",active);
+      btn.setAttribute("aria-selected",active?"true":"false");
+      btn.tabIndex=active?0:-1;
     });
     $("curriculumView").classList.toggle("hidden", tabName !== "curriculum");
     $("quizView").classList.toggle("hidden", tabName !== "quiz");
@@ -2052,21 +2097,34 @@
       const statusEl = qs('[data-week-status="'+key+'"]');
       if(statusEl && st && typeof st.score === "number"){
         const label = st.passed ? "Passed" : "Attempted";
-        statusEl.innerHTML = 'Status: <span>'+label+' ('+st.score+'/10)</span>';
+        statusEl.innerHTML = 'Status: <span>'+label+' ('+st.score+'/'+st.total+')</span>';
       }
     });
-    if(progress.final){
+    if(progress.final && progress.final.passed){
       const fs = progress.final;
       const finalStatus = $("finalStatus");
-      finalStatus.textContent = "Final passed: "+fs.score+"/"+fs.total;
+      finalStatus.textContent = "Final mastered: "+fs.score+"/"+fs.total;
       const finalNav = $("finalNav");
       finalNav.classList.add("completed");
+    }
+    const finalNav=$("finalNav");
+    const unlocked=allWeeksMastered();
+    finalNav.setAttribute("aria-disabled",unlocked?"false":"true");
+    finalNav.classList.toggle("disabled",!unlocked);
+    if(unlocked && !(progress.final&&progress.final.passed)){
+      $("finalStatus").textContent=progress.final
+        ? `Final attempted: ${progress.final.score}/${progress.final.total} · 80% required`
+        : "Unlocked · final assessment available";
     }
     maybeUnlockCertificate();
   }
 
   function renderQuiz(weekKey){
     const container = $("quizView");
+    if(weekKey === "final" && !allWeeksMastered()){
+      container.innerHTML="<p class='mini-note' role='status'>The final assessment is locked until all six weekly mastery checks reach 80%.</p>";
+      return;
+    }
     const quiz = QUIZZES[weekKey];
     if(!quiz){
       container.innerHTML = "<p style='font-size:13px;color:#e5e7eb;'>No quiz is defined for this section yet.</p>";
@@ -2075,8 +2133,8 @@
     state.quizSubmitted = false;
     let titleLabel = weekKey === "final" ? "Final Review Quiz" : "Weekly Quiz";
     let subLabel = weekKey === "final"
-      ? "Covers key ideas from all six weeks. Passing unlocks the certificate."
-      : "Ten questions drawn from this week's readings and practices.";
+      ? "Covers key ideas from all six weeks. Mastery at 80% unlocks the certificate."
+      : "Ten questions drawn from this week's readings and practices. Mastery requires 80%.";
     let html = "";
     html += "<div class='quiz-header'>";
     html +=   "<div>";
@@ -2098,12 +2156,12 @@
         html += "</label>";
       });
       html +=   "</div>";
-      html +=   "<div class='question-feedback' id='"+weekKey+"_feedback_"+idx+"'></div>";
+      html +=   "<div class='question-feedback' role='status' aria-live='polite' id='"+weekKey+"_feedback_"+idx+"'></div>";
       html += "</div>";
     });
     html += "</div>";
     html += "<div class='quiz-actions'>";
-    html +=   "<div class='quiz-score' id='quizScoreBox'>Answer the questions, then press <span>Check Answers</span>.</div>";
+    html +=   "<div class='quiz-score' id='quizScoreBox' role='status' aria-live='polite'>Answer every question, then press <span>Check Answers</span>.</div>";
     html +=   "<div style='display:flex;gap:6px;flex-wrap:wrap;'>";
     html +=     "<button class='btn btn-primary' id='submitQuizBtn'>Check Answers</button>";
     html +=     "<button class='btn btn-ghost' id='resetQuizBtn'>Clear Choices</button>";
@@ -2120,10 +2178,12 @@
     if(!quiz) return;
     let score = 0;
     let total = quiz.length;
+    const unanswered=[];
     quiz.forEach((q,idx)=>{
       const selected = qs('input[name="'+weekKey+'_q'+idx+'"]:checked');
       const fb = $(weekKey+"_feedback_"+idx);
       if(!selected){
+        unanswered.push(idx);
         fb.textContent = "No choice selected.";
         fb.className = "question-feedback bad";
         return;
@@ -2139,20 +2199,25 @@
       }
     });
     const scoreBox = $("quizScoreBox");
+    if(unanswered.length){
+      scoreBox.textContent=`Please answer all ${total} questions. ${unanswered.length} ${unanswered.length===1?"is":"are"} still unanswered.`;
+      const first=$(weekKey+"_feedback_"+unanswered[0]);
+      first.closest(".question-card")?.scrollIntoView({behavior:"smooth",block:"center"});
+      return;
+    }
     const percent = Math.round((score/total)*100);
-    const passed = weekKey === "final" ? percent >= 70 : score >= 7;
+    const passed = percent >= MASTERY_PERCENT;
     const msg = "You scored "+score+"/"+total+" ("+percent+"%). "
       +(passed ? "Pass threshold reached." : "You can review and try again.");
     scoreBox.innerHTML = "<span>"+msg+"</span>";
     state.quizSubmitted = true;
 
     if(weekKey === "final"){
-      progress.final = {score:score,total:total,passed:passed,date:new Date().toISOString()};
+      const previous=progress.final;
+      if(!previous || score>=previous.score) progress.final={score,total,passed,date:new Date().toISOString()};
     }else{
-      if(!progress.weeks[weekKey]) progress.weeks[weekKey] = {};
-      progress.weeks[weekKey].score = score;
-      progress.weeks[weekKey].passed = passed;
-      progress.weeks[weekKey].date = new Date().toISOString();
+      const previous=progress.weeks[weekKey];
+      if(!previous || score>=previous.score) progress.weeks[weekKey]={score,total,passed,date:new Date().toISOString()};
     }
     saveProgress();
     updateSidebarStatus();
@@ -2162,6 +2227,10 @@
     const certTab = $("certTab");
     if(progress.final && progress.final.passed){
       certTab.classList.remove("disabled");
+      certTab.setAttribute("aria-disabled","false");
+    }else{
+      certTab.classList.add("disabled");
+      certTab.setAttribute("aria-disabled","true");
     }
   }
 
@@ -2178,7 +2247,7 @@
       nameDisplay.textContent = nameInput.value.trim();
     }
 
-    const now = new Date();
+    const now = progress.final?.date ? new Date(progress.final.date) : new Date();
     const dateStr = now.toLocaleDateString(undefined,{
       year:"numeric",month:"long",day:"numeric"
     });
@@ -2192,38 +2261,91 @@
     };
 
     $("printBtn").onclick = ()=>{
+      if(!nameInput.value.trim()){
+        nameInput.focus();
+        alert("Please enter the learner's name before printing the certificate.");
+        return;
+      }
       window.print();
     };
   }
 
   function initNav(){
     qsa(".week-item").forEach(li=>{
+      li.setAttribute("role","button");
+      li.tabIndex=0;
       li.addEventListener("click",()=>{
         const wk = li.dataset.week;
         setActiveWeek(wk);
       });
+      li.addEventListener("keydown",event=>{
+        if(event.key==="Enter" || event.key===" "){
+          event.preventDefault();
+          setActiveWeek(li.dataset.week);
+        }
+      });
     });
+    $("finalNav").setAttribute("role","button");
+    $("finalNav").tabIndex=0;
     $("finalNav").addEventListener("click",()=>{
       setActiveWeek("final");
     });
-    qsa(".tab-btn").forEach(btn=>{
+    $("finalNav").addEventListener("keydown",event=>{
+      if(event.key==="Enter" || event.key===" "){
+        event.preventDefault();setActiveWeek("final");
+      }
+    });
+    const tabs=qsa(".tab-btn");
+    qs(".tabs").setAttribute("role","tablist");
+    tabs.forEach((btn,index)=>{
+      btn.setAttribute("role","tab");
+      btn.setAttribute("aria-selected",btn.classList.contains("active")?"true":"false");
       btn.addEventListener("click",()=>{
         const tab = btn.dataset.tab;
         if(btn.classList.contains("disabled")) return;
         switchTab(tab);
       });
+      btn.addEventListener("keydown",event=>{
+        if(!["ArrowLeft","ArrowRight","Home","End"].includes(event.key)) return;
+        event.preventDefault();
+        let next=index;
+        if(event.key==="ArrowRight") next=(index+1)%tabs.length;
+        if(event.key==="ArrowLeft") next=(index-1+tabs.length)%tabs.length;
+        if(event.key==="Home") next=0;
+        if(event.key==="End") next=tabs.length-1;
+        while(tabs[next].classList.contains("disabled") && next!==index){
+          next=event.key==="ArrowLeft"?(next-1+tabs.length)%tabs.length:(next+1)%tabs.length;
+        }
+        tabs[next].focus();
+      });
+    });
+
+    $("exportProgressBtn").addEventListener("click",()=>{
+      const payload={app:"Noor Pathway — Faith Studies Elective",masteryPercent:MASTERY_PERCENT,exportedAt:new Date().toISOString(),progress};
+      const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+      const link=document.createElement("a");
+      link.href=URL.createObjectURL(blob);link.download="noor-pathway-faith-studies-progress.json";link.click();
+      setTimeout(()=>URL.revokeObjectURL(link.href),1000);
+    });
+    $("resetProgressBtn").addEventListener("click",()=>{
+      if(!confirm("Reset all Noor Pathway scores and certificate information on this device? This cannot be undone.")) return;
+      try{localStorage.removeItem(STORAGE_KEY);localStorage.removeItem(LEGACY_STORAGE_KEY);localStorage.removeItem("noorFaithStudies.v2.currentWeek");}catch(error){}
+      progress={weeks:{},final:null,certificateName:""};
+      location.reload();
     });
   }
 
   function init(){
     initNav();
     updateSidebarStatus();
-    setActiveWeek(state.currentWeek);
+    let savedWeek="week1";
+    try{savedWeek=localStorage.getItem("noorFaithStudies.v2.currentWeek")||"week1";}catch(error){}
+    if(savedWeek==="final" && !allWeeksMastered()) savedWeek="week1";
+    setActiveWeek(savedWeek);
   }
 
   document.addEventListener("DOMContentLoaded", init);
 })();
 </script>
-<script src="/assets/vnv-beta-link.js" defer></script>
 </body>
 </html>
