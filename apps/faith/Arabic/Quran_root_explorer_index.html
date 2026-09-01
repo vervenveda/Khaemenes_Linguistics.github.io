@@ -4,9 +4,7 @@
 <meta charset="UTF-8">
 <title>Qur’anic Root Explorer — Temple of Letters</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-<!-- Arabic-friendly serif + Cinzel -->
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+<meta name="description" content="A private, browser-based explorer for selected Qur’anic Arabic roots, derived forms, and verified verse excerpts.">
 
 <style>
     body {
@@ -17,6 +15,17 @@
         padding: 40px 16px;
         text-align: center;
     }
+    * { box-sizing: border-box; }
+    button,input,textarea { font: inherit; }
+    button:focus-visible,input:focus-visible,textarea:focus-visible {
+        outline: 3px solid #fff3bf;
+        outline-offset: 3px;
+    }
+    .skip-link {
+        position: fixed; left: 12px; top: -60px; z-index: 1000;
+        padding: 10px 14px; border-radius: 7px; background: #FFFDF5; color: #0b1020;
+    }
+    .skip-link:focus { top: 12px; }
     h1 {
         font-size: 44px;
         letter-spacing: 1px;
@@ -29,6 +38,13 @@
         color: #e8d5a4;
         opacity: 0.8;
         margin-bottom: 22px;
+    }
+    .scope-note {
+        width: 90%; max-width: 820px; margin: 0 auto 18px; padding: 10px 12px;
+        border: 1px solid rgba(217,184,120,.55); border-radius: 7px;
+        background: rgba(15,22,43,.78); color: #f0e9dc;
+        font-family: system-ui,-apple-system,"Segoe UI",sans-serif;
+        font-size: 13px; line-height: 1.6;
     }
     #searchBox {
         width: 90%;
@@ -249,6 +265,12 @@
         border-radius: 4px;
     }
 
+    .copyStatus { min-height: 1.4em; margin-top: 6px; color: #e8d5a4; font-size: 12px; }
+
+    @media (prefers-reduced-motion: reduce){
+        *,*::before,*::after { animation-duration:.01ms!important; transition-duration:.01ms!important; }
+    }
+
     #results {
         margin-top: 10px;
     }
@@ -263,12 +285,22 @@
 </head>
 <body>
 
+<a class="skip-link" href="#searchBox">Skip to root search</a>
+
 <h1>🔍 Qur’anic Root Explorer</h1>
 <div id="subtitle">
   Type an Arabic root (كتب), a pattern like K-T-B, or an English meaning ("write").
 </div>
 
-<input id="searchBox" placeholder="Search Arabic root — e.g. كتب / K-T-B / knowledge">
+<div class="scope-note">
+  This is a verified two-root seed collection, not a complete Qur’anic dictionary. Verse text is
+  labeled as an excerpt when it is not the complete āyah. Use a trusted Arabic corpus or teacher
+  for comprehensive morphology, interpretation, and recitation study.
+</div>
+
+<label for="searchBox" class="scope-note" style="display:block;margin-bottom:8px;">Search the seed collection</label>
+<input id="searchBox" type="search" autocomplete="off" aria-describedby="searchHelp" placeholder="Search Arabic root — e.g. كتب / K-T-B / knowledge">
+<div id="searchHelp" class="scope-note" style="border:0;background:transparent;margin-top:-8px;">Arabic diacritics, spaces, and hyphens are ignored.</div>
 
 <div id="rootChips"></div>
 
@@ -277,41 +309,44 @@
   <div id="deckHeading">Root Card Viewer — Reading Circle</div>
   <div id="deckControls">
     <button type="button" class="deckBtn" id="prevDeckBtn">◀ Previous</button>
-    <span id="deckCounter">0 / 0</span>
+    <span id="deckCounter" aria-live="polite">0 / 0</span>
     <button type="button" class="deckBtn" id="randomDeckBtn">Random ✦</button>
     <button type="button" class="deckBtn" id="nextDeckBtn">Next ▶</button>
+    <button type="button" class="deckBtn" id="exportNotesBtn">Export Notes</button>
+    <button type="button" class="deckBtn" id="clearNoteBtn">Clear This Note</button>
   </div>
   <div id="deckCard"></div>
 
   <div id="deckJournalBox">
-    <div id="deckJournalLabel">Reflection Journal</div>
-    <textarea id="deckJournal" placeholder="Write reflections, patterns, or connections you notice with this root..."></textarea>
+    <label id="deckJournalLabel" for="deckJournal">Reflection Journal</label>
+    <textarea id="deckJournal" aria-describedby="deckJournalHint" placeholder="Write reflections, patterns, or connections you notice with this root..."></textarea>
     <div id="deckJournalHint">Saved locally per root on this device — perfect for reading circles and private study.</div>
   </div>
 </div>
 
-<div id="results"></div>
+<div id="results" aria-live="polite" aria-atomic="false"></div>
+<div id="copyStatus" class="copyStatus" role="status" aria-live="polite"></div>
 
 <script>
 /* ==========================================================
-   Qur’anic Root Dataset — Placeholder Version
-   Replace "dataset" with your full quranic_1000_roots.json
+   Qur’anic Root Dataset — verified seed version
+   Expand only with entries whose root evidence has been reviewed.
    ========================================================== */
 const dataset = [
   {
     "root": "كتب",
     "transliteration": "K-T-B",
     "meaning": "to write",
-    "notes": "One of the most common trilateral roots in the Qur’an.",
+    "notes": "A frequent triliteral root family associated with writing and prescribed records.",
     "derived": [
-      {"form": "kataba", "meaning": "he wrote"},
-      {"form": "yaktubu", "meaning": "he writes"},
-      {"form": "kitāb", "meaning": "book"},
-      {"form": "maktūb", "meaning": "written"}
+      {"ar":"كَتَبَ", "form": "kataba", "meaning": "he wrote"},
+      {"ar":"يَكْتُبُ", "form": "yaktubu", "meaning": "he writes"},
+      {"ar":"كِتَاب", "form": "kitāb", "meaning": "book"},
+      {"ar":"مَكْتُوب", "form": "maktūb", "meaning": "written"}
     ],
     "ayahs": [
-      {"ref": "2:2", "text": "ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ"},
-      {"ref": "96:4", "text": "الَّذِي عَلَّمَ بِالْقَلَمِ"}
+      {"ref":"2:2", "excerpt":true, "text":"ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ", "matches":["الْكِتَابُ"]},
+      {"ref":"2:282", "excerpt":true, "text":"يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا تَدَايَنتُم بِدَيْنٍ إِلَىٰ أَجَلٍ مُّسَمًّى فَاكْتُبُوهُ", "matches":["فَاكْتُبُوهُ"]}
     ]
   },
   {
@@ -320,14 +355,14 @@ const dataset = [
     "meaning": "to know, to have knowledge",
     "notes": "Core concept of knowledge, learning, awareness.",
     "derived": [
-      {"form": "ʿalima", "meaning": "he knew"},
-      {"form": "yaʿlamu", "meaning": "he knows"},
-      {"form": "ʿilm", "meaning": "knowledge"},
-      {"form": "ʿallama", "meaning": "he taught"}
+      {"ar":"عَلِمَ", "form": "ʿalima", "meaning": "he knew"},
+      {"ar":"يَعْلَمُ", "form": "yaʿlamu", "meaning": "he knows"},
+      {"ar":"عِلْم", "form": "ʿilm", "meaning": "knowledge"},
+      {"ar":"عَلَّمَ", "form": "ʿallama", "meaning": "he taught"}
     ],
     "ayahs": [
-      {"ref": "2:32", "text": "سُبْحَانَكَ لَا عِلْمَ لَنَا"},
-      {"ref": "96:5", "text": "عَلَّمَ الْإِنسَانَ مَا لَمْ يَعْلَمْ"}
+      {"ref":"2:32", "excerpt":true, "text":"سُبْحَانَكَ لَا عِلْمَ لَنَا", "matches":["عِلْمَ"]},
+      {"ref":"96:5", "excerpt":false, "text":"عَلَّمَ الْإِنسَانَ مَا لَمْ يَعْلَمْ", "matches":["عَلَّمَ","يَعْلَمْ"]}
     ]
   }
 ]; // END DATASET
@@ -344,9 +379,12 @@ const deckCounter     = document.getElementById("deckCounter");
 const prevDeckBtn     = document.getElementById("prevDeckBtn");
 const nextDeckBtn     = document.getElementById("nextDeckBtn");
 const randomDeckBtn   = document.getElementById("randomDeckBtn");
+const exportNotesBtn  = document.getElementById("exportNotesBtn");
+const clearNoteBtn    = document.getElementById("clearNoteBtn");
 
 const deckJournalBox  = document.getElementById("deckJournalBox");
 const deckJournal     = document.getElementById("deckJournal");
+const copyStatus      = document.getElementById("copyStatus");
 
 let deckIndex = 0;
 
@@ -358,23 +396,38 @@ let deckIndex = 0;
 function normalizeLatin(str){
   return str
     .toLowerCase()
-    .replace(/[\s\-]/g, "");
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[\s\-–—_'’.]/g, "");
 }
 
-// Normalize Arabic-ish: just trim for now
+// Ignore Arabic vowel marks, Qur’anic annotation marks, tatweel, and spacing.
 function normalizeArabic(str){
-  return str.trim();
+  return str
+    .normalize("NFC")
+    .replace(/[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED\u0640\s]/g, "");
 }
 
-// Highlight root letters in text
-function highlightRootInText(text, root){
-  if(!root) return text;
-  try{
-    const safeRoot = root.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
-    return text.replace(new RegExp(safeRoot, "g"), `<span class="rootHighlight">${root}</span>`);
-  }catch(e){
-    return text;
-  }
+function escapeHTML(value){
+  return String(value ?? "").replace(/[&<>"']/g,ch=>({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  })[ch]);
+}
+
+function escapeRegExp(value){
+  return value.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+}
+
+// Highlight verified surface forms, not an unreliable contiguous root string.
+function highlightRootInText(text, terms=[]){
+  if(!terms.length) return escapeHTML(text);
+  const ordered=[...terms].sort((a,b)=>b.length-a.length);
+  const pattern=new RegExp(`(${ordered.map(escapeRegExp).join("|")})`,"gu");
+  return String(text).split(pattern).map(part=>
+    ordered.includes(part)
+      ? `<mark class="rootHighlight">${escapeHTML(part)}</mark>`
+      : escapeHTML(part)
+  ).join("");
 }
 
 /* ==========================================================
@@ -384,28 +437,29 @@ function highlightRootInText(text, root){
 // builds the inner content of a root card (without the outer .resultCard)
 function buildCardInnerHTML(item){
   return `
-    <div class="root">${item.root}</div>
-    <div class="translit">${item.transliteration || ""}</div>
-    <div class="meaning">${item.meaning || ""}</div>
+    <div class="root" lang="ar" dir="rtl">${escapeHTML(item.root)}</div>
+    <div class="translit">${escapeHTML(item.transliteration || "")}</div>
+    <div class="meaning">${escapeHTML(item.meaning || "")}</div>
 
     <div class="sectionTitle">Derived Forms</div>
     <div class="derived-list">
       ${
         (item.derived && item.derived.length)
           ? item.derived.map(d =>
-              `<div>${d.form} — <i>${d.meaning}</i></div>`
+              `<div><b lang="ar" dir="rtl">${escapeHTML(d.ar || "")}</b>
+              · ${escapeHTML(d.form)} — <i>${escapeHTML(d.meaning)}</i></div>`
             ).join("")
           : `<div class="notes">No derived forms recorded in this entry.</div>`
       }
     </div>
 
-    <div class="sectionTitle">Āyah References</div>
+    <div class="sectionTitle">Referenced Āyah Text</div>
     ${
       (item.ayahs && item.ayahs.length)
         ? item.ayahs.map(a => `
             <div class="ayah">
-              <div class="ayah-header"><b>${a.ref}</b></div>
-              <div class="ayah-text">${highlightRootInText(a.text, item.root)}</div>
+              <div class="ayah-header"><b>${escapeHTML(a.ref)}</b> · ${a.excerpt ? "excerpt" : "complete āyah"}</div>
+              <div class="ayah-text" lang="ar" dir="rtl">${highlightRootInText(a.text,a.matches)}</div>
               <div class="ayah-tools">
                 <button type="button" class="copyAyahBtn">Copy</button>
               </div>
@@ -415,7 +469,7 @@ function buildCardInnerHTML(item){
     }
 
     <div class="sectionTitle">Notes</div>
-    <div class="notes">${item.notes || "—"}</div>
+    <div class="notes">${escapeHTML(item.notes || "—")}</div>
   `;
 }
 
@@ -427,27 +481,39 @@ function wireCopyButtons(containerEl, item){
       btn.addEventListener("click", () => {
         if(!item.ayahs[idx]) return;
         const t = `${item.ayahs[idx].text} (${item.ayahs[idx].ref})`;
-        if(navigator.clipboard && navigator.clipboard.writeText){
-          navigator.clipboard.writeText(t).then(()=>{
+        const reportCopied=()=>{
             const oldLabel = btn.textContent;
             btn.textContent = "Copied!";
+            copyStatus.textContent = `${item.ayahs[idx].ref} excerpt copied.`;
             setTimeout(()=>btn.textContent = oldLabel, 1200);
-          }).catch(()=>{
-            alert("Copied: " + t);
-          });
+        };
+        if(navigator.clipboard && navigator.clipboard.writeText){
+          navigator.clipboard.writeText(t).then(reportCopied).catch(()=>fallbackCopy(t,reportCopied));
         }else{
-          alert("Copied: " + t);
+          fallbackCopy(t,reportCopied);
         }
       });
     });
   }
 }
 
+function fallbackCopy(text,onSuccess){
+  const area=document.createElement("textarea");
+  area.value=text; area.setAttribute("readonly","");
+  area.style.position="fixed"; area.style.opacity="0";
+  document.body.appendChild(area); area.select();
+  let copied=false;
+  try{ copied=document.execCommand("copy"); }catch(error){}
+  area.remove();
+  if(copied) onSuccess();
+  else copyStatus.textContent="Copy was unavailable. Select the verse text manually.";
+}
+
 /* ==========================================================
    Journal helpers (per root)
    ========================================================== */
 function journalKeyFor(item){
-  return `rootJournal_${item.root}`;
+  return `quranicRootExplorer.v2.journal.${item.root}`;
 }
 
 function loadJournalFor(item){
@@ -473,12 +539,13 @@ function performSearch(raw){
   const latinNorm = normalizeLatin(q);
   const matches = dataset.filter(item => {
     const rootNorm      = normalizeArabic(item.root);
+    const arabicQuery   = normalizeArabic(q);
     const translitNorm  = normalizeLatin(item.transliteration || "");
     const meaningNorm   = (item.meaning || "").toLowerCase();
     const queryLower    = q.toLowerCase();
 
     return (
-      rootNorm.includes(q) ||                 // Arabic substring
+      (arabicQuery && rootNorm.includes(arabicQuery)) ||
       translitNorm.includes(latinNorm) ||     // K-T-B / KTB
       meaningNorm.includes(queryLower)        // English meaning
     );
@@ -530,6 +597,7 @@ function renderDeckCard(){
   if(deckIndex >= dataset.length) deckIndex = dataset.length - 1;
 
   const item = dataset[deckIndex];
+  try{ localStorage.setItem("quranicRootExplorer.v2.deckIndex",String(deckIndex)); }catch(error){}
   deckCounter.textContent = `${deckIndex + 1} / ${dataset.length}`;
 
   const wrapper = document.createElement("div");
@@ -559,6 +627,33 @@ randomDeckBtn.addEventListener("click", () => {
   renderDeckCard();
 });
 
+exportNotesBtn.addEventListener("click",()=>{
+  const notes={};
+  dataset.forEach(item=>{
+    try{
+      const value=localStorage.getItem(journalKeyFor(item));
+      if(value) notes[item.root]={transliteration:item.transliteration,note:value};
+    }catch(error){}
+  });
+  const payload={app:"Qur’anic Root Explorer",exportedAt:new Date().toISOString(),notes};
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  const link=document.createElement("a");
+  link.href=URL.createObjectURL(blob);
+  link.download="quranic-root-explorer-notes.json";
+  link.click();
+  setTimeout(()=>URL.revokeObjectURL(link.href),1000);
+  copyStatus.textContent="Reflection notes exported as JSON.";
+});
+
+clearNoteBtn.addEventListener("click",()=>{
+  const item=dataset[deckIndex];
+  if(!item || !deckJournal.value) return;
+  if(!confirm(`Clear the private note for ${item.root}? This cannot be undone.`)) return;
+  try{ localStorage.removeItem(journalKeyFor(item)); }catch(error){}
+  deckJournal.value="";
+  copyStatus.textContent=`Private note for ${item.root} cleared.`;
+});
+
 /* Save journal on input */
 deckJournal.addEventListener("input", () => {
   const item = dataset[deckIndex];
@@ -585,8 +680,11 @@ dataset.forEach(item => {
 });
 
 /* init deck */
+try{
+  const savedIndex=Number(localStorage.getItem("quranicRootExplorer.v2.deckIndex"));
+  if(Number.isInteger(savedIndex) && savedIndex>=0 && savedIndex<dataset.length) deckIndex=savedIndex;
+}catch(error){}
 renderDeckCard();
 </script>
-<script src="/assets/vnv-beta-link.js" defer></script>
 </body>
 </html>
