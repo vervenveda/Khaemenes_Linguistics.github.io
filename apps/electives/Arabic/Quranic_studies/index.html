@@ -2,8 +2,10 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Noor Pathway – Advanced Qur'an Workshop</title>
+<title>Noor Pathway — Faith Studies Elective: Qur’an Deepening</title>
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="description" content="An intermediate six-week Faith Studies elective for thematic Qur’an study, historical context, spiritual reflection, ethics, and long-term learning plans.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; script-src 'unsafe-inline'; img-src data:; font-src data:;">
 <style>
   :root{
     --bg:#020617;
@@ -23,6 +25,11 @@
     --shadow-card:0 12px 32px rgba(15,23,42,0.9);
   }
   *{box-sizing:border-box;}
+  button,input{font:inherit;}
+  button:focus-visible,input:focus-visible,[role="button"]:focus-visible{outline:3px solid #fff3bf;outline-offset:3px;}
+  .skip-link{position:fixed;left:12px;top:-60px;z-index:1000;padding:10px 14px;border-radius:7px;background:#fff;color:#020617;}
+  .skip-link:focus{top:12px;}
+  @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}}
   html,body{
     margin:0;
     padding:0;
@@ -202,6 +209,7 @@
     background:radial-gradient(circle at 0 0,rgba(250,204,107,0.18),rgba(15,23,42,0.95));
     color:var(--ink);
   }
+  .final-pill.disabled{opacity:.58;cursor:not-allowed;}
   .week-badge{
     width:8px;
     height:8px;
@@ -649,6 +657,7 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#mainContent">Skip to course</a>
 <div id="app">
   <div class="shell">
     <header>
@@ -656,15 +665,15 @@
         <div class="brand-orb"></div>
         <div class="brand-text">
           <h1>Noor Pathway</h1>
-          <span>QURAN DEEPENING · ADVANCED 6 WEEKS</span>
+          <span>FAITH STUDIES ELECTIVE · QUR’AN DEEPENING</span>
         </div>
       </div>
       <div class="header-right">
         <div class="pill">
-          Mode: <span>&nbsp;Sandbox · Offline</span>
+          Mode: <span>&nbsp;Local Course Shell</span>
         </div>
         <div class="pill">
-          Track: <span>&nbsp;Advanced Workshop</span>
+          Track: <span>&nbsp;Intermediate Workshop</span>
         </div>
       </div>
     </header>
@@ -728,18 +737,23 @@
             <div class="week-badge"></div>
             <div>
               <div class="final-pill-title">Final Review & Mastery Check</div>
-              <div class="final-pill-status" id="finalStatus">Locked until final quiz is passed</div>
+              <div class="final-pill-status" id="finalStatus">Locked · pass Weeks 1–6 at 80%</div>
             </div>
           </div>
         </div>
 
         <div class="sidebar-note">
-          Progress and scores are stored only in this browser (localStorage). Clear your
-          cache or use a private window to reset the workshop.
+          Progress and the certificate name stay in this browser. Assigned Qur’an text,
+          translations, tafsīr, seerah, and recitation materials are not embedded. Use
+          teacher-approved sources and qualified feedback for tajwīd.
+          <div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px;">
+            <button type="button" class="btn btn-ghost" id="exportProgressBtn">Export Progress</button>
+            <button type="button" class="btn btn-ghost" id="resetProgressBtn">Reset Progress</button>
+          </div>
         </div>
       </aside>
 
-      <main class="main">
+      <main class="main" id="mainContent">
         <div class="week-header">
           <div class="week-header-left">
             <h2 id="weekTitle">Week 1 · Arabic Text & Recitation Craft</h2>
@@ -749,15 +763,15 @@
             </div>
           </div>
           <div class="week-badges">
-            <div class="tag">Level: <strong>Advanced beginner / intermediate</strong></div>
+            <div class="tag">Level: <strong>Intermediate</strong></div>
             <div class="tag">Format: <strong>6 weeks · self-guided</strong></div>
           </div>
         </div>
 
         <div class="tabs">
-          <button class="tab-btn active" data-tab="curriculum">Curriculum</button>
-          <button class="tab-btn" data-tab="quiz">Weekly Quiz</button>
-          <button class="tab-btn disabled" data-tab="certificate" id="certTab">Certificate</button>
+          <button type="button" class="tab-btn active" data-tab="curriculum">Curriculum</button>
+          <button type="button" class="tab-btn" data-tab="quiz">Weekly Mastery Check</button>
+          <button type="button" class="tab-btn disabled" data-tab="certificate" id="certTab" aria-disabled="true">Certificate</button>
         </div>
 
         <div class="panel-area">
@@ -775,10 +789,10 @@
                 <small>Focus: tajwīd vocabulary, makhārij awareness, and building a recitation routine.</small>
                 <div class="session-list">
                   <div class="session-card">
-                    <div class="session-title">Session 1: Script as Sacred Geometry</div>
+                    <div class="session-title">Session 1: Script, Shapes & Sounds</div>
                     <div class="session-tag">Alif to yā · dots · shapes</div>
                     <ul>
-                      <li>Review all 28 letters, paying attention to where each is written and spoken.</li>
+                      <li>Review all 28 letters, paying attention to how each is formed and articulated.</li>
                       <li>Circle any letters you still mix up (for example ث / س / ص).</li>
                       <li>Write a short note on how it feels to see Allah's words in their original form.</li>
                     </ul>
@@ -799,6 +813,7 @@
                       <li>Record yourself reciting al-Fātiḥah and one short sūrah.</li>
                       <li>Listen back once with kindness, noting strength and growth areas.</li>
                       <li>Write down 2 small improvements to work on (for example elongation, clarity).</li>
+                      <li>When possible, ask a qualified teacher to verify pronunciation; self-recording cannot certify tajwīd.</li>
                     </ul>
                   </div>
                   <div class="session-card">
@@ -812,7 +827,7 @@
                   </div>
                 </div>
                 <div class="mini-note">
-                  Advanced does not mean harsh: your recitation journey is a craft polished
+                  Deepening study does not mean harsh: your recitation journey is a craft polished
                   over years, not a performance graded in days.
                 </div>
               </section>
@@ -884,8 +899,9 @@
                     <div class="session-title">Session 1: Makki vs. Madani Signatures</div>
                     <div class="session-tag">Early vs. later revelation</div>
                     <ul>
-                      <li>List typical features of Makki surahs (for example short, powerful, core beliefs).</li>
-                      <li>List typical features of Madani surahs (for example law, community, detail).</li>
+                      <li>List common tendencies of Makki sūrahs (for example core beliefs and often shorter passages).</li>
+                      <li>List common tendencies of Madani sūrahs (for example community guidance and often greater legal detail).</li>
+                      <li>Remember: the defining distinction is revelation before or after the Hijrah, not geography or style alone.</li>
                       <li>Pick one surah and identify which “signature” it matches.</li>
                     </ul>
                   </div>
@@ -893,7 +909,7 @@
                     <div class="session-title">Session 2: Asbāb al-Nuzūl (Reasons of Revelation)</div>
                     <div class="session-tag">Verses with stories</div>
                     <ul>
-                      <li>Choose 2–3 well-known verses with known historical contexts.</li>
+                      <li>Choose 2–3 verses whose historical contexts are documented in reputable scholarly sources.</li>
                       <li>Write their background in a few simple sentences.</li>
                       <li>Reflect on how context deepens the verse's meaning for you today.</li>
                     </ul>
@@ -934,10 +950,10 @@
                 <small>Focus: verses that diagnose and heal the inner world.</small>
                 <div class="session-list">
                   <div class="session-card">
-                    <div class="session-title">Session 1: Three Faces of the Nafs</div>
+                  <div class="session-title">Session 1: Three Qur’anic Descriptions of the Nafs</div>
                     <div class="session-tag">Ammārah · Lawwāmah · Muṭma'innah</div>
                     <ul>
-                      <li>Study verses that mention these states of the soul.</li>
+                      <li>Study verses using these descriptions, without treating them as an exhaustive fixed taxonomy.</li>
                       <li>Write a simple description and everyday example of each.</li>
                       <li>Identify where you most often find yourself lately.</li>
                     </ul>
@@ -965,7 +981,7 @@
                     <div class="session-tag">Supplications of purification</div>
                     <ul>
                       <li>Choose 2–3 Quranic supplications about forgiveness, guidance, or purification.</li>
-                      <li>Memorize at least one in Arabic or in your language.</li>
+                      <li>Memorize at least one in Arabic, or learn and reflect on its meaning in your language.</li>
                       <li>Set a daily time to repeat it slowly with full attention.</li>
                     </ul>
                   </div>
@@ -1077,7 +1093,7 @@
                   </div>
                 </div>
                 <div class="mini-note">
-                  Advanced does not mean rushing ahead of life – it means weaving the Qur'an
+                  Deepening study does not mean rushing ahead of life – it means weaving the Qur'an
                   into who you are becoming, year after year.
                 </div>
               </section>
@@ -1087,8 +1103,8 @@
                 <h3>Final Review & Mastery Check</h3>
                 <p>
                   When you feel ready, take the final review quiz to check how much of this
-                  advanced journey has settled into your understanding. Passing it unlocks a
-                  printable Noor Pathway Advanced Completion Certificate.
+                  intermediate journey has settled into your understanding. It unlocks after
+                  all six weekly checks reach 80%; final mastery unlocks the certificate.
                 </p>
                 <small>
                   This is not a test of worth – it is a mirror of what has landed and what
@@ -1108,21 +1124,20 @@
             <div id="certificateView" class="hidden">
               <div class="certificate-wrap">
                 <div class="certificate-form">
-                  <span>Type your name for the advanced certificate:</span>
-                  <input id="certName" placeholder="Your name">
-                  <button class="btn btn-outline" id="printBtn">Print Certificate</button>
+                  <span>Type your name for the certificate:</span>
+                  <input id="certName" maxlength="100" autocomplete="name" placeholder="Your name">
+                  <button type="button" class="btn btn-outline" id="printBtn">Print Certificate</button>
                 </div>
                 <div class="certificate-card">
                   <div class="certificate-inner">
-                    <div class="cert-title">Noor Pathway · Advanced</div>
+                    <div class="cert-title">Noor Pathway · Qur’an Deepening</div>
                     <div class="cert-body" style="margin-top:4px;font-size:11px;color:#e5e7eb;">
-                      Qur'an Deepening Workshop – Six Week Track
+                      Faith Studies Elective · Intermediate Six-Week Track
                     </div>
                     <div class="cert-name" id="certNameDisplay">[ Your Name ]</div>
                     <div class="cert-body">
-                      has completed the Noor Pathway Advanced Qur'an Workshop, including
-                      thematic study, context exploration, inner work and a final review
-                      assessment.
+                      has completed six weekly mastery checks and the final assessment for
+                      the Noor Pathway Qur’an Deepening Faith Studies elective.
                     </div>
                     <div class="cert-footer">
                       <div>
@@ -1131,7 +1146,7 @@
                       </div>
                       <div>
                         <span class="cert-seal">
-                          ✨ Noor Seal · Advanced Lighted Path
+                          ✨ Noor Seal · Deepening Path
                         </span>
                       </div>
                     </div>
@@ -1149,7 +1164,7 @@
     </div>
 
     <footer>
-      <div>Temple of Letters · Noor Pathway Advanced Sandbox</div>
+      <div>Temple of Letters · Faith Studies Elective</div>
       <div>Study companion · Not a legal ruling source</div>
     </footer>
   </div>
@@ -1162,14 +1177,16 @@
   const qs = (sel,root=document) => root.querySelector(sel);
   const qsa = (sel,root=document) => Array.from(root.querySelectorAll(sel));
 
-  const STORAGE_KEY = "noor_quran_advanced_v1";
+  const STORAGE_KEY = "noorQuranDeepening.v2";
+  const LEGACY_STORAGE_KEY = "noor_quran_advanced_v1";
+  const MASTERY_PERCENT = 80;
 
   // ========== QUIZ DATA ==========
   // 6 questions per week + 10-question final
   const QUIZZES = {
     week1: [
       {
-        q:"In this advanced track, Arabic script is treated as:",
+        q:"In this intermediate workshop, Arabic script is treated as:",
         options:[
           "A random set of shapes",
           "Sacred geometry carrying Allah's words",
@@ -1199,7 +1216,7 @@
           "Compare your voice to everyone else"
         ],
         answer:2,
-        explanation:"Advanced growth needs kindness and honest observation, not self-attack."
+        explanation:"Sustainable growth needs kindness and honest observation, not self-attack."
       },
       {
         q:"Designing a small “Qur'an corner” in your space is meant to:",
@@ -1228,7 +1245,7 @@
         options:[
           "You must be perfect before you recite",
           "You should give up if you make mistakes",
-          "Advanced means committing to a long, kind craft journey",
+          "Deepening study means committing to a long, kind craft journey",
           "Only experts are allowed to read"
         ],
         answer:2,
@@ -1292,7 +1309,7 @@
         explanation:"Thematic reading crosses surah boundaries to see Allah's patterns."
       },
       {
-        q:"Advanced thematic work begins to build:",
+        q:"Thematic study begins to build:",
         options:[
           "A random notebook",
           "A personal atlas of Qur'anic themes that walked with you",
@@ -1357,7 +1374,7 @@
           "Order didn't matter at all"
         ],
         answer:2,
-        explanation:"Advanced study reflects on the spiritual wisdom of the compiled order."
+        explanation:"Deepening study reflects on the spiritual wisdom of the compiled order."
       },
       {
         q:"Week 3's main shift is from seeing verses as:",
@@ -1403,7 +1420,7 @@
           "Stop reading those verses"
         ],
         answer:2,
-        explanation:"Advanced tazkiyah is honest but compassionate self-observation."
+        explanation:"Sound tazkiyah includes honest but compassionate self-observation."
       },
       {
         q:"Riyā (showiness) turns worship into something done:",
@@ -1528,7 +1545,7 @@
           "Avoiding commitment"
         ],
         answer:2,
-        explanation:"Advanced planning balances need and realism."
+        explanation:"Sustainable planning balances need and realism."
       },
       {
         q:"A “hard day minimum” plan is meant to:",
@@ -1564,7 +1581,7 @@
         explanation:"You choose supports that honour your dignity and sincerity."
       },
       {
-        q:"The six-week advanced track ultimately aims to:",
+        q:"The six-week intermediate workshop ultimately aims to:",
         options:[
           "Finish the entire Quran quickly once",
           "Replace scholars",
@@ -1577,7 +1594,7 @@
     ],
     final: [
       {
-        q:"Across the advanced workshop, Arabic text is treated as:",
+        q:"Across the workshop, Arabic text is treated as:",
         options:[
           "Decorative art only",
           "A burden to avoid",
@@ -1646,7 +1663,7 @@
         q:"Designing a “hard day minimum” and “good day ideal” routine teaches that:",
         options:[
           "You must either be perfect or quit",
-          "Advanced means all or nothing",
+          "Growth means all or nothing",
           "Continuity with the Quran matters more than heroic bursts",
           "Only long sessions count"
         ],
@@ -1676,7 +1693,7 @@
         explanation:"Gratitude grows when you see how Allah has already guided you."
       },
       {
-        q:"The Noor Pathway Advanced Workshop ultimately wants you to:",
+        q:"The Noor Pathway Qur’an Deepening Workshop ultimately wants you to:",
         options:[
           "Graduate from needing the Quran",
           "Compare and belittle others",
@@ -1691,12 +1708,22 @@
 
   function loadProgress(){
     try{
-      const raw = localStorage.getItem(STORAGE_KEY);
+      const raw = localStorage.getItem(STORAGE_KEY) || localStorage.getItem(LEGACY_STORAGE_KEY);
       if(!raw) return {weeks:{}, final:null};
       const parsed = JSON.parse(raw);
       if(!parsed || typeof parsed !== "object") return {weeks:{}, final:null};
-      if(!parsed.weeks) parsed.weeks = {};
-      return parsed;
+      const clean={weeks:{},final:null,certificateName:typeof parsed.certificateName==="string"?parsed.certificateName.slice(0,100):""};
+      for(let i=1;i<=6;i++){
+        const key="week"+i,old=parsed.weeks&&parsed.weeks[key],total=QUIZZES[key].length;
+        if(!old||!Number.isFinite(Number(old.score))) continue;
+        const score=Math.max(0,Math.min(total,Math.floor(Number(old.score))));
+        clean.weeks[key]={score,total,passed:(score/total)*100>=MASTERY_PERCENT,date:old.date||null};
+      }
+      if(parsed.final&&Number.isFinite(Number(parsed.final.score))){
+        const total=QUIZZES.final.length,score=Math.max(0,Math.min(total,Math.floor(Number(parsed.final.score))));
+        clean.final={score,total,passed:(score/total)*100>=MASTERY_PERCENT,date:parsed.final.date||null};
+      }
+      return clean;
     }catch(e){
       return {weeks:{}, final:null};
     }
@@ -1706,6 +1733,10 @@
     try{
       localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
     }catch(e){}
+  }
+
+  function allWeeksMastered(){
+    return [1,2,3,4,5,6].every(n=>progress.weeks["week"+n]?.passed===true);
   }
 
   const state = {
@@ -1736,18 +1767,22 @@
       subEl.textContent = "Designing a realistic long-term Qur'an project for your life.";
     }else if(weekKey === "final"){
       titleEl.textContent = "Final Review & Completion";
-      subEl.textContent = "A gentle mastery check and advanced completion certificate.";
+      subEl.textContent = "A gentle mastery check and intermediate completion certificate.";
     }
   }
 
   function setActiveWeek(weekKey){
+    if(weekKey==="final"&&!allWeeksMastered()){
+      $("finalStatus").textContent="Locked · pass Weeks 1–6 at 80%";return;
+    }
     state.currentWeek = weekKey;
+    try{localStorage.setItem("noorQuranDeepening.v2.currentWeek",weekKey);}catch(error){}
     qsa(".week-item").forEach(li=>{
       li.classList.toggle("active", li.dataset.week === weekKey);
     });
     const finalNav = $("finalNav");
     if(weekKey === "final"){
-      finalNav.classList.add("completed","active");
+      finalNav.classList.add("active");
     }else{
       finalNav.classList.remove("active");
     }
@@ -1761,7 +1796,8 @@
   function switchTab(tabName){
     state.currentTab = tabName;
     qsa(".tab-btn").forEach(btn=>{
-      btn.classList.toggle("active", btn.dataset.tab === tabName);
+      const active=btn.dataset.tab===tabName;
+      btn.classList.toggle("active",active);btn.setAttribute("aria-selected",active?"true":"false");btn.tabIndex=active?0:-1;
     });
     $("curriculumView").classList.toggle("hidden", tabName !== "curriculum");
     $("quizView").classList.toggle("hidden", tabName !== "quiz");
@@ -1783,18 +1819,24 @@
         statusEl.innerHTML = 'Status: <span>'+label+' ('+st.score+'/'+st.total+')</span>';
       }
     });
-    if(progress.final){
+    if(progress.final&&progress.final.passed){
       const fs = progress.final;
       const finalStatus = $("finalStatus");
-      finalStatus.textContent = "Final "+(fs.passed ? "passed" : "attempted")+": "+fs.score+"/"+fs.total;
+      finalStatus.textContent = "Final mastered: "+fs.score+"/"+fs.total;
       const finalNav = $("finalNav");
       finalNav.classList.add("completed");
     }
+    const finalNav=$("finalNav"),unlocked=allWeeksMastered();
+    finalNav.setAttribute("aria-disabled",unlocked?"false":"true");finalNav.classList.toggle("disabled",!unlocked);
+    if(unlocked&&!(progress.final&&progress.final.passed)) $("finalStatus").textContent=progress.final?`Final attempted: ${progress.final.score}/${progress.final.total} · 80% required`:"Unlocked · final assessment available";
     maybeUnlockCertificate();
   }
 
   function renderQuiz(weekKey){
     const container = $("quizView");
+    if(weekKey==="final"&&!allWeeksMastered()){
+      container.innerHTML="<p class='mini-note' role='status'>The final assessment is locked until all six weekly mastery checks reach 80%.</p>";return;
+    }
     const quiz = QUIZZES[weekKey];
     if(!quiz){
       container.innerHTML = "<p style='font-size:13px;color:#e5e7eb;'>No quiz is defined for this section yet.</p>";
@@ -1802,8 +1844,8 @@
     }
     let titleLabel = weekKey === "final" ? "Final Review Quiz" : "Weekly Quiz";
     let subLabel = weekKey === "final"
-      ? "Covers key ideas from all six advanced weeks. Passing unlocks the certificate."
-      : "Six questions to help you consolidate this week's advanced material.";
+      ? "Covers all six weeks. Mastery at 80% unlocks the certificate."
+      : "Six questions to consolidate this week's material. Mastery requires 80% (5 of 6).";
     let html = "";
     html += "<div class='quiz-header'>";
     html +=   "<div>";
@@ -1825,12 +1867,12 @@
         html += "</label>";
       });
       html +=   "</div>";
-      html +=   "<div class='question-feedback' id='"+weekKey+"_feedback_"+idx+"'></div>";
+      html +=   "<div class='question-feedback' role='status' aria-live='polite' id='"+weekKey+"_feedback_"+idx+"'></div>";
       html += "</div>";
     });
     html += "</div>";
     html += "<div class='quiz-actions'>";
-    html +=   "<div class='quiz-score' id='quizScoreBox'>Answer the questions, then press <span>Check Answers</span>.</div>";
+    html +=   "<div class='quiz-score' id='quizScoreBox' role='status' aria-live='polite'>Answer every question, then press <span>Check Answers</span>.</div>";
     html +=   "<div style='display:flex;gap:6px;flex-wrap:wrap;'>";
     html +=     "<button class='btn btn-primary' id='submitQuizBtn'>Check Answers</button>";
     html +=     "<button class='btn btn-ghost' id='resetQuizBtn'>Clear Choices</button>";
@@ -1847,10 +1889,12 @@
     if(!quiz) return;
     let score = 0;
     let total = quiz.length;
+    const unanswered=[];
     quiz.forEach((q,idx)=>{
       const selected = qs('input[name="'+weekKey+'_q'+idx+'"]:checked');
       const fb = $(weekKey+"_feedback_"+idx);
       if(!selected){
+        unanswered.push(idx);
         fb.textContent = "No choice selected.";
         fb.className = "question-feedback bad";
         return;
@@ -1866,21 +1910,23 @@
       }
     });
     const scoreBox = $("quizScoreBox");
+    if(unanswered.length){
+      scoreBox.textContent=`Please answer all ${total} questions. ${unanswered.length} ${unanswered.length===1?"is":"are"} still unanswered.`;
+      $(weekKey+"_feedback_"+unanswered[0]).closest(".question-card")?.scrollIntoView({behavior:"smooth",block:"center"});
+      return;
+    }
     const percent = Math.round((score/total)*100);
-    const passThreshold = 70;
-    const passed = percent >= passThreshold;
+    const passed = percent >= MASTERY_PERCENT;
     const msg = "You scored "+score+"/"+total+" ("+percent+"%). "
       +(passed ? "Pass threshold reached." : "You can review and try again.");
     scoreBox.innerHTML = "<span>"+msg+"</span>";
 
     if(weekKey === "final"){
-      progress.final = {score:score,total:total,passed:passed,date:new Date().toISOString()};
+      const previous=progress.final;
+      if(!previous||score>=previous.score) progress.final={score,total,passed,date:new Date().toISOString()};
     }else{
-      if(!progress.weeks[weekKey]) progress.weeks[weekKey] = {};
-      progress.weeks[weekKey].score = score;
-      progress.weeks[weekKey].total = total;
-      progress.weeks[weekKey].passed = passed;
-      progress.weeks[weekKey].date = new Date().toISOString();
+      const previous=progress.weeks[weekKey];
+      if(!previous||score>=previous.score) progress.weeks[weekKey]={score,total,passed,date:new Date().toISOString()};
     }
     saveProgress();
     updateSidebarStatus();
@@ -1890,6 +1936,9 @@
     const certTab = $("certTab");
     if(progress.final && progress.final.passed){
       certTab.classList.remove("disabled");
+      certTab.setAttribute("aria-disabled","false");
+    }else{
+      certTab.classList.add("disabled");certTab.setAttribute("aria-disabled","true");
     }
   }
 
@@ -1904,7 +1953,7 @@
     }else if(nameInput.value.trim()){
       nameDisplay.textContent = nameInput.value.trim();
     }
-    const now = new Date();
+    const now = progress.final?.date?new Date(progress.final.date):new Date();
     const dateStr = now.toLocaleDateString(undefined,{
       year:"numeric",month:"long",day:"numeric"
     });
@@ -1915,37 +1964,61 @@
       progress.certificateName = v;
       saveProgress();
     };
-    $("printBtn").onclick = ()=> window.print();
+    $("printBtn").onclick = ()=>{
+      if(!nameInput.value.trim()){nameInput.focus();alert("Please enter the learner's name before printing the certificate.");return;}
+      window.print();
+    };
   }
 
   function initNav(){
     qsa(".week-item").forEach(li=>{
+      li.setAttribute("role","button");li.tabIndex=0;
       li.addEventListener("click",()=>{
         const wk = li.dataset.week;
         setActiveWeek(wk);
       });
+      li.addEventListener("keydown",event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();setActiveWeek(li.dataset.week);}});
     });
+    $("finalNav").setAttribute("role","button");$("finalNav").tabIndex=0;
     $("finalNav").addEventListener("click",()=>{
       setActiveWeek("final");
     });
-    qsa(".tab-btn").forEach(btn=>{
+    $("finalNav").addEventListener("keydown",event=>{if(event.key==="Enter"||event.key===" "){event.preventDefault();setActiveWeek("final");}});
+    const tabs=qsa(".tab-btn");qs(".tabs").setAttribute("role","tablist");
+    tabs.forEach((btn,index)=>{
+      btn.setAttribute("role","tab");btn.setAttribute("aria-selected",btn.classList.contains("active")?"true":"false");
       btn.addEventListener("click",()=>{
         const tab = btn.dataset.tab;
         if(btn.classList.contains("disabled")) return;
         switchTab(tab);
       });
+      btn.addEventListener("keydown",event=>{
+        if(!["ArrowLeft","ArrowRight","Home","End"].includes(event.key)) return;event.preventDefault();let next=index;
+        if(event.key==="ArrowRight")next=(index+1)%tabs.length;if(event.key==="ArrowLeft")next=(index-1+tabs.length)%tabs.length;if(event.key==="Home")next=0;if(event.key==="End")next=tabs.length-1;
+        while(tabs[next].classList.contains("disabled")&&next!==index)next=event.key==="ArrowLeft"?(next-1+tabs.length)%tabs.length:(next+1)%tabs.length;
+        tabs[next].focus();
+      });
+    });
+    $("exportProgressBtn").addEventListener("click",()=>{
+      const payload={app:"Noor Pathway — Qur’an Deepening",classification:"Faith Studies Elective",masteryPercent:MASTERY_PERCENT,exportedAt:new Date().toISOString(),progress};
+      const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),link=document.createElement("a");link.href=URL.createObjectURL(blob);link.download="noor-quran-deepening-progress.json";link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000);
+    });
+    $("resetProgressBtn").addEventListener("click",()=>{
+      if(!confirm("Reset all Qur’an Deepening scores and certificate information on this device? This cannot be undone."))return;
+      try{localStorage.removeItem(STORAGE_KEY);localStorage.removeItem(LEGACY_STORAGE_KEY);localStorage.removeItem("noorQuranDeepening.v2.currentWeek");}catch(error){}
+      location.reload();
     });
   }
 
   function init(){
     initNav();
     updateSidebarStatus();
-    setActiveWeek(state.currentWeek);
+    let savedWeek="week1";try{savedWeek=localStorage.getItem("noorQuranDeepening.v2.currentWeek")||"week1";}catch(error){}
+    if(savedWeek==="final"&&!allWeeksMastered())savedWeek="week1";setActiveWeek(savedWeek);
   }
 
   document.addEventListener("DOMContentLoaded", init);
 })();
 </script>
-<script src="/assets/vnv-beta-link.js" defer></script>
 </body>
 </html>
