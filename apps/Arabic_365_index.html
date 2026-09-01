@@ -3,9 +3,8 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Temple of Letters™ — NoorAI Darib (Full Edition)</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Scheherazade+New:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Temple of Letters™ — Arabic Course with NoorAI Darib</title>
+<meta name="description" content="A private, browser-based Arabic learning course with optional Qur’an study and symbolic number enrichment.">
 
 <style>
   /* === Global Sacred Palette === */
@@ -39,6 +38,33 @@
   }
 
   *{box-sizing:border-box;}
+
+  html{scroll-behavior:smooth;}
+
+  button,input,select,canvas{font:inherit;}
+  button:focus-visible,input:focus-visible,select:focus-visible,canvas:focus-visible{
+    outline:3px solid #fff3bf;
+    outline-offset:3px;
+  }
+
+  .skip-link{
+    position:fixed;left:12px;top:-60px;z-index:10000;
+    padding:10px 14px;border-radius:7px;background:#fffdf5;color:#0b1020;
+  }
+  .skip-link:focus{top:12px;}
+
+  .course-note{
+    max-width:820px;margin:0 auto 24px;padding:12px 14px;
+    border:1px solid rgba(217,184,120,.55);border-radius:7px;
+    color:var(--ink-soft);font-size:13px;line-height:1.65;
+    background:rgba(8,11,22,.72);
+  }
+
+  .progress-strip{
+    display:flex;flex-wrap:wrap;justify-content:center;gap:8px;
+    margin:0 auto 22px;font-size:12px;color:var(--ink-soft);
+  }
+  .progress-strip span{padding:5px 10px;border:1px solid rgba(217,184,120,.45);border-radius:7px;}
 
   body{
     margin:0;
@@ -749,18 +775,35 @@
 </style>
 </head>
 <body>
+<a class="skip-link" href="#courseMain">Skip to course</a>
 <div class="container">
+  <header>
   <h1>Temple of Letters™</h1>
   <p class="guide-tag">
-    Guided by <span>NoorAI Darib</span> — Qur’an · Arabic · Number Sanctuary.
+    Guided by <span>NoorAI Darib</span> — Arabic · Optional Qur’an Study · Number Sanctuary
   </p>
+  <p class="course-note">
+    This is an Arabic-learning course. The Qur’an chambers are optional study companions.
+    English verse text is an instructional paraphrase, not a certified translation. Numerology
+    Quest preserves this app’s symbolic lore as reflective enrichment; it is not Arabic vocabulary,
+    mathematics, or Qur’anic doctrine.
+  </p>
+  <div class="progress-strip" aria-label="Saved course progress">
+    <span id="savedDay">Saved day: 1</span>
+    <span id="quizRecord">Quiz: 0 correct · 0 attempted</span>
+    <span id="lastChamber">Last chamber: Alphabet</span>
+  </div>
+  </header>
+
+  <main id="courseMain">
 
   <!-- === 365-DAY CURRICULUM PANEL === -->
   <div class="section planner-section">
-    <h2>365-Day Pathway</h2>
+    <h2>365-Day Guided Pathway</h2>
     <p class="planner-sub">
-      Move the slider to see today’s focus. Each stage weaves Qur’an recitation, Arabic roots,
-      gentle grammar, and reflection. You can slow down, repeat weeks, or pause whenever your heart needs.
+      Move the slider to see the focus assigned to that point in the pathway. This is a pacing map,
+      not 365 separately authored lessons. Arabic study remains central; optional Qur’an work appears
+      alongside roots, grammar, and reflection.
     </p>
 
     <div class="planner-control-row">
@@ -783,14 +826,15 @@
       <button data-chamber="sentence">Sentence Forge</button>
       <button data-chamber="tracing">Tracing Tablet Room</button>
       <button data-chamber="quiz">Ritual Quizzes</button>
-      <button data-chamber="quran">Qur’an Reading Circle</button>
-      <button data-chamber="rootlab">Qur’anic Root Lab</button>
+      <button data-chamber="quran">Optional Qur’an Reading Circle</button>
+      <button data-chamber="rootlab">Optional Qur’anic Root Lab</button>
       <button data-chamber="numQuest">Numerology Quest</button>
       <button data-chamber="memoryPath">Memory Path</button>
       <button data-chamber="numberSanctuary">Number Sanctuary</button>
     </div>
     <div id="appSection" class="section"></div>
   </div>
+  </main>
 </div>
 
 <script>
@@ -1047,7 +1091,7 @@ const studyStages = [
     id:9,
     name:'Stage 9 — Reflection & Teaching Back',
     weeksStart:49,
-    weeksEnd:52,
+    weeksEnd:53,
     quranFocus:[
       'Student-chosen sūrahs to revisit',
       'Passages tied to personal themes'
@@ -1073,7 +1117,7 @@ const appSection = document.getElementById('appSection');
 
 /* Alphabet info */
 const alphabetInfo = [
-  {ch:'ا', name:'alif',   keyword:'Opening, beginning, “A” sound.'},
+  {ch:'ا', name:'alif',   keyword:'Supports hamzah and can mark the long ā vowel.'},
   {ch:'ب', name:'bā’',   keyword:'House (bayt), door (bāb).'},
   {ch:'ت', name:'tā’',   keyword:'Soft “t” as in “two”.'},
   {ch:'ث', name:'thā’',  keyword:'“Th” as in “three”.'},
@@ -1160,7 +1204,7 @@ let rootDataset = [
     ],
     ayahs:[
       {ref:'2:2',text:'ذَٰلِكَ الْكِتَابُ لَا رَيْبَ ۛ فِيهِ'},
-      {ref:'96:4',text:'الَّذِي عَلَّمَ بِالْقَلَمِ'}
+      {ref:'2:282',text:'يَا أَيُّهَا الَّذِينَ آمَنُوا إِذَا تَدَايَنتُم بِدَيْنٍ إِلَىٰ أَجَلٍ مُّسَمًّى فَاكْتُبُوهُ'}
     ]
   },
   {
@@ -1203,22 +1247,64 @@ const forgeSubjects = [
   {ar:'هي',   tr:'hiya',   en:'she'}
 ];
 
+/* Each verb carries a real present-tense form for every available pronoun.
+   This prevents the old forge from pairing أنا-only verbs with نحن/هو/هي. */
 const forgeVerbs = [
-  {ar:'أُحِبُّ',    tr:'uḥibbu',   en:'love'},
-  {ar:'أَذْكُرُ',   tr:'adhkuru',  en:'remember'},
-  {ar:'أَدْرُسُ',   tr:'adrusu',   en:'study'},
-  {ar:'أُسَبِّحُ',  tr:'usabbiḥu', en:'glorify'}
+  {en:'study',en3:'studies', forms:[
+    {ar:'أَدْرُسُ',tr:'adrusu'},{ar:'نَدْرُسُ',tr:'nadrusu'},
+    {ar:'يَدْرُسُ',tr:'yadrusu'},{ar:'تَدْرُسُ',tr:'tadrusu'}
+  ]},
+  {en:'read',en3:'reads', forms:[
+    {ar:'أَقْرَأُ',tr:'aqraʾu'},{ar:'نَقْرَأُ',tr:'naqraʾu'},
+    {ar:'يَقْرَأُ',tr:'yaqraʾu'},{ar:'تَقْرَأُ',tr:'taqraʾu'}
+  ]},
+  {en:'write',en3:'writes', forms:[
+    {ar:'أَكْتُبُ',tr:'aktubu'},{ar:'نَكْتُبُ',tr:'naktubu'},
+    {ar:'يَكْتُبُ',tr:'yaktubu'},{ar:'تَكْتُبُ',tr:'taktubu'}
+  ]},
+  {en:'understand',en3:'understands', forms:[
+    {ar:'أَفْهَمُ',tr:'afhamu'},{ar:'نَفْهَمُ',tr:'nafhamu'},
+    {ar:'يَفْهَمُ',tr:'yafhamu'},{ar:'تَفْهَمُ',tr:'tafhamu'}
+  ]}
 ];
 
 const forgeObjects = [
-  {ar:'اللّٰهَ',   tr:'allāha',    en:'Allah'},
-  {ar:'القُرْآنَ', tr:'al-qurʾāna',en:'the Qur’an'},
-  {ar:'العِلْمَ',  tr:'al-ʿilma',  en:'knowledge'},
-  {ar:'الصَّلاةَ', tr:'aṣ-ṣalāta', en:'the prayer'}
+  {ar:'العَرَبِيَّةَ',tr:'al-ʿarabiyyata',en:'Arabic'},
+  {ar:'الدَّرْسَ',tr:'ad-darsa',en:'the lesson'},
+  {ar:'الكِتَابَ',tr:'al-kitāba',en:'the book'},
+  {ar:'النَّصَّ',tr:'an-naṣṣa',en:'the text'}
 ];
 
 /* Arabic numeral helpers */
 const arabicDigits = ['٠','١','٢','٣','٤','٥','٦','٧','٨','٩'];
+
+const STORAGE_KEY = 'templeOfLetters.v2';
+const defaultProgress = {day:1,lastChamber:'alphabet',quizCorrect:0,quizAttempts:0};
+let progress = {...defaultProgress};
+try{
+  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+  progress = {...defaultProgress,...saved};
+}catch(error){
+  progress = {...defaultProgress};
+}
+
+function saveProgress(){
+  try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(progress)); }catch(error){}
+  renderProgress();
+}
+
+function renderProgress(){
+  const names = {
+    alphabet:'Alphabet',numbers:'Numbers',lexicon:'Lexicon',sentence:'Sentence Forge',
+    tracing:'Tracing',quiz:'Quiz',quran:'Optional Qur’an Circle',rootlab:'Optional Root Lab',
+    numQuest:'Numerology Quest',memoryPath:'Memory Path',numberSanctuary:'Number Sanctuary'
+  };
+  document.getElementById('savedDay').textContent = `Saved day: ${progress.day}`;
+  document.getElementById('quizRecord').textContent =
+    `Quiz: ${progress.quizCorrect} correct · ${progress.quizAttempts} attempted`;
+  document.getElementById('lastChamber').textContent =
+    `Last chamber: ${names[progress.lastChamber] || 'Alphabet'}`;
+}
 
 function toArabicNumber(n){
   const s = String(n);
@@ -1231,10 +1317,33 @@ function toArabicNumber(n){
 /* Speech helper */
 function speakArabic(text){
   if(!('speechSynthesis' in window)) return;
+  window.speechSynthesis.cancel();
   const u = new SpeechSynthesisUtterance(text);
   u.lang = 'ar-SA';
   u.rate = 0.9;
   window.speechSynthesis.speak(u);
+}
+
+function playChime(){
+  try{
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if(!AudioCtx) return;
+    const audio = new AudioCtx();
+    const gain = audio.createGain();
+    gain.gain.setValueAtTime(0.0001,audio.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.12,audio.currentTime+0.02);
+    gain.gain.exponentialRampToValueAtTime(0.0001,audio.currentTime+0.75);
+    gain.connect(audio.destination);
+    [523.25,659.25,783.99].forEach((frequency,i)=>{
+      const oscillator = audio.createOscillator();
+      oscillator.type = 'sine';
+      oscillator.frequency.value = frequency;
+      oscillator.connect(gain);
+      oscillator.start(audio.currentTime+i*0.06);
+      oscillator.stop(audio.currentTime+0.8);
+    });
+    setTimeout(()=>audio.close(),1000);
+  }catch(error){}
 }
 
 /* Simple confetti burst */
@@ -1318,13 +1427,15 @@ function stageForDay(day){
 }
 
 function updatePlan(day){
-  const d = Number(day)||1;
+  const d = Math.min(365,Math.max(1,Number(day)||1));
   const week = Math.ceil(d/7);
   const stage = stageForDay(d);
   const stageWeek = week - stage.weeksStart + 1;
   const dayOfWeek = ((d-1)%7)+1;
 
   dayNumber.textContent = d;
+  progress.day = d;
+  saveProgress();
 
   const listHtml = arr => arr.map(item=>`<li>${item}</li>`).join('');
 
@@ -1357,8 +1468,9 @@ function updatePlan(day){
   `;
 }
 
+daySlider.value = String(progress.day);
 daySlider.addEventListener('input', e => updatePlan(e.target.value));
-updatePlan(daySlider.value);
+updatePlan(progress.day);
 
 /* ==========================================================
    Chambers — Render Functions
@@ -1510,7 +1622,7 @@ function renderSentenceForge(){
   appSection.innerHTML = `
     <div class="inner-panel">
       <h2>Sentence Forge</h2>
-      <p>Choose who, what, and what they’re doing – then forge a simple Arabic sentence.</p>
+      <p>Choose a subject, verb, and object. The verb will agree with the selected pronoun.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:14px;">
         <div style="flex:1 1 160px;">
           <label>Who?</label>
@@ -1547,7 +1659,7 @@ function renderSentenceForge(){
   forgeVerbs.forEach((v,idx)=>{
     const opt = document.createElement('option');
     opt.value = idx;
-    opt.textContent = `${v.ar} — ${v.en}`;
+    opt.textContent = v.en;
     verbSel.appendChild(opt);
   });
 
@@ -1561,12 +1673,14 @@ function renderSentenceForge(){
 
   document.getElementById('forgeBuild').addEventListener('click', ()=>{
     const s = forgeSubjects[subjectSel.value];
-    const v = forgeVerbs[verbSel.value];
+    const verb = forgeVerbs[verbSel.value];
+    const v = verb.forms[Number(subjectSel.value)];
     const o = forgeObjects[objSel.value];
 
     const ar = `${s.ar} ${v.ar} ${o.ar}`;
     const tr = `${s.tr} ${v.tr} ${o.tr}`;
-    const en = `${s.en} ${v.en} ${o.en}.`;
+    const enVerb = s.en === 'he' || s.en === 'she' ? verb.en3 : verb.en;
+    const en = `${s.en} ${enVerb} ${o.en}.`;
 
     document.getElementById('forgeAr').textContent = ar;
     document.getElementById('forgeTr').textContent = tr;
@@ -1628,7 +1742,9 @@ function renderQuizRoom(){
         btn.addEventListener('click', ()=>{
           if(btn.dataset.done) return;
           btn.dataset.done = '1';
+          progress.quizAttempts++;
           if(item === correct){
+            progress.quizCorrect++;
             btn.classList.add('correct');
             fbEl.textContent = 'Beautiful. Trace the letter lightly in the air.';
             burstConfetti(20);
@@ -1637,6 +1753,7 @@ function renderQuizRoom(){
             btn.classList.add('wrong');
             fbEl.textContent = 'Not this one. Notice the shape and try again.';
           }
+          saveProgress();
         });
         optsEl.appendChild(btn);
       });
@@ -1652,7 +1769,9 @@ function renderQuizRoom(){
         btn.addEventListener('click', ()=>{
           if(btn.dataset.done) return;
           btn.dataset.done = '1';
+          progress.quizAttempts++;
           if(item === correct){
+            progress.quizCorrect++;
             btn.classList.add('correct');
             fbEl.textContent = 'Yes. Let this number settle into memory.';
             burstConfetti(20);
@@ -1661,6 +1780,7 @@ function renderQuizRoom(){
             btn.classList.add('wrong');
             fbEl.textContent = 'Not quite. Look carefully at each curve.';
           }
+          saveProgress();
         });
         optsEl.appendChild(btn);
       });
@@ -1676,7 +1796,8 @@ function renderQuranCircle(){
   appSection.innerHTML = `
     <div class="inner-panel">
       <h2>Qur’an Reading Circle</h2>
-      <p>Choose a short sūrah, then move line by line with Arabic, transliteration, and a gentle translation.</p>
+      <p>Optional study companion: choose a short sūrah, then move line by line with Arabic,
+      transliteration, and an instructional English paraphrase.</p>
       <div class="quran-layout">
         <div class="quran-surah-list" id="surahList"></div>
         <div class="quran-surah-detail" id="surahDetail"></div>
@@ -1827,7 +1948,6 @@ function renderNumerologyQuest(){
       <div class="noor-btn-wrap">
         <button id="noorNext" class="btn-pill">Next Question ▶</button>
       </div>
-      <audio id="noorChime" src="https://cdn.pixabay.com/download/audio/2023/03/02/audio_0d3db1c992.mp3?filename=celestial-chime-143163.mp3"></audio>
     </div>
   `;
 
@@ -1842,7 +1962,6 @@ function renderNumerologyQuest(){
   const title = document.getElementById('noorMeaningTitle');
   const text = document.getElementById('noorMeaningText');
   const scoreEl = document.getElementById('noorScoreVal');
-  const chime = document.getElementById('noorChime');
 
   function shuffle(arr){ return arr.slice().sort(()=>Math.random()-0.5); }
 
@@ -1866,7 +1985,7 @@ function renderNumerologyQuest(){
         cell.dataset.done = '1';
         if(opt === current){
           cell.classList.add('correct');
-          try{ chime.currentTime = 0; chime.play(); }catch(e){}
+          playChime();
           burstConfetti(27);
           box.style.display = 'block';
           title.textContent = `${current.name} (${current.num})`;
@@ -1913,8 +2032,10 @@ function renderMemoryPath(){
   const scoreSpan = document.getElementById('memoryScoreVal');
   const titles = ['Beginner','Apprentice','Adept','Scholar','Master','Sage','Ascendant'];
 
-  function gridSize(){ return level<3 ? 3 : level<5 ? 4 : 5; }
-  function revealTime(){ return 1500 - Math.min(level*200,900); }
+  /* Ten unique digits cannot fill the former 16/25-cell grids. Keep a complete,
+     unique 3×3 board and increase sequence difficulty instead. */
+  function gridSize(){ return 3; }
+  function flashStep(){ return Math.max(360,700-level*45); }
 
   function buildGrid(){
     grid.innerHTML = '';
@@ -1931,13 +2052,8 @@ function renderMemoryPath(){
       grid.appendChild(d);
     });
 
-    const targets = pool.sort(()=>Math.random()-0.5).slice(0,Math.min(3,level+1));
+    const targets = pool.slice().sort(()=>Math.random()-0.5).slice(0,Math.min(7,level+1));
     sequence = targets.map(t=>t.digit);
-
-    sequence.forEach(s=>{
-      const item = memoryDigits.find(n=>n.digit===s);
-      if(item) speakArabic(item.word);
-    });
 
     setTimeout(()=>revealSequence(),500);
   }
@@ -1945,6 +2061,7 @@ function renderMemoryPath(){
   function revealSequence(){
     const cells = [...document.querySelectorAll('.memory-cell')];
     let i = 0;
+    const step = flashStep();
     const interval = setInterval(()=>{
       if(i < sequence.length){
         const target = cells.find(c=>c.textContent===sequence[i]);
@@ -1956,12 +2073,12 @@ function renderMemoryPath(){
       }else{
         clearInterval(interval);
       }
-    },600);
+    },step);
 
     setTimeout(()=>{
       cells.forEach(c=>c.classList.add('hidden'));
       enableGuess();
-    }, revealTime());
+    }, (sequence.length+1)*step);
   }
 
   function enableGuess(){
@@ -1977,6 +2094,8 @@ function renderMemoryPath(){
           progress++;
           score += 5;
           scoreSpan.textContent = score;
+          const item = memoryDigits.find(n=>n.digit===expected);
+          if(item) speakArabic(item.word);
           if(progress === sequence.length){
             burstConfetti(25);
             setTimeout(buildGrid,900);
@@ -2004,7 +2123,10 @@ function renderNumberSanctuary(){
   appSection.innerHTML = `
     <div class="sanctuary-card">
       <h2>NoorAI Darib – Sovereign Number Sanctuary</h2>
-      <p>Gently trace, hear, and quiz yourself on the Arabic numerals 0–9. You can also switch to Western digits and explore their symbolic lore.</p>
+      <p>Gently trace, hear, and quiz yourself on the Arabic-Indic numerals ٠–٩.
+      You can switch to Western digits and preserve the app’s symbolic lore as optional enrichment.</p>
+      <p class="course-note" style="margin-top:10px;">Lore Mode is reflective symbolism—not Arabic vocabulary,
+      mathematics, or Qur’anic doctrine.</p>
       <div style="margin-top:10px;" id="sanctuaryDisplay">
         <span id="sanctuaryArabic" class="sanctuary-arabic">٠</span>
         <div id="sanctuaryEnglish" class="sanctuary-english">0</div>
@@ -2154,13 +2276,19 @@ function showChamber(name){
 document.querySelectorAll('.chamber-buttons button').forEach(btn=>{
   btn.addEventListener('click', ()=>{
     const chamber = btn.dataset.chamber;
+    progress.lastChamber = chamber;
+    saveProgress();
     showChamber(chamber);
   });
 });
 
 /* Default chamber on load */
-showChamber('alphabet');
+renderProgress();
+showChamber(progress.lastChamber);
 </script>
-<script src="/assets/vnv-beta-link.js" defer></script>
 </body>
 </html>
+index.html
+HTML
+README.md
+Document
