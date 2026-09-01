@@ -14,4 +14,4 @@ The Beta widget sends only the public hostname and pathname as source metadata. 
 
 ## Added in this run
 
-- `apps/faith/Arabic/Qur'an-Knowledge_index.html`
+- `apps/faith/Arabic/Quran_root_explorer_index.html`
