@@ -1,5 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="A curated gateway to Qur’an reading, listening, study, Arabic learning, historical context, and NoorAI resources.">
+<title>NoorAI Qur’an &amp; Knowledge Gateway</title>
 <!-- NoorAI Qur'an & Knowledge Gateway -->
 <style>
+  :root{
+    --midnight:#050713;--ink:#fffdf5;--ink-soft:#f0e9dc;
+    --gold:#d9b878;--gold-deep:#b89252;--accent:#e8d5a4;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;min-height:100vh;padding:18px;
+    background:radial-gradient(circle at top,#151a32 0%,#070a16 62%,#03040a 100%);
+    color:var(--ink);font-family:system-ui,-apple-system,'Segoe UI',sans-serif;
+  }
+  button,a{font:inherit;}
+  button:focus-visible,a:focus-visible{outline:3px solid #fff3bf;outline-offset:3px;}
+  .skip-link{position:fixed;left:12px;top:-60px;z-index:1000;padding:10px 14px;border-radius:7px;background:#fffdf5;color:#0b1020;}
+  .skip-link:focus{top:12px;}
   .noor-quran-gateway{
     margin:28px auto 40px;
     max-width:960px;
@@ -62,6 +83,8 @@
     transform:translateY(-1px);
   }
 
+  .noor-tab-btn:hover{border-color:rgba(217,184,120,.85);}
+
   .noor-quran-panels{
     margin-top:6px;
     border-radius:18px;
@@ -120,6 +143,7 @@
     text-decoration:none;
     border-bottom-style:solid;
   }
+  .noor-link-list a:visited{color:#c7a86d;}
 
   .noor-link-note{
     display:block;
@@ -136,13 +160,26 @@
     opacity:0.78;
   }
 
+  .noor-resource-notice{
+    margin:14px auto 0;padding:10px 12px;max-width:780px;border-radius:7px;
+    border:1px solid rgba(217,184,120,.38);background:rgba(5,8,18,.65);
+    color:var(--ink-soft);font-size:11px;line-height:1.65;text-align:center;
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important;}
+  }
+
   @media (max-width:720px){
     .noor-quran-gateway{padding:18px 12px 20px;}
     .noor-panel-grid{grid-template-columns:minmax(0,1fr);}
   }
 </style>
+</head>
+<body>
+<a class="skip-link" href="#noorQuranHub">Skip to gateway</a>
 
-<div class="noor-quran-gateway" id="noorQuranHub">
+<main class="noor-quran-gateway" id="noorQuranHub" tabindex="-1">
   <div class="noor-quran-head">
     <h2>NoorAI Qur'an Gateway</h2>
     <p>
@@ -151,6 +188,11 @@
       by a love of light (<span style="font-family:'Scheherazade New','Amiri',serif;">نُور</span>)
       and knowledge.
     </p>
+    <div class="noor-resource-notice">
+      External resources were reviewed on September 1, 2026. They have their own viewpoints,
+      privacy practices, accessibility, advertising, accounts, and availability. A listing is
+      not an endorsement of every interpretation or service offered by that site.
+    </div>
   </div>
 
   <div class="noor-quran-tabs" role="tablist" aria-label="NoorAI Qur'an Gateway Sections">
@@ -243,7 +285,7 @@
             <li>
               <a href="https://www.everyayah.com" target="_blank" rel="noopener noreferrer">EveryAyah.com</a>
               <span class="noor-link-note">
-                Stream or download sūrah-by-sūrah recitations with repeat and memorisation tools.
+                Ayah-level and page-level MP3 files, recitation archives, Qur’an text images, and timing resources.
               </span>
             </li>
           </ul>
@@ -279,11 +321,11 @@
           <div class="noor-link-group-title">Official Mushaf &amp; Translations</div>
           <ul class="noor-link-list">
             <li>
-              <a href="https://qurancomplex.gov.sa/en/techquran/" target="_blank" rel="noopener noreferrer">
+              <a href="https://qurancomplex.gov.sa/quran-hafs/" target="_blank" rel="noopener noreferrer">
                 King Fahd Qur’an Printing Complex
               </a>
               <span class="noor-link-note">
-                Official Mushaf in Arabic and many languages; high-quality PDF downloads.
+                Official Hafs-edition Mushaf publications and related digital resources.
               </span>
             </li>
             <li>
@@ -312,7 +354,7 @@
                 Tanzil Downloads
               </a>
               <span class="noor-link-note">
-                Plain-text and transliteration packages suitable for research and personal apps.
+                Qur’an text, translations, and metadata downloads with published reuse terms.
               </span>
             </li>
           </ul>
@@ -386,7 +428,7 @@
                 MadinahArabic.com
               </a>
               <span class="noor-link-note">
-                Interactive online lessons (reading, writing, vocabulary) based on Madinah textbooks.
+                Free Arabic materials plus optional paid one-to-one Arabic, Qur’an, and tajwīd lessons.
               </span>
             </li>
           </ul>
@@ -430,7 +472,7 @@
                 Islam – Beliefs, Practices, History (Britannica)
               </a>
               <span class="noor-link-note">
-                Neutral overview of core beliefs, practices, and historical development of Islam.
+                Encyclopedic overview of core beliefs, practices, and the historical development of Islam.
               </span>
             </li>
             <li>
@@ -448,15 +490,15 @@
           <div class="noor-link-group-title">Art, Culture &amp; Chronology</div>
           <ul class="noor-link-list">
             <li>
-              <a href="https://www.metmuseum.org/toah/hd/isla/hd_isla.htm" target="_blank" rel="noopener noreferrer">
-                The Art of the Islamic World – Timeline (The Met)
+              <a href="https://www.metmuseum.org/essays/the-birth-of-islam" target="_blank" rel="noopener noreferrer">
+                The Birth of Islam (The Met)
               </a>
               <span class="noor-link-note">
-                Visual timeline of Islamic dynasties, art, calligraphy, and sacred objects.
+                Museum essay connecting early Islamic history with Arabic script, calligraphy, architecture, and art.
               </span>
             </li>
             <li>
-              <a href="https://www.metmuseum.org/art/metpublications/titles-with-full-text-online/the-art-of-the-islamic-world-a-resource-for-educators"
+              <a href="https://www.metmuseum.org/met-publications/art-of-the-islamic-world-a-resource-for-educators"
                  target="_blank" rel="noopener noreferrer">
                 The Art of the Islamic World – Resource for Educators
               </a>
@@ -483,7 +525,7 @@
                 Main NoorAI Darib Page
               </a>
               <span class="noor-link-note">
-                Play the Arabic number games, memory path, numerology quest, and daily Qur’an widgets built just for Khaemenes Academy.
+                Open the Academy’s Darib space for its currently deployed Arabic and NoorAI learning experiences.
               </span>
             </li>
           </ul>
@@ -497,7 +539,7 @@
                 Workshop Darib Page
               </a>
               <span class="noor-link-note">
-                Explore the 6-week Qur’an study courses, advanced workshops, translators, and NoorAI learning sandboxes hosted on-site.
+                Open the Academy’s Workshop Darib space for its currently deployed classes and learning tools.
               </span>
             </li>
           </ul>
@@ -509,34 +551,71 @@
       </div>
     </div>
   </div>
-</div>
+</main>
 
 <script>
   (function(){
     const hub = document.getElementById('noorQuranHub');
     if(!hub) return;
-    const buttons = hub.querySelectorAll('.noor-tab-btn');
-    const panels = hub.querySelectorAll('.noor-panel');
+    const buttons = [...hub.querySelectorAll('.noor-tab-btn')];
+    const panels = [...hub.querySelectorAll('.noor-panel')];
 
-    function activate(tab){
+    buttons.forEach(btn=>{
+      const tab = btn.dataset.noorTab;
+      btn.id = `noor-tab-${tab}`;
+      btn.setAttribute('aria-controls',`noor-panel-${tab}`);
+    });
+    panels.forEach(panel=>{
+      const tab = panel.dataset.noorPanel;
+      panel.id = `noor-panel-${tab}`;
+      panel.setAttribute('aria-labelledby',`noor-tab-${tab}`);
+    });
+
+    hub.querySelectorAll('a[target="_blank"]').forEach(link=>{
+      link.referrerPolicy = 'no-referrer';
+      if(!link.getAttribute('aria-label')){
+        link.setAttribute('aria-label',`${link.textContent.trim()} (opens in a new tab)`);
+      }
+    });
+
+    function activate(tab,moveFocus=false){
+      if(!buttons.some(btn=>btn.dataset.noorTab===tab)) tab='read';
       buttons.forEach(btn=>{
         const isActive = btn.dataset.noorTab === tab;
         btn.classList.toggle('active', isActive);
         btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+        btn.tabIndex = isActive ? 0 : -1;
+        if(isActive && moveFocus) btn.focus();
       });
       panels.forEach(panel=>{
         const isActive = panel.dataset.noorPanel === tab;
         panel.classList.toggle('active', isActive);
         panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+        panel.hidden = !isActive;
       });
+      try{ localStorage.setItem('noorQuranGateway.lastTab',tab); }catch(error){}
     }
 
     buttons.forEach(btn=>{
       btn.addEventListener('click', ()=>activate(btn.dataset.noorTab));
+      btn.addEventListener('keydown',event=>{
+        const current = buttons.indexOf(btn);
+        let next = null;
+        if(event.key==='ArrowRight' || event.key==='ArrowDown') next=(current+1)%buttons.length;
+        if(event.key==='ArrowLeft' || event.key==='ArrowUp') next=(current-1+buttons.length)%buttons.length;
+        if(event.key==='Home') next=0;
+        if(event.key==='End') next=buttons.length-1;
+        if(next!==null){
+          event.preventDefault();
+          activate(buttons[next].dataset.noorTab,true);
+        }
+      });
     });
 
-    // default
-    activate('read');
+    let initial='read';
+    try{ initial=localStorage.getItem('noorQuranGateway.lastTab') || 'read'; }catch(error){}
+    activate(initial);
   })();
 </script>
-<script src="/assets/vnv-beta-link.js" defer></script>
+</body>
+</html>
