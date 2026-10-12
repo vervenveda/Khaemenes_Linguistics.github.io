@@ -299,8 +299,8 @@ Polyglot is created in support of free, creative, internationally minded learnin
 
 ## Academy Links
 
-- Khaemenes Academy: https://vervenveda.github.io/khaemenesacademy.github.io/
-- Verve N Veda: https://vervenveda.github.io/
+- Khaemenes Academy: https://vervenveda.com/Khaemenes_Academy.github.io/
+- Verve N Veda: https://vervenveda.com/
 
 For licensing, collaboration, or educational inquiries:
 
