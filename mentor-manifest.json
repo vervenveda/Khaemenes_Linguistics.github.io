@@ -113,41 +113,10 @@
       ]
     },
     {
-      "id": "arabic-365",
-      "title": "Arabic 365",
-      "description": "",
-      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/Arabic_365_index.html",
-      "audiences": [
-        "middle",
-        "high",
-        "higher-learning",
-        "adult"
-      ],
-      "roles": [
-        "student",
-        "parent",
-        "educator"
-      ],
-      "domains": [
-        "languages"
-      ],
-      "skills": [
-        "arabic",
-        "vocabulary"
-      ],
-      "tags": [
-        "arabic",
-        "daily-practice"
-      ],
-      "mentorEligible": true,
-      "minutes": 15,
-      "energy": "steady"
-    },
-    {
       "id": "arabic-daily",
       "title": "Arabic Daily",
       "description": "",
-      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/Arabic_daily_index.html",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/electives/Arabic/Daily-language/index.html",
       "audiences": [
         "middle",
         "high",
@@ -270,7 +239,7 @@
       "id": "quran-root-explorer",
       "title": "Arabic Qur'an Root Explorer",
       "description": "",
-      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/Arabic_Quran_root_explorer_index.html",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/faith/Arabic/Quran_root_explorer/index.html",
       "audiences": [
         "high",
         "higher-learning",
