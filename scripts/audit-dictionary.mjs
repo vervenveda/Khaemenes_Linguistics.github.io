@@ -77,6 +77,9 @@ if(!translator.includes('id="bilingualReadingStudio"')||!translator.includes('id
 if(!translator.includes("lookupOffline(from,to,line)"))fail("bilingual reader must use existing offline library");
 if(!translator.includes("No exact offline translation available for this line."))fail("reading missing-match notice");
 if(!translator.includes("target.replaceChildren()"))fail("reader must clear prior passage display");
+if(!translator.includes('id="readingLarger"')||!translator.includes('id="readingSmaller"'))fail("reader accessible text sizing controls");
+if(!translator.includes('id="readingSpeakSource"')||!translator.includes('id="readingSpeakTarget"')||!translator.includes('id="readingStopSpeech"'))fail("reader read-aloud controls");
+if(!translator.includes("synth.cancel()"))fail("reader stop-before-speak guard");
 if(!translator.includes('id="lexiconDraftForm"')||!translator.includes('id="thesaurusResults"'))fail("thesaurus/draft UI missing");
 if(!translator.includes("els.reviewText.dir=t.dir; els.reviewText.lang=t.code;"))fail("translation review editor target language / RTL direction");
 if(!translator.includes('id="status" class="status" role="status" aria-live="polite" aria-atomic="true" lang="en" dir="ltr"'))fail("accessible English status announcements");
