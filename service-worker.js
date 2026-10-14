@@ -1,7 +1,7 @@
 /* Polyglot — Khaemenes Academy Linguistics Hall
    Static-site service worker. Update CACHE_VERSION whenever core files change. */
 
-const CACHE_VERSION = 'polyglot-v1.3.0-reference';
+const CACHE_VERSION = 'polyglot-v1.4.0-review-gate';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
@@ -17,7 +17,8 @@ const APP_SHELL = [
   './assets/khaemenes-campus-phrases.js',
   './assets/sovereign-dictionary.generated.js',
   './assets/sovereign-dictionary-v1-errata.js',
-  './assets/khaemenes-interlingual-core.js'
+  './assets/khaemenes-interlingual-core.js',
+  './assets/khaemenes-review-policy.js'
 ];
 
 self.addEventListener('install', event => {
