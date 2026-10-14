@@ -1,7 +1,7 @@
 /* Polyglot — Khaemenes Academy Linguistics Hall
    Static-site service worker. Update CACHE_VERSION whenever core files change. */
 
-const CACHE_VERSION = 'polyglot-v1.0.0';
+const CACHE_VERSION = 'polyglot-v1.1.0-lang';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
@@ -11,7 +11,8 @@ const APP_SHELL = [
   './404.html',
   './offline.html',
   './manifest.webmanifest',
-  './register-service-worker.js'
+  './register-service-worker.js',
+  './assets/vnv-language.js'
 ];
 
 self.addEventListener('install', event => {
