@@ -202,6 +202,16 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 .dictionary-entry p{font-size:12px;margin:6px 0;overflow-wrap:anywhere}
 .dictionary-entry .dictionary-meta{color:var(--muted);font-size:11px}
 .dictionary-entry a{color:var(--teal);font-size:11px;text-decoration:underline;text-underline-offset:3px}
+.thesaurus-workspace{margin-top:20px;padding:16px;border:1px solid var(--line);border-radius:7px;background:var(--paper-bright)}
+.thesaurus-workspace h3{font:500 22px var(--serif);margin:0 0 5px;text-align:center}
+.thesaurus-workspace p{font-size:12px;line-height:1.65;color:var(--muted)}
+.thesaurus-controls{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:end;margin:13px 0}
+.thesaurus-controls .btn{white-space:normal}
+.thesaurus-relation{display:inline-block;margin:4px 0;color:var(--muted);font-size:11px}
+.thesaurus-workspace .related-terms{display:flex;gap:7px;flex-wrap:wrap;margin:9px 0}
+.thesaurus-workspace .related-terms button{border-radius:7px;background:var(--paper-deep);border:1px solid var(--line-strong);padding:8px;color:var(--ink);min-height:38px}
+.thesaurus-workspace .related-terms button:focus-visible{outline:2px solid var(--gold-dark);outline-offset:2px}
+@media(max-width:760px){.thesaurus-controls{grid-template-columns:1fr}}
 .dictionary-entry .dictionary-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:10px}
 .dictionary-entry .dictionary-actions button{min-height:36px}
 @media(max-width:760px){.dictionary-controls,.dictionary-results{grid-template-columns:1fr}}
@@ -239,7 +249,7 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 
 <main class="shell">
   <section class="hero">
-    <div class="eyebrow">Sovereign Interlingual Tool · v2.4</div>
+    <div class="eyebrow">Sovereign Interlingual Tool · v2.5</div>
     <h1>Multilingual Translator</h1>
     <p>
       Translate privately from your local library, study language relationships, or compare literary meaning across languages.
@@ -362,6 +372,18 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
       <label class="dictionary-creative-toggle"><input id="dictionaryCreative" type="checkbox"> Include Storybird creative words (no definitions)</label>
       <p id="dictionaryStats" class="dictionary-hint" role="status">Loading local dictionary…</p>
       <div id="dictionaryResults" class="dictionary-results" aria-live="polite"></div>
+      <div class="thesaurus-workspace" aria-labelledby="thesaurusTitle">
+        <h3 id="thesaurusTitle">Sovereign Thesaurus · Related Words</h3>
+        <p>Explore source-listed synonyms and related expressions. A reverse reference is shown separately; neither is guaranteed to have exactly the same meaning in every sentence.</p>
+        <div class="thesaurus-controls">
+          <div class="field"><label for="thesaurusQuery">Find related terms</label>
+            <input id="thesaurusQuery" type="search" placeholder="Try palimpsest, zeugma, or disdain…" autocomplete="off"></div>
+          <button class="btn gold" type="button" id="thesaurusSearchBtn">Find Related Words</button>
+          <button class="btn ghost" type="button" id="thesaurusExportBtn">Export Search</button>
+        </div>
+        <p id="thesaurusStatus" class="dictionary-hint" role="status"></p>
+        <div id="thesaurusResults" class="dictionary-results" aria-live="polite"></div>
+      </div>
       <p class="dictionary-hint">Educational source material requires editorial review. An ARSHIF cultural definition is context-specific and does not authorize unrestricted reuse of community knowledge. Bilingual examples are drafts, not certified translations.</p>
     </section>
   </section>
@@ -397,12 +419,13 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 
 <script src="../assets/khaemenes-campus-phrases.js"></script>
 <script src="../assets/sovereign-dictionary.generated.js"></script>
+<script src="../assets/sovereign-dictionary-v1-errata.js"></script>
 <script src="../assets/khaemenes-interlingual-core.js"></script>
 <script>
 (() => {
 "use strict";
 
-const VERSION = "2.4";
+const VERSION = "2.5";
 const LS_LIBRARY = "khaemenes_interlingual_library_v2";
 const LS_CACHE = "khaemenes_interlingual_cache_v2";
 const LS_PREFS = "khaemenes_interlingual_prefs_v2";
@@ -1010,6 +1033,47 @@ $("copyBtn").addEventListener("click",copyTranslation);
 $("clearBtn").addEventListener("click",clearWorkspace);
 $("exportBtn").addEventListener("click",exportLibrary);
 
+function thesaurusLookup(){
+ const api=window.KhaemenesSovereignTranslate;
+ const container=$("thesaurusResults"),message=$("thesaurusStatus");
+ container.replaceChildren();
+ const term=$("thesaurusQuery").value.trim();
+ if(!term){message.textContent="Enter a word to find existing source-listed relationships.";return}
+ const info=api?.lookupThesaurus?.(term,{limit:35});
+ if(!info){message.textContent="Offline thesaurus is unavailable.";return}
+ if(!info.related.length){message.textContent="No source-listed related terms for this exact word yet. No suggestions have been invented.";return}
+ message.textContent=info.related.length+" source-backed related expressions found. Verify meaning, context and register before substitution.";
+ for(const rel of info.related){
+  const card=document.createElement("article");card.className="dictionary-entry";
+  dictionaryCell(card,"h3",rel.term);
+  dictionaryCell(card,"span",rel.direct?"Listed with this headword":"Reverse reference to this headword","thesaurus-relation");
+  for(const ref of rel.sourceRecords){
+   const p=document.createElement("p");p.className="dictionary-meta";
+   p.textContent="Recorded under: "+ref.term+(ref.partOfSpeech?" · "+ref.partOfSpeech:"");
+   card.append(p);
+   if(ref.source?.repository&&ref.source.path){
+    const a=document.createElement("a");a.target="_blank";a.rel="noopener noreferrer";
+    a.href="https://github.com/"+ref.source.repository+"/blob/"+encodeURIComponent(ref.source.sha||"main")+"/"+ref.source.path.split("/").map(encodeURIComponent).join("/");
+    a.textContent="Source reference";card.append(a);
+   }
+  }
+  const actions=document.createElement("div");actions.className="dictionary-actions";
+  const show=document.createElement("button");show.type="button";show.className="btn ghost";show.textContent="Look up definition";
+  show.addEventListener("click",()=>{$("dictionaryQuery").value=rel.term;dictionaryLookup();$("dictionaryQuery").focus()});
+  actions.append(show);card.append(actions);container.append(card);
+ }
+}
+function exportThesaurusSearch(){
+ const api=window.KhaemenesSovereignTranslate,term=$("thesaurusQuery").value.trim();
+ if(!term){$("thesaurusStatus").textContent="Search for a word first.";return}
+ const info=api?.lookupThesaurus?.(term,{limit:75});
+ if(!info)return;
+ const payload={schema:"khaemenes-thesaurus-search",version:1,exportedAt:new Date().toISOString(),
+  notice:"Unreviewed, source-listed related expressions; not a complete thesaurus or certified synonym set.",...info};
+ const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),link=document.createElement("a");
+ link.href=url;link.download="sovereign-thesaurus-search.json";document.body.append(link);link.click();link.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1200);
+}
 function populateDictionary(){
  const api=window.KhaemenesSovereignTranslate;
  const stats=api?.dictionaryStats?.();
@@ -1076,6 +1140,12 @@ $("exportCampusBtn").addEventListener("click",()=>{
   setStatus("Campus draft phrase pack exported. Review imported drafts before trusting them.","good");
 });
 populateDictionary();
+const thesaurusInfo=window.KhaemenesSovereignTranslate?.thesaurusStats?.();
+if(thesaurusInfo)$("thesaurusStatus").textContent=thesaurusInfo.sourceListedLinks+" source-listed relationships across "+thesaurusInfo.entriesWithRelatedTerms+" headword records; no automatically invented links.";
+$("thesaurusSearchBtn").addEventListener("click",thesaurusLookup);
+$("thesaurusQuery").addEventListener("input",thesaurusLookup);
+$("thesaurusQuery").addEventListener("keydown",event=>{if(event.key==="Enter"){event.preventDefault();thesaurusLookup()}});
+$("thesaurusExportBtn").addEventListener("click",exportThesaurusSearch);
 $("dictionarySearchBtn").addEventListener("click",dictionaryLookup);
 $("dictionaryQuery").addEventListener("input",dictionaryLookup);
 $("dictionaryDomain").addEventListener("change",dictionaryLookup);
