@@ -18,12 +18,28 @@ const testCode=String.raw`
   try{
    const api=window.KhaemenesSovereignTranslate;
    checks.engine=!!api;
-   checks.version=window.KhaemenesInterlingual?.version==="2.6";
+   checks.version=window.KhaemenesInterlingual?.version==="2.7";
    checks.content=api?.dictionaryStats?.().allRecords===434&&api?.dictionaryStats?.().creativeVocabulary===553;
    checks.definitions=api.lookupDefinition("alliteration").length>0;
    checks.synonyms=api.lookupThesaurus("zeugma").related.some(x=>x.direct);
    checks.reverse=api.lookupLocal({from:"fr",to:"en",text:"chat"})?.translation==="cat";
    checks.ui=!!document.getElementById("thesaurusResults")&&!!document.getElementById("draftResults");
+   const reviewPolicy=window.KhaemenesReviewPolicy;
+   checks.reviewPolicy=!!reviewPolicy&&reviewPolicy.reviewedRecord({translation:"test",reviewConfirmed:false})===null;
+   checks.reviewControls=!!document.getElementById("reviewText")&&!!document.getElementById("reviewAttestation")&&!!document.getElementById("trustImportedReviewed");
+   checks.uncheckedRejected=window.KhaemenesInterlingual.saveVerifiedPair({from:"en",to:"es",source:"smoke",translation:"prueba"}).ok===false;
+   const sourceInput=document.getElementById("input"),targetSelect=document.getElementById("langTo");
+   document.getElementById("langFrom").value="en";targetSelect.value="es";
+   document.getElementById("serviceMode").value="offline";
+   sourceInput.value="cat";
+   document.getElementById("translateBtn").click();
+   checks.draftReviewText=document.getElementById("reviewText").value==="gato";
+   checks.draftUnchecked=document.getElementById("reviewAttestation").checked===false;
+   document.getElementById("reviewAttestation").checked=true;
+   document.getElementById("saveBtn").click();
+   const saved=api.lookupLocal({from:"en",to:"es",text:"cat"});
+   checks.reviewedSaved=saved?.reviewStatus==="self-reviewed"&&saved?.verified===true;
+
    document.getElementById("dictionaryQuery").value="alliteration";
    document.getElementById("dictionarySearchBtn").click();
    checks.dictionaryResults=document.getElementById("dictionaryResults").children.length>0;
@@ -40,6 +56,14 @@ const testCode=String.raw`
    checks.draftRendered=document.getElementById("draftResults").textContent.includes(term);
    checks.draftRelated=api.lookupThesaurus(term).related.some(x=>x.term==="practice");
    if(record)api.removeLocalEntry(record.id);
+   // Remove the temporary trusted test pair from the headless test browser.
+   try{
+    const key=window.KhaemenesSovereignTranslate.storageKey;
+    const library=JSON.parse(localStorage.getItem(key)||"{}");
+    if(library.pairs?.["en→es"])delete library.pairs["en→es"].cat;
+    localStorage.setItem(key,JSON.stringify(library));
+   }catch{}
+
    document.body.dataset.translatorSmoke=Object.values(checks).every(Boolean)?"PASS":"FAIL";
    document.body.dataset.translatorDetails=JSON.stringify(checks);
   }catch(e){document.body.dataset.translatorSmoke="FAIL";document.body.dataset.translatorDetails=String(e.message)}
@@ -86,4 +110,4 @@ const details=page.match(/data-translator-details="([^"]+)"/);
 if(result.error||result.status!==0||marker?.[1]!=="PASS"){
  console.error("BROWSER_TRANSLATOR=FAIL",{status:result.status,result:marker?.[1],details:details?.[1],error:result.error?.message,stderr:(result.stderr||"").slice(-1200)});
  process.exitCode=1;
-}else console.log("BROWSER_TRANSLATOR=PASS; definitions, thesaurus, local drafts, bilingual reverse translation and UI");
+}else console.log("BROWSER_TRANSLATOR=PASS; definitions, thesaurus, drafts, explicit review, safe save, bilingual reverse");
