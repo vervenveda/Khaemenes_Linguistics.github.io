@@ -370,6 +370,16 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
       </div>
       <div id="readingWordResults" class="dictionary-results" aria-live="polite" aria-label="Reading vocabulary results"></div>
 
+      <div class="field" aria-label="Handwriting Lab companion">
+        <h3>Write What You Learn · PROSE Handwriting Lab</h3>
+        <p>Choose a vocabulary word above, then copy it and open our existing handwriting workspace. Paste it into the Lab's Custom word field for handwriting practice. Latin-script stroke guidance is currently the most developed; other scripts need independent review.</p>
+        <div class="actions">
+          <button class="btn secondary" id="readingCopyForHandwriting" type="button">Copy Practice Word</button>
+          <a class="btn ghost" id="readingOpenHandwriting" href="https://vervenveda.github.io/proresource_hub.github.io/Protools/PROSE/Handwriting%20Lab/handwriting-lab.html" target="_blank" rel="noopener noreferrer">Open PROSE Handwriting Lab ↗</a>
+        </div>
+        <p class="dictionary-hint" id="readingHandwritingStatus" role="status" aria-live="polite">No information is sent automatically to the handwriting application.</p>
+      </div>
+
     </section>
 
     <div id="literaryPanel" class="literary-panel" hidden>
@@ -1431,6 +1441,19 @@ function lookupReadingWord(){
   area.append(card);
  }
 }
+$("readingCopyForHandwriting").addEventListener("click",async()=>{
+ const value=$("readingWord").value.trim();
+ const status=$("readingHandwritingStatus");
+ if(!value){status.textContent="Choose a vocabulary word first.";return}
+ if(!els.input.value.toLocaleLowerCase().includes(value.toLocaleLowerCase())){status.textContent="Choose a word or phrase from the source passage.";return}
+ try{
+  await navigator.clipboard.writeText(value);
+  status.textContent="Practice word copied. Open the Handwriting Lab and paste it into Custom word.";
+ }catch{
+  status.textContent="Clipboard permission unavailable. Select the word manually, then copy and paste it into the Handwriting Lab.";
+  $("readingWord").focus();$("readingWord").select();
+ }
+});
 $("readingLookup").addEventListener("click",lookupReadingWord);
 $("readingWord").addEventListener("keydown",event=>{if(event.key==="Enter"){event.preventDefault();lookupReadingWord()}});
 $("readingRefresh").addEventListener("click",renderReadingStudio);
