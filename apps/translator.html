@@ -353,6 +353,13 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
       <p class="dictionary-hint">Reading aloud uses voices available in your browser or device. Voice availability and whether synthesis is processed locally depend on the device; this feature does not call a translation service.</p>
       <p id="readingStatus" class="dictionary-hint" role="status" aria-live="polite">Enter a source passage, then compare its available translations.</p>
       <div id="readingPairs" class="compare-grid" aria-label="Bilingual passage comparison"></div>
+      <div class="field">
+        <label for="readingWord">Explore vocabulary from the passage</label>
+        <input id="readingWord" type="search" maxlength="100" placeholder="Enter a word or short phrase" autocomplete="off">
+        <button class="btn secondary" id="readingLookup" type="button">Look Up Meaning</button>
+      </div>
+      <div id="readingWordResults" class="dictionary-results" aria-live="polite" aria-label="Reading vocabulary results"></div>
+
     </section>
 
     <div id="literaryPanel" class="literary-panel" hidden>
@@ -1375,6 +1382,33 @@ function renderReadingStudio(){
  }
  status.textContent=matched+" of "+lines.length+" source lines have exact offline matches; "+reviewed+" marked verified. No missing translations were generated.";
 }
+function lookupReadingWord(){
+ const area=$("readingWordResults");area.replaceChildren();
+ const word=$("readingWord").value.trim();
+ if(!word){dictionaryCell(area,"p","Enter a word or short phrase from the reading.");return}
+ const passage=els.input.value.toLocaleLowerCase();
+ const escaped=word.replace(/[.*+?^${}()|[\]\\]/g,"\\$("readingRefresh").addEventListener("click",renderReadingStudio);");
+ const expression=new RegExp("(^|[^\\p{L}\\p{N}])"+escaped+"(?=$|[^\\p{L}\\p{N}])","iu");
+ if(!expression.test(passage)){dictionaryCell(area,"p","This expression is not in the current source passage.");return}
+ const api=window.KhaemenesSovereignTranslate;
+ if(!api?.searchDictionary){dictionaryCell(area,"p","Sovereign dictionary unavailable.");return}
+ const results=api.searchDictionary(word,{limit:8,includeCreative:false})||[];
+ const matches=results.filter(e=>String(e.term||"").toLocaleLowerCase()===word.toLocaleLowerCase()&&e.id);
+ if(!matches.length){dictionaryCell(area,"p","No exact source-backed definition found. No meaning was generated.");return}
+ for(const e of matches){
+  const card=document.createElement("article");card.className="dictionary-entry";
+  dictionaryCell(card,"h3",e.term);
+  dictionaryCell(card,"p",e.definition||"This entry has no supplied definition.");
+  dictionaryCell(card,"p",e.simpleDefinition?"In simpler words: "+e.simpleDefinition:null);
+  dictionaryCell(card,"p",e.partOfSpeech?"Part of speech: "+e.partOfSpeech:null);
+  dictionaryCell(card,"p",e.example?"Recorded example: "+e.example:null);
+  const t=e.translations?.[els.to.value];
+  dictionaryCell(card,"p",t?"Source-listed vocabulary translation: "+t:"No listed translation for the selected language.");
+  area.append(card);
+ }
+}
+$("readingLookup").addEventListener("click",lookupReadingWord);
+$("readingWord").addEventListener("keydown",event=>{if(event.key==="Enter"){event.preventDefault();lookupReadingWord()}});
 $("readingRefresh").addEventListener("click",renderReadingStudio);
 els.from.addEventListener("change",renderReadingStudio);
 els.to.addEventListener("change",renderReadingStudio);
