@@ -59,7 +59,10 @@ check(french.includes("score>=8"),"French 101 final must require 8/10");
 check(!french.includes("onclick=\"speakFR("),"French vocabulary must not use inline speaking handlers");
 check(home.includes('src="./assets/vnv-language.js"'),"Homepage must load multilingual interface");
 check(home.includes('href="https://vervenveda.com/Khaemenes_Academy.github.io/"'),"Homepage must link back to Academy");
-check(language.includes('const CODES=["en","es","fr","ar","zh","de","ru"]'),"Seven expected UI languages must be supported");
+check(language.includes('const CODES=["en","es","fr","ar","zh","de","ru","pt","hi","ja","ko","it","bn"]'),"Thirteen expected UI languages must be supported");
+check(language.includes("function coverage()"),"Missing translation coverage report");
+check(language.includes("function completeMissingTranslations()"),"Missing optional complete-text translation controls");
+check(language.includes("window.confirm("),"Online translation must require explicit confirmation");
 check(language.includes('const POLYGLOT_ROWS='),"Missing dedicated Polyglot translations");
 const sw=read("service-worker.js");
 check(sw.includes("'./assets/vnv-language.js'"),"Multilingual module missing from PWA shell");
@@ -74,5 +77,5 @@ if(errors.length){
  console.error("LINGUISTICS_INTEGRITY=FAIL\n"+errors.map(e=>" - "+e).join("\n"));
  process.exitCode=1;
 }else{
- console.log("LINGUISTICS_INTEGRITY=PASS; apps=30, formal=5x11, atlas=206, foundations=40, French=12x5, languages=7");
+ console.log("LINGUISTICS_INTEGRITY=PASS; apps=30, formal=5x11, atlas=206, foundations=40, French=12x5, languages=13");
 }
