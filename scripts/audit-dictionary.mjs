@@ -61,6 +61,10 @@ sandbox.window.localStorage={
 const saved=api.saveLocalEntry({term:"auroral",definition:"Related to an aurora.",synonyms:["luminous","polar"],example:"An auroral glow appeared."});
 if(!saved.ok||api.listLocalEntries().length!==1)fail("new local draft save");
 if(!api.searchDictionary("auroral").some(e=>e.editorial?.status==="local-draft"))fail("draft included in dictionary search");
+if(!api.searchDictionary("glow appeared").some(e=>e.term==="auroral"))fail("example sentence discovery");
+if(!api.searchDictionary("auroral").some(e=>e.example==="An auroral glow appeared."))fail("example source preserved");
+if(!api.searchDictionary("Related to an aurora.").some(e=>e.term==="auroral"))fail("definition discovery preserved");
+if(api.searchDictionary("definitely-not-a-record-xyz").length!==0)fail("no fabricated search results");
 const connections=api.lookupThesaurus("auroral");
 if(!connections.related.some(x=>x.term==="luminous"))fail("draft synonym relation");
 const portable=api.exportLocalEntries();
