@@ -202,6 +202,13 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 .dictionary-entry p{font-size:12px;margin:6px 0;overflow-wrap:anywhere}
 .dictionary-entry .dictionary-meta{color:var(--muted);font-size:11px}
 .dictionary-entry a{color:var(--teal);font-size:11px;text-decoration:underline;text-underline-offset:3px}
+.lexicon-drafts{margin-top:20px;padding:16px;border:1px solid var(--line);border-radius:7px;background:var(--paper-bright)}
+.lexicon-drafts h3{font:500 22px var(--serif);margin:0 0 6px;text-align:center}
+.lexicon-drafts p{color:var(--muted);font-size:12px;line-height:1.6}
+.lexicon-draft-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
+.lexicon-draft-form .draft-full{grid-column:1/-1}
+.lexicon-draft-form textarea{min-height:96px}
+@media(max-width:760px){.lexicon-draft-form{grid-template-columns:1fr}}
 .thesaurus-workspace{margin-top:20px;padding:16px;border:1px solid var(--line);border-radius:7px;background:var(--paper-bright)}
 .thesaurus-workspace h3{font:500 22px var(--serif);margin:0 0 5px;text-align:center}
 .thesaurus-workspace p{font-size:12px;line-height:1.65;color:var(--muted)}
@@ -249,7 +256,7 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 
 <main class="shell">
   <section class="hero">
-    <div class="eyebrow">Sovereign Interlingual Tool · v2.5</div>
+    <div class="eyebrow">Sovereign Interlingual Tool · v2.6</div>
     <h1>Multilingual Translator</h1>
     <p>
       Translate privately from your local library, study language relationships, or compare literary meaning across languages.
@@ -384,6 +391,25 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
         <p id="thesaurusStatus" class="dictionary-hint" role="status"></p>
         <div id="thesaurusResults" class="dictionary-results" aria-live="polite"></div>
       </div>
+      <section class="lexicon-drafts" aria-labelledby="draftLexiconTitle">
+        <h3 id="draftLexiconTitle">Grow Our Dictionary · Local Drafts</h3>
+        <p>Create new vocabulary entries and related terms without modifying the published dictionary. Drafts stay in this browser until explicitly exported and reviewed.</p>
+        <form id="lexiconDraftForm" class="lexicon-draft-form">
+          <div class="field"><label for="draftTerm">Word or expression</label><input id="draftTerm" maxlength="95" required placeholder="e.g. luminous"></div>
+          <div class="field"><label for="draftPos">Part of speech (optional)</label><input id="draftPos" maxlength="70" placeholder="adjective"></div>
+          <div class="field draft-full"><label for="draftDefinition">Definition</label><textarea id="draftDefinition" required maxlength="1200" placeholder="Write a clear, original explanation."></textarea></div>
+          <div class="field draft-full"><label for="draftExample">Example (optional)</label><input id="draftExample" maxlength="500" placeholder="A sentence showing this word in context."></div>
+          <div class="field draft-full"><label for="draftRelated">Related expressions (optional; comma-separated)</label><input id="draftRelated" maxlength="500" placeholder="Similar or related words; verify before using as substitutes."></div>
+          <button class="btn gold" type="submit">Save Local Draft</button>
+        </form>
+        <div class="actions">
+          <button class="btn ghost" type="button" id="draftExportBtn">Export Drafts JSON</button>
+          <button class="btn ghost" type="button" id="draftImportBtn">Import Drafts JSON</button>
+          <input class="file-input" type="file" id="draftImportFile" accept="application/json,.json">
+        </div>
+        <p id="draftStatus" class="dictionary-hint" role="status"></p>
+        <div id="draftResults" class="dictionary-results"></div>
+      </section>
       <p class="dictionary-hint">Educational source material requires editorial review. An ARSHIF cultural definition is context-specific and does not authorize unrestricted reuse of community knowledge. Bilingual examples are drafts, not certified translations.</p>
     </section>
   </section>
@@ -425,7 +451,7 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 (() => {
 "use strict";
 
-const VERSION = "2.5";
+const VERSION = "2.6";
 const LS_LIBRARY = "khaemenes_interlingual_library_v2";
 const LS_CACHE = "khaemenes_interlingual_cache_v2";
 const LS_PREFS = "khaemenes_interlingual_prefs_v2";
@@ -1074,6 +1100,43 @@ function exportThesaurusSearch(){
  link.href=url;link.download="sovereign-thesaurus-search.json";document.body.append(link);link.click();link.remove();
  setTimeout(()=>URL.revokeObjectURL(url),1200);
 }
+function renderDrafts(){
+ const api=window.KhaemenesSovereignTranslate,root=$("draftResults");
+ root.replaceChildren();
+ const list=api?.listLocalEntries?.()||[];
+ $("draftStatus").textContent=list.length+" / 200 local drafts saved. They have not been added to the canonical public dictionary.";
+ for(const e of list.slice().reverse()){
+  const card=document.createElement("article");card.className="dictionary-entry";
+  dictionaryCell(card,"h3",e.term);
+  dictionaryCell(card,"p",e.definition);
+  dictionaryCell(card,"p",e.example?"Example: "+e.example:null,"dictionary-meta");
+  dictionaryCell(card,"p",e.synonyms?.length?"Draft related words: "+e.synonyms.join(", "):null,"dictionary-meta");
+  dictionaryCell(card,"p","Local draft · not reviewed","dictionary-meta");
+  const remove=document.createElement("button");remove.type="button";remove.className="btn ghost";remove.textContent="Delete Draft";
+  remove.addEventListener("click",()=>{
+   if(!window.confirm("Delete this local draft? Export first to keep a backup."))return;
+   api.removeLocalEntry(e.id);renderDrafts();
+  });
+  card.append(remove);root.append(card);
+ }
+}
+function exportDraftCollection(){
+ const pack=window.KhaemenesSovereignTranslate?.exportLocalEntries?.();
+ if(!pack)return;
+ const file=new Blob([JSON.stringify(pack,null,2)],{type:"application/json"}),url=URL.createObjectURL(file),a=document.createElement("a");
+ a.download="khaemenes-dictionary-drafts.json";a.href=url;document.body.append(a);a.click();a.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1200);
+ $("draftStatus").textContent="Exported your local draft collection.";
+}
+async function importDraftCollection(file){
+ if(!file||file.size>1024*1024){$("draftStatus").textContent="Choose a dictionary draft JSON file under 1 MB.";return}
+ try{
+  const pack=JSON.parse(await file.text());
+  const result=window.KhaemenesSovereignTranslate?.importLocalEntries?.(pack);
+  if(!result?.ok){$("draftStatus").textContent=result?.error||"Import could not be completed.";return}
+  renderDrafts();$("draftStatus").textContent=result.added+" draft entries imported. Original entries remain untouched.";
+ }catch{$("draftStatus").textContent="Unable to read this JSON file."}
+}
 function populateDictionary(){
  const api=window.KhaemenesSovereignTranslate;
  const stats=api?.dictionaryStats?.();
@@ -1139,6 +1202,22 @@ $("exportCampusBtn").addEventListener("click",()=>{
   document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(uri),1000);
   setStatus("Campus draft phrase pack exported. Review imported drafts before trusting them.","good");
 });
+$("lexiconDraftForm").addEventListener("submit",event=>{
+ event.preventDefault();
+ const result=window.KhaemenesSovereignTranslate?.saveLocalEntry?.({
+  term:$("draftTerm").value,definition:$("draftDefinition").value,partOfSpeech:$("draftPos").value,
+  example:$("draftExample").value,synonyms:$("draftRelated").value
+ });
+ if(!result?.ok){$("draftStatus").textContent=result?.error||"Unable to save a local draft.";return}
+ $("lexiconDraftForm").reset();renderDrafts();
+});
+$("draftExportBtn").addEventListener("click",exportDraftCollection);
+$("draftImportBtn").addEventListener("click",()=>$("draftImportFile").click());
+$("draftImportFile").addEventListener("change",event=>{
+ const file=event.target.files?.[0];if(file)importDraftCollection(file);
+ event.target.value="";
+});
+renderDrafts();
 populateDictionary();
 const thesaurusInfo=window.KhaemenesSovereignTranslate?.thesaurusStats?.();
 if(thesaurusInfo)$("thesaurusStatus").textContent=thesaurusInfo.sourceListedLinks+" source-listed relationships across "+thesaurusInfo.entriesWithRelatedTerms+" headword records; no automatically invented links.";
