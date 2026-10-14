@@ -73,6 +73,10 @@ if(!api.removeLocalEntry(saved.id)||api.listLocalEntries().length)fail("delete l
 const imported=api.importLocalEntries(portable);
 if(!imported.ok||imported.added!==1||api.listLocalEntries().length!==1)fail("import local draft");
 if(api.importLocalEntries({schema:"not-ours",version:1,entries:[]}).ok)fail("reject unrelated imports");
+if(!translator.includes('id="bilingualReadingStudio"')||!translator.includes('id="readingRefresh"'))fail("bilingual reading studio missing");
+if(!translator.includes("lookupOffline(from,to,line)"))fail("bilingual reader must use existing offline library");
+if(!translator.includes("No exact offline translation available for this line."))fail("reading missing-match notice");
+if(!translator.includes("target.replaceChildren()"))fail("reader must clear prior passage display");
 if(!translator.includes('id="lexiconDraftForm"')||!translator.includes('id="thesaurusResults"'))fail("thesaurus/draft UI missing");
 if(!translator.includes("els.reviewText.dir=t.dir; els.reviewText.lang=t.code;"))fail("translation review editor target language / RTL direction");
 if(!translator.includes('id="status" class="status" role="status" aria-live="polite" aria-atomic="true" lang="en" dir="ltr"'))fail("accessible English status announcements");
