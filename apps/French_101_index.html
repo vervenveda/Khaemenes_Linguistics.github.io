@@ -12,7 +12,7 @@
   --radius:12px; --transition:.6s ease;
 }
 *{box-sizing:border-box;font-family:"Segoe UI",system-ui,sans-serif;}
-html,body{margin:0;height:100%;overflow:hidden;}
+html,body{margin:0;min-height:100%;overflow-x:hidden;overflow-y:auto;}
 body{
   background:var(--bg-light);color:var(--text-light);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
@@ -30,7 +30,7 @@ body.dark button{background:var(--accent-dark);}
 button:hover{opacity:.8;}
 .hidden{display:none;}
 h1,h2,h3{margin:.3em 0;}
-#app{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
+#app{width:100%;min-height:100vh;padding:76px 16px 36px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
 #splash{
   position:absolute;inset:0;display:flex;flex-direction:column;
   align-items:center;justify-content:center;z-index:10;
@@ -47,11 +47,11 @@ h1,h2,h3{margin:.3em 0;}
   font-weight:bold;cursor:pointer;transition:transform .3s,background .3s;
 }
 body.dark .level{border-color:var(--accent-dark);}
-.level.locked{opacity:.3;cursor:not-allowed;}
+.level.locked{opacity:.35;cursor:not-allowed;}.level:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid #95742a;outline-offset:3px}input{max-width:100%;min-height:42px;padding:9px 12px;border:1px solid #93835f;border-radius:7px;font:inherit}
 .level.unlocked:hover{transform:scale(1.08);}
 .level.completed{background:var(--accent);color:#fff;}
 body.dark .level.completed{background:var(--accent-dark);}
-#lesson,#quiz,#exam,#certificate{max-width:700px;padding:20px;}
+#lesson,#quiz,#exam,#certificate{width:min(100%,700px);padding:20px;}.vocab{gap:12px;text-align:left}.vocab .speaker{flex:0 0 auto;padding:9px 12px}.level-grid{max-width:600px;margin:20px auto}.level:disabled{color:inherit}
 .vocab{display:flex;align-items:center;justify-content:space-between;margin:6px 0;padding:8px;border-radius:8px;background:rgba(0,0,0,.05);}
 body.dark .vocab{background:rgba(255,255,255,.1);}
 .speaker{cursor:pointer;font-size:1.2rem;}
@@ -93,210 +93,169 @@ body.dark .confetti{background:var(--accent-dark);}
 </div>
 
 <script>
-/* ==========================================================
-   GLOBAL STATE
-========================================================== */
+/* French 101 — 12 lesson study pathway with 80% assessment gates.
+   Preserves the existing theme, splash, progress key, audio, and certificate UI.
+   This is independent of the formal Five-Language Academy record system. */
+"use strict";
 const totalLevels=12;
-let progress=JSON.parse(localStorage.getItem("french101_progress")||"{}");
-let currentLevel=null;
+const LESSONS={"1":[{"fr":"Bonjour","en":"Hello"},{"fr":"Merci","en":"Thank you"},{"fr":"Au revoir","en":"Goodbye"},{"fr":"S’il vous plaît","en":"Please"},{"fr":"Oui","en":"Yes"}],"2":[{"fr":"Comment ça va ?","en":"How are you?"},{"fr":"Je vais bien.","en":"I'm fine."},{"fr":"Je m'appelle Marie.","en":"My name is Marie."},{"fr":"Enchanté.","en":"Nice to meet you."},{"fr":"À bientôt.","en":"See you soon."}],"3":[{"fr":"Un","en":"One"},{"fr":"Deux","en":"Two"},{"fr":"Trois","en":"Three"},{"fr":"Quatre","en":"Four"},{"fr":"Cinq","en":"Five"}],"4":[{"fr":"Voici ma famille.","en":"Here is my family."},{"fr":"Ma mère","en":"My mother"},{"fr":"Mon père","en":"My father"},{"fr":"Ma sœur","en":"My sister"},{"fr":"Mon frère","en":"My brother"}],"5":[{"fr":"Aujourd'hui","en":"Today"},{"fr":"Demain","en":"Tomorrow"},{"fr":"Hier","en":"Yesterday"},{"fr":"Lundi","en":"Monday"},{"fr":"Dimanche","en":"Sunday"}],"6":[{"fr":"Rouge","en":"Red"},{"fr":"Bleu","en":"Blue"},{"fr":"Vert","en":"Green"},{"fr":"Jaune","en":"Yellow"},{"fr":"Blanc","en":"White"}],"7":[{"fr":"J'ai faim.","en":"I am hungry."},{"fr":"De l'eau, s'il vous plaît.","en":"Water, please."},{"fr":"Du pain","en":"Bread"},{"fr":"Une pomme","en":"An apple"},{"fr":"J'aime le fromage.","en":"I like cheese."}],"8":[{"fr":"Je suis étudiant.","en":"I am a student."},{"fr":"Un livre","en":"A book"},{"fr":"Un stylo","en":"A pen"},{"fr":"La bibliothèque","en":"The library"},{"fr":"Je lis en français.","en":"I read in French."}],"9":[{"fr":"Où est la gare ?","en":"Where is the station?"},{"fr":"À gauche","en":"To the left"},{"fr":"À droite","en":"To the right"},{"fr":"Tout droit","en":"Straight ahead"},{"fr":"C'est près d'ici.","en":"It is near here."}],"10":[{"fr":"Il fait beau.","en":"The weather is nice."},{"fr":"Il pleut.","en":"It is raining."},{"fr":"Il fait froid.","en":"It is cold."},{"fr":"Il fait chaud.","en":"It is hot."},{"fr":"Le ciel est bleu.","en":"The sky is blue."}],"11":[{"fr":"Je me réveille tôt.","en":"I wake up early."},{"fr":"Je prends le petit déjeuner.","en":"I eat breakfast."},{"fr":"Je vais à l'école.","en":"I go to school."},{"fr":"Je travaille aujourd'hui.","en":"I work today."},{"fr":"Je rentre à la maison.","en":"I go home."}],"12":[{"fr":"J'ai étudié hier.","en":"I studied yesterday."},{"fr":"Je vais voyager demain.","en":"I am going to travel tomorrow."},{"fr":"Je voudrais apprendre.","en":"I would like to learn."},{"fr":"Je peux vous aider.","en":"I can help you."},{"fr":"Nous allons pratiquer.","en":"We are going to practice."}]};
 const $=id=>document.getElementById(id);
-function saveProgress(){localStorage.setItem("french101_progress",JSON.stringify(progress));}
-
-/* ==========================================================
-   STARTUP & THEME
-========================================================== */
+const safeGet=key=>{try{return localStorage.getItem(key)}catch{return null}};
+const safeSet=(key,value)=>{try{localStorage.setItem(key,value);return true}catch{return false}};
+function readProgress(){
+ try{const o=JSON.parse(safeGet("french101_progress")||"{}");return o&&typeof o==="object"&&!Array.isArray(o)?o:{}}catch{return {}}
+}
+const progress=readProgress();
+let currentLevel=null;
+function saveProgress(){return safeSet("french101_progress",JSON.stringify(progress))}
+function available(level){return level===1||progress[level]==="completed"||progress[level]==="unlocked"||progress[level-1]==="completed"}
+function showOnly(name){
+ for(const id of ["menu","lesson","quiz","exam","certificate"])$(id).classList.toggle("hidden",id!==name);
+}
 function startApp(){
-  $("splash").style.display="none";
-  $("app").classList.remove("hidden");
-  buildLevelGrid();
-  applyTheme();
+ $("splash").style.display="none";$("app").classList.remove("hidden");
+ buildLevelGrid();applyTheme();showOnly("menu");
 }
-$("themeToggle").onclick=()=>{
-  document.body.classList.toggle("dark");
-  applyTheme();
-  localStorage.setItem("theme",document.body.classList.contains("dark")?"dark":"light");
-};
-function applyTheme(){
-  const dark=localStorage.getItem("theme")==="dark";
-  if(dark)document.body.classList.add("dark");else document.body.classList.remove("dark");
-}
-
-/* ==========================================================
-   LEVEL GRID & LOCK LOGIC
-========================================================== */
+function applyTheme(){document.body.classList.toggle("dark",safeGet("french101_theme")==="dark"||(!safeGet("french101_theme")&&safeGet("theme")==="dark"))}
+$("themeToggle").addEventListener("click",()=>{
+ const dark=!document.body.classList.contains("dark");
+ document.body.classList.toggle("dark",dark);
+ safeSet("french101_theme",dark?"dark":"light");
+});
 function buildLevelGrid(){
-  const grid=$("levelGrid");grid.innerHTML="";
-  for(let i=1;i<=totalLevels;i++){
-    const div=document.createElement("div");
-    div.className="level";
-    const state=progress[i]||"locked";
-    if(state!=="locked")div.classList.add("unlocked");
-    if(state==="completed")div.classList.add("completed");
-    if(state==="locked")div.classList.add("locked");
-    div.textContent="L"+i;
-    div.onclick=()=>{if(state!=="locked")openLesson(i);};
-    grid.appendChild(div);
-  }
-  // unlock next
-  for(let i=1;i<=totalLevels;i++){
-    if(progress[i]==="completed"&&i<totalLevels&&!progress[i+1]){
-      progress[i+1]="unlocked";
-    }
-  }
-  saveProgress();
+ const grid=$("levelGrid");grid.replaceChildren();
+ for(let i=1;i<=totalLevels;i++){
+  const button=document.createElement("button");button.type="button";button.className="level";
+  const enabled=available(i),done=progress[i]==="completed";
+  button.textContent="L"+i;
+  button.disabled=!enabled;
+  button.classList.add(done?"completed":enabled?"unlocked":"locked");
+  button.setAttribute("aria-label",`Level ${i}: ${done?"complete":enabled?"available":"locked"}`);
+  if(enabled)button.addEventListener("click",()=>openLesson(i));
+  grid.append(button);
+ }
 }
-
-/* ==========================================================
-   LESSON CONTENT & AUDIO
-========================================================== */
-const LESSONS={
-1:[
-  {fr:"Bonjour",en:"Hello"},
-  {fr:"Merci",en:"Thank you"},
-  {fr:"Au revoir",en:"Goodbye"},
-  {fr:"S’il vous plaît",en:"Please"},
-  {fr:"Oui / Non",en:"Yes / No"}
-],
-2:[
-  {fr:"Comment ça va ?",en:"How are you ?"},
-  {fr:"Je vais bien",en:"I’m fine"},
-  {fr:"Enchanté(e)",en:"Nice to meet you"},
-  {fr:"Bienvenue",en:"Welcome"},
-  {fr:"À bientôt",en:"See you soon"}
-],
-3:[
-  {fr:"Un",en:"One"},
-  {fr:"Deux",en:"Two"},
-  {fr:"Trois",en:"Three"},
-  {fr:"Quatre",en:"Four"},
-  {fr:"Cinq",en:"Five"}
-]
-// ... Add levels 4-12 similarly with phrases
-};
-
-/* Speech */
+function backToMenu(){showOnly("menu");buildLevelGrid()}
 function speakFR(text){
-  try{
-    const u=new SpeechSynthesisUtterance(text);
-    u.lang="fr-FR";
-    speechSynthesis.speak(u);
-  }catch(e){console.warn("Speech error",e);}
+ if(!("speechSynthesis" in window)||typeof SpeechSynthesisUtterance==="undefined"){alert("French speech is not available on this device.");return}
+ speechSynthesis.cancel();
+ const utterance=new SpeechSynthesisUtterance(text);utterance.lang="fr-FR";
+ const voices=speechSynthesis.getVoices();
+ utterance.voice=voices.find(v=>v.lang?.toLowerCase()==="fr-fr")||voices.find(v=>v.lang?.toLowerCase().startsWith("fr"))||null;
+ utterance.rate=.86;
+ speechSynthesis.speak(utterance);
 }
-
-/* ==========================================================
-   LESSON VIEW
-========================================================== */
+function element(tag,text,className){
+ const node=document.createElement(tag);node.textContent=text;
+ if(className)node.className=className;return node;
+}
+function addButton(parent,label,handler){
+ const button=element("button",label);button.type="button";button.addEventListener("click",handler);parent.append(button);return button;
+}
 function openLesson(level){
-  currentLevel=level;
-  $("menu").classList.add("hidden");
-  const box=$("lesson");
-  box.innerHTML=`<h2>Level ${level}</h2><p>Listen and repeat each phrase :</p>`;
-  const list=LESSONS[level]||[];
-  list.forEach(v=>{
-    const row=document.createElement("div");
-    row.className="vocab";
-    row.innerHTML=`<span><strong>${v.fr}</strong><br><small>${v.en}</small></span>
-                   <span class="speaker" onclick="speakFR('${v.fr}')">🔊</span>`;
-    box.appendChild(row);
-  });
-  const nextBtn=document.createElement("button");
-  nextBtn.textContent="Take Quiz";
-  nextBtn.onclick=()=>openQuiz(level);
-  box.appendChild(nextBtn);
-  box.classList.remove("hidden");
+ if(!available(level)||!LESSONS[level]){backToMenu();return}
+ currentLevel=level;const box=$("lesson");box.replaceChildren();
+ box.append(element("h2",`Level ${level}`),element("p","Listen and repeat each phrase, then complete the quiz."));
+ for(const phrase of LESSONS[level]){
+  const row=element("div","","vocab");const labels=element("span");
+  const french=element("strong",phrase.fr),english=element("small",phrase.en);
+  french.lang="fr";labels.append(french,document.createElement("br"),english);
+  const speak=element("button","🔊","speaker");
+  speak.type="button";speak.setAttribute("aria-label","Hear French: "+phrase.fr);
+  speak.addEventListener("click",()=>speakFR(phrase.fr));
+  row.append(labels,speak);box.append(row);
+ }
+ addButton(box,"Take Quiz",()=>openQuiz(level));
+ addButton(box,"Back to Levels",backToMenu);
+ showOnly("lesson");
 }
-
-/* ==========================================================
-   QUIZ / EXAM / CERTIFICATE
-========================================================== */
+function normalize(s){
+ return String(s).normalize("NFKD").toLowerCase().replace(/[\u0300-\u036f]/g,"").replace(/[’‘]/g,"'").replace(/[^a-z0-9]+/g," ").trim();
+}
 function openQuiz(level){
-  $("lesson").classList.add("hidden");
-  const box=$("quiz");
-  const qset=LESSONS[level]||[];
-  let score=0,i=0;
-  box.innerHTML=`<h2>Quiz Level ${level}</h2><p>Translate each word :</p>`;
-  const q=document.createElement("div");q.id="qtext";box.appendChild(q);
-  const input=document.createElement("input");input.type="text";input.placeholder="English meaning";input.style.padding="8px";input.style.fontSize="1rem";
-  const btn=document.createElement("button");btn.textContent="Submit";
-  const res=document.createElement("div");res.style.marginTop="10px";
-  box.appendChild(input);box.appendChild(btn);box.appendChild(res);
-  function ask(){if(i>=qset.length){finish();return;}q.textContent=qset[i].fr;}
-  function finish(){
-    progress[level]="completed";saveProgress();
-    res.innerHTML=`<p>Your score ${score}/${qset.length}</p>`;
-    const next=document.createElement("button");
-    next.textContent=(level<totalLevels)?"Next Level":"Final Exam";
-    next.onclick=()=>{
-      box.classList.add("hidden");
-      if(level<totalLevels)openLesson(level+1);else openExam();
-      buildLevelGrid();
-    };
-    res.appendChild(next);
-  }
-  btn.onclick=()=>{
-    if(input.value.trim().toLowerCase()===(qset[i].en.toLowerCase())){
-      score++;res.textContent="✅ Correct!";
-    }else res.textContent=`❌ ${qset[i].en}`;
-    i++;input.value="";setTimeout(ask,700);
-  };
-  ask();
-  box.classList.remove("hidden");
+ if(!available(level)||!LESSONS[level])return;
+ const set=LESSONS[level],box=$("quiz");box.replaceChildren();
+ box.append(element("h2",`Quiz — Level ${level}`),element("p","Translate each French phrase into English. Pass with at least 80% (4 out of 5)."));
+ const question=element("p");question.style.fontSize="1.2rem";question.lang="fr";
+ const input=document.createElement("input");input.type="text";input.placeholder="English meaning";input.autocomplete="off";input.setAttribute("aria-label","English translation");
+ const feedback=element("p");feedback.setAttribute("role","status");
+ const submit=element("button","Check answer");submit.type="button";
+ box.append(question,input,submit,feedback);
+ addButton(box,"Back to Levels",backToMenu);
+ let index=0,score=0,busy=false;
+ function finish(){
+  input.disabled=true;submit.disabled=true;const passed=score>=Math.ceil(set.length*.8);
+  feedback.textContent=`Score: ${score}/${set.length}. ${passed?"Passed!":"Practice and try again."}`;
+  if(passed){
+   progress[level]="completed";
+   if(level<totalLevels&&progress[level+1]!=="completed")progress[level+1]="unlocked";
+   saveProgress();
+   addButton(box,level<totalLevels?"Next Level":"Final Exam",()=>{
+    if(level<totalLevels)openLesson(level+1);else openExam();
+   });
+  }else addButton(box,"Retry Quiz",()=>openQuiz(level));
+  buildLevelGrid();
+ }
+ function ask(){busy=false;if(index>=set.length){finish();return}question.textContent=set[index].fr;input.focus()}
+ function check(){
+  if(busy||index>=set.length||!input.value.trim())return;
+  busy=true;submit.disabled=true;
+  const correct=normalize(input.value)===normalize(set[index].en);
+  if(correct)score++;
+  feedback.textContent=correct?"Correct!":"Expected: "+set[index].en;
+  index++;input.value="";
+  setTimeout(()=>{if(!document.contains(box)||box.classList.contains("hidden"))return;submit.disabled=false;ask()},550);
+ }
+ submit.addEventListener("click",check);
+ input.addEventListener("keydown",event=>{if(event.key==="Enter"){event.preventDefault();check()}});
+ showOnly("quiz");ask();
 }
-
 function openExam(){
-  $("quiz").classList.add("hidden");
-  const box=$("exam");
-  box.innerHTML=`<h2>Final Exam</h2><p>Answer 5 random questions from all lessons.</p>`;
-  const pool=Object.values(LESSONS).flat();
-  const qs=[];while(qs.length<5)qs.push(pool[Math.floor(Math.random()*pool.length)]);
-  let i=0,score=0;
-  const q=document.createElement("div");q.id="eq";box.appendChild(q);
-  const input=document.createElement("input");input.type="text";box.appendChild(input);
-  const btn=document.createElement("button");btn.textContent="Submit";box.appendChild(btn);
-  const res=document.createElement("div");box.appendChild(res);
-  function ask(){if(i>=qs.length){end();return;}q.textContent=qs[i].fr;}
-  function end(){
-    res.innerHTML=`Final Score: ${score}/5`;
-    if(score>=3){
-      res.innerHTML+=`<br>✨ You passed!`;
-      setTimeout(openCertificate,1200);
-    }else{
-      res.innerHTML+=`<br>Try again.`;
-    }
-  }
-  btn.onclick=()=>{
-    if(input.value.trim().toLowerCase()===(qs[i].en.toLowerCase()))score++;
-    i++;input.value="";ask();
-  };
-  ask();
-  box.classList.remove("hidden");
+ if(!Array.from({length:totalLevels},(_,i)=>i+1).every(i=>progress[i]==="completed")){backToMenu();return}
+ const box=$("exam");box.replaceChildren();
+ box.append(element("h2","French 101 — Final Exam"),element("p","Answer 10 questions from the 12 levels. At least 80% is required for a certificate."));
+ const pool=Object.values(LESSONS).flat();
+ for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
+ const questions=pool.slice(0,10),prompt=element("p");prompt.lang="fr";prompt.style.fontSize="1.2rem";
+ const input=document.createElement("input");input.type="text";input.autocomplete="off";input.setAttribute("aria-label","English translation");
+ const feedback=element("p");feedback.setAttribute("role","status");
+ const submit=element("button","Check answer");submit.type="button";
+ box.append(prompt,input,submit,feedback);
+ addButton(box,"Back to Levels",backToMenu);
+ let i=0,score=0;
+ function ask(){if(i>=questions.length){finish();return}prompt.textContent=questions[i].fr;input.focus()}
+ function finish(){
+  input.disabled=true;submit.disabled=true;
+  const passed=score>=8;
+  feedback.textContent=`Final exam: ${score}/10. ${passed?"Passed!":"80% required. Please retry."}`;
+  if(passed){progress.examPassed=true;saveProgress();addButton(box,"View Certificate",openCertificate)}
+  else addButton(box,"Retry Final",openExam);
+ }
+ function check(){
+  if(i>=questions.length||!input.value.trim())return;
+  if(normalize(input.value)===normalize(questions[i].en))score++;
+  i++;input.value="";ask();
+ }
+ submit.addEventListener("click",check);
+ input.addEventListener("keydown",event=>{if(event.key==="Enter"){event.preventDefault();check()}});
+ showOnly("exam");ask();
 }
-
 function openCertificate(){
-  $("exam").classList.add("hidden");
-  $("certificate").classList.remove("hidden");
-  launchConfetti();
+ if(!progress.examPassed||!Array.from({length:totalLevels},(_,i)=>i+1).every(i=>progress[i]==="completed")){backToMenu();return}
+ showOnly("certificate");launchConfetti();
+ if(!$("certificateBack")){const b=addButton($("certificate"),"Back to Levels",backToMenu);b.id="certificateBack"}
 }
-
-/* ==========================================================
-   CONFETTI
-========================================================== */
 function launchConfetti(){
-  for(let i=0;i<80;i++){
-    const c=document.createElement("div");
-    c.className="confetti";
-    c.style.left=Math.random()*100+"vw";
-    c.style.animationDelay=(Math.random()*3)+"s";
-    c.style.background=`hsl(${Math.random()*360},80%,60%)`;
-    document.body.appendChild(c);
-    setTimeout(()=>c.remove(),5000);
-  }
+ if(window.matchMedia?.("(prefers-reduced-motion: reduce)").matches)return;
+ for(let i=0;i<50;i++){
+  const confetti=element("div","","confetti");
+  confetti.style.left=Math.random()*100+"vw";
+  confetti.style.animationDelay=Math.random()*2+"s";
+  document.body.append(confetti);setTimeout(()=>confetti.remove(),5000);
+ }
 }
-
-/* ==========================================================
-   INIT
-========================================================== */
 applyTheme();
+
 </script>
 <script src="/assets/vnv-beta-link.js" defer></script>
 </body>
