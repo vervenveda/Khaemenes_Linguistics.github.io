@@ -81,6 +81,8 @@ if(!translator.includes('id="readingWordResults"')||!translator.includes('id="re
 if(!translator.includes("api.searchDictionary(word,{limit:8,includeCreative:false})"))fail("reading vocabulary must consult sovereign dictionary");
 if(!translator.includes("No exact source-backed definition found."))fail("missing vocabulary definition notice");
 if(!translator.includes('id="readingLarger"')||!translator.includes('id="readingSmaller"'))fail("reader accessible text sizing controls");
+if(!translator.includes('id="readingMode"')||!translator.includes("function applyReadingMode()"))fail("age-inclusive reading presentation selector");
+if(!translator.includes("Original text and translation records are unchanged."))fail("reading presentation preservation notice");
 if(!translator.includes('id="readingSpeakSource"')||!translator.includes('id="readingSpeakTarget"')||!translator.includes('id="readingStopSpeech"'))fail("reader read-aloud controls");
 if(!translator.includes("synth.cancel()"))fail("reader stop-before-speak guard");
 if(!translator.includes('id="lexiconDraftForm"')||!translator.includes('id="thesaurusResults"'))fail("thesaurus/draft UI missing");
