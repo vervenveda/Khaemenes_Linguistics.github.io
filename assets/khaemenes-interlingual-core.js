@@ -14,15 +14,71 @@ function publicEntry(entry){
  if(entry?.provenance?.path==="assets/dictionary.js")return {...entry,definition:null,editorial:{...entry.editorial,status:"translation-only-no-definition"}};
  return entry;
 }
+/* Browser-local editorial drafts are separate from the canonical public JSON.
+ * Never silently promote learner notes into published definitions or translations. */
+const DRAFT_KEY="khaemenes_dictionary_drafts_v1",MAX_DRAFTS=200;
+function cleanDraft(record){
+ if(!record||typeof record!=="object")return null;
+ const trim=(value,max)=>typeof value==="string"?value.trim().slice(0,max):"";
+ const term=trim(record.term,95),definition=trim(record.definition,1200);
+ if(!term||!definition)return null;
+ const related=Array.isArray(record.synonyms)?record.synonyms:typeof record.synonyms==="string"?record.synonyms.split(","):[];
+ const synonyms=[...new Set(related.map(x=>trim(x,95)).filter(Boolean))].slice(0,12);
+ return {
+  id:trim(record.id,100)||"draft-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,7),
+  language:"en",term,definition,partOfSpeech:trim(record.partOfSpeech,70)||null,
+  example:trim(record.example,500)||null,pronunciation:null,etymology:null,
+  synonyms,tags:["local-draft"],translations:{},domain:"local-vocabulary",
+  provenance:{type:"browser-local-author",sourceStatus:"unreviewed-user-draft"},
+  editorial:{status:"local-draft",translationStatus:"not-applicable"}
+ };
+}
+function listLocalEntries({query=""}={}){
+ try{
+  const input=JSON.parse(root.localStorage.getItem(DRAFT_KEY)||"[]");
+  if(!Array.isArray(input))return [];
+  const q=fold(query);
+  return input.slice(0,MAX_DRAFTS).map(cleanDraft).filter(Boolean).filter(r=>!q||fold(r.term).includes(q)||fold(r.definition).includes(q)||r.synonyms.some(x=>fold(x).includes(q)));
+ }catch{return []}
+}
+function writeLocalEntries(rows){
+ try{root.localStorage.setItem(DRAFT_KEY,JSON.stringify(rows));return true}catch{return false}
+}
+function saveLocalEntry(record){
+ const rows=listLocalEntries(),safe=cleanDraft(record);
+ if(!safe)return {ok:false,error:"Term and definition are required."};
+ if(rows.length>=MAX_DRAFTS)return {ok:false,error:"Local draft limit reached. Export before adding more."};
+ safe.id="draft-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,9);
+ rows.push(safe);
+ return writeLocalEntries(rows)?{ok:true,id:safe.id}:{ok:false,error:"Browser storage unavailable; export existing drafts."};
+}
+function removeLocalEntry(id){
+ const rows=listLocalEntries(),next=rows.filter(e=>e.id!==id);
+ return next.length!==rows.length&&writeLocalEntries(next);
+}
+function exportLocalEntries(){
+ return {schema:"khaemenes-dictionary-drafts",version:1,exportedAt:new Date().toISOString(),
+  editorialNotice:"Unreviewed local drafts, not official definitions or translation authority.",entries:listLocalEntries()};
+}
+function importLocalEntries(value){
+ if(!value||value.schema!=="khaemenes-dictionary-drafts"||value.version!==1||!Array.isArray(value.entries)||value.entries.length>MAX_DRAFTS)return {ok:false,error:"Invalid or oversized dictionary draft pack."};
+ const saved=listLocalEntries(),existing=new Set(saved.map(e=>e.id));let added=0;
+ for(const entry of value.entries){
+  const record=cleanDraft(entry);if(!record)continue;
+  if(existing.has(record.id)||saved.length>=MAX_DRAFTS)continue;
+  saved.push(record);existing.add(record.id);added++;
+ }
+ return writeLocalEntries(saved)?{ok:true,added}:{ok:false,error:"Unable to save imported drafts."};
+}
 function lookupDefinition(word,{limit=12}={}){
  const wanted=fold(word);if(!wanted)return [];
- return dictionaryEntries.filter(e=>fold(e.term)===wanted).slice(0,Math.min(50,Math.max(1,limit))).map(publicEntry);
+ return [...dictionaryEntries,...listLocalEntries()].filter(e=>fold(e.term)===wanted).slice(0,Math.min(50,Math.max(1,limit))).map(publicEntry);
 }
 function searchDictionary(query,{limit=25,domain="",includeCreative=false}={}){
  const q=fold(query);if(!q)return [];
  const max=Math.min(100,Math.max(1,Number(limit)||25));
  const scored=[];
- for(const e of dictionaryEntries){
+ for(const e of [...dictionaryEntries,...listLocalEntries()]){
   if(domain&&e.domain!==domain)continue;
   const term=fold(e.term),definition=fold(e.definition),synonyms=(e.synonyms||[]).map(fold);
   const rank=term===q?0:term.startsWith(q)?1:term.includes(q)?2:synonyms.some(x=>x.includes(q))?3:definition.includes(q)?4:99;
@@ -51,7 +107,7 @@ function lookupThesaurus(word,{limit=35,includeReverse=true}={}){
    item.sourceRecords.push({id:entry.id,term:entry.term,partOfSpeech:entry.partOfSpeech,source:entry.provenance});
   }
  }
- for(const e of dictionaryEntries){
+ for(const e of [...dictionaryEntries,...listLocalEntries()]){
   if(fold(e.term)===wanted){
    sourceRecords.push(publicEntry(e));
    for(const synonym of e.synonyms||[])add(synonym,"direct",e);
@@ -72,7 +128,7 @@ function thesaurusStats(){
  return {entriesWithRelatedTerms:withLinks,sourceListedLinks:links,distinctRelatedTerms:unique.size,automaticInferences:0,antonymsSupported:false};
 }
 function dictionaryStats(){
- return {definedEntries:dictionaryEntries.filter(e=>e.provenance?.path!=="assets/dictionary.js").length,translationOnlyEntries:dictionaryEntries.filter(e=>e.provenance?.path==="assets/dictionary.js").length,allRecords:dictionaryEntries.length,creativeVocabulary:(DICTIONARY.creativeVocabulary||[]).length,duplicateForms:(DICTIONARY.duplicateSurfaceForms||[]).length,network:"never"};
+ return {localDrafts:listLocalEntries().length,definedEntries:dictionaryEntries.filter(e=>e.provenance?.path!=="assets/dictionary.js").length,translationOnlyEntries:dictionaryEntries.filter(e=>e.provenance?.path==="assets/dictionary.js").length,allRecords:dictionaryEntries.length,creativeVocabulary:(DICTIONARY.creativeVocabulary||[]).length,duplicateForms:(DICTIONARY.duplicateSurfaceForms||[]).length,network:"never"};
 }
 
 const legacyCode=code=>String(code||"").trim().toLowerCase()==="zh"?"zh-CN":String(code||"").trim();
@@ -151,6 +207,11 @@ root.KhaemenesSovereignTranslate=Object.freeze({
  lookupLocal,
  lookupDefinition,
  searchDictionary,
+ listLocalEntries,
+ saveLocalEntry,
+ removeLocalEntry,
+ exportLocalEntries,
+ importLocalEntries,
  lookupThesaurus,
  thesaurusStats,
  dictionaryStats,
