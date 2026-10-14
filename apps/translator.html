@@ -665,7 +665,7 @@ function allLibraryEntries(lib=getLibrary()){
 function lookupOffline(from,to,text){
   const lib=getLibrary(),local=lib.pairs?.[pairKey(from,to)]?.[exactKey(text)];
   if(local?.verified===true&&typeof local.translation==="string"&&local.translation.trim()){
-    return {...local,source:"sovereign-local-reviewed"};
+    return {...local,reviewStatus:local.reviewStatus||"legacy-review-unconfirmed",source:"sovereign-local-reviewed"};
   }
   return window.KhaemenesSovereignTranslate?.lookupLocal({from,to,text})||null;
 }
@@ -829,7 +829,11 @@ async function translateOffline(){
   const hit=lookupOffline(from,to,text);
   if(hit?.translation){
     els.output.textContent=hit.translation;
-    setStatus(hit.verified===true?"Offline Library hit ✓ Reviewed local pair.":"Sovereign campus phrase found (draft). Review before formal use.","good");
+    const label=hit.reviewStatus==="self-reviewed"?"Personally reviewed local pair.":
+      hit.reviewStatus==="imported-self-reviewed"?"Trusted imported review (user-confirmed).":
+      hit.verified===true?"Legacy saved pair · review metadata unavailable; please recheck.":
+      "Sovereign campus or vocabulary draft · review before formal use.";
+    setStatus(label,"good");
   }else{
     els.output.textContent="No exact verified translation is stored locally for this text.";
     setStatus("Offline Library miss. Use a saved pair, import a language pack, or explicitly choose Online Translation.","bad");
