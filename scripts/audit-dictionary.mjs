@@ -75,6 +75,8 @@ if(!imported.ok||imported.added!==1||api.listLocalEntries().length!==1)fail("imp
 if(api.importLocalEntries({schema:"not-ours",version:1,entries:[]}).ok)fail("reject unrelated imports");
 if(!translator.includes('id="lexiconDraftForm"')||!translator.includes('id="thesaurusResults"'))fail("thesaurus/draft UI missing");
 if(!translator.includes("els.reviewText.dir=t.dir; els.reviewText.lang=t.code;"))fail("translation review editor target language / RTL direction");
+if(!translator.includes('id="status" class="status" role="status" aria-live="polite" aria-atomic="true" lang="en" dir="ltr"'))fail("accessible English status announcements");
+if(!translator.includes('els.output.lang="en";els.output.dir="ltr";'))fail("offline fallback direction metadata");
 if(!translator.includes("../assets/sovereign-dictionary-v1-errata.js"))fail("canonical dictionary errata not loaded");
 console.log("DICTIONARY_DRAFTS=PASS: add, search, related, export, delete, import, reject incompatible");
 console.log("DICTIONARY_INTEGRITY=PASS entries=434 defined=397 bilingual=37 creative=553 related=234 offline=PASS");
