@@ -208,6 +208,13 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 .lexicon-draft-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}
 .lexicon-draft-form .draft-full{grid-column:1/-1}
 .lexicon-draft-form textarea{min-height:96px}
+.translation-review{margin:16px 0;padding:16px;border:1px solid var(--line-strong);border-radius:7px;background:var(--paper-bright)}
+.translation-review h2{font:500 20px var(--serif);text-align:center;margin:0 0 7px}
+.translation-review p{font-size:12px;color:var(--muted);line-height:1.6}
+.translation-review textarea{min-height:112px;max-width:100%}
+.translation-review-check,.translation-import-check{display:flex;align-items:flex-start;gap:9px;font-size:12px;line-height:1.55;margin:10px 0}
+.translation-review-check input,.translation-import-check input{width:17px;height:17px;flex:0 0 auto;accent-color:var(--teal)}
+.translation-import-check{width:100%;color:var(--ink-soft)}
 @media(max-width:760px){.lexicon-draft-form{grid-template-columns:1fr}}
 .thesaurus-workspace{margin-top:20px;padding:16px;border:1px solid var(--line);border-radius:7px;background:var(--paper-bright)}
 .thesaurus-workspace h3{font:500 22px var(--serif);margin:0 0 5px;text-align:center}
@@ -256,7 +263,7 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 
 <main class="shell">
   <section class="hero">
-    <div class="eyebrow">Sovereign Interlingual Tool · v2.6</div>
+    <div class="eyebrow">Sovereign Interlingual Tool · v2.7</div>
     <h1>Multilingual Translator</h1>
     <p>
       Translate privately from your local library, study language relationships, or compare literary meaning across languages.
@@ -312,10 +319,19 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 
     <div class="actions">
       <button class="btn" id="translateBtn" type="button">Translate</button>
-      <button class="btn secondary" id="saveBtn" type="button">Save Verified Pair</button>
+      <button class="btn secondary" id="saveBtn" type="button">Save My Reviewed Pair</button>
       <button class="btn ghost" id="copyBtn" type="button">Copy Translation</button>
       <button class="btn ghost" id="clearBtn" type="button">Clear</button>
     </div>
+
+    <section class="translation-review" aria-labelledby="reviewHeading">
+      <h2 id="reviewHeading">Translation Review · Local Trust Gate</h2>
+      <p>Review and correct the suggested translation before adding it to your trusted local library. A machine translation or campus draft is not automatically verified. Your approval is a personal review, not a professional certification or teacher assessment.</p>
+      <div class="field"><label for="reviewText">Editable translation for review</label>
+        <textarea id="reviewText" maxlength="12000" placeholder="Translate above, then check or correct the result here." aria-describedby="reviewHelp"></textarea></div>
+      <label class="translation-review-check"><input type="checkbox" id="reviewAttestation"> I have checked the translation against its source and approve this wording for my local reference library.</label>
+      <p class="dictionary-hint" id="reviewHelp">Nothing is sent to a server. Unchecked results stay drafts and cannot override a saved reviewed pair.</p>
+    </section>
 
     <div id="studyPanel" class="study-panel" hidden>
       <h2>Language Learning</h2>
@@ -354,6 +370,7 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
           <button class="btn gold" id="exportBtn" type="button">Export Library</button>
           <button class="btn ghost" id="exportCampusBtn" type="button">Export Campus Phrase Pack</button>
           <button class="btn ghost" id="importBtn" type="button">Import Library</button>
+          <label class="translation-import-check"><input id="trustImportedReviewed" type="checkbox"> Trust already-reviewed pairs in this imported file (only use for your own trusted exports)</label>
           <input class="file-input" id="importFile" type="file" accept=".json,application/json">
         </div>
       </div>
@@ -447,11 +464,12 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 <script src="../assets/sovereign-dictionary.generated.js"></script>
 <script src="../assets/sovereign-dictionary-v1-errata.js"></script>
 <script src="../assets/khaemenes-interlingual-core.js"></script>
+<script src="../assets/khaemenes-review-policy.js"></script>
 <script>
 (() => {
 "use strict";
 
-const VERSION = "2.6";
+const VERSION = "2.7";
 const LS_LIBRARY = "khaemenes_interlingual_library_v2";
 const LS_CACHE = "khaemenes_interlingual_cache_v2";
 const LS_PREFS = "khaemenes_interlingual_prefs_v2";
@@ -587,6 +605,7 @@ const LANGUAGES = [
 const $ = id => document.getElementById(id);
 const els = {
   from:$("langFrom"), to:$("langTo"), input:$("input"), output:$("output"),
+  reviewText:$("reviewText"),reviewAttestation:$("reviewAttestation"),trustImportedReviewed:$("trustImportedReviewed"),
   status:$("status"), service:$("serviceMode"), badge:$("serviceBadge"),
   fromLabel:$("fromLabel"), toLabel:$("toLabel"),
   study:$("studyPanel"), known:$("knownTerms"),
@@ -601,6 +620,7 @@ let purpose = "translate";
 let sessionOnlineConsent = false;
 let pendingOnlineAction = null;
 let lessonContext = null;
+let reviewSnapshot = null;
 
 function readJSON(key, fallback){
   try{
@@ -650,24 +670,20 @@ function lookupOffline(from,to,text){
   return window.KhaemenesSovereignTranslate?.lookupLocal({from,to,text})||null;
 }
 function saveVerifiedPair(from,to,source,translated,meta={}){
-  source=exactKey(source); translated=cleanText(translated);
-  if(!source || !translated) return {ok:false,reason:"empty"};
-  const lib=getLibrary();
-  const existing=allLibraryEntries(lib);
-  if(existing.length>=MAX_LIBRARY_PAIRS && !lib.pairs?.[pairKey(from,to)]?.[source]){
-    return {ok:false,reason:"limit"};
-  }
-  const pk=pairKey(from,to);
-  lib.pairs[pk]=lib.pairs[pk] || {};
-  lib.pairs[pk][source]={
-    translation:translated,
-    verified:true,
-    savedAt:nowIso(),
-    source:meta.source || "user-verified",
-    purpose:meta.purpose || purpose
-  };
-  setLibrary(lib);
-  return {ok:true};
+ source=exactKey(source);translated=cleanText(translated);
+ if(!source||!translated||from===to)return {ok:false,reason:"invalid-pair"};
+ const policy=window.KhaemenesReviewPolicy;
+ const approved=policy?.reviewedRecord({translation:translated,reviewConfirmed:meta.reviewConfirmed===true,
+  sourceType:meta.source,purpose:meta.purpose||purpose,reviewNote:meta.reviewNote||""});
+ if(!approved)return {ok:false,reason:"review-required"};
+ const lib=getLibrary(),pk=pairKey(from,to);
+ if(!policy.validPair(pk))return {ok:false,reason:"invalid-language-pair"};
+ const previous=lib.pairs?.[pk]?.[source];
+ if(allLibraryEntries(lib).length>=MAX_LIBRARY_PAIRS&&!previous)return {ok:false,reason:"limit"};
+ if(!lib.pairs[pk])lib.pairs[pk]=Object.create(null);
+ lib.pairs[pk][source]=approved;
+ try{setLibrary(lib);return {ok:true}}
+ catch{return {ok:false,reason:"storage-unavailable"}}
 }
 
 function getCache(){
@@ -879,22 +895,36 @@ async function runTranslation(){
   return translateOnline();
 }
 function afterTranslation(){
-  if(purpose==="learn") updateKnownTerms();
-  if(purpose==="literary") updateLiteraryPanels();
+  if(purpose==="learn")updateKnownTerms();
+  if(purpose==="literary")updateLiteraryPanels();
+  const candidate=cleanText(els.output.textContent);
+  reviewSnapshot={source:cleanText(els.input.value),from:els.from.value,to:els.to.value,output:candidate};
+  els.reviewText.value=(!candidate||candidate==="Working…"||candidate.startsWith("No exact verified translation"))?"":candidate;
+  els.reviewAttestation.checked=false;
 }
 
 function saveCurrentPair(){
-  const src=cleanText(els.input.value), dst=cleanText(els.output.textContent);
-  if(!src || !dst || /^No exact verified translation/.test(dst) || dst==="Working…"){
-    setStatus("There is not a completed translation to save.","bad"); return;
-  }
-  const result=saveVerifiedPair(els.from.value,els.to.value,src,dst,{
-    source:els.service.value==="online"?"reviewed-online-result":"user-entered-or-local",
-    purpose
-  });
-  if(result.ok) setStatus("Saved ✓ This reviewed pair is now part of your sovereign local library.","good");
-  else if(result.reason==="limit") setStatus(`Library limit reached (${MAX_LIBRARY_PAIRS} pairs). Export the library before removing older entries.`,"bad");
-  else setStatus("Could not save this pair.","bad");
+ const src=cleanText(els.input.value),dst=cleanText(els.reviewText.value);
+ if(!reviewSnapshot||!src||!dst||reviewSnapshot.source!==src||
+    reviewSnapshot.from!==els.from.value||reviewSnapshot.to!==els.to.value||
+    !reviewSnapshot.output||reviewSnapshot.output==="Working…"||
+    reviewSnapshot.output.startsWith("No exact verified translation")){
+  setStatus("Translate the current source first, then review that result before saving.","bad");return;
+ }
+ if(!els.reviewAttestation.checked){
+  setStatus("Please read and confirm the translation-review checkbox before saving.","bad");return;
+ }
+ const result=saveVerifiedPair(els.from.value,els.to.value,src,dst,{
+  reviewConfirmed:true,source:els.service.value==="online"?"edited-online-draft":"edited-sovereign-or-manual",
+  purpose,reviewNote:dst===reviewSnapshot.output?"Compared against original source":"Corrected the original suggestion"
+ });
+ if(result.ok){
+  els.reviewAttestation.checked=false;
+  els.output.textContent=dst;
+  setStatus("Saved as a personally reviewed local pair. This does not certify its accuracy.","good");
+  updateKnownTerms();updateLiteraryPanels();
+ }else if(result.reason==="limit")setStatus("Library is full. Export reviewed entries before removing older pairs.","bad");
+ else setStatus("Pair not saved: "+(result.reason||"please retry"),"bad");
 }
 async function copyTranslation(){
   const text=cleanText(els.output.textContent);
@@ -908,6 +938,7 @@ async function copyTranslation(){
 }
 function clearWorkspace(){
   els.input.value="";els.output.textContent="";els.notes.value="";
+  reviewSnapshot=null;els.reviewText.value="";els.reviewAttestation.checked=false;
   updateKnownTerms();updateLiteraryPanels();
   setStatus(els.service.value==="offline"?"Cleared. Offline Library remains active.":"Cleared.","good");
 }
@@ -922,38 +953,24 @@ function exportLibrary(){
   setStatus("Local language library exported.","good");
 }
 async function importLibrary(file){
-  try{
-    const raw=JSON.parse(await file.text());
-    if(raw?.schema!=="khaemenes-interlingual-library" || Number(raw?.version)!==2 || typeof raw?.pairs!=="object"){
-      throw new Error("Not a compatible Khaemenes Interlingual Library v2 file.");
-    }
-    const current=getLibrary();
-    let added=0;
-    for(const [pk,bucket] of Object.entries(raw.pairs || {})){
-      if(typeof bucket!=="object" || !bucket) continue;
-      current.pairs[pk]=current.pairs[pk] || {};
-      for(const [source,record] of Object.entries(bucket)){
-        if(allLibraryEntries(current).length>=MAX_LIBRARY_PAIRS) break;
-        const translation=cleanText(record?.translation);
-        if(!translation) continue;
-        current.pairs[pk][exactKey(source)]={
-          translation,
-          verified:record?.verified===true,
-          savedAt:record?.savedAt || nowIso(),
-          source:record?.source || "imported-language-pack",
-          purpose:record?.purpose || "translate"
-        };
-        added++;
-      }
-    }
-    setLibrary(current);
-    setStatus(`Imported ${added} language pair${added===1?"":"s"}.`,"good");
-    updateKnownTerms();
-  }catch(error){
-    setStatus(`Import failed: ${String(error?.message||error).slice(0,180)}`,"bad");
-  }
+ try{
+  if(file.size>2*1024*1024)throw Error("Library file exceeds the 2 MB import limit.");
+  const raw=JSON.parse(await file.text());
+  const policy=window.KhaemenesReviewPolicy;
+  if(!policy)throw Error("Local review policy unavailable.");
+  const result=policy.importPack(getLibrary(),raw,{
+   trustReviewed:els.trustImportedReviewed.checked,maxPairs:MAX_LIBRARY_PAIRS
+  });
+  if(!result.ok)throw Error(result.error||"Invalid language library.");
+  setLibrary(result.library);
+  els.trustImportedReviewed.checked=false;
+  setStatus("Imported "+result.added+" pairs: "+result.reviewed+" explicitly trusted and "+
+    result.importedDrafts+" kept as drafts. Preserved previous entries; skipped "+result.skipped+".","good");
+  updateKnownTerms();
+ }catch(error){
+  setStatus("Import failed: "+String(error?.message||error).slice(0,180),"bad");
+ }
 }
-
 function safeContext(value={}){
   const obj=value && typeof value==="object"?value:{};
   const pick=(v,max=180)=>String(v||"").trim().slice(0,max);
@@ -1038,10 +1055,10 @@ initializeContext();
 document.querySelectorAll(".mode-tab").forEach(btn=>btn.addEventListener("click",()=>{
   purpose=btn.dataset.purpose;applyPurpose();
 }));
-els.from.addEventListener("change",()=>{updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels()});
-els.to.addEventListener("change",()=>{updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels()});
-els.input.addEventListener("input",()=>{updateKnownTerms();updateLiteraryPanels()});
-els.service.addEventListener("change",applyService);
+els.from.addEventListener("change",()=>{els.reviewAttestation.checked=false;updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels()});
+els.to.addEventListener("change",()=>{els.reviewAttestation.checked=false;updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels()});
+els.input.addEventListener("input",()=>{els.reviewAttestation.checked=false;updateKnownTerms();updateLiteraryPanels()});
+els.service.addEventListener("change",()=>{els.reviewAttestation.checked=false;applyService()});
 
 $("swapBtn").addEventListener("click",()=>{
   const a=els.from.value;els.from.value=els.to.value;els.to.value=a;
