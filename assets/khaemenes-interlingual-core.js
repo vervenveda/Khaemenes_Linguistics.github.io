@@ -155,7 +155,12 @@ function lookupLocal({from="en",to="es",text=""}={}){
  for(const pk of bucketKeys(from,to)){
   const record=library?.pairs?.[pk]?.[phrase];
   if(record?.verified===true&&typeof record.translation==="string"&&record.translation.trim()){
-   return {translation:record.translation,verified:true,source:"sovereign-local-reviewed",status:"user-reviewed"};
+   return {
+    translation:record.translation,verified:true,source:"sovereign-local-reviewed",
+    status:record.reviewStatus==="self-reviewed"?"user-reviewed":"legacy-review-needs-reconfirmation",
+    reviewStatus:record.reviewStatus||"legacy-review-unconfirmed",
+    reviewedAt:record.reviewedAt||null,origin:record.origin||null
+   };
   }
  }
  // Reverse bilingual lookups use explicit Preschool translations only.
