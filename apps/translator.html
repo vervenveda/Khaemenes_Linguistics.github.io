@@ -709,6 +709,8 @@ function updateDirections(){
   const f=lang(els.from.value), t=lang(els.to.value);
   els.input.dir=f.dir; els.input.lang=f.code;
   els.output.dir=t.dir; els.output.lang=t.code;
+  // Review editing must match the target script, including Arabic RTL.
+  els.reviewText.dir=t.dir; els.reviewText.lang=t.code;
   els.litSource.dir=f.dir; els.litSource.lang=f.code;
   els.litTranslation.dir=t.dir; els.litTranslation.lang=t.code;
   els.fromLabel.textContent=f.name; els.toLabel.textContent=t.name;
