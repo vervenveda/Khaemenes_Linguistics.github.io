@@ -51,4 +51,25 @@ const es=api.lookupLocal({from:"en",to:"es",text:"cat"});
 if(es?.translation!=="gato"||es.verified!==false)fail("bilingual draft translation");
 const s=api.dictionaryStats();
 if(s.allRecords!==434||s.creativeVocabulary!==553)fail("dictionary stats");
+
+const store=new Map();
+sandbox.window.localStorage={
+ getItem:key=>store.has(key)?store.get(key):null,
+ setItem:(key,value)=>{store.set(key,String(value))},
+ removeItem:key=>{store.delete(key)}
+};
+const saved=api.saveLocalEntry({term:"auroral",definition:"Related to an aurora.",synonyms:["luminous","polar"],example:"An auroral glow appeared."});
+if(!saved.ok||api.listLocalEntries().length!==1)fail("new local draft save");
+if(!api.searchDictionary("auroral").some(e=>e.editorial?.status==="local-draft"))fail("draft included in dictionary search");
+const connections=api.lookupThesaurus("auroral");
+if(!connections.related.some(x=>x.term==="luminous"))fail("draft synonym relation");
+const portable=api.exportLocalEntries();
+if(portable.schema!=="khaemenes-dictionary-drafts"||portable.entries.length!==1)fail("portable draft JSON");
+if(!api.removeLocalEntry(saved.id)||api.listLocalEntries().length)fail("delete local draft");
+const imported=api.importLocalEntries(portable);
+if(!imported.ok||imported.added!==1||api.listLocalEntries().length!==1)fail("import local draft");
+if(api.importLocalEntries({schema:"not-ours",version:1,entries:[]}).ok)fail("reject unrelated imports");
+if(!translator.includes('id="lexiconDraftForm"')||!translator.includes('id="thesaurusResults"'))fail("thesaurus/draft UI missing");
+if(!translator.includes("../assets/sovereign-dictionary-v1-errata.js"))fail("canonical dictionary errata not loaded");
+console.log("DICTIONARY_DRAFTS=PASS: add, search, related, export, delete, import, reject incompatible");
 console.log("DICTIONARY_INTEGRITY=PASS entries=434 defined=397 bilingual=37 creative=553 related=234 offline=PASS");
