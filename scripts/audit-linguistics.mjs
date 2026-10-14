@@ -66,7 +66,12 @@ check(language.includes("window.confirm("),"Online translation must require expl
 check(language.includes('const POLYGLOT_ROWS='),"Missing dedicated Polyglot translations");
 const sw=read("service-worker.js");
 check(sw.includes("'./assets/vnv-language.js'"),"Multilingual module missing from PWA shell");
-check(sw.includes("polyglot-v1.1.0-lang"),"PWA cache version is stale");
+for(const cached of ["./apps/translator.html","./assets/khaemenes-campus-phrases.js","./assets/sovereign-dictionary.generated.js","./assets/sovereign-dictionary-v1-errata.js","./assets/khaemenes-interlingual-core.js"]){
+ check(sw.includes("'"+cached+"'"),"Sovereign library missing from offline cache: "+cached);
+ check(existsSync(join(root,cached)),"Sovereign library file missing: "+cached);
+}
+
+check(sw.includes("polyglot-v1.3.0-reference"),"PWA cache version is stale");
 const ids=new Set([...home.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]));
 for(const x of home.matchAll(/href="#([^"]+)"/g))check(ids.has(x[1]),"Missing home anchor #"+x[1]);
 const scripts=["index.html","apps/French_101_index.html","Halls/index.html","Halls/language-learning-v3_index.html"];
