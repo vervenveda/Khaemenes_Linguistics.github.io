@@ -1,0 +1,23 @@
+name: Sovereign Translator Browser Smoke
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/translator.html'
+      - 'assets/sovereign-dictionary.generated.js'
+      - 'assets/sovereign-dictionary-v1-errata.js'
+      - 'assets/khaemenes-interlingual-core.js'
+      - 'assets/khaemenes-campus-phrases.js'
+      - 'scripts/browser-translator-smoke.mjs'
+      - '.github/workflows/sovereign-translator-browser.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  translator-browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v4
+      - name: Exercise dictionary, thesaurus and draft editor in Chrome
+        run: node scripts/browser-translator-smoke.mjs
