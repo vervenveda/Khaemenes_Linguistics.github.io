@@ -1,0 +1,22 @@
+name: Sovereign Dictionary Integrity
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'data/sovereign-dictionary.v1.json'
+      - 'assets/sovereign-dictionary.generated.js'
+      - 'assets/khaemenes-interlingual-core.js'
+      - 'apps/translator.html'
+      - 'scripts/audit-dictionary.mjs'
+      - '.github/workflows/sovereign-dictionary-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify public dictionary sources, offline API and bilingual safeguards
+        run: node scripts/audit-dictionary.mjs
