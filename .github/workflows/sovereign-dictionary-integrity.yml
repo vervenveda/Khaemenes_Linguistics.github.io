@@ -6,6 +6,9 @@ on:
       - 'data/sovereign-dictionary.v1.json'
       - 'assets/sovereign-dictionary.generated.js'
       - 'assets/khaemenes-interlingual-core.js'
+      - 'assets/khaemenes-review-policy.js'
+      - 'scripts/audit-translation-trust.mjs'
+      - 'service-worker.js'
       - 'apps/translator.html'
       - 'scripts/audit-dictionary.mjs'
       - '.github/workflows/sovereign-dictionary-integrity.yml'
@@ -20,3 +23,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Verify public dictionary sources, offline API and bilingual safeguards
         run: node scripts/audit-dictionary.mjs
+      - name: Verify reviewed translation import and promotion safety
+        run: node scripts/audit-translation-trust.mjs
