@@ -1387,9 +1387,7 @@ function lookupReadingWord(){
  const word=$("readingWord").value.trim();
  if(!word){dictionaryCell(area,"p","Enter a word or short phrase from the reading.");return}
  const passage=els.input.value.toLocaleLowerCase();
- const escaped=word.replace(/[^\\p{L}\\p{N}]/gu,character=>"\\\\"+character);
- const expression=new RegExp("(^|[^\\p{L}\\p{N}])"+escaped+"(?=$|[^\\p{L}\\p{N}])","iu");
- if(!expression.test(passage)){dictionaryCell(area,"p","This expression is not in the current source passage.");return}
+ if(!passage.includes(word.toLocaleLowerCase())){dictionaryCell(area,"p","This expression is not in the current source passage.");return}
  const api=window.KhaemenesSovereignTranslate;
  if(!api?.searchDictionary){dictionaryCell(area,"p","Sovereign dictionary unavailable.");return}
  const results=api.searchDictionary(word,{limit:8,includeCreative:false})||[];
