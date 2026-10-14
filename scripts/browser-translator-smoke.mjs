@@ -39,6 +39,16 @@ const testCode=String.raw`
    document.getElementById("saveBtn").click();
    const saved=api.lookupLocal({from:"en",to:"es",text:"cat"});
    checks.reviewedSaved=saved?.reviewStatus==="self-reviewed"&&saved?.verified===true;
+   if(!checks.reviewedSaved){
+    document.body.dataset.translatorSmoke="FAIL";
+    document.body.dataset.translatorDetails=JSON.stringify({
+      checks,status:document.getElementById("status").textContent,
+      actualSaved:saved,stored:localStorage.getItem(api.storageKey)?.slice(0,850),
+      source:sourceInput.value,target:targetSelect.value,
+      reviewed:document.getElementById("reviewText").value
+    });
+    return;
+   }
 
    document.getElementById("dictionaryQuery").value="alliteration";
    document.getElementById("dictionarySearchBtn").click();
