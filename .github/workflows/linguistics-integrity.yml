@@ -1,0 +1,23 @@
+name: Linguistics Repository Integrity
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'assets/vnv-language.js'
+      - 'apps/**'
+      - 'Halls/**'
+      - 'service-worker.js'
+      - 'scripts/audit-linguistics.mjs'
+      - '.github/workflows/linguistics-integrity.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  integrity:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run offline structural integrity checks
+        run: node scripts/audit-linguistics.mjs
