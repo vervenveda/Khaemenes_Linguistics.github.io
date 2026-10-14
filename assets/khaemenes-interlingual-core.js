@@ -80,8 +80,12 @@ function searchDictionary(query,{limit=25,domain="",includeCreative=false}={}){
  const scored=[];
  for(const e of [...dictionaryEntries,...listLocalEntries()]){
   if(domain&&e.domain!==domain)continue;
+  // Preserve exact-term priority; search examples and grammatical labels only as fallbacks.
+  // Source text is never rewritten or treated as an inferred definition.
   const term=fold(e.term),definition=fold(e.definition),synonyms=(e.synonyms||[]).map(fold);
-  const rank=term===q?0:term.startsWith(q)?1:term.includes(q)?2:synonyms.some(x=>x.includes(q))?3:definition.includes(q)?4:99;
+  const example=fold(e.example),partOfSpeech=fold(e.partOfSpeech);
+  const tags=Array.isArray(e.tags)?e.tags.map(fold):[];
+  const rank=term===q?0:term.startsWith(q)?1:term.includes(q)?2:synonyms.some(x=>x.includes(q))?3:definition.includes(q)?4:example.includes(q)?5:partOfSpeech.includes(q)?6:tags.some(x=>x.includes(q))?7:99;
   if(rank<99)scored.push({rank,entry:publicEntry(e)});
  }
  scored.sort((a,b)=>a.rank-b.rank||a.entry.term.localeCompare(b.entry.term));
