@@ -36,6 +36,41 @@ function searchDictionary(query,{limit=25,domain="",includeCreative=false}={}){
  }
  return found;
 }
+/* Thesaurus is limited to terms actually cited by existing source records.
+ * Explanatory phrases and reverse connections are NOT promoted to strict synonyms. */
+function lookupThesaurus(word,{limit=35,includeReverse=true}={}){
+ const wanted=fold(word),max=Math.min(75,Math.max(1,Number(limit)||35));
+ const links=new Map(),sourceRecords=[];
+ if(!wanted)return {headword:word,sourceRecords,related:[],status:"no-term"};
+ function add(term,direction,entry){
+  const normalized=fold(term);if(!normalized||normalized===wanted)return;
+  let item=links.get(normalized);
+  if(!item){item={term:String(term).trim(),direct:false,reverse:false,sourceRecords:[]};links.set(normalized,item)}
+  item[direction]=true;
+  if(!item.sourceRecords.some(ref=>ref.id===entry.id)){
+   item.sourceRecords.push({id:entry.id,term:entry.term,partOfSpeech:entry.partOfSpeech,source:entry.provenance});
+  }
+ }
+ for(const e of dictionaryEntries){
+  if(fold(e.term)===wanted){
+   sourceRecords.push(publicEntry(e));
+   for(const synonym of e.synonyms||[])add(synonym,"direct",e);
+  }else if(includeReverse){
+   for(const synonym of e.synonyms||[])if(fold(synonym)===wanted)add(e.term,"reverse",e);
+  }
+ }
+ const related=[...links.values()].sort((a,b)=>(Number(b.direct)-Number(a.direct))||a.term.localeCompare(b.term)).slice(0,max);
+ return {headword:word,sourceRecords,related,status:related.length?"source-linked":"no-source-linked-terms",notice:"Source-listed related expressions, not guaranteed interchangeable synonyms or antonyms."};
+}
+function thesaurusStats(){
+ let withLinks=0,links=0;const unique=new Set();
+ for(const entry of dictionaryEntries){
+  const terms=entry.synonyms||[];if(terms.length)withLinks++;
+  links+=terms.length;
+  for(const term of terms)if(fold(term))unique.add(fold(term));
+ }
+ return {entriesWithRelatedTerms:withLinks,sourceListedLinks:links,distinctRelatedTerms:unique.size,automaticInferences:0,antonymsSupported:false};
+}
 function dictionaryStats(){
  return {definedEntries:dictionaryEntries.filter(e=>e.provenance?.path!=="assets/dictionary.js").length,translationOnlyEntries:dictionaryEntries.filter(e=>e.provenance?.path==="assets/dictionary.js").length,allRecords:dictionaryEntries.length,creativeVocabulary:(DICTIONARY.creativeVocabulary||[]).length,duplicateForms:(DICTIONARY.duplicateSurfaceForms||[]).length,network:"never"};
 }
@@ -67,7 +102,15 @@ function lookupLocal({from="en",to="es",text=""}={}){
    return {translation:record.translation,verified:true,source:"sovereign-local-reviewed",status:"user-reviewed"};
   }
  }
- if(legacyCode(from)!=="en")return null;
+ // Reverse bilingual lookups use explicit Preschool translations only.
+ // Do not pivot between two non-English languages or guess ambiguous meanings.
+ if(legacyCode(from)!=="en"){
+  if(target!=="en")return null;
+  const language=legacyCode(from)==="zh-CN"?"zh":legacyCode(from);
+  const matches=dictionaryEntries.filter(e=>e.provenance?.path==="assets/dictionary.js"&&fold(e.translations?.[language])===fold(phrase));
+  if(matches.length===1)return {translation:matches[0].term,verified:false,source:"sovereign-preschool-reverse",status:"source-vocabulary-draft",provenance:matches[0].provenance};
+  return null;
+ }
  const short=target==="zh-CN"?"zh":target;
  // Bilingual Preschool entries are a small draft vocabulary, not a translation model.
  const word=fold(phrase);
@@ -104,10 +147,12 @@ function portablePack(){
  return {schema:"khaemenes-interlingual-library",version:2,updatedAt:new Date().toISOString(),pairs};
 }
 root.KhaemenesSovereignTranslate=Object.freeze({
- version:"1.0",
+ version:"1.1",
  lookupLocal,
  lookupDefinition,
  searchDictionary,
+ lookupThesaurus,
+ thesaurusStats,
  dictionaryStats,
  stats,
  portablePack,
