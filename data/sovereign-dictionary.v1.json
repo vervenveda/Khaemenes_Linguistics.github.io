@@ -6,7 +6,7 @@
   "language": "en",
   "statement": "Public educational source-assembled reference. Definitions are source-attributed and unreviewed as dictionary editorial entries; not professional translations or certified linguistic authority.",
   "boundaries": {
-    "translation": "Only explicit source-provided bilingual word pairs can be used as offline translations; do not infer phrase or paragraph translation from definitions or synonyms.",
+    "translation": "Only source-provided bilingual word pairs can be offered as draft offline translations. Reviewed browser-local pairs outrank them. Source definitions are not machine translations.",
     "learning": "Creative prompts are separate, not automatically accepted as dictionary definitions or assessed vocabulary.",
     "ethical": "Indigenous/oral-traditions definitions remain context-sensitive source reference, not authority to reproduce restricted community knowledge."
   },
@@ -7655,7 +7655,7 @@
       "id": "preschool-multilingual-cat",
       "language": "en",
       "term": "cat",
-      "definition": "Word used in the animals theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -7681,16 +7681,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-dog",
       "language": "en",
       "term": "dog",
-      "definition": "Word used in the animals theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -7716,16 +7717,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-bird",
       "language": "en",
       "term": "bird",
-      "definition": "Word used in the animals theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -7751,16 +7753,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-fish",
       "language": "en",
       "term": "fish",
-      "definition": "Word used in the animals theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -7786,16 +7789,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-lion",
       "language": "en",
       "term": "lion",
-      "definition": "Word used in the animals theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -7821,16 +7825,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-elephant",
       "language": "en",
       "term": "elephant",
-      "definition": "Word used in the animals theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -7856,16 +7861,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-frog",
       "language": "en",
       "term": "frog",
-      "definition": "Word used in the animals theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -7891,16 +7897,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-cow",
       "language": "en",
       "term": "cow",
-      "definition": "Word used in the animals theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -7926,16 +7933,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-duck",
       "language": "en",
       "term": "duck",
-      "definition": "Word used in the animals theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -7961,16 +7969,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-monkey",
       "language": "en",
       "term": "monkey",
-      "definition": "Word used in the animals theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -7996,16 +8005,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-red",
       "language": "en",
       "term": "red",
-      "definition": "Word used in the colors theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8031,16 +8041,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-blue",
       "language": "en",
       "term": "blue",
-      "definition": "Word used in the colors theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8066,16 +8077,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-yellow",
       "language": "en",
       "term": "yellow",
-      "definition": "Word used in the colors theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8101,16 +8113,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-green",
       "language": "en",
       "term": "green",
-      "definition": "Word used in the colors theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8136,16 +8149,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-orange",
       "language": "en",
       "term": "orange",
-      "definition": "Word used in the colors theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8171,16 +8185,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-purple",
       "language": "en",
       "term": "purple",
-      "definition": "Word used in the colors theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8206,16 +8221,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-pink",
       "language": "en",
       "term": "pink",
-      "definition": "Word used in the colors theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8241,16 +8257,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-one",
       "language": "en",
       "term": "one",
-      "definition": "Word used in the numbers theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8276,16 +8293,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-two",
       "language": "en",
       "term": "two",
-      "definition": "Word used in the numbers theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8311,16 +8329,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-three",
       "language": "en",
       "term": "three",
-      "definition": "Word used in the numbers theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8346,16 +8365,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-four",
       "language": "en",
       "term": "four",
-      "definition": "Word used in the numbers theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8381,16 +8401,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-five",
       "language": "en",
       "term": "five",
-      "definition": "Word used in the numbers theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8416,16 +8437,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-six",
       "language": "en",
       "term": "six",
-      "definition": "Word used in the numbers theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8451,16 +8473,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-seven",
       "language": "en",
       "term": "seven",
-      "definition": "Word used in the numbers theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8486,16 +8509,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-eight",
       "language": "en",
       "term": "eight",
-      "definition": "Word used in the numbers theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8521,16 +8545,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-nine",
       "language": "en",
       "term": "nine",
-      "definition": "Word used in the numbers theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8556,16 +8581,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-ten",
       "language": "en",
       "term": "ten",
-      "definition": "Word used in the numbers theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8591,16 +8617,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-sun",
       "language": "en",
       "term": "sun",
-      "definition": "Word used in the nature theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8626,16 +8653,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-moon",
       "language": "en",
       "term": "moon",
-      "definition": "Word used in the nature theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8661,16 +8689,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-star",
       "language": "en",
       "term": "star",
-      "definition": "Word used in the nature theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8696,16 +8725,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-tree",
       "language": "en",
       "term": "tree",
-      "definition": "Word used in the nature theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8731,16 +8761,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-flower",
       "language": "en",
       "term": "flower",
-      "definition": "Word used in the nature theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8766,16 +8797,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-cloud",
       "language": "en",
       "term": "cloud",
-      "definition": "Word used in the nature theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8801,16 +8833,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-rain",
       "language": "en",
       "term": "rain",
-      "definition": "Word used in the nature theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8836,16 +8869,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-snow",
       "language": "en",
       "term": "snow",
-      "definition": "Word used in the nature theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8871,16 +8905,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-wind",
       "language": "en",
       "term": "wind",
-      "definition": "Word used in the nature theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8906,16 +8941,17 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
       "id": "preschool-multilingual-leaf",
       "language": "en",
       "term": "leaf",
-      "definition": "Word used in the nature theme.",
+      "definition": null,
       "simpleDefinition": null,
       "pronunciation": null,
       "partOfSpeech": null,
@@ -8941,9 +8977,10 @@
         "sourceStatus": "existing-public-educational-material"
       },
       "editorial": {
-        "status": "source-imported-unreviewed",
+        "status": "source-imported-translation-only",
         "translationStatus": "existing-vocabulary-draft",
-        "contextSensitive": false
+        "contextSensitive": false,
+        "note": "The original Preschool dictionary provides translations and examples, but no standalone definition."
       }
     },
     {
