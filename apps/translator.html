@@ -343,6 +343,14 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
       <h2 id="bilingualReadingTitle">Bilingual Reading Studio</h2>
       <p>Compare short passages using existing sovereign word and phrase records. Only exact saved matches are displayed; missing lines are never invented.</p>
       <button class="btn secondary" id="readingRefresh" type="button">Compare Source Lines</button>
+      <div class="actions" aria-label="Reading accessibility controls">
+        <button class="btn ghost" id="readingLarger" type="button">Larger Text</button>
+        <button class="btn ghost" id="readingSmaller" type="button">Smaller Text</button>
+        <button class="btn ghost" id="readingSpeakSource" type="button">Read Original</button>
+        <button class="btn ghost" id="readingSpeakTarget" type="button">Read Translation</button>
+        <button class="btn ghost" id="readingStopSpeech" type="button">Stop Reading</button>
+      </div>
+      <p class="dictionary-hint">Reading aloud uses voices available in your browser or device. Voice availability and whether synthesis is processed locally depend on the device; this feature does not call a translation service.</p>
       <p id="readingStatus" class="dictionary-hint" role="status" aria-live="polite">Enter a source passage, then compare its available translations.</p>
       <div id="readingPairs" class="compare-grid" aria-label="Bilingual passage comparison"></div>
     </section>
@@ -1304,6 +1312,42 @@ els.dialog.addEventListener("click",event=>{
 });
 
 /* Bilingual Reading Studio: derived view only, never a translation authority or stored learner record. */
+let readingTextSize=18;
+function setReadingTextSize(next){
+ readingTextSize=Math.max(14,Math.min(30,next));
+ const area=$("readingPairs");
+ area.style.fontSize=readingTextSize+"px";
+ $("readingStatus").textContent="Reading text size: "+readingTextSize+" pixels.";
+}
+function speakReading(which){
+ const synth=window.speechSynthesis;
+ if(!synth||typeof SpeechSynthesisUtterance!=="function"){
+  $("readingStatus").textContent="Read-aloud is unavailable in this browser.";return;
+ }
+ const source=els.input.value.split(/\r?\n/).map(x=>x.trim()).filter(Boolean).slice(0,14);
+ const targetLang=els.to.value,sourceLang=els.from.value;
+ let passage="";
+ if(which==="source")passage=source.join(". ");
+ else{
+  const mapped=source.map(line=>sourceLang===targetLang?line:lookupOffline(sourceLang,targetLang,line)?.translation||"");
+  if(mapped.some(x=>!x)){ $("readingStatus").textContent="Some translations are unavailable. Read-aloud stopped to avoid mixing languages.";return; }
+  passage=mapped.join(". ");
+ }
+ if(!passage){$("readingStatus").textContent="There is no matching passage to read.";return}
+ // Browser/device voices may be OS-managed; never promise device-only voice processing.
+ synth.cancel();
+ const utterance=new SpeechSynthesisUtterance(passage.slice(0,3000));
+ utterance.lang=which==="source"?sourceLang:targetLang;
+ utterance.rate=0.9;
+ synth.speak(utterance);
+ $("readingStatus").textContent="Reading "+(which==="source"?"original":"available translation")+".";
+}
+$("readingLarger").addEventListener("click",()=>setReadingTextSize(readingTextSize+2));
+$("readingSmaller").addEventListener("click",()=>setReadingTextSize(readingTextSize-2));
+$("readingSpeakSource").addEventListener("click",()=>speakReading("source"));
+$("readingSpeakTarget").addEventListener("click",()=>speakReading("target"));
+$("readingStopSpeech").addEventListener("click",()=>{window.speechSynthesis?.cancel();$("readingStatus").textContent="Reading stopped."});
+
 function renderReadingStudio(){
  const from=els.from.value,to=els.to.value;
  const sourceMeta=lang(from),targetMeta=lang(to);
