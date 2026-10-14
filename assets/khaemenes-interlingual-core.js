@@ -6,6 +6,40 @@
 (function(root){"use strict";
 const LIBRARY_KEY="khaemenes_interlingual_library_v2";
 const SEED=root.KhaemenesSovereignSeeds||{phrases:{}};
+const DICTIONARY=root.KhaemenesSovereignDictionary||{entries:[],creativeVocabulary:[]};
+const dictionaryEntries=Array.isArray(DICTIONARY.entries)?DICTIONARY.entries:[];
+const fold=text=>String(text||"").normalize("NFKD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase();
+function publicEntry(entry){
+ // Preschool bilingual theme lists contain translations, not definitions.
+ if(entry?.provenance?.path==="assets/dictionary.js")return {...entry,definition:null,editorial:{...entry.editorial,status:"translation-only-no-definition"}};
+ return entry;
+}
+function lookupDefinition(word,{limit=12}={}){
+ const wanted=fold(word);if(!wanted)return [];
+ return dictionaryEntries.filter(e=>fold(e.term)===wanted).slice(0,Math.min(50,Math.max(1,limit))).map(publicEntry);
+}
+function searchDictionary(query,{limit=25,domain="",includeCreative=false}={}){
+ const q=fold(query);if(!q)return [];
+ const max=Math.min(100,Math.max(1,Number(limit)||25));
+ const scored=[];
+ for(const e of dictionaryEntries){
+  if(domain&&e.domain!==domain)continue;
+  const term=fold(e.term),definition=fold(e.definition),synonyms=(e.synonyms||[]).map(fold);
+  const rank=term===q?0:term.startsWith(q)?1:term.includes(q)?2:synonyms.some(x=>x.includes(q))?3:definition.includes(q)?4:99;
+  if(rank<99)scored.push({rank,entry:publicEntry(e)});
+ }
+ scored.sort((a,b)=>a.rank-b.rank||a.entry.term.localeCompare(b.entry.term));
+ const found=scored.slice(0,max).map(x=>x.entry);
+ if(includeCreative&&found.length<max){
+  const creative=(DICTIONARY.creativeVocabulary||[]).filter(e=>fold(e.term).includes(q)).slice(0,max-found.length);
+  found.push(...creative.map(e=>({...e,editorial:{status:"creative-prompt-not-dictionary-definition"}})));
+ }
+ return found;
+}
+function dictionaryStats(){
+ return {definedEntries:dictionaryEntries.filter(e=>e.provenance?.path!=="assets/dictionary.js").length,translationOnlyEntries:dictionaryEntries.filter(e=>e.provenance?.path==="assets/dictionary.js").length,allRecords:dictionaryEntries.length,creativeVocabulary:(DICTIONARY.creativeVocabulary||[]).length,duplicateForms:(DICTIONARY.duplicateSurfaceForms||[]).length,network:"never"};
+}
+
 const legacyCode=code=>String(code||"").trim().toLowerCase()==="zh"?"zh-CN":String(code||"").trim();
 const normalize=text=>String(text??"").trim().normalize("NFC");
 const bucketKeys=(from,to)=>{
@@ -35,6 +69,12 @@ function lookupLocal({from="en",to="es",text=""}={}){
  }
  if(legacyCode(from)!=="en")return null;
  const short=target==="zh-CN"?"zh":target;
+ // Bilingual Preschool entries are a small draft vocabulary, not a translation model.
+ const word=fold(phrase);
+ const translationRecord=dictionaryEntries.find(e=>e.provenance?.path==="assets/dictionary.js"&&fold(e.term)===word&&typeof e.translations?.[short]==="string");
+ if(translationRecord){
+  return {translation:translationRecord.translations[short],verified:false,source:"sovereign-preschool-dictionary",status:"source-vocabulary-draft",provenance:translationRecord.provenance};
+ }
  const record=SEED.phrases?.[short]?.[phrase];
  if(record&&typeof record.text==="string"&&record.text.trim()){
   return {translation:record.text,verified:false,source:"sovereign-campus-draft",status:record.status||"draft"};
@@ -66,6 +106,9 @@ function portablePack(){
 root.KhaemenesSovereignTranslate=Object.freeze({
  version:"1.0",
  lookupLocal,
+ lookupDefinition,
+ searchDictionary,
+ dictionaryStats,
  stats,
  portablePack,
  languages:()=>Object.keys(SEED.phrases||{}),
