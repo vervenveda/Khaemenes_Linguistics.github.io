@@ -342,6 +342,16 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
     <section id="bilingualReadingStudio" class="study-panel" aria-labelledby="bilingualReadingTitle">
       <h2 id="bilingualReadingTitle">Bilingual Reading Studio</h2>
       <p>Compare short passages using existing sovereign word and phrase records. Only exact saved matches are displayed; missing lines are never invented.</p>
+      <div class="field">
+        <label for="readingMode">Reading presentation</label>
+        <select id="readingMode" aria-describedby="readingModeHelp">
+          <option value="early">Early Reader · spacious, large text</option>
+          <option value="guided">Developing Reader · guided comparison</option>
+          <option value="advanced">Advanced Student · detailed comparison</option>
+          <option value="clear" selected>Clear Reading · accessible for all ages</option>
+        </select>
+        <p class="dictionary-hint" id="readingModeHelp">Presentation only. This setting never changes translation quality, creates a learner profile, or stores reading text.</p>
+      </div>
       <button class="btn secondary" id="readingRefresh" type="button">Compare Source Lines</button>
       <div class="actions" aria-label="Reading accessibility controls">
         <button class="btn ghost" id="readingLarger" type="button">Larger Text</button>
@@ -1320,6 +1330,22 @@ els.dialog.addEventListener("click",event=>{
 
 /* Bilingual Reading Studio: derived view only, never a translation authority or stored learner record. */
 let readingTextSize=18;
+const readingModes={
+ early:{size:26,spacing:1.9,gap:14},
+ guided:{size:21,spacing:1.7,gap:11},
+ advanced:{size:17,spacing:1.5,gap:7},
+ clear:{size:18,spacing:1.65,gap:11}
+};
+function applyReadingMode(){
+ const mode=readingModes[$("readingMode").value]||readingModes.clear;
+ readingTextSize=mode.size;
+ const area=$("readingPairs");
+ area.style.fontSize=mode.size+"px";
+ area.style.lineHeight=String(mode.spacing);
+ area.style.rowGap=mode.gap+"px";
+ $("readingStatus").textContent="Reading presentation updated. Original text and translation records are unchanged.";
+}
+$("readingMode").addEventListener("change",applyReadingMode);
 function setReadingTextSize(next){
  readingTextSize=Math.max(14,Math.min(30,next));
  const area=$("readingPairs");
