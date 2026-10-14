@@ -1166,6 +1166,7 @@ function dictionaryLookup(){
   const card=document.createElement("article");card.className="dictionary-entry";
   dictionaryCell(card,"h3",e.term);
   const isCreative=!e.id;
+  if(e.editorial?.status==="local-draft")dictionaryCell(card,"p","Private browser-local draft · not yet reviewed for publication.","dictionary-meta");
   if(isCreative){dictionaryCell(card,"p","Creative story ingredient (no dictionary definition).","dictionary-meta")}
   else{
     dictionaryCell(card,"p",e.definition||"Source supplies a bilingual vocabulary entry, but no definition.");
@@ -1182,7 +1183,7 @@ function dictionaryLookup(){
   if(provenance.repository&&provenance.path){
    const link=document.createElement("a");
    const file=provenance.path.split("/").map(encodeURIComponent).join("/");
-   link.href="https://github.com/"+provenance.repository+"/blob/main/"+file;
+   link.href="https://github.com/"+provenance.repository+"/blob/"+encodeURIComponent(provenance.sha||"main")+"/"+file;
    link.textContent="View original source";link.target="_blank";link.rel="noopener noreferrer";
    card.append(link);
   }
