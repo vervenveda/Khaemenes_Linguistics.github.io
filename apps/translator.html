@@ -316,9 +316,10 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
     <div class="utility">
       <div class="utility-card">
         <h3>Sovereign Language Library</h3>
-        <p>Export your saved verified translation pairs as JSON, or import a compatible language pack. Your local library stays on this device unless you export it.</p>
+        <p>Use the built-in sovereign campus phrase pack alongside your own reviewed pairs. Export either library as JSON for another device or website origin. Campus phrases are drafts; reviewed pairs remain distinct.</p>
         <div class="actions">
           <button class="btn gold" id="exportBtn" type="button">Export Library</button>
+          <button class="btn ghost" id="exportCampusBtn" type="button">Export Campus Phrase Pack</button>
           <button class="btn ghost" id="importBtn" type="button">Import Library</button>
           <input class="file-input" id="importFile" type="file" accept=".json,application/json">
         </div>
@@ -363,11 +364,13 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
   </section>
 </div>
 
+<script src="../assets/khaemenes-campus-phrases.js"></script>
+<script src="../assets/khaemenes-interlingual-core.js"></script>
 <script>
 (() => {
 "use strict";
 
-const VERSION = "2.2";
+const VERSION = "2.3";
 const LS_LIBRARY = "khaemenes_interlingual_library_v2";
 const LS_CACHE = "khaemenes_interlingual_cache_v2";
 const LS_PREFS = "khaemenes_interlingual_prefs_v2";
@@ -559,8 +562,11 @@ function allLibraryEntries(lib=getLibrary()){
   return out;
 }
 function lookupOffline(from,to,text){
-  const lib=getLibrary();
-  return lib.pairs?.[pairKey(from,to)]?.[exactKey(text)] || null;
+  const lib=getLibrary(),local=lib.pairs?.[pairKey(from,to)]?.[exactKey(text)];
+  if(local?.verified===true&&typeof local.translation==="string"&&local.translation.trim()){
+    return {...local,source:"sovereign-local-reviewed"};
+  }
+  return window.KhaemenesSovereignTranslate?.lookupLocal({from,to,text})||null;
 }
 function saveVerifiedPair(from,to,source,translated,meta={}){
   source=exactKey(source); translated=cleanText(translated);
@@ -668,7 +674,8 @@ function applyService(){
 function updateStats(){
   const pairs=allLibraryEntries().length;
   const cache=Object.keys(getCache().entries || {}).length;
-  els.stats.textContent=`${pairs} verified pair${pairs===1?"":"s"} · ${cache} cached online response${cache===1?"":"s"}`;
+  const seed=window.KhaemenesSovereignTranslate?.stats();
+  els.stats.textContent=`${pairs} local pairs · ${seed?.campusDraftPairs||0} offline campus phrases (${seed?.campusLanguages||0} languages) · ${cache} optional online drafts cached`;
 }
 
 function knownTermsForText(text,from,to){
@@ -725,7 +732,7 @@ async function translateOffline(){
   const hit=lookupOffline(from,to,text);
   if(hit?.translation){
     els.output.textContent=hit.translation;
-    setStatus("Offline Library hit ✓ Verified local pair.","good");
+    setStatus(hit.verified===true?"Offline Library hit ✓ Reviewed local pair.":"Sovereign campus phrase found (draft). Review before formal use.","good");
   }else{
     els.output.textContent="No exact verified translation is stored locally for this text.";
     setStatus("Offline Library miss. Use a saved pair, import a language pack, or explicitly choose Online Translation.","bad");
@@ -970,6 +977,15 @@ $("saveBtn").addEventListener("click",saveCurrentPair);
 $("copyBtn").addEventListener("click",copyTranslation);
 $("clearBtn").addEventListener("click",clearWorkspace);
 $("exportBtn").addEventListener("click",exportLibrary);
+$("exportCampusBtn").addEventListener("click",()=>{
+  const pack=window.KhaemenesSovereignTranslate?.portablePack();
+  if(!pack){setStatus("Sovereign campus pack unavailable.","bad");return}
+  const file=new Blob([JSON.stringify(pack,null,2)],{type:"application/json"});
+  const uri=URL.createObjectURL(file),a=document.createElement("a");
+  a.href=uri;a.download="khaemenes-sovereign-campus-phrases-v1.json";
+  document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(uri),1000);
+  setStatus("Campus draft phrase pack exported. Review imported drafts before trusting them.","good");
+});
 $("importBtn").addEventListener("click",()=>$("importFile").click());
 $("importFile").addEventListener("change",event=>{
   const file=event.target.files?.[0];
