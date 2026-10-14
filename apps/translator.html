@@ -189,6 +189,22 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 .dialog p,.dialog li{color:var(--ink-soft);font-size:13px;line-height:1.7}
 .checkline{display:flex;gap:9px;align-items:flex-start;margin:14px 0}
 .checkline input{margin-top:4px}
+
+/* Sovereign reference dictionary uses existing parchment and 7px-control standards */
+.dictionary-portal{margin-top:20px;padding:18px;border:1px solid var(--line-strong);border-radius:7px;background:var(--paper-bright)}
+.dictionary-heading{text-align:center}.dictionary-heading h2{font:500 24px var(--serif);margin:0 0 7px}
+.dictionary-heading p,.dictionary-hint{color:var(--muted);font-size:12px;line-height:1.65}
+.dictionary-controls{display:grid;grid-template-columns:2fr 1fr auto;gap:12px;align-items:end;margin:16px 0}
+.dictionary-controls .btn{white-space:normal}.dictionary-creative-toggle{display:flex;align-items:center;gap:8px;font-size:12px;margin:9px 0 14px}
+.dictionary-results{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:10px 0}
+.dictionary-entry{border:1px solid var(--line);border-radius:7px;padding:14px;text-align:left;min-width:0}
+.dictionary-entry h3{font:500 17px var(--serif);margin:0 0 5px;overflow-wrap:anywhere}
+.dictionary-entry p{font-size:12px;margin:6px 0;overflow-wrap:anywhere}
+.dictionary-entry .dictionary-meta{color:var(--muted);font-size:11px}
+.dictionary-entry a{color:var(--teal);font-size:11px;text-decoration:underline;text-underline-offset:3px}
+.dictionary-entry .dictionary-actions{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.dictionary-entry .dictionary-actions button{min-height:36px}
+@media(max-width:760px){.dictionary-controls,.dictionary-results{grid-template-columns:1fr}}
 @media(max-width:760px){
   .control-grid,.panes,.utility,.compare-grid{grid-template-columns:1fr}
   .mode-tabs{grid-template-columns:1fr}
@@ -223,7 +239,7 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 
 <main class="shell">
   <section class="hero">
-    <div class="eyebrow">Sovereign Interlingual Tool · v2.2</div>
+    <div class="eyebrow">Sovereign Interlingual Tool · v2.4</div>
     <h1>Multilingual Translator</h1>
     <p>
       Translate privately from your local library, study language relationships, or compare literary meaning across languages.
@@ -333,6 +349,21 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
         </div>
       </div>
     </div>
+    <section class="dictionary-portal" aria-labelledby="dictionaryTitle">
+      <div class="dictionary-heading">
+        <h2 id="dictionaryTitle">Sovereign Reference Dictionary</h2>
+        <p>Search definitions, pronunciation, word origins and genuine bilingual vocabulary from Arcade, Preschool and ARSHIF. Every record retains its public source. Storybird prompts are separate and never represented as dictionary definitions.</p>
+      </div>
+      <div class="dictionary-controls">
+        <div class="field"><label for="dictionaryQuery">Search word or definition</label><input type="search" id="dictionaryQuery" placeholder="Try alliteration, cat, zeugma, oral tradition…" autocomplete="off"></div>
+        <div class="field"><label for="dictionaryDomain">Collection</label><select id="dictionaryDomain"><option value="">All dictionary collections</option></select></div>
+        <button class="btn gold" type="button" id="dictionarySearchBtn">Search Dictionary</button>
+      </div>
+      <label class="dictionary-creative-toggle"><input id="dictionaryCreative" type="checkbox"> Include Storybird creative words (no definitions)</label>
+      <p id="dictionaryStats" class="dictionary-hint" role="status">Loading local dictionary…</p>
+      <div id="dictionaryResults" class="dictionary-results" aria-live="polite"></div>
+      <p class="dictionary-hint">Educational source material requires editorial review. An ARSHIF cultural definition is context-specific and does not authorize unrestricted reuse of community knowledge. Bilingual examples are drafts, not certified translations.</p>
+    </section>
   </section>
 
   <div class="footer">
@@ -365,12 +396,13 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 </div>
 
 <script src="../assets/khaemenes-campus-phrases.js"></script>
+<script src="../assets/sovereign-dictionary.generated.js"></script>
 <script src="../assets/khaemenes-interlingual-core.js"></script>
 <script>
 (() => {
 "use strict";
 
-const VERSION = "2.3";
+const VERSION = "2.4";
 const LS_LIBRARY = "khaemenes_interlingual_library_v2";
 const LS_CACHE = "khaemenes_interlingual_cache_v2";
 const LS_PREFS = "khaemenes_interlingual_prefs_v2";
@@ -977,6 +1009,63 @@ $("saveBtn").addEventListener("click",saveCurrentPair);
 $("copyBtn").addEventListener("click",copyTranslation);
 $("clearBtn").addEventListener("click",clearWorkspace);
 $("exportBtn").addEventListener("click",exportLibrary);
+
+function populateDictionary(){
+ const api=window.KhaemenesSovereignTranslate;
+ const stats=api?.dictionaryStats?.();
+ const label=$("dictionaryStats");
+ if(!stats||stats.allRecords!==434){label.textContent="Offline dictionary unavailable. Other translation tools remain usable.";return}
+ label.textContent=stats.allRecords+" source records ("+stats.definedEntries+" with definitions; "+stats.translationOnlyEntries+" translation-only), "+stats.creativeVocabulary+" separate Storybird creative items. No network required.";
+ const domains=[...new Set((window.KhaemenesSovereignDictionary?.entries||[]).map(e=>e.domain))].sort();
+ const select=$("dictionaryDomain");
+ for(const domain of domains){const option=document.createElement("option");option.value=domain;option.textContent=domain.replace(/[-_]/g," ");select.append(option)}
+}
+function dictionaryCell(parent,tag,value,css=""){
+ if(value===null||value===undefined||value==="")return null;
+ const element=document.createElement(tag);if(css)element.className=css;
+ element.textContent=String(value);parent.append(element);return element;
+}
+function dictionaryLookup(){
+ const root=$("dictionaryResults");root.replaceChildren();
+ const api=window.KhaemenesSovereignTranslate;
+ if(!api?.searchDictionary){dictionaryCell(root,"p","Dictionary unavailable.");return}
+ const query=$("dictionaryQuery").value.trim();
+ if(!query){dictionaryCell(root,"p","Enter a word or phrase to explore its source-backed meaning.");return}
+ const creative=$("dictionaryCreative").checked;
+ const domain=$("dictionaryDomain").value;
+ const matches=api.searchDictionary(query,{limit:24,domain,includeCreative:creative});
+ if(!matches.length){dictionaryCell(root,"p","No matching local entry yet. An empty result does not mean a translation exists.");return}
+ for(const e of matches){
+  const card=document.createElement("article");card.className="dictionary-entry";
+  dictionaryCell(card,"h3",e.term);
+  const isCreative=!e.id;
+  if(isCreative){dictionaryCell(card,"p","Creative story ingredient (no dictionary definition).","dictionary-meta")}
+  else{
+    dictionaryCell(card,"p",e.definition||"Source supplies a bilingual vocabulary entry, but no definition.");
+    dictionaryCell(card,"p",e.simpleDefinition?"In simpler words: "+e.simpleDefinition:null);
+    dictionaryCell(card,"p",e.partOfSpeech?"Part of speech: "+e.partOfSpeech:null,"dictionary-meta");
+    dictionaryCell(card,"p",e.pronunciation?"Pronunciation: "+e.pronunciation:null,"dictionary-meta");
+    dictionaryCell(card,"p",e.example?"Example: "+e.example:null);
+    dictionaryCell(card,"p",e.etymology?"Origin (source wording): "+e.etymology:null,"dictionary-meta");
+    const translations=Object.entries(e.translations||{}).map(([lang,word])=>lang+": "+word).join(" · ");
+    dictionaryCell(card,"p",translations?"Source bilingual vocabulary (unreviewed): "+translations:null,"dictionary-meta");
+    dictionaryCell(card,"p",e.editorial?.contextSensitive?"Cultural context: verify with relevant community sources.":null,"dictionary-meta");
+  }
+  const provenance=e.provenance||{};
+  if(provenance.repository&&provenance.path){
+   const link=document.createElement("a");
+   const file=provenance.path.split("/").map(encodeURIComponent).join("/");
+   link.href="https://github.com/"+provenance.repository+"/blob/main/"+file;
+   link.textContent="View original source";link.target="_blank";link.rel="noopener noreferrer";
+   card.append(link);
+  }
+  const actions=document.createElement("div");actions.className="dictionary-actions";
+  const use=document.createElement("button");use.type="button";use.className="btn ghost";use.textContent="Use word in translator";
+  use.addEventListener("click",()=>{els.input.value=e.term;els.input.focus();updateKnownTerms();updateLiteraryPanels()});
+  actions.append(use);card.append(actions);root.append(card);
+ }
+}
+
 $("exportCampusBtn").addEventListener("click",()=>{
   const pack=window.KhaemenesSovereignTranslate?.portablePack();
   if(!pack){setStatus("Sovereign campus pack unavailable.","bad");return}
@@ -986,6 +1075,11 @@ $("exportCampusBtn").addEventListener("click",()=>{
   document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(uri),1000);
   setStatus("Campus draft phrase pack exported. Review imported drafts before trusting them.","good");
 });
+populateDictionary();
+$("dictionarySearchBtn").addEventListener("click",dictionaryLookup);
+$("dictionaryQuery").addEventListener("input",dictionaryLookup);
+$("dictionaryDomain").addEventListener("change",dictionaryLookup);
+$("dictionaryCreative").addEventListener("change",dictionaryLookup);
 $("importBtn").addEventListener("click",()=>$("importFile").click());
 $("importFile").addEventListener("change",event=>{
   const file=event.target.files?.[0];
