@@ -339,6 +339,14 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
       <div id="knownTerms" class="terms"></div>
     </div>
 
+    <section id="bilingualReadingStudio" class="study-panel" aria-labelledby="bilingualReadingTitle">
+      <h2 id="bilingualReadingTitle">Bilingual Reading Studio</h2>
+      <p>Compare short passages using existing sovereign word and phrase records. Only exact saved matches are displayed; missing lines are never invented.</p>
+      <button class="btn secondary" id="readingRefresh" type="button">Compare Source Lines</button>
+      <p id="readingStatus" class="dictionary-hint" role="status" aria-live="polite">Enter a source passage, then compare its available translations.</p>
+      <div id="readingPairs" class="compare-grid" aria-label="Bilingual passage comparison"></div>
+    </section>
+
     <div id="literaryPanel" class="literary-panel" hidden>
       <h2>Literary Comparison</h2>
       <p>Compare the source and rendering without pretending that translation and interpretation are the same task.</p>
@@ -1294,6 +1302,38 @@ els.dialog.addEventListener("click",event=>{
     els.service.value="offline";applyService();closeConsent();
   }
 });
+
+/* Bilingual Reading Studio: derived view only, never a translation authority or stored learner record. */
+function renderReadingStudio(){
+ const from=els.from.value,to=els.to.value;
+ const sourceMeta=lang(from),targetMeta=lang(to);
+ const raw=els.input.value;
+ const lines=raw.split(/\r?\n/).map(v=>v.trim()).filter(Boolean).slice(0,14);
+ const target=$("readingPairs"),status=$("readingStatus");
+ target.replaceChildren();
+ if(!lines.length){status.textContent="Enter source text to compare up to 14 lines.";return}
+ let matched=0,reviewed=0;
+ for(const line of lines){
+  const hit=from===to?{translation:line,verified:true,source:"same-language"}:lookupOffline(from,to,line);
+  const wrap=document.createElement("div");
+  wrap.style.cssText="grid-column:1/-1;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:7px;";
+  const left=document.createElement("div"),right=document.createElement("div");
+  for(const part of [left,right])part.style.cssText="padding:11px;border:1px solid var(--line-strong);border-radius:7px;white-space:pre-wrap;overflow-wrap:anywhere;";
+  left.lang=sourceMeta.code;left.dir=sourceMeta.dir;left.textContent=line;
+  right.lang=hit?.translation?targetMeta.code:"en";right.dir=hit?.translation?targetMeta.dir:"ltr";
+  right.textContent=hit?.translation||"No exact offline translation available for this line.";
+  wrap.append(left,right);
+  const note=document.createElement("p");
+  note.style.cssText="grid-column:1/-1;margin:0 0 7px;font-size:.85rem;";
+  note.textContent=from===to?"Original language":hit?.translation?(hit.verified===true?"Locally reviewed or same-language result":"Source-listed translation draft; verify before use"):"Untranslated — original preserved";
+  if(hit?.translation){matched++;if(hit.verified===true)reviewed++}
+  target.append(wrap,note);
+ }
+ status.textContent=matched+" of "+lines.length+" source lines have exact offline matches; "+reviewed+" marked verified. No missing translations were generated.";
+}
+$("readingRefresh").addEventListener("click",renderReadingStudio);
+els.from.addEventListener("change",renderReadingStudio);
+els.to.addEventListener("change",renderReadingStudio);
 
 window.KhaemenesInterlingual = Object.freeze({
   version:VERSION,
