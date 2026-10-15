@@ -8,6 +8,9 @@
 
 ## Russian I · Foundations
 
+**Week 01 complete lesson:** [Cyrillic letters and sounds](../courses/russian-1/week-01/index.html) — introductory script cards, practice lines, teacher notes and formative quiz. Weeks 02–32 remain outline-only.
+
+
 | Week | Weekly focus | Assessment checkpoint |
 |---:|---|---|
 | 1 | Cyrillic letters and sounds | Weekly quiz 01: vocabulary, language forms, comprehension + brief response |
