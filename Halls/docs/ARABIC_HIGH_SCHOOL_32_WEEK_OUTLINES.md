@@ -8,6 +8,10 @@
 
 ## Arabic I · Foundations
 
+**Week 03 complete lesson:** [Connected letterforms and joining](../courses/arabic-1/week-03/index.html) — guided practice, teacher notes, and ten-question formative quiz.
+
+
+
 **Week 02 complete lesson:** [Letter families and writing direction](../courses/arabic-1/week-02/index.html) — guided script recognition, writing, teacher checks, and 10-question formative quiz.
 
 
