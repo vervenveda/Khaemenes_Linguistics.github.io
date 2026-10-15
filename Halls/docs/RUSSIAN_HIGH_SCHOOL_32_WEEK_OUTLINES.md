@@ -8,6 +8,20 @@
 
 ## Russian I · Foundations
 
+### Unit 02 · Weeks 09–16
+
+- Week 09: [Unit 02 student lesson and weekly quiz](../courses/russian-1/week-09/index.html)
+- Week 10: [Unit 02 student lesson and weekly quiz](../courses/russian-1/week-10/index.html)
+- Week 11: [Unit 02 student lesson and weekly quiz](../courses/russian-1/week-11/index.html)
+- Week 12: [Unit 02 student lesson and weekly quiz](../courses/russian-1/week-12/index.html)
+- Week 13: [Unit 02 student lesson and weekly quiz](../courses/russian-1/week-13/index.html)
+- Week 14: [Unit 02 student lesson and weekly quiz](../courses/russian-1/week-14/index.html)
+- Week 15: [Unit 02 student lesson and weekly quiz](../courses/russian-1/week-15/index.html)
+- Week 16: [Midterm assessment blueprint](../courses/russian-1/week-16/index.html)
+
+Week 16 is a teacher-administered, four-domain **assessment blueprint**, not an automatically scored or fully finalized closed-book examination. Teacher-only unseen prompts and answer keys remain to be authored.
+
+
 **Week 08 complete lesson:** [Basic questions, answers and Unit 1 review](../courses/russian-1/week-08/index.html) — guided dialogue, unit performance task and ten-question quiz.
 
 
