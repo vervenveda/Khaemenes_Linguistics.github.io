@@ -8,6 +8,9 @@
 
 ## Arabic I · Foundations
 
+**Week 01 complete lesson:** [Arabic sounds and script orientation](../courses/arabic-1/week-01/index.html) — interactive formative quiz, handwriting practice, and teacher notes. Remaining weeks are outline-only.
+
+
 | Week | Weekly focus | Assessment checkpoint |
 |---:|---|---|
 | 1 | Arabic sounds and script orientation | Weekly quiz 01: vocabulary, language forms, comprehension + brief response |
