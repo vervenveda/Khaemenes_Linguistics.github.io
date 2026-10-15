@@ -10,6 +10,9 @@
 
 ### Unit 02 · Weeks 09–16
 
+**Assessment hardening:** [Unit 02 Applied Practice Studio](../courses/arabic-1/unit-02-applied-practice.html) contains seven written/interactive-response tasks with a six-point teacher rubric. The Week 16 midterm remains an instructor-administered blueprint requiring secure unseen materials.
+
+
 - Week 09: [Unit 02 student lesson and weekly quiz](../courses/arabic-1/week-09/index.html)
 - Week 10: [Unit 02 student lesson and weekly quiz](../courses/arabic-1/week-10/index.html)
 - Week 11: [Unit 02 student lesson and weekly quiz](../courses/arabic-1/week-11/index.html)
