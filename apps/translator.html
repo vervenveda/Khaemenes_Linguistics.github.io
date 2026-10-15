@@ -1441,6 +1441,24 @@ function lookupReadingWord(){
   area.append(card);
  }
 }
+$("readingOpenHandwriting").addEventListener("click",event=>{
+ const value=$("readingWord").value.trim(),status=$("readingHandwritingStatus");
+ if(!value){event.preventDefault();status.textContent="Select a practice word before opening the Lab.";return}
+ if(!els.input.value.toLocaleLowerCase().includes(value.toLocaleLowerCase())){event.preventDefault();status.textContent="Select a word from the current source reading.";return}
+ if(value.length>80){event.preventDefault();status.textContent="Choose a shorter word or phrase (80 characters maximum).";return}
+ const code=els.from.value;
+ if(!["en","es","fr","de","pt","it"].includes(code)){
+  event.preventDefault();status.textContent="Direct transfer currently supports six Latin-script languages. You can still open the Lab manually.";return;
+ }
+ if(!window.confirm("Open PROSE Handwriting Lab with this word ready for practice? The word will be placed in the destination page URL fragment and will not be automatically saved.")){
+  event.preventDefault();status.textContent="Vocabulary transfer cancelled.";return;
+ }
+ const target=new URL($("readingOpenHandwriting").href);
+ target.hash="vnv-practice="+encodeURIComponent(value)+"&lang="+encodeURIComponent(code);
+ event.preventDefault();
+ window.open(target.href,"_blank","noopener,noreferrer");
+ status.textContent="Practice word sent to the new Handwriting Lab tab at your request.";
+});
 $("readingCopyForHandwriting").addEventListener("click",async()=>{
  const value=$("readingWord").value.trim();
  const status=$("readingHandwritingStatus");
