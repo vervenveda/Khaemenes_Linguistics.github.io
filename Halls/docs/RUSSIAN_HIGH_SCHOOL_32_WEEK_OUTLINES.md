@@ -8,6 +8,10 @@
 
 ## Russian I · Foundations
 
+**Week 02 complete lesson:** [Printed and handwritten Cyrillic forms](../courses/russian-1/week-02/index.html) — guided script recognition, writing, teacher checks, and 10-question formative quiz.
+
+
+
 **Week 01 complete lesson:** [Cyrillic letters and sounds](../courses/russian-1/week-01/index.html) — introductory script cards, practice lines, teacher notes and formative quiz. Weeks 02–32 remain outline-only.
 
 
