@@ -8,6 +8,10 @@
 
 ## Arabic I · Foundations
 
+**Week 04 complete lesson:** [Short vowels and basic reading](../courses/arabic-1/week-04/index.html) — complete lesson and ten-item weekly quiz.
+
+
+
 **Week 03 complete lesson:** [Connected letterforms and joining](../courses/arabic-1/week-03/index.html) — guided practice, teacher notes, and ten-question formative quiz.
 
 
