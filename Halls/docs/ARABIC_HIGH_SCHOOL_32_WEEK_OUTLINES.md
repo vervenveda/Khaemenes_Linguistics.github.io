@@ -8,6 +8,10 @@
 
 ## Arabic I · Foundations
 
+**Week 02 complete lesson:** [Letter families and writing direction](../courses/arabic-1/week-02/index.html) — guided script recognition, writing, teacher checks, and 10-question formative quiz.
+
+
+
 **Week 01 complete lesson:** [Arabic sounds and script orientation](../courses/arabic-1/week-01/index.html) — interactive formative quiz, handwriting practice, and teacher notes. Remaining weeks are outline-only.
 
 
