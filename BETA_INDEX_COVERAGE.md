@@ -2,8 +2,8 @@
 
 Generated automatically by `.github/workflows/beta-index-coverage.yml`.
 
-- Added in this run: **16**
-- Already covered: **66**
+- Added in this run: **14**
+- Already covered: **82**
 - Skipped for an explicit reason: **0**
 
 ## Coverage rule
@@ -14,19 +14,17 @@ The Beta widget sends only the public hostname and pathname as source metadata. 
 
 ## Added in this run
 
-- `Halls/courses/arabic-1/week-17/index.html`
-- `Halls/courses/arabic-1/week-18/index.html`
-- `Halls/courses/arabic-1/week-19/index.html`
-- `Halls/courses/arabic-1/week-20/index.html`
-- `Halls/courses/arabic-1/week-21/index.html`
-- `Halls/courses/arabic-1/week-22/index.html`
-- `Halls/courses/arabic-1/week-23/index.html`
-- `Halls/courses/arabic-1/week-24/index.html`
-- `Halls/courses/russian-1/week-17/index.html`
-- `Halls/courses/russian-1/week-18/index.html`
-- `Halls/courses/russian-1/week-19/index.html`
-- `Halls/courses/russian-1/week-20/index.html`
-- `Halls/courses/russian-1/week-21/index.html`
-- `Halls/courses/russian-1/week-22/index.html`
-- `Halls/courses/russian-1/week-23/index.html`
-- `Halls/courses/russian-1/week-24/index.html`
+- `Halls/courses/arabic-1/week-25/index.html`
+- `Halls/courses/arabic-1/week-26/index.html`
+- `Halls/courses/arabic-1/week-27/index.html`
+- `Halls/courses/arabic-1/week-28/index.html`
+- `Halls/courses/arabic-1/week-29/index.html`
+- `Halls/courses/arabic-1/week-30/index.html`
+- `Halls/courses/arabic-1/week-31/index.html`
+- `Halls/courses/russian-1/week-25/index.html`
+- `Halls/courses/russian-1/week-26/index.html`
+- `Halls/courses/russian-1/week-27/index.html`
+- `Halls/courses/russian-1/week-28/index.html`
+- `Halls/courses/russian-1/week-29/index.html`
+- `Halls/courses/russian-1/week-30/index.html`
+- `Halls/courses/russian-1/week-31/index.html`
