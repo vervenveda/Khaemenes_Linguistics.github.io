@@ -8,6 +8,10 @@
 
 ## Russian I · Foundations
 
+**Week 06 complete lesson:** [Names and personal information](../courses/russian-1/week-06/index.html) — model conversation, privacy-safe guided work and ten-question quiz.
+
+
+
 **Week 05 complete lesson:** [Greetings and introductions](../courses/russian-1/week-05/index.html) — vocabulary, conversation, guided practice, ten-question quiz and teacher notes.
 
 
