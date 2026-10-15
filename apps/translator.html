@@ -1447,6 +1447,8 @@ $("readingOpenHandwriting").addEventListener("click",event=>{
  if(!els.input.value.toLocaleLowerCase().includes(value.toLocaleLowerCase())){event.preventDefault();status.textContent="Select a word from the current source reading.";return}
  if(value.length>80){event.preventDefault();status.textContent="Choose a shorter word or phrase (80 characters maximum).";return}
  const code=els.from.value;
+ const reviewed=lookupOffline(code,els.to.value,value);
+ if(!reviewed?.verified){event.preventDefault();status.textContent="Direct transfer requires a reviewed local word pair. Review or save the pair first, or copy the word manually.";return}
  if(!["en","es","fr","de","pt","it"].includes(code)){
   event.preventDefault();status.textContent="Direct transfer currently supports six Latin-script languages. You can still open the Lab manually.";return;
  }
