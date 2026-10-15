@@ -8,6 +8,10 @@
 
 ## Russian I · Foundations
 
+**Week 08 complete lesson:** [Basic questions, answers and Unit 1 review](../courses/russian-1/week-08/index.html) — guided dialogue, unit performance task and ten-question quiz.
+
+
+
 **Week 07 complete lesson:** [Pronouns and simple present-time statements](../courses/russian-1/week-07/index.html) — worked grammar examples, practice and ten-question quiz.
 
 
