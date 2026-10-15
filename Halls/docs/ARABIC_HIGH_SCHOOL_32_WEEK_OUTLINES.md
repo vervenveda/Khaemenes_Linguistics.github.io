@@ -8,6 +8,9 @@
 
 ## Arabic I · Foundations
 
+**Student course navigator:** [All 32 weeks](../courses/arabic-1/index.html). Read the [Year I quality audit](YEAR_I_ARABIC_RUSSIAN_FORENSIC_AUDIT_2026-10-14.md) before treating this draft as credit-ready.
+
+
 ### Unit 04 · Weeks 25–32
 
 - Week 25: [Lesson and formative quiz](../courses/arabic-1/week-25/index.html)
