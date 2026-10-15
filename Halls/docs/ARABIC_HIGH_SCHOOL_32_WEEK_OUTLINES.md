@@ -8,6 +8,10 @@
 
 ## Arabic I · Foundations
 
+**Week 05 complete lesson:** [Greetings and introductions](../courses/arabic-1/week-05/index.html) — vocabulary, conversation, guided practice, ten-question quiz and teacher notes.
+
+
+
 **Week 04 complete lesson:** [Short vowels and basic reading](../courses/arabic-1/week-04/index.html) — complete lesson and ten-item weekly quiz.
 
 
