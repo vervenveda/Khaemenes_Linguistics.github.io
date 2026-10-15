@@ -2,8 +2,8 @@
 
 Generated automatically by `.github/workflows/beta-index-coverage.yml`.
 
-- Added in this run: **2**
-- Already covered: **48**
+- Added in this run: **14**
+- Already covered: **50**
 - Skipped for an explicit reason: **0**
 
 ## Coverage rule
@@ -14,5 +14,17 @@ The Beta widget sends only the public hostname and pathname as source metadata. 
 
 ## Added in this run
 
-- `Halls/courses/arabic-1/week-08/index.html`
-- `Halls/courses/russian-1/week-08/index.html`
+- `Halls/courses/arabic-1/week-09/index.html`
+- `Halls/courses/arabic-1/week-10/index.html`
+- `Halls/courses/arabic-1/week-11/index.html`
+- `Halls/courses/arabic-1/week-12/index.html`
+- `Halls/courses/arabic-1/week-13/index.html`
+- `Halls/courses/arabic-1/week-14/index.html`
+- `Halls/courses/arabic-1/week-15/index.html`
+- `Halls/courses/russian-1/week-09/index.html`
+- `Halls/courses/russian-1/week-10/index.html`
+- `Halls/courses/russian-1/week-11/index.html`
+- `Halls/courses/russian-1/week-12/index.html`
+- `Halls/courses/russian-1/week-13/index.html`
+- `Halls/courses/russian-1/week-14/index.html`
+- `Halls/courses/russian-1/week-15/index.html`
