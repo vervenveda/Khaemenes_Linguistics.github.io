@@ -8,6 +8,20 @@
 
 ## Arabic I · Foundations
 
+### Unit 04 · Weeks 25–32
+
+- Week 25: [Lesson and formative quiz](../courses/arabic-1/week-25/index.html)
+- Week 26: [Lesson and formative quiz](../courses/arabic-1/week-26/index.html)
+- Week 27: [Lesson and formative quiz](../courses/arabic-1/week-27/index.html)
+- Week 28: [Lesson and formative quiz](../courses/arabic-1/week-28/index.html)
+- Week 29: [Lesson and formative quiz](../courses/arabic-1/week-29/index.html)
+- Week 30: [Lesson and formative quiz](../courses/arabic-1/week-30/index.html)
+- Week 31: [Lesson and formative quiz](../courses/arabic-1/week-31/index.html)
+- Week 32: [Final assessment blueprint](../courses/arabic-1/week-32/index.html)
+
+**Status:** Weeks 25–31 are instructional drafts; Week 32 is a public assessment blueprint, not a completed closed-book exam or automatic credit award.
+
+
 ### Unit 03 · Weeks 17–24
 
 - Week 17: [Student lesson and quiz](../courses/arabic-1/week-17/index.html)
