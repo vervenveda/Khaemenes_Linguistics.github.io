@@ -1441,7 +1441,16 @@ function lookupReadingWord(){
   area.append(card);
  }
 }
+const HANDWRITING_BASE_URL="https://vervenveda.github.io/proresource_hub.github.io/Protools/PROSE/Handwriting%20Lab/handwriting-lab.html";
+function clearHandwritingHandoff(){
+ $("readingOpenHandwriting").href=HANDWRITING_BASE_URL;
+}
+$("readingWord").addEventListener("input",clearHandwritingHandoff);
+els.from.addEventListener("change",clearHandwritingHandoff);
+els.to.addEventListener("change",clearHandwritingHandoff);
 $("readingOpenHandwriting").addEventListener("click",event=>{
+ // Rebuild only from the current selection; a canceled action must not reuse an old word.
+ clearHandwritingHandoff();
  const value=$("readingWord").value.trim(),status=$("readingHandwritingStatus");
  if(!value){event.preventDefault();status.textContent="Select a practice word before opening the Lab.";return}
  if(!els.input.value.toLocaleLowerCase().includes(value.toLocaleLowerCase())){event.preventDefault();status.textContent="Select a word from the current source reading.";return}
