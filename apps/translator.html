@@ -1456,7 +1456,7 @@ $("readingOpenHandwriting").addEventListener("click",event=>{
   event.preventDefault();status.textContent="Vocabulary transfer cancelled.";return;
  }
  const target=new URL($("readingOpenHandwriting").href);
- target.hash="vnv-practice="+encodeURIComponent(value)+"&lang="+encodeURIComponent(code);
+ target.hash="vnv-practice="+encodeURIComponent(value)+"&lang="+encodeURIComponent(code)+"&translation="+encodeURIComponent(String(reviewed.translation||"").slice(0,120))+"&targetLang="+encodeURIComponent(els.to.value);
  event.preventDefault();
  window.open(target.href,"_blank","noopener,noreferrer");
  status.textContent="Practice word sent to the new Handwriting Lab tab at your request.";
