@@ -8,6 +8,20 @@
 
 ## Russian I · Foundations
 
+### Unit 03 · Weeks 17–24
+
+- Week 17: [Student lesson and quiz](../courses/russian-1/week-17/index.html)
+- Week 18: [Student lesson and quiz](../courses/russian-1/week-18/index.html)
+- Week 19: [Student lesson and quiz](../courses/russian-1/week-19/index.html)
+- Week 20: [Student lesson and quiz](../courses/russian-1/week-20/index.html)
+- Week 21: [Student lesson and quiz](../courses/russian-1/week-21/index.html)
+- Week 22: [Student lesson and quiz](../courses/russian-1/week-22/index.html)
+- Week 23: [Student lesson and quiz](../courses/russian-1/week-23/index.html)
+- Week 24: [Student lesson and quiz](../courses/russian-1/week-24/index.html)
+
+**Status:** Student-facing draft lessons and formative quizzes. Audio modelling, teacher-validated language accuracy, authentic reading passages and application rubrics require further hardening.
+
+
 ### Unit 02 · Weeks 09–16
 
 **Assessment hardening:** [Unit 02 Applied Practice Studio](../courses/russian-1/unit-02-applied-practice.html) contains seven written/interactive-response tasks with a six-point teacher rubric. The Week 16 midterm remains an instructor-administered blueprint requiring secure unseen materials.
