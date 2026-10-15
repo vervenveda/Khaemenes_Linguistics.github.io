@@ -8,6 +8,10 @@
 
 ## Russian I · Foundations
 
+**Week 07 complete lesson:** [Pronouns and simple present-time statements](../courses/russian-1/week-07/index.html) — worked grammar examples, practice and ten-question quiz.
+
+
+
 **Week 06 complete lesson:** [Names and personal information](../courses/russian-1/week-06/index.html) — model conversation, privacy-safe guided work and ten-question quiz.
 
 
