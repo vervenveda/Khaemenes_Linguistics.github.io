@@ -1457,9 +1457,9 @@ $("readingOpenHandwriting").addEventListener("click",event=>{
  }
  const target=new URL($("readingOpenHandwriting").href);
  target.hash="vnv-practice="+encodeURIComponent(value)+"&lang="+encodeURIComponent(code)+"&translation="+encodeURIComponent(String(reviewed.translation||"").slice(0,120))+"&targetLang="+encodeURIComponent(els.to.value);
- event.preventDefault();
- window.open(target.href,"_blank","noopener,noreferrer");
- status.textContent="Practice word sent to the new Handwriting Lab tab at your request.";
+ // Use the real anchor navigation so popup blockers do not suppress the learner-approved handoff.
+ $("readingOpenHandwriting").href=target.href;
+ status.textContent="Opening the Handwriting Lab with the approved vocabulary pair.";
 });
 $("readingCopyForHandwriting").addEventListener("click",async()=>{
  const value=$("readingWord").value.trim();
