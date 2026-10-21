@@ -270,7 +270,7 @@
   }
 </style>
 </head>
-<body>
+<body><aside style="max-width:850px;margin:12px auto;padding:10px;border:1px solid #b8a784;border-radius:7px;background:#fff8e9;color:#273748;text-align:center;font:400 16px/1.5 system-ui,sans-serif" aria-label="Multilingual learning tools"><span>Learning in another language?</span> <a href="./translator.html?from=fr&amp;to=de&amp;purpose=learning" style="color:#175d63">Open Sovereign Translator (Français → Deutsch)</a><p style="margin:5px 0;font-size:13px">Use the language selector for supported interface text. German lesson and assessment language remains unchanged.</p></aside>
 <section style="padding:12px 16px;background:#fff7e7;color:#253747;text-align:center"><label for="coachLearnerName">German Coach learner record</label> <input id="coachLearnerName" maxlength="70" autocomplete="off" placeholder="Student name" style="font:inherit;padding:8px;max-width:95%"><button id="chooseCoachLearner" type="button">Open learner record</button><p id="coachIdentityStatus" role="status">Without a learner name, the original shared-device Coach records are used. Named learners have separate, initially empty academic records. No legacy records are copied or erased.</p></section><div style="text-align:center;padding:8px"><button type="button" id="backupLegacyCoach">Export legacy Coach backup (no import or overwrite)</button></div><section style="max-width:840px;margin:12px auto;padding:14px;border:1px solid #a99879;border-radius:7px;background:#fff8e9;color:#253747"><h2 style="font-weight:400">Import a German Coach portfolio</h2><p>Import replaces only the currently selected learner record after preview and confirmation. It does not merge progress. Export a backup first.</p><input type="file" id="coachImportFile" accept=".json,application/json" aria-label="Choose German Coach JSON portfolio"><button id="previewCoachImport" type="button">Preview file</button><pre id="coachImportPreview" aria-live="polite" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre><button id="confirmCoachImport" type="button" disabled>Confirm replacement of selected record</button></section><header class="hero">
   <div class="hero-inner">
     <h1>German Traveler Phrase Coach</h1>
@@ -297,8 +297,8 @@
         <div class="muted" id="lessonMeta">Travel phrase • Basic</div>
 
         <div class="lesson-body">
-          <div id="lessonGerman">—</div>
-          <div id="lessonEnglish" class="small-muted" style="margin-top:4px;">—</div>
+          <div id="lessonGerman" data-i18n-ignore="">—</div>
+          <div id="lessonEnglish" class="small-muted" style="margin-top:4px;" data-i18n-ignore="">—</div>
         </div>
 
         <details id="coachVocabulary" style="margin:12px 0;padding:10px;border:1px solid #c7b797;border-radius:7px"><summary>German phrase vocabulary · Wortschatz</summary><div id="coachVocabularyList" role="list" style="margin-top:8px"></div><p class="small-muted">Context help only — no effect on quiz or exam scores.</p></details>
@@ -1233,5 +1233,5 @@ window.addEventListener("storage",e=>{if(e.key==="german_active_learner")locatio
 })();
 </script>
 <script src="/assets/vnv-beta-link.js" defer></script>
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("../../service-worker.js",{scope:"../../"}).catch(()=>{});});}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("../../service-worker.js",{scope:"../../"}).catch(()=>{});});}</script><script src="../assets/vnv-language.js" defer></script></body>
 </html>
