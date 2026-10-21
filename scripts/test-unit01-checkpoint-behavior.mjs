@@ -26,7 +26,7 @@ function simulate(language){
  element("reviewer").value="Parent / teacher";trigger("reviewer","change");
  element("notes").value="Review of independent work";trigger("notes","change");
  for(const k of ["knowledge","grammar","conversation","listening","performance"]){element("score-"+k).value="4";trigger("score-"+k,"change")}
- assert.match(element("status").textContent,/Teacher-reviewed checkpoint readiness recorded/);
+ learner("Alice");assert.match(element("status").textContent,/Teacher-reviewed checkpoint readiness recorded/);
  const alice=JSON.stringify(record());
  learner("Bob");assert.match(element("status").textContent,/No recorded knowledge/);
  score(3);assert.equal(record().attempts[0].score,3);
