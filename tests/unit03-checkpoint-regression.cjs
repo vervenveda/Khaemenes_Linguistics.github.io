@@ -35,5 +35,9 @@ await importObject({schema:'khae-u03-checkpoint-v1',language:'wrong-language',st
 const forged={reading:'r',grammar:'g',conversation:'c',listening:'l',listeningSource:'source',culture:'culture',teacher:'Reviewer',notes:'Evidence',speakingPass:'pass',listeningPass:'pass',decision:'approved',score_conversation:30,score_grammar:20,score_listening:20,score_reading:15,score_culture:15,total:101,reviewedAt:'2026-10-21T12:00:00Z'};
 await importObject({schema:'khae-u03-checkpoint-v1',language,student:'Test Learner B',record:forged});assert.match(get('status').textContent,/Inconsistent rubric total/);
 assert.equal(get('reading').value,'restored');
+await importObject({schema:'khae-u03-checkpoint-v1',language,student:'Test Learner B',record:{reading:'unreviewed',teacher:'Impersonated',decision:'approved',score_conversation:30}});
+assert.equal(get('reading').value,'unreviewed');
+assert.equal(get('decision').value,'');
+assert.equal(get('teacher').value,'');
 console.log('PASS '+language+': two learners, mastery threshold, reload, review invalidation, wrong-language and forged-total rejection, backup isolation and valid recovery');
 })().catch(error=>{console.error(error);process.exitCode=1});
