@@ -11,7 +11,7 @@ const check=(condition,description)=>{if(!condition)errors.push(description)};
 const read=path=>readFileSync(join(root,path),"utf8");
 function jsonScript(text,id){
  const escaped=id.replace(/[.*+?^\x24{}()|[\]\\]/g,"\\$&");
- const pattern=new RegExp('<script\\s+type="application/json"\\s+id="'+escaped+'">([\\s\\S]*?)<\\/script>');
+ const pattern=new RegExp('<script\s+type="application/json"\s+id="'+escaped+'">([\s\\S]*?)<\\/script>');
  const match=text.match(pattern);
  if(!match)throw Error("Missing JSON payload: "+id);
  return JSON.parse(match[1]);
@@ -162,7 +162,7 @@ check(read("apps/deutsches-klanglabor/index.html").includes("u.onerror="),"Germa
 check(read("apps/deutsches-klanglabor/index.html").includes("audio_assisted_first_try"),"German sound audio-assisted evidence missing");
 for(const path of ["apps/deutsche-geschichten/index.html","apps/german-mastery-constellation/index.html","apps/deutsches-klanglabor/index.html","apps/die-lebendige-welt/index.html"]){
  const app=read(path);
- check(!/<script[^>]+src=[^>]*>\\s*window\\.addEventListener/.test(app),"Ignored external-script learner handler in "+path);
+ check(!/<script[^>]+src=[^>]*>\s*window\.addEventListener/.test(app),"Ignored external-script learner handler in "+path);
  check(app.includes('window.addEventListener("storage"'),"Learner switching listener absent: "+path);
 }
 check(read("apps/die-lebendige-welt/index.html").includes("Audio playback failed"),"German world missing audio-error fallback");
@@ -222,7 +222,7 @@ for(const cached of ["./apps/translator.html","./assets/khaemenes-campus-phrases
  check(existsSync(join(root,cached)),"Sovereign library file missing: "+cached);
 }
 
-const cacheVersion=sw.match(/const CACHE_VERSION\\s*=\\s*['"]polyglot-v(\\d+)\\.(\\d+)\\.(\\d+)-[a-z0-9-]+['"]/);
+const cacheVersion=sw.match(/const CACHE_VERSION\s*=\s*['"]polyglot-v(\d+)\.(\d+)\.(\d+)-[a-z0-9-]+['"]/);
 check(Boolean(cacheVersion)&&(Number(cacheVersion[1])>1||Number(cacheVersion[1])===1&&(Number(cacheVersion[2])>4||Number(cacheVersion[2])===4&&Number(cacheVersion[3])>=6)),"PWA cache version is stale");
 check(sw.includes("'./apps/german-mastery-constellation/index.html'"),"German mastery overview not precached");
 check(sw.includes("'./apps/die-lebendige-welt/index.html'"),"German world missing from offline pre-cache");
