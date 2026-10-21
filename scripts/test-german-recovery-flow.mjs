@@ -1,0 +1,27 @@
+import assert from "node:assert/strict";
+import vm from "node:vm";
+import {readFileSync} from "node:fs";
+const html=readFileSync(new URL("../apps/German_coach_index.html",import.meta.url),"utf8");
+const source=html.match(/<script>([\s\S]*?)<\/script>/)?.[1];assert.ok(source);
+const from=source.indexOf("function coachLearnerId()"),to=source.indexOf("let completed",from);
+const start=source.indexOf("function validateCoachImport(input)"),end=source.indexOf("function resetAll()",start);
+assert.ok(from>=0&&to>from&&start>=0&&end>start);
+let active="Ava";const data=new Map(),ui={};
+for(const id of ["coachImportPreview","coachImportFile","confirmCoachImport"])ui[id]={textContent:"",disabled:true,files:[]};
+let reloaded=0;
+const localStorage={getItem(k){return k==="german_active_learner"?active:data.get(k)??null},setItem(k,v){if(k==="german_active_learner")active=String(v);else data.set(k,String(v))},removeItem(k){data.delete(k)}};
+const context={localStorage,JSON,Array,Number,Object,Set,Date,document:{getElementById(id){return ui[id]}},confirm(){return true},location:{reload(){reloaded++}},console};
+vm.createContext(context);
+vm.runInContext(source.slice(from,to)+"\n"+source.slice(start,end)+"\nglobalThis.test={coachKey,coachLearnerId,validateCoachImport,previewCoachImport,confirmCoachImport,replaceCoachPortfolioSafely}",context);
+const t=context.test;
+const id=()=>t.coachLearnerId();
+function backup(){return{format:"khaemenes-german-coach-v2",version:2,learnerRecord:id(),completed:[1,2],notes:{},quizHistory:[],examHistory:[],currentDay:2,passThreshold:70,autoSpeak:false}}
+const ava=backup();const avaKey=t.coachKey("gt_trav_completed");
+localStorage.setItem(avaKey,JSON.stringify([99]));
+active="Ben";const benKey=t.coachKey("gt_trav_completed");localStorage.setItem(benKey,JSON.stringify([13]));
+active="Ava";ui.coachImportFile.files=[{size:1200,text:async()=>JSON.stringify(ava)}];
+await t.previewCoachImport();assert.equal(ui.confirmCoachImport.disabled,false);t.confirmCoachImport();
+assert.deepEqual(JSON.parse(data.get(avaKey)),[1,2]);assert.deepEqual(JSON.parse(data.get(benKey)),[13]);assert.equal(reloaded,1);
+active="Ben";await t.previewCoachImport();assert.equal(ui.confirmCoachImport.disabled,true);
+assert.deepEqual(JSON.parse(data.get(benKey)),[13]);
+console.log("GERMAN_RECOVERY_ISOLATION=PASS");
