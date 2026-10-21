@@ -74,7 +74,7 @@ body.dark .confetti{background:var(--accent-dark);}
 </style>
 </head>
 
-<body>
+<body><aside style="max-width:850px;margin:12px auto;padding:10px;border:1px solid #b8a784;border-radius:7px;background:#fff8e9;color:#273748;text-align:center;font:400 16px/1.5 system-ui,sans-serif" aria-label="Multilingual learning tools"><span>Learning in another language?</span> <a href="./translator.html?from=de&amp;to=fr&amp;purpose=learning" style="color:#175d63">Open Sovereign Translator (Deutsch → Français)</a><p style="margin:5px 0;font-size:13px">Use the language selector for supported interface text. French lesson and assessment language remains unchanged.</p></aside>
 <div id="splash">
   <h1>Bienvenue à French 101</h1>
   <h3>Sovereign Edition</h3>
@@ -95,10 +95,10 @@ body.dark .confetti{background:var(--accent-dark);}
     <div class="level-grid" id="levelGrid"></div>
   </div>
 
-  <div id="lesson" class="hidden"></div>
-  <div id="quiz" class="hidden"></div>
-  <div id="exam" class="hidden"></div>
-  <div id="certificate" class="hidden">
+  <div id="lesson" class="hidden" data-i18n-ignore=""></div>
+  <div id="quiz" class="hidden" data-i18n-ignore=""></div>
+  <div id="exam" class="hidden" data-i18n-ignore=""></div>
+  <div id="certificate" class="hidden" data-i18n-ignore="">
     <h2>🎓 Certificate of Completion</h2>
     <p>Félicitations ! You have completed all 12 levels of French 101.</p><p id="certificateDetails"></p>
     <button onclick="print()">Print Certificate</button>
@@ -415,5 +415,5 @@ applyTheme();
 
 </script>
 <script src="/assets/vnv-beta-link.js" defer></script>
-<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("../../service-worker.js",{scope:"../../"}).catch(()=>{});});}</script></body>
+<script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("../../service-worker.js",{scope:"../../"}).catch(()=>{});});}</script><script src="../assets/vnv-language.js" defer></script></body>
 </html>
