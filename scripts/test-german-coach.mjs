@@ -53,6 +53,12 @@ assert.throws(()=>validate({...valid,completed:[0]}),/Invalid completed lessons/
 assert.throws(()=>validate({...valid,examHistory:"broken"}),/Invalid examHistory/);
 assert.throws(()=>validate({...valid,passThreshold:900}),/Invalid settings/);
 assert.throws(()=>validate({...valid,notes:[]}),/Invalid notes/);
+assert.throws(()=>validate({...valid,completed:[1,1]}),/Duplicate completed lessons/);
+assert.throws(()=>validate({...valid,notes:{"366":"bad"}}),/Invalid lesson note/);
+assert.throws(()=>validate({...valid,notes:{"1":33}}),/Invalid lesson note/);
+assert.throws(()=>validate({...valid,quizHistory:[null]}),/Invalid quizHistory entry/);
+assert.throws(()=>validate({...valid,examHistory:[false]}),/Invalid examHistory entry/);
+
 assert.ok(source.includes("data.source!==target"),"Import must block mismatched learner");
 assert.ok(source.includes('confirm("Replace all German Coach progress'),"Import requires explicit replacement confirmation");
 const txStart=source.indexOf("function replaceCoachPortfolioSafely(values)");
