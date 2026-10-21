@@ -1,0 +1,59 @@
+name: Unit 03 language certification checks
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/language-worlds/**'
+      - 'assets/foundation-unit03-*.js'
+      - '.github/workflows/unit03-regression.yml'
+  workflow_dispatch:
+jobs:
+  source-and-navigation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check shared controllers
+        run: |
+          node --check assets/foundation-unit03-lesson.js
+          node --check assets/foundation-unit03-checkpoint.js
+      - name: Verify lessons and assessment structure
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re, json
+          root = Path('apps/language-worlds')
+          failures=[]
+          for language in ('spanish','mandarin','japanese'):
+              folder=root/language
+              index=(folder/'index.html').read_text(encoding='utf-8')
+              if 'href="unit-03-checkpoint.html"' not in index: failures.append(f'{language}: checkpoint not linked')
+              for n in range(9,13):
+                  p=folder/f'foundation-{n}.html'
+                  if not p.is_file(): failures.append(str(p)+': missing'); continue
+                  s=p.read_text(encoding='utf-8')
+                  if 'foundation-unit03-lesson.js' not in s: failures.append(str(p)+': controller missing')
+                  for link in re.findall(r'href="(foundation-[0-9]+\.html)"',s):
+                      if not (folder/link).is_file(): failures.append(str(p)+': broken '+link)
+                  m=re.search(r'<script type="application/json" id="lessonData">(.*?)</script>',s,re.S)
+                  if not m: failures.append(str(p)+': lessonData missing'); continue
+                  try:
+                      data=json.loads(m.group(1))
+                      if data['lang']!=language or data['lesson']!=n or len(data['questions'])!=5: failures.append(str(p)+': lessonData mismatch')
+                  except (KeyError,ValueError,TypeError) as error: failures.append(str(p)+': '+str(error))
+              checkpoint=folder/'unit-03-checkpoint.html'
+              if not checkpoint.is_file(): failures.append(str(checkpoint)+': missing');continue
+              s=checkpoint.read_text(encoding='utf-8')
+              for marker in ('foundation-unit03-checkpoint.js','id="reading"','id="grammar"','id="conversation"','id="listening"','id="listeningSource"','id="culture"','id="review"','id="print"','focus-visible','@media print'):
+                  if marker not in s: failures.append(str(checkpoint)+': missing '+marker)
+              m=re.search(r'<script type="application/json" id="config">(.*?)</script>',s,re.S)
+              if not m: failures.append(str(checkpoint)+': config missing')
+              else:
+                  try:
+                      cfg=json.loads(m.group(1))
+                      if cfg['lang']!=language or sum(v for _,v in cfg['skills'])!=100: failures.append(str(checkpoint)+': rubric invalid')
+                  except (ValueError,TypeError,KeyError) as error: failures.append(str(checkpoint)+': '+str(error))
+          if failures:
+              print('\n'.join('FAIL: '+f for f in failures))
+              raise SystemExit(1)
+          print('PASS: 12 lessons, 3 checkpoints, navigation, schemas and shared syntax')
+          PY
