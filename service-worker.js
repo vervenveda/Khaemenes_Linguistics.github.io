@@ -1,7 +1,7 @@
 /* Polyglot — Khaemenes Academy Linguistics Hall
    Static-site service worker. Update CACHE_VERSION whenever core files change. */
 
-const CACHE_VERSION = 'polyglot-v1.4.0-review-gate';
+const CACHE_VERSION = 'polyglot-v1.4.1-french-reader-offline';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
@@ -14,6 +14,11 @@ const APP_SHELL = [
   './register-service-worker.js',
   './assets/vnv-language.js',
   './apps/translator.html',
+  './apps/French_101_index.html',
+  './apps/chroniques-francophones/index.html',
+  './apps/atelier-des-sons/index.html',
+  './apps/le-monde-vivant/index.html',
+  './apps/maitrise-constellation/index.html',
   './assets/khaemenes-campus-phrases.js',
   './assets/sovereign-dictionary.generated.js',
   './assets/sovereign-dictionary-v1-errata.js',
