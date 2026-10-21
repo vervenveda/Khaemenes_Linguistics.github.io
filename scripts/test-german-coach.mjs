@@ -1,0 +1,44 @@
+#!/usr/bin/env node
+/* Behavioral contract checks for the actual German Coach storage code.
+   Uses a simulated localStorage; does not claim live browser certification. */
+import assert from "node:assert/strict";
+import {readFileSync} from "node:fs";
+import {dirname,join} from "node:path";
+import {fileURLToPath} from "node:url";
+import vm from "node:vm";
+const root=join(dirname(fileURLToPath(import.meta.url)),"..");
+const html=readFileSync(join(root,"apps/German_coach_index.html"),"utf8");
+const source=html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
+assert.ok(source,"Coach script is present");
+const first=source.indexOf("function coachLearnerId()");
+const last=source.indexOf("let completed",first);
+assert.ok(first>=0&&last>first,"Coach storage adapter found");
+const adapter=source.slice(first,last);
+const data=new Map();
+let active="";
+const store={getItem:k=>k==="german_active_learner"?active:(data.has(k)?data.get(k):null),setItem:(k,v)=>{if(k==="german_active_learner")active=String(v);else data.set(k,String(v))},removeItem:k=>data.delete(k)};
+const context={localStorage:store,Array,JSON};
+vm.createContext(context);
+vm.runInContext(adapter+";globalThis.contract={coachKey,coachLearnerId,storage};",context);
+const {coachKey,storage}=context.contract;
+active="Ava";
+const avaKey=coachKey("gt_trav_completed");storage.save("gt_trav_completed",[1,2]);storage.save("gt_trav_quizHistory",[{day:2,score:90}]);
+active="Ben";const benKey=coachKey("gt_trav_completed");
+assert.notEqual(avaKey,benKey,"Different learners must use different keys");
+assert.equal(storage.load("gt_trav_completed",[]).length,0,"New learner begins empty");
+storage.save("gt_trav_completed",[1]);storage.save("gt_trav_quizHistory",[{day:1,score:80}]);
+assert.equal(storage.load("gt_trav_quizHistory",[])[0].score,80);
+store.removeItem(coachKey("gt_trav_completed"));
+assert.equal(storage.load("gt_trav_completed",[]).length,0,"Reset only selected learner");
+active="Ava";
+assert.deepEqual(Array.from(storage.load("gt_trav_completed",[])),[1,2],"Ava completion survives Ben reset");
+assert.equal(storage.load("gt_trav_quizHistory",[])[0].score,90,"Ava quiz history survives");
+active="";
+store.setItem("gt_trav_completed",JSON.stringify([5,6]));
+assert.equal(coachKey("gt_trav_completed"),"gt_trav_completed","Anonymous mode preserves original legacy key");
+assert.deepEqual(Array.from(storage.load("gt_trav_completed",[])),[5,6],"Legacy progress still readable");
+active="Ava";
+assert.deepEqual(Array.from(storage.load("gt_trav_completed",[])),[1,2],"Legacy history does not leak into named record");
+assert.ok(source.includes("localStorage.removeItem(coachKey('gt_trav_completed'))"),"Coach reset uses scoped key");
+assert.ok(source.includes("location.reload()"),"Learner switch reloads cached coach state");
+console.log("GERMAN_COACH_ISOLATION=PASS: two learners, quiz separation, scoped reset, unchanged legacy records");
