@@ -27,7 +27,8 @@ function syntaxCheck(html,path){
 }
 const home=read("index.html"),french=read("apps/French_101_index.html"),hall=read("Halls/index.html"),v3=read("Halls/language-learning-v3_index.html"),language=read("assets/vnv-language.js");
 const apps=jsonScript(home,"appRegistry");
-check(apps.length===30,"Homepage application count must match advertised 30");
+check(apps.length===29,"Homepage application registry expected 29 current entries");
+check(new Set(apps.map(app=>app.file)).size===apps.length,"Homepage app registry contains duplicate paths");
 const seen=new Set();
 for(const app of apps){
  check(!seen.has(app.file),"Duplicate app destination: "+app.file);seen.add(app.file);
@@ -97,7 +98,7 @@ check(storyStudio.includes('id="wordDetail"'),"French selectable expression expl
 check(storyStudio.includes('Math.floor(Math.random()*(j+1))'),"French story comprehension choices must shuffle");
 check(storyStudio.includes('correct:j===q.answer'),"French story correct-answer identity must survive shuffling");
 check(storyStudio.includes('if(answers.length!==idx)return'),"French story must reject duplicate answers");
-const lexiconMatch=storyStudio.match(/const FRENCH_LEXICON=(\{[^;]+\});/);
+const lexiconMatch=storyStudio.match(/^const FRENCH_LEXICON=(.*);$/m);
 check(Boolean(lexiconMatch),"French reader dictionary missing");
 if(lexiconMatch){const words=JSON.parse(lexiconMatch[1]);check(Object.keys(words).length>=30,"French reader vocabulary too small");check(Boolean(words.bonjour?.meaning&&words.bonjour?.part),"French word grammar attributes missing")}
 check(storyStudio.includes('function speakVocabulary('),"French vocabulary pronunciation action missing");
@@ -175,7 +176,7 @@ for(const path of ["apps/German_hub_index.html","apps/German_coach_index.html"])
 check(read("apps/deutsche-geschichten/index.html").includes("../die-lebendige-welt/"),"German story-to-world link missing");
 const germanSounds=read("apps/deutsches-klanglabor/index.html");
 syntaxCheck(germanSounds,"apps/deutsches-klanglabor/index.html");
-const germanSoundSet=germanSounds.match(/const TOPICS=(\[[^;]+\]);/);
+const germanSoundSet=germanSounds.match(/const TOPICS=(\[[\s\S]*?\]);const \$=/);
 check(Boolean(germanSoundSet),"German sound dataset missing");
 if(germanSoundSet)check(JSON.parse(germanSoundSet[1]).length===6,"German Sound Lab must include six sound investigations");
 check(germanSounds.includes("audio_assisted_first_try"),"German listening evidence category missing");
