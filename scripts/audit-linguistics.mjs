@@ -151,6 +151,7 @@ check(language.includes("window.confirm("),"Online translation must require expl
 check(language.includes('const POLYGLOT_ROWS='),"Missing dedicated Polyglot translations");
 for(const path of ["apps/deutsche-geschichten/index.html","apps/deutsches-klanglabor/index.html","apps/die-lebendige-welt/index.html","apps/german-mastery-constellation/index.html"]){const html=read(path);check(html.includes('e.key==="german_active_learner"'),"German learner cross-tab refresh missing: "+path)}
 check(read("apps/German_coach_index.html").includes("function coachKey(key)"),"German Coach learner-scoped key resolver missing");
+check(read("apps/German_coach_index.html").includes("function replaceCoachPortfolioSafely(values)"),"German Coach import rollback missing");
 for(const token of ["function coachExportData()","function exportLegacyBackup()","learnerRecord:coachLearnerId()","legacy-shared-device"]){check(read("apps/German_coach_index.html").includes(token),"German Coach export safeguard missing "+token)}
 for(const token of ["function validateCoachImport(input)","function previewCoachImport()","function confirmCoachImport()",'confirmCoachImport").disabled=true',"data.source!==target","confirm(\"Replace all German Coach progress"]){check(read("apps/German_coach_index.html").includes(token),"German Coach import safeguard missing "+token)}
 
