@@ -149,6 +149,15 @@ check(language.includes("function coverage()"),"Missing translation coverage rep
 check(language.includes("function completeMissingTranslations()"),"Missing optional complete-text translation controls");
 check(language.includes("window.confirm("),"Online translation must require explicit confirmation");
 check(language.includes('const POLYGLOT_ROWS='),"Missing dedicated Polyglot translations");
+const germanStories=read("apps/deutsche-geschichten/index.html");
+syntaxCheck(germanStories,"apps/deutsche-geschichten/index.html");
+const germanSet=germanStories.match(/const STORIES=(\[[^;]+\]);/);
+check(Boolean(germanSet),"German story dataset missing");
+if(germanSet){const rows=JSON.parse(germanSet[1]);check(rows.length===12,"German reader must have 12 stories");for(let i=0;i<rows.length;i++)check(rows[i].level===i+1&&rows[i].lines.length>=5&&rows[i].questions.length>=2,"German story progression incomplete: "+(i+1))}
+check(germanStories.includes('lang="de"'),"German narration language metadata missing");
+check(germanStories.includes('function play(one=false)'),"German narration replay engine missing");
+check(read("apps/German_hub_index.html").includes("./deutsche-geschichten/"),"German Hub reading route missing");
+check(read("apps/German_coach_index.html").includes("./deutsche-geschichten/"),"German Coach reading route missing");
 const sw=read("service-worker.js");
 check(sw.includes("'./assets/vnv-language.js'"),"Multilingual module missing from PWA shell");
 for(const cached of ["./apps/translator.html","./assets/khaemenes-campus-phrases.js","./assets/sovereign-dictionary.generated.js","./assets/sovereign-dictionary-v1-errata.js","./assets/khaemenes-interlingual-core.js","./assets/khaemenes-review-policy.js"]){
@@ -156,7 +165,9 @@ for(const cached of ["./apps/translator.html","./assets/khaemenes-campus-phrases
  check(existsSync(join(root,cached)),"Sovereign library file missing: "+cached);
 }
 
-check(sw.includes("polyglot-v1.4.1-french-reader-offline"),"PWA cache version is stale");
+check(sw.includes("polyglot-v1.4.2-german-stories"),"PWA cache version is stale");
+for(const file of ["./apps/German_hub_index.html","./apps/German_coach_index.html","./apps/deutsche-geschichten/index.html"]){check(sw.includes("'"+file+"'"),"German offline cache entry missing "+file);check(existsSync(join(root,file)),"German offline file missing "+file)}
+
 for(const path of ["./apps/French_101_index.html","./apps/chroniques-francophones/index.html","./apps/atelier-des-sons/index.html","./apps/le-monde-vivant/index.html","./apps/maitrise-constellation/index.html"]){
  check(sw.includes("'"+path+"'"),"French learning tool missing from offline cache: "+path);
  check(existsSync(join(root,path)),"Missing French offline target: "+path);
