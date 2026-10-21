@@ -14,6 +14,7 @@ on:
       - 'scripts/test-german-studios.mjs'
       - 'scripts/test-german-print.mjs'
       - 'scripts/test-russian-conversation.mjs'
+      - 'scripts/test-russian-mastery.mjs'
       - 'scripts/test-bilingual-portfolios.mjs'
       - 'scripts/test-academy-evidence-links.mjs'
       - 'assets/german-portfolio-print.js'
