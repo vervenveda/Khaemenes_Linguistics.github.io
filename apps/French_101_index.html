@@ -278,6 +278,13 @@ function openLesson(level){
  makeListeningPractice(box,level);
  addFrenchMatchingGame(box,level);
  addFrenchGameShelf(box);
+ if(level===7){
+  const mission=element("section");mission.className="study-section";
+  mission.append(element("h3","Le Monde Vivant · French Café Mission"));
+  mission.append(element("p","Enter an original French café simulation. Practice greetings, food orders, and prices in five scenes. This is ungraded practice."));
+  const link=element("a","Open Café des Rencontres →");
+  link.href="./le-monde-vivant/";mission.append(link);box.append(mission);
+ }
  box.append(element("h3","Vocabulary and listening"));
  for(const phrase of LESSONS[level]){
   const row=element("div","","vocab");const labels=element("span");
