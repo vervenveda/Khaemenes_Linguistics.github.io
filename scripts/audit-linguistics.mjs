@@ -87,6 +87,10 @@ if(storyDataset){
  for(let i=0;i<12;i++){const story=stories[i];check(story?.level===i+1,"French story level mismatch "+(i+1));check(story?.lines?.length>=5,"French story too short "+(i+1));check(story?.questions?.length>=2,"French story comprehension missing "+(i+1));}
 }
 check(storyStudio.includes('level===7?"cafe_story"'),"French café legacy evidence compatibility missing");
+check(french.includes('./chroniques-francophones/?level="+level'),"French story level-specific deep links missing");
+check(storyStudio.includes('new URLSearchParams(location.search).get("level")'),"French story query-level navigation missing");
+check(storyStudio.includes('function renderVocabulary()'),"French reading vocabulary guidance missing");
+check(masteryMap.includes('readingByLevel:titles.map'),"Mastery constellation reading history missing");
 check(soundStudio.includes("soundAnswered=true"),"French sound practice duplicate answer guard missing");
 check(soundStudio.includes('soundPlayed&&!soundWrong'),"French first-try listening evidence qualification missing");
 check(soundStudio.includes('sound_guided_study'),"French guided sound study distinction missing");
