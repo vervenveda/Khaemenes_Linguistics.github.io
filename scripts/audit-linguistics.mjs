@@ -109,6 +109,11 @@ check(soundStudio.includes("sound_audio_assisted_first_try"),"Sound lab revised 
 check(soundStudio.includes('b.disabled=true;b.onclick='),"Sound choices must require an initial audio attempt");
 check(storyStudio.includes('sovereign-dictionary.generated.js'),"Read-only canonical dictionary connection missing");
 check(storyStudio.includes("function canonicalDictionaryReference("),"Dictionary provenance adapter missing");
+check(storyStudio.includes("const FRENCH_NARRATORS="),"French narrator profiles missing");
+check(storyStudio.includes("function frenchVoice(profile)"),"French voice matching missing");
+check(storyStudio.includes("function stopNarration()"),"Narration stop action missing");
+check(storyStudio.includes('id="narratorStatus"'),"Narration status missing");
+check(storyStudio.includes("voices.filter(v=>/^fr("),"French voice locale preference missing");
 check(storyStudio.includes('khaemenes_french_story_cafe_writing_v2_'),"French story learner-specific draft storage missing");
 check(masteryMap.includes('soundListeningFirstTry:countActivity'),"Mastery map first-try listening evidence missing");
 check(masteryMap.includes('soundGuided:countActivity'),"Mastery map guided sound evidence missing");
