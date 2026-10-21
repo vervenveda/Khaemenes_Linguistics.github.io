@@ -28,6 +28,12 @@ button{
 }
 body.dark button{background:var(--accent-dark);}
 button:hover{opacity:.8;}
+.study-section{width:100%;text-align:left;margin:12px auto;padding:14px;border:1px solid #a99a7b;border-radius:7px}
+.study-section h3{font-size:1.12rem;font-weight:500}
+.study-section p{line-height:1.7}
+#lesson textarea{display:block;width:100%;min-height:130px;margin:12px 0;padding:12px;border:1px solid #93835f;border-radius:7px;font:inherit;background:#fff;color:#181818}
+@media print{#lesson{display:block!important;width:100%;padding:10px}#lesson button{display:none!important}#lesson textarea{min-height:100px}#certificate{display:none!important}}
+
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{#splash,#themeToggle,#menu,#lesson,#quiz,#exam,#certificateBack,#certificate button{display:none!important}#app{padding:0;min-height:auto}#certificate{display:block!important;color:#111;background:#fff;border:1px solid #333}}
 .hidden{display:none;}
@@ -181,10 +187,33 @@ function element(tag,text,className){
 function addButton(parent,label,handler){
  const button=element("button",label);button.type="button";button.addEventListener("click",handler);parent.append(button);return button;
 }
+const LESSON_GUIDES=[["Greetings and courtesy","Bonjour can mean hello or good morning. Use bonjour in polite daytime greetings; bonsoir is used in the evening.","Bonjour ! Comment allez-vous ? — Très bien, merci. Au revoir !","Notice that s’il vous plaît is a polite way to say please.","Write a two-line greeting and farewell for a visitor."],["Introducing yourself","Je m’appelle means my name is. Enchanté and enchantée reflect the speaker in written French; pronunciation is usually the same.","— Bonjour ! Je m’appelle Marie. Et vous ? — Je m’appelle Karim. Enchanté !","Compare formal vous with informal tu, both used for you.","Introduce yourself and ask another person’s name."],["Numbers 1–5","French numbers help with quantities, time, dates, and addresses. Practise un, deux, trois, quatre, cinq in sequence and at random.","J’ai deux livres et trois stylos. Cela fait cinq objets.","Un can also serve as a masculine indefinite article before a noun.","Describe a collection of five objects with French numbers."],["Family and people","Possessive words agree with the grammatical gender of the noun: ma mère, mon père, ma sœur, mon frère.","Voici ma famille. Ma mère s’appelle Leïla et mon frère s’appelle Sami.","Use mon before masculine nouns; remember special cases such as mon amie.","Write three sentences introducing people important to you."],["Days and time","Aujourd’hui means today; hier means yesterday; demain means tomorrow. French weekdays are normally written lowercase.","Aujourd’hui, c’est lundi. Demain, c’est mardi.","French commonly uses c’est to identify a day: C’est lundi.","Write a three-day mini diary: hier, aujourd’hui, demain."],["Colours and agreement","Colour adjectives may change with the noun: un livre vert, une pomme verte. Some forms are unchanged between masculine and feminine.","Le ciel est bleu. La pomme est rouge. Le jardin est vert.","Practise gender agreement using vert/verte and blanc/blanche.","Label five things you can see by colour."],["Food and polite requests","French often uses partitive articles for food and drink: du pain, de l’eau, du fromage. Use s’il vous plaît when ordering.","— Bonjour, je voudrais de l’eau et du pain, s’il vous plaît. — Bien sûr !","Je voudrais is a polite phrase meaning I would like.","Create a short café order using three items."],["At school","Je suis means I am; j’ai means I have. Recognise the difference between être and avoir in everyday statements.","Je suis étudiant. J’ai un livre et un stylo. Je lis à la bibliothèque.","J’ai contracts je + ai; je suis uses the verb être.","Write three sentences about how and where you learn."],["Directions","Où est… ? asks where something is. À gauche, à droite, and tout droit help give simple directions.","— Où est la gare ? — Allez tout droit, puis tournez à droite.","The imperative gives directions: allez, tournez.","Write directions from a classroom to a nearby place."],["Weather","French uses il fait for many weather descriptions, but il pleut for it is raining.","Aujourd’hui, il fait froid et il pleut. Demain, il fera peut-être beau.","Compare il fait chaud, il fait froid, and il pleut.","Record three days of weather using complete French sentences."],["Daily routine","Present-tense verbs describe regular actions. Reflexive verbs such as se réveiller use reflexive pronouns.","Je me réveille tôt. Je prends le petit déjeuner, puis je vais à l’école.","In je me réveille, me refers back to the subject je.","Create a five-step daily routine using time-order words."],["Past and future","J’ai étudié refers to a completed past action. Je vais voyager expresses a near-future plan.","Hier, j’ai étudié le français. Demain, je vais voyager et pratiquer.","Contrast passé composé (j’ai étudié) with aller + infinitive (je vais voyager).","Write a paragraph about yesterday, today, and tomorrow."]];
+function addStudySection(parent,heading,body,spoken=false){
+ const section=element("section");section.className="study-section";
+ const title=element("h3",heading),paragraph=element("p",body);if(spoken)paragraph.lang="fr";
+ section.append(title,paragraph);
+ if(spoken)addButton(section,"Listen to dialogue",()=>speakFR(body));
+ parent.append(section);
+}
+function printLesson(){window.print()}
 function openLesson(level){
  if(!available(level)||!LESSONS[level]){backToMenu();return}
  currentLevel=level;const box=$("lesson");box.replaceChildren();
  box.append(element("h2",`Level ${level}`),element("p","Listen and repeat each phrase, then complete the quiz."));
+ const guide=LESSON_GUIDES[level-1];
+ box.append(element("h3",guide[0]));
+ addStudySection(box,"Understand the language",guide[1]);
+ addStudySection(box,"Original French dialogue",guide[2],true);
+ addStudySection(box,"Grammar and usage",guide[3]);
+ addStudySection(box,"Your written practice",guide[4]);
+ const journal=element("textarea");journal.rows=4;journal.placeholder="Write your French practice here…";journal.setAttribute("aria-label","French writing practice");
+ const journalKey=learnerKey+"_writing_"+level;
+ journal.value=safeGet(journalKey)||"";
+ journal.addEventListener("input",()=>{if(!safeSet(journalKey,journal.value))$("writingStatus").textContent="Unable to save writing on this device. Copy your text to keep it."});
+ box.append(journal);
+ const status=element("p","Writing saves automatically on this device.");status.id="writingStatus";status.setAttribute("role","status");box.append(status);
+ addButton(box,"Print Lesson",printLesson);
+ box.append(element("h3","Vocabulary and listening"));
  for(const phrase of LESSONS[level]){
   const row=element("div","","vocab");const labels=element("span");
   const french=element("strong",phrase.fr),english=element("small",phrase.en);
