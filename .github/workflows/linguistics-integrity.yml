@@ -9,6 +9,7 @@ on:
       - 'Halls/**'
       - 'service-worker.js'
       - 'scripts/audit-linguistics.mjs'
+      - 'scripts/test-french-reader.mjs'
       - '.github/workflows/linguistics-integrity.yml'
   workflow_dispatch:
 permissions:
@@ -21,3 +22,5 @@ jobs:
       - uses: actions/checkout@v4
       - name: Run offline structural integrity checks
         run: node scripts/audit-linguistics.mjs
+      - name: Test French reader interactions
+        run: node scripts/test-french-reader.mjs
