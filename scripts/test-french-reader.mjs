@@ -39,7 +39,7 @@ assert.equal(lines[1]["aria-current"],"true","Selected line highlighted");
 byId("narrate").click();
 assert.equal(queued.length,1,"Speech utterance queued");
 assert.equal(queued[0].text,ctx.STORIES?.[6]?.lines?.[1]?.[0]||lines[1].textContent,"Narrates selected line");
-const stale=queued[0];stale.onend?.();assert.equal(queued.length,1,"Sentence progression replaces completed utterance");
+const stale=queued.shift();stale.onend?.();assert.equal(queued.length,1,"Sentence progression queues next utterance");
 const staleAgain=queued[0];
 byId("storyPicker").value="8";byId("storyPicker").onchange();
 assert.match(byId("storyTitle").textContent,/Level 8/,"Story selection applied");
