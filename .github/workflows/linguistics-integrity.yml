@@ -26,6 +26,7 @@ on:
       - 'scripts/test-arabic-mastery-map.mjs'
       - 'scripts/test-language-worlds.mjs'
       - 'scripts/test-foundation-performance.mjs'
+      - 'scripts/test-foundation-two-learners.mjs'
       - 'assets/foundation-performance-rubric.js'
       - '.github/workflows/linguistics-integrity.yml'
   workflow_dispatch:
@@ -65,6 +66,8 @@ jobs:
         run: node scripts/test-language-worlds.mjs
       - name: Test foundation performance rubrics
         run: node scripts/test-foundation-performance.mjs
+      - name: Simulate foundation two-learner review isolation
+        run: node scripts/test-foundation-two-learners.mjs
       - name: Test bilingual homeschool portfolios
         run: node scripts/test-bilingual-portfolios.mjs
       - name: Verify shared Academy evidence adoption
