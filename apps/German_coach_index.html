@@ -1041,13 +1041,31 @@ async function previewCoachImport(){
  document.getElementById("confirmCoachImport").disabled=false;
  }catch(error){el.textContent="Import rejected: "+error.message}
 }
+function replaceCoachPortfolioSafely(values){
+ const fields=["completed","notes","quizHistory","examHistory","currentDay","passThreshold","autoSpeak"];
+ const keys=fields.map(field=>coachKey("gt_trav_"+field));
+ const original=keys.map(key=>localStorage.getItem(key));
+ const encoded=fields.map(field=>JSON.stringify(values[field]));
+ let written=0;
+ try{
+  for(let i=0;i<keys.length;i++){localStorage.setItem(keys[i],encoded[i]);written++}
+  return{ok:true,rollbackFailed:false}
+ }catch(error){
+  let rollbackFailed=false;
+  for(let i=written-1;i>=0;i--){
+   try{if(original[i]===null)localStorage.removeItem(keys[i]);else localStorage.setItem(keys[i],original[i])}
+   catch{rollbackFailed=true}
+  }
+  return{ok:false,rollbackFailed,error}
+ }
+}
 function confirmCoachImport(){
  const el=document.getElementById("coachImportPreview"),item=pendingCoachImport;
  if(!item||item.target!==(coachLearnerId()||"legacy-shared-device")){el.textContent="Learner changed. Preview the file again.";return}
  if(!confirm("Replace all German Coach progress for "+item.target+"? Export a backup first. This cannot be undone."))return;
  try{
- const values=item.values;
- for(const [field,value] of Object.entries(values))storage.save("gt_trav_"+field,value);
+ const result=replaceCoachPortfolioSafely(item.values);
+ if(!result.ok){pendingCoachImport=null;document.getElementById("confirmCoachImport").disabled=true;el.textContent=result.rollbackFailed?"Import interrupted; restoring some records failed. Preserve this device and recover from your backup.":"Import interrupted; prior records restored. No import was applied.";return}
  pendingCoachImport=null;document.getElementById("confirmCoachImport").disabled=true;
  el.textContent="Import saved to the selected record. Reloading to display imported progress.";
  location.reload();
