@@ -244,3 +244,13 @@ if(errors.length){
 }else{
  console.log("LINGUISTICS_INTEGRITY=PASS; apps=30, formal=5x11, atlas=206, foundations=40, French=12x5, languages=13");
 }
+
+const germanPortfolio=read("apps/german-mastery-constellation/index.html");
+const frenchPortfolio=read("apps/maitrise-constellation/index.html");
+for(const [label,page] of [["German",germanPortfolio],["French",frenchPortfolio]]){
+ for(const token of ["parentNotes","saveParentNotes","Unified Homeschool Portfolio","Parent / teacher review","window.print()"]){
+  check(page.includes(token),label+" unified portfolio lacks "+token);
+ }
+}
+check(germanPortfolio.includes("for(const story of data.stories)"),"German lesson-level report missing");
+check(frenchPortfolio.includes("for(let i=0;i<12;i++)line"),"French lesson-level report missing");
