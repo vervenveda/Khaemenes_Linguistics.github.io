@@ -150,11 +150,17 @@ check(language.includes("function completeMissingTranslations()"),"Missing optio
 check(language.includes("window.confirm("),"Online translation must require explicit confirmation");
 check(language.includes('const POLYGLOT_ROWS='),"Missing dedicated Polyglot translations");
 for(const path of ["apps/deutsche-geschichten/index.html","apps/deutsches-klanglabor/index.html","apps/die-lebendige-welt/index.html","apps/german-mastery-constellation/index.html"]){const html=read(path);check(html.includes('e.key==="german_active_learner"'),"German learner cross-tab refresh missing: "+path)}
+check(read("apps/German_coach_index.html").includes("function coachKey(key)"),"German Coach learner-scoped key resolver missing");
+check(read("apps/German_coach_index.html").includes("khaemenes_german_coach_v2_"),"German Coach named learner namespace missing");
+check(read("apps/German_coach_index.html").includes("coachKey('gt_trav_completed')"),"German Coach reset must use selected learner's namespace");
+check(read("apps/deutsches-klanglabor/index.html").includes("u.onerror="),"German sound audio-failure handler missing");
+check(read("apps/deutsches-klanglabor/index.html").includes("audio_assisted_first_try"),"German sound audio-assisted evidence missing");
 const germanMap=read("apps/german-mastery-constellation/index.html");
 syntaxCheck(germanMap,"apps/german-mastery-constellation/index.html");
 check(germanMap.includes("function snapshot()"),"German read-only mastery summary missing");
 for(const key of ["gt_trav_completed","gt_trav_quizHistory","gt_trav_examHistory","khaemenes_german_stories_v1_","khaemenes_german_sound_v1_","khaemenes_german_world_v1_"])check(germanMap.includes(key),"German mastery source missing "+key);
-check(germanMap.includes("shared-device only"),"German coach shared-device identity disclaimer missing");
+check(germanMap.includes("Legacy shared-device Coach data"),"German Coach shared legacy attribution missing");
+check(germanMap.includes("coachPrefix+"),"German dashboard learner-scoped Coach adapter missing");
 check(germanMap.includes('graded:false'),"German dashboard export must remain ungraded");
 const germanWorld=read("apps/die-lebendige-welt/index.html");
 syntaxCheck(germanWorld,"apps/die-lebendige-welt/index.html");
