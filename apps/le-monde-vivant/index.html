@@ -10,6 +10,12 @@
 <div class="scene"><section class="card"><h2>Menu · La carte</h2><p>🥖 Du pain — 2 €</p><p>🍎 Une pomme — 3 €</p><p>💧 De l'eau — 1 €</p><p>🧀 Du fromage — 4 €</p><p class="muted">All prices are fictional classroom examples.</p></section>
 <section class="card"><h2>Mission</h2><p>Help a visitor order food politely, understand a price, and thank the café worker.</p><p id="counter" role="status">Step 1 of 5</p><div class="meter" aria-hidden="true"><span id="bar"></span></div><p id="score">Practice score: 0</p></section></div>
 <section class="card" aria-label="Interactive conversation"><h2 id="sceneHeading">Conversation</h2><p class="dialogue" id="prompt" lang="fr"></p><div class="actions"><button type="button" id="speak">🔊 Listen in French</button></div><p id="question"></p><div id="choices" class="choices"></div><p id="feedback" role="status" aria-live="polite"></p><div class="actions"><button id="next" class="hide" type="button">Next scene →</button><button id="restart" type="button">Restart mission</button></div></section>
+<section class="card" id="theater"><h2>Le Théâtre des Conversations · Build Your Order</h2>
+<p>Choose food from the café counter. Then practise a complete French conversation with the server. This independent activity does not affect the graded mission.</p>
+<div id="products" class="choices" aria-label="Café objects"></div>
+<h3>Votre panier · Your basket</h3><ul id="basket"></ul><p id="total" role="status">Total : 0 €</p>
+<div class="actions"><button type="button" id="clearBasket">Empty basket</button><button type="button" id="startTheater">Speak to the server</button></div>
+<div id="theaterStage" class="hide" aria-live="polite"><h3 id="theaterHeading"></h3><p id="theaterLine" lang="fr" class="dialogue"></p><p id="theaterHelp"></p><div id="theaterChoices" class="choices"></div><p id="theaterFeedback" role="status"></p></div></section>
 <section class="card"><h2>Mission evidence</h2><p id="summary">Complete the five scenes to receive a practice summary.</p><button id="export" type="button" disabled>Export mission evidence (JSON)</button><p class="muted">Evidence is downloaded locally. This practice mission does not unlock French 101 levels or change formal quiz grades.</p></section>
 <footer class="intro"><small>Original Khaemenes Academy interactive lesson · Jennifer Kay Pearl</small></footer></main>
 <script>
@@ -31,6 +37,53 @@ $("next").addEventListener("click",()=>{if(index===steps.length-1)finish();else{
 $("restart").addEventListener("click",()=>{index=0;score=0;answers=[];$("summary").textContent="Complete the five scenes to receive a practice summary.";$("export").disabled=true;draw()});
 $("speak").addEventListener("click",speech);
 $("export").addEventListener("click",()=>{if(answers.length!==steps.length)return;const payload={format:"khaemenes-french-world-v1",mission:"cafe-des-rencontres",level:7,createdAt:new Date().toISOString(),score,total:steps.length,graded:false,answers};const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="khaemenes-french-cafe-mission.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+// Original object-driven conversation theater. No external APIs or saved personal data.
+const shop=[
+ {id:"eau",fr:"de l'eau",label:"💧 Eau · Water",price:1},
+ {id:"pain",fr:"du pain",label:"🥖 Pain · Bread",price:2},
+ {id:"pomme",fr:"une pomme",label:"🍎 Pomme · Apple",price:3},
+ {id:"fromage",fr:"du fromage",label:"🧀 Fromage · Cheese",price:4}
+];
+const cart=[];let theaterStep=0,theaterCorrect=0,theaterLog=[];
+function basketTotal(){return cart.reduce((n,item)=>n+item.price,0)}
+function paintCart(){
+ $("basket").replaceChildren();
+ for(const item of cart){const row=document.createElement("li");row.textContent=item.fr+" — "+item.price+" € ";
+ const remove=document.createElement("button");remove.type="button";remove.textContent="Remove";remove.setAttribute("aria-label","Remove "+item.label);
+ remove.addEventListener("click",()=>{cart.splice(cart.indexOf(item),1);paintCart()});row.append(remove);$("basket").append(row)}
+ $("total").textContent="Total : "+basketTotal()+" €";
+ $("startTheater").disabled=cart.length===0;
+ $("theaterStage").classList.add("hide");
+}
+for(const product of shop){
+ const button=document.createElement("button");button.type="button";button.textContent=product.label+" · "+product.price+" €";
+ button.addEventListener("click",()=>{cart.push(product);paintCart()});$("products").append(button)
+}
+$("clearBasket").addEventListener("click",()=>{cart.length=0;paintCart()});
+function theaterChoices(options,correct,onCorrect){
+ const parent=$("theaterChoices");parent.replaceChildren();
+ for(const option of options){const button=document.createElement("button");button.type="button";button.textContent=option.label;
+ button.addEventListener("click",()=>{if(option.label===correct){theaterCorrect++;theaterLog.push({scene:theaterStep,answer:option.label,correct:true});$("theaterFeedback").textContent="Très bien !";onCorrect()}else{$("theaterFeedback").textContent="Try another French expression.";theaterLog.push({scene:theaterStep,answer:option.label,correct:false})}});
+ parent.append(button)}
+}
+function renderTheater(){
+ const heading=$("theaterHeading"),line=$("theaterLine"),help=$("theaterHelp");
+ $("theaterFeedback").textContent="";
+ if(theaterStep===0){heading.textContent="Scene 1 · Welcome";line.textContent="Bonjour ! Vous désirez ?";help.textContent="Greet the server politely.";
+ theaterChoices([{label:"Bonjour, madame !"},{"label":"À gauche !"},{"label":"Il pleut !"}],"Bonjour, madame !",()=>{theaterStep++;renderTheater()})}
+ else if(theaterStep===1){heading.textContent="Scene 2 · Your order";line.textContent="Qu'est-ce que vous prenez ?";help.textContent="Choose the sentence describing your basket.";
+ const order=cart.map(x=>x.fr).join(", ");const proper="Je voudrais "+order+", s'il vous plaît.";
+ theaterChoices([{label:proper},{label:"Je suis à la gare."},{label:"Il fait froid."}],proper,()=>{theaterStep++;renderTheater()})}
+ else if(theaterStep===2){heading.textContent="Scene 3 · The total";line.textContent="Cela fait "+basketTotal()+" euros.";help.textContent="Confirm the total on your basket.";
+ const proper="Cela fait "+basketTotal()+" euros.";
+ theaterChoices([{label:proper},{label:"Cela fait "+(basketTotal()+2)+" euros."},{label:"Je ne sais pas."}],proper,()=>{theaterStep++;renderTheater()})}
+ else if(theaterStep===3){heading.textContent="Scene 4 · Farewell";line.textContent="Merci et bonne journée !";help.textContent="Respond politely.";
+ theaterChoices([{label:"Merci, au revoir !"},{"label":"Où est la gare ?"},{"label":"Une pomme."}],"Merci, au revoir !",()=>{theaterStep++;renderTheater()})}
+ else{heading.textContent="Mission accomplie !";line.textContent="Bravo ! Votre commande est prête.";help.textContent="You completed "+theaterCorrect+" conversation responses. Order total: "+basketTotal()+" €. You can change the basket and play again.";$("theaterChoices").replaceChildren();
+ const repeat=document.createElement("button");repeat.type="button";repeat.textContent="Replay conversation";repeat.addEventListener("click",startTheater);$("theaterChoices").append(repeat)}
+}
+function startTheater(){if(!cart.length)return;theaterStep=0;theaterCorrect=0;theaterLog=[];$("theaterStage").classList.remove("hide");renderTheater()}
+$("startTheater").addEventListener("click",startTheater);paintCart();
 draw();
 </script>
 <script src="/assets/vnv-beta-link.js" defer></script>
