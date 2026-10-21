@@ -278,6 +278,8 @@ function openLesson(level){
  makeListeningPractice(box,level);
  addFrenchMatchingGame(box,level);
  addFrenchGameShelf(box);
+ if(level===1||level===7){const studio=element("section");studio.className="study-section";studio.append(element("h3","Original French learning studios"));for(const [label,url] of [["French Sound Laboratory","./atelier-des-sons/"],["French Café Story","./chroniques-francophones/"]]){const p=element("p"),a=element("a",label);a.href=url;p.append(a);studio.append(p)}box.append(studio)}
+
  if(level===7){
   const mission=element("section");mission.className="study-section";
   mission.append(element("h3","Le Monde Vivant · French Café Mission"));
