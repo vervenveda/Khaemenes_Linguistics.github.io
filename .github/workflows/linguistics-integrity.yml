@@ -13,6 +13,7 @@ on:
       - 'scripts/test-german-coach.mjs'
       - 'scripts/test-german-studios.mjs'
       - 'scripts/test-german-print.mjs'
+      - 'scripts/test-russian-conversation.mjs'
       - 'scripts/test-bilingual-portfolios.mjs'
       - 'scripts/test-academy-evidence-links.mjs'
       - 'assets/german-portfolio-print.js'
@@ -36,6 +37,8 @@ jobs:
         run: node scripts/test-german-studios.mjs
       - name: Verify German portfolio print evidence
         run: node scripts/test-german-print.mjs
+      - name: Test Russian Conversation World
+        run: node scripts/test-russian-conversation.mjs
       - name: Test bilingual homeschool portfolios
         run: node scripts/test-bilingual-portfolios.mjs
       - name: Verify shared Academy evidence adoption
