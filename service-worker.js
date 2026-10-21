@@ -1,7 +1,7 @@
 /* Polyglot — Khaemenes Academy Linguistics Hall
    Static-site service worker. Update CACHE_VERSION whenever core files change. */
 
-const CACHE_VERSION = 'polyglot-v1.4.6-german-portfolio';
+const CACHE_VERSION = 'polyglot-v1.4.7-russian-path';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
@@ -16,6 +16,8 @@ const APP_SHELL = [
   './apps/translator.html',
   './apps/German_hub_index.html',
   './apps/German_coach_index.html',
+  './apps/Russian_hub_index.html',
+  './apps/Russian_skills_lab_index.html',
   './apps/deutsche-geschichten/index.html',
   './apps/deutsches-klanglabor/index.html',
   './apps/die-lebendige-welt/index.html',
