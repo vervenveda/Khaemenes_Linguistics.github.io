@@ -196,6 +196,33 @@ function addStudySection(parent,heading,body,spoken=false){
  parent.append(section);
 }
 function printLesson(){window.print()}
+function exportFrenchPortfolio(){
+ const entries=Array.from({length:totalLevels},(_,i)=>({level:i+1,title:LESSON_GUIDES[i][0],writing:safeGet(learnerKey+"_writing_"+(i+1))||"",completed:progress[i+1]==="completed",quizScore:progress["quizScore_"+(i+1)]??null}));
+ const data={format:"khaemenes-french101-portfolio-v1",course:"French 101 — Sovereign Edition",learner:$("learnerName").value.trim()||"Anonymous",exportedAt:new Date().toISOString(),examScore:progress.examScore??null,examPassed:Boolean(progress.examPassed),lessons:entries};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="khaemenes-french101-portfolio.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function makeListeningPractice(parent,level){
+ const section=element("section");section.className="study-section";
+ section.append(element("h3","Listening comprehension"),element("p","Listen to the French expression, then choose its meaning. This practice does not affect your grade."));
+ const question=element("p","Press Play to begin.");question.setAttribute("role","status");section.append(question);
+ let item=null,buttons=[];
+ const play=addButton(section,"▶ Play French phrase",()=>{if(!item)newRound();speakFR(item.fr)});
+ function newRound(){
+   item=LESSONS[level][Math.floor(Math.random()*LESSONS[level].length)];
+   question.textContent="Listen and select the English meaning.";
+   for(const b of buttons)b.remove();buttons=[];
+   const options=shuffleQuestions([item,...shuffleQuestions(LESSONS[level].filter(x=>x!==item)).slice(0,2)]);
+   for(const choice of options){
+     const b=addButton(section,choice.en,()=>{
+       question.textContent=choice===item?"Correct — "+item.fr+" means "+item.en+".":"Try again. Listen closely.";
+       if(choice===item){for(const option of buttons)option.disabled=true;}
+     });buttons.push(b);
+   }
+ }
+ addButton(section,"New listening question",()=>{newRound();speakFR(item.fr)});
+ newRound();parent.append(section);
+}
 function openLesson(level){
  if(!available(level)||!LESSONS[level]){backToMenu();return}
  currentLevel=level;const box=$("lesson");box.replaceChildren();
@@ -213,6 +240,8 @@ function openLesson(level){
  box.append(journal);
  const status=element("p","Writing saves automatically on this device.");status.id="writingStatus";status.setAttribute("role","status");box.append(status);
  addButton(box,"Print Lesson",printLesson);
+ addButton(box,"Export Writing Portfolio",exportFrenchPortfolio);
+ makeListeningPractice(box,level);
  box.append(element("h3","Vocabulary and listening"));
  for(const phrase of LESSONS[level]){
   const row=element("div","","vocab");const labels=element("span");
@@ -248,8 +277,8 @@ function normalize(s){
 }
 function openQuiz(level){
  if(!available(level)||!LESSONS[level])return;
- const set=shuffleQuestions(LESSONS[level]),box=$("quiz");box.replaceChildren();
- box.append(element("h2",`Quiz — Level ${level}`),element("p","Translate each French phrase into English. Pass with at least 80% (4 out of 5)."));
+ const set=shuffleQuestions(LESSONS[level]).map((item,i)=>({...item,direction:i<3?"fr-en":"en-fr"})),box=$("quiz");box.replaceChildren();
+ box.append(element("h2",`Quiz — Level ${level}`),element("p","Five mixed questions: translate French to English and English to French. Pass with at least 80% (4 out of 5)."));
  const question=element("p");question.style.fontSize="1.2rem";question.lang="fr";
  const input=document.createElement("input");input.type="text";input.placeholder="English meaning";input.autocomplete="off";input.setAttribute("aria-label","English translation");
  const feedback=element("p");feedback.setAttribute("role","status");
@@ -261,7 +290,7 @@ function openQuiz(level){
   input.disabled=true;submit.disabled=true;const passed=score>=Math.ceil(set.length*.8);
   feedback.textContent=`Score: ${score}/${set.length}. ${passed?"Passed!":"Practice and try again."}`;
   if(passed){
-   progress[level]="completed";
+   progress[level]="completed";progress["quizScore_"+level]=score;
    if(level<totalLevels&&progress[level+1]!=="completed")progress[level+1]="unlocked";
    saveProgress();
    addButton(box,level<totalLevels?"Next Level":"Final Exam",()=>{
@@ -270,13 +299,13 @@ function openQuiz(level){
   }else addButton(box,"Retry Quiz",()=>openQuiz(level));
   buildLevelGrid();
  }
- function ask(){busy=false;if(index>=set.length){finish();return}question.textContent=set[index].fr;input.focus()}
+ function ask(){busy=false;if(index>=set.length){finish();return}question.textContent=set[index].direction==="fr-en"?set[index].fr:set[index].en;question.lang=set[index].direction==="fr-en"?"fr":"en";input.placeholder=set[index].direction==="fr-en"?"English meaning":"French expression";input.setAttribute("aria-label",input.placeholder);input.focus()}
  function check(){
   if(busy||index>=set.length||!input.value.trim())return;
   busy=true;submit.disabled=true;
-  const correct=matchesTranslation(set[index],input.value);
+  const correct=set[index].direction==="fr-en"?matchesTranslation(set[index],input.value):normalize(set[index].fr)===normalize(input.value);
   if(correct)score++;
-  feedback.textContent=correct?"Correct!":"Expected: "+set[index].en;
+  feedback.textContent=correct?"Correct!":"Expected: "+(set[index].direction==="fr-en"?set[index].en:set[index].fr);
   index++;input.value="";
   setTimeout(()=>{if(session!==assessmentSession||!document.contains(box)||box.classList.contains("hidden"))return;submit.disabled=false;ask()},550);
  }
