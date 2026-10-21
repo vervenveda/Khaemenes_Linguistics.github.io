@@ -149,6 +149,12 @@ check(language.includes("function coverage()"),"Missing translation coverage rep
 check(language.includes("function completeMissingTranslations()"),"Missing optional complete-text translation controls");
 check(language.includes("window.confirm("),"Online translation must require explicit confirmation");
 check(language.includes('const POLYGLOT_ROWS='),"Missing dedicated Polyglot translations");
+const germanMap=read("apps/german-mastery-constellation/index.html");
+syntaxCheck(germanMap,"apps/german-mastery-constellation/index.html");
+check(germanMap.includes("function snapshot()"),"German read-only mastery summary missing");
+for(const key of ["gt_trav_completed","gt_trav_quizHistory","gt_trav_examHistory","khaemenes_german_stories_v1_","khaemenes_german_sound_v1_","khaemenes_german_world_v1_"])check(germanMap.includes(key),"German mastery source missing "+key);
+check(germanMap.includes("shared-device only"),"German coach shared-device identity disclaimer missing");
+check(germanMap.includes('graded:false'),"German dashboard export must remain ungraded");
 const germanWorld=read("apps/die-lebendige-welt/index.html");
 syntaxCheck(germanWorld,"apps/die-lebendige-welt/index.html");
 const germanWorldSet=germanWorld.match(/const SCENES=(\[[^;]+\]);/);
@@ -182,7 +188,8 @@ for(const cached of ["./apps/translator.html","./assets/khaemenes-campus-phrases
  check(existsSync(join(root,cached)),"Sovereign library file missing: "+cached);
 }
 
-check(sw.includes("polyglot-v1.4.4-german-world"),"PWA cache version is stale");
+check(sw.includes("polyglot-v1.4.5-german-constellation"),"PWA cache version is stale");
+check(sw.includes("'./apps/german-mastery-constellation/index.html'"),"German mastery overview not precached");
 check(sw.includes("'./apps/die-lebendige-welt/index.html'"),"German world missing from offline pre-cache");
 check(sw.includes("'./apps/deutsches-klanglabor/index.html'"),"German Sound Lab missing from offline pre-cache");
 for(const file of ["./apps/German_hub_index.html","./apps/German_coach_index.html","./apps/deutsche-geschichten/index.html"]){check(sw.includes("'"+file+"'"),"German offline cache entry missing "+file);check(existsSync(join(root,file)),"German offline file missing "+file)}
