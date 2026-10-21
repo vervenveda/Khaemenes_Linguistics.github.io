@@ -58,6 +58,12 @@ assert.throws(()=>validate({...valid,notes:{"366":"bad"}}),/Invalid lesson note/
 assert.throws(()=>validate({...valid,notes:{"1":33}}),/Invalid lesson note/);
 assert.throws(()=>validate({...valid,quizHistory:[null]}),/Invalid quizHistory entry/);
 assert.throws(()=>validate({...valid,examHistory:[false]}),/Invalid examHistory entry/);
+assert.throws(()=>validate({...valid,quizHistory:[{timestamp:1,score:8,total:5,from:1,to:5}]}),/Invalid quiz score/);
+assert.throws(()=>validate({...valid,quizHistory:[{timestamp:1,score:3,total:5,from:7,to:3}]}),/Invalid quiz score/);
+assert.throws(()=>validate({...valid,examHistory:[{timestamp:1,correct:6,total:5,pct:120,passed:true,details:[]}]}),/Invalid exam score/);
+assert.throws(()=>validate({...valid,examHistory:[{timestamp:1,correct:3,total:5,pct:60,passed:"yes",details:[]}]}),/Invalid exam score/);
+assert.doesNotThrow(()=>validate({...valid,quizHistory:[{timestamp:1,score:4,total:5,from:1,to:5}],examHistory:[{timestamp:2,correct:4,total:5,pct:80,passed:true,details:[]}]}));
+
 
 assert.ok(source.includes("data.source!==target"),"Import must block mismatched learner");
 assert.ok(source.includes('confirm("Replace all German Coach progress'),"Import requires explicit replacement confirmation");
