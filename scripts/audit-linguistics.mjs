@@ -94,6 +94,10 @@ check(storyStudio.includes('function sequenceQuestion()'),"French story sequenci
 check(storyStudio.includes('id="inference"'),"French story written inference missing");
 check(storyStudio.includes('writingKey()+"_inference"'),"French inference learner-specific storage missing");
 check(storyStudio.includes('id="wordDetail"'),"French selectable expression explorer missing");
+const lexiconMatch=storyStudio.match(/const FRENCH_LEXICON=(\{[^;]+\});/);
+check(Boolean(lexiconMatch),"French reader dictionary missing");
+if(lexiconMatch){const words=JSON.parse(lexiconMatch[1]);check(Object.keys(words).length>=30,"French reader vocabulary too small");check(Boolean(words.bonjour?.meaning&&words.bonjour?.part),"French word grammar attributes missing")}
+check(storyStudio.includes('function speakVocabulary('),"French vocabulary pronunciation action missing");
 check(masteryMap.includes('readingByLevel:titles.map'),"Mastery constellation reading history missing");
 check(soundStudio.includes("soundAnswered=true"),"French sound practice duplicate answer guard missing");
 check(soundStudio.includes('soundPlayed&&!soundWrong'),"French first-try listening evidence qualification missing");
