@@ -1,6 +1,10 @@
 const fs=require('node:fs'),vm=require('node:vm'),assert=require('node:assert/strict');
 const source=fs.readFileSync('assets/foundation-unit03-checkpoint.js','utf8');
-const config={lang:'spanish',name:'Spanish',skills:[['conversation',30],['grammar',20],['listening',20],['reading',15],['culture',15]]};
+const language=process.argv[2]||'spanish';if(!['spanish','mandarin','japanese'].includes(language))throw Error('Unknown language');
+const html=fs.readFileSync('apps/language-worlds/'+language+'/unit-03-checkpoint.html','utf8');
+const match=html.match(/<script type="application\/json" id="config">([\s\S]*?)<\/script>/);
+assert.ok(match,'Missing checkpoint config for '+language);
+const config=JSON.parse(match[1]);assert.equal(config.lang,language);
 const elements={};const make=()=>({value:'',textContent:'',files:[],children:[],append(...items){this.children.push(...items)},replaceChildren(){this.children=[]},click(){}});
 const get=id=>elements[id]||(elements[id]=make());get('config').textContent=JSON.stringify(config);
 const data=new Map(),storage={getItem:k=>data.get(k)||null,setItem:(k,v)=>data.set(k,v)};
@@ -17,7 +21,7 @@ boot();select('Test Learner A');assert.equal(get('reading').value,'alpha reading
 get('reading').value='revised work';get('save').onclick();assert.equal(get('decision').value,'');
 select('Test Learner B');
 const importObject=async item=>{const serialized=JSON.stringify(item);get('import').files=[{size:serialized.length,text:async()=>serialized}];await get('import').onchange()};
-await importObject({schema:'khae-u03-checkpoint-v1',language:'spanish',student:'Test Learner A',record:{reading:'wrong'}});assert.match(get('status').textContent,/mismatch/);
-await importObject({schema:'khae-u03-checkpoint-v1',language:'spanish',student:'Test Learner B',record:{reading:'restored',grammar:'g',conversation:'c',listening:'l',listeningSource:'source',culture:'culture'}});assert.equal(get('reading').value,'restored');
-console.log('PASS: two learners, mastery threshold, reload, review invalidation, backup isolation and valid recovery');
+await importObject({schema:'khae-u03-checkpoint-v1',language,student:'Test Learner A',record:{reading:'wrong'}});assert.match(get('status').textContent,/mismatch/);
+await importObject({schema:'khae-u03-checkpoint-v1',language,student:'Test Learner B',record:{reading:'restored',grammar:'g',conversation:'c',listening:'l',listeningSource:'source',culture:'culture'}});assert.equal(get('reading').value,'restored');
+console.log('PASS '+language+': two learners, mastery threshold, reload, review invalidation, backup isolation and valid recovery');
 })().catch(error=>{console.error(error);process.exitCode=1});
