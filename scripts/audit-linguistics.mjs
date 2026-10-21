@@ -160,6 +160,12 @@ check(read("apps/German_coach_index.html").includes("khaemenes_german_coach_v2_"
 check(read("apps/German_coach_index.html").includes("coachKey('gt_trav_completed')"),"German Coach reset must use selected learner's namespace");
 check(read("apps/deutsches-klanglabor/index.html").includes("u.onerror="),"German sound audio-failure handler missing");
 check(read("apps/deutsches-klanglabor/index.html").includes("audio_assisted_first_try"),"German sound audio-assisted evidence missing");
+for(const path of ["apps/deutsche-geschichten/index.html","apps/german-mastery-constellation/index.html","apps/deutsches-klanglabor/index.html","apps/die-lebendige-welt/index.html"]){
+ const app=read(path);
+ check(!/<script[^>]+src=[^>]*>\\s*window\\.addEventListener/.test(app),"Ignored external-script learner handler in "+path);
+ check(app.includes('window.addEventListener("storage"'),"Learner switching listener absent: "+path);
+}
+check(read("apps/die-lebendige-welt/index.html").includes("Audio playback failed"),"German world missing audio-error fallback");
 const germanMap=read("apps/german-mastery-constellation/index.html");
 syntaxCheck(germanMap,"apps/german-mastery-constellation/index.html");
 check(germanMap.includes("function snapshot()"),"German read-only mastery summary missing");
