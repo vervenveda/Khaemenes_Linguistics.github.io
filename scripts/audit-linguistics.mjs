@@ -60,6 +60,13 @@ check(french.includes("function makeListeningPractice("),"French listening activ
 check(french.includes("function addFrenchMatchingGame("),"French matching game missing");
 check(french.includes("addFrenchMatchingGame(box,level)"),"French matching game not wired into lessons");
 check(french.includes("function addFrenchGameShelf("),"Academy language-game shelf missing");
+const cafe=read("apps/le-monde-vivant/index.html");
+check(french.includes('link.href="./le-monde-vivant/"'),"French 101 Level 7 must link to café mission");
+check(cafe.includes('const steps=['),"French café mission scenes missing");
+check(cafe.includes('steps.length-1?"Finish mission"'),"French café mission completion path missing");
+check(cafe.includes('graded:false'),"French café practice must remain explicitly ungraded");
+check(cafe.includes('function draw()'),"French café rendering function missing");
+syntaxCheck(cafe,"apps/le-monde-vivant/index.html");
 check(french.includes("addFrenchGameShelf(box)"),"Academy language-game shelf not wired into lessons");
 check(french.includes("makeListeningPractice(box,level)"),"French lesson must present listening practice");
 check(french.includes('direction:i<3?"fr-en":"en-fr"'),"French quiz must cover both translation directions");
