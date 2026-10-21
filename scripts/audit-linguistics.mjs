@@ -57,6 +57,10 @@ if(lessonMatch){
 check(french.includes("score>=Math.ceil(set.length*.8)"),"French 101 quiz must require 80%");
 check(french.includes("score>=8"),"French 101 final must require 8/10");
 check(french.includes("function makeListeningPractice("),"French listening activity missing");
+check(french.includes("function addFrenchMatchingGame("),"French matching game missing");
+check(french.includes("addFrenchMatchingGame(box,level)"),"French matching game not wired into lessons");
+check(french.includes("function addFrenchGameShelf("),"Academy language-game shelf missing");
+check(french.includes("addFrenchGameShelf(box)"),"Academy language-game shelf not wired into lessons");
 check(french.includes("makeListeningPractice(box,level)"),"French lesson must present listening practice");
 check(french.includes('direction:i<3?"fr-en":"en-fr"'),"French quiz must cover both translation directions");
 check(french.includes("matchesTranslation(set[index],input.value)"),"French quiz accepted translations missing");
