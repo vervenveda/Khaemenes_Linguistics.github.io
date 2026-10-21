@@ -3,7 +3,7 @@
 Generated automatically by `.github/workflows/beta-index-coverage.yml`.
 
 - Added in this run: **1**
-- Already covered: **104**
+- Already covered: **105**
 - Skipped for an explicit reason: **0**
 
 ## Coverage rule
@@ -14,4 +14,4 @@ The Beta widget sends only the public hostname and pathname as source metadata. 
 
 ## Added in this run
 
-- `apps/deutsche-geschichten/index.html`
+- `apps/deutsches-klanglabor/index.html`
