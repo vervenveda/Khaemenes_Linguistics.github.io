@@ -22,6 +22,8 @@ on:
       - 'scripts/test-academy-evidence-links.mjs'
       - 'assets/german-portfolio-print.js'
       - 'assets/arabic-mastery-pilot.js'
+      - 'assets/foundation-unit02-recovery.js'
+      - 'scripts/test-foundation-unit02-recovery.mjs'
       - 'scripts/test-arabic-pilot.mjs'
       - 'scripts/test-arabic-mastery-map.mjs'
       - 'scripts/test-language-worlds.mjs'
@@ -80,6 +82,8 @@ jobs:
         run: node scripts/test-unit01-language-checkpoints.mjs
       - name: Test Unit 01 checkpoint two-learner behavior
         run: node scripts/test-unit01-checkpoint-behavior.mjs
+      - name: Verify three-language Unit 02 protected recovery
+        run: node scripts/test-foundation-unit02-recovery.mjs
       - name: Test bilingual homeschool portfolios
         run: node scripts/test-bilingual-portfolios.mjs
       - name: Verify shared Academy evidence adoption
