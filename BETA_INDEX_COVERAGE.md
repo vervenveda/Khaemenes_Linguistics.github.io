@@ -2,8 +2,8 @@
 
 Generated automatically by `.github/workflows/beta-index-coverage.yml`.
 
-- Added in this run: **4**
-- Already covered: **111**
+- Added in this run: **1**
+- Already covered: **115**
 - Skipped for an explicit reason: **0**
 
 ## Coverage rule
@@ -14,7 +14,4 @@ The Beta widget sends only the public hostname and pathname as source metadata. 
 
 ## Added in this run
 
-- `apps/language-worlds/english-esl/index.html`
-- `apps/language-worlds/japanese/index.html`
-- `apps/language-worlds/mandarin/index.html`
-- `apps/language-worlds/spanish/index.html`
+- `apps/language-worlds/index.html`
