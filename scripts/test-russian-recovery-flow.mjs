@@ -5,16 +5,16 @@ const html=readFileSync(new URL("../apps/russian-mastery-constellation/index.htm
 const scripts=[...html.matchAll(/<script>([\s\S]*?)<\/script>/g)].map(x=>x[1]);
 assert.equal(scripts.length,3);
 const storage=new Map(),elements=new Map(),listeners={};let lastBlob;
-function el(id){if(!elements.has(id))elements.set(id,{value:"",textContent:"",disabled:false,files:[],children:[],replaceChildren(){this.children=[]},append(child){this.children.push(child)},addEventListener(type,cb){this["on"+type]=cb}});return elements.get(id)}
+function el(id){if(!elements.has(id))elements.set(id,{value:"",textContent:"",disabled:false,files:[],children:[],replaceChildren(){this.children=[]},append(child){this.children.push(child)},addEventListener(type,cb){(this.listeners??={})[type]??=[];this.listeners[type].push(cb)}});return elements.get(id)}
 const context={console,Date,JSON,Array,Object,String,Number,Blob,URL:{createObjectURL(b){lastBlob=b;return"blob:test"},revokeObjectURL(){}},setTimeout(){},document:{getElementById:el,createElement(t){return {...el("created"+Math.random()),tagName:t,click(){}}}},window:{addEventListener(t,cb){listeners[t]=cb},print(){}},localStorage:{getItem(k){return storage.get(k)??null},setItem(k,v){storage.set(k,String(v))},removeItem(k){storage.delete(k)}},navigator:{}};
 vm.createContext(context);vm.runInContext(scripts[0],context);vm.runInContext(scripts[1],context);
 const tok=n=>Array.from(n,c=>c.codePointAt(0).toString(16)).join("-");
 const key=n=>"ru6w_course_progress_v2_"+tok(n);
-el("learner").value="alice";el("choose").onclick();
+el("learner").value="alice";el("choose").onclick();for(const cb of el("choose").listeners?.click||[])cb();
 storage.set(key("alice"),JSON.stringify(["w1"]));
-el("learner").value="bob";el("choose").onclick();
+el("learner").value="bob";el("choose").onclick();for(const cb of el("choose").listeners?.click||[])cb();
 storage.set(key("bob"),JSON.stringify(["w6"]));
-el("learner").value="alice";el("choose").onclick();
+el("learner").value="alice";el("choose").onclick();for(const cb of el("choose").listeners?.click||[])cb();
 el("backup").onclick();assert.ok(lastBlob);
 const original=JSON.parse(await lastBlob.text());assert.equal(original.learner,"alice");assert.deepEqual(original.practice.checklist,["w1"]);
 storage.set(key("alice"),JSON.stringify(["modified"]));
@@ -22,7 +22,7 @@ el("restoreFile").files=[{size:1000,text:async()=>JSON.stringify(original)}];awa
 assert.equal(el("restoreConfirm").disabled,false);el("restoreConfirm").onclick();
 assert.deepEqual(JSON.parse(storage.get(key("alice"))),["w1"]);
 assert.deepEqual(JSON.parse(storage.get(key("bob"))),["w6"]);
-el("learner").value="bob";el("choose").onclick();
+el("learner").value="bob";el("choose").onclick();for(const cb of el("choose").listeners?.click||[])cb();
 el("restoreFile").files=[{size:1000,text:async()=>JSON.stringify(original)}];await el("restoreFile").onchange();
 assert.equal(el("restoreConfirm").disabled,true);
 assert.deepEqual(JSON.parse(storage.get(key("bob"))),["w6"]);
