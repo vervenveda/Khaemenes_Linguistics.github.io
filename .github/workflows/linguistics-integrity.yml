@@ -25,6 +25,8 @@ on:
       - 'scripts/test-arabic-pilot.mjs'
       - 'scripts/test-arabic-mastery-map.mjs'
       - 'scripts/test-language-worlds.mjs'
+      - 'scripts/test-foundation-performance.mjs'
+      - 'assets/foundation-performance-rubric.js'
       - '.github/workflows/linguistics-integrity.yml'
   workflow_dispatch:
 permissions:
@@ -61,6 +63,8 @@ jobs:
         run: node scripts/test-arabic-mastery-map.mjs
       - name: Verify language-world entrance routes
         run: node scripts/test-language-worlds.mjs
+      - name: Test foundation performance rubrics
+        run: node scripts/test-foundation-performance.mjs
       - name: Test bilingual homeschool portfolios
         run: node scripts/test-bilingual-portfolios.mjs
       - name: Verify shared Academy evidence adoption
