@@ -188,6 +188,7 @@ check(Boolean(germanSoundSet),"German sound dataset missing");
 if(germanSoundSet)check(JSON.parse(germanSoundSet[1]).length===6,"German Sound Lab must include six sound investigations");
 check(germanSounds.includes("audio_assisted_first_try"),"German listening evidence category missing");
 check(germanSounds.includes("guided_study"),"German text-supported practice distinction missing");
+check(!germanSounds.includes("defer>window.addEventListener"),"German sound listener incorrectly placed");
 check(read("apps/German_hub_index.html").includes("./deutsches-klanglabor/"),"German Hub sound lab link missing");
 check(read("apps/German_coach_index.html").includes("./deutsches-klanglabor/"),"German Coach sound lab link missing");
 check(read("apps/deutsche-geschichten/index.html").includes("../deutsches-klanglabor/"),"German reader sound lab link missing");
