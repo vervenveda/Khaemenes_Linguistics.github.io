@@ -173,7 +173,7 @@ const germanWorldSet=germanWorld.match(/const SCENES=(\[[^;]+\]);/);
 check(Boolean(germanWorldSet),"German conversation missions missing");
 const followups=germanWorld.match(/const FOLLOWUPS=(\[[\s\S]*?\]);\s*let conversationStep=/);
 check(Boolean(followups),"German conversation followups missing");
-if(followups){const items=JSON.parse(followups[1]);check(items.length===3,"German world followups must cover three missions");for(const item of items)check(item.options.length===3&&item.options.filter(x=>x[2]).length===1,"German followup responses invalid: "+item.prompt)}
+if(followups){const items=vm.runInNewContext("("+followups[1]+")",Object.create(null),{timeout:1000});check(items.length===3,"German world followups must cover three missions");for(const item of items)check(item.options.length===3&&item.options.filter(x=>x[2]).length===1,"German followup responses invalid: "+item.prompt)}
 check(germanWorld.includes("record(firstTurnCorrect&&item.correct)"),"German completion must require both correct dialogue turns");
 for(const token of ["const VOCABULARY=","function showVocabulary()","function renderPrintout()","window.print()"]){check(germanWorld.includes(token),"German world vocabulary/portfolio feature missing: "+token)}
 check(!germanWorld.includes('defer>window.addEventListener'),"German cross-tab listener must not sit inside external-script element");
