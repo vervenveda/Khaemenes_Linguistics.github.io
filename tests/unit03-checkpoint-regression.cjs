@@ -16,7 +16,15 @@ function review(high){get('teacher').value='Test reviewer';get('notes').value='I
 (async()=>{
 boot();select('Test Learner A');evidence('alpha');review(true);assert.match(get('status').textContent,/approved/);
 select('Test Learner B');assert.equal(get('reading').value,'');evidence('beta');review(false);assert.match(get('status').textContent,/Approval requires/);
-select('Test Learner A');assert.equal(get('reading').value,'alpha reading');assert.equal(get('decision').value,'approved');
+select('Test Learner B');
+for(const field of ['reading','grammar','conversation','listening','listeningSource','culture'])get(field).value='complete '+field;
+get('save').onclick();
+review(true);
+get('listeningPass').value='fail';get('decision').value='approved';get('review').onclick();assert.match(get('status').textContent,/Approval requires/);
+get('listeningPass').value='pass';get('speakingPass').value='fail';get('review').onclick();assert.match(get('status').textContent,/Approval requires/);
+get('speakingPass').value='pass';get('listeningSource').value='';get('review').onclick();assert.match(get('status').textContent,/Complete all evidence/);
+select('Test Learner A');assert.equal(get('reading').value,'alpha reading');
+assert.equal(get('decision').value,'approved');
 boot();select('Test Learner A');assert.equal(get('reading').value,'alpha reading');
 get('reading').value='revised work';get('save').onclick();assert.equal(get('decision').value,'');
 select('Test Learner B');
