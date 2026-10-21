@@ -3,7 +3,7 @@ import vm from "node:vm";
 import {readFileSync} from "node:fs";
 const root=new URL("../",import.meta.url);
 const app=readFileSync(new URL("assets/unit01-language-checkpoint.js",root),"utf8");
-function simulate(language){
+async function simulate(language){
  const html=readFileSync(new URL("apps/language-worlds/"+language+"/unit-01-checkpoint.html",root),"utf8");
  const bank=JSON.parse(html.match(/const QUESTIONS=(\[[\s\S]*?\]);const voiceCode=/)[1]);
  const storage=new Map();
@@ -32,8 +32,16 @@ function simulate(language){
  score(3);assert.equal(record().attempts[0].score,3);
  learner("Alice");assert.deepEqual(record().attempts.map(a=>a.score),[6,9]);assert.equal(element("conversation").value,"Six original turns");
  element("print").onclick();assert.equal(prints,1);
- const checkpoint=JSON.parse(alice),bad={format:"khae-unit01-checkpoint-v1",language,learner:"bob",record:checkpoint};
+ const checkpoint=JSON.parse(alice);
+ const backup={format:"khae-unit01-checkpoint-v1",language,learner:Array.from("alice",c=>c.codePointAt(0).toString(16)).join("-"),record:checkpoint};
+ const file={size:500,text:async()=>JSON.stringify(backup)};
+ learner("Bob");element("file").files=[file];await element("file").onchange();assert.equal(element("restore").disabled,true,"Other learner must reject backup");
+ const bobBefore=JSON.stringify(record());
+ learner("Alice");element("file").files=[file];await element("file").onchange();assert.equal(element("restore").disabled,false,"Matching backup preview");
+ score(1);element("restore").onclick();assert.equal(confirms,1);assert.deepEqual(record().attempts.map(a=>a.score),[6,9]);
+ learner("Bob");assert.equal(JSON.stringify(record()),bobBefore,"Bob record unchanged by Alice restore");
+
  return {language,aliceAttempts:checkpoint.attempts.length,bobIndependent:true,print:prints};
 }
-for(const lang of ["spanish","mandarin","japanese"])console.log(simulate(lang));
+for(const lang of ["spanish","mandarin","japanese"])console.log(await simulate(lang));
 console.log("UNIT01_CHECKPOINT_BEHAVIOR=PASS");
