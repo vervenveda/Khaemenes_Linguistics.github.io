@@ -18,7 +18,10 @@ jobs:
           node --check assets/foundation-unit03-lesson.js
           node --check assets/foundation-unit03-checkpoint.js
       - name: Simulate two learners and recovery
-        run: node tests/unit03-checkpoint-regression.cjs
+        run: |
+          for language in spanish mandarin japanese; do
+            node tests/unit03-checkpoint-regression.cjs "$language"
+          done
       - name: Verify lessons and assessment structure
         run: |
           python3 - <<'PY'
