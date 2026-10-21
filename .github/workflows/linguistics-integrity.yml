@@ -25,6 +25,9 @@ on:
       - 'scripts/test-arabic-pilot.mjs'
       - 'scripts/test-arabic-mastery-map.mjs'
       - 'scripts/test-language-worlds.mjs'
+      - 'scripts/test-foundation-unit02.mjs'
+      - 'assets/foundation-unit02-lesson.js'
+      - 'assets/foundation-unit02-challenge.js'
       - 'assets/unit01-language-checkpoint.js'
       - 'scripts/test-unit01-language-checkpoints.mjs'
       - 'scripts/test-unit01-checkpoint-behavior.mjs'
@@ -65,6 +68,8 @@ jobs:
         run: node scripts/test-arabic-pilot.mjs
       - name: Test Arabic learner mastery map
         run: node scripts/test-arabic-mastery-map.mjs
+      - name: Verify Foundation Unit 02 curriculum
+        run: node scripts/test-foundation-unit02.mjs
       - name: Verify language-world entrance routes
         run: node scripts/test-language-worlds.mjs
       - name: Test foundation performance rubrics
