@@ -21,6 +21,8 @@ on:
       - 'scripts/test-bilingual-portfolios.mjs'
       - 'scripts/test-academy-evidence-links.mjs'
       - 'assets/german-portfolio-print.js'
+      - 'assets/arabic-mastery-pilot.js'
+      - 'scripts/test-arabic-pilot.mjs'
       - '.github/workflows/linguistics-integrity.yml'
   workflow_dispatch:
 permissions:
@@ -51,6 +53,8 @@ jobs:
         run: node scripts/test-french-recovery-flow.mjs
       - name: Test German learner backup recovery isolation
         run: node scripts/test-german-recovery-flow.mjs
+      - name: Test Arabic Week 01–02 mastery pilot
+        run: node scripts/test-arabic-pilot.mjs
       - name: Test bilingual homeschool portfolios
         run: node scripts/test-bilingual-portfolios.mjs
       - name: Verify shared Academy evidence adoption
