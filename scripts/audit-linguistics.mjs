@@ -171,6 +171,11 @@ const germanWorld=read("apps/die-lebendige-welt/index.html");
 syntaxCheck(germanWorld,"apps/die-lebendige-welt/index.html");
 const germanWorldSet=germanWorld.match(/const SCENES=(\[[^;]+\]);/);
 check(Boolean(germanWorldSet),"German conversation missions missing");
+const followups=germanWorld.match(/const FOLLOWUPS=(\[[\s\S]*?\]);\s*let conversationStep=/);
+check(Boolean(followups),"German conversation followups missing");
+if(followups){const items=JSON.parse(followups[1]);check(items.length===3,"German world followups must cover three missions");for(const item of items)check(item.options.length===3&&item.options.filter(x=>x[2]).length===1,"German followup responses invalid: "+item.prompt)}
+check(germanWorld.includes("record(firstTurnCorrect&&item.correct)"),"German completion must require both correct dialogue turns");
+
 if(germanWorldSet){const scenes=JSON.parse(germanWorldSet[1]);check(scenes.length===3,"German conversation world must have three missions");for(const scene of scenes)check(scene.options.length===3&&scene.words.length===3&&scene.options.filter(x=>x[2]).length===1,"German mission answer bank invalid: "+scene.title)}
 for(const path of ["apps/German_hub_index.html","apps/German_coach_index.html"])check(read(path).includes("./die-lebendige-welt/"),"German world link missing from "+path);
 check(read("apps/deutsche-geschichten/index.html").includes("../die-lebendige-welt/"),"German story-to-world link missing");
