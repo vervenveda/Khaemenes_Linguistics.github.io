@@ -15,6 +15,7 @@ on:
       - 'scripts/test-german-print.mjs'
       - 'scripts/test-russian-conversation.mjs'
       - 'scripts/test-russian-mastery.mjs'
+      - 'scripts/test-russian-recovery-flow.mjs'
       - 'scripts/test-bilingual-portfolios.mjs'
       - 'scripts/test-academy-evidence-links.mjs'
       - 'assets/german-portfolio-print.js'
@@ -42,6 +43,8 @@ jobs:
         run: node scripts/test-russian-conversation.mjs
       - name: Test Russian Mastery Constellation
         run: node scripts/test-russian-mastery.mjs
+      - name: Test Russian learner backup recovery isolation
+        run: node scripts/test-russian-recovery-flow.mjs
       - name: Test bilingual homeschool portfolios
         run: node scripts/test-bilingual-portfolios.mjs
       - name: Verify shared Academy evidence adoption
