@@ -156,7 +156,11 @@ for(const cached of ["./apps/translator.html","./assets/khaemenes-campus-phrases
  check(existsSync(join(root,cached)),"Sovereign library file missing: "+cached);
 }
 
-check(sw.includes("polyglot-v1.4.0-review-gate"),"PWA cache version is stale");
+check(sw.includes("polyglot-v1.4.1-french-reader-offline"),"PWA cache version is stale");
+for(const path of ["./apps/French_101_index.html","./apps/chroniques-francophones/index.html","./apps/atelier-des-sons/index.html","./apps/le-monde-vivant/index.html","./apps/maitrise-constellation/index.html"]){
+ check(sw.includes("'"+path+"'"),"French learning tool missing from offline cache: "+path);
+ check(existsSync(join(root,path)),"Missing French offline target: "+path);
+}
 const ids=new Set([...home.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]));
 for(const x of home.matchAll(/href="#([^"]+)"/g))check(ids.has(x[1]),"Missing home anchor #"+x[1]);
 const scripts=["index.html","apps/French_101_index.html","Halls/index.html","Halls/language-learning-v3_index.html"];
