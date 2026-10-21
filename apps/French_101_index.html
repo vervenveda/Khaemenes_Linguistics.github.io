@@ -278,6 +278,10 @@ function openLesson(level){
  makeListeningPractice(box,level);
  addFrenchMatchingGame(box,level);
  addFrenchGameShelf(box);
+ const reader=element("section");reader.className="study-section";
+ reader.append(element("h3","Level "+level+" · Original French Story"));
+ reader.append(element("p","Read the level-aligned story, examine French vocabulary in context, and complete comprehension practice."));
+ const storyLink=element("a","Open Level "+level+" Story →");storyLink.href="./chroniques-francophones/?level="+level;reader.append(storyLink);box.append(reader);
  const mastery=element("section");mastery.className="study-section";
  mastery.append(element("h3","La Constellation de Maîtrise"));
  mastery.append(element("p","View your saved French 101 completion, writing evidence, and practice recommendations. The map never changes grades."));
