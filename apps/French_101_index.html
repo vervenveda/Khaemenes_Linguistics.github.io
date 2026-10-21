@@ -278,6 +278,10 @@ function openLesson(level){
  makeListeningPractice(box,level);
  addFrenchMatchingGame(box,level);
  addFrenchGameShelf(box);
+ const mastery=element("section");mastery.className="study-section";
+ mastery.append(element("h3","La Constellation de Maîtrise"));
+ mastery.append(element("p","View your saved French 101 completion, writing evidence, and practice recommendations. The map never changes grades."));
+ const masteryLink=element("a","Open My French Mastery Map →");masteryLink.href="./maitrise-constellation/";mastery.append(masteryLink);box.append(mastery);
  if(level===1||level===7){const studio=element("section");studio.className="study-section";studio.append(element("h3","Original French learning studios"));for(const [label,url] of [["French Sound Laboratory","./atelier-des-sons/"],["French Café Story","./chroniques-francophones/"]]){const p=element("p"),a=element("a",label);a.href=url;p.append(a);studio.append(p)}box.append(studio)}
 
  if(level===7){
