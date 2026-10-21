@@ -271,7 +271,7 @@
 </style>
 </head>
 <body>
-<section style="padding:12px 16px;background:#fff7e7;color:#253747;text-align:center"><label for="coachLearnerName">German Coach learner record</label> <input id="coachLearnerName" maxlength="70" autocomplete="off" placeholder="Student name" style="font:inherit;padding:8px;max-width:95%"><button id="chooseCoachLearner" type="button">Open learner record</button><p id="coachIdentityStatus" role="status">Without a learner name, the original shared-device Coach records are used. Named learners have separate, initially empty academic records. No legacy records are copied or erased.</p></section><div style="text-align:center;padding:8px"><button type="button" id="backupLegacyCoach">Export legacy Coach backup (no import or overwrite)</button></div><header class="hero">
+<section style="padding:12px 16px;background:#fff7e7;color:#253747;text-align:center"><label for="coachLearnerName">German Coach learner record</label> <input id="coachLearnerName" maxlength="70" autocomplete="off" placeholder="Student name" style="font:inherit;padding:8px;max-width:95%"><button id="chooseCoachLearner" type="button">Open learner record</button><p id="coachIdentityStatus" role="status">Without a learner name, the original shared-device Coach records are used. Named learners have separate, initially empty academic records. No legacy records are copied or erased.</p></section><div style="text-align:center;padding:8px"><button type="button" id="backupLegacyCoach">Export legacy Coach backup (no import or overwrite)</button></div><section style="max-width:840px;margin:12px auto;padding:14px;border:1px solid #a99879;border-radius:7px;background:#fff8e9;color:#253747"><h2 style="font-weight:400">Import a German Coach portfolio</h2><p>Import replaces only the currently selected learner record after preview and confirmation. It does not merge progress. Export a backup first.</p><input type="file" id="coachImportFile" accept=".json,application/json" aria-label="Choose German Coach JSON portfolio"><button id="previewCoachImport" type="button">Preview file</button><pre id="coachImportPreview" aria-live="polite" style="white-space:pre-wrap;overflow-wrap:anywhere"></pre><button id="confirmCoachImport" type="button" disabled>Confirm replacement of selected record</button></section><header class="hero">
   <div class="hero-inner">
     <h1>German Traveler Phrase Coach</h1>
     <p>Practice 365 essential travel phrases with quick quizzes and a final review exam. Everything is saved locally in your browser.</p>
@@ -1012,6 +1012,50 @@ function exportLegacyBackup(){
  for(const k of keys){try{const raw=localStorage.getItem("gt_trav_"+k);out[k]=raw===null?fallback[k]:JSON.parse(raw)}catch{out[k]=fallback[k]}}
  downloadCoachData(out,"german-coach-legacy-backup.json")
 }
+let pendingCoachImport=null;
+function validateCoachImport(input){
+ if(!input||typeof input!=="object"||Array.isArray(input))throw Error("Not a Coach portfolio object.");
+ const validV2=input.format==="khaemenes-german-coach-v2"&&input.version===2;
+ const legacy=input.format==="khaemenes-german-coach-legacy-backup-v1"&&input.source==="legacy-shared-device";
+ if(!validV2&&!legacy)throw Error("Unsupported file format. Use a Coach v2 export or legacy backup.");
+ if(!Array.isArray(input.completed)||input.completed.length>365||!input.completed.every(x=>Number.isInteger(x)&&x>=1&&x<=365))throw Error("Invalid completed lessons.");
+ if(!input.notes||typeof input.notes!=="object"||Array.isArray(input.notes))throw Error("Invalid notes.");
+ for(const field of ["quizHistory","examHistory"])if(!Array.isArray(input[field])||input[field].length>1500)throw Error("Invalid "+field+".");
+ if(!Number.isInteger(input.currentDay)||input.currentDay<1||input.currentDay>365)throw Error("Invalid current lesson.");
+ if(!Number.isFinite(input.passThreshold)||input.passThreshold<0||input.passThreshold>100||typeof input.autoSpeak!=="boolean")throw Error("Invalid settings.");
+ const source=validV2?input.learnerRecord:"legacy-shared-device";
+ if(typeof source!=="string"||source.length>500)throw Error("Invalid portfolio identity.");
+ return{source,values:Object.fromEntries(["completed","notes","quizHistory","examHistory","currentDay","passThreshold","autoSpeak"].map(k=>[k,input[k]]))};
+}
+async function previewCoachImport(){
+ pendingCoachImport=null;document.getElementById("confirmCoachImport").disabled=true;
+ const el=document.getElementById("coachImportPreview"),file=document.getElementById("coachImportFile").files?.[0];
+ if(!file){el.textContent="Select a JSON portfolio first.";return}
+ if(file.size>2000000){el.textContent="File too large (2 MB maximum).";return}
+ try{
+ const data=validateCoachImport(JSON.parse(await file.text()));
+ const target=coachLearnerId()||"legacy-shared-device";
+ if(data.source!==target)throw Error("Portfolio belongs to "+data.source+"; selected destination is "+target+". Switch learner first. Legacy backups import only in anonymous mode.");
+ pendingCoachImport={...data,target};
+ el.textContent="Ready to replace: "+target+"\\nCompleted lessons: "+data.values.completed.length+"\\nQuiz records: "+data.values.quizHistory.length+"\\nExam records: "+data.values.examHistory.length+"\\nExisting records will be replaced, not merged.";
+ document.getElementById("confirmCoachImport").disabled=false;
+ }catch(error){el.textContent="Import rejected: "+error.message}
+}
+function confirmCoachImport(){
+ const el=document.getElementById("coachImportPreview"),item=pendingCoachImport;
+ if(!item||item.target!==(coachLearnerId()||"legacy-shared-device")){el.textContent="Learner changed. Preview the file again.";return}
+ if(!confirm("Replace all German Coach progress for "+item.target+"? Export a backup first. This cannot be undone."))return;
+ try{
+ const values=item.values;
+ for(const [field,value] of Object.entries(values))storage.save("gt_trav_"+field,value);
+ pendingCoachImport=null;document.getElementById("confirmCoachImport").disabled=true;
+ el.textContent="Import saved to the selected record. Reloading to display imported progress.";
+ location.reload();
+ }catch(error){el.textContent="Import not completed: "+error.message}
+}
+document.getElementById("previewCoachImport").onclick=previewCoachImport;
+document.getElementById("confirmCoachImport").onclick=confirmCoachImport;
+document.getElementById("coachImportFile").onchange=()=>{pendingCoachImport=null;document.getElementById("confirmCoachImport").disabled=true;document.getElementById("coachImportPreview").textContent="New file selected. Preview it before import."};
 function resetAll(){
   if(!confirm('Reset all progress and local data? This cannot be undone.')) return;
   localStorage.removeItem(coachKey('gt_trav_completed'));
