@@ -112,6 +112,11 @@ check(storyStudio.includes("function canonicalDictionaryReference("),"Dictionary
 check(storyStudio.includes("const FRENCH_NARRATORS="),"French narrator profiles missing");
 check(storyStudio.includes("function frenchVoice(profile)"),"French voice matching missing");
 check(storyStudio.includes("function stopNarration()"),"Narration stop action missing");
+check(storyStudio.includes("function highlightSentence(i)"),"French sentence highlighting missing");
+check(storyStudio.includes("function speakFrom(start,oneSentence=false)"),"Sequential French narration missing");
+check(storyStudio.includes('id="repeatSentence"'),"Repeat-sentence control missing");
+check(storyStudio.includes('id="practiceSentence"'),"Spoken rehearsal control missing");
+check(storyStudio.includes("utterance.onend="),"Narration sentence progression missing");
 check(storyStudio.includes('id="narratorStatus"'),"Narration status missing");
 check(storyStudio.includes("voices.filter(v=>/^fr("),"French voice locale preference missing");
 check(storyStudio.includes('khaemenes_french_story_cafe_writing_v2_'),"French story learner-specific draft storage missing");
