@@ -117,6 +117,10 @@ check(storyStudio.includes("function speakFrom(start,oneSentence=false)"),"Seque
 check(storyStudio.includes('id="repeatSentence"'),"Repeat-sentence control missing");
 check(storyStudio.includes('id="practiceSentence"'),"Spoken rehearsal control missing");
 check(storyStudio.includes("utterance.onend="),"Narration sentence progression missing");
+check(storyStudio.includes('p.tabIndex=0'),"French reader keyboard-focusable sentences missing");
+check(storyStudio.includes('e.key==="Enter"||e.key===" "'),"French reader keyboard activation missing");
+check(storyStudio.includes('function narrateStory(){speakFrom(activeSentence)}'),"French narration must begin at selected sentence");
+check(storyStudio.includes('"narrationSpeed").addEventListener("change",stopNarration)'),"Speed changes must cancel active narration");
 check(storyStudio.includes('id="narratorStatus"'),"Narration status missing");
 check(storyStudio.includes("voices.filter(v=>/^fr("),"French voice locale preference missing");
 check(storyStudio.includes('khaemenes_french_story_cafe_writing_v2_'),"French story learner-specific draft storage missing");
