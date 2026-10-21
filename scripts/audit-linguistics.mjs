@@ -259,3 +259,5 @@ check(frenchPortfolio.includes("for(let i=0;i<12;i++)line"),"French lesson-level
 for(const path of ["apps/French_101_index.html","apps/German_coach_index.html","apps/chroniques-francophones/index.html","apps/atelier-des-sons/index.html","apps/le-monde-vivant/index.html","apps/maitrise-constellation/index.html"]){check(read(path).includes('serviceWorker.register("../../service-worker.js"'),"Direct-entry service worker registration missing: "+path)}
 
 const vocabCoach=read("apps/German_coach_index.html");check(vocabCoach.includes("function renderCoachVocabulary(phrase)")&&vocabCoach.includes("renderCoachVocabulary(L.german)"),"German Coach lesson vocabulary help missing");
+
+for(const [path,direction] of [["apps/French_101_index.html","from=de&amp;to=fr"],["apps/German_coach_index.html","from=fr&amp;to=de"]]){const page=read(path);check(page.includes('../assets/vnv-language.js'),"Shared multilingual interface missing: "+path);check(page.includes('translator.html?'+direction),"Sovereign translator link missing: "+path);check(page.includes("data-i18n-ignore"),"Target-language content protection missing: "+path)}
