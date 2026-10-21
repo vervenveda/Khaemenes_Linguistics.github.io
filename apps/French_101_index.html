@@ -196,6 +196,40 @@ function addStudySection(parent,heading,body,spoken=false){
  parent.append(section);
 }
 function printLesson(){window.print()}
+const FRENCH_GAME_RESOURCES=[
+ ["Arcade · Learn a New Word","English vocabulary and word origins; enrichment, not French-scored","https://vervenveda.github.io/arcade.github.io/Learn_a_New_Word_index.html"],
+ ["Elementary · Vocabulary Garden","English vocabulary matching; model for a future French adaptation","https://vervenveda.github.io/Khaemenes_Elementary.github.io/games/elementary_vocabulary_garden/"],
+ ["Elementary · Word Detective","English word structure, phonics and roots; optional linguistic comparison","https://vervenveda.github.io/Khaemenes_Elementary.github.io/games/word-detective/"],
+ ["Middle School · World Languages","Cross-cultural language study; not a French-specific game","https://vervenveda.github.io/Khaemenes_Middle.github.io/grades/grade-06/subjects/world-languages/"]
+];
+function addFrenchGameShelf(parent){
+ const section=element("section");section.className="study-section";section.append(element("h3","Explore the Academy language-game collection"),element("p","Related Academy games open separately. These external activities do not change French 101 mastery scores."));
+ for(const [name,description,url] of FRENCH_GAME_RESOURCES){
+   const p=element("p");const a=element("a",name);a.href=url;a.target="_blank";a.rel="noopener noreferrer";
+   p.append(a,element("small"," — "+description));section.append(p);
+ }parent.append(section);
+}
+function addFrenchMatchingGame(parent,level){
+ const section=element("section");section.className="study-section";
+ section.append(element("h3","French word-match mini game"),element("p","Choose the English meaning for each French expression. Five rounds; play as often as you wish. Game scores do not replace course quizzes."));
+ const status=element("p");status.setAttribute("role","status");section.append(status);
+ const prompt=element("p");prompt.lang="fr";prompt.style.fontSize="1.2rem";section.append(prompt);
+ const choices=element("div");section.append(choices);
+ let deck=[],idx=0,score=0;
+ function draw(){
+   choices.replaceChildren();
+   if(idx>=deck.length){status.textContent="Game complete: "+score+"/"+deck.length+". Choose Play Again to practise.";prompt.textContent="Bravo !";return}
+   const item=deck[idx];status.textContent="Round "+(idx+1)+" of "+deck.length+" · Correct: "+score;
+   prompt.textContent=item.fr;
+   const options=shuffleQuestions([item,...shuffleQuestions(LESSONS[level].filter(x=>x!==item)).slice(0,2)]);
+   for(const option of options)addButton(choices,option.en,()=>{
+     const correct=option===item;if(correct)score++;
+     idx++;draw();
+   });
+ }
+ function restart(){deck=shuffleQuestions(LESSONS[level]);idx=0;score=0;draw()}
+ addButton(section,"Play Again",restart);restart();parent.append(section);
+}
 function exportFrenchPortfolio(){
  const entries=Array.from({length:totalLevels},(_,i)=>({level:i+1,title:LESSON_GUIDES[i][0],writing:safeGet(learnerKey+"_writing_"+(i+1))||"",completed:progress[i+1]==="completed",quizScore:progress["quizScore_"+(i+1)]??null}));
  const data={format:"khaemenes-french101-portfolio-v1",course:"French 101 — Sovereign Edition",learner:$("learnerName").value.trim()||"Anonymous",exportedAt:new Date().toISOString(),examScore:progress.examScore??null,examPassed:Boolean(progress.examPassed),lessons:entries};
@@ -242,6 +276,8 @@ function openLesson(level){
  addButton(box,"Print Lesson",printLesson);
  addButton(box,"Export Writing Portfolio",exportFrenchPortfolio);
  makeListeningPractice(box,level);
+ addFrenchMatchingGame(box,level);
+ addFrenchGameShelf(box);
  box.append(element("h3","Vocabulary and listening"));
  for(const phrase of LESSONS[level]){
   const row=element("div","","vocab");const labels=element("span");
