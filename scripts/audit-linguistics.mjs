@@ -222,7 +222,8 @@ for(const cached of ["./apps/translator.html","./assets/khaemenes-campus-phrases
  check(existsSync(join(root,cached)),"Sovereign library file missing: "+cached);
 }
 
-check(sw.includes("polyglot-v1.4.6-german-portfolio"),"PWA cache version is stale");
+const cacheVersion=sw.match(/const CACHE_VERSION\\s*=\\s*['"]polyglot-v(\\d+)\\.(\\d+)\\.(\\d+)-[a-z0-9-]+['"]/);
+check(Boolean(cacheVersion)&&(Number(cacheVersion[1])>1||Number(cacheVersion[1])===1&&(Number(cacheVersion[2])>4||Number(cacheVersion[2])===4&&Number(cacheVersion[3])>=6)),"PWA cache version is stale");
 check(sw.includes("'./apps/german-mastery-constellation/index.html'"),"German mastery overview not precached");
 check(sw.includes("'./apps/die-lebendige-welt/index.html'"),"German world missing from offline pre-cache");
 check(sw.includes("'./apps/deutsches-klanglabor/index.html'"),"German Sound Lab missing from offline pre-cache");
