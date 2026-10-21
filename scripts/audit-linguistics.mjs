@@ -254,3 +254,6 @@ for(const [label,page] of [["German",germanPortfolio],["French",frenchPortfolio]
 }
 check(germanPortfolio.includes("for(const story of data.stories)"),"German lesson-level report missing");
 check(frenchPortfolio.includes("for(let i=0;i<12;i++)line"),"French lesson-level report missing");
+
+// French–German learner-journey parity: direct-entry offline bootstrap.
+for(const path of ["apps/French_101_index.html","apps/German_coach_index.html","apps/chroniques-francophones/index.html","apps/atelier-des-sons/index.html","apps/le-monde-vivant/index.html","apps/maitrise-constellation/index.html"]){check(read(path).includes('serviceWorker.register("../../service-worker.js"'),"Direct-entry service worker registration missing: "+path)}
