@@ -149,6 +149,7 @@ check(language.includes("function coverage()"),"Missing translation coverage rep
 check(language.includes("function completeMissingTranslations()"),"Missing optional complete-text translation controls");
 check(language.includes("window.confirm("),"Online translation must require explicit confirmation");
 check(language.includes('const POLYGLOT_ROWS='),"Missing dedicated Polyglot translations");
+for(const path of ["apps/deutsche-geschichten/index.html","apps/deutsches-klanglabor/index.html","apps/die-lebendige-welt/index.html","apps/german-mastery-constellation/index.html"]){const html=read(path);check(html.includes('e.key==="german_active_learner"'),"German learner cross-tab refresh missing: "+path)}
 const germanMap=read("apps/german-mastery-constellation/index.html");
 syntaxCheck(germanMap,"apps/german-mastery-constellation/index.html");
 check(germanMap.includes("function snapshot()"),"German read-only mastery summary missing");
