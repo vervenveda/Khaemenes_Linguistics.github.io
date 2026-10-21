@@ -90,6 +90,10 @@ check(storyStudio.includes('level===7?"cafe_story"'),"French café legacy eviden
 check(french.includes('./chroniques-francophones/?level="+level'),"French story level-specific deep links missing");
 check(storyStudio.includes('new URLSearchParams(location.search).get("level")'),"French story query-level navigation missing");
 check(storyStudio.includes('function renderVocabulary()'),"French reading vocabulary guidance missing");
+check(storyStudio.includes('function sequenceQuestion()'),"French story sequencing practice missing");
+check(storyStudio.includes('id="inference"'),"French story written inference missing");
+check(storyStudio.includes('writingKey()+"_inference"'),"French inference learner-specific storage missing");
+check(storyStudio.includes('id="wordDetail"'),"French selectable expression explorer missing");
 check(masteryMap.includes('readingByLevel:titles.map'),"Mastery constellation reading history missing");
 check(soundStudio.includes("soundAnswered=true"),"French sound practice duplicate answer guard missing");
 check(soundStudio.includes('soundPlayed&&!soundWrong'),"French first-try listening evidence qualification missing");
