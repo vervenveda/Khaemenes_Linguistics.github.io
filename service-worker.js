@@ -18,6 +18,7 @@ const APP_SHELL = [
   './apps/German_coach_index.html',
   './apps/Russian_hub_index.html',
   './apps/Russian_skills_lab_index.html',
+  './apps/russian-conversation-world/index.html',
   './apps/deutsche-geschichten/index.html',
   './apps/deutsches-klanglabor/index.html',
   './apps/die-lebendige-welt/index.html',
