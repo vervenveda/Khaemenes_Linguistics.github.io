@@ -12,6 +12,8 @@ on:
       - 'scripts/test-french-reader.mjs'
       - 'scripts/test-german-coach.mjs'
       - 'scripts/test-german-studios.mjs'
+      - 'scripts/test-german-print.mjs'
+      - 'assets/german-portfolio-print.js'
       - '.github/workflows/linguistics-integrity.yml'
   workflow_dispatch:
 permissions:
@@ -30,3 +32,5 @@ jobs:
         run: node scripts/test-german-coach.mjs
       - name: Test German studio interactions
         run: node scripts/test-german-studios.mjs
+      - name: Verify German portfolio print evidence
+        run: node scripts/test-german-print.mjs
