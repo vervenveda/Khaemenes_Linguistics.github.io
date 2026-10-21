@@ -1026,13 +1026,15 @@ const RU_COURSE = [
    LocalStorage Progress
    ============================================================ */
 
-const STORAGE_KEY = "ru6w_course_progress_v1";
+const LEGACY_STORAGE_KEY = "ru6w_course_progress_v1";
+const studentToken = ()=>{let n="";try{n=(localStorage.getItem("russian_active_learner")||"").trim().toLocaleLowerCase("ru").slice(0,70)}catch{}return n?Array.from(n,c=>c.codePointAt(0).toString(16)).join("-"):"anonymous"};
+const storageKey=()=> "ru6w_course_progress_v2_"+studentToken();
 
 let completedSet = new Set(loadProgress());
 
 function loadProgress(){
   try{
-    const raw = localStorage.getItem(STORAGE_KEY);
+    const raw = localStorage.getItem(storageKey());
     if(!raw) return [];
     const arr = JSON.parse(raw);
     if(Array.isArray(arr)) return arr;
@@ -1043,7 +1045,7 @@ function loadProgress(){
 }
 
 function saveProgress(){
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(Array.from(completedSet)));
+  localStorage.setItem(storageKey(), JSON.stringify(Array.from(completedSet)));
 }
 
 /* ============================================================
@@ -1271,6 +1273,7 @@ function renderAll(){
   updateBadge();
 }
 
+window.addEventListener("storage",e=>{if(e.key==="russian_active_learner"){completedSet=new Set(loadProgress());renderAll()}});
 renderAll();
 </script>
 <script src="/assets/vnv-beta-link.js" defer></script>
