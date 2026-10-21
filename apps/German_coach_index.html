@@ -1029,6 +1029,12 @@ function validateCoachImport(input){
   if(!Array.isArray(input[field])||input[field].length>1500)throw Error("Invalid "+field+".");
   for(const row of input[field])if(!row||typeof row!=="object"||Array.isArray(row)||JSON.stringify(row).length>12000)throw Error("Invalid "+field+" entry.");
  }
+ for(const row of input.quizHistory){
+  if(!Number.isSafeInteger(row.timestamp)||row.timestamp<0||!Number.isInteger(row.score)||!Number.isInteger(row.total)||row.total<1||row.total>365||row.score<0||row.score>row.total||!Number.isInteger(row.from)||!Number.isInteger(row.to)||row.from<1||row.to>365||row.from>row.to)throw Error("Invalid quiz score or lesson range.");
+ }
+ for(const row of input.examHistory){
+  if(!Number.isSafeInteger(row.timestamp)||row.timestamp<0||!Number.isInteger(row.correct)||!Number.isInteger(row.total)||row.total<1||row.total>365||row.correct<0||row.correct>row.total||!Number.isInteger(row.pct)||Math.abs(row.pct-Math.round(row.correct/row.total*100))>1||typeof row.passed!=="boolean"||!Array.isArray(row.details)||row.details.length>365)throw Error("Invalid exam score or details.");
+ }
  if(!Number.isInteger(input.currentDay)||input.currentDay<1||input.currentDay>365)throw Error("Invalid current lesson.");
  if(!Number.isFinite(input.passThreshold)||input.passThreshold<0||input.passThreshold>100||typeof input.autoSpeak!=="boolean")throw Error("Invalid settings.");
  const source=validV2?input.learnerRecord:"legacy-shared-device";
