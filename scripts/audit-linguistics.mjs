@@ -79,6 +79,14 @@ for(const [path,html] of [["apps/chroniques-francophones/index.html",storyStudio
 check(cafe.includes("missionRecorded=true"),"French café mission duplicate completion guard missing");
 check(cafe.includes("theaterRecorded=true"),"French theater duplicate completion guard missing");
 check(storyStudio.includes("storyRecorded=true"),"French story duplicate completion guard missing");
+const storyDataset=storyStudio.match(/const STORIES=(\[[^;]+\]);/);
+check(Boolean(storyDataset),"French graded reader dataset missing");
+if(storyDataset){
+ const stories=JSON.parse(storyDataset[1]);
+ check(stories.length===12,"French reader must include twelve stories");
+ for(let i=0;i<12;i++){const story=stories[i];check(story?.level===i+1,"French story level mismatch "+(i+1));check(story?.lines?.length>=5,"French story too short "+(i+1));check(story?.questions?.length>=2,"French story comprehension missing "+(i+1));}
+}
+check(storyStudio.includes('level===7?"cafe_story"'),"French café legacy evidence compatibility missing");
 check(soundStudio.includes("soundAnswered=true"),"French sound practice duplicate answer guard missing");
 check(soundStudio.includes('soundPlayed&&!soundWrong'),"French first-try listening evidence qualification missing");
 check(soundStudio.includes('sound_guided_study'),"French guided sound study distinction missing");
