@@ -378,7 +378,7 @@ html,body{
 }
 </style>
 </head>
-<body><nav aria-label="Russian learning tools" style="padding:12px;max-width:950px;margin:12px auto;text-align:center;background:#fff8e9;color:#263746;border:1px solid #bba988;border-radius:7px;font:400 16px/1.5 system-ui,sans-serif"><a href="./Russian_hub_index.html">Russian Hub</a> · <a href="./Russian_skills_lab_index.html">Six-week Skills Lab</a> · <a href="./translator.html?from=en&amp;to=ru&amp;purpose=learning">Sovereign Translator (English → Russian)</a><p style="font-size:13px;margin:6px 0">Choose your interface language using the Verve N Veda language selector. Russian practice stays in Russian.</p></nav>
+<body><p id="russianAudioStatus" role="status" aria-live="polite" style="max-width:900px;margin:8px auto;padding:6px 12px;font:400 14px/1.5 system-ui,sans-serif"></p><nav aria-label="Russian learning tools" style="padding:12px;max-width:950px;margin:12px auto;text-align:center;background:#fff8e9;color:#263746;border:1px solid #bba988;border-radius:7px;font:400 16px/1.5 system-ui,sans-serif"><a href="./Russian_hub_index.html">Russian Hub</a> · <a href="./Russian_skills_lab_index.html">Six-week Skills Lab</a> · <a href="./translator.html?from=en&amp;to=ru&amp;purpose=learning">Sovereign Translator (English → Russian)</a><p style="font-size:13px;margin:6px 0">Choose your interface language using the Verve N Veda language selector. Russian practice stays in Russian.</p></nav>
 <div class="app-shell">
 
   <!-- HERO -->
@@ -692,11 +692,21 @@ function scrollToSection(id){
 }
 
 function speakText(text){
-  if(!("speechSynthesis" in window) || !text) return;
-  const u = new SpeechSynthesisUtterance(text);
-  u.lang = "ru-RU";
+ const status=document.getElementById("russianAudioStatus");
+ const announce=message=>{if(status)status.textContent=message};
+ if(!text)return false;
+ if(!("speechSynthesis" in window)||typeof SpeechSynthesisUtterance==="undefined"){announce("Russian audio is unavailable. Read the written word.");return false}
+ try{
+  const voices=window.speechSynthesis.getVoices()||[];
+  const voice=voices.find(v=>String(v.lang||"").toLowerCase()==="ru-ru")||voices.find(v=>/^ru([-_]|$)/i.test(v.lang||""))||null;
+  if(!voice){announce("No Russian system voice is installed. Continue with the visible Russian text.");return false}
   window.speechSynthesis.cancel();
-  window.speechSynthesis.speak(u);
+  const utterance=new SpeechSynthesisUtterance(text);utterance.lang=voice.lang;utterance.voice=voice;utterance.rate=.85;
+  utterance.onstart=()=>announce("Russian audio playing.");
+  utterance.onend=()=>announce("Audio complete. Replay when ready.");
+  utterance.onerror=()=>announce("Russian playback failed. Use the written example.");
+  window.speechSynthesis.speak(utterance);return true;
+ }catch{announce("Audio playback unavailable. Continue with the written lesson.");return false}
 }
 
 function randItem(arr){
