@@ -1,0 +1,19 @@
+name: Linguistics Academy Evidence Links
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'Halls/courses/arabic-1/index.html'
+      - 'Halls/courses/russian-1/index.html'
+      - 'scripts/test-academy-evidence-links.mjs'
+      - '.github/workflows/academy-evidence-links.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  evidence-links:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate Arabic and Russian Academy evidence and dictionary links
+        run: node scripts/test-academy-evidence-links.mjs
