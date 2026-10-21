@@ -39,6 +39,8 @@ jobs:
         run: node scripts/test-german-print.mjs
       - name: Test Russian Conversation World
         run: node scripts/test-russian-conversation.mjs
+      - name: Test Russian Mastery Constellation
+        run: node scripts/test-russian-mastery.mjs
       - name: Test bilingual homeschool portfolios
         run: node scripts/test-bilingual-portfolios.mjs
       - name: Verify shared Academy evidence adoption
