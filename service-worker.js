@@ -1,7 +1,7 @@
 /* Polyglot — Khaemenes Academy Linguistics Hall
    Static-site service worker. Update CACHE_VERSION whenever core files change. */
 
-const CACHE_VERSION = 'polyglot-v1.4.5-german-constellation';
+const CACHE_VERSION = 'polyglot-v1.4.6-german-portfolio';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
@@ -20,6 +20,7 @@ const APP_SHELL = [
   './apps/deutsches-klanglabor/index.html',
   './apps/die-lebendige-welt/index.html',
   './apps/german-mastery-constellation/index.html',
+  './assets/german-portfolio-print.js',
   './apps/French_101_index.html',
   './apps/chroniques-francophones/index.html',
   './apps/atelier-des-sons/index.html',
