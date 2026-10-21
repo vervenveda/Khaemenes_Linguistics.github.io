@@ -149,6 +149,13 @@ check(language.includes("function coverage()"),"Missing translation coverage rep
 check(language.includes("function completeMissingTranslations()"),"Missing optional complete-text translation controls");
 check(language.includes("window.confirm("),"Online translation must require explicit confirmation");
 check(language.includes('const POLYGLOT_ROWS='),"Missing dedicated Polyglot translations");
+const germanWorld=read("apps/die-lebendige-welt/index.html");
+syntaxCheck(germanWorld,"apps/die-lebendige-welt/index.html");
+const germanWorldSet=germanWorld.match(/const SCENES=(\[[^;]+\]);/);
+check(Boolean(germanWorldSet),"German conversation missions missing");
+if(germanWorldSet){const scenes=JSON.parse(germanWorldSet[1]);check(scenes.length===3,"German conversation world must have three missions");for(const scene of scenes)check(scene.options.length===3&&scene.words.length===3&&scene.options.filter(x=>x[2]).length===1,"German mission answer bank invalid: "+scene.title)}
+for(const path of ["apps/German_hub_index.html","apps/German_coach_index.html"])check(read(path).includes("./die-lebendige-welt/"),"German world link missing from "+path);
+check(read("apps/deutsche-geschichten/index.html").includes("../die-lebendige-welt/"),"German story-to-world link missing");
 const germanSounds=read("apps/deutsches-klanglabor/index.html");
 syntaxCheck(germanSounds,"apps/deutsches-klanglabor/index.html");
 const germanSoundSet=germanSounds.match(/const TOPICS=(\[[^;]+\]);/);
@@ -175,7 +182,8 @@ for(const cached of ["./apps/translator.html","./assets/khaemenes-campus-phrases
  check(existsSync(join(root,cached)),"Sovereign library file missing: "+cached);
 }
 
-check(sw.includes("polyglot-v1.4.3-german-sounds"),"PWA cache version is stale");
+check(sw.includes("polyglot-v1.4.4-german-world"),"PWA cache version is stale");
+check(sw.includes("'./apps/die-lebendige-welt/index.html'"),"German world missing from offline pre-cache");
 check(sw.includes("'./apps/deutsches-klanglabor/index.html'"),"German Sound Lab missing from offline pre-cache");
 for(const file of ["./apps/German_hub_index.html","./apps/German_coach_index.html","./apps/deutsche-geschichten/index.html"]){check(sw.includes("'"+file+"'"),"German offline cache entry missing "+file);check(existsSync(join(root,file)),"German offline file missing "+file)}
 
