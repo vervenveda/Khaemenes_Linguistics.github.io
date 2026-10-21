@@ -80,6 +80,11 @@ body.dark .confetti{background:var(--accent-dark);}
   <button id="themeToggle">🌙 Mode</button>
   <h1 id="title">French 101</h1>
   <div id="menu">
+    <label for="learnerName">Learner record (optional name)</label>
+    <input id="learnerName" maxlength="70" autocomplete="off" placeholder="Learner name">
+    <button id="selectLearner" type="button">Open Learner Record</button>
+    <p id="learnerStatus" role="status"></p>
+    <button id="exportRecord" type="button">Export Progress JSON</button>
     <p>Choose your Level — progress saves automatically.</p>
     <div class="level-grid" id="levelGrid"></div>
   </div>
@@ -107,9 +112,30 @@ const safeSet=(key,value)=>{try{localStorage.setItem(key,value);return true}catc
 function readProgress(){
  try{const o=JSON.parse(safeGet("french101_progress")||"{}");return o&&typeof o==="object"&&!Array.isArray(o)?o:{}}catch{return {}}
 }
+// Anonymous mode retains the original progress key for backward compatibility.
+let learnerKey="french101_progress";
+function readKey(key){try{const p=JSON.parse(safeGet(key)||"{}");return p&&typeof p==="object"&&!Array.isArray(p)?p:{}}catch{return {}}}
 const progress=readProgress();
+function chooseLearner(){
+ const name=$("learnerName").value.trim().replace(/\s+/g," ").slice(0,70);
+ const identifier=Array.from(name.toLocaleLowerCase("en"),c=>c.codePointAt(0).toString(16)).join("-");
+ learnerKey=name?"french101_progress_v2_"+identifier:"french101_progress";
+ for(const key of Object.keys(progress))delete progress[key];
+ Object.assign(progress,readKey(learnerKey));
+ safeSet("french101_active_learner",name);
+ $("learnerStatus").textContent="Current learner: "+(name||"Anonymous")+". Progress is stored on this device.";
+ buildLevelGrid();showOnly("menu");
+}
+$("selectLearner").addEventListener("click",chooseLearner);
+$("exportRecord").addEventListener("click",()=>{
+ const data={format:"khaemenes-french101-v2",learner:$("learnerName").value.trim()||"Anonymous",exportedAt:new Date().toISOString(),progress:{...progress}};
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const link=document.createElement("a"),url=URL.createObjectURL(blob);
+ link.href=url;link.download="khaemenes-french101-progress.json";link.click();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
+});
 let currentLevel=null;
-function saveProgress(){return safeSet("french101_progress",JSON.stringify(progress))}
+function saveProgress(){return safeSet(learnerKey,JSON.stringify(progress))}
 function available(level){return level===1||progress[level]==="completed"||progress[level]==="unlocked"||progress[level-1]==="completed"}
 function showOnly(name){
  assessmentSession++;
@@ -117,7 +143,7 @@ function showOnly(name){
 }
 function startApp(){
  $("splash").style.display="none";$("app").classList.remove("hidden");
- buildLevelGrid();applyTheme();showOnly("menu");
+ $("learnerName").value=safeGet("french101_active_learner")||"";chooseLearner();applyTheme();showOnly("menu");
 }
 function applyTheme(){document.body.classList.toggle("dark",safeGet("french101_theme")==="dark"||(!safeGet("french101_theme")&&safeGet("theme")==="dark"))}
 $("themeToggle").addEventListener("click",()=>{
@@ -261,7 +287,7 @@ function openExam(){
 }
 function openCertificate(){
  if(!progress.examPassed||!Array.from({length:totalLevels},(_,i)=>i+1).every(i=>progress[i]==="completed")){backToMenu();return}
- $("certificateDetails").textContent="Khaemenes Academy · French 101 · Final score: "+(progress.examScore??"Legacy pass")+"/10 · Completed: "+(progress.completedAt?new Date(progress.completedAt).toLocaleDateString():"Date not recorded");
+ $("certificateDetails").textContent="Khaemenes Academy · French 101 · Learner: "+($("learnerName").value.trim()||"Anonymous")+" · Final score: "+(progress.examScore??"Legacy pass")+"/10 · Completed: "+(progress.completedAt?new Date(progress.completedAt).toLocaleDateString():"Date not recorded");
  showOnly("certificate");launchConfetti();
  if(!$("certificateBack")){const b=addButton($("certificate"),"Back to Levels",backToMenu);b.id="certificateBack"}
 }
