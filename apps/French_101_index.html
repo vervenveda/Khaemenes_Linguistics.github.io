@@ -74,7 +74,7 @@ body.dark .confetti{background:var(--accent-dark);}
 </style>
 </head>
 
-<body><aside style="max-width:850px;margin:12px auto;padding:10px;border:1px solid #b8a784;border-radius:7px;background:#fff8e9;color:#273748;text-align:center;font:400 16px/1.5 system-ui,sans-serif" aria-label="Multilingual learning tools"><span>Learning in another language?</span> <a href="./translator.html?from=de&amp;to=fr&amp;purpose=learning" style="color:#175d63">Open Sovereign Translator (Deutsch → Français)</a><p style="margin:5px 0;font-size:13px">Use the language selector for supported interface text. French lesson and assessment language remains unchanged.</p></aside>
+<body><p id="academyAudioStatus" role="status" aria-live="polite" style="margin:7px auto;padding:4px 10px;max-width:850px;font:400 14px/1.5 system-ui,sans-serif"></p><aside style="max-width:850px;margin:12px auto;padding:10px;border:1px solid #b8a784;border-radius:7px;background:#fff8e9;color:#273748;text-align:center;font:400 16px/1.5 system-ui,sans-serif" aria-label="Multilingual learning tools"><span>Learning in another language?</span> <a href="./translator.html?from=de&amp;to=fr&amp;purpose=learning" style="color:#175d63">Open Sovereign Translator (Deutsch → Français)</a><p style="margin:5px 0;font-size:13px">Use the language selector for supported interface text. French lesson and assessment language remains unchanged.</p></aside>
 <div id="splash">
   <h1>Bienvenue à French 101</h1>
   <h3>Sovereign Edition</h3>
@@ -172,14 +172,22 @@ function buildLevelGrid(){
 }
 function backToMenu(){showOnly("menu");buildLevelGrid()}
 function speakFR(text){
- if(!("speechSynthesis" in window)||typeof SpeechSynthesisUtterance==="undefined"){alert("French speech is not available on this device.");return}
- speechSynthesis.cancel();
- const utterance=new SpeechSynthesisUtterance(text);utterance.lang="fr-FR";
- const voices=speechSynthesis.getVoices();
- utterance.voice=voices.find(v=>v.lang?.toLowerCase()==="fr-fr")||voices.find(v=>v.lang?.toLowerCase().startsWith("fr"))||null;
- utterance.rate=.86;
- speechSynthesis.speak(utterance);
+ const status=document.getElementById("academyAudioStatus");
+ const announce=message=>{if(status)status.textContent=message};
+ if(!("speechSynthesis" in window)||typeof SpeechSynthesisUtterance==="undefined"){announce("Audio unavailable on this device. Follow the written lesson.");return false}
+ try{
+  const voices=speechSynthesis.getVoices()||[];
+  const voice=voices.find(v=>String(v.lang||"").toLowerCase()==="fr-fr")||voices.find(v=>String(v.lang||"").toLowerCase().startsWith("fr"))||null;
+  if(!voice){announce("French voice unavailable. Follow the written lesson or install a French system voice.");return false}
+  speechSynthesis.cancel();
+  const utterance=new SpeechSynthesisUtterance(text);utterance.lang=voice.lang;utterance.voice=voice;utterance.rate=0.86;
+  utterance.onerror=()=>announce("Audio playback failed. Continue with the written lesson.");
+  utterance.onstart=()=>announce("Playing French audio.");
+  utterance.onend=()=>announce("Audio complete. Replay any time.");
+  speechSynthesis.speak(utterance);return true;
+ }catch{announce("Speech playback unavailable. Continue reading.");return false}
 }
+
 function element(tag,text,className){
  const node=document.createElement(tag);node.textContent=text;
  if(className)node.className=className;return node;
