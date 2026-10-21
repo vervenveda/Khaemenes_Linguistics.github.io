@@ -105,6 +105,10 @@ check(masteryMap.includes('readingByLevel:titles.map'),"Mastery constellation re
 check(soundStudio.includes("soundAnswered=true"),"French sound practice duplicate answer guard missing");
 check(soundStudio.includes('soundPlayed&&!soundWrong'),"French first-try listening evidence qualification missing");
 check(soundStudio.includes('sound_guided_study'),"French guided sound study distinction missing");
+check(soundStudio.includes("sound_audio_assisted_first_try"),"Sound lab revised evidence category missing");
+check(soundStudio.includes('b.disabled=true;b.onclick='),"Sound choices must require an initial audio attempt");
+check(storyStudio.includes('sovereign-dictionary.generated.js'),"Read-only canonical dictionary connection missing");
+check(storyStudio.includes("function canonicalDictionaryReference("),"Dictionary provenance adapter missing");
 check(storyStudio.includes('khaemenes_french_story_cafe_writing_v2_'),"French story learner-specific draft storage missing");
 check(masteryMap.includes('soundListeningFirstTry:countActivity'),"Mastery map first-try listening evidence missing");
 check(masteryMap.includes('soundGuided:countActivity'),"Mastery map guided sound evidence missing");
