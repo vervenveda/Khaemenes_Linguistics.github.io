@@ -271,7 +271,7 @@
 </style>
 </head>
 <body>
-<section style="padding:12px 16px;background:#fff7e7;color:#253747;text-align:center"><label for="coachLearnerName">German Coach learner record</label> <input id="coachLearnerName" maxlength="70" autocomplete="off" placeholder="Student name" style="font:inherit;padding:8px;max-width:95%"><button id="chooseCoachLearner" type="button">Open learner record</button><p id="coachIdentityStatus" role="status">Without a learner name, the original shared-device Coach records are used. Named learners have separate, initially empty academic records. No legacy records are copied or erased.</p></section><header class="hero">
+<section style="padding:12px 16px;background:#fff7e7;color:#253747;text-align:center"><label for="coachLearnerName">German Coach learner record</label> <input id="coachLearnerName" maxlength="70" autocomplete="off" placeholder="Student name" style="font:inherit;padding:8px;max-width:95%"><button id="chooseCoachLearner" type="button">Open learner record</button><p id="coachIdentityStatus" role="status">Without a learner name, the original shared-device Coach records are used. Named learners have separate, initially empty academic records. No legacy records are copied or erased.</p></section><div style="text-align:center;padding:8px"><button type="button" id="backupLegacyCoach">Export legacy Coach backup (no import or overwrite)</button></div><header class="hero">
   <div class="hero-inner">
     <h1>German Traveler Phrase Coach</h1>
     <p>Practice 365 essential travel phrases with quick quizzes and a final review exam. Everything is saved locally in your browser.</p>
@@ -987,24 +987,31 @@ function updateBadge(){
 /* ==============================
    Export / Reset
    ============================== */
-function exportProgress(){
-  const obj = {
-    completed:Array.from(completed),
-    notes,
-    quizHistory,
-    examHistory,
-    passThreshold: storage.load('gt_trav_passThreshold', 70),
-    autoSpeak:     storage.load('gt_trav_autoSpeak', false)
-  };
-  const blob = new Blob([JSON.stringify(obj, null, 2)], {type:'application/json'});
-  const url  = URL.createObjectURL(blob);
-  const a    = document.createElement('a');
-  a.href = url;
-  a.download = 'german-traveler-progress.json';
-  a.click();
-  URL.revokeObjectURL(url);
+function coachExportData(){return {
+ format:"khaemenes-german-coach-v2",version:2,
+ learnerRecord:coachLearnerId()||"legacy-shared-device",
+ exportedAt:new Date().toISOString(),
+ completed:Array.from(completed),notes,quizHistory,examHistory,
+ currentDay,
+ passThreshold:storage.load('gt_trav_passThreshold',70),
+ autoSpeak:storage.load('gt_trav_autoSpeak',false)
+}}
+function downloadCoachData(data,filename){
+ const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");
+ a.href=url;a.download=filename;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)
 }
-
+function exportProgress(){
+ const id=coachLearnerId()||"legacy-shared-device";
+ downloadCoachData(coachExportData(),"german-traveler-progress-"+id+".json")
+}
+function exportLegacyBackup(){
+ const keys=["completed","notes","quizHistory","examHistory","currentDay","passThreshold","autoSpeak"];
+ const fallback={completed:[],notes:{},quizHistory:[],examHistory:[],currentDay:1,passThreshold:70,autoSpeak:false};
+ const out={format:"khaemenes-german-coach-legacy-backup-v1",source:"legacy-shared-device",exportedAt:new Date().toISOString()};
+ for(const k of keys){try{const raw=localStorage.getItem("gt_trav_"+k);out[k]=raw===null?fallback[k]:JSON.parse(raw)}catch{out[k]=fallback[k]}}
+ downloadCoachData(out,"german-coach-legacy-backup.json")
+}
 function resetAll(){
   if(!confirm('Reset all progress and local data? This cannot be undone.')) return;
   localStorage.removeItem(coachKey('gt_trav_completed'));
@@ -1114,6 +1121,7 @@ function initSettingsPersistence(){
 /* ==============================
    Init
    ============================== */
+document.getElementById("backupLegacyCoach").onclick=exportLegacyBackup;
 document.getElementById("coachLearnerName").value=(()=>{try{return localStorage.getItem("german_active_learner")||""}catch{return ""}})();
 document.getElementById("chooseCoachLearner").onclick=()=>{try{localStorage.setItem("german_active_learner",document.getElementById("coachLearnerName").value.trim().replace(/\s+/g," ").slice(0,70));location.reload()}catch{document.getElementById("coachIdentityStatus").textContent="Learner selection could not be saved."}};
 window.addEventListener("storage",e=>{if(e.key==="german_active_learner")location.reload()});
