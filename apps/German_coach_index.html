@@ -301,6 +301,7 @@
           <div id="lessonEnglish" class="small-muted" style="margin-top:4px;">—</div>
         </div>
 
+        <details id="coachVocabulary" style="margin:12px 0;padding:10px;border:1px solid #c7b797;border-radius:7px"><summary>German phrase vocabulary · Wortschatz</summary><div id="coachVocabularyList" role="list" style="margin-top:8px"></div><p class="small-muted">Context help only — no effect on quiz or exam scores.</p></details>
         <div class="controls">
           <button class="btn" onclick="prevLesson()">⬅ Prev</button>
           <button class="btn" onclick="nextLesson()">Next ➡</button>
@@ -591,6 +592,17 @@ function speakCurrent(){
 /* ==============================
    UI: Lesson rendering & navigation
    ============================== */
+const COACH_GLOSSARY=[["bitte","please"],["danke","thank you"],["hallo","hello"],["guten","good"],["morgen","morning"],["abend","evening"],["wasser","water"],["bahnhof","train station"],["zug","train"],["fahrkarte","ticket"],["straße","street"],["links","left"],["rechts","right"],["heute","today"],["morgen","tomorrow / morning"],["essen","to eat / food"],["trinken","to drink"],["wo","where"],["wie","how"],["viel","much / many"],["kostet","costs"],["ich","I"],["möchte","would like"],["haben","to have"],["zimmer","room"],["hilfe","help"]];
+function renderCoachVocabulary(phrase){
+ const box=document.getElementById("coachVocabularyList");box.replaceChildren();
+ const normalized=String(phrase).toLocaleLowerCase("de");
+ let found=0;
+ for(const [word,meaning] of COACH_GLOSSARY){
+  if(!new RegExp("(^|[^\\p{L}])"+word+"(?=$|[^\\p{L}])","u").test(normalized))continue;
+  const p=document.createElement("p");p.textContent=word+" — "+meaning;p.setAttribute("role","listitem");box.append(p);found++;
+ }
+ if(!found){const p=document.createElement("p");p.textContent="Study the full English translation beside the German phrase. Further glossary entries are being developed.";box.append(p)}
+}
 function renderLesson(day){
   const L = lessons[day-1];
   if(!L) return;
@@ -598,6 +610,7 @@ function renderLesson(day){
   document.getElementById('lessonMeta').innerText = 'Travel phrase • Core deck';
   document.getElementById('lessonGerman').innerText = L.german;
   document.getElementById('lessonEnglish').innerText = L.english;
+  renderCoachVocabulary(L.german);
   document.getElementById('notes').value = notes[day] || '';
 
   updateProgressUI();
