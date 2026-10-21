@@ -1020,7 +1020,15 @@ function validateCoachImport(input){
  if(!validV2&&!legacy)throw Error("Unsupported file format. Use a Coach v2 export or legacy backup.");
  if(!Array.isArray(input.completed)||input.completed.length>365||!input.completed.every(x=>Number.isInteger(x)&&x>=1&&x<=365))throw Error("Invalid completed lessons.");
  if(!input.notes||typeof input.notes!=="object"||Array.isArray(input.notes))throw Error("Invalid notes.");
- for(const field of ["quizHistory","examHistory"])if(!Array.isArray(input[field])||input[field].length>1500)throw Error("Invalid "+field+".");
+ if(new Set(input.completed).size!==input.completed.length)throw Error("Duplicate completed lessons.");
+ if(Object.keys(input.notes).length>365)throw Error("Too many lesson notes.");
+ for(const [day,note] of Object.entries(input.notes)){
+  if(!/^(?:[1-9]|[1-9][0-9]|[1-2][0-9]{2}|3[0-5][0-9]|36[0-5])$/.test(day)||typeof note!=="string"||note.length>10000)throw Error("Invalid lesson note.");
+ }
+ for(const field of ["quizHistory","examHistory"]){
+  if(!Array.isArray(input[field])||input[field].length>1500)throw Error("Invalid "+field+".");
+  for(const row of input[field])if(!row||typeof row!=="object"||Array.isArray(row)||JSON.stringify(row).length>12000)throw Error("Invalid "+field+" entry.");
+ }
  if(!Number.isInteger(input.currentDay)||input.currentDay<1||input.currentDay>365)throw Error("Invalid current lesson.");
  if(!Number.isFinite(input.passThreshold)||input.passThreshold<0||input.passThreshold>100||typeof input.autoSpeak!=="boolean")throw Error("Invalid settings.");
  const source=validV2?input.learnerRecord:"legacy-shared-device";
