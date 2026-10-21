@@ -56,6 +56,13 @@ if(lessonMatch){
 }
 check(french.includes("score>=Math.ceil(set.length*.8)"),"French 101 quiz must require 80%");
 check(french.includes("score>=8"),"French 101 final must require 8/10");
+check(french.includes("function makeListeningPractice("),"French listening activity missing");
+check(french.includes("makeListeningPractice(box,level)"),"French lesson must present listening practice");
+check(french.includes('direction:i<3?"fr-en":"en-fr"'),"French quiz must cover both translation directions");
+check(french.includes("matchesTranslation(set[index],input.value)"),"French quiz accepted translations missing");
+check(french.includes("function exportFrenchPortfolio("),"French portfolio export missing");
+check(french.includes("learnerKey+\"_writing_\"+level"),"French learner-specific writing missing");
+check(french.includes("assessmentSession++"),"French stale-assessment guard missing");
 check(!french.includes("onclick=\"speakFR("),"French vocabulary must not use inline speaking handlers");
 check(home.includes('src="./assets/vnv-language.js"'),"Homepage must load multilingual interface");
 check(home.includes('href="https://vervenveda.com/Khaemenes_Academy.github.io/"'),"Homepage must link back to Academy");
