@@ -72,6 +72,11 @@ check(cafe.includes('function renderTheater()'),"French conversation theater mis
 check(cafe.includes('function startTheater()'),"French theater restart missing");
 check(cafe.includes('paintCart();'),"French café basket initialization missing");
 syntaxCheck(cafe,"apps/le-monde-vivant/index.html");
+for(const p of ["apps/atelier-des-sons/index.html","apps/chroniques-francophones/index.html"]){const html=read(p);syntaxCheck(html,p);check(html.includes("Khaemenes Academy"),p+" Academy attribution missing")}
+check(french.includes("./atelier-des-sons/"),"French 101 sound studio link missing");
+check(french.includes("./chroniques-francophones/"),"French 101 story reader link missing");
+check(cafe.includes("../atelier-des-sons/"),"Café sound studio link missing");
+check(cafe.includes("../chroniques-francophones/"),"Café story reader link missing");
 check(french.includes("addFrenchGameShelf(box)"),"Academy language-game shelf not wired into lessons");
 check(french.includes("makeListeningPractice(box,level)"),"French lesson must present listening practice");
 check(french.includes('direction:i<3?"fr-en":"en-fr"'),"French quiz must cover both translation directions");
