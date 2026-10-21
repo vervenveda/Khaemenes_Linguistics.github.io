@@ -678,8 +678,11 @@ let wordState = {
 };
 
 /* LocalStorage keys */
-const LS_LETTERS = "russian_hub_letters_practiced";
-const LS_WORD_STATS = "russian_hub_word_stats";
+const LEGACY_LS_LETTERS = "russian_hub_letters_practiced";
+const LEGACY_LS_WORD_STATS = "russian_hub_word_stats";
+const russianStudentToken=()=>{let n="";try{n=(localStorage.getItem("russian_active_learner")||"").trim().toLocaleLowerCase("ru").slice(0,70)}catch{}return n?Array.from(n,c=>c.codePointAt(0).toString(16)).join("-"):"anonymous"};
+const lettersKey=()=> "russian_hub_letters_v2_"+russianStudentToken();
+const wordKey=()=> "russian_hub_words_v2_"+russianStudentToken();
 
 /* =========================
    HELPERS
@@ -745,7 +748,7 @@ function matchesEn(input, expected){
    ========================= */
 function loadProgress(){
   try{
-    const rawL = localStorage.getItem(LS_LETTERS);
+    const rawL = localStorage.getItem(lettersKey());
     if(rawL){
       const arr = JSON.parse(rawL);
       if(Array.isArray(arr)) practicedLetters = new Set(arr);
@@ -753,7 +756,7 @@ function loadProgress(){
   }catch(e){}
 
   try{
-    const rawW = localStorage.getItem(LS_WORD_STATS);
+    const rawW = localStorage.getItem(wordKey());
     if(rawW){
       const obj = JSON.parse(rawW);
       if(obj && typeof obj.score === "number" && typeof obj.attempts === "number"){
@@ -766,13 +769,13 @@ function loadProgress(){
 
 function saveLetters(){
   try{
-    localStorage.setItem(LS_LETTERS, JSON.stringify(Array.from(practicedLetters)));
+    localStorage.setItem(lettersKey(), JSON.stringify(Array.from(practicedLetters)));
   }catch(e){}
 }
 
 function saveWordStats(){
   try{
-    localStorage.setItem(LS_WORD_STATS, JSON.stringify({score:wordState.score, attempts:wordState.attempts}));
+    localStorage.setItem(wordKey(), JSON.stringify({score:wordState.score, attempts:wordState.attempts}));
   }catch(e){}
 }
 
