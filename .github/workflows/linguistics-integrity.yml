@@ -10,6 +10,7 @@ on:
       - 'service-worker.js'
       - 'scripts/audit-linguistics.mjs'
       - 'scripts/test-french-reader.mjs'
+      - 'scripts/test-german-coach.mjs'
       - '.github/workflows/linguistics-integrity.yml'
   workflow_dispatch:
 permissions:
@@ -24,3 +25,5 @@ jobs:
         run: node scripts/audit-linguistics.mjs
       - name: Test French reader interactions
         run: node scripts/test-french-reader.mjs
+      - name: Test German Coach learner isolation
+        run: node scripts/test-german-coach.mjs
