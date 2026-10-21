@@ -166,6 +166,7 @@ for(const path of ["apps/deutsche-geschichten/index.html","apps/german-mastery-c
  check(app.includes('window.addEventListener("storage"'),"Learner switching listener absent: "+path);
 }
 check(read("apps/die-lebendige-welt/index.html").includes("Audio playback failed"),"German world missing audio-error fallback");
+for(const path of ["apps/deutsche-geschichten/index.html","apps/deutsches-klanglabor/index.html","apps/die-lebendige-welt/index.html"]){const page=read(path);check(page.includes("overflow-wrap:anywhere"),"German page lacks narrow-screen word wrapping: "+path);check(page.includes("a:focus-visible"),"German link focus styling missing: "+path);check(page.includes("max-width:300px"),"German mobile breakpoint missing: "+path)}
 const germanMap=read("apps/german-mastery-constellation/index.html");
 syntaxCheck(germanMap,"apps/german-mastery-constellation/index.html");
 check(germanMap.includes("function snapshot()"),"German read-only mastery summary missing");
