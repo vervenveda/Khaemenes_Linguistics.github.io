@@ -7,7 +7,7 @@ const from=source.indexOf("function coachLearnerId()"),to=source.indexOf("let co
 const start=source.indexOf("function validateCoachImport(input)"),end=source.indexOf("function resetAll()",start);
 assert.ok(from>=0&&to>from&&start>=0&&end>start);
 let active="Ava";const data=new Map(),ui={};
-for(const id of ["coachImportPreview","coachImportFile","confirmCoachImport"])ui[id]={textContent:"",disabled:true,files:[]};
+for(const id of ["coachImportPreview","coachImportFile","confirmCoachImport","previewCoachImport"])ui[id]={textContent:"",disabled:true,files:[]};
 let reloaded=0;
 const localStorage={getItem(k){return k==="german_active_learner"?active:data.get(k)??null},setItem(k,v){if(k==="german_active_learner")active=String(v);else data.set(k,String(v))},removeItem(k){data.delete(k)}};
 const context={localStorage,JSON,Array,Number,Object,Set,Date,document:{getElementById(id){return ui[id]}},confirm(){return true},location:{reload(){reloaded++}},console};
