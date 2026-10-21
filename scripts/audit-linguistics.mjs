@@ -72,6 +72,17 @@ check(cafe.includes('function renderTheater()'),"French conversation theater mis
 check(cafe.includes('function startTheater()'),"French theater restart missing");
 check(cafe.includes('paintCart();'),"French café basket initialization missing");
 syntaxCheck(cafe,"apps/le-monde-vivant/index.html");
+const storyStudio=read("apps/chroniques-francophones/index.html");
+const soundStudio=read("apps/atelier-des-sons/index.html");
+const masteryMap=read("apps/maitrise-constellation/index.html");
+for(const [path,html] of [["apps/chroniques-francophones/index.html",storyStudio],["apps/atelier-des-sons/index.html",soundStudio],["apps/maitrise-constellation/index.html",masteryMap]])syntaxCheck(html,path);
+check(cafe.includes("missionRecorded=true"),"French café mission duplicate completion guard missing");
+check(cafe.includes("theaterRecorded=true"),"French theater duplicate completion guard missing");
+check(storyStudio.includes("storyRecorded=true"),"French story duplicate completion guard missing");
+check(soundStudio.includes("soundAnswered=true"),"French sound practice duplicate answer guard missing");
+check(masteryMap.includes("practiceAttempts:{"),"French learner practice dashboard missing");
+check(french.includes("./maitrise-constellation/"),"French 101 mastery map link missing");
+
 for(const p of ["apps/atelier-des-sons/index.html","apps/chroniques-francophones/index.html"]){const html=read(p);syntaxCheck(html,p);check(html.includes("Khaemenes Academy"),p+" Academy attribution missing")}
 check(french.includes("./atelier-des-sons/"),"French 101 sound studio link missing");
 check(french.includes("./chroniques-francophones/"),"French 101 story reader link missing");
