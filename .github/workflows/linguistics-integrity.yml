@@ -27,6 +27,7 @@ on:
       - 'scripts/test-language-worlds.mjs'
       - 'assets/unit01-language-checkpoint.js'
       - 'scripts/test-unit01-language-checkpoints.mjs'
+      - 'scripts/test-unit01-checkpoint-behavior.mjs'
       - 'scripts/test-foundation-performance.mjs'
       - 'scripts/test-foundation-two-learners.mjs'
       - 'assets/foundation-performance-rubric.js'
@@ -72,6 +73,8 @@ jobs:
         run: node scripts/test-foundation-two-learners.mjs
       - name: Test Unit 01 language checkpoints
         run: node scripts/test-unit01-language-checkpoints.mjs
+      - name: Test Unit 01 checkpoint two-learner behavior
+        run: node scripts/test-unit01-checkpoint-behavior.mjs
       - name: Test bilingual homeschool portfolios
         run: node scripts/test-bilingual-portfolios.mjs
       - name: Verify shared Academy evidence adoption
