@@ -80,6 +80,11 @@ check(cafe.includes("missionRecorded=true"),"French café mission duplicate comp
 check(cafe.includes("theaterRecorded=true"),"French theater duplicate completion guard missing");
 check(storyStudio.includes("storyRecorded=true"),"French story duplicate completion guard missing");
 check(soundStudio.includes("soundAnswered=true"),"French sound practice duplicate answer guard missing");
+check(soundStudio.includes('soundPlayed&&!soundWrong'),"French first-try listening evidence qualification missing");
+check(soundStudio.includes('sound_guided_study'),"French guided sound study distinction missing");
+check(storyStudio.includes('khaemenes_french_story_cafe_writing_v2_'),"French story learner-specific draft storage missing");
+check(masteryMap.includes('soundListeningFirstTry:countActivity'),"Mastery map first-try listening evidence missing");
+check(masteryMap.includes('soundGuided:countActivity'),"Mastery map guided sound evidence missing");
 check(masteryMap.includes("practiceAttempts:{"),"French learner practice dashboard missing");
 check(french.includes("./maitrise-constellation/"),"French 101 mastery map link missing");
 
