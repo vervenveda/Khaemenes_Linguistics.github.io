@@ -32,4 +32,6 @@ $("restart").addEventListener("click",()=>{index=0;score=0;answers=[];$("summary
 $("speak").addEventListener("click",speech);
 $("export").addEventListener("click",()=>{if(answers.length!==steps.length)return;const payload={format:"khaemenes-french-world-v1",mission:"cafe-des-rencontres",level:7,createdAt:new Date().toISOString(),score,total:steps.length,graded:false,answers};const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;a.download="khaemenes-french-cafe-mission.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
 draw();
-</script></body></html>
+</script>
+<script src="/assets/vnv-beta-link.js" defer></script>
+</body></html>
