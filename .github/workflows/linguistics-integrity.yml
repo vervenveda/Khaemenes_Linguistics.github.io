@@ -23,6 +23,7 @@ on:
       - 'assets/german-portfolio-print.js'
       - 'assets/arabic-mastery-pilot.js'
       - 'scripts/test-arabic-pilot.mjs'
+      - 'scripts/test-arabic-mastery-map.mjs'
       - '.github/workflows/linguistics-integrity.yml'
   workflow_dispatch:
 permissions:
@@ -55,6 +56,8 @@ jobs:
         run: node scripts/test-german-recovery-flow.mjs
       - name: Test Arabic Week 01–02 mastery pilot
         run: node scripts/test-arabic-pilot.mjs
+      - name: Test Arabic learner mastery map
+        run: node scripts/test-arabic-mastery-map.mjs
       - name: Test bilingual homeschool portfolios
         run: node scripts/test-bilingual-portfolios.mjs
       - name: Verify shared Academy evidence adoption
