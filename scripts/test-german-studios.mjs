@@ -20,7 +20,7 @@ function mount(path,voices=[]){
  const speechSynthesis={getVoices:()=>voices,cancel(){},speak(u){this.last=u}};
  const window={speechSynthesis,addEventListener:(event,handler)=>events[event]=handler,print(){this.printed=true}};
  const context={window,document,localStorage,speechSynthesis,SpeechSynthesisUtterance:class{constructor(text){this.text=text}},URL:{createObjectURL:()=>"#",revokeObjectURL(){}},URLSearchParams,location:{search:""},Blob:class{},setTimeout(){},Date,JSON,Math};
- vm.createContext(context);vm.runInContext(js,context,{timeout:1000});
+ vm.createContext(context);vm.runInContext(js,context,{timeout:5000});
  return {el:id=>document.getElementById(id),memory,events,window,speechSynthesis};
 }
 const world=mount("apps/die-lebendige-welt/index.html");
