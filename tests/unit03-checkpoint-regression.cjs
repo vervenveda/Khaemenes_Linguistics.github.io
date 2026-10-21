@@ -15,7 +15,11 @@ function evidence(prefix){for(const key of ['reading','grammar','conversation','
 function review(high){get('teacher').value='Test reviewer';get('notes').value='Independent performance evidence recorded';const scores=high?[26,17,17,13,13]:[12,10,10,10,10];['conversation','grammar','listening','reading','culture'].forEach((name,i)=>get('score_'+name).value=String(scores[i]));get('speakingPass').value='pass';get('listeningPass').value='pass';get('decision').value='approved';get('review').onclick()}
 (async()=>{
 boot();select('Test Learner A');evidence('alpha');review(true);assert.match(get('status').textContent,/approved/);
-select('Test Learner B');assert.equal(get('reading').value,'');evidence('beta');review(false);assert.match(get('status').textContent,/Approval requires/);
+get('print').onclick();
+let lines=get('printSheet').children.map(x=>x.textContent).join('\n');
+assert.match(lines,/Review: approved/);assert.match(lines,/Total: 86/);assert.match(lines,/conversation rubric: 26 \/ 30/);assert.match(lines,/Independent speaking: pass/);assert.match(lines,/Independent listening: pass/);assert.match(lines,/Review date:/);
+select('Test Learner B');assert.equal(get('reading').value,'');get('print').onclick();
+lines=get('printSheet').children.map(x=>x.textContent).join('\n');assert.match(lines,/Review: Pending/);assert.match(lines,/Total: Pending/);assert.match(lines,/conversation rubric: Pending/);assert.match(lines,/Reviewer: Pending/);evidence('beta');review(false);assert.match(get('status').textContent,/Approval requires/);
 select('Test Learner B');
 for(const field of ['reading','grammar','conversation','listening','listeningSource','culture'])get(field).value='complete '+field;
 get('save').onclick();
