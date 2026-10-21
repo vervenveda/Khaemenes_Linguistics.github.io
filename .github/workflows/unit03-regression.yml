@@ -6,6 +6,7 @@ on:
       - 'apps/language-worlds/**'
       - 'assets/foundation-unit03-*.js'
       - '.github/workflows/unit03-regression.yml'
+      - 'tests/unit03-checkpoint-regression.cjs'
   workflow_dispatch:
 jobs:
   source-and-navigation:
@@ -16,6 +17,8 @@ jobs:
         run: |
           node --check assets/foundation-unit03-lesson.js
           node --check assets/foundation-unit03-checkpoint.js
+      - name: Simulate two learners and recovery
+        run: node tests/unit03-checkpoint-regression.cjs
       - name: Verify lessons and assessment structure
         run: |
           python3 - <<'PY'
