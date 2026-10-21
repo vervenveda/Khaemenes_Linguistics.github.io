@@ -32,7 +32,7 @@ button:hover{opacity:.8;}
 .study-section h3{font-size:1.12rem;font-weight:500}
 .study-section p{line-height:1.7}
 #lesson textarea{display:block;width:100%;min-height:130px;margin:12px 0;padding:12px;border:1px solid #93835f;border-radius:7px;font:inherit;background:#fff;color:#181818}
-@media print{#lesson{display:block!important;width:100%;padding:10px}#lesson button{display:none!important}#lesson textarea{min-height:100px}#certificate{display:none!important}}
+@media print{#lesson:not(.hidden){display:block!important;width:100%;padding:10px}#lesson:not(.hidden) button{display:none!important}#lesson textarea{min-height:100px}#certificate:not(.hidden){display:block!important}#certificate.hidden,#lesson.hidden{display:none!important}}
 
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
 @media print{#splash,#themeToggle,#menu,#lesson,#quiz,#exam,#certificateBack,#certificate button{display:none!important}#app{padding:0;min-height:auto}#certificate{display:block!important;color:#111;background:#fff;border:1px solid #333}}
