@@ -66,6 +66,9 @@ assert.equal(evidence.writing,"Le livre.","Export includes current learner writi
 assert.equal(evidence.graded,false,"Export cannot imply a formal grade");
 assert.notEqual(evidence.learnerRecord,avaKey.replace("khaemenes_french_story_cafe_writing_v2_","").replace("_level_8",""),"Export reflects newly selected learner");
 byId("narrate").click();assert.equal(queued.length,1);
+byId("repeatSentence").click();assert.equal(queued.length,1,"Repeating a sentence cancels prior queued narration");
+byId("narrationSpeed").dispatch("change");assert.equal(queued.length,0,"Changing narration speed cancels playback");
+byId("narrate").click();assert.equal(queued.length,1,"Playback restarts after speed change");
 byId("stopNarration").click();assert.equal(queued.length,0,"Stop cancels narration");
 assert.ok(canceled>=2);
 console.log("FRENCH_READER_BEHAVIOR=PASS: sentence keyboard, selected audio, cancellation, stale callback, story switching, learner writing");
