@@ -151,6 +151,7 @@ check(language.includes("window.confirm("),"Online translation must require expl
 check(language.includes('const POLYGLOT_ROWS='),"Missing dedicated Polyglot translations");
 for(const path of ["apps/deutsche-geschichten/index.html","apps/deutsches-klanglabor/index.html","apps/die-lebendige-welt/index.html","apps/german-mastery-constellation/index.html"]){const html=read(path);check(html.includes('e.key==="german_active_learner"'),"German learner cross-tab refresh missing: "+path)}
 check(read("apps/German_coach_index.html").includes("function coachKey(key)"),"German Coach learner-scoped key resolver missing");
+for(const token of ["function coachExportData()","function exportLegacyBackup()","learnerRecord:coachLearnerId()","legacy-shared-device"]){check(read("apps/German_coach_index.html").includes(token),"German Coach export safeguard missing "+token)}
 check(read("apps/German_coach_index.html").includes("khaemenes_german_coach_v2_"),"German Coach named learner namespace missing");
 check(read("apps/German_coach_index.html").includes("coachKey('gt_trav_completed')"),"German Coach reset must use selected learner's namespace");
 check(read("apps/deutsches-klanglabor/index.html").includes("u.onerror="),"German sound audio-failure handler missing");
