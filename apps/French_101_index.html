@@ -28,6 +28,8 @@ button{
 }
 body.dark button{background:var(--accent-dark);}
 button:hover{opacity:.8;}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+@media print{#splash,#themeToggle,#menu,#lesson,#quiz,#exam,#certificateBack,#certificate button{display:none!important}#app{padding:0;min-height:auto}#certificate{display:block!important;color:#111;background:#fff;border:1px solid #333}}
 .hidden{display:none;}
 h1,h2,h3{margin:.3em 0;}
 #app{width:100%;min-height:100vh;padding:76px 16px 36px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;}
@@ -87,7 +89,7 @@ body.dark .confetti{background:var(--accent-dark);}
   <div id="exam" class="hidden"></div>
   <div id="certificate" class="hidden">
     <h2>🎓 Certificate of Completion</h2>
-    <p>Félicitations ! You have completed all 12 levels of French 101.</p>
+    <p>Félicitations ! You have completed all 12 levels of French 101.</p><p id="certificateDetails"></p>
     <button onclick="print()">Print Certificate</button>
   </div>
 </div>
@@ -110,6 +112,7 @@ let currentLevel=null;
 function saveProgress(){return safeSet("french101_progress",JSON.stringify(progress))}
 function available(level){return level===1||progress[level]==="completed"||progress[level]==="unlocked"||progress[level-1]==="completed"}
 function showOnly(name){
+ assessmentSession++;
  for(const id of ["menu","lesson","quiz","exam","certificate"])$(id).classList.toggle("hidden",id!==name);
 }
 function startApp(){
@@ -169,12 +172,28 @@ function openLesson(level){
  addButton(box,"Back to Levels",backToMenu);
  showOnly("lesson");
 }
+const ACCEPTED_TRANSLATIONS={
+ "Bonjour":["hi","good morning"],"Merci":["thanks"],"Au revoir":["bye","good bye"],
+ "Comment ça va ?":["how is it going"],"Enchanté.":["pleased to meet you"],
+ "À bientôt.":["see you later"],"Ma mère":["my mom"],"Mon père":["my dad"],
+ "À gauche":["left"],"À droite":["right"],"Tout droit":["go straight"],
+ "Il pleut.":["it's raining"],"Il fait froid.":["it's cold"],"Il fait chaud.":["it's hot"]
+};
+function matchesTranslation(item,value){
+ return [item.en,...(ACCEPTED_TRANSLATIONS[item.fr]||[])].some(answer=>normalize(answer)===normalize(value));
+}
+function shuffleQuestions(items){
+ const result=[...items];
+ for(let i=result.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[result[i],result[j]]=[result[j],result[i]]}
+ return result;
+}
+let assessmentSession=0;
 function normalize(s){
  return String(s).normalize("NFKD").toLowerCase().replace(/[\u0300-\u036f]/g,"").replace(/[’‘]/g,"'").replace(/[^a-z0-9]+/g," ").trim();
 }
 function openQuiz(level){
  if(!available(level)||!LESSONS[level])return;
- const set=LESSONS[level],box=$("quiz");box.replaceChildren();
+ const set=shuffleQuestions(LESSONS[level]),box=$("quiz");box.replaceChildren();
  box.append(element("h2",`Quiz — Level ${level}`),element("p","Translate each French phrase into English. Pass with at least 80% (4 out of 5)."));
  const question=element("p");question.style.fontSize="1.2rem";question.lang="fr";
  const input=document.createElement("input");input.type="text";input.placeholder="English meaning";input.autocomplete="off";input.setAttribute("aria-label","English translation");
@@ -182,7 +201,7 @@ function openQuiz(level){
  const submit=element("button","Check answer");submit.type="button";
  box.append(question,input,submit,feedback);
  addButton(box,"Back to Levels",backToMenu);
- let index=0,score=0,busy=false;
+ let index=0,score=0,busy=false;const session=assessmentSession+1;
  function finish(){
   input.disabled=true;submit.disabled=true;const passed=score>=Math.ceil(set.length*.8);
   feedback.textContent=`Score: ${score}/${set.length}. ${passed?"Passed!":"Practice and try again."}`;
@@ -200,11 +219,11 @@ function openQuiz(level){
  function check(){
   if(busy||index>=set.length||!input.value.trim())return;
   busy=true;submit.disabled=true;
-  const correct=normalize(input.value)===normalize(set[index].en);
+  const correct=matchesTranslation(set[index],input.value);
   if(correct)score++;
   feedback.textContent=correct?"Correct!":"Expected: "+set[index].en;
   index++;input.value="";
-  setTimeout(()=>{if(!document.contains(box)||box.classList.contains("hidden"))return;submit.disabled=false;ask()},550);
+  setTimeout(()=>{if(session!==assessmentSession||!document.contains(box)||box.classList.contains("hidden"))return;submit.disabled=false;ask()},550);
  }
  submit.addEventListener("click",check);
  input.addEventListener("keydown",event=>{if(event.key==="Enter"){event.preventDefault();check()}});
@@ -228,12 +247,12 @@ function openExam(){
   input.disabled=true;submit.disabled=true;
   const passed=score>=8;
   feedback.textContent=`Final exam: ${score}/10. ${passed?"Passed!":"80% required. Please retry."}`;
-  if(passed){progress.examPassed=true;saveProgress();addButton(box,"View Certificate",openCertificate)}
+  if(passed){progress.examPassed=true;progress.examScore=score;progress.completedAt=new Date().toISOString();saveProgress();addButton(box,"View Certificate",openCertificate)}
   else addButton(box,"Retry Final",openExam);
  }
  function check(){
   if(i>=questions.length||!input.value.trim())return;
-  if(normalize(input.value)===normalize(questions[i].en))score++;
+  if(matchesTranslation(questions[i],input.value))score++;
   i++;input.value="";ask();
  }
  submit.addEventListener("click",check);
@@ -242,6 +261,7 @@ function openExam(){
 }
 function openCertificate(){
  if(!progress.examPassed||!Array.from({length:totalLevels},(_,i)=>i+1).every(i=>progress[i]==="completed")){backToMenu();return}
+ $("certificateDetails").textContent="Khaemenes Academy · French 101 · Final score: "+(progress.examScore??"Legacy pass")+"/10 · Completed: "+(progress.completedAt?new Date(progress.completedAt).toLocaleDateString():"Date not recorded");
  showOnly("certificate");launchConfetti();
  if(!$("certificateBack")){const b=addButton($("certificate"),"Back to Levels",backToMenu);b.id="certificateBack"}
 }
