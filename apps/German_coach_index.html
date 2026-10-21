@@ -271,7 +271,7 @@
 </style>
 </head>
 <body>
-<header class="hero">
+<section style="padding:12px 16px;background:#fff7e7;color:#253747;text-align:center"><label for="coachLearnerName">German Coach learner record</label> <input id="coachLearnerName" maxlength="70" autocomplete="off" placeholder="Student name" style="font:inherit;padding:8px;max-width:95%"><button id="chooseCoachLearner" type="button">Open learner record</button><p id="coachIdentityStatus" role="status">Without a learner name, the original shared-device Coach records are used. Named learners have separate, initially empty academic records. No legacy records are copied or erased.</p></section><header class="hero">
   <div class="hero-inner">
     <h1>German Traveler Phrase Coach</h1>
     <p>Practice 365 essential travel phrases with quick quizzes and a final review exam. Everything is saved locally in your browser.</p>
@@ -559,12 +559,11 @@ let lessons = []; // array of {day, german, english, tags}
 /* ==============================
    Persistence
    ============================== */
+function coachLearnerId(){let name="";try{name=localStorage.getItem("german_active_learner")||""}catch{}name=name.trim().toLocaleLowerCase("de").slice(0,70);return name?Array.from(name,c=>c.codePointAt(0).toString(16)).join("-"):null}
+function coachKey(key){const id=coachLearnerId();return id?"khaemenes_german_coach_v2_"+id+"_"+key:key}
 const storage = {
-  save(key,val){ localStorage.setItem(key, JSON.stringify(val)); },
-  load(key, fallback){
-    const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : fallback;
-  }
+  save(key,val){ localStorage.setItem(coachKey(key), JSON.stringify(val)); },
+  load(key, fallback){try{const raw=localStorage.getItem(coachKey(key));return raw ? JSON.parse(raw) : fallback}catch{return fallback}}
 };
 
 let completed     = new Set(storage.load('gt_trav_completed', []));
@@ -1008,13 +1007,13 @@ function exportProgress(){
 
 function resetAll(){
   if(!confirm('Reset all progress and local data? This cannot be undone.')) return;
-  localStorage.removeItem('gt_trav_completed');
-  localStorage.removeItem('gt_trav_notes');
-  localStorage.removeItem('gt_trav_quizHistory');
-  localStorage.removeItem('gt_trav_examHistory');
-  localStorage.removeItem('gt_trav_currentDay');
-  localStorage.removeItem('gt_trav_passThreshold');
-  localStorage.removeItem('gt_trav_autoSpeak');
+  localStorage.removeItem(coachKey('gt_trav_completed'));
+  localStorage.removeItem(coachKey('gt_trav_notes'));
+  localStorage.removeItem(coachKey('gt_trav_quizHistory'));
+  localStorage.removeItem(coachKey('gt_trav_examHistory'));
+  localStorage.removeItem(coachKey('gt_trav_currentDay'));
+  localStorage.removeItem(coachKey('gt_trav_passThreshold'));
+  localStorage.removeItem(coachKey('gt_trav_autoSpeak'));
   completed   = new Set();
   notes       = {};
   quizHistory = [];
@@ -1115,6 +1114,9 @@ function initSettingsPersistence(){
 /* ==============================
    Init
    ============================== */
+document.getElementById("coachLearnerName").value=(()=>{try{return localStorage.getItem("german_active_learner")||""}catch{return ""}})();
+document.getElementById("chooseCoachLearner").onclick=()=>{try{localStorage.setItem("german_active_learner",document.getElementById("coachLearnerName").value.trim().replace(/\s+/g," ").slice(0,70));location.reload()}catch{document.getElementById("coachIdentityStatus").textContent="Learner selection could not be saved."}};
+window.addEventListener("storage",e=>{if(e.key==="german_active_learner")location.reload()});
 (function init(){
   // load persisted main data
   completed   = new Set(storage.load('gt_trav_completed', []));
