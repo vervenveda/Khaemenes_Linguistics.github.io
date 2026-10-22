@@ -14,10 +14,11 @@ function walk(dir){
   const relative=path.relative(root,file).split(path.sep).join("/");
   let html=fs.readFileSync(file,"utf8"),next=html;
   if(!/vnv-language\.js(?:[?#]|["'])/i.test(html)){
-   if(!/<\/body\s*>/i.test(html)){missingBody.push(relative);continue;}
+   // App fragments with no body tag receive an appended standalone script.
    const href=path.posix.relative(path.posix.dirname(relative),"assets/vnv-language.js");
    const src=href.startsWith(".")?href:"./"+href;
-   next=next.replace(/<\/body\s*>/i,'<!-- VNV_OFFICIAL_SITE_TRANSLATOR -->\n<script defer src="'+src+'"></script>\n</body>');
+   const tag='<\!-- VNV_OFFICIAL_SITE_TRANSLATOR -->\n<script defer src="'+src+'"></script>'; 
+   next=/<\/body\s*>/i.test(next)?next.replace(/<\/body\s*>/i,tag+'\n</body>'):next+'\n'+tag+'\n';
   }
   if(/\bHalls\/courses\/(arabic-1|russian-1)\/week-\d{2}\/index\.html$/.test(relative)){
    const match=relative.match(/(arabic-1|russian-1)\/week-(\d{2})\/index\.html$/);
