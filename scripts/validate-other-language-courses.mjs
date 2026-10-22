@@ -23,5 +23,11 @@ for(const p of ["apps/French_101_index.html","apps/German_coach_index.html"]){
  if(!s.includes("localStorage"))errors.push(p+" missing local saved progress");
  if(!s.includes("vnv-language.js"))errors.push(p+" missing official translator");
 }
+
+// Unit 02 identity and recovery cannot use anonymous saved academic evidence.
+for(const file of ["assets/foundation-unit02-challenge.js","assets/foundation-unit02-recovery.js"]){
+ const s=fs.readFileSync(file,"utf8");
+ if(!s.includes('Select a learner'))errors.push(file+" does not require explicit learner selection");
+}
 console.log(JSON.stringify({inventory,legacyApps:["French 101","German Coach"],issues:errors},null,2));
 if(errors.length)process.exitCode=1;
