@@ -6,6 +6,7 @@ on:
       - scripts/validate-year-i-evidence-journal.mjs
       - assets/year-i-evidence-journal.js
       - scripts/validate-linguistics-translator-navigation.mjs
+      - scripts/validate-other-language-courses.mjs
       - scripts/rollout-linguistics-page-translator.mjs
       - .github/workflows/linguistics-translation-rollout.yml
   workflow_dispatch:
@@ -32,6 +33,8 @@ jobs:
         run: node scripts/validate-linguistics-translator-navigation.mjs
       - name: Validate Year I evidence journal
         run: node scripts/validate-year-i-evidence-journal.mjs
+      - name: Audit additional language courses and deduplicated translator coverage
+        run: node scripts/validate-other-language-courses.mjs
       - name: Commit verified additions to main
         run: |
           git config user.name "github-actions[bot]"
