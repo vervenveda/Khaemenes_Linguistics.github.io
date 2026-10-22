@@ -220,7 +220,7 @@ function translate(s){
  return (sovereign?.translation||cachedTranslation(source,lang));
 }
 function ignored(el){
- return !!(el&&el.closest("script,style,noscript,svg,math,code,pre,textarea,select,option,form,[lang]:not([lang="en"]),[contenteditable],#adminGate,[data-private],[data-student],[data-learner],[data-i18n-ignore],.world-ribbon,.phrase-main,.phrase-translation,.phrase-language"));
+ return !!(el&&el.closest("script,style,noscript,svg,math,code,pre,textarea,select,option,form,[lang]:not([lang=en]),[contenteditable],#adminGate,[data-private],[data-student],[data-learner],[data-i18n-ignore],.world-ribbon,.phrase-main,.phrase-translation,.phrase-language"));
 }
 function textTranslate(n){
  const parent=n.parentElement;
