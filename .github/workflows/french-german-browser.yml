@@ -1,0 +1,29 @@
+name: French German Browser Accessibility
+on:
+  push:
+    branches: [main]
+    paths:
+      - apps/French_101_index.html
+      - apps/German_coach_index.html
+      - scripts/test-french-german-browser.mjs
+      - .github/workflows/french-german-browser.yml
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: |
+          npm install --no-save --no-package-lock playwright
+          npx playwright install --with-deps chromium
+      - name: Browser RTL, small-screen and learner-field protections
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 >/tmp/linguistics-server.log 2>&1 &
+          sleep 2
+          node scripts/test-french-german-browser.mjs
