@@ -24,9 +24,9 @@ function walk(dir){
    const n=Number(match[2]);
    if(!/data-year-i-week-navigation/.test(next)){
     const nav='<nav data-year-i-week-navigation aria-label="Course week navigation" style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:18px auto;padding:10px">'+
-      (n>1?'<a href="../../week-'+String(n-1).padStart(2,"0")+'/index.html">← Previous week</a>':'')+
+      (n>1?'<a href="../week-'+String(n-1).padStart(2,"0")+'/index.html">← Previous week</a>':'')+
       '<a href="../index.html">All course weeks</a>'+
-      (n<32?'<a href="../../week-'+String(n+1).padStart(2,"0")+'/index.html">Next week →</a>':'')+'</nav>';
+      (n<32?'<a href="../week-'+String(n+1).padStart(2,"0")+'/index.html">Next week →</a>':'')+'</nav>';
     // All week lesson files live one level below week directory; course index is ../../index.html.
     const fixed=nav.replace('href="../index.html"','href="../../index.html"');
     next=next.replace(/<\/body\s*>/i,fixed+'\n</body>');
