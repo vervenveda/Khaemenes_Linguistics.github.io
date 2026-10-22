@@ -22,6 +22,7 @@ for(const p of ["apps/French_101_index.html","apps/German_coach_index.html"]){
  const s=fs.readFileSync(p,"utf8");
  if(!s.includes("localStorage"))errors.push(p+" missing local saved progress");
  if(!s.includes("vnv-language.js"))errors.push(p+" missing official translator");
+ if(!s.includes("ACADEMY_FOUR_SKILL_REVIEW"))errors.push(p+" missing non-grading proficiency review guide");
 }
 
 // Unit 02 identity and recovery cannot use anonymous saved academic evidence.
