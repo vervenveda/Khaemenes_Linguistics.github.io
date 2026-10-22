@@ -432,5 +432,12 @@ $("frenchImportFile").addEventListener("change",async()=>{reset("Reviewing Frenc
 confirm.addEventListener("click",()=>{if(!pending||pending.key!==learnerKey||pending.identity!==identity()){reset("Learner changed. Select the backup again.");return}try{const p=validate(pending.data);if(!window.confirm("Replace this learner's French 101 progress with the selected backup?"))return;const prior=JSON.stringify(progress);if(!safeSet(learnerKey,JSON.stringify(p)))throw Error("Browser storage unavailable.");for(const key of Object.keys(progress))delete progress[key];Object.assign(progress,p);buildLevelGrid();showOnly("menu");reset("Backup restored for the selected learner. Other learners' records were not changed.")}catch(e){reset("Restore failed: "+e.message)}});
 $("selectLearner").addEventListener("click",()=>reset("Learner selected. Choose a backup to restore."));window.addEventListener("storage",e=>{if(e.key==="french101_active_learner")reset("Active learner changed. Select the backup again.")});
 })();
-</script></body>
+</script><!-- ACADEMY_FOUR_SKILL_REVIEW: guidance only; no records or quiz logic changed -->
+<section aria-label="French independent four-skill review" data-i18n-ignore style="max-width:950px;margin:20px auto;padding:18px;border:1px solid #b5a68f;border-radius:7px;background:#fffdf8;color:#242a2c;line-height:1.6">
+<h2 style="font:400 24px/1.3 Georgia,serif">Khaemenes Academy · French four-skill review guide</h2>
+<p>Use this independently of French 101 practice scores. A quiz pass or adjusted practice threshold does not demonstrate verified proficiency or award formal course credit.</p>
+<ol><li><strong>Reading:</strong> interpret an unfamiliar short French passage, explaining meaning and supporting details.</li><li><strong>Writing:</strong> write original French sentences using appropriate agreement, tense, accents and situational vocabulary.</li><li><strong>Listening:</strong> identify meaning from a new instructor-supplied audio clip; device-generated speech is rehearsal only.</li><li><strong>Speaking:</strong> sustain a brief comprehensible exchange with appropriate liaison, pronunciation and register.</li></ol>
+<p>For each skill, document the learner's independent work, an instructor's observations, a correction, and the next practice goal. Keep learner evidence private. Instructor identity and assessment quality must be verified outside this public page.</p>
+</section>
+</body>
 </html>
