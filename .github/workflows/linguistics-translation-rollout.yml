@@ -3,6 +3,7 @@ on:
   push:
     branches: [main]
     paths:
+      - scripts/validate-linguistics-translator-navigation.mjs
       - scripts/rollout-linguistics-page-translator.mjs
       - .github/workflows/linguistics-translation-rollout.yml
   workflow_dispatch:
@@ -25,6 +26,8 @@ jobs:
         run: node scripts/rollout-linguistics-page-translator.mjs --apply
       - name: Verify complete HTML coverage and all 64 weekly routes
         run: node scripts/rollout-linguistics-page-translator.mjs
+      - name: Check course navigation and protect language-learning examples
+        run: node scripts/validate-linguistics-translator-navigation.mjs
       - name: Commit verified additions to main
         run: |
           git config user.name "github-actions[bot]"
