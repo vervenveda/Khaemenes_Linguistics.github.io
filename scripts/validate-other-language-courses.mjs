@@ -15,6 +15,7 @@ for(const language of languages){
   const page=fs.readFileSync(p,"utf8");
   if(!page.includes("unit01-language-checkpoint.js")&&unit==="01")errors.push(p+" no canonical checkpoint bridge");
  }
+ for(const unit of ["03","04"]){const name=base+"unit-"+unit+"-checkpoint.html",html=fs.readFileSync(name,"utf8");if(!html.includes("Unit "+unit+" language-specific evidence review"))errors.push(name+" missing distinct proficiency anchors");}
  inventory.push({language,foundationLessons:lessons.length,checkpointPages:3});
 }
 for(const p of ["apps/French_101_index.html","apps/German_coach_index.html"]){
