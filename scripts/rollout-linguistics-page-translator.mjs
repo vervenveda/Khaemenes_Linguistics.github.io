@@ -36,6 +36,7 @@ function walk(dir){
     next=next.replace(/<\/body\s*>/i,'<script defer src="../../../../assets/year-i-evidence-journal.js"></script>\\n</body>');
    }
    next=next.replace(/<\/script>\\\\n<\/body>/g,"</script>\\n</body>");
+   if(!next.includes("year-i-teacher-review.js"))next=next.replace(/<\/body\s*>/i,'<script defer src="../../../../assets/year-i-teacher-review.js"></script>\n</body>');
    weekNav++;
   }
   if(/vnv-language\.js(?:[?#]|["'])/i.test(next))withTranslator++;
