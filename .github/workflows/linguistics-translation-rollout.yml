@@ -3,6 +3,8 @@ on:
   push:
     branches: [main]
     paths:
+      - scripts/validate-year-i-evidence-journal.mjs
+      - assets/year-i-evidence-journal.js
       - scripts/validate-linguistics-translator-navigation.mjs
       - scripts/rollout-linguistics-page-translator.mjs
       - .github/workflows/linguistics-translation-rollout.yml
@@ -28,6 +30,8 @@ jobs:
         run: node scripts/rollout-linguistics-page-translator.mjs
       - name: Check course navigation and protect language-learning examples
         run: node scripts/validate-linguistics-translator-navigation.mjs
+      - name: Validate Year I evidence journal
+        run: node scripts/validate-year-i-evidence-journal.mjs
       - name: Commit verified additions to main
         run: |
           git config user.name "github-actions[bot]"
