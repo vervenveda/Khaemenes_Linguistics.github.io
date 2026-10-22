@@ -27,6 +27,7 @@ on:
       - 'scripts/test-arabic-pilot.mjs'
       - 'scripts/test-arabic-mastery-map.mjs'
       - 'scripts/test-language-worlds.mjs'
+      - 'scripts/test-high-school-language-handoff.mjs'
       - 'scripts/test-foundation-unit02.mjs'
       - 'assets/foundation-unit02-lesson.js'
       - 'assets/foundation-unit02-challenge.js'
@@ -74,6 +75,8 @@ jobs:
         run: node scripts/test-foundation-unit02.mjs
       - name: Verify language-world entrance routes
         run: node scripts/test-language-worlds.mjs
+      - name: Verify High School language handoff
+        run: node scripts/test-high-school-language-handoff.mjs
       - name: Test foundation performance rubrics
         run: node scripts/test-foundation-performance.mjs
       - name: Simulate foundation two-learner review isolation
