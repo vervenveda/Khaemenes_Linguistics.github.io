@@ -35,6 +35,7 @@ function walk(dir){
    if(!next.includes("year-i-evidence-journal.js")){
     next=next.replace(/<\/body\s*>/i,'<script defer src="../../../../assets/year-i-evidence-journal.js"></script>\\n</body>');
    }
+   next=next.replace(/<\/script>\\\\n<\/body>/g,"</script>\\n</body>");
    weekNav++;
   }
   if(/vnv-language\.js(?:[?#]|["'])/i.test(next))withTranslator++;
