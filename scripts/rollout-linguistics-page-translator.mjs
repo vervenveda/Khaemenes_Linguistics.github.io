@@ -20,6 +20,13 @@ function walk(dir){
    const tag='<\!-- VNV_OFFICIAL_SITE_TRANSLATOR -->\n<script defer src="'+src+'"></script>'; 
    next=/<\/body\s*>/i.test(next)?next.replace(/<\/body\s*>/i,tag+'\n</body>'):next+'\n'+tag+'\n';
   }
+  // Repair duplicate canonical tag from earlier site-wide installation, preserving the first script.
+  if(/vnv-language\\.js/i.test(next)){
+   let seen=false;
+   next=next.replace(/<script\\b[^>]*\\bsrc=["'][^"']*vnv-language\\.js["'][^>]*><\\/script>/gi,tag=>{
+    if(seen)return "";seen=true;return tag;
+   });
+  }
   if(/\bHalls\/courses\/(arabic-1|russian-1)\/week-\d{2}\/index\.html$/.test(relative)){
    const match=relative.match(/(arabic-1|russian-1)\/week-(\d{2})\/index\.html$/);
    const n=Number(match[2]);
