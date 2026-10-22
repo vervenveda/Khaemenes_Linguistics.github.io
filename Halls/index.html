@@ -105,6 +105,18 @@ function fresh(){return {profile:{learner:"",home:"",teacher:""},activeLanguage:
 let state=Object.assign(fresh(),read(KEY,{}));
 state.profile=Object.assign({learner:"",home:"",teacher:""},state.profile||{});
 state.courses=state.courses||{};state.foundationDone=state.foundationDone||{};state.favorites=state.favorites||{};state.notes=state.notes||{};
+const handoffParams=new URLSearchParams(location.search);
+const handoffAliases=Object.freeze({"mandarin-chinese":"mandarin","chinese":"mandarin"});
+const requestedRaw=String(handoffParams.get("language")||"").trim().toLowerCase();
+const requestedLanguage=handoffAliases[requestedRaw]||requestedRaw;
+const requestedCourse=String(handoffParams.get("course")||"").trim().toLowerCase();
+let requestedAtlasLanguage="";
+if(requestedLanguage&&APP.languages[requestedLanguage]){
+ state.activeLanguage=requestedLanguage;
+ if(requestedCourse&&APP.levels.some(x=>x.id===requestedCourse))state.activeCourse=requestedCourse;
+}else if(requestedLanguage){
+ requestedAtlasLanguage=requestedLanguage;
+}
 function save(){state.updatedAt=new Date().toISOString();localStorage.setItem(KEY,JSON.stringify(state))}
 function lang(){return APP.languages[state.activeLanguage]||APP.languages.spanish}
 function level(){return APP.levels.find(x=>x.id===state.activeCourse)||APP.levels[0]}
@@ -209,7 +221,7 @@ function renderFoundations(){
  $$("[data-found]",$("#foundationGrid")).forEach(c=>c.onchange=()=>{state.foundationDone[c.dataset.found]=c.checked;save();renderVault()});
 }
 
-let atlasQuery="",atlasCat="All";
+let atlasQuery=requestedAtlasLanguage||"",atlasCat="All";
 function categories(){return ["All",...new Set(APP.legacy.cards.map(c=>c.category))]}
 function renderAtlasFilters(){$("#atlasFilters").innerHTML=categories().map(c=>`<button class="chip ${c===atlasCat?"active":""}" data-cat="${esc(c)}">${esc(c)}</button>`).join("")}
 function atlasList(){const q=atlasQuery.toLowerCase().trim();return APP.legacy.cards.filter(c=>(atlasCat==="All"||c.category===atlasCat)&&(!q||JSON.stringify(c).toLowerCase().includes(q))).sort((a,b)=>a.title.localeCompare(b.title))}
@@ -257,6 +269,12 @@ $("#clearV4").onclick=()=>{if(prompt("Type CLEAR V4 to remove new V4 progress wh
 
 function renderAll(){renderAcademy();renderCourse();renderSkills();renderPractice();renderAssess();renderFoundations();renderAtlasFilters();renderAtlas();renderSources();renderVault()}
 renderAll();
+if(requestedAtlasLanguage){
+ const search=$("#atlasSearch");if(search)search.value=requestedAtlasLanguage;
+ showPanel("atlas",false);renderAtlas();
+}else if(requestedLanguage&&requestedCourse&&APP.languages[requestedLanguage]){
+ showPanel("course",false);
+}
 })();
 </script>
 <script src="./hall-i18n-pack.js"></script>
