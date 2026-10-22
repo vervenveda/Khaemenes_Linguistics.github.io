@@ -38,7 +38,7 @@ $("khaeEvidenceExport").addEventListener("click",()=>{
 const quizStatus=document.getElementById("status");
 if(quizStatus){
  const observer=new MutationObserver(()=>{
-  const text=quizStatus.textContent||"",m=text.match(/^(\\d+)\\/10\\s*[—-]/);
+  const text=quizStatus.textContent||"",m=text.match(/^([0-9]+)\/10[ ]*[—-]/);
   if(!m||!activeKey||activeKey!==storageKey(label.value))return;
   const score=Number(m[1]);if(score<0||score>10)return;
   const prior=read(activeKey)||snapshot();
