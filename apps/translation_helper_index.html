@@ -533,9 +533,11 @@
     if(!text) return flash("Paste text first.");
     const sl = (state.mode === "toEN") ? meta.code : "en";
     const tl = (state.mode === "toEN") ? "en" : meta.code;
+    const approved = window.confirm("External translation notice: continuing sends the text you entered to Google Translate through a new browser tab. Do not use this for private student work or sensitive information. Continue?");
+    if(!approved){ flash("Stayed offline. Your text was not sent by this action."); return; }
     const url = `https://translate.google.com/?sl=${encodeURIComponent(sl)}&tl=${encodeURIComponent(tl)}&text=${encodeURIComponent(text)}&op=translate`;
-    window.open(url, "_blank", "noopener");
-    flash("Opened Google Translate in a new tab.");
+    const opened = window.open(url, "_blank", "noopener,noreferrer");
+    flash(opened === null ? "External translation requested; your browser may block new tabs." : "External translation opened after consent.");
   });
 
   document.getElementById("speakEnBtn").addEventListener("click", ()=>{
