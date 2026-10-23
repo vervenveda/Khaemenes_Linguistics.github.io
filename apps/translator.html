@@ -1240,6 +1240,7 @@ function dictionaryLookup(){
   dictionaryCell(card,"h3",e.term);
   const isCreative=!e.id;
   if(e.editorial?.status==="local-draft")dictionaryCell(card,"p","Private browser-local draft · not yet reviewed for publication.","dictionary-meta");
+  if(e.editorial?.status==="editorial-draft")dictionaryCell(card,"p","Public editorial vocabulary draft · not independently language-reviewed; related terms may not be interchangeable.","dictionary-meta");
   if(isCreative){dictionaryCell(card,"p","Creative story ingredient (no dictionary definition).","dictionary-meta")}
   else{
     dictionaryCell(card,"p",e.definition||"Source supplies a bilingual vocabulary entry, but no definition.");
