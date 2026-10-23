@@ -362,6 +362,7 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
   </section>
 </div>
 
+<script src="./assets/khaemenes-review-policy.js"></script>
 <script>
 (() => {
 "use strict";
@@ -527,27 +528,24 @@ function allLibraryEntries(lib=getLibrary()){
 }
 function lookupOffline(from,to,text){
   const lib=getLibrary();
-  return lib.pairs?.[pairKey(from,to)]?.[exactKey(text)] || null;
+  const record=lib.pairs?.[pairKey(from,to)]?.[exactKey(text)];
+  if(!record || typeof record.translation!=="string" || !record.translation.trim()) return null;
+  return {...record,reviewStatus:record.reviewStatus||"legacy-review-unconfirmed"};
 }
 function saveVerifiedPair(from,to,source,translated,meta={}){
-  source=exactKey(source); translated=cleanText(translated);
-  if(!source || !translated) return {ok:false,reason:"empty"};
-  const lib=getLibrary();
-  const existing=allLibraryEntries(lib);
-  if(existing.length>=MAX_LIBRARY_PAIRS && !lib.pairs?.[pairKey(from,to)]?.[source]){
-    return {ok:false,reason:"limit"};
-  }
+  source=exactKey(source);translated=cleanText(translated);
+  if(!source||!translated||from===to)return {ok:false,reason:"invalid-pair"};
+  const policy=window.KhaemenesReviewPolicy;
+  const approved=policy?.reviewedRecord({translation:translated,reviewConfirmed:meta.reviewConfirmed===true,
+    sourceType:meta.source,purpose:meta.purpose||purpose,reviewNote:meta.reviewNote||""});
+  if(!approved)return {ok:false,reason:"review-required"};
   const pk=pairKey(from,to);
-  lib.pairs[pk]=lib.pairs[pk] || {};
-  lib.pairs[pk][source]={
-    translation:translated,
-    verified:true,
-    savedAt:nowIso(),
-    source:meta.source || "user-verified",
-    purpose:meta.purpose || purpose
-  };
-  setLibrary(lib);
-  return {ok:true};
+  if(!policy.validPair(pk))return {ok:false,reason:"invalid-language-pair"};
+  const lib=getLibrary();
+  if(allLibraryEntries(lib).length>=MAX_LIBRARY_PAIRS&&!lib.pairs?.[pk]?.[source])return {ok:false,reason:"limit"};
+  if(!lib.pairs[pk])lib.pairs[pk]=Object.create(null);
+  lib.pairs[pk][source]=approved;
+  try{setLibrary(lib);return {ok:true}}catch{return {ok:false,reason:"storage-unavailable"}}
 }
 
 function getCache(){
@@ -690,7 +688,7 @@ async function translateOffline(){
   const hit=lookupOffline(from,to,text);
   if(hit?.translation){
     els.output.textContent=hit.translation;
-    setStatus("Offline Library hit ✓ Verified local pair.","good");
+    setStatus(hit.reviewStatus==="self-reviewed"?"Personally reviewed local pair (not independently certified).":hit.reviewStatus==="imported-self-reviewed"?"Imported personally reviewed pair.":"Legacy or imported translation · review status unconfirmed; check accuracy.","good");
   }else{
     els.output.textContent="No exact verified translation is stored locally for this text.";
     setStatus("Offline Library miss. Use a saved pair, import a language pack, or explicitly choose Online Translation.","bad");
@@ -761,17 +759,18 @@ function afterTranslation(){
 }
 
 function saveCurrentPair(){
-  const src=cleanText(els.input.value), dst=cleanText(els.output.textContent);
-  if(!src || !dst || /^No exact verified translation/.test(dst) || dst==="Working…"){
-    setStatus("There is not a completed translation to save.","bad"); return;
+  const src=cleanText(els.input.value),dst=cleanText(els.output.textContent);
+  if(!src||!dst||dst==="Working…"||dst.startsWith("No exact verified translation")){
+    setStatus("Translate the current text before reviewing it.","bad");return;
   }
+  const confirmed=window.confirm("Review before saving: compare this translation with the source. Continue only if you have personally checked its meaning and accuracy. This is a personal review, not independent certification.");
+  if(!confirmed){setStatus("Not saved: review confirmation declined.","bad");return}
   const result=saveVerifiedPair(els.from.value,els.to.value,src,dst,{
-    source:els.service.value==="online"?"reviewed-online-result":"user-entered-or-local",
-    purpose
+    reviewConfirmed:true,source:els.service.value==="online"?"legacy-edited-online-draft":"legacy-reviewed-local",
+    purpose,reviewNote:"Legacy interface: user explicitly confirmed review of displayed output"
   });
-  if(result.ok) setStatus("Saved ✓ This reviewed pair is now part of your sovereign local library.","good");
-  else if(result.reason==="limit") setStatus(`Library limit reached (${MAX_LIBRARY_PAIRS} pairs). Export the library before removing older entries.`,"bad");
-  else setStatus("Could not save this pair.","bad");
+  if(result.ok)setStatus("Saved as personally reviewed on this device; not independently certified.","good");
+  else setStatus("Pair not saved: "+(result.reason||"storage unavailable"),"bad");
 }
 async function copyTranslation(){
   const text=cleanText(els.output.textContent);
@@ -801,36 +800,15 @@ function exportLibrary(){
 async function importLibrary(file){
   try{
     const raw=JSON.parse(await file.text());
-    if(raw?.schema!=="khaemenes-interlingual-library" || Number(raw?.version)!==2 || typeof raw?.pairs!=="object"){
-      throw new Error("Not a compatible Khaemenes Interlingual Library v2 file.");
-    }
-    const current=getLibrary();
-    let added=0;
-    for(const [pk,bucket] of Object.entries(raw.pairs || {})){
-      if(typeof bucket!=="object" || !bucket) continue;
-      current.pairs[pk]=current.pairs[pk] || {};
-      for(const [source,record] of Object.entries(bucket)){
-        if(allLibraryEntries(current).length>=MAX_LIBRARY_PAIRS) break;
-        const translation=cleanText(record?.translation);
-        if(!translation) continue;
-        current.pairs[pk][exactKey(source)]={
-          translation,
-          verified:record?.verified===true,
-          savedAt:record?.savedAt || nowIso(),
-          source:record?.source || "imported-language-pack",
-          purpose:record?.purpose || "translate"
-        };
-        added++;
-      }
-    }
-    setLibrary(current);
-    setStatus(`Imported ${added} language pair${added===1?"":"s"}.`,"good");
+    const policy=window.KhaemenesReviewPolicy;
+    if(!policy)throw Error("Review policy unavailable; import stopped safely.");
+    const merged=policy.importPack(getLibrary(),raw,{trustReviewed:false,maxPairs:MAX_LIBRARY_PAIRS});
+    if(!merged.ok)throw Error(merged.error||"Invalid language pack");
+    setLibrary(merged.library);
+    setStatus(`Imported ${merged.added} entries as unreviewed drafts; ${merged.skipped} skipped. Existing records retained.`,"good");
     updateKnownTerms();
-  }catch(error){
-    setStatus(`Import failed: ${String(error?.message||error).slice(0,180)}`,"bad");
-  }
+  }catch(error){setStatus("Import failed: "+String(error?.message||error).slice(0,180),"bad")}
 }
-
 function safeContext(value={}){
   const obj=value && typeof value==="object"?value:{};
   const pick=(v,max=180)=>String(v||"").trim().slice(0,max);
