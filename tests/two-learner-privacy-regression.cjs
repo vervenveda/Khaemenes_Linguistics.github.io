@@ -1,0 +1,34 @@
+#!/usr/bin/env node
+/* Fictional learner privacy regression for dormant evidence bridge. No real records. */
+const fs=require("node:fs"),path=require("node:path"),vm=require("node:vm"),assert=require("node:assert/strict");
+const source=fs.readFileSync(path.join(__dirname,"../assets/khaemenes-evidence-identity-bridge.js"),"utf8");
+const sandbox={window:{},Date,JSON,Object,Error};vm.runInNewContext(source,sandbox);
+const bridge=sandbox.window.KhaemenesEvidenceBridge;
+assert.equal(bridge.version,"0.1.0");
+const map=new Map();
+const storage={getItem:k=>map.get(k)||null,setItem:(k,v)=>map.set(k,v)};
+const A="fictional_learner_A01",B="fictional_learner_B02",week="arabic-1:week-06";
+const contexts={adultA:{actor:"fictional_parent_A"},adultB:{actor:"fictional_parent_B"},teacher:{actor:"fictional_teacher"},unauthorized:{actor:"stranger"}};
+const grants=new Set([contexts.adultA.actor+"|"+A+"|evidence:write",contexts.adultA.actor+"|"+A+"|evidence:read",contexts.adultA.actor+"|"+A+"|evidence:restore",contexts.adultB.actor+"|"+B+"|evidence:write",contexts.adultB.actor+"|"+B+"|evidence:read",contexts.teacher.actor+"|"+A+"|evidence:review"]);
+const authorize=({context,permission,learnerId})=>grants.has(context.actor+"|"+learnerId+"|"+permission);
+const api=bridge.create({storage,authorize});
+let checks=0;const pass=()=>checks++;const deny=fn=>{assert.throws(fn,/Permission denied|overwrite denied|confirmation|Unknown evidence|Invalid/);pass()};
+api.save(contexts.adultA,{learnerId:A,week,id:"evidence_A01",text:"Fictional Arabic answer A"});pass();
+api.save(contexts.adultB,{learnerId:B,week,id:"evidence_B01",text:"Fictional Russian answer B"});pass();
+assert.equal(api.list(contexts.adultA,{learnerId:A}).length,1);pass();
+assert.equal(api.list(contexts.adultB,{learnerId:B}).length,1);pass();
+deny(()=>api.list(contexts.adultA,{learnerId:B}));
+deny(()=>api.list(contexts.unauthorized,{learnerId:A}));
+deny(()=>api.save(contexts.adultA,{learnerId:B,week,id:"evidence_C01",text:"intrusion"}));
+deny(()=>api.save(contexts.adultA,{learnerId:A,week,id:"evidence_A01",text:"overwrite"}));
+deny(()=>api.adopt(contexts.adultA,{learnerId:A,week,id:"evidence_A02",text:"orphan draft",confirm:false}));
+deny(()=>api.adopt(contexts.adultB,{learnerId:A,week,id:"evidence_A02",text:"other learner draft",confirm:true}));
+deny(()=>api.review(contexts.adultA,{learnerId:A,id:"evidence_A01",status:"reviewed"}));
+deny(()=>api.review(contexts.teacher,{learnerId:B,id:"evidence_B01",status:"reviewed"}));
+api.review(contexts.teacher,{learnerId:A,id:"evidence_A01",status:"reviewed"});pass();
+grants.delete(contexts.teacher.actor+"|"+A+"|evidence:review");
+deny(()=>api.review(contexts.teacher,{learnerId:A,id:"evidence_A01",status:"needs-revision"}));
+assert.equal(api.list(contexts.adultA,{learnerId:A})[0].review.status,"reviewed");pass();
+assert.equal(map.size,2);pass();
+console.log("PASS "+checks+" fictional identity/isolation/permission/revocation assertions");
+console.log("NOTE: mocked authorization cannot certify real Academy authentication or cross-origin session security.");
