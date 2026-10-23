@@ -507,6 +507,7 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 <script src="../assets/sovereign-dictionary.generated.js"></script>
 <script src="../assets/sovereign-dictionary-v1-errata.js"></script>
 <script src="../assets/khaemenes-interlingual-core.js"></script>
+<script src="../assets/khaemenes-transliteration.js"></script>
 <script src="../assets/khaemenes-review-policy.js"></script>
 <script>
 (() => {
@@ -1248,6 +1249,11 @@ function dictionaryLookup(){
     dictionaryCell(card,"p",e.etymology?"Origin (source wording): "+e.etymology:null,"dictionary-meta");
     const translations=Object.entries(e.translations||{}).map(([lang,word])=>lang+": "+word).join(" · ");
     dictionaryCell(card,"p",translations?"Source bilingual vocabulary (unreviewed): "+translations:null,"dictionary-meta");
+    for(const [language,word] of Object.entries(e.translations||{})){
+      if(language!=="ar"&&language!=="ru")continue;
+      const aid=window.KhaemenesTransliteration?.transliterate(String(word),language);
+      if(aid?.text)dictionaryCell(card,"p",language.toUpperCase()+" Latin-letter guide (approximate, not pronunciation): "+aid.text,"dictionary-meta");
+    }
     dictionaryCell(card,"p",e.editorial?.contextSensitive?"Cultural context: verify with relevant community sources.":null,"dictionary-meta");
   }
   const provenance=e.provenance||{};
