@@ -1,0 +1,134 @@
+{
+  "schema": "khaemenes-listening-source-manifest",
+  "version": 1,
+  "created_on": "2026-10-23",
+  "policy": {
+    "allowed_statuses": [
+      "pending-review",
+      "approved",
+      "rejected"
+    ],
+    "student_release_requires": [
+      "approved-status",
+      "reviewer",
+      "transcript",
+      "source-rights",
+      "comprehension-check"
+    ],
+    "no_auto_approval": true
+  },
+  "lessons": [
+    {
+      "course": "arabic-1",
+      "week": 6,
+      "lesson": "Halls/courses/arabic-1/week-06/index.html",
+      "status": "pending-review",
+      "audio_file": null,
+      "transcript_file": null,
+      "source_type": null,
+      "rights": null,
+      "language_reviewer": null,
+      "review_date": null,
+      "comprehension_check_status": "pending",
+      "notes": "No validated lesson recording attached. Instructor live reading may support supervised evidence but is not a published certified recording."
+    },
+    {
+      "course": "arabic-1",
+      "week": 7,
+      "lesson": "Halls/courses/arabic-1/week-07/index.html",
+      "status": "pending-review",
+      "audio_file": null,
+      "transcript_file": null,
+      "source_type": null,
+      "rights": null,
+      "language_reviewer": null,
+      "review_date": null,
+      "comprehension_check_status": "pending",
+      "notes": "No validated lesson recording attached. Instructor live reading may support supervised evidence but is not a published certified recording."
+    },
+    {
+      "course": "arabic-1",
+      "week": 20,
+      "lesson": "Halls/courses/arabic-1/week-20/index.html",
+      "status": "pending-review",
+      "audio_file": null,
+      "transcript_file": null,
+      "source_type": null,
+      "rights": null,
+      "language_reviewer": null,
+      "review_date": null,
+      "comprehension_check_status": "pending",
+      "notes": "No validated lesson recording attached. Instructor live reading may support supervised evidence but is not a published certified recording."
+    },
+    {
+      "course": "arabic-1",
+      "week": 21,
+      "lesson": "Halls/courses/arabic-1/week-21/index.html",
+      "status": "pending-review",
+      "audio_file": null,
+      "transcript_file": null,
+      "source_type": null,
+      "rights": null,
+      "language_reviewer": null,
+      "review_date": null,
+      "comprehension_check_status": "pending",
+      "notes": "No validated lesson recording attached. Instructor live reading may support supervised evidence but is not a published certified recording."
+    },
+    {
+      "course": "russian-1",
+      "week": 6,
+      "lesson": "Halls/courses/russian-1/week-06/index.html",
+      "status": "pending-review",
+      "audio_file": null,
+      "transcript_file": null,
+      "source_type": null,
+      "rights": null,
+      "language_reviewer": null,
+      "review_date": null,
+      "comprehension_check_status": "pending",
+      "notes": "No validated lesson recording attached. Instructor live reading may support supervised evidence but is not a published certified recording."
+    },
+    {
+      "course": "russian-1",
+      "week": 7,
+      "lesson": "Halls/courses/russian-1/week-07/index.html",
+      "status": "pending-review",
+      "audio_file": null,
+      "transcript_file": null,
+      "source_type": null,
+      "rights": null,
+      "language_reviewer": null,
+      "review_date": null,
+      "comprehension_check_status": "pending",
+      "notes": "No validated lesson recording attached. Instructor live reading may support supervised evidence but is not a published certified recording."
+    },
+    {
+      "course": "russian-1",
+      "week": 20,
+      "lesson": "Halls/courses/russian-1/week-20/index.html",
+      "status": "pending-review",
+      "audio_file": null,
+      "transcript_file": null,
+      "source_type": null,
+      "rights": null,
+      "language_reviewer": null,
+      "review_date": null,
+      "comprehension_check_status": "pending",
+      "notes": "No validated lesson recording attached. Instructor live reading may support supervised evidence but is not a published certified recording."
+    },
+    {
+      "course": "russian-1",
+      "week": 21,
+      "lesson": "Halls/courses/russian-1/week-21/index.html",
+      "status": "pending-review",
+      "audio_file": null,
+      "transcript_file": null,
+      "source_type": null,
+      "rights": null,
+      "language_reviewer": null,
+      "review_date": null,
+      "comprehension_check_status": "pending",
+      "notes": "No validated lesson recording attached. Instructor live reading may support supervised evidence but is not a published certified recording."
+    }
+  ]
+}
