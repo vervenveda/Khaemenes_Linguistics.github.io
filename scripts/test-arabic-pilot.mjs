@@ -11,7 +11,9 @@ for(const week of ["01","02"]){
  const path="Halls/courses/arabic-1/week-"+week+"/index.html";
  const page=readFileSync(new URL(path,root),"utf8");
  assert.ok(page.includes("data-arabic-week=\""+Number(week)+"\""),path);
- assert.ok(page.includes('src="../../../assets/arabic-mastery-pilot.js"'),path);
+ const pilotPath="../../../../assets/arabic-mastery-pilot.js";
+ assert.ok(page.includes('src="'+pilotPath+'"'),path);
+ assert.equal(new URL(pilotPath,new URL(path,root)).href,new URL("assets/arabic-mastery-pilot.js",root).href,path);
  assert.ok(page.includes("window.ARABIC_PILOT_QUESTIONS=QUESTIONS"),path);
  for(const id of ["arabicStudent","arabicPilotStatus","arabicSkillReview","arabicPrint","arabicEvidence"])assert.ok(page.includes('id="'+id+'"'),id);
  const script=page.match(/<script>([\s\S]*?)<\/script>/)?.[1];assert.ok(script);
