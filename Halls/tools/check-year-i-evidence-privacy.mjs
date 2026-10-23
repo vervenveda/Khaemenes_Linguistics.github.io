@@ -31,6 +31,31 @@ const simulatedStorage=new Map();
 const alpha='test-learner-alpha',beta='test-learner-beta';
 for(const id of [alpha,beta])for(const course of ['arabic-1','russian-1'])for(const week of [6,7,20,21])simulatedStorage.set(evidenceKey(id,course,week),JSON.stringify({note:id+' '+course+' '+week}));
 for(const [k,v] of simulatedStorage)for(const other of [alpha,beta])if(!k.includes(':'+other+':')&&JSON.parse(v).note.startsWith(other+' '))errors.push('Simulated cross-learner key collision');
+// Simulate explicit active-profile ownership enforcement, not just distinct key strings.
+function privateRead(activeLearner,requestedLearner,course,week){
+ if(activeLearner!==requestedLearner)throw Error('Cross-learner access refused');
+ return simulatedStorage.get(evidenceKey(requestedLearner,course,week));
+}
+function privateWrite(activeLearner,requestedLearner,course,week,value){
+ if(activeLearner!==requestedLearner)throw Error('Cross-learner write refused');
+ simulatedStorage.set(evidenceKey(requestedLearner,course,week),JSON.stringify(value));
+}
+const originalAlpha=privateRead(alpha,alpha,'arabic-1',6);
+let deniedReads=0,deniedWrites=0;
+for(const [active,other] of [[alpha,beta],[beta,alpha]]){
+ try{privateRead(active,other,'arabic-1',6)}catch{deniedReads++}
+ try{privateWrite(active,other,'arabic-1',6,{note:'unauthorized'})}catch{deniedWrites++}
+}
+if(deniedReads!==2||deniedWrites!==2)errors.push('Simulated active learner ownership enforcement failed');
+if(privateRead(alpha,alpha,'arabic-1',6)!==originalAlpha)errors.push('Simulated unauthorized write altered original evidence');
+if(privateRead(alpha,alpha,'arabic-1',6)===privateRead(alpha,alpha,'russian-1',6))errors.push('Simulated cross-course records collide');
+if(privateRead(alpha,alpha,'arabic-1',6)===privateRead(alpha,alpha,'arabic-1',7))errors.push('Simulated cross-week records collide');
+// Only approved audio with complete manifest metadata may count toward media availability.
+for(const entry of manifest.lessons){
+ if(entry.status==='approved'){
+  if(!entry.audio_file||!entry.transcript_file||!entry.rights||!entry.language_reviewer||!entry.review_date||entry.comprehension_check_status!=='approved')errors.push('Audio approval metadata incomplete '+entry.lesson);
+ }
+}
 const sample=evidenceKey(alpha,'arabic-1',6);
 if(simulatedStorage.get(sample)===simulatedStorage.get(evidenceKey(beta,'arabic-1',6)))errors.push('Simulated learners share records');
 console.log(JSON.stringify({status:errors.length?'FAIL':'PASS',checked:manifest.lessons.length,simulated_records:simulatedStorage.size,scope:'source and isolated-key simulation only',errors},null,2));
