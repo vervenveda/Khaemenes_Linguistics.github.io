@@ -29,7 +29,7 @@ for(let week=1;week<=32;week++){
   summary.buttons++;
   const id=attr.match(/\bid=["']([^"']+)["']/)?.[1];
   const inline=/\bonclick\s*=/.test(attr);
-  const wired=id&&new RegExp('getElementById\\(["\\x27]'+id.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+'["\\x27]\\)\\.addEventListener|\\$\\(["\\x27]'+id+'["\\x27]\\)\\.addEventListener').test(html);
+  const wired=!!id&&(html.includes('getElementById("'+id+'")')||html.includes("getElementById('"+id+"')")||html.includes('$("'+id+'")')||html.includes("$('"+id+"')"));
   if(!inline&&!wired&&!/\btype=["']submit["']/.test(attr)){
    warn.push("Week "+ww+": button needs interaction inspection: "+(id||label.replace(/<[^>]+>/g,"").trim().slice(0,50)));
   }
