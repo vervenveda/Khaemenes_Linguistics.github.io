@@ -446,6 +446,13 @@ function printUnit01Day(day){
  window.print();
 }
 
+/* Expanded daily retrieval: dynamically drawn from lesson-specific existing reviewed material. */
+function unit01ReviewQuestions(day){
+ const d=FRENCH_101_UNIT01_DAYS.find(v=>v.day===day);
+ const bank=d.questions.map(q=>({...q}));
+ const transfer=UNIT01_TRANSFER_QUESTIONS.filter((q,i)=>i%14===(day-2)%14 || i%14===((day-2)+5)%14 || i%14===((day-2)+9)%14).map(q=>({prompt:q[0],choices:q[1],answer:q[2]}));
+ return shuffleQuestions([...bank,...transfer]).slice(0,5);
+}
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
  wrap.append(element("h3","Unit 01 · Alphabet and French Sounds · Three Weeks"),element("p","Fourteen additional lessons follow the first day's alphabet introduction. Work through each day in order; these daily reviews are formative and do not alter the existing 80% official mastery gate."));
@@ -461,7 +468,7 @@ function addUnit01DailySequence(parent){
   const key=learnerKey+"_u01_day"+d.day+"_writing";input.value=safeGet(key)||"";input.addEventListener("input",()=>{if(!safeSet(key,input.value))status.textContent="Saving failed. Copy your writing for safekeeping."});panel.append(input);
   panel.append(element("h4","Daily review · Not an official mastery assessment"));
   let correct=0,done=0;
-  d.questions.forEach((q,i)=>{const f=element("fieldset");f.style.cssText="margin:10px 0;padding:10px;border:1px solid #b8a784;border-radius:7px";f.append(element("legend",(i+1)+". "+q.prompt));
+  unit01ReviewQuestions(d.day).forEach((q,i)=>{const f=element("fieldset");f.style.cssText="margin:10px 0;padding:10px;border:1px solid #b8a784;border-radius:7px";f.append(element("legend",(i+1)+". "+q.prompt));
    const options=shuffleQuestions(q.choices.map((v,j)=>({v,correct:j===q.answer})));
    const feedback=element("p");feedback.setAttribute("role","status");
    for(const choice of options){const b=element("button",choice.v);b.type="button";b.addEventListener("click",()=>{if(f.dataset.answered)return;f.dataset.answered="1";done++;if(choice.correct)correct++;feedback.textContent=choice.correct?"Correct.":"Review the correct response: "+q.choices[q.answer];f.querySelectorAll("button").forEach(x=>x.disabled=true);status.textContent="Day "+d.day+" practice: "+correct+"/"+done+" correct. Daily review does not unlock levels."});f.append(b)}
