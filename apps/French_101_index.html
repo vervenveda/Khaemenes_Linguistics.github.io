@@ -453,6 +453,18 @@ function unit01ReviewQuestions(day){
  const transfer=UNIT01_TRANSFER_QUESTIONS.filter((q,i)=>i%14===(day-2)%14 || i%14===((day-2)+5)%14 || i%14===((day-2)+9)%14).map(q=>({prompt:q[0],choices:q[1],answer:q[2]}));
  return shuffleQuestions([...bank,...transfer]).slice(0,5);
 }
+function addUnit01AudioReadiness(parent){
+ const section=element("section");section.className="study-section";
+ section.append(element("h3","Unit 01 · Listening and Pronunciation Readiness"));
+ const status=element("p");status.setAttribute("role","status");
+ const check=element("button","Check French audio");check.type="button";check.addEventListener("click",()=>{
+  const ready=frenchVoiceAvailable();
+  status.textContent=ready?"A French system voice is available. Listen to the sample and repeat it. System speech is practice, not independent listening certification.":"No French voice is currently detected. Continue the written work. Ask an educator to provide spoken French for independent listening review; no text substitute will be recorded as a listening pass.";
+  if(ready)speakFR("Bonjour. Je m'appelle Léa. Comment ça va ?");
+ });section.append(check,status);
+ section.append(element("p","Listening evidence: hear an unfamiliar phrase without seeing its text, then explain its meaning. Speaking evidence: spell a new name and pronounce a short greeting for an educator. Record observed errors and corrections in the daily review rubric."));
+ parent.append(section);
+}
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
  wrap.append(element("h3","Unit 01 · Alphabet and French Sounds · Three Weeks"),element("p","Fourteen additional lessons follow the first day's alphabet introduction. Work through each day in order; these daily reviews are formative and do not alter the existing 80% official mastery gate."));
@@ -480,7 +492,7 @@ function addUnit01DailySequence(parent){
   const print=element("button","Print daily lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(d.day));panel.append(print);
   status.textContent="Day "+d.day+" review ready.";previous.disabled=d.day<=2;next.disabled=d.day>=15;journey.textContent="Selected: Day "+d.day+" of 15 · Day 01 is above. Assignment drafts save independently. Daily work is formative; only official mastery results unlock levels.";
  }
- previous.addEventListener("click",()=>{picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01Checkpoint(parent);
+ previous.addEventListener("click",()=>{picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);
 }
 
 function openLesson(level){
