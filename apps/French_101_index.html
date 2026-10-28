@@ -436,7 +436,7 @@ function printUnit01Day(day){
  const source=day===1?document.getElementById("french101-unit01-day01"):document.querySelector("#unit01-daily-lessons .unit01-active-day");
  if(!source)return;
  const previous=document.getElementById("unit01-print-copy");if(previous)previous.remove();
- const copy=source.cloneNode(true);copy.id="unit01-print-copy";
+ const copy=source.cloneNode(true);copy.id="unit01-print-copy";copy.querySelectorAll("details").forEach(detail=>detail.open=true);
  // Copy saved draft values, since cloning textareas does not reliably clone current values.
  const from=source.querySelectorAll("textarea"),to=copy.querySelectorAll("textarea");
  from.forEach((v,i)=>{if(to[i])to[i].textContent=v.value});
