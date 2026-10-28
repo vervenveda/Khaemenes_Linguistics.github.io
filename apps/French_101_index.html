@@ -1597,5 +1597,25 @@ $("selectLearner").addEventListener("click",()=>reset("Learner selected. Choose 
  });
 })();
 </script>
+<script id="french101-direct-lesson-review">
+/* Direct access to existing self-paced Level 1 lesson content, not to official graded levels. */
+document.addEventListener("DOMContentLoaded",()=>{
+ const match=location.hash.match(/^#lesson-(0?[1-9]|1[0-5])$/i);
+ if(!match)return;
+ const requested=Number(match[1]);
+ try{
+  startApp();
+  openLesson(1); // Level 1 is already available to all learners; no mastery override.
+  if(requested>=2){
+   const picker=document.querySelector("#unit01-daily-lessons select[aria-label='Choose Unit 01 lesson']");
+   if(!picker)return;
+   picker.value=String(requested);
+   picker.dispatchEvent(new Event("change",{bubbles:true}));
+  }
+  const target=requested===1?document.getElementById("french101-unit01-day01"):document.querySelector("#unit01-daily-lessons .unit01-active-day");
+  target?.scrollIntoView({block:"start",behavior:"instant"});
+ }catch(error){console.warn("Lesson review link could not open:",error)}
+});
+</script>
 </body>
 </html>
