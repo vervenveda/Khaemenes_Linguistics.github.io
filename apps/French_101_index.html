@@ -613,7 +613,7 @@ function openQuiz(level){
    progress[level]="completed";progress["quizScore_"+level]=score;progress["quizTotal_"+level]=set.length;
    if(level===1){progress.u01GateRequired=true;if(safeGet(learnerKey+"_u01_checkpoint_v1")&&(()=>{try{return JSON.parse(safeGet(learnerKey+"_u01_checkpoint_v1")).passed===true}catch{return false}})()){progress.u01CheckpointPassed=true;progress[2]="unlocked"}}else if(level<totalLevels&&progress[level+1]!=="completed")progress[level+1]="unlocked";
    saveProgress();
-   addButton(box,level<totalLevels?"Continue to Next Level":"Final Exam",()=>{if(level<totalLevels)openLesson(level+1);else openExam()});
+   if(level===1&&!available(2)){feedback.textContent+=" Complete the Unit 01 knowledge checkpoint (12/15) in Level 1 before entering Level 2.";addButton(box,"Return to Unit 01 Checkpoint",()=>openLesson(1));}else addButton(box,level<totalLevels?"Continue to Next Level":"Final Exam",()=>{if(level<totalLevels)openLesson(level+1);else openExam()});
   }else addButton(box,"Retry with New Questions",()=>openQuiz(level));
   buildLevelGrid();
  }
