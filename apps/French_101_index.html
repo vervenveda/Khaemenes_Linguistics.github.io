@@ -521,6 +521,23 @@ function addUnit01DailySequence(parent){
  previous.addEventListener("click",()=>{picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
 }
 
+/* Verified Academy tools — optional practice; never modify French 101 mastery records. */
+function addFrench101PracticeResources(parent,level){
+ const section=element("section");section.className="study-section";
+ section.append(element("h3","Academy Practice Tools · Optional Enrichment"));
+ section.append(element("p","These are original Academy applications. They open separately so your lesson and saved writing remain here. Their activities do not award French 101 mastery or unlock levels."));
+ const resources=[
+ ["Prose Handwriting Lab · French spelling and accents","https://vervenveda.com/proresource_hub.github.io/Protools/PROSE/Handwriting%20Lab/handwriting-lab.html","Practice copying French letters, names, accents and short sentences. Latin-script handwriting guidance; review accent formation carefully."],
+ ["L'Atelier des Sons · Pronunciation Laboratory","./atelier-des-sons/","Practice French sounds and distinguish letter names from word pronunciation."],
+ ["Khaemenes Sovereign Translator","./translator-entry.html","Look up or review French vocabulary; translation is a study aid, not a substitute for independent assignments."],
+ ["Les Chroniques Francophones · French Reading","./chroniques-francophones/?level="+level,"Read the linked original level story and review vocabulary in context."]
+ ];
+ for(const [label,url,description] of resources){
+  const entry=element("p");const link=element("a",label);link.href=url;link.target="_blank";link.rel="noopener noreferrer";entry.append(link,element("small"," — "+description));section.append(entry);
+ }
+ parent.append(section);
+}
+
 function openLesson(level){
  if(!available(level)||!LESSONS[level]){backToMenu();return}
  currentLevel=level;const box=$("lesson");box.replaceChildren();
@@ -544,6 +561,7 @@ function openLesson(level){
  makeListeningPractice(box,level);
  addFrenchMatchingGame(box,level);
  addFrenchGameShelf(box);
+ addFrench101PracticeResources(box,level);
  const reader=element("section");reader.className="study-section";
  reader.append(element("h3","Level "+level+" · Original French Story"));
  reader.append(element("p","Read the level-aligned story, examine French vocabulary in context, and complete comprehension practice."));
