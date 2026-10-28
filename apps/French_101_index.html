@@ -470,7 +470,7 @@ function addUnit01DailySequence(parent){
   panel.append(element("p","Review evidence: Check correct spelling, accents, explanation and pronunciation. Correct and retry any missed skill before the next day. An educator can review the saved work; this form does not claim authenticated teacher approval."));
   addUnit01Worksheet(panel,d.day,d.title,d.assignment);
   addUnit01EducatorRubric(panel,d.day);
-  const print=element("button","Print daily lesson");print.type="button";print.addEventListener("click",()=>{document.body.classList.add("print-french-lesson");window.addEventListener("afterprint",()=>document.body.classList.remove("print-french-lesson"),{once:true});window.print()});panel.append(print);print.onclick=()=>printUnit01Day(d.day);
+  const print=element("button","Print daily lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(d.day));panel.append(print);
   status.textContent="Day "+d.day+" review ready.";
  }
  picker.addEventListener("change",draw);wrap.append(picker,panel,status);parent.append(wrap);draw();addUnit01Checkpoint(parent);
