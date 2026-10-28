@@ -266,12 +266,44 @@ function makeListeningPractice(parent,level){
  addButton(section,"New listening question",()=>{newRound();speakFR(item.fr)});
  newRound();parent.append(section);
 }
+/* Beginner foundations, added to the established level pages without renumbering completed lessons. */
+const BEGINNER_FOUNDATIONS={
+  1:{title:"Alphabet & French sound foundations",intro:"French uses the 26 Latin letters. Letter names and the sounds letters make inside words are not always identical. Practice accents é, è, ê, ë, à, ù, â, î, ô, û, ç and the ligature œ as written forms, not extra alphabet letters.",groups:[
+    ["A B C D E F G","a, bé, cé, dé, e, effe, gé"],
+    ["H I J K L M N","ache, i, ji, ka, elle, emme, enne"],
+    ["O P Q R S T U","o, pé, ku, erre, esse, té, u"],
+    ["V W X Y Z","vé, double vé, iks, i grec, zède"]
+  ],tasks:"Spell your name and two everyday French words aloud. Point to the written letters as you speak. Compare e, é, è and ç in words such as école, père and garçon."},
+  3:{title:"Counting from zero to twenty and beyond",intro:"Begin with zero to twenty. Then learn the tens trente, quarante, cinquante and soixante. French 70–99 follow regional patterns; this introduction uses the France-based forms, while other Francophone regions may use septante or nonante.",groups:[
+    ["0–5","zéro, un, deux, trois, quatre, cinq"],
+    ["6–10","six, sept, huit, neuf, dix"],
+    ["11–15","onze, douze, treize, quatorze, quinze"],
+    ["16–20","seize, dix-sept, dix-huit, dix-neuf, vingt"],
+    ["Tens","trente, quarante, cinquante, soixante, soixante-dix, quatre-vingts, quatre-vingt-dix, cent"]
+  ],tasks:"Count ten objects. Read a price such as cinq euros. Practice saying six, onze, quinze and vingt without reading the translation."}
+};
+function addBeginnerFoundation(parent,level){
+ const data=BEGINNER_FOUNDATIONS[level];if(!data)return;
+ const section=element("section");section.className="study-section";
+ section.append(element("h3",data.title),element("p",data.intro));
+ for(const [heading,words] of data.groups){
+  const line=element("p");line.append(element("strong",heading+" · "),document.createTextNode(words+" "));
+  const play=element("button","Listen & repeat");play.type="button";play.addEventListener("click",()=>speakFR(words));line.append(play);section.append(line);
+ }
+ section.append(element("p","Independent practice: "+data.tasks));
+ parent.append(section);
+}
+function frenchVoiceAvailable(){
+ return typeof speechSynthesis!=="undefined"&&typeof SpeechSynthesisUtterance!=="undefined"&&
+ (speechSynthesis.getVoices()||[]).some(v=>String(v.lang||"").toLowerCase().startsWith("fr"));
+}
 function openLesson(level){
  if(!available(level)||!LESSONS[level]){backToMenu();return}
  currentLevel=level;const box=$("lesson");box.replaceChildren();
  box.append(element("h2",`Level ${level}`),element("p","Listen and repeat each phrase, then complete the quiz."));
  const guide=LESSON_GUIDES[level-1];
  box.append(element("h3",guide[0]));
+ addBeginnerFoundation(box,level);
  addStudySection(box,"Understand the language",guide[1]);
  addStudySection(box,"Original French dialogue",guide[2],true);
  addStudySection(box,"Grammar and usage",guide[3]);
@@ -358,8 +390,9 @@ function selectFrenchQuiz(level){
 }
 function openQuiz(level){
  if(!available(level)||!LESSONS[level])return;
- const set=selectFrenchQuiz(level),box=$("quiz");box.replaceChildren();
- box.append(element("h2",`Quiz — Level ${level}`),element("p","Ten balanced questions drawn from an expanded lesson bank: four French-to-English, four English-to-French and two listening prompts. Pass with 80% (8 of 10)."));
+ const hasFrenchVoice=frenchVoiceAvailable();
+ const set=selectFrenchQuiz(level).map(q=>q.mode==="listen"&&!hasFrenchVoice?{...q,mode:"fr-en",adapted:true}:q),box=$("quiz");box.replaceChildren();
+ box.append(element("h2",`Quiz — Level ${level}`),element("p",hasFrenchVoice?"Ten questions including two French listening prompts. Pass with 80% (8 of 10).":"Ten questions, 80% required (8 of 10). French speech is unavailable, so listening prompts are replaced with visible text; listening proficiency must be assessed separately."));
  const question=element("p");question.style.fontSize="1.2rem";question.lang="fr";
  const input=document.createElement("input");input.type="text";input.autocomplete="off";
  const feedback=element("p");feedback.setAttribute("role","status");
