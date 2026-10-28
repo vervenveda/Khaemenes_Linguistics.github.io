@@ -398,6 +398,13 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 #app #frenchContributionSlot .french-contribution-card img{max-width:90px!important;height:auto!important}
 @media(max-width:530px){#app #frenchContributionSlot{width:100%!important}#app #frenchContributionSlot .french-contribution-card{padding:13px 14px!important}}
 </style>
+<style id="french101-archive-video-slots">
+#app #lesson .french-video-archive-slot{box-sizing:border-box;width:100%;max-width:100%;margin:17px auto;padding:16px 20px;border:1px solid #b5a17e;border-radius:7px;background:#f5eddf;color:#33443b;box-shadow:inset 0 0 0 4px #f5eddf,inset 0 0 0 5px rgba(42,46,44,.3)}
+#app #lesson .french-video-archive-slot h4{font:400 19px/1.4 Georgia,serif;margin:2px 0 8px;text-align:left}
+#app #lesson .french-video-archive-slot p{font:400 13px/1.6 system-ui,sans-serif;margin:5px 0}
+#app #lesson .french-video-archive-slot a{color:#21493f;text-decoration:underline;text-underline-offset:3px}
+#app #lesson .french-video-archive-slot .french-video-status{color:#606a61;font-style:italic}
+</style>
 </head>
 
 <body>
@@ -737,6 +744,7 @@ function frenchUnit01LearningAid(parent,day){
 
 function addAlphabetDailyLesson(parent){
  const section=element("section");section.className="study-section";section.id="french101-unit01-day01";
+ addFrench101ArchiveVideoSlot(section,1);
  const title=element("h3","Unit 01 · Lesson 01 — Meet the French Alphabet");
  section.append(title,element("p","Learning targets: identify the 26 letters in their standard written order; distinguish letter names from sounds in words; spell a familiar name; recognize that accents are spelling marks, not extra letters."));
  section.append(element("h4","1 · Learn and observe"),element("p","French uses the same 26 basic letters as English, but their spoken names differ. The alphabet is used to spell names, addresses, and unfamiliar words. A letter name is not always the sound that the letter makes inside a French word. For instance, the letter e has the name « e », while the word école begins with an accented é."));
@@ -1046,6 +1054,29 @@ function addFrenchLesson04Depth(panel){
  panel.append(section);
 }
 
+/* French 101 archive video gate: no external candidate is promoted without review. */
+const FRENCH101_ARCHIVE_VIDEO_SLOTS={
+  1:"fr101-u01-d01-alphabet-video",2:"fr101-u01-d01-alphabet-video",3:"fr101-u01-d01-alphabet-video",
+  4:"fr101-u01-d04-accents-video",6:"fr101-u01-d04-e-vowels-video",
+  7:"fr101-u01-d07-final-e-video",10:"fr101-u01-d01-alphabet-video",11:"fr101-u01-d07-final-e-video"
+};
+const FRENCH101_APPROVED_VIDEO_LINKS={}; // Only educator-approved video URLs with verified rights, subtitles and playback belong here.
+function addFrench101ArchiveVideoSlot(parent,lessonNumber){
+ const panel=element("aside");panel.className="french-video-archive-slot";panel.setAttribute("aria-label","Lesson "+String(lessonNumber).padStart(2,"0")+" video archive");
+ panel.append(element("h4","Video learning · Academy archive"));
+ const video=FRENCH101_APPROVED_VIDEO_LINKS[lessonNumber];
+ if(video&&typeof video.url==="string"&&/^https:\/\//.test(video.url)){
+  const link=element("a","Watch approved lesson video");link.href=video.url;link.target="_blank";link.rel="noopener noreferrer";
+  panel.append(element("p",video.title||"Approved Academy learning video"),link);
+ }else{
+  panel.append(element("p","Video selection is under educational and playback review. Continue this complete lesson using the original instruction, reading and listening practice; a video is not required for mastery."));
+  if(FRENCH101_ARCHIVE_VIDEO_SLOTS[lessonNumber]){
+   const p=element("p","A relevant archive candidate is being reviewed. It has not yet been approved or embedded for students.");p.className="french-video-status";panel.append(p);
+  }
+ }
+ parent.append(panel);
+}
+
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
  wrap.append(element("h3","Unit 01 · Alphabet and French Sounds · Self-Paced"),element("p","Fourteen additional self-paced lessons follow Lesson 01. Work through them in order at your own pace. Practice reviews are formative and do not change the 80% official mastery gate."));
@@ -1082,6 +1113,7 @@ function addUnit01DailySequence(parent){
 
   if(d.day===3)addFrenchLesson03Depth(panel);
   if(d.day===4)addFrenchLesson04Depth(panel);
+  addFrench101ArchiveVideoSlot(panel,d.day);
   const audio=element("button","Listen to French examples");audio.type="button";audio.addEventListener("click",()=>speakFR(d.models));panel.append(audio);
   panel.append(element("h4","Step 2 · Guided activity"),element("p",d.guided),element("h4","Step 3 · Independent written assignment"),element("p",d.assignment));
   const activity=element("aside");activity.className="unit01-day-activity";activity.style.cssText="border:1px solid #b5a68f;border-radius:7px;padding:14px;margin:12px 0";
