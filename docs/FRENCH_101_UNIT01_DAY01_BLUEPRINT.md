@@ -31,7 +31,7 @@ A learner can independently identify and sequence 26 French alphabet letters, di
 10. Return to the level course journey. **Neither formative review nor games unlock the course.** The existing official Level 1 80% quiz and distinct Unit 01 checkpoint retain their own records and gates.
 
 ## Authored formative review
-- 30 questions, 6 per strand: alphabet order, accent recognition, meaning, usage, transfer.
+- 30 questions in five strands: 5 alphabet-order, 8 accent-recognition, 5 meaning, 5 usage and 7 transfer items.
 - A round selects two questions in each of the five strands (10 total), with shuffled answer choices.
 - Correct-answer explanations appear after a selection; questions cannot be scored twice in the same round.
 - Review attempts are intentionally **not persisted** as mastery; students may retry without penalty.
