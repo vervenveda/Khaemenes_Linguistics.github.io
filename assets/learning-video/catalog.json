@@ -1,0 +1,145 @@
+{
+  "schema_version": "1.0",
+  "created_utc": "2026-10-28",
+  "owner": "Khaemenes Academy — Linguistics",
+  "storage_policy": "External media links and original metadata only; no third-party media binaries",
+  "promotion_policy": "docs/FRENCH_101_VIDEO_PROMOTION_POLICY.md",
+  "approval_required": true,
+  "entries": [
+    {
+      "id": "fr101-u01-d01-alphabet-video",
+      "unit": 1,
+      "days": [
+        1,
+        2,
+        3,
+        10
+      ],
+      "kind": "video",
+      "title": "Prononciation / Comment prononcer l’alphabet ?",
+      "provider": "TV5MONDE — Apprendre le français",
+      "url": "https://apprendre.tv5monde.com/fr/aides/prononciation-comment-prononcer-lalphabet",
+      "skill": "French alphabet letter names and spelling names",
+      "source_page_verified": "2026-10-28",
+      "review_status": "CANDIDATE",
+      "video_specific_rating": null,
+      "review_count": null,
+      "review_scope": "No verified video-specific public rating",
+      "embed_permission": "NOT VERIFIED",
+      "redistribution_permission": "NOT VERIFIED",
+      "player_test": "NOT TESTED",
+      "notes": "Source confirms embedded video explainer, but player playback, transcripts, review and rights require separate checks"
+    },
+    {
+      "id": "fr101-u01-d04-accents-video",
+      "unit": 1,
+      "days": [
+        4,
+        6
+      ],
+      "kind": "video",
+      "title": "Prononciation / É, è, ê, à, où… Comment prononcer les accents en français ?",
+      "provider": "TV5MONDE — Apprendre le français",
+      "url": "https://apprendre.tv5monde.com/fr/aides/prononciation-e-e-e-ou-comment-prononcer-les-accents-en-francais",
+      "skill": "French written accents and sound",
+      "source_page_verified": "2026-10-28",
+      "review_status": "CANDIDATE",
+      "video_specific_rating": null,
+      "review_count": null,
+      "review_scope": "No verified video-specific public rating",
+      "embed_permission": "NOT VERIFIED",
+      "redistribution_permission": "NOT VERIFIED",
+      "player_test": "NOT TESTED",
+      "notes": "Page identifies expert phonetics explanation with embedded video"
+    },
+    {
+      "id": "fr101-u01-d04-e-vowels-video",
+      "unit": 1,
+      "days": [
+        4,
+        6
+      ],
+      "kind": "video",
+      "title": "Prononciation / « é » et « è » : aigu ou grave, quel accent choisir ?",
+      "provider": "TV5MONDE — Apprendre le français",
+      "url": "https://apprendre.tv5monde.com/fr/aides/prononciation-e-et-e-aigu-ou-grave-quel-accent-choisir",
+      "skill": "Contrast French /e/ and /ɛ/",
+      "source_page_verified": "2026-10-28",
+      "review_status": "CANDIDATE",
+      "video_specific_rating": null,
+      "review_count": null,
+      "review_scope": "No verified video-specific public rating",
+      "embed_permission": "NOT VERIFIED",
+      "redistribution_permission": "NOT VERIFIED",
+      "player_test": "NOT TESTED",
+      "notes": "Confirmed media section titled Explications en vidéo; pronunciation needs educator evaluation"
+    },
+    {
+      "id": "fr101-u01-d07-final-e-video",
+      "unit": 1,
+      "days": [
+        7,
+        11
+      ],
+      "kind": "video",
+      "title": "Prononciation / Comment prononcer le « e » final des mots ?",
+      "provider": "TV5MONDE — Apprendre le français",
+      "url": "https://apprendre.tv5monde.com/fr/aides/prononciation-comment-prononcer-le-e-final-des-mots",
+      "skill": "Word-final mute e and contextual pronunciation",
+      "source_page_verified": "2026-10-28",
+      "review_status": "CANDIDATE",
+      "video_specific_rating": null,
+      "review_count": null,
+      "review_scope": "No verified video-specific public rating",
+      "embed_permission": "NOT VERIFIED",
+      "redistribution_permission": "NOT VERIFIED",
+      "player_test": "NOT TESTED",
+      "notes": "Relevant to silent endings; includes embedded instructional video"
+    },
+    {
+      "id": "fr101-u01-d01-alphabet-audio-reference",
+      "unit": 1,
+      "days": [
+        1,
+        2
+      ],
+      "kind": "audio_reference",
+      "title": "Prononciation / Les lettres de l'alphabet",
+      "provider": "TV5MONDE — Apprendre le français",
+      "url": "https://apprendre.tv5monde.com/fr/aides/prononciation-les-lettres-de-lalphabet",
+      "skill": "Hear letter names and examples",
+      "source_page_verified": "2026-10-28",
+      "review_status": "CANDIDATE",
+      "video_specific_rating": null,
+      "review_count": null,
+      "review_scope": "Not a standalone video",
+      "embed_permission": "NOT VERIFIED",
+      "redistribution_permission": "NOT VERIFIED",
+      "player_test": "NOT TESTED",
+      "notes": "Per-letter audio controls and written examples; cataloged separately from videos"
+    },
+    {
+      "id": "fr101-u01-d01-alphabet-exercises",
+      "unit": 1,
+      "days": [
+        1,
+        2,
+        3
+      ],
+      "kind": "exercise_series",
+      "title": "Prononciation : les lettres de l'alphabet",
+      "provider": "TV5MONDE — Apprendre le français",
+      "url": "https://apprendre.tv5monde.com/fr/exercices/a1-debutant/prononciation-les-lettres-de-lalphabet",
+      "skill": "A1 alphabet listening and pronunciation review",
+      "source_page_verified": "2026-10-28",
+      "review_status": "CANDIDATE",
+      "video_specific_rating": null,
+      "review_count": null,
+      "review_scope": "Not a standalone video",
+      "embed_permission": "NOT VERIFIED",
+      "redistribution_permission": "NOT VERIFIED",
+      "player_test": "NOT TESTED",
+      "notes": "Four A1 exercises; original page indicates availability through 2032-12-31"
+    }
+  ]
+}
