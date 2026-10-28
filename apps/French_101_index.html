@@ -149,6 +149,14 @@ body:has(#app:not(.hidden)){background:radial-gradient(ellipse at 14% 16%,rgba(2
 @media(max-width:480px){#app [data-khae-actions] a{font-size:11px!important;padding:7px 5px!important}#app .french-header-menu nav{right:0}}
 @media(prefers-reduced-motion:reduce){body:has(#app:not(.hidden)){background-attachment:scroll}}
 </style>
+<style id="french101-baroque-framing">
+/* Decorative boundaries only; no changes to lesson interaction or assessment. */
+#app:not(.hidden)::before{content:"";position:fixed;inset:7px;pointer-events:none;z-index:3;border:2px solid rgba(212,172,99,.78);outline:1px solid rgba(246,226,175,.48);outline-offset:-8px;border-radius:7px;box-shadow:inset 0 0 0 5px rgba(12,39,45,.12)}
+#app .french-level-entry{border:2px solid #af8851!important;outline:1px solid rgba(152,107,57,.44);outline-offset:-10px;box-shadow:0 22px 56px rgba(7,22,29,.42),inset 0 0 0 5px rgba(251,240,212,.58)!important}
+#splash .french-welcome-card{border:2px solid #ba965a!important;outline:1px solid rgba(149,111,61,.52);outline-offset:-11px;box-shadow:0 19px 57px rgba(43,31,27,.27),inset 0 0 0 6px rgba(245,229,195,.72)!important}
+@media(max-width:480px){#app:not(.hidden)::before{inset:3px;outline-offset:-5px}#splash .french-welcome-card{outline-offset:-7px}}
+@media print{#app:not(.hidden)::before{display:none!important}}
+</style>
 </head>
 
 <body><p id="academyAudioStatus" role="status" aria-live="polite" style="margin:7px auto;padding:4px 10px;max-width:850px;font:400 14px/1.5 system-ui,sans-serif"></p>
