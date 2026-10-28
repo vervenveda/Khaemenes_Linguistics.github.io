@@ -378,6 +378,10 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 #app #lesson .french-day02-rubric-row select{border:1px solid #b6a178;background:#fffaf0;min-height:40px;padding:8px;color:#25362e}
 @media(max-width:570px){#app #lesson .french-day02-depth{padding:14px}#app #lesson .french-day02-rubric-row{grid-template-columns:1fr}}
 </style>
+<style id="french101-print-evidence-2026">
+@media screen{#unit01-print-copy{display:none!important}}
+@media print{#unit01-print-copy{width:100%!important;max-width:100%!important;padding:20px!important;background:white!important;color:#222!important;box-shadow:none!important;position:static!important}#unit01-print-copy textarea,#unit01-print-copy select,#unit01-print-copy button{display:none!important}#unit01-print-copy .french-print-response,#unit01-print-copy .french-print-select-value{display:block!important;visibility:visible!important;color:#222!important}#unit01-print-copy fieldset{break-inside:avoid}}
+</style>
 </head>
 
 <body>
@@ -889,7 +893,13 @@ function printUnit01Day(day){
  const copy=source.cloneNode(true);copy.id="unit01-print-copy";copy.querySelectorAll("details").forEach(detail=>detail.open=true);
  // Copy saved draft values, since cloning textareas does not reliably clone current values.
  const from=source.querySelectorAll("textarea"),to=copy.querySelectorAll("textarea");
- from.forEach((v,i)=>{if(to[i])to[i].textContent=v.value});
+ from.forEach((v,i)=>{if(to[i]){to[i].value=v.value;to[i].textContent=v.value;}});
+ // A cloned select retains its first default option unless the live selection is copied.
+ const liveSelects=source.querySelectorAll("select"),printSelects=copy.querySelectorAll("select");
+ liveSelects.forEach((v,i)=>{if(printSelects[i]){printSelects[i].value=v.value;Array.from(printSelects[i].options).forEach(o=>o.selected=o.value===v.value);}});
+ // Print a visible textual version of independent answers and review ratings.
+ copy.querySelectorAll("textarea").forEach(field=>{const response=element("p",field.value||"(No response entered)");response.className="french-print-response";response.style.cssText="white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #b5a68f;padding:10px;margin:7px 0 13px";field.insertAdjacentElement("afterend",response)});
+ copy.querySelectorAll("select").forEach(field=>{const result=element("span"," · "+field.value);result.className="french-print-select-value";field.insertAdjacentElement("afterend",result)});
  document.body.append(copy);document.body.classList.add("printing-unit01");
  const clean=()=>{document.body.classList.remove("printing-unit01");copy.remove();window.removeEventListener("afterprint",clean)};
  window.addEventListener("afterprint",clean);
@@ -970,10 +980,16 @@ function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
  wrap.append(element("h3","Unit 01 · Alphabet and French Sounds · Self-Paced"),element("p","Fourteen additional self-paced lessons follow Lesson 01. Work through them in order at your own pace. Practice reviews are formative and do not change the 80% official mastery gate."));
  const picker=element("select");picker.setAttribute("aria-label","Choose Unit 01 lesson");picker.style.cssText="width:100%;padding:10px;margin:8px 0";
+ const lessonSelectionKey=()=>learnerKey+"_u01_selected_lesson_v1";
+ const savedSelection=safeGet(lessonSelectionKey());
+
  FRENCH_101_UNIT01_DAYS.forEach(d=>{const o=element("option","Lesson "+String(d.day).padStart(2,"0")+" — "+d.title);o.value=d.day;picker.append(o)});
+ if(savedSelection&&FRENCH_101_UNIT01_DAYS.some(d=>String(d.day)===savedSelection))picker.value=savedSelection;
  const panel=element("article");panel.className="unit01-active-day";panel.style.cssText="max-width:780px;margin:0 auto;line-height:1.65";const navigation=element("div");navigation.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0";const previous=element("button","← Previous Lesson"),next=element("button","Next Lesson →");previous.type=next.type="button";navigation.append(previous,next);const journey=element("p");journey.setAttribute("role","status");const status=element("p");status.setAttribute("role","status");
  function draw(){
-  const d=FRENCH_101_UNIT01_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_UNIT01_DAYS[0];panel.replaceChildren();
+  const d=FRENCH_101_UNIT01_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_UNIT01_DAYS[0];
+  safeSet(lessonSelectionKey(),String(d.day));
+  panel.replaceChildren();
   panel.append(element("h4","Lesson "+String(d.day).padStart(2,"0")+" · "+d.title),element("h4","Step 1 · Learn"),element("p",d.lecture),element("h4","French examples"),element("p",d.models));
   if(d.day===2){
    panel.append(element("h4","Learning targets · Letter names and vowel families"),
