@@ -468,6 +468,23 @@ function addUnit01AudioReadiness(parent){
  section.append(element("p","This is an observation note, not a certified listening score or verified educator signature."));
  parent.append(section);
 }
+function addUnit01LearnerJourneyCheck(parent){
+ const section=element("section");section.className="study-section";
+ section.append(element("h3","Unit 01 · Learner Journey and Saved Work Check"));
+ const result=element("p");result.setAttribute("role","status");
+ const button=element("button","Check my saved work and learning gates");button.type="button";
+ button.addEventListener("click",()=>{
+  const draftDays=FRENCH_101_UNIT01_DAYS.filter(d=>Boolean((safeGet(learnerKey+"_u01_day"+d.day+"_writing")||"").trim())).length;
+  const day1=Boolean((safeGet(learnerKey+"_u01_d01_assignment")||"").trim());
+  let checkpoint=null;try{checkpoint=JSON.parse(safeGet(learnerKey+"_u01_checkpoint_v1")||"null")}catch{}
+  const quiz=progress[1]==="completed";
+  const restored=day1||draftDays>0;
+  const status="Saved writing: Day 01 "+(day1?"present":"not yet recorded")+", later days "+draftDays+"/14. Level 1 quiz: "+(quiz?"passed":"not passed")+". Unit checkpoint: "+(checkpoint&&checkpoint.passed?"passed":"not passed")+". Level 2 access: "+(available(2)?"available":"locked")+". "+(restored?"Existing writing found in this browser.":"No Unit 01 writing detected in this browser yet.")+" Student records stay on this device unless separately exported.";
+  result.textContent=status;
+ });section.append(button,result);
+ section.append(element("p","This check reads the selected learner's current browser records without modifying them. It does not test browser printing, speech playback or another device."));
+ parent.append(section);
+}
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
  wrap.append(element("h3","Unit 01 · Alphabet and French Sounds · Three Weeks"),element("p","Fourteen additional lessons follow the first day's alphabet introduction. Work through each day in order; these daily reviews are formative and do not alter the existing 80% official mastery gate."));
@@ -501,7 +518,7 @@ function addUnit01DailySequence(parent){
   const print=element("button","Print daily lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(d.day));panel.append(print);
   status.textContent="Day "+d.day+" review ready.";previous.disabled=d.day<=2;next.disabled=d.day>=15;journey.textContent="Selected: Day "+d.day+" of 15 · Day 01 is above. Assignment drafts save independently. Daily work is formative; only official mastery results unlock levels.";
  }
- previous.addEventListener("click",()=>{picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);
+ previous.addEventListener("click",()=>{picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
 }
 
 function openLesson(level){
