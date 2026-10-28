@@ -382,6 +382,12 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 @media screen{#unit01-print-copy{display:none!important}}
 @media print{#unit01-print-copy{width:100%!important;max-width:100%!important;padding:20px!important;background:white!important;color:#222!important;box-shadow:none!important;position:static!important}#unit01-print-copy textarea,#unit01-print-copy select,#unit01-print-copy button{display:none!important}#unit01-print-copy .french-print-response,#unit01-print-copy .french-print-select-value{display:block!important;visibility:visible!important;color:#222!important}#unit01-print-copy fieldset{break-inside:avoid}}
 </style>
+<style id="french101-pronunciation-pace-control">
+#frenchAudioControls #frenchSpeechPace{width:clamp(110px,20vw,190px);accent-color:#24483f;cursor:pointer}
+#frenchAudioControls #frenchPaceValue{min-width:154px;font:400 12px/1.4 system-ui,sans-serif;color:#2d493f;font-variant-numeric:tabular-nums}
+#frenchAudioControls #frenchSpeechPace:focus-visible{outline:3px solid #b38d48;outline-offset:3px}
+@media(max-width:560px){#frenchAudioControls #frenchSpeechPace{width:min(215px,58vw)}#frenchAudioControls #frenchPaceValue{min-width:135px}}
+</style>
 </head>
 
 <body>
@@ -418,6 +424,9 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
  <label for="frenchSpeechVolume">Volume</label>
  <input id="frenchSpeechVolume" type="range" min="0" max="100" value="100" step="5" aria-label="French voice volume">
  <output id="frenchVolumeValue" for="frenchSpeechVolume">100%</output>
+ <label for="frenchSpeechPace">Speaking pace</label>
+ <input id="frenchSpeechPace" type="range" min="0.45" max="1.10" value="0.65" step="0.05" aria-label="French pronunciation playback speed, from very slow to natural">
+ <output id="frenchPaceValue" for="frenchSpeechPace">0.65× · Slow practice</output>
  <button id="frenchSpeechTest" type="button">Test voice</button>
  <button id="frenchSpeechStop" type="button">Stop</button>
  <p id="academyAudioStatus" role="status" aria-live="polite">Use Test voice to check French audio.</p>
@@ -522,6 +531,13 @@ function backToMenu(){showOnly("menu");buildLevelGrid()}
 document.addEventListener("DOMContentLoaded",()=>{
  const vol=document.getElementById("frenchSpeechVolume"),out=document.getElementById("frenchVolumeValue");
  const selector=document.getElementById("frenchVoiceSelect");
+ const pace=document.getElementById("frenchSpeechPace"),paceOut=document.getElementById("frenchPaceValue");
+ const paceKey="french101_speech_pace_v1";
+ const allowedPace=v=>{const n=Number(v);return Number.isFinite(n)&&n>=0.45&&n<=1.10?Math.round(n*20)/20:0.65};
+ const paceLabel=v=>v<=0.55?"Very slow":v<=0.75?"Slow practice":v<=0.9?"Steady": "Natural";
+ const updatePace=()=>{if(!pace||!paceOut)return;const n=allowedPace(pace.value);pace.value=n.toFixed(2);paceOut.textContent=n.toFixed(2)+"× · "+paceLabel(n)};
+ if(pace){pace.value=allowedPace(safeGet(paceKey)).toFixed(2);updatePace();pace.addEventListener("input",()=>{updatePace();safeSet(paceKey,pace.value);if(window.speechSynthesis?.speaking)document.getElementById("academyAudioStatus").textContent="New pace saved. Stop and replay to hear the change.";});}
+
  const populate=()=>{
   if(!selector)return;
   const voices=("speechSynthesis" in window?window.speechSynthesis.getVoices():[]).filter(v=>String(v.lang||"").toLowerCase().startsWith("fr"));
@@ -555,7 +571,7 @@ function speakFR(text){
   try{
    engine.cancel();
    const phrase=new SpeechSynthesisUtterance(requested);
-   phrase.lang=french.lang||"fr-FR";phrase.voice=french;phrase.rate=0.84;phrase.pitch=1;phrase.volume=Number(document.getElementById("frenchSpeechVolume")?.value||100)/100;
+   phrase.lang=french.lang||"fr-FR";phrase.voice=french;phrase.rate=Math.max(0.45,Math.min(1.10,Number(document.getElementById("frenchSpeechPace")?.value)||0.65));phrase.pitch=1;phrase.volume=Number(document.getElementById("frenchSpeechVolume")?.value||100)/100;
    frenchActiveUtterance=phrase;
    phrase.onstart=()=>announce("French audio playing · "+french.name);
    phrase.onerror=event=>{if(frenchActiveUtterance===phrase){announce("French audio could not play ("+(event.error||"speech error")+"). Check browser tab sound and voice permissions, then try again.");frenchActiveUtterance=null}};
