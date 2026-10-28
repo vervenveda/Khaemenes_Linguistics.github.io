@@ -126,9 +126,32 @@ body.dark .french-level-entry,body.dark .french-learner-record{background:#172a3
 @media(max-width:640px){#app{padding:0 10px 100px}#app .khae-global-campus-header{width:calc(100% + 20px);margin:0 -10px 15px}.french-level-entry{padding:18px 8px}.french-landing-intro{padding:15px 4px}}
 @media print{#app .khae-global-campus-header,.french-landing-intro,.french-learner-record{display:none!important}}
 </style>
+<style id="french101-baroque-landing">
+body:has(#app:not(.hidden)){background:radial-gradient(ellipse at 14% 16%,rgba(230,208,154,.17),transparent 38%),radial-gradient(ellipse at 91% 74%,rgba(106,21,48,.48),transparent 43%),linear-gradient(132deg,#143c30 0%,#102d45 47%,#4b1e35 100%);background-attachment:fixed;color:#f7e9cc}
+#app .khae-global-campus-header{margin-bottom:0!important;background:linear-gradient(105deg,#10392f,#142e4b 57%,#4c2137)!important;border-bottom:2px solid #b79a59!important;color:#f5e7c7!important}
+#app .khae-global-campus-header a,#app .khae-global-campus-header small,#app .khae-global-campus-header strong{color:#f5e7c7}
+#app [data-khae-header-inner]{display:flex!important;align-items:center!important;gap:12px!important}
+#app [data-khae-actions]{display:flex!important;gap:7px!important;align-items:center!important;margin-left:auto}
+#app .french-header-menu{position:relative;flex:0 0 auto;margin-left:3px}
+#app .french-header-menu summary{list-style:none;cursor:pointer;border:1px solid #b79a59;color:#f5e7c7;background:#183a43;border-radius:7px;padding:9px 12px;font-size:18px;line-height:1;min-height:37px;display:flex;align-items:center;justify-content:center}
+#app .french-header-menu summary::-webkit-details-marker{display:none}
+#app .french-header-menu nav{position:absolute;right:0;top:calc(100% + 8px);z-index:20;width:195px;background:#fff8e9;border:1px solid #b79a59;border-radius:7px;padding:8px;box-shadow:0 12px 28px #100d0b55;display:grid;gap:4px}
+#app .french-header-menu nav a{display:block;padding:9px;color:#23382f!important;text-decoration:none;text-align:left}
+#app .french-header-menu nav a:hover{background:#efe3c7}
+#app .french-landing-intro{padding-top:28px}
+#app .french-landing-eyebrow{color:#ead3a1}
+#app .french-landing-subtitle,#app .french-landing-caption{color:#f5e8d3}
+#app .french-level-entry{border:1px solid #c4a56d;background:linear-gradient(145deg,#fff9e9,#efe1c2);color:#28352e;box-shadow:0 22px 56px rgba(7,22,29,.42);position:relative}
+#app .french-level-entry:before{content:"";position:absolute;inset:7px;border:1px solid rgba(142,107,54,.28);border-radius:5px;pointer-events:none}
+#app .french-learner-record{background:#f6edd9;border-color:#bca273;color:#30362f}
+#app #themeToggle{background:#e8d4ab;color:#243c36}
+@media(max-width:780px){#app [data-khae-nav]{display:none!important}#app [data-khae-actions]{gap:4px!important}#app .french-header-menu summary{padding:9px}}
+@media(max-width:480px){#app [data-khae-actions] a{font-size:11px!important;padding:7px 5px!important}#app .french-header-menu nav{right:0}}
+@media(prefers-reduced-motion:reduce){body:has(#app:not(.hidden)){background-attachment:scroll}}
+</style>
 </head>
 
-<body><p id="academyAudioStatus" role="status" aria-live="polite" style="margin:7px auto;padding:4px 10px;max-width:850px;font:400 14px/1.5 system-ui,sans-serif"></p><aside style="max-width:850px;margin:12px auto;padding:10px;border:1px solid #b8a784;border-radius:7px;background:#fff8e9;color:#273748;text-align:center;font:400 16px/1.5 system-ui,sans-serif" aria-label="Multilingual learning tools"><span>Learning in another language?</span> <a href="./translator.html?from=de&amp;to=fr&amp;purpose=learning" style="color:#175d63">Open Sovereign Translator (Deutsch → Français)</a><p style="margin:5px 0;font-size:13px">Use the language selector for supported interface text. French lesson and assessment language remains unchanged.</p></aside>
+<body><p id="academyAudioStatus" role="status" aria-live="polite" style="margin:7px auto;padding:4px 10px;max-width:850px;font:400 14px/1.5 system-ui,sans-serif"></p>
 <div id="splash">
   <div class="french-welcome-card">
     <h1>Bienvenue à French 101</h1>
@@ -151,7 +174,7 @@ body.dark .french-level-entry,body.dark .french-learner-record{background:#172a3
    <a href="https://vervenveda.com/Khaemenes_Academy.github.io/family/">Family</a>
    <a href="https://vervenveda.com/Khaemenes_Academy.github.io/teacher-admin/">Teacher</a>
   </nav>
-  <div data-khae-actions><a data-khae-secondary href="https://vervenveda.com/Khaemenes_Academy.github.io/student/">Student Profile</a><a href="https://vervenveda.com/Khaemenes_Linguistics.github.io/">Linguistics Home</a></div>
+  <div data-khae-actions><a data-khae-secondary href="https://vervenveda.com/Khaemenes_Academy.github.io/student/">Student Profile</a><a href="https://vervenveda.com/Khaemenes_Linguistics.github.io/">Linguistics Home</a></div><details class="french-header-menu"><summary aria-label="Open Academy menu" title="Academy menu">☰</summary><nav aria-label="Additional Academy destinations"><a href="https://vervenveda.com/Khaemenes_Academy.github.io/">Academy Home</a><a href="https://vervenveda.com/Khaemenes_Linguistics.github.io/">Linguistics</a><a href="https://vervenveda.com/Khaemenes_Academy.github.io/student/">Student Profile</a><a href="./translator-entry.html">Translator</a></nav></details>
  </div>
 </header>
  <main id="frenchCampusMain">
