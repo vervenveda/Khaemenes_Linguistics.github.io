@@ -253,9 +253,27 @@ body:has(#app:not(.hidden)){color:#f4e9d1!important}
 #app #lesson .unit01-active-day>h4{text-align:center}
 @media(max-width:480px){#app #lesson .french-day01-review-v2 fieldset button{width:100%!important;margin:5px 0!important}#app #lesson .french-academic-evidence-note{padding:12px!important}}
 </style>
+<style id="french101-audio-control-design">
+#frenchAudioControls{position:relative;z-index:7;box-sizing:border-box;width:min(840px,calc(100vw - 28px));margin:9px auto 4px;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:9px 13px;padding:11px 18px;border:1px solid #b99a63;border-radius:7px;background:#f8efdc;color:#233b34;box-shadow:0 5px 18px rgba(19,36,35,.16);font:500 14px/1.45 system-ui,sans-serif}
+#frenchAudioControls label{font-weight:600}#frenchSpeechVolume{width:clamp(90px,26vw,240px);accent-color:#1d5143;cursor:pointer}#frenchVolumeValue{min-width:40px;font-variant-numeric:tabular-nums}
+#frenchAudioControls button{min-height:37px;padding:7px 13px;border-radius:7px;border:1px solid #b99a63;background:#21493f;color:#fff1cc;font:500 13px/1.3 system-ui,sans-serif;cursor:pointer}
+#frenchAudioControls button:focus-visible,#frenchSpeechVolume:focus-visible{outline:3px solid #b38d48;outline-offset:3px}
+#academyAudioStatus{flex-basis:100%;margin:0;text-align:center;color:#284a3d;font-size:13px}
+#frenchAudioControls small{flex-basis:100%;font-size:11px;text-align:center;color:#4f5a50}
+@media(max-width:420px){#frenchAudioControls{gap:7px;padding:9px}#frenchAudioControls label{flex-basis:100%;text-align:center}}
+@media print{#frenchAudioControls{display:none!important}}
+</style>
 </head>
 
-<body><p id="academyAudioStatus" role="status" aria-live="polite" style="margin:7px auto;padding:4px 10px;max-width:850px;font:400 14px/1.5 system-ui,sans-serif"></p>
+<body><aside id="frenchAudioControls" aria-label="French lesson audio controls">
+ <label for="frenchSpeechVolume">French voice volume</label>
+ <input id="frenchSpeechVolume" type="range" min="0" max="100" value="100" step="5" aria-label="French voice volume">
+ <output id="frenchVolumeValue" for="frenchSpeechVolume">100%</output>
+ <button id="frenchSpeechTest" type="button">Test voice</button>
+ <button id="frenchSpeechStop" type="button">Stop</button>
+ <p id="academyAudioStatus" role="status" aria-live="polite">Use Test voice to check French audio.</p>
+ <small>Volume here controls the lesson voice, not your computer's sound output.</small>
+</aside>
 <div id="splash">
   <div class="french-welcome-card">
     <h1>Bienvenue à French 101</h1>
@@ -366,6 +384,12 @@ function buildLevelGrid(){
  }
 }
 function backToMenu(){showOnly("menu");buildLevelGrid()}
+document.addEventListener("DOMContentLoaded",()=>{
+ const vol=document.getElementById("frenchSpeechVolume"),out=document.getElementById("frenchVolumeValue");
+ if(vol&&out)vol.addEventListener("input",()=>{out.textContent=vol.value+"%";if(window.speechSynthesis?.speaking)document.getElementById("academyAudioStatus").textContent="Volume updated for the next spoken phrase. Stop and replay to hear the change.";});
+ document.getElementById("frenchSpeechTest")?.addEventListener("click",()=>speakFR("Bonjour. Je m'appelle Archaemenes. Bienvenue au cours de français."));
+ document.getElementById("frenchSpeechStop")?.addEventListener("click",()=>{if("speechSynthesis" in window)window.speechSynthesis.cancel();frenchActiveUtterance=null;document.getElementById("academyAudioStatus").textContent="French voice stopped.";});
+});
 let frenchActiveUtterance=null;
 function speakFR(text){
  const status=document.getElementById("academyAudioStatus");
@@ -379,7 +403,7 @@ function speakFR(text){
   try{
    engine.cancel();
    const phrase=new SpeechSynthesisUtterance(requested);
-   phrase.lang=french.lang||"fr-FR";phrase.voice=french;phrase.rate=0.84;phrase.pitch=1;phrase.volume=1;
+   phrase.lang=french.lang||"fr-FR";phrase.voice=french;phrase.rate=0.84;phrase.pitch=1;phrase.volume=Number(document.getElementById("frenchSpeechVolume")?.value||100)/100;
    frenchActiveUtterance=phrase;
    phrase.onstart=()=>announce("French audio playing · "+french.name);
    phrase.onerror=event=>{if(frenchActiveUtterance===phrase){announce("French audio could not play ("+(event.error||"speech error")+"). Check browser tab sound and voice permissions, then try again.");frenchActiveUtterance=null}};
