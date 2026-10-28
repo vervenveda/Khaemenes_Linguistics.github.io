@@ -263,17 +263,19 @@ body:has(#app:not(.hidden)){color:#f4e9d1!important}
 @media(max-width:420px){#frenchAudioControls{gap:7px;padding:9px}#frenchAudioControls label{flex-basis:100%;text-align:center}}
 @media print{#frenchAudioControls{display:none!important}}
 </style>
+<style id="french101-audio-panel-elegant">
+#app #frenchAudioControls{width:min(870px,calc(100vw - 40px));margin:16px auto 28px;padding:14px 19px;gap:10px 13px;border:1px solid #b99661;box-shadow:0 6px 24px rgba(8,22,31,.23),inset 0 0 0 3px rgba(255,255,255,.45);background:linear-gradient(110deg,#fff8e9,#f2e5cc);color:#254238}
+#app #frenchAudioControls select{width:min(240px,100%);min-height:38px;border:1px solid #b69a68;border-radius:7px;padding:7px 10px;background:#fffaf0;color:#223b32;font:400 13px/1.4 system-ui,sans-serif}
+#app #frenchAudioControls label{font-weight:500;letter-spacing:.01em}
+#app #frenchAudioControls button{min-width:82px;box-shadow:none}
+#app #frenchAudioControls #academyAudioStatus{color:#2b4d43}
+#app #frenchAudioControls small{opacity:.85}
+@media(max-width:620px){#app #frenchAudioControls{width:calc(100vw - 26px);padding:12px}#app #frenchAudioControls label{font-size:12px}#app #frenchAudioControls select{width:min(100%,280px)}}
+@media print{#app #frenchAudioControls{display:none!important}}
+</style>
 </head>
 
-<body><aside id="frenchAudioControls" aria-label="French lesson audio controls">
- <label for="frenchSpeechVolume">French voice volume</label>
- <input id="frenchSpeechVolume" type="range" min="0" max="100" value="100" step="5" aria-label="French voice volume">
- <output id="frenchVolumeValue" for="frenchSpeechVolume">100%</output>
- <button id="frenchSpeechTest" type="button">Test voice</button>
- <button id="frenchSpeechStop" type="button">Stop</button>
- <p id="academyAudioStatus" role="status" aria-live="polite">Use Test voice to check French audio.</p>
- <small>Volume here controls the lesson voice, not your computer's sound output.</small>
-</aside>
+<body>
 <div id="splash">
   <div class="french-welcome-card">
     <h1>Bienvenue à French 101</h1>
@@ -301,6 +303,17 @@ body:has(#app:not(.hidden)){color:#f4e9d1!important}
 </header>
  <main id="frenchCampusMain">
   <div class="french-landing-intro"><span class="french-landing-eyebrow">Khaemenes Academy · World Languages</span><h1 id="title">French 101</h1><p class="french-landing-subtitle">A thoughtful beginning in French language, pronunciation, reading and communication.</p><p class="french-landing-caption">Choose your learning level below. Your progress stays with your learner record on this device.</p></div>
+  <aside id="frenchAudioControls" aria-label="French lesson audio controls">
+ <label for="frenchVoiceSelect">French narrator</label>
+ <select id="frenchVoiceSelect" aria-label="Select French narrator"><option value="">Finding French voices…</option></select>
+ <label for="frenchSpeechVolume">Volume</label>
+ <input id="frenchSpeechVolume" type="range" min="0" max="100" value="100" step="5" aria-label="French voice volume">
+ <output id="frenchVolumeValue" for="frenchSpeechVolume">100%</output>
+ <button id="frenchSpeechTest" type="button">Test voice</button>
+ <button id="frenchSpeechStop" type="button">Stop</button>
+ <p id="academyAudioStatus" role="status" aria-live="polite">Use Test voice to check French audio.</p>
+ <small>Volume here controls the lesson voice, not your computer's sound output.</small>
+</aside>
   <div id="menu">
     <section class="french-level-entry" aria-labelledby="frenchChooseLevel"><h2 id="frenchChooseLevel">Enter your learning journey</h2><p>Begin with Level 1, or continue an unlocked level.</p><div class="level-grid" id="levelGrid"></div></section>
     <details class="french-learner-record"><summary>Manage learner record, backup and restore</summary><div class="french-learner-record-inner">
@@ -386,6 +399,22 @@ function buildLevelGrid(){
 function backToMenu(){showOnly("menu");buildLevelGrid()}
 document.addEventListener("DOMContentLoaded",()=>{
  const vol=document.getElementById("frenchSpeechVolume"),out=document.getElementById("frenchVolumeValue");
+ const selector=document.getElementById("frenchVoiceSelect");
+ const populate=()=>{
+  if(!selector)return;
+  const voices=("speechSynthesis" in window?window.speechSynthesis.getVoices():[]).filter(v=>String(v.lang||"").toLowerCase().startsWith("fr"));
+  const previous=selector.value||safeGet("french101_selected_voice")||"";
+  selector.replaceChildren();
+  if(!voices.length){const o=document.createElement("option");o.value="";o.textContent="No French voice installed";selector.append(o);selector.disabled=true;return}
+  selector.disabled=false;
+  voices.forEach(v=>{const o=document.createElement("option");o.value=v.voiceURI||v.name;o.textContent=v.name+" · "+v.lang+(v.localService?" · device":"");selector.append(o)});
+  if(voices.some(v=>(v.voiceURI||v.name)===previous))selector.value=previous;
+  else selector.selectedIndex=0;
+ };
+ populate();
+ window.speechSynthesis?.addEventListener?.("voiceschanged",populate);
+ selector?.addEventListener("change",()=>{safeSet("french101_selected_voice",selector.value);document.getElementById("academyAudioStatus").textContent="Narrator selected. Press Test voice to hear it.";});
+ 
  if(vol&&out)vol.addEventListener("input",()=>{out.textContent=vol.value+"%";if(window.speechSynthesis?.speaking)document.getElementById("academyAudioStatus").textContent="Volume updated for the next spoken phrase. Stop and replay to hear the change.";});
  document.getElementById("frenchSpeechTest")?.addEventListener("click",()=>speakFR("Bonjour. Je m'appelle Archaemenes. Bienvenue au cours de français."));
  document.getElementById("frenchSpeechStop")?.addEventListener("click",()=>{if("speechSynthesis" in window)window.speechSynthesis.cancel();frenchActiveUtterance=null;document.getElementById("academyAudioStatus").textContent="French voice stopped.";});
@@ -398,7 +427,8 @@ function speakFR(text){
  const engine=window.speechSynthesis;
  let requested=String(text||"").trim();if(!requested)return false;
  function play(voices){
-  const french=(voices||[]).find(v=>String(v.lang||"").toLowerCase()==="fr-fr")||(voices||[]).find(v=>String(v.lang||"").toLowerCase().startsWith("fr"));
+  const preferred=document.getElementById("frenchVoiceSelect")?.value||safeGet("french101_selected_voice")||"";
+  const french=(voices||[]).find(v=>String(v.lang||"").toLowerCase().startsWith("fr")&&(v.voiceURI===preferred||v.name===preferred))||(voices||[]).find(v=>String(v.lang||"").toLowerCase()==="fr-fr")||(voices||[]).find(v=>String(v.lang||"").toLowerCase().startsWith("fr"));
   if(!french){announce("No French system voice was found. Please enable a French voice in your device's speech settings; written practice is still available.");return false}
   try{
    engine.cancel();
