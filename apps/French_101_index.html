@@ -496,6 +496,12 @@ function addUnit01DailySequence(parent){
   panel.append(element("h4","Day "+d.day+" · "+d.title),element("p",d.lecture),element("h4","French examples"),element("p",d.models));
   const audio=element("button","Listen to French examples");audio.type="button";audio.addEventListener("click",()=>speakFR(d.models));panel.append(audio);
   panel.append(element("h4","Guided activity"),element("p",d.guided),element("h4","Independent written assignment"),element("p",d.assignment));
+  const activity=element("aside");activity.className="unit01-day-activity";activity.style.cssText="border:1px solid #b5a68f;border-radius:7px;padding:14px;margin:12px 0";
+  const focus=d.day<=4?"Handwriting and alphabet":d.day<=9?"Sounds and spelling":d.day<=12?"Greeting and sentence building":"Reading, dictation and cumulative application";
+  activity.append(element("h4","Today's Academy practice · "+focus));
+  const recommendations=d.day<=4?[["Prose Handwriting Lab","https://vervenveda.com/proresource_hub.github.io/Protools/PROSE/Handwriting%20Lab/handwriting-lab.html"],["Alphabet Match","#french-u01-alphabet-match"]]:d.day<=9?[["Sound-to-Spelling Laboratory","#french-u01-sound-spelling"],["French Pronunciation Lab","./atelier-des-sons/"]]:d.day<=12?[["French Sentence Builder","#french-u01-sentence-builder"],["French Story Reader","./chroniques-francophones/?level=1"]]:[["French Sentence Builder","#french-u01-sentence-builder"],["Sound-to-Spelling Laboratory","#french-u01-sound-spelling"],["French Story Reader","./chroniques-francophones/?level=1"]];
+  for(const [name,url] of recommendations){const link=element("a",name);link.href=url;if(!url.startsWith("#")){link.target="_blank";link.rel="noopener noreferrer"}link.style.cssText="display:inline-block;margin:4px 12px 4px 0";activity.append(link)}
+  activity.append(element("p","These are practice resources. Your daily writing and official mastery scores are saved separately."));panel.append(activity);
   const input=element("textarea");input.rows=6;input.style.cssText="width:100%;min-height:145px;padding:10px";input.setAttribute("aria-label","Day "+d.day+" assignment");
   const key=learnerKey+"_u01_day"+d.day+"_writing";input.value=safeGet(key)||"";input.addEventListener("input",()=>{if(!safeSet(key,input.value))status.textContent="Saving failed. Copy your writing for safekeeping."});panel.append(input);
   panel.append(element("h4","Daily review · Not an official mastery assessment"));
@@ -613,7 +619,7 @@ function addFrenchHandwritingLessonEntrance(parent){
 
 function addFrenchAlphabetMatchingLab(parent){
  const section=element("section");section.className="study-section";
- section.append(element("h3","French Alphabet Match · Practice Game"),element("p","A short alphabet and accent matching game adapted to the Academy's early-language game pattern. This is optional practice, not an assessment or proficiency record."));
+ section.id="french-u01-alphabet-match";section.append(element("h3","French Alphabet Match · Practice Game"),element("p","A short alphabet and accent matching game adapted to the Academy's early-language game pattern. This is optional practice, not an assessment or proficiency record."));
  const pairs=[["é","école"],["è","père"],["ç","garçon"],["ê","fête"],["ë","Noël"],["ou","vous"],["oi","moi"],["ch","chat"]];
  let selection=null,matches=0;
  const status=element("p");status.setAttribute("role","status");
