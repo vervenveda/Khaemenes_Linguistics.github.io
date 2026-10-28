@@ -240,6 +240,19 @@ body:has(#app:not(.hidden)){color:#f4e9d1!important}
 }
 @media print{#app #lesson #french101-unit01-day01 > p >button,#app #lesson .french-lesson-panel > section > p >button{display:none!important}}
 </style>
+<style id="french101-audit-five-refinements">
+/* 1 focus, 2 balanced activity rows, 3 writing readability, 4 responsive controls, 5 evidence visibility */
+#app #lesson .french-academic-evidence-note{background:#f4ead5;border:1px solid #b69a65;border-left:4px solid #245246;border-radius:7px;padding:16px 20px;margin:20px auto;max-width:940px;color:#25342d;text-align:left}
+#app #lesson .french-academic-evidence-note h4{margin-top:0;text-align:left}
+#app #lesson .french-day01-review-v2{margin-top:20px;border-top:1px solid #cab18a;padding-top:15px}
+#app #lesson .french-day01-review-v2 fieldset{max-width:100%;min-width:0}
+#app #lesson .french-day01-review-v2 fieldset button{font-size:14px!important;line-height:1.4!important;min-height:43px!important}
+#app #lesson textarea{display:block;margin:10px auto 16px!important;box-sizing:border-box!important;border:1px solid #b99a66!important;border-radius:7px!important;background:#fffaf0!important;color:#26382f!important}
+#app #lesson button:focus-visible,#app #lesson a:focus-visible,#app #lesson summary:focus-visible{outline:3px solid #c9a34f!important;outline-offset:3px!important}
+#app #lesson .unit01-active-day>button,#app #lesson #french101-unit01-day01>button{display:block;margin:12px 0 12px auto!important;min-width:170px!important;background:#244b42!important;color:#f5e7c7!important;border:1px solid #ac8c56!important;border-radius:7px!important;padding:10px 15px!important}
+#app #lesson .unit01-active-day>h4{text-align:center}
+@media(max-width:480px){#app #lesson .french-day01-review-v2 fieldset button{width:100%!important;margin:5px 0!important}#app #lesson .french-academic-evidence-note{padding:12px!important}}
+</style>
 </head>
 
 <body><p id="academyAudioStatus" role="status" aria-live="polite" style="margin:7px auto;padding:4px 10px;max-width:850px;font:400 14px/1.5 system-ui,sans-serif"></p>
@@ -496,6 +509,14 @@ function addFrenchDay01BlueprintReview(section){
  const again=element("button","New balanced practice round");again.type="button";again.addEventListener("click",newRound);wrap.append(again);section.append(wrap);newRound();
 }
 
+function frenchUnit01LearningAid(parent,day){
+ const note=element("aside");note.className="french-academic-evidence-note";
+ note.append(element("h4","Your learning evidence"),element("p","Watch or listen when available, try the examples independently, then save your original writing and corrections. Listening practice and self-review do not certify spoken proficiency or change the official 80% mastery gate."));
+ if(day===1){note.append(element("p","Self-check: Can I name all 26 letters, preserve accents in Léa and école, explain the difference between a letter name and a word sound, and write an original greeting?"))}
+ else{note.append(element("p","Day 02 self-check: Can I identify written vowels A, E, I, O, U; distinguish the letter name from its sound in a word; correctly spell a name; and explain a French spelling difference?"))}
+ parent.append(note);
+}
+
 function addAlphabetDailyLesson(parent){
  const section=element("section");section.className="study-section";section.id="french101-unit01-day01";
  const title=element("h3","Unit 01 · Lesson 01 — Meet the French Alphabet");
@@ -516,7 +537,8 @@ function addAlphabetDailyLesson(parent){
  section.append(element("h4","3 · Worked example"),element("p","Model: « Je m'appelle Léa. L – É – A. » The name Léa uses an accented é. Speak slowly, then write the three letters. Another name, « Hugo », is spelled H – U – G – O."));
  const p=element("p","French listening model: Je m'appelle Léa. L, é, a.");const b=element("button","Play model");b.type="button";b.addEventListener("click",()=>speakFR("Je m'appelle Léa. L, é, a."));p.append(b);section.append(p);
  section.append(element("h4","4 · Guided practice"),element("p","A. Point to each letter while reading A–G aloud. B. Find the letter that comes after M and the letter that comes before T. C. In école, père and garçon, circle the accented character. D. Spell your own name aloud; if speech is unavailable, use the written model."));
- const check=element("div");check.append(element("h4","5 · Check your understanding (practice, not the official mastery quiz)"));
+ frenchUnit01LearningAid(section,1);
+  const check=element("div");check.append(element("h4","5 · Check your understanding (practice, not the official mastery quiz)"));
  const items=[
   ["Which letter follows M?",["L","N","P"],1,"M is followed by N."],
   ["Which word contains a cedilla?",["garçon","père","école"],0,"The ç in garçon has a cedilla."],
@@ -707,6 +729,24 @@ function addUnit01DailySequence(parent){
  function draw(){
   const d=FRENCH_101_UNIT01_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_UNIT01_DAYS[0];panel.replaceChildren();
   panel.append(element("h4","Day "+d.day+" · "+d.title),element("h4","Step 1 · Learn"),element("p",d.lecture),element("h4","French examples"),element("p",d.models));
+  if(d.day===2){
+   panel.append(element("h4","Learning targets · Letter names and vowel families"),
+    element("p","Recognize the written vowels A, E, I, O, U; hear their French letter names when speech is available; explain that Y sometimes functions as a vowel; and distinguish spelling a word from pronouncing it."),
+    element("h4","Explore the written vowels"),
+    element("p","The basic vowel letters are a, e, i, o and u. The letter y can also represent a vowel sound in some words. When we spell a name, we say letter names: A is « a », E is « e », I is « i », O is « o » and U is « u ». However, the sound of a vowel inside a word depends on its spelling environment. The French letter name u is not the same sound as the English word 'you'."),
+    element("h4","Worked example A · Léa"),
+    element("p","Léa contains the written letters L, É and A. The acute accent belongs to the letter e; spelling the name accurately means keeping that accent. Notice that saying the letter name é and saying the whole name are two different tasks."),
+    element("h4","Worked example B · école"),
+    element("p","In école, the initial accented é belongs to the spelling. Write é rather than an unaccented e. The five base vowel letters have many spelling patterns; Day 02 introduces the distinction rather than claiming one letter always equals one sound."),
+    element("h4","Worked example C · Hugo"),
+    element("p","Hugo is spelled H – U – G – O. Observe its two basic vowel letters, U and O. Speak the letter names separately, then compare with the pronunciation of the entire name using a French model."),
+    element("h4","Guided interpretation"),
+    element("p","Compare « Bonjour, je m'appelle Léa » with « Bonjour, je m'appelle Hugo ». Underline the two names, identify their vowel letters, and explain why the written accent in Léa matters."),
+    element("h4","Independent transfer task"),
+    element("p","Write two original names, identify every vowel letter, spell each name aloud if a French voice or educator is available, and explain one difference between a letter name and its sound inside a word. Correct any accents after checking."));
+   frenchUnit01LearningAid(panel,2);
+  }
+
   const audio=element("button","Listen to French examples");audio.type="button";audio.addEventListener("click",()=>speakFR(d.models));panel.append(audio);
   panel.append(element("h4","Step 2 · Guided activity"),element("p",d.guided),element("h4","Step 3 · Independent written assignment"),element("p",d.assignment));
   const activity=element("aside");activity.className="unit01-day-activity";activity.style.cssText="border:1px solid #b5a68f;border-radius:7px;padding:14px;margin:12px 0";
