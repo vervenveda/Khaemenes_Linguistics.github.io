@@ -463,6 +463,9 @@ function addUnit01AudioReadiness(parent){
   if(ready)speakFR("Bonjour. Je m'appelle Léa. Comment ça va ?");
  });section.append(check,status);
  section.append(element("p","Listening evidence: hear an unfamiliar phrase without seeing its text, then explain its meaning. Speaking evidence: spell a new name and pronounce a short greeting for an educator. Record observed errors and corrections in the daily review rubric."));
+ const notes=element("textarea");notes.rows=4;notes.style.cssText="width:100%;padding:10px";notes.placeholder="Independent listening and speaking evidence: prompt, response, corrections, reviewer (if any).";
+ const evidenceKey=learnerKey+"_u01_oral_evidence_v1";notes.value=safeGet(evidenceKey)||"";notes.addEventListener("input",()=>safeSet(evidenceKey,notes.value));section.append(notes);
+ section.append(element("p","This is an observation note, not a certified listening score or verified educator signature."));
  parent.append(section);
 }
 function addUnit01DailySequence(parent){
