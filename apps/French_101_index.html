@@ -144,7 +144,7 @@ $("exportRecord").addEventListener("click",()=>{
 });
 let currentLevel=null;
 function saveProgress(){return safeSet(learnerKey,JSON.stringify(progress))}
-function available(level){return level===1||progress[level]==="completed"||progress[level]==="unlocked"||progress[level-1]==="completed"}
+function available(level){if(level===2&&progress.u01GateRequired===true&&!progress[2]&&!progress.u01CheckpointPassed)return false;return level===1||progress[level]==="completed"||progress[level]==="unlocked"||progress[level-1]==="completed"}
 function showOnly(name){
  assessmentSession++;
  for(const id of ["menu","lesson","quiz","exam","certificate"])$(id).classList.toggle("hidden",id!==name);
@@ -382,7 +382,7 @@ function addUnit01Checkpoint(parent){
   let at=0,correct=0;function question(){
    container.replaceChildren();if(at>=deck.length){
     const passed=correct>=12;const record={score:correct,total:15,passed,completedAt:new Date().toISOString()};
-    if(passed&&!safeSet(key,JSON.stringify(record)))status.textContent="Knowledge check passed, but saving failed. Export or copy this result.";
+    if(passed&&!safeSet(key,JSON.stringify(record)))status.textContent="Knowledge check passed, but saving failed. Export or copy this result.";else if(passed){if(progress[1]==="completed"){progress.u01CheckpointPassed=true;progress[2]="unlocked";saveProgress();buildLevelGrid()}status.textContent="Unit 01 knowledge passed: "+correct+"/15. Level 2 becomes available after the original Level 1 mastery quiz is also passed. Written and oral skills need separate educator review.";}
     else status.textContent="Unit 01 knowledge result: "+correct+"/15 · "+(passed?"Passed (80% mastery).":"Below mastery. Study corrections and retry.");
     if(!passed){const retry=element("button","Retry with shuffled questions");retry.type="button";retry.addEventListener("click",draw);container.append(retry)}
     return;
@@ -599,7 +599,7 @@ function openQuiz(level){
   safeSet(key,JSON.stringify(history.slice(-100)));
   if(passed){
    progress[level]="completed";progress["quizScore_"+level]=score;progress["quizTotal_"+level]=set.length;
-   if(level<totalLevels&&progress[level+1]!=="completed")progress[level+1]="unlocked";
+   if(level===1){progress.u01GateRequired=true;if(safeGet(learnerKey+"_u01_checkpoint_v1")&&(()=>{try{return JSON.parse(safeGet(learnerKey+"_u01_checkpoint_v1")).passed===true}catch{return false}})()){progress.u01CheckpointPassed=true;progress[2]="unlocked"}}else if(level<totalLevels&&progress[level+1]!=="completed")progress[level+1]="unlocked";
    saveProgress();
    addButton(box,level<totalLevels?"Continue to Next Level":"Final Exam",()=>{if(level<totalLevels)openLesson(level+1);else openExam()});
   }else addButton(box,"Retry with New Questions",()=>openQuiz(level));
