@@ -1204,7 +1204,7 @@ function openQuiz(level){
   feedback.textContent=`Score: ${score}/${set.length}. ${passed?"Passed!":"Review and try a new selection."}`;
   const key=learnerKey+FRENCH_101_ATTEMPT_KEY_SUFFIX;
   const history=(()=>{try{const h=JSON.parse(safeGet(key)||"[]");return Array.isArray(h)?h:[]}catch{return []}})();
-  history.push({level,score,total:set.length,passed,at:new Date().toISOString(),questionIds:set.map(q=>q.id)});
+  history.push({level,score,total:set.length,passed,at:new Date().toISOString(),questionIds:set.map(q=>q.id),assessmentMode:"typed-translation-with-optional-synthetic-listening",speechAvailableAtStart:hasFrenchVoice,listeningItems:set.filter(q=>q.mode==="listen").length,textFallbackItems:set.filter(q=>q.adapted===true).length,oralProficiencyCertified:false});
   safeSet(key,JSON.stringify(history.slice(-100)));
   if(passed){
    progress[level]="completed";progress["quizScore_"+level]=score;progress["quizTotal_"+level]=set.length;
