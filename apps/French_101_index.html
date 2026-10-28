@@ -299,6 +299,29 @@ body>#vnv-language-switch{width:max-content!important;max-width:calc(100vw - 34p
 #app #menu{margin-bottom:0!important}
 body>#vnv-language-switch+ #app{margin-top:10px!important}
 </style>
+<style id="french101-unified-card-and-footer">
+/* One consistent course-card width and fine charcoal inner keyline. */
+#app #frenchCampusMain{width:min(980px,calc(100vw - 34px))!important;max-width:980px!important;margin:0 auto!important;display:flex!important;flex-direction:column!important;align-items:center!important;gap:0!important;min-height:0!important}
+#app #frenchAudioControls,#app #menu,#app #menu .french-level-entry,#app #menu .french-learner-record,#app .french-four-skill-card,#app #frenchContributionSlot,#app #french101OfficialFooter{box-sizing:border-box!important;width:min(870px,100%)!important;max-width:870px!important;margin-left:auto!important;margin-right:auto!important}
+#app #menu{display:flex;flex-direction:column;align-items:center}
+#app #menu.hidden{display:none}
+#app #menu .french-learner-record{margin-top:15px!important}
+#app #frenchAudioControls,#app #menu .french-level-entry,#app #menu .french-learner-record,#app .french-four-skill-card,#app #frenchContributionSlot .french-contribution-card,#app #french101OfficialFooter{position:relative;border:2px solid #ba9a64!important;border-radius:7px!important;background:linear-gradient(120deg,#fff9eb,#f0e4cd)!important;box-shadow:inset 0 0 0 5px #f6eddc,inset 0 0 0 6px rgba(47,52,49,.65),0 8px 22px rgba(7,22,25,.2)!important;color:#26362e!important}
+#app .french-four-skill-card{margin-top:20px!important;margin-bottom:0!important}
+#app #frenchContributionSlot{margin-top:16px!important}
+#app #frenchContributionSlot:empty{display:none}
+#app #frenchContributionSlot .french-contribution-card{width:100%!important;max-width:100%!important;margin:0!important;padding:20px 25px!important;text-align:center!important}
+#app #french101OfficialFooter{margin-top:17px!important;margin-bottom:25px!important;padding:22px 24px!important;text-align:center!important}
+#french101OfficialFooter p{margin:5px auto;color:#2e4039;text-align:center}
+#french101OfficialFooter .french-footer-identity{font:400 clamp(18px,2.1vw,23px)/1.4 Georgia,serif;color:#2b4c40}
+#french101OfficialFooter .french-footer-credit{font:400 14px/1.5 Georgia,serif}
+#french101OfficialFooter nav{display:flex;flex-wrap:wrap;gap:11px;justify-content:center;margin:16px auto 0}
+#french101OfficialFooter nav a{display:inline-flex;align-items:center;justify-content:center;min-width:140px;min-height:42px;padding:9px 18px;box-sizing:border-box;border:1px solid #b18f56;border-radius:7px;background:#21493f;color:#fff0cf;text-decoration:none;font:500 14px/1.3 system-ui,sans-serif}
+#french101OfficialFooter nav a:hover{background:#173c34;color:#fff}
+#french101OfficialFooter nav a:focus-visible{outline:3px solid #be9b5b;outline-offset:3px}
+@media(max-width:550px){#app #frenchCampusMain{width:calc(100vw - 22px)!important}#app #french101OfficialFooter,#app #frenchContributionSlot .french-contribution-card{padding:18px 12px!important}#french101OfficialFooter nav a{min-width:120px}}
+@media print{#french101OfficialFooter,#frenchContributionSlot{display:none!important}}
+</style>
 </head>
 
 <body>
@@ -311,7 +334,7 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
   </div>
 </div>
 
-<div id="app" class="hidden">
+<div id="app" class="hidden"><span id="frenchPageTop" aria-hidden="true"></span>
  <header data-khae-header class="khae-global-campus-header" aria-label="Khaemenes Academy header">
  <div data-khae-header-inner>
   <a data-khae-brand href="https://vervenveda.com/Khaemenes_Academy.github.io/" aria-label="Khaemenes Academy home">
@@ -366,6 +389,12 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 <ol><li><strong>Reading:</strong> interpret an unfamiliar short French passage, explaining meaning and supporting details.</li><li><strong>Writing:</strong> write original French sentences using appropriate agreement, tense, accents and situational vocabulary.</li><li><strong>Listening:</strong> identify meaning from a new instructor-supplied audio clip; device-generated speech is rehearsal only.</li><li><strong>Speaking:</strong> sustain a brief comprehensible exchange with appropriate liaison, pronunciation and register.</li></ol>
 <p>For each skill, document the learner's independent work, an instructor's observations, a correction, and the next practice goal. Keep learner evidence private. Instructor identity and assessment quality must be verified outside this public page.</p>
 </section>
+  <div id="frenchContributionSlot" aria-label="Academy contribution information"></div>
+  <footer id="french101OfficialFooter" aria-label="Official Academy footer" data-i18n-ignore>
+   <p class="french-footer-identity">Verve N Veda · Khaemenes Academy</p>
+   <p class="french-footer-credit">Jennifer Kay Pearl · 2026</p>
+   <nav aria-label="Footer navigation"><a href="https://vervenveda.com/Khaemenes_Academy.github.io/">Academy Home</a><a href="#frenchPageTop" id="frenchBackToTop">Back to Top ↑</a></nav>
+  </footer>
  </main>
 </div>
 
@@ -1227,6 +1256,25 @@ function validate(data){if(!data||data.format!=="khaemenes-french101-v2"||typeof
 $("frenchImportFile").addEventListener("change",async()=>{reset("Reviewing French backup…");const file=$("frenchImportFile").files?.[0];if(!file){reset("No backup selected.");return}if(file.size>250000){reset("Backup exceeds 250 KB.");return}try{const data=JSON.parse(await file.text());const p=validate(data);pending={data,key:learnerKey,identity:identity()};preview.textContent="Learner: "+data.learner+". Progress entries: "+Object.keys(p).length+". Confirmation will replace this learner's French 101 progress. Export the current progress first.";confirm.disabled=false}catch(e){reset("Import rejected: "+e.message)}});
 confirm.addEventListener("click",()=>{if(!pending||pending.key!==learnerKey||pending.identity!==identity()){reset("Learner changed. Select the backup again.");return}try{const p=validate(pending.data);if(!window.confirm("Replace this learner's French 101 progress with the selected backup?"))return;const prior=JSON.stringify(progress);if(!safeSet(learnerKey,JSON.stringify(p)))throw Error("Browser storage unavailable.");for(const key of Object.keys(progress))delete progress[key];Object.assign(progress,p);buildLevelGrid();showOnly("menu");reset("Backup restored for the selected learner. Other learners' records were not changed.")}catch(e){reset("Restore failed: "+e.message)}});
 $("selectLearner").addEventListener("click",()=>reset("Learner selected. Choose a backup to restore."));window.addEventListener("storage",e=>{if(e.key==="french101_active_learner")reset("Active learner changed. Select the backup again.")});
+})();
+</script>
+<script id="french101-contribution-placement">
+/* Preserve dynamically supplied contribution content, move its original card above the official footer. */
+(()=>{"use strict";
+ const slot=()=>document.getElementById("frenchContributionSlot");
+ function relocate(){
+  const destination=slot();if(!destination||destination.firstElementChild)return;
+  const candidates=Array.from(document.querySelectorAll("body > section, body > article, body > div, body > aside, body > footer"));
+  const card=candidates.find(el=>el!==document.getElementById("app")&&el!==destination&&el!==document.getElementById("splash")&&el.id!=="khaemenesLearnerUtilityToolbar"&&/support free access/i.test(el.textContent||"")&&/voluntary|contribut|stripe/i.test(el.textContent||""));
+  if(card){card.classList.add("french-contribution-card");destination.appendChild(card)}
+ }
+ document.addEventListener("DOMContentLoaded",()=>{
+  relocate();
+  const observer=new MutationObserver(()=>{relocate()});
+  observer.observe(document.body,{childList:true,subtree:false});
+  window.addEventListener("load",relocate,{once:true});
+  document.getElementById("frenchBackToTop")?.addEventListener("click",e=>{e.preventDefault();window.scrollTo({top:0,behavior:window.matchMedia("(prefers-reduced-motion: reduce)").matches?"instant":"smooth"})});
+ });
 })();
 </script>
 </body>
