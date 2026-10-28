@@ -366,21 +366,37 @@ function buildLevelGrid(){
  }
 }
 function backToMenu(){showOnly("menu");buildLevelGrid()}
+let frenchActiveUtterance=null;
 function speakFR(text){
  const status=document.getElementById("academyAudioStatus");
  const announce=message=>{if(status)status.textContent=message};
- if(!("speechSynthesis" in window)||typeof SpeechSynthesisUtterance==="undefined"){announce("Audio unavailable on this device. Follow the written lesson.");return false}
- try{
-  const voices=speechSynthesis.getVoices()||[];
-  const voice=voices.find(v=>String(v.lang||"").toLowerCase()==="fr-fr")||voices.find(v=>String(v.lang||"").toLowerCase().startsWith("fr"))||null;
-  if(!voice){announce("French voice unavailable. Follow the written lesson or install a French system voice.");return false}
-  speechSynthesis.cancel();
-  const utterance=new SpeechSynthesisUtterance(text);utterance.lang=voice.lang;utterance.voice=voice;utterance.rate=0.86;
-  utterance.onerror=()=>announce("Audio playback failed. Continue with the written lesson.");
-  utterance.onstart=()=>announce("Playing French audio.");
-  utterance.onend=()=>announce("Audio complete. Replay any time.");
-  speechSynthesis.speak(utterance);return true;
- }catch{announce("Speech playback unavailable. Continue reading.");return false}
+ if(!("speechSynthesis" in window)||typeof SpeechSynthesisUtterance==="undefined"){announce("This browser does not support spoken lessons. The written lesson remains available.");return false}
+ const engine=window.speechSynthesis;
+ let requested=String(text||"").trim();if(!requested)return false;
+ function play(voices){
+  const french=(voices||[]).find(v=>String(v.lang||"").toLowerCase()==="fr-fr")||(voices||[]).find(v=>String(v.lang||"").toLowerCase().startsWith("fr"));
+  if(!french){announce("No French system voice was found. Please enable a French voice in your device's speech settings; written practice is still available.");return false}
+  try{
+   engine.cancel();
+   const phrase=new SpeechSynthesisUtterance(requested);
+   phrase.lang=french.lang||"fr-FR";phrase.voice=french;phrase.rate=0.84;phrase.pitch=1;phrase.volume=1;
+   frenchActiveUtterance=phrase;
+   phrase.onstart=()=>announce("French audio playing · "+french.name);
+   phrase.onerror=event=>{if(frenchActiveUtterance===phrase){announce("French audio could not play ("+(event.error||"speech error")+"). Check browser tab sound and voice permissions, then try again.");frenchActiveUtterance=null}};
+   phrase.onend=()=>{if(frenchActiveUtterance===phrase){announce("French audio finished. Press Listen to replay.");frenchActiveUtterance=null}};
+   engine.resume();engine.speak(phrase);
+   announce("Starting French voice · "+french.name+"…");
+   return true;
+  }catch(error){announce("French speech failed to start. Try another browser or check speech settings.");return false}
+ }
+ const voices=engine.getVoices()||[];
+ if(voices.some(v=>String(v.lang||"").toLowerCase().startsWith("fr")))return play(voices);
+ announce("Loading French voices… Please keep this page open.");
+ let fired=false;
+ const retry=()=>{if(fired)return;const available=engine.getVoices()||[];if(!available.some(v=>String(v.lang||"").toLowerCase().startsWith("fr")))return;fired=true;engine.removeEventListener("voiceschanged",retry);play(available)};
+ engine.addEventListener("voiceschanged",retry);
+ setTimeout(()=>{if(fired)return;retry();if(!fired){engine.removeEventListener("voiceschanged",retry);announce("No French voice is installed or exposed by this browser. Enable a French text-to-speech voice, then reload the lesson.");}},1600);
+ return false;
 }
 
 function element(tag,text,className){
