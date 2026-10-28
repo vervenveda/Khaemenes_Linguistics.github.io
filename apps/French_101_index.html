@@ -405,6 +405,13 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 #app #lesson .french-video-archive-slot a{color:#21493f;text-decoration:underline;text-underline-offset:3px}
 #app #lesson .french-video-archive-slot .french-video-status{color:#606a61;font-style:italic}
 </style>
+<style id="french101-beginner-pathway-2026">
+#app #lesson .french-core-vocab{display:flex;flex-wrap:wrap;justify-content:flex-start;gap:8px;margin:14px 0}
+#app #lesson .french-core-vocab button{margin:0!important;min-width:65px}
+#app #lesson details.french-legacy-extra{box-sizing:border-box;width:100%;margin:17px 0;padding:12px 17px;border:1px solid #b6a17e;background:#f6f0e5;border-radius:7px;color:#304238}
+#app #lesson details.french-legacy-extra>summary{cursor:pointer;font:400 16px/1.5 Georgia,serif;text-align:left;padding:6px}
+#app #lesson details.french-legacy-extra .french-day02-depth{margin:12px 0}
+</style>
 </head>
 
 <body>
@@ -1150,12 +1157,14 @@ function addUnit01DailySequence(parent){
     element("h4","Independent transfer task"),
     element("p","Write two original names, identify every vowel letter, spell each name aloud if a French voice or educator is available, and explain one difference between a letter name and its sound inside a word. Correct any accents after checking."));
    frenchUnit01LearningAid(legacyExtra,2);
-   /* Previous Lesson 02 vowel work remains available in historical extension. */
+   addFrenchDay02Depth(legacyExtra);
   }
 
   /* Historical deepening is preserved below in the legacy extension, not mislabelled as new core lessons. */
   if(d.day>=2&&d.day<=5)addFrenchBeginnerCore(panel,d.day);
   addFrench101ArchiveVideoSlot(panel,d.day);
+  if(d.day===3){const historical=element("details");historical.className="french-legacy-extra";historical.append(element("summary","Earlier consonant spelling enrichment · optional"));addFrenchLesson03Depth(historical);panel.append(historical)}
+  if(d.day===4){const historical=element("details");historical.className="french-legacy-extra";historical.append(element("summary","Earlier accents enrichment · optional"));addFrenchLesson04Depth(historical);panel.append(historical)}
   if(d.day===2)panel.append(legacyExtra);
 
   const audio=element("button","Listen to French examples");audio.type="button";audio.addEventListener("click",()=>speakFR(d.models));panel.append(audio);
