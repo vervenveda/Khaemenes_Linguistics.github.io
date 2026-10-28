@@ -359,6 +359,14 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 @media(max-width:580px){#app #lesson{width:100%!important}#app #lesson>.french-lesson-panel>section{padding:16px!important}#app #lesson .study-section>p:has(>button){align-items:stretch!important}#app #lesson .study-section>p>button{max-width:100%!important}}
 @media print{#app #lesson>.french-lesson-panel{box-shadow:none!important}#app #lesson .study-section button{display:none!important}}
 </style>
+<style id="french101-day01-performance-layout">
+#app #lesson .french-day01-performance{margin:24px auto 15px;padding:20px 23px;border:1px solid #b69b6a;border-radius:7px;background:#f7edd9;color:#29372e;box-shadow:inset 0 0 0 5px #f7edd9,inset 0 0 0 6px rgba(52,55,52,.48)}
+#app #lesson .french-day01-performance>h4{text-align:left!important;margin:19px 0 8px}
+#app #lesson .french-day01-performance .french-performance-row{display:grid;grid-template-columns:minmax(0,1fr) minmax(175px,235px);align-items:center;gap:13px;padding:11px 0;border-bottom:1px solid #d5c8ae}
+#app #lesson .french-day01-performance select{background:#fffaf0;color:#26382f;border:1px solid #aa946e;min-height:40px;padding:8px;border-radius:7px}
+#app #lesson .french-day01-performance textarea{max-width:100%;width:100%;font-size:16px;line-height:1.6}
+@media(max-width:650px){#app #lesson .french-day01-performance{padding:15px}#app #lesson .french-day01-performance .french-performance-row{grid-template-columns:1fr}}
+</style>
 </head>
 
 <body>
@@ -749,6 +757,33 @@ function addAlphabetDailyLesson(parent){
  const ckey=learnerKey+"_u01_d01_corrections_v1";correction.value=safeGet(ckey)||"";correction.addEventListener("input",()=>safeSet(ckey,correction.value));enrichment.append(correction);
  enrichment.append(element("p","Academic evidence: this independent writing, oral observation and correction log require educator or learner review. These activities do not replace the existing official 80% mastery assessment."));
  section.append(enrichment);
+ // Separate alphabet proficiency evidence from the existing greetings-based Level 1 official quiz.
+ const assessment=element("section");assessment.className="french-day01-performance";assessment.id="french-day01-performance";
+ assessment.append(element("h4","Lesson 01 · Independent performance assessment"),
+ element("p","This is independent alphabet evidence, not the official Level 1 greetings quiz. Complete the tasks without copying the worked examples. A teacher or parent can review your work; entering a score here does not unlock Level 2."),
+ element("h4","A · Unfamiliar spelling and accent transfer"),
+ element("p","Copy and correct these new spellings, explaining the exact mark you restored: 1. Eleve → élève; 2. Noel → Noël; 3. facade → façade. Then create one additional French example with a correctly written accent. Do not use the worked names as your only evidence."));
+ const spelling=element("textarea");spelling.rows=5;spelling.placeholder="My corrected spellings and explanation…";spelling.setAttribute("aria-label","Independent spelling and accent transfer");
+ const skey=learnerKey+"_u01_d01_spelling_v1";spelling.value=safeGet(skey)||"";spelling.addEventListener("input",()=>safeSet(skey,spelling.value));assessment.append(spelling);
+ assessment.append(element("h4","B · Original short exchange"),element("p","Without looking at the model, write a four-line greeting and name-spelling exchange: greeting, introduction, spelling request and accurate response. Explain your choice of accent or letter names."));
+ const note=element("p","Use the independently saved dialogue above or write a revised version there. Your original writing is evidence to review, not an automatically passed assessment.");assessment.append(note);
+ assessment.append(element("h4","C · Live listening and speaking observation"),element("p","With an educator or another speaker, hear an unfamiliar name spelled without seeing it; transcribe the letters and marks. Then spell a different name aloud. Record whether this task was genuinely heard and observed; synthetic playback or visible text alone does not certify proficiency."));
+ const oral=element("textarea");oral.rows=4;oral.placeholder="Prompt used, learner response, corrections and observation (or Not assessed)…";oral.setAttribute("aria-label","Educator listening and speaking observation");
+ const okey=learnerKey+"_u01_d01_oral_observation_v1";oral.value=safeGet(okey)||"";oral.addEventListener("input",()=>safeSet(okey,oral.value));assessment.append(oral);
+ assessment.append(element("h4","D · Performance rubric (educator review, not a course grade)"));
+ const criteria=[["Letter order and spelling","26 letters in sequence and accurate independently spelled name"],["Accents and corrections","Accurate marks with reasoned corrections"],["Original French communication","Comprehensible new dialogue and appropriate polite expressions"],["Listening and speaking","Unfamiliar heard prompt plus observed spoken response"]];
+ criteria.forEach(([name,guide],index)=>{
+  const row=element("div");row.className="french-performance-row";const label=element("label",name+" · "+guide);
+  const select=element("select");select.setAttribute("aria-label",name+" review status");
+  ["Not reviewed","0 · Not demonstrated","1 · Developing","2 · Mostly independent","3 · Independent and accurate","Not assessed · audio unavailable"].forEach(value=>{const option=element("option",value);option.value=value;select.append(option)});
+  const key=learnerKey+"_u01_d01_performance_"+index;select.value=safeGet(key)||"Not reviewed";
+  select.addEventListener("change",()=>safeSet(key,select.value));row.append(label,select);assessment.append(row);
+ });
+ assessment.append(element("p","Rubric: 3 = independent and accurate, 2 = mostly independent with minor correction, 1 = substantial support needed, 0 = not demonstrated. Not assessed is not a passing listening result. The evaluator must confirm work separately; self-entered ratings are not authenticated."));
+ const reviewer=element("textarea");reviewer.rows=3;reviewer.placeholder="Reviewer name/role, review date, specific feedback and next practice…";reviewer.setAttribute("aria-label","Lesson 01 performance reviewer feedback");
+ const rkey=learnerKey+"_u01_d01_performance_feedback_v1";reviewer.value=safeGet(rkey)||"";reviewer.addEventListener("input",()=>safeSet(rkey,reviewer.value));assessment.append(reviewer);
+ assessment.append(element("p","Official progression remains unchanged: complete the Level 1 quiz at 80% and Unit 01 checkpoint at 80% where required."));
+ section.append(assessment);
  addUnit01Worksheet(section,1,"Meet the French Alphabet","Write the alphabet in four groups, spell two names, and explain the difference between a letter name and a word sound.");
  addUnit01EducatorRubric(section,1);
  const print=element("button","Print this daily lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(1));section.append(print);
