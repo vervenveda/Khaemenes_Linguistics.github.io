@@ -157,6 +157,21 @@ body:has(#app:not(.hidden)){background:radial-gradient(ellipse at 14% 16%,rgba(2
 @media(max-width:480px){#app:not(.hidden)::before{inset:3px;outline-offset:-5px}#splash .french-welcome-card{outline-offset:-7px}}
 @media print{#app:not(.hidden)::before{display:none!important}}
 </style>
+<style id="french101-header-gold-legibility">
+/* Gold lettering only: preserve Academy header geometry and all links. */
+#app .khae-global-campus-header,
+#app .khae-global-campus-header [data-khae-brand],
+#app .khae-global-campus-header [data-khae-brand-name],
+#app .khae-global-campus-header [data-khae-brand-sub],
+#app .khae-global-campus-header [data-khae-nav] a,
+#app .khae-global-campus-header [data-khae-actions] a,
+#app .khae-global-campus-header .french-header-menu summary{color:#e7c77f!important;text-shadow:0 1px 1px rgba(0,0,0,.28)!important}
+#app .khae-global-campus-header [data-khae-actions] a{border-color:rgba(231,199,127,.7)!important}
+#app .khae-global-campus-header [data-khae-nav] a:hover,
+#app .khae-global-campus-header [data-khae-actions] a:hover{color:#fff2ce!important}
+#app .khae-global-campus-header .french-header-menu nav a{color:#273a32!important;text-shadow:none!important}
+#app .khae-global-campus-header .french-header-menu summary{border-color:#d1ac68!important}
+</style>
 </head>
 
 <body><p id="academyAudioStatus" role="status" aria-live="polite" style="margin:7px auto;padding:4px 10px;max-width:850px;font:400 14px/1.5 system-ui,sans-serif"></p>
