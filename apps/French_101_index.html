@@ -557,6 +557,52 @@ function addFrenchSoundSpellingLab(parent){
  section.append(element("p","Independent challenge: write two correctly spelled words in an original French greeting or sentence. Compare accented spellings with the Prose Handwriting Lab."));
  parent.append(section);begin();
 }
+/* French 101 Unit 01: formative sentence construction. No grade/unlock writes. */
+function addFrenchSentenceBuilder(parent){
+ const section=element("section");section.className="study-section";section.id="french-u01-sentence-builder";
+ section.append(element("h3","French Sentence Builder · Greetings and Introductions"),
+  element("p","Arrange the French word tiles into a meaningful sentence. Begin with courtesy phrases, then build longer introductions. Capitalization and accents matter in the model. This game is practice, not official mastery."));
+ const missions=[
+  {en:"Hello, Marie!",fr:["Bonjour","Marie","!"],why:"Bonjour is a polite greeting; the person's name follows the greeting."},
+  {en:"My name is Léa.",fr:["Je","m'appelle","Léa","."],why:"Je m'appelle introduces your name. The apostrophe belongs in m'appelle."},
+  {en:"How are you?",fr:["Comment","ça","va","?"],why:"The question begins with Comment and ends with a question mark."},
+  {en:"I'm fine, thank you.",fr:["Je","vais","bien",",","merci","."],why:"Je vais bien states how you feel; merci adds courtesy."},
+  {en:"Good evening, sir.",fr:["Bonsoir","monsieur","."],why:"Bonsoir is the evening greeting; monsieur is a courteous form of address."},
+  {en:"Pleased to meet you.",fr:["Ravi","de","vous","rencontrer","."],why:"Ravi de vous rencontrer is a formal introduction."}
+ ];
+ let index=0,correct=0,assembled=[],choices=[];
+ const prompt=element("p"),tiles=element("div"),answer=element("div"),feedback=element("p");
+ tiles.style.cssText=answer.style.cssText="display:flex;flex-wrap:wrap;gap:8px;padding:12px;border:1px solid #b5a68f;border-radius:7px;min-height:55px;margin:8px 0";
+ feedback.setAttribute("role","status");
+ const check=element("button","Check sentence"),clear=element("button","Clear tiles"),hear=element("button","Hear correct French"),next=element("button","Next sentence"),restart=element("button","Restart practice");
+ for(const b of [check,clear,hear,next,restart])b.type="button";
+ function render(){
+  const mission=missions[index];
+  prompt.textContent="Challenge "+(index+1)+" of "+missions.length+": "+mission.en;
+  tiles.replaceChildren();answer.replaceChildren();
+  choices.forEach((v,i)=>{if(assembled.includes(i))return;const b=element("button",v.word);b.type="button";b.addEventListener("click",()=>{assembled.push(i);render()});tiles.append(b)});
+  assembled.forEach((i,j)=>{const b=element("button",choices[i].word);b.type="button";b.setAttribute("aria-label","Remove "+choices[i].word+" from sentence");b.addEventListener("click",()=>{assembled.splice(j,1);render()});answer.append(b)});
+  check.disabled=assembled.length!==mission.fr.length;
+ }
+ function load(){
+  assembled=[];choices=shuffleQuestions(missions[index].fr.map((word,id)=>({word,id})));feedback.textContent="Select tiles in French word order. Tap an assembled tile to remove it.";next.disabled=true;check.disabled=false;render();
+ }
+ check.addEventListener("click",()=>{
+  const m=missions[index],result=assembled.map(i=>choices[i].id).join(",")===m.fr.map((_,i)=>i).join(",");
+  if(result)correct++;
+  feedback.textContent=(result?"Correct! ":"Review word order. ")+m.fr.join(" ").replace(/\s+([!?,.])/g,"$1")+" — "+m.why;
+  next.disabled=false;check.disabled=true;
+ });
+ clear.addEventListener("click",()=>{assembled=[];render()});
+ hear.addEventListener("click",()=>{if(!speakFR(missions[index].fr.join(" ").replace(/\s+([!?,.])/g,"$1")))feedback.textContent="French audio unavailable. Read the displayed model instead."});
+ next.addEventListener("click",()=>{if(index===missions.length-1){prompt.textContent="Round complete · "+correct+"/"+missions.length+" correct on first check.";tiles.replaceChildren();answer.replaceChildren();feedback.textContent="Try the independent writing challenge below. Game results do not affect grades.";next.disabled=true;check.disabled=true;clear.disabled=true;return}index++;load()});
+ restart.addEventListener("click",()=>{index=0;correct=0;clear.disabled=false;load()});
+ section.append(prompt,element("h4","Available tiles"),tiles,element("h4","Your French sentence"),answer,check,clear,hear,next,restart,feedback);
+ section.append(element("h4","Independent writing challenge"),element("p","Write an original three-line conversation: greet someone, introduce yourself, and ask how they are. Check punctuation and accents. This writing is not automatically scored."));
+ const writing=element("textarea");writing.rows=5;writing.style.cssText="width:100%;min-height:135px;padding:10px";writing.setAttribute("aria-label","French sentence builder independent conversation");const key=learnerKey+"_u01_sentence_builder_writing_v1";writing.value=safeGet(key)||"";writing.addEventListener("input",()=>safeSet(key,writing.value));section.append(writing);
+ parent.append(section);load();
+}
+
 function addFrenchHandwritingLessonEntrance(parent){
  const section=element("section");section.className="study-section";
  section.append(element("h3","Handwriting Studio · Unit 01"),element("p","Practice the letter patterns and accents from today's lesson on the original Prose Handwriting Lab. Choose its Latin-script or French practice option when available; return here to save your written assignment."));
@@ -627,7 +673,7 @@ function openLesson(level){
  addFrenchMatchingGame(box,level);
  addFrenchGameShelf(box);
  addFrench101PracticeResources(box,level);
- if(level===1){addFrenchAlphabetMatchingLab(box);addFrenchSoundSpellingLab(box);addFrenchHandwritingLessonEntrance(box);}
+ if(level===1){addFrenchAlphabetMatchingLab(box);addFrenchSoundSpellingLab(box);addFrenchSentenceBuilder(box);addFrenchHandwritingLessonEntrance(box);}
  const reader=element("section");reader.className="study-section";
  reader.append(element("h3","Level "+level+" · Original French Story"));
  reader.append(element("p","Read the level-aligned story, examine French vocabulary in context, and complete comprehension practice."));
