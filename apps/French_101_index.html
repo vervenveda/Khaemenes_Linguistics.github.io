@@ -522,6 +522,29 @@ function addUnit01DailySequence(parent){
 }
 
 /* Verified Academy tools — optional practice; never modify French 101 mastery records. */
+/* French Unit 01 · optional sound/letter match game; no mastery or records changed. */
+function addFrenchAlphabetMatchingLab(parent){
+ const section=element("section");section.className="study-section";
+ section.append(element("h3","French Alphabet Match · Practice Game"),element("p","A short alphabet and accent matching game adapted to the Academy's early-language game pattern. This is optional practice, not an assessment or proficiency record."));
+ const pairs=[["é","école"],["è","père"],["ç","garçon"],["ê","fête"],["ë","Noël"],["ou","vous"],["oi","moi"],["ch","chat"]];
+ let selection=null,matches=0;
+ const status=element("p");status.setAttribute("role","status");
+ const board=element("div");board.style.cssText="display:flex;gap:10px;flex-wrap:wrap;padding:12px 0";
+ const start=element("button","New shuffled round");start.type="button";
+ function draw(){
+  board.replaceChildren();selection=null;matches=0;status.textContent="Match each French character or letter group to the example word containing it. 0 of 8 pairs.";
+  const entries=shuffleQuestions(pairs.flatMap((p,i)=>[{label:p[0],pair:i,kind:"pattern"},{label:p[1],pair:i,kind:"word"}]));
+  for(const entry of entries){const button=element("button",entry.label);button.type="button";button.style.cssText="min-height:48px;min-width:74px;padding:12px;border-radius:7px";
+   button.addEventListener("click",()=>{if(button.disabled)return;if(!selection){selection={entry,button};button.setAttribute("aria-pressed","true");status.textContent="Choose the matching word or letter group.";return}
+    const old=selection;selection=null;old.button.setAttribute("aria-pressed","false");
+    if(old.button===button)return;
+    if(old.entry.pair===entry.pair&&old.entry.kind!==entry.kind){old.button.disabled=button.disabled=true;matches++;status.textContent=matches===8?"All eight matches complete. Well done. This does not affect mastery.":matches+" of 8 pairs matched."}
+    else status.textContent="Not a match. Compare spelling and accents, then try again.";
+   });board.append(button)}
+ }
+ start.addEventListener("click",draw);section.append(start,board,status);parent.append(section);draw();
+}
+
 function addFrench101PracticeResources(parent,level){
  const section=element("section");section.className="study-section";
  section.append(element("h3","Academy Practice Tools · Optional Enrichment"));
@@ -562,6 +585,7 @@ function openLesson(level){
  addFrenchMatchingGame(box,level);
  addFrenchGameShelf(box);
  addFrench101PracticeResources(box,level);
+ if(level===1)addFrenchAlphabetMatchingLab(box);
  const reader=element("section");reader.className="study-section";
  reader.append(element("h3","Level "+level+" · Original French Story"));
  reader.append(element("p","Read the level-aligned story, examine French vocabulary in context, and complete comprehension practice."));
