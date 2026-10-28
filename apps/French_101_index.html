@@ -74,7 +74,7 @@ body.dark .confetti{background:var(--accent-dark);}
 @media(max-width:320px){html,body{max-width:100%;overflow-x:hidden}#app,#menu,#lesson,#quiz,#exam,#certificate{max-width:100%;min-width:0}button,input,select,textarea{max-width:100%;min-width:0;overflow-wrap:anywhere}.level-grid{grid-template-columns:1fr!important}}
 </style>
 <style id="french-daily-print-override">@media print{body.print-french-lesson #lesson:not(.hidden){display:block!important}body.print-french-lesson #certificate{display:none!important}body.print-french-lesson #lesson .study-section{break-inside:avoid}body.print-french-lesson #lesson textarea{border:1px solid #444!important;min-height:140px}body.print-french-lesson #lesson button{display:none!important}}</style>
-</head>
+<style id="unit01-print-isolation">@media print{body.printing-unit01>*:not(#unit01-print-copy){display:none!important}body.printing-unit01 #unit01-print-copy{display:block!important;position:static!important;width:100%!important;margin:0!important;padding:0!important;color:#111!important;background:white!important}body.printing-unit01 #unit01-print-copy button,body.printing-unit01 #unit01-print-copy select{display:none!important}body.printing-unit01 #unit01-print-copy textarea{display:block!important;border:1px solid #555!important;min-height:120px!important;width:100%!important}body.printing-unit01 #unit01-print-copy .unit01-worksheet,body.printing-unit01 #unit01-print-copy .unit01-educator-rubric{break-inside:avoid}}</style></head>
 
 <body><p id="academyAudioStatus" role="status" aria-live="polite" style="margin:7px auto;padding:4px 10px;max-width:850px;font:400 14px/1.5 system-ui,sans-serif"></p><aside style="max-width:850px;margin:12px auto;padding:10px;border:1px solid #b8a784;border-radius:7px;background:#fff8e9;color:#273748;text-align:center;font:400 16px/1.5 system-ui,sans-serif" aria-label="Multilingual learning tools"><span>Learning in another language?</span> <a href="./translator.html?from=de&amp;to=fr&amp;purpose=learning" style="color:#175d63">Open Sovereign Translator (Deutsch → Français)</a><p style="margin:5px 0;font-size:13px">Use the language selector for supported interface text. French lesson and assessment language remains unchanged.</p></aside>
 <div id="splash">
@@ -400,12 +400,56 @@ function addUnit01Checkpoint(parent){
  draw();parent.append(section);
 }
 
+/* Unit 01 printable worksheets and observation rubric, formative only. */
+function addUnit01Worksheet(panel,day,title,assignment){
+ const sheet=element("section");sheet.className="unit01-worksheet";sheet.style.cssText="border:1px solid #b5a68f;padding:15px;margin:18px 0;border-radius:7px;background:#fffdf8;color:#242a2c";
+ sheet.append(element("h4","Printable learner worksheet · Unit 01 · Day "+day),element("p",title),element("p","Learner: __________________________    Date: ______________"));
+ sheet.append(element("p","Task 1 · Retrieval: Without looking, write four French letter names or spellings from the previous lesson."));
+ sheet.append(element("p","________________________________________________________________________"));
+ sheet.append(element("p","________________________________________________________________________"));
+ sheet.append(element("p","Task 2 · Independent application: "+assignment));
+ for(let i=0;i<4;i++)sheet.append(element("p","________________________________________________________________________"));
+ sheet.append(element("p","Task 3 · Correction: Identify one error or uncertainty, explain the correction, and repeat the skill."));
+ sheet.append(element("p","________________________________________________________________________"));
+ sheet.append(element("p","Self-reflection: What can I now do independently? __________________________________"));
+ panel.append(sheet);
+}
+function addUnit01EducatorRubric(panel,day){
+ const review=element("section");review.className="unit01-educator-rubric";review.style.cssText="border:1px solid #b5a68f;padding:15px;margin:18px 0;border-radius:7px";
+ review.append(element("h4","Daily educator / independent review · Day "+day));
+ review.append(element("p","For each criterion select: 3 = independent and accurate; 2 = mostly accurate with minor support; 1 = developing with substantial support; 0 = not yet demonstrated."));
+ const criteria=["Written accuracy and accents","Phonological awareness and listening evidence","Independent application or explanation","Corrections and reflection"];
+ for(const c of criteria){
+  const row=element("div");row.style.cssText="margin:10px 0";row.append(element("label",c+" · "));
+  const select=element("select");select.setAttribute("aria-label",c+" score");for(const value of ["Not reviewed","3","2","1","0"]){const op=element("option",value);op.value=value;select.append(op)}
+  const key=learnerKey+"_u01_d"+day+"_rubric_"+criteria.indexOf(c);select.value=safeGet(key)||"Not reviewed";
+  select.addEventListener("change",()=>safeSet(key,select.value));row.append(select);review.append(row);
+ }
+ const notes=element("textarea");notes.rows=3;notes.style.cssText="width:100%;padding:8px";notes.placeholder="Evidence observed, corrections needed and next goal (teacher/parent or self-review; not independently verified).";
+ const key=learnerKey+"_u01_d"+day+"_review_notes";notes.value=safeGet(key)||"";notes.addEventListener("input",()=>safeSet(key,notes.value));review.append(notes);
+ review.append(element("p","This rubric is formative. It does not award credit, certify speaking/listening proficiency, or change the official 80% mastery gate."));
+ panel.append(review);
+}
+function printUnit01Day(day){
+ const source=day===1?document.getElementById("french101-unit01-day01"):document.querySelector("#unit01-daily-lessons .unit01-active-day");
+ if(!source)return;
+ const previous=document.getElementById("unit01-print-copy");if(previous)previous.remove();
+ const copy=source.cloneNode(true);copy.id="unit01-print-copy";
+ // Copy saved draft values, since cloning textareas does not reliably clone current values.
+ const from=source.querySelectorAll("textarea"),to=copy.querySelectorAll("textarea");
+ from.forEach((v,i)=>{if(to[i])to[i].textContent=v.value});
+ document.body.append(copy);document.body.classList.add("printing-unit01");
+ const clean=()=>{document.body.classList.remove("printing-unit01");copy.remove();window.removeEventListener("afterprint",clean)};
+ window.addEventListener("afterprint",clean);
+ window.print();
+}
+
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
  wrap.append(element("h3","Unit 01 · Alphabet and French Sounds · Three Weeks"),element("p","Fourteen additional lessons follow the first day's alphabet introduction. Work through each day in order; these daily reviews are formative and do not alter the existing 80% official mastery gate."));
  const picker=element("select");picker.setAttribute("aria-label","Choose Unit 01 daily lesson");picker.style.cssText="width:100%;padding:10px;margin:8px 0";
  FRENCH_101_UNIT01_DAYS.forEach(d=>{const o=element("option","Day "+d.day+" — "+d.title);o.value=d.day;picker.append(o)});
- const panel=element("article");const status=element("p");status.setAttribute("role","status");
+ const panel=element("article");panel.className="unit01-active-day";const status=element("p");status.setAttribute("role","status");
  function draw(){
   const d=FRENCH_101_UNIT01_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_UNIT01_DAYS[0];panel.replaceChildren();
   panel.append(element("h4","Day "+d.day+" · "+d.title),element("p",d.lecture),element("h4","French examples"),element("p",d.models));
@@ -422,7 +466,9 @@ function addUnit01DailySequence(parent){
    f.append(feedback);panel.append(f);
   });
   panel.append(element("p","Review evidence: Check correct spelling, accents, explanation and pronunciation. Correct and retry any missed skill before the next day. An educator can review the saved work; this form does not claim authenticated teacher approval."));
-  const print=element("button","Print daily lesson");print.type="button";print.addEventListener("click",()=>{document.body.classList.add("print-french-lesson");window.addEventListener("afterprint",()=>document.body.classList.remove("print-french-lesson"),{once:true});window.print()});panel.append(print);
+  addUnit01Worksheet(panel,d.day,d.title,d.assignment);
+  addUnit01EducatorRubric(panel,d.day);
+  const print=element("button","Print daily lesson");print.type="button";print.addEventListener("click",()=>{document.body.classList.add("print-french-lesson");window.addEventListener("afterprint",()=>document.body.classList.remove("print-french-lesson"),{once:true});window.print()});panel.append(print);print.onclick=()=>printUnit01Day(d.day);
   status.textContent="Day "+d.day+" review ready.";
  }
  picker.addEventListener("change",draw);wrap.append(picker,panel,status);parent.append(wrap);draw();addUnit01Checkpoint(parent);
