@@ -493,9 +493,9 @@ function addUnit01DailySequence(parent){
  const panel=element("article");panel.className="unit01-active-day";panel.style.cssText="max-width:780px;margin:0 auto;line-height:1.65";const navigation=element("div");navigation.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0";const previous=element("button","← Previous Day"),next=element("button","Next Day →");previous.type=next.type="button";navigation.append(previous,next);const journey=element("p");journey.setAttribute("role","status");const status=element("p");status.setAttribute("role","status");
  function draw(){
   const d=FRENCH_101_UNIT01_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_UNIT01_DAYS[0];panel.replaceChildren();
-  panel.append(element("h4","Day "+d.day+" · "+d.title),element("p",d.lecture),element("h4","French examples"),element("p",d.models));
+  panel.append(element("h4","Day "+d.day+" · "+d.title),element("h4","Step 1 · Learn"),element("p",d.lecture),element("h4","French examples"),element("p",d.models));
   const audio=element("button","Listen to French examples");audio.type="button";audio.addEventListener("click",()=>speakFR(d.models));panel.append(audio);
-  panel.append(element("h4","Guided activity"),element("p",d.guided),element("h4","Independent written assignment"),element("p",d.assignment));
+  panel.append(element("h4","Step 2 · Guided activity"),element("p",d.guided),element("h4","Step 3 · Independent written assignment"),element("p",d.assignment));
   const activity=element("aside");activity.className="unit01-day-activity";activity.style.cssText="border:1px solid #b5a68f;border-radius:7px;padding:14px;margin:12px 0";
   const focus=d.day<=4?"Handwriting and alphabet":d.day<=9?"Sounds and spelling":d.day<=12?"Greeting and sentence building":"Reading, dictation and cumulative application";
   activity.append(element("h4","Today's Academy practice · "+focus));
@@ -513,8 +513,7 @@ function addUnit01DailySequence(parent){
    f.append(feedback);panel.append(f);
   });
   panel.append(element("p","Review evidence: Check correct spelling, accents, explanation and pronunciation. Correct and retry any missed skill before the next day. An educator can review the saved work; this form does not claim authenticated teacher approval."));
-  addUnit01Worksheet(panel,d.day,d.title,d.assignment);
-  addUnit01EducatorRubric(panel,d.day);
+  const extras=element("details");extras.open=false;const summary=element("summary","Step 5 · Printable worksheet and educator review");summary.style.cssText="cursor:pointer;padding:10px;font-size:17px";extras.append(summary);addUnit01Worksheet(extras,d.day,d.title,d.assignment);addUnit01EducatorRubric(extras,d.day);panel.append(extras);
   const deeper=element("section");deeper.className="study-section";
   deeper.append(element("h4","Independent transfer and correction · Day "+d.day),element("p","Without copying the model, write two new French examples using today's focus. Explain one spelling or sound choice, then correct one error from your practice. This is an independent open-response review, not an automatically scored pass."));
   const transferDraft=element("textarea");transferDraft.rows=5;transferDraft.style.cssText="width:100%;min-height:130px;padding:10px";transferDraft.setAttribute("aria-label","Day "+d.day+" independent transfer and corrections");
