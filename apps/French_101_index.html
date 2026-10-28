@@ -73,6 +73,7 @@ body.dark #certificate{border-color:var(--accent-dark);}
 body.dark .confetti{background:var(--accent-dark);}
 @media(max-width:320px){html,body{max-width:100%;overflow-x:hidden}#app,#menu,#lesson,#quiz,#exam,#certificate{max-width:100%;min-width:0}button,input,select,textarea{max-width:100%;min-width:0;overflow-wrap:anywhere}.level-grid{grid-template-columns:1fr!important}}
 </style>
+<style id="french-daily-print-override">@media print{body.print-french-lesson #lesson:not(.hidden){display:block!important}body.print-french-lesson #certificate{display:none!important}body.print-french-lesson #lesson .study-section{break-inside:avoid}body.print-french-lesson #lesson textarea{border:1px solid #444!important;min-height:140px}body.print-french-lesson #lesson button{display:none!important}}</style>
 </head>
 
 <body><p id="academyAudioStatus" role="status" aria-live="polite" style="margin:7px auto;padding:4px 10px;max-width:850px;font:400 14px/1.5 system-ui,sans-serif"></p><aside style="max-width:850px;margin:12px auto;padding:10px;border:1px solid #b8a784;border-radius:7px;background:#fff8e9;color:#273748;text-align:center;font:400 16px/1.5 system-ui,sans-serif" aria-label="Multilingual learning tools"><span>Learning in another language?</span> <a href="./translator.html?from=de&amp;to=fr&amp;purpose=learning" style="color:#175d63">Open Sovereign Translator (Deutsch → Français)</a><p style="margin:5px 0;font-size:13px">Use the language selector for supported interface text. French lesson and assessment language remains unchanged.</p></aside>
@@ -297,12 +298,64 @@ function frenchVoiceAvailable(){
  return typeof speechSynthesis!=="undefined"&&typeof SpeechSynthesisUtterance!=="undefined"&&
  (speechSynthesis.getVoices()||[]).some(v=>String(v.lang||"").toLowerCase().startsWith("fr"));
 }
+
+/* French 101 · Unit 01 · Daily Lesson 01. Additive, formative and separate from legacy mastery. */
+function addAlphabetDailyLesson(parent){
+ const section=element("section");section.className="study-section";section.id="french101-unit01-day01";
+ const title=element("h3","Unit 01 · Lesson 01 — Meet the French Alphabet");
+ section.append(title,element("p","Learning targets: identify the 26 letters in their standard written order; distinguish letter names from sounds in words; spell a familiar name; recognize that accents are spelling marks, not extra letters."));
+ section.append(element("h4","1 · Learn and observe"),element("p","French uses the same 26 basic letters as English, but their spoken names differ. The alphabet is used to spell names, addresses, and unfamiliar words. A letter name is not always the sound that the letter makes inside a French word. For instance, the letter e has the name « e », while the word école begins with an accented é."));
+ const rows=[
+ ["A–G","A, B, C, D, E, F, G","a, bé, cé, dé, e, effe, gé"],
+ ["H–N","H, I, J, K, L, M, N","ache, i, ji, ka, elle, emme, enne"],
+ ["O–U","O, P, Q, R, S, T, U","o, pé, ku, erre, esse, té, u"],
+ ["V–Z","V, W, X, Y, Z","vé, double vé, iks, i grec, zède"]
+ ];
+ for(const [range,letters,names] of rows){
+  const p=element("p",range+" · "+letters+" — letter names: "+names+" ");
+  const b=element("button","Listen and repeat");b.type="button";b.setAttribute("aria-label","Hear letters "+range);
+  b.addEventListener("click",()=>speakFR(letters.split(", ").join(". ")));p.append(b);section.append(p);
+ }
+ section.append(element("h4","2 · Notice accents"),element("p","Compare e in le, é in école, è in père, and ç in garçon. The cedilla under c signals an s-like sound before a, o, or u. Do not assume French written accents are optional: they can change the word's spelling or meaning."));
+ section.append(element("h4","3 · Worked example"),element("p","Model: « Je m'appelle Léa. L – É – A. » The name Léa uses an accented é. Speak slowly, then write the three letters. Another name, « Hugo », is spelled H – U – G – O."));
+ const p=element("p","French listening model: Je m'appelle Léa. L, é, a.");const b=element("button","Play model");b.type="button";b.addEventListener("click",()=>speakFR("Je m'appelle Léa. L, é, a."));p.append(b);section.append(p);
+ section.append(element("h4","4 · Guided practice"),element("p","A. Point to each letter while reading A–G aloud. B. Find the letter that comes after M and the letter that comes before T. C. In école, père and garçon, circle the accented character. D. Spell your own name aloud; if speech is unavailable, use the written model."));
+ const check=element("div");check.append(element("h4","5 · Check your understanding (practice, not the official mastery quiz)"));
+ const items=[
+  ["Which letter follows M?",["L","N","P"],1,"M is followed by N."],
+  ["Which word contains a cedilla?",["garçon","père","école"],0,"The ç in garçon has a cedilla."],
+  ["Which word contains an acute accent?",["le","école","père"],1,"The é in école has an acute accent."],
+  ["How many basic letters are in the French alphabet?",["24","26","28"],1,"French uses 26 basic letters."],
+  ["Which spelling represents Léa?",["L – É – A","L – E – U","L – A – E"],0,"Léa is spelled L – É – A."]
+ ];
+ let score=0,answered=new Set();const status=element("p","Practice: 0 of 5 answered.");status.setAttribute("role","status");
+ items.forEach(([question,opts,answer,reason],i)=>{
+  const field=element("fieldset");field.style.cssText="border:1px solid #b8a784;border-radius:7px;margin:10px 0;padding:10px";
+  field.append(element("legend",(i+1)+". "+question));
+  const outcome=element("p");outcome.setAttribute("role","status");
+  opts.forEach((option,j)=>{const button=element("button",option);button.type="button";button.addEventListener("click",()=>{
+   if(answered.has(i))return;answered.add(i);if(j===answer)score++;
+   outcome.textContent=(j===answer?"Correct. ":"Review: ")+reason;
+   [...field.querySelectorAll("button")].forEach(x=>x.disabled=true);
+   status.textContent="Practice: "+answered.size+" of 5 answered · "+score+" correct. "+(answered.size===5?"Review the explanations and continue with the written assignment. This does not unlock the next level.":"");
+  });field.append(button)});field.append(outcome);check.append(field);
+ });
+ check.append(status);section.append(check);
+ section.append(element("h4","6 · Independent assignment and printable evidence"),element("p","Write the alphabet in order; group the letters A–G, H–N, O–U and V–Z. Write five names or familiar French words, mark their accents, and spell two aloud. Finally, explain in two complete sentences the difference between a letter's name and a letter's sound in a word."));
+ const writing=element("textarea");writing.rows=7;writing.placeholder="My alphabet, five examples, and two-sentence explanation…";writing.setAttribute("aria-label","Unit 01 Lesson 01 written assignment");writing.style.cssText="width:100%;min-height:160px;padding:10px";
+ const key=learnerKey+"_u01_d01_assignment";writing.value=safeGet(key)||"";writing.addEventListener("input",()=>safeSet(key,writing.value));section.append(writing);
+ section.append(element("p","Educator review: check correct letter order; accented spelling; accurate oral spelling; and the student's explanation. Provide specific correction and a second practice opportunity where necessary. Daily practice is formative; the existing 80% level gate remains the authoritative unlock."));
+ const print=element("button","Print this daily lesson");print.type="button";print.addEventListener("click",()=>{document.body.classList.add("print-french-lesson");window.print();document.body.classList.remove("print-french-lesson")});section.append(print);
+ parent.append(section);
+}
+
 function openLesson(level){
  if(!available(level)||!LESSONS[level]){backToMenu();return}
  currentLevel=level;const box=$("lesson");box.replaceChildren();
  box.append(element("h2",`Level ${level}`),element("p","Listen and repeat each phrase, then complete the quiz."));
  const guide=LESSON_GUIDES[level-1];
  box.append(element("h3",guide[0]));
+ if(level===1)addAlphabetDailyLesson(box);
  addBeginnerFoundation(box,level);
  addStudySection(box,"Understand the language",guide[1]);
  addStudySection(box,"Original French dialogue",guide[2],true);
