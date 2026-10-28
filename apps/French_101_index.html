@@ -172,6 +172,25 @@ body:has(#app:not(.hidden)){background:radial-gradient(ellipse at 14% 16%,rgba(2
 #app .khae-global-campus-header .french-header-menu nav a{color:#273a32!important;text-shadow:none!important}
 #app .khae-global-campus-header .french-header-menu summary{border-color:#d1ac68!important}
 </style>
+<style id="french101-stable-workspace">
+/* Only the far-right, course-owned hamburger remains visible. */
+#app .khae-global-campus-header [data-khae-nav] button,
+#app .khae-global-campus-header [data-khae-nav] .khae-nav-toggle,
+#app .khae-global-campus-header [data-khae-header-inner] > button,
+#app .khae-global-campus-header [data-khae-header-inner] > .khae-mobile-menu-toggle{display:none!important}
+body:has(#app:not(.hidden)){color:#f4e9d1!important}
+#app #lesson{width:min(1050px,calc(100vw - 52px))!important;max-width:1050px!important;min-width:0!important;margin:0 auto!important;text-align:left!important;font-size:17px!important;line-height:1.72!important}
+#app #lesson>.french-lesson-panel{width:100%;max-width:none;margin:14px 0;border:1px solid #c3a16a;border-radius:7px;background:#f8efdc;color:#26372f;box-shadow:0 7px 22px rgba(5,18,26,.2);overflow:hidden}
+#app #lesson>.french-lesson-panel>summary{cursor:pointer;padding:17px 24px;font:500 clamp(17px,2vw,21px)/1.4 Georgia,serif;color:#f0ddb3;background:linear-gradient(110deg,#164236,#173955 58%,#51253f);border-bottom:1px solid #a88e5d}
+#app #lesson>.french-lesson-panel:not([open])>summary{border-bottom:0}
+#app #lesson>.french-lesson-panel>section{width:100%!important;max-width:none!important;margin:0!important;padding:22px 28px!important;color:#25302d!important;background:#f8efdc!important;font-size:17px!important;line-height:1.7!important;box-shadow:none!important;border:none!important}
+#app #lesson>.french-lesson-panel>section p,#app #lesson>.french-lesson-panel>section label{color:#25302d!important;font-size:inherit!important;line-height:inherit!important}
+#app #lesson>.french-lesson-panel button{font-size:14px;line-height:1.35;white-space:normal;max-width:100%}
+#app #lesson textarea{width:100%;max-width:100%;font-size:16px;line-height:1.55}
+#app #lesson>h2,#app #lesson>h3,#app #lesson>p{max-width:100%;text-align:center}
+@media(max-width:580px){#app #lesson{width:calc(100vw - 26px)!important;font-size:16px!important}#app #lesson>.french-lesson-panel>section{padding:15px!important}#app #lesson>.french-lesson-panel>summary{padding:14px 16px}}
+@media print{#app #lesson>.french-lesson-panel{break-inside:auto}#app #lesson>.french-lesson-panel>section{display:block!important}}
+</style>
 </head>
 
 <body><p id="academyAudioStatus" role="status" aria-live="polite" style="margin:7px auto;padding:4px 10px;max-width:850px;font:400 14px/1.5 system-ui,sans-serif"></p>
@@ -202,7 +221,6 @@ body:has(#app:not(.hidden)){background:radial-gradient(ellipse at 14% 16%,rgba(2
 </header>
  <main id="frenchCampusMain">
   <div class="french-landing-intro"><span class="french-landing-eyebrow">Khaemenes Academy · World Languages</span><h1 id="title">French 101</h1><p class="french-landing-subtitle">A thoughtful beginning in French language, pronunciation, reading and communication.</p><p class="french-landing-caption">Choose your learning level below. Your progress stays with your learner record on this device.</p></div>
-  <button id="themeToggle" type="button">🌙 Mode</button>
   <div id="menu">
     <section class="french-level-entry" aria-labelledby="frenchChooseLevel"><h2 id="frenchChooseLevel">Enter your learning journey</h2><p>Begin with Level 1, or continue an unlocked level.</p><div class="level-grid" id="levelGrid"></div></section>
     <details class="french-learner-record"><summary>Manage learner record, backup and restore</summary><div class="french-learner-record-inner">
@@ -269,14 +287,9 @@ function showOnly(name){
 }
 function startApp(){
  $("splash").style.display="none";$("app").classList.remove("hidden");
- $("learnerName").value=safeGet("french101_active_learner")||"";chooseLearner();applyTheme();showOnly("menu");
+ $("learnerName").value=safeGet("french101_active_learner")||"";chooseLearner();document.body.classList.remove("dark");showOnly("menu");
 }
-function applyTheme(){document.body.classList.toggle("dark",safeGet("french101_theme")==="dark"||(!safeGet("french101_theme")&&safeGet("theme")==="dark"))}
-$("themeToggle").addEventListener("click",()=>{
- const dark=!document.body.classList.contains("dark");
- document.body.classList.toggle("dark",dark);
- safeSet("french101_theme",dark?"dark":"light");
-});
+/* Fixed Academy palette: historical theme preferences retained but no longer applied here. */
 function buildLevelGrid(){
  const grid=$("levelGrid");grid.replaceChildren();
  for(let i=1;i<=totalLevels;i++){
@@ -772,6 +785,19 @@ function addFrench101PracticeResources(parent,level){
  parent.append(section);
 }
 
+function organizeFrenchLessonSections(box,level){
+ const sections=Array.from(box.children).filter(node=>node.tagName==="SECTION"&&node.classList.contains("study-section"));
+ sections.forEach((section,i)=>{
+  const wrapper=document.createElement("details");wrapper.className="french-lesson-panel";
+  const title=section.querySelector("h3,h4");
+  const summary=document.createElement("summary");
+  summary.textContent=title?title.textContent:"Practice and resources";
+  summary.setAttribute("aria-label","Expand "+summary.textContent);
+  wrapper.append(summary);
+  section.parentNode.insertBefore(wrapper,section);wrapper.append(section);
+  wrapper.open=level===1?i===0:i===0;
+ });
+}
 function openLesson(level){
  if(!available(level)||!LESSONS[level]){backToMenu();return}
  currentLevel=level;const box=$("lesson");box.replaceChildren();
@@ -826,6 +852,7 @@ function openLesson(level){
  }
  addButton(box,"Take Quiz",()=>openQuiz(level));
  addButton(box,"Back to Levels",backToMenu);
+ organizeFrenchLessonSections(box,level);
  showOnly("lesson");
 }
 const ACCEPTED_TRANSLATIONS={
