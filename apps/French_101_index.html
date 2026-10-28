@@ -345,7 +345,9 @@ function addAlphabetDailyLesson(parent){
  const writing=element("textarea");writing.rows=7;writing.placeholder="My alphabet, five examples, and two-sentence explanation…";writing.setAttribute("aria-label","Unit 01 Lesson 01 written assignment");writing.style.cssText="width:100%;min-height:160px;padding:10px";
  const key=learnerKey+"_u01_d01_assignment";writing.value=safeGet(key)||"";writing.addEventListener("input",()=>safeSet(key,writing.value));section.append(writing);
  section.append(element("p","Educator review: check correct letter order; accented spelling; accurate oral spelling; and the student's explanation. Provide specific correction and a second practice opportunity where necessary. Daily practice is formative; the existing 80% level gate remains the authoritative unlock."));
- const print=element("button","Print this daily lesson");print.type="button";print.addEventListener("click",()=>{document.body.classList.add("print-french-lesson");window.addEventListener("afterprint",()=>document.body.classList.remove("print-french-lesson"),{once:true});window.print()});section.append(print);
+ addUnit01Worksheet(section,1,"Meet the French Alphabet","Write the alphabet in four groups, spell two names, and explain the difference between a letter name and a word sound.");
+ addUnit01EducatorRubric(section,1);
+ const print=element("button","Print this daily lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(1));section.append(print);
  parent.append(section);
 }
 
