@@ -523,6 +523,48 @@ function addUnit01DailySequence(parent){
 
 /* Verified Academy tools — optional practice; never modify French 101 mastery records. */
 /* French Unit 01 · optional sound/letter match game; no mastery or records changed. */
+/* Unit 01 independent sound-to-spelling practice: never alters graded records. */
+function addFrenchSoundSpellingLab(parent){
+ const section=element("section");section.className="study-section";section.id="french-u01-sound-spelling";
+ section.append(element("h3","French Sound-to-Spelling Laboratory"),element("p","Listen without reading, type the French word including accents, then reveal and correct your spelling. This activity is formative only. A French system voice is needed for audio-first practice."));
+ const words=["école","père","garçon","fête","Noël","vous","moi","chat","bonjour","merci","salut","français"];
+ let deck=[],index=0,correct=0;
+ const prompt=element("p"),input=element("input"),feedback=element("p");
+ input.type="text";input.autocomplete="off";input.spellcheck=false;input.setAttribute("aria-label","Type the French word you heard");input.style.cssText="width:100%;max-width:420px;padding:12px;margin:8px 0";
+ feedback.setAttribute("role","status");
+ const play=element("button","Play French word"),check=element("button","Check spelling"),reveal=element("button","Reveal written model"),next=element("button","Next word");
+ for(const b of [play,check,reveal,next])b.type="button";
+ function current(){return deck[index]}
+ function present(){
+  input.value="";input.disabled=false;check.disabled=false;reveal.disabled=false;next.disabled=true;
+  prompt.textContent="Word "+(index+1)+" of "+deck.length+" · Listen, then spell what you hear.";feedback.textContent="";
+  if(!frenchVoiceAvailable()){prompt.textContent+=" French audio unavailable: use Reveal written model for accessible copying practice (not scored as listening).";play.disabled=true}else play.disabled=false;
+ }
+ function begin(){deck=shuffleQuestions(words).slice(0,6);index=0;correct=0;present()}
+ play.addEventListener("click",()=>{if(!speakFR(current()))feedback.textContent="Audio did not start. Use the written model and practice copying; do not count this as listening."});
+ function grade(revealed){
+  const expected=current(),actual=input.value.trim().normalize("NFC").toLocaleLowerCase("fr");
+  const isCorrect=!revealed&&actual===expected.normalize("NFC").toLocaleLowerCase("fr");
+  if(isCorrect)correct++;
+  feedback.textContent=(isCorrect?"Accurate spelling. ":"Review the written model: ")+expected+". Pay attention to every accent. "+(revealed?"This is a supported review, not a listening success.":"");
+  input.disabled=true;check.disabled=true;reveal.disabled=true;next.disabled=false;
+ }
+ check.addEventListener("click",()=>{if(input.value.trim())grade(false)});
+ reveal.addEventListener("click",()=>grade(true));
+ next.addEventListener("click",()=>{index++;if(index>=deck.length){prompt.textContent="Round complete.";feedback.textContent="Accurate spellings without reveal: "+correct+"/"+deck.length+". Practice is not an official grade.";next.disabled=true;play.disabled=true;return}present()});
+ const restart=element("button","New six-word practice");restart.type="button";restart.addEventListener("click",begin);
+ section.append(prompt,play,input,check,reveal,next,restart,feedback);
+ section.append(element("p","Independent challenge: write two correctly spelled words in an original French greeting or sentence. Compare accented spellings with the Prose Handwriting Lab."));
+ parent.append(section);begin();
+}
+function addFrenchHandwritingLessonEntrance(parent){
+ const section=element("section");section.className="study-section";
+ section.append(element("h3","Handwriting Studio · Unit 01"),element("p","Practice the letter patterns and accents from today's lesson on the original Prose Handwriting Lab. Choose its Latin-script or French practice option when available; return here to save your written assignment."));
+ const link=element("a","Open Prose Handwriting Lab");link.href="https://vervenveda.com/proresource_hub.github.io/Protools/PROSE/Handwriting%20Lab/handwriting-lab.html";link.target="_blank";link.rel="noopener noreferrer";section.append(link);
+ const model=element("p","Copying prompts: école · père · garçon · fête · Noël · français. Write each twice, then one original sentence. Check accent placement against the model.");section.append(model);
+ parent.append(section);
+}
+
 function addFrenchAlphabetMatchingLab(parent){
  const section=element("section");section.className="study-section";
  section.append(element("h3","French Alphabet Match · Practice Game"),element("p","A short alphabet and accent matching game adapted to the Academy's early-language game pattern. This is optional practice, not an assessment or proficiency record."));
@@ -585,7 +627,7 @@ function openLesson(level){
  addFrenchMatchingGame(box,level);
  addFrenchGameShelf(box);
  addFrench101PracticeResources(box,level);
- if(level===1)addFrenchAlphabetMatchingLab(box);
+ if(level===1){addFrenchAlphabetMatchingLab(box);addFrenchSoundSpellingLab(box);addFrenchHandwritingLessonEntrance(box);}
  const reader=element("section");reader.className="study-section";
  reader.append(element("h3","Level "+level+" · Original French Story"));
  reader.append(element("p","Read the level-aligned story, examine French vocabulary in context, and complete comprehension practice."));
