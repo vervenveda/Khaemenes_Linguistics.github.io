@@ -214,6 +214,32 @@ body:has(#app:not(.hidden)){color:#f4e9d1!important}
 @media(max-width:600px){#app #menu,#app #lesson,#app #quiz,#app #exam,#app #certificate{width:calc(100vw - 26px)!important}#app #lesson>.french-lesson-panel>summary{padding:13px 14px!important}#app #lesson>.french-lesson-panel>section{padding:16px!important}#khaemenesLearnerUtilityToolbar{width:min(350px,calc(100vw - 14px))!important;gap:4px!important}#khaemenesLearnerUtilityToolbar>a,#khaemenesLearnerUtilityToolbar>button{font-size:11px!important;padding:7px 5px!important}}
 @media print{#khaemenesLearnerUtilityToolbar{display:none!important}}
 </style>
+<style id="french101-refined-lesson-actions">
+/* Refined action rows for spoken models: copy left, control right. */
+#app #lesson #french101-unit01-day01 > p:has(>button),
+#app #lesson .french-lesson-panel > section > p:has(>button){
+ display:flex!important;align-items:center!important;justify-content:space-between!important;gap:14px!important;flex-wrap:wrap!important;text-align:left!important;
+ padding:11px 0!important;border-bottom:1px solid rgba(133,105,64,.22)!important;margin:7px 0!important;
+}
+#app #lesson #french101-unit01-day01 > p >button,
+#app #lesson .french-lesson-panel > section > p >button{
+ flex:0 0 auto!important;margin:0 0 0 auto!important;min-width:140px!important;
+ background:#234c45!important;color:#f8ebd1!important;border:1px solid #aa8954!important;
+ border-radius:7px!important;padding:10px 15px!important;
+ font:500 13px/1.35 "Segoe UI",Arial,sans-serif!important;
+ letter-spacing:.01em!important;text-transform:none!important;
+ box-shadow:0 2px 6px rgba(35,45,38,.13)!important;
+}
+#app #lesson #french101-unit01-day01 > p >button:hover,
+#app #lesson .french-lesson-panel > section > p >button:hover{background:#183a38!important;color:#fff4da!important}
+#app #lesson #french101-unit01-day01 > p >button:focus-visible,
+#app #lesson .french-lesson-panel > section > p >button:focus-visible{outline:3px solid #b28b4e!important;outline-offset:3px!important}
+@media(max-width:520px){
+#app #lesson #french101-unit01-day01 > p:has(>button),#app #lesson .french-lesson-panel > section > p:has(>button){align-items:stretch!important}
+#app #lesson #french101-unit01-day01 > p >button,#app #lesson .french-lesson-panel > section > p >button{min-width:140px!important;max-width:100%!important}
+}
+@media print{#app #lesson #french101-unit01-day01 > p >button,#app #lesson .french-lesson-panel > section > p >button{display:none!important}}
+</style>
 </head>
 
 <body><p id="academyAudioStatus" role="status" aria-live="polite" style="margin:7px auto;padding:4px 10px;max-width:850px;font:400 14px/1.5 system-ui,sans-serif"></p>
