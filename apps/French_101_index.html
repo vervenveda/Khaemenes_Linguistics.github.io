@@ -337,37 +337,68 @@ let assessmentSession=0;
 function normalize(s){
  return String(s).normalize("NFKD").toLowerCase().replace(/[\u0300-\u036f]/g,"").replace(/[’‘]/g,"'").replace(/[^a-z0-9]+/g," ").trim();
 }
+/* Additive assessment bank: original five pairs are preserved in LESSONS, five new pairs per level.
+   Each pair offers three distinct prompt modes; ten blueprint-balanced questions are delivered. */
+const FRENCH_101_EXTENDED_BANK={"1":[{"fr":"Bonsoir","en":"Good evening"},{"fr":"Salut","en":"Hi"},{"fr":"Bonne nuit","en":"Good night"},{"fr":"De rien","en":"You're welcome"},{"fr":"Excusez-moi","en":"Excuse me"}],"2":[{"fr":"Je suis Alex.","en":"I am Alex."},{"fr":"Quel est votre nom ?","en":"What is your name?"},{"fr":"Comment vous appelez-vous ?","en":"What is your name?"},{"fr":"Très bien, merci.","en":"Very well, thank you."},{"fr":"Et vous ?","en":"And you?"}],"3":[{"fr":"Six","en":"Six"},{"fr":"Sept","en":"Seven"},{"fr":"Huit","en":"Eight"},{"fr":"Neuf","en":"Nine"},{"fr":"Dix","en":"Ten"}],"4":[{"fr":"Ma grand-mère","en":"My grandmother"},{"fr":"Mon grand-père","en":"My grandfather"},{"fr":"Mon ami","en":"My friend"},{"fr":"Ma cousine","en":"My cousin"},{"fr":"Mes parents","en":"My parents"}],"5":[{"fr":"Mardi","en":"Tuesday"},{"fr":"Mercredi","en":"Wednesday"},{"fr":"Jeudi","en":"Thursday"},{"fr":"Vendredi","en":"Friday"},{"fr":"Samedi","en":"Saturday"}],"6":[{"fr":"Noir","en":"Black"},{"fr":"Orange","en":"Orange"},{"fr":"Rose","en":"Pink"},{"fr":"Violet","en":"Purple"},{"fr":"Gris","en":"Gray"}],"7":[{"fr":"Un café","en":"A coffee"},{"fr":"Un thé","en":"A tea"},{"fr":"Une banane","en":"A banana"},{"fr":"Un sandwich","en":"A sandwich"},{"fr":"L'addition, s'il vous plaît.","en":"The bill, please."}],"8":[{"fr":"Une école","en":"A school"},{"fr":"Un professeur","en":"A teacher"},{"fr":"Une classe","en":"A class"},{"fr":"Un cahier","en":"A notebook"},{"fr":"Une question","en":"A question"}],"9":[{"fr":"La rue","en":"The street"},{"fr":"La gare","en":"The station"},{"fr":"Le musée","en":"The museum"},{"fr":"Le parc","en":"The park"},{"fr":"Où sont les toilettes ?","en":"Where is the bathroom?"}],"10":[{"fr":"Il neige.","en":"It is snowing."},{"fr":"Il y a du vent.","en":"It is windy."},{"fr":"Il fait frais.","en":"It is cool."},{"fr":"Le soleil brille.","en":"The sun is shining."},{"fr":"Il y a des nuages.","en":"It is cloudy."}],"11":[{"fr":"Je mange.","en":"I eat."},{"fr":"Je dors.","en":"I sleep."},{"fr":"Je marche.","en":"I walk."},{"fr":"Je parle français.","en":"I speak French."},{"fr":"Je fais mes devoirs.","en":"I do my homework."}],"12":[{"fr":"Je vais étudier.","en":"I am going to study."},{"fr":"J'ai mangé.","en":"I ate."},{"fr":"Nous allons partir.","en":"We are going to leave."},{"fr":"Elle a parlé.","en":"She spoke."},{"fr":"Demain, je travaillerai.","en":"Tomorrow, I will work."}]};
+const FRENCH_101_ATTEMPT_KEY_SUFFIX="_assessment_attempts_v3";
+function selectFrenchQuiz(level){
+ const entries=[...LESSONS[level],...(FRENCH_101_EXTENDED_BANK[level]||[])];
+ const candidates=entries.flatMap((item,i)=>[
+   {item,mode:"fr-en",id:level+":"+i+":translation"},
+   {item,mode:"en-fr",id:level+":"+i+":production"},
+   {item,mode:"listen",id:level+":"+i+":listening"}
+ ]);
+ const group=mode=>shuffleQuestions(candidates.filter(q=>q.mode===mode));
+ // Four recognition, four production, two listening questions, each from a distinct lexical item.
+ const selected=[],used=new Set();
+ for(const [mode,n] of [["fr-en",4],["en-fr",4],["listen",2]]){
+  for(const q of group(mode)){if(selected.filter(x=>x.mode===mode).length>=n)break;if(used.has(q.item.fr))continue;used.add(q.item.fr);selected.push(q)}
+ }
+ return shuffleQuestions(selected);
+}
 function openQuiz(level){
  if(!available(level)||!LESSONS[level])return;
- const set=shuffleQuestions(LESSONS[level]).map((item,i)=>({...item,direction:i<3?"fr-en":"en-fr"})),box=$("quiz");box.replaceChildren();
- box.append(element("h2",`Quiz — Level ${level}`),element("p","Five mixed questions: translate French to English and English to French. Pass with at least 80% (4 out of 5)."));
+ const set=selectFrenchQuiz(level),box=$("quiz");box.replaceChildren();
+ box.append(element("h2",`Quiz — Level ${level}`),element("p","Ten balanced questions drawn from an expanded lesson bank: four French-to-English, four English-to-French and two listening prompts. Pass with 80% (8 of 10)."));
  const question=element("p");question.style.fontSize="1.2rem";question.lang="fr";
- const input=document.createElement("input");input.type="text";input.placeholder="English meaning";input.autocomplete="off";input.setAttribute("aria-label","English translation");
+ const input=document.createElement("input");input.type="text";input.autocomplete="off";
  const feedback=element("p");feedback.setAttribute("role","status");
  const submit=element("button","Check answer");submit.type="button";
- box.append(question,input,submit,feedback);
+ const listen=element("button","Replay French audio");listen.type="button";listen.addEventListener("click",()=>{if(index<set.length)speakFR(set[index].item.fr)});
+ box.append(question,input,listen,submit,feedback);
  addButton(box,"Back to Levels",backToMenu);
  let index=0,score=0,busy=false;const session=assessmentSession+1;
  function finish(){
-  input.disabled=true;submit.disabled=true;const passed=score>=Math.ceil(set.length*.8);
-  feedback.textContent=`Score: ${score}/${set.length}. ${passed?"Passed!":"Practice and try again."}`;
+  input.disabled=true;submit.disabled=true;listen.disabled=true;
+  const passed=score>=Math.ceil(set.length*.8);
+  feedback.textContent=`Score: ${score}/${set.length}. ${passed?"Passed!":"Review and try a new selection."}`;
+  const key=learnerKey+FRENCH_101_ATTEMPT_KEY_SUFFIX;
+  const history=(()=>{try{const h=JSON.parse(safeGet(key)||"[]");return Array.isArray(h)?h:[]}catch{return []}})();
+  history.push({level,score,total:set.length,passed,at:new Date().toISOString(),questionIds:set.map(q=>q.id)});
+  safeSet(key,JSON.stringify(history.slice(-100)));
   if(passed){
-   progress[level]="completed";progress["quizScore_"+level]=score;
+   progress[level]="completed";progress["quizScore_"+level]=score;progress["quizTotal_"+level]=set.length;
    if(level<totalLevels&&progress[level+1]!=="completed")progress[level+1]="unlocked";
    saveProgress();
-   addButton(box,level<totalLevels?"Next Level":"Final Exam",()=>{
-    if(level<totalLevels)openLesson(level+1);else openExam();
-   });
-  }else addButton(box,"Retry Quiz",()=>openQuiz(level));
+   addButton(box,level<totalLevels?"Continue to Next Level":"Final Exam",()=>{if(level<totalLevels)openLesson(level+1);else openExam()});
+  }else addButton(box,"Retry with New Questions",()=>openQuiz(level));
   buildLevelGrid();
  }
- function ask(){busy=false;if(index>=set.length){finish();return}question.textContent=set[index].direction==="fr-en"?set[index].fr:set[index].en;question.lang=set[index].direction==="fr-en"?"fr":"en";input.placeholder=set[index].direction==="fr-en"?"English meaning":"French expression";input.setAttribute("aria-label",input.placeholder);input.focus()}
+ function ask(){
+  busy=false;if(index>=set.length){finish();return}
+  const q=set[index];listen.hidden=q.mode!=="listen";
+  question.textContent=q.mode==="listen"?"Listen to the French phrase, then type its English meaning.":q.mode==="fr-en"?q.item.fr:q.item.en;
+  question.lang=q.mode==="en-fr"?"en":"fr";
+  input.placeholder=q.mode==="en-fr"?"French expression":"English meaning";
+  input.setAttribute("aria-label",input.placeholder);input.focus();
+  if(q.mode==="listen")speakFR(q.item.fr);
+ }
  function check(){
   if(busy||index>=set.length||!input.value.trim())return;
-  busy=true;submit.disabled=true;
-  const correct=set[index].direction==="fr-en"?matchesTranslation(set[index],input.value):normalize(set[index].fr)===normalize(input.value);
+  busy=true;submit.disabled=true;const q=set[index];
+  const correct=q.mode==="en-fr"?normalize(q.item.fr)===normalize(input.value):matchesTranslation(q.item,input.value);
   if(correct)score++;
-  feedback.textContent=correct?"Correct!":"Expected: "+(set[index].direction==="fr-en"?set[index].en:set[index].fr);
+  feedback.textContent=correct?"Correct!":"Expected: "+(q.mode==="en-fr"?q.item.fr:q.item.en);
   index++;input.value="";
   setTimeout(()=>{if(session!==assessmentSession||!document.contains(box)||box.classList.contains("hidden"))return;submit.disabled=false;ask()},550);
  }
