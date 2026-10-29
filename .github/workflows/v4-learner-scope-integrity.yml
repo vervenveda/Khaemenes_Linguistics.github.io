@@ -9,6 +9,9 @@ on:
       - 'data/course-topology.json'
       - 'service-worker.js'
       - 'tests/v4-learner-scope-regression.mjs'
+      - 'tests/v4-learner-backup-regression.mjs'
+      - 'scripts/audit-v4-backup.mjs'
+      - 'docs/V4_LEARNER_BACKUP_RECOVERY.md'
       - '.github/workflows/v4-learner-scope-integrity.yml'
   pull_request:
     paths:
@@ -17,6 +20,9 @@ on:
       - 'data/course-topology.json'
       - 'service-worker.js'
       - 'tests/v4-learner-scope-regression.mjs'
+      - 'tests/v4-learner-backup-regression.mjs'
+      - 'scripts/audit-v4-backup.mjs'
+      - 'docs/V4_LEARNER_BACKUP_RECOVERY.md'
   workflow_dispatch:
 
 permissions:
@@ -34,5 +40,9 @@ jobs:
         run: node tests/v4-learner-scope-regression.mjs
       - name: Verify Hall learner-scope integration
         run: node scripts/audit-v4-learner-scope.mjs
+      - name: Verify learner backup and recovery isolation
+        run: node tests/v4-learner-backup-regression.mjs
+      - name: Verify backup UI and restore integration
+        run: node scripts/audit-v4-backup.mjs
       - name: Verify authority bridge remains review-only
         run: node scripts/audit-authority-bridge.mjs
