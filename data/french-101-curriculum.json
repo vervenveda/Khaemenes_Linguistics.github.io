@@ -236,7 +236,7 @@
       "legacy_checkpoint_preserved": true
     },
     "midterm_after_lesson_12": {
-      "status": "blueprint-next-after-developed-lessons-01-12",
+      "status": "blueprint-complete-not-yet-live",
       "threshold_percent": 80,
       "skills": [
         "reading",
@@ -244,7 +244,9 @@
         "language-use",
         "short-writing",
         "reviewed-speaking"
-      ]
+      ],
+      "blueprint": "data/french-101-midterm-blueprint.json",
+      "assessment_id": "KH-LANG-FR-101-MIDTERM-2026"
     },
     "final_after_lesson_18": {
       "status": "planned",
