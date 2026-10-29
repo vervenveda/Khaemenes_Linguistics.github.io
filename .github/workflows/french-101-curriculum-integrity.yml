@@ -1,0 +1,38 @@
+name: French 101 curriculum integrity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'apps/French_101_index.html'
+      - 'Halls/index.html'
+      - 'data/french-101-curriculum.json'
+      - 'data/french-101-midterm-blueprint.json'
+      - 'data/course-topology.json'
+      - 'scripts/audit-french-101-canonical.mjs'
+      - 'docs/FRENCH_101_18_LESSON_CURRICULUM.md'
+      - 'docs/FRENCH_101_LESSONS09_12_DEVELOPMENT_AUDIT.md'
+      - '.github/workflows/french-101-curriculum-integrity.yml'
+  pull_request:
+    paths:
+      - 'apps/French_101_index.html'
+      - 'Halls/index.html'
+      - 'data/french-101-curriculum.json'
+      - 'data/french-101-midterm-blueprint.json'
+      - 'data/course-topology.json'
+      - 'scripts/audit-french-101-canonical.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  curriculum:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify canonical French 101 architecture
+        run: node scripts/audit-french-101-canonical.mjs
