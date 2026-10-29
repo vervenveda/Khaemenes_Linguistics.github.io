@@ -277,14 +277,14 @@ html[dir="rtl"] .campus-breadcrumbs{direction:rtl}
 </nav>
 <main id="main">
 <section class="hero" aria-labelledby="heroTitle"><div class="wrap hero-grid">
-<div class="hero-copy-wrap"><p class="eyebrow">Khaemenes Academy · Linguistics & World Language Campus</p><h1 id="heroTitle">Polyglot</h1><p class="hero-subtitle">The World in Words</p><p class="hero-copy">One calm entrance to formal language study, linguistics, pronunciation, scripts, translation, cultural understanding and a growing library of local language applications—from first words through lower-division collegiate study.</p><p class="campus-line"><strong>Now inside this repository:</strong> 5 complete formal language pathways · 55 courses · 206 language dossiers · 40 foundations · 29 local language apps.</p><div class="actions"><a class="button gold" href="./Halls/">Enter Five-Language Academy</a><a class="button wine" data-french-direct-entry href="https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/French_101_index.html">French 101</a><a class="button" href="#apps">Browse 29 local apps</a><a class="button secondary" href="#voice-studio">Choose a voice</a></div><div class="skill-line"><span>Listening</span><span>Speaking</span><span>Reading</span><span>Writing</span><span>Mediation</span><span>Translation</span><span>Culture</span><span>Linguistics</span></div></div>
+<div class="hero-copy-wrap"><p class="eyebrow">Khaemenes Academy · Linguistics & World Language Campus</p><h1 id="heroTitle">Polyglot</h1><p class="hero-subtitle">The World in Words</p><p class="hero-copy">One calm entrance to formal language study, linguistics, pronunciation, scripts, translation, cultural understanding and a growing library of local language applications—from first words through lower-division collegiate study.</p><p class="campus-line"><strong>Now inside this repository:</strong> 5 complete formal language pathways · 55 courses · 206 language dossiers · 40 foundations · 29 local language apps.</p><div class="actions"><a class="button gold" href="./Halls/">Enter Five-Language Academy</a><a class="button wine" data-french-direct-entry href="./apps/French_101_index.html">French 101</a><a class="button" href="#apps">Browse 29 local apps</a><a class="button secondary" href="#voice-studio">Choose a voice</a></div><div class="skill-line"><span>Listening</span><span>Speaking</span><span>Reading</span><span>Writing</span><span>Mediation</span><span>Translation</span><span>Culture</span><span>Linguistics</span></div></div>
 <aside class="phrase-card" aria-labelledby="phraseTitle"><div class="compass" aria-hidden="true"><div class="compass-center"><span>Language<br>Compass</span></div></div><h2 id="phraseTitle">Begin with a greeting.</h2><p>Hear a phrase using voices already available in the learner's browser or operating system.</p><div class="phrase" aria-live="polite"><div class="phrase-language" id="phraseLanguage">Spanish</div><div class="phrase-main" id="phraseMain" lang="es">Cada idioma abre una puerta.</div><div class="phrase-translation" id="phraseTranslation">Each language opens a door.</div><div class="phrase-actions"><button class="button" id="speakPhrase" type="button">Hear phrase</button><button class="button secondary" id="nextPhrase" type="button">Next phrase</button></div></div></aside>
 </div></section>
 <section class="language-route-section" id="language-matrix" aria-labelledby="languageMatrixTitle"><div class="wrap">
 <div class="language-route-heading"><p class="eyebrow">Language Matrix</p><h2 id="languageMatrixTitle">Choose your language.</h2><p>Enter the principal learner-facing pathway for each language. Supporting studios, dictionaries, readers and practice tools remain available throughout the campus.</p></div>
 <div class="language-route-grid">
 <article class="language-route-card"><div class="route-mark">Ñ</div><h3>Spanish</h3><p>Foundation lessons and communication checkpoints.</p><a class="button" href="https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/language-worlds/spanish/">Enter Spanish</a></article>
-<article class="language-route-card"><div class="route-mark">Ç</div><h3>French</h3><p>French 101 lesson journey, evidence and mastery.</p><a class="button" href="https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/French_101_index.html">Enter French</a></article>
+<article class="language-route-card"><div class="route-mark">Ç</div><h3>French</h3><p>French 101 lesson journey, evidence and mastery.</p><a class="button" data-french-direct-entry href="./apps/French_101_index.html">Enter French</a></article>
 <article class="language-route-card"><div class="route-mark">Ä</div><h3>German</h3><p>German learning hub, practice studios and tools.</p><a class="button" href="https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/German_hub_index.html">Enter German</a></article>
 <article class="language-route-card"><div class="route-mark">中</div><h3>Mandarin</h3><p>Foundation lessons and communication checkpoints.</p><a class="button" href="https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/language-worlds/mandarin/">Enter Mandarin</a></article>
 <article class="language-route-card"><div class="route-mark">日</div><h3>Japanese</h3><p>Foundation lessons and communication checkpoints.</p><a class="button" href="https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/language-worlds/japanese/">Enter Japanese</a></article>
@@ -414,4 +414,16 @@ $('#year').textContent=new Date().getFullYear();renderPhrase();renderFilters();r
 <script src="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-global-header.js" defer></script>
 <script src="https://vervenveda.com/assets/vnv-ecosystem-menu.js" defer></script>
 <script src="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-landing-toolbar.js" defer></script>
+<script id="french-direct-entry-guard">
+(()=>{"use strict";
+ const target="./apps/French_101_index.html";
+ document.addEventListener("click",event=>{
+   const link=event.target.closest?.("[data-french-direct-entry]");
+   if(!link)return;
+   event.preventDefault();
+   event.stopImmediatePropagation();
+   window.location.assign(new URL(target,document.baseURI).href);
+ },true);
+})();
+</script>
 </body></html>
