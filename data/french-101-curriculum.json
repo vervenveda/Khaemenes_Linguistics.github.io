@@ -1,0 +1,271 @@
+{
+  "schema_version": "1.0",
+  "curriculum_id": "KH-LANG-FR-101-2026",
+  "course": "French 101",
+  "title": "From First Letters to Everyday French",
+  "duration_weeks": 18,
+  "mastery_threshold_percent": 80,
+  "preservation": {
+    "legacy_12_level_progress": "grandfathered",
+    "legacy_final": "preserved",
+    "existing_certificates": "preserved",
+    "historical_daily_lessons": "preserved_as_enrichment_or_archive_when_replaced",
+    "no_retroactive_downgrade": true
+  },
+  "reviewer_roles": {
+    "policy": "soft-local-role",
+    "allowed": [
+      "Parent",
+      "Teacher",
+      "Homeschool Parent/Teacher",
+      "Mentor",
+      "Self-Directed Adult",
+      "Other Local Reviewer"
+    ],
+    "privileged_account_required": false,
+    "independent_attestation_only_when_explicitly_required": true
+  },
+  "units": [
+    {
+      "unit": 1,
+      "title": "Foundations of French",
+      "lessons": [
+        1,
+        2,
+        3
+      ],
+      "outcomes": [
+        "alphabet and accent awareness",
+        "numbers 0–100",
+        "vowels and subject pronouns"
+      ]
+    },
+    {
+      "unit": 2,
+      "title": "First Communication & Structure",
+      "lessons": [
+        4,
+        5,
+        6
+      ],
+      "outcomes": [
+        "greetings and introductions",
+        "first meaningful sentences",
+        "nouns, articles and grammatical gender"
+      ]
+    },
+    {
+      "unit": 3,
+      "title": "People & Description",
+      "lessons": [
+        7,
+        8,
+        9
+      ],
+      "outcomes": [
+        "être and avoir",
+        "family, friends and relationships",
+        "colors, shapes and descriptions"
+      ]
+    },
+    {
+      "unit": 4,
+      "title": "Everyday Life",
+      "lessons": [
+        10,
+        11,
+        12
+      ],
+      "outcomes": [
+        "dates and time",
+        "food and café communication",
+        "home, school and everyday objects"
+      ]
+    },
+    {
+      "unit": 5,
+      "title": "Independent Interaction",
+      "lessons": [
+        13,
+        14,
+        15
+      ],
+      "outcomes": [
+        "questions and negation",
+        "present-tense verbs and routines",
+        "places, directions and transportation"
+      ]
+    },
+    {
+      "unit": 6,
+      "title": "Integrated French",
+      "lessons": [
+        16,
+        17,
+        18
+      ],
+      "outcomes": [
+        "reading and listening comprehension",
+        "writing and speaking",
+        "integration, corrections and final preparation"
+      ]
+    }
+  ],
+  "lessons": [
+    {
+      "lesson": 1,
+      "title": "Meet the French Alphabet",
+      "status": "developed",
+      "legacy_preservation": "current lesson retained"
+    },
+    {
+      "lesson": 2,
+      "title": "Numbers, Counting & Simple Prices",
+      "status": "developed",
+      "legacy_preservation": "earlier vowel work preserved as enrichment"
+    },
+    {
+      "lesson": 3,
+      "title": "Vowels & Subject Pronouns",
+      "status": "developed",
+      "legacy_preservation": "earlier consonant work preserved as enrichment"
+    },
+    {
+      "lesson": 4,
+      "title": "Greetings & Introductions",
+      "status": "developed",
+      "legacy_preservation": "earlier accents work preserved as enrichment"
+    },
+    {
+      "lesson": 5,
+      "title": "Small Words & First Sentences",
+      "status": "developed",
+      "legacy_preservation": "earlier records preserved"
+    },
+    {
+      "lesson": 6,
+      "title": "Nouns, Articles & Gender",
+      "status": "developed",
+      "legacy_preservation": "earlier listening lesson preserved as enrichment"
+    },
+    {
+      "lesson": 7,
+      "title": "Être & Avoir",
+      "status": "developed",
+      "legacy_preservation": "earlier silent-letter lesson preserved as enrichment"
+    },
+    {
+      "lesson": 8,
+      "title": "Family, Friends & Relationships",
+      "status": "developed",
+      "legacy_preservation": "earlier nasal-vowel lesson preserved as enrichment"
+    },
+    {
+      "lesson": 9,
+      "title": "Colors, Shapes & Descriptions",
+      "status": "next-development",
+      "legacy_preservation": "earlier sound-combinations lesson preserved as enrichment"
+    },
+    {
+      "lesson": 10,
+      "title": "Dates & Time",
+      "status": "planned",
+      "legacy_preservation": "earlier spelling-names lesson to remain enrichment"
+    },
+    {
+      "lesson": 11,
+      "title": "Food & Café",
+      "status": "planned",
+      "legacy_preservation": "earlier unfamiliar-word copying lesson to remain enrichment"
+    },
+    {
+      "lesson": 12,
+      "title": "Home, School & Everyday Objects",
+      "status": "planned",
+      "legacy_preservation": "earlier pronunciation-in-greetings lesson to remain enrichment"
+    },
+    {
+      "lesson": 13,
+      "title": "Questions, Negation & Conversation",
+      "status": "planned",
+      "legacy_preservation": "earlier dictation/correction lesson to remain enrichment"
+    },
+    {
+      "lesson": 14,
+      "title": "Present-Tense Verbs & Daily Routines",
+      "status": "planned",
+      "legacy_preservation": "earlier reading/transfer lesson to remain enrichment"
+    },
+    {
+      "lesson": 15,
+      "title": "Places, Directions & Transportation",
+      "status": "planned",
+      "legacy_preservation": "earlier Unit 01 review to remain enrichment"
+    },
+    {
+      "lesson": 16,
+      "title": "Reading & Listening Comprehension",
+      "status": "planned",
+      "legacy_preservation": "Chroniques and sound-lab evidence remain supplemental"
+    },
+    {
+      "lesson": 17,
+      "title": "Writing & Speaking",
+      "status": "planned",
+      "legacy_preservation": "existing portfolios and rubrics remain supplemental"
+    },
+    {
+      "lesson": 18,
+      "title": "Integration, Corrections & Final Preparation",
+      "status": "planned",
+      "legacy_preservation": "legacy final/certificates preserved"
+    }
+  ],
+  "assessment_architecture": {
+    "daily_formative": {
+      "official_mastery": false,
+      "corrections": true
+    },
+    "unit_reviews": {
+      "count": 6,
+      "reviewer_role_attributed": true
+    },
+    "checkpoint_after_lesson_6": {
+      "status": "future-versioned-replacement",
+      "threshold_percent": 80,
+      "legacy_checkpoint_preserved": true
+    },
+    "midterm_after_lesson_12": {
+      "status": "planned",
+      "threshold_percent": 80,
+      "skills": [
+        "reading",
+        "listening",
+        "language-use",
+        "short-writing",
+        "reviewed-speaking"
+      ]
+    },
+    "final_after_lesson_18": {
+      "status": "planned",
+      "threshold_percent": 80,
+      "skills": [
+        "reading",
+        "listening",
+        "language-use",
+        "situational-communication",
+        "writing",
+        "reviewed-speaking"
+      ],
+      "legacy_ten_translation_final_preserved": true
+    },
+    "retry_policy": "below 80% permits correction and parallel retake; earned mastery is never downgraded"
+  },
+  "evidence_principles": [
+    "Synthetic speech is practice support, not proof of independent listening.",
+    "Visible-text fallback cannot be recorded as listening proficiency.",
+    "Recognition scores remain distinct from independent writing and speaking evidence.",
+    "Reviewer metadata records role and evidence context without requiring a privileged account.",
+    "No new curriculum version may erase or downgrade earned legacy completion."
+  ]
+}
