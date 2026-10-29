@@ -32,5 +32,7 @@ jobs:
           node-version: '20'
       - name: Verify learner isolation and legacy preservation
         run: node tests/v4-learner-scope-regression.mjs
+      - name: Verify Hall learner-scope integration
+        run: node scripts/audit-v4-learner-scope.mjs
       - name: Verify authority bridge remains review-only
         run: node scripts/audit-authority-bridge.mjs
