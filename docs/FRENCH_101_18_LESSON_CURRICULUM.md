@@ -42,6 +42,8 @@ Review is intentionally accessible for a free online/homeschool platform. The re
 
 ## Development status
 
-Lessons 01–08 are the protected developed baseline. Lesson 09 is the next full-development target. Lessons 10–18 follow sequentially.
+Lessons 01–12 are now the protected developed baseline. The first four canonical units are developed through the midterm boundary. Lesson 13 · Questions, Negation & Conversation is the next full-development target. Lessons 13–18 continue sequentially.
+
+The legacy 12-level mastery pathway, compatibility Unit 01 checkpoint and preserved 10-translation final remain operational for historical records. They are explicitly labeled as compatibility/legacy constructs and do not define the future canonical midterm or final.
 
 The older Lessons 09–15 phonology/spelling sequence is valuable material and should be retained as a Pronunciation, Orthography & Literacy enrichment archive rather than discarded or mislabeled as the new curriculum.
