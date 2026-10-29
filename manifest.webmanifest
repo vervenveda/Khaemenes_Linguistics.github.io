@@ -19,19 +19,19 @@
   "prefer_related_applications": false,
   "shortcuts": [
     {
-      "name": "Language Collections",
+      "name": "Language Matrix",
       "short_name": "Languages",
-      "url": "./#languages"
+      "url": "./#language-matrix"
     },
     {
-      "name": "Learning Paths",
-      "short_name": "Pathways",
-      "url": "./#pathways"
+      "name": "Formal Academy",
+      "short_name": "Academy",
+      "url": "./#academy"
     },
     {
-      "name": "Skill Studios",
-      "short_name": "Studios",
-      "url": "./#studios"
+      "name": "Language Apps",
+      "short_name": "Apps",
+      "url": "./#apps"
     }
   ]
 }
