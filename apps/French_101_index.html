@@ -1069,6 +1069,9 @@ function printUnit01Day(day,educator=false){
  if(day===13){printFrenchLesson13(false);return}
  if(day===14){printFrenchLesson14(false);return}
  if(day===15){printFrenchLesson15(false);return}
+ if(day===16){printFrenchLesson16(false);return}
+ if(day===17){printFrenchLesson17(false);return}
+ if(day===18){printFrenchLesson18(false);return}
  const source=day===1?document.getElementById("french101-unit01-day01"):document.querySelector("#unit01-daily-lessons .unit01-active-day");
  if(!source)return;
  const previous=document.getElementById("unit01-print-copy");if(previous)previous.remove();
@@ -3023,23 +3026,44 @@ function addFrenchLesson18IntegrationDepth(panel){
  const key=element("details");key.id="french-l18-review-key";key.append(element("summary","Thirty-question final-preparation key · reviewer reference"));FRENCH_U01_L18_INTEGRATION_BANK.forEach((q,i)=>key.append(element("p",(i+1)+". "+q.prompt+" · Answer: "+q.choices[q.answer]+". "+q.explain)));sec.append(key);
  const actions=element("div");addButton(actions,"Print integration portfolio",()=>printFrenchLesson18(false));addButton(actions,"Print reviewer guidance",()=>printFrenchLesson18(true));sec.append(actions);panel.append(sec);
 }
+const FRENCH_101_CANONICAL_DAYS=[
+ ...FRENCH_101_UNIT01_DAYS,
+ {day:16,title:"Reading & Listening Comprehension"},
+ {day:17,title:"Writing & Speaking"},
+ {day:18,title:"Integration, Corrections & Final Preparation"}
+];
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
- wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–15 are developed in the current curriculum. Lessons 16–18 are the remaining integrated-skill sequence and are developed separately from the preserved 12-level mastery path. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
+ wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–18 are developed in the canonical curriculum. The preserved 12-level mastery path remains available for historical progress and certificates, while the 18-lesson sequence supplies the current instructional spine. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
  const picker=element("select");picker.setAttribute("aria-label","Choose Unit 01 lesson");picker.style.cssText="width:100%;padding:10px;margin:8px 0";
  const lessonSelectionKey=()=>learnerKey+"_u01_selected_lesson_v1";
  const savedSelection=safeGet(lessonSelectionKey());
 
- FRENCH_101_UNIT01_DAYS.forEach(d=>{const current=d.day===15?"Places, Directions & Transportation":d.day===14?"Present-Tense Verbs & Daily Routines":d.day===13?"Questions, Negation & Conversation":d.day===12?"Home, School & Everyday Objects":d.day===11?"Food & Café":d.day===10?"Dates & Time":d.day===9?"Colors, Shapes & Descriptions":d.day===8?"Family and Relationships":d.day===7?"Être and Avoir":d.day===6?"Nouns, Articles and Gender":d.day===2?"Numbers · 0–100":d.title;const label=d.day>=16?"Archive · Earlier "+String(d.day).padStart(2,"0")+" — "+d.title:"Lesson "+String(d.day).padStart(2,"0")+" — "+current;const o=element("option",label);o.value=d.day;picker.append(o)});
- if(savedSelection&&FRENCH_101_UNIT01_DAYS.some(d=>String(d.day)===savedSelection))picker.value=savedSelection;
+ FRENCH_101_CANONICAL_DAYS.forEach(d=>{
+  const canonicalTitles={2:"Numbers · 0–100",3:"Vowels & Subject Pronouns",4:"Greetings & Introductions",5:"Small Words & First Sentences",6:"Nouns, Articles & Gender",7:"Être & Avoir",8:"Family & Relationships",9:"Colors, Shapes & Descriptions",10:"Dates & Time",11:"Food & Café",12:"Home, School & Everyday Objects",13:"Questions, Negation & Conversation",14:"Present-Tense Verbs & Daily Routines",15:"Places, Directions & Transportation",16:"Reading & Listening Comprehension",17:"Writing & Speaking",18:"Integration, Corrections & Final Preparation"};
+  const o=element("option","Lesson "+String(d.day).padStart(2,"0")+" — "+(canonicalTitles[d.day]||d.title));o.value=d.day;picker.append(o);
+});
+ if(savedSelection&&FRENCH_101_CANONICAL_DAYS.some(d=>String(d.day)===savedSelection))picker.value=savedSelection;
  const panel=element("article");panel.className="unit01-active-day";panel.style.cssText="max-width:780px;margin:0 auto;line-height:1.65";const navigation=element("div");navigation.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0";const previous=element("button","← Previous Lesson"),next=element("button","Next Lesson →");previous.type=next.type="button";navigation.append(previous,next);const journey=element("p");journey.setAttribute("role","status");const status=element("p");status.setAttribute("role","status");
  function draw(){
-  const d=FRENCH_101_UNIT01_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_UNIT01_DAYS[0];
+  const d=FRENCH_101_CANONICAL_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_CANONICAL_DAYS[0];
   safeSet(lessonSelectionKey(),String(d.day));
   panel.replaceChildren();
+  if(d.day===18){
+   panel.append(element("h4","Lesson 18 · Integration, Corrections & Final Preparation"));addFrenchLesson18IntegrationDepth(panel);
+   status.textContent="Lesson 18 integration portfolio ready. This is final preparation, not the comprehensive final itself.";previous.disabled=false;next.disabled=true;previous.textContent="← Lesson 17";next.textContent="Comprehensive final · separate assessment";journey.textContent="French 101 · Canonical Lesson 18 of 18 · Integrated French. Final readiness evidence does not erase earlier mastery.";return;
+  }
+  if(d.day===17){
+   panel.append(element("h4","Lesson 17 · Writing & Speaking"));addFrenchLesson17ProductionDepth(panel);
+   status.textContent="Lesson 17 writing/speaking production studio ready.";previous.disabled=false;next.disabled=false;previous.textContent="← Lesson 16";next.textContent="Next Lesson →";journey.textContent="French 101 · Canonical Lesson 17 of 18 · Integrated French. Production evidence remains separate from recognition scores.";return;
+  }
+  if(d.day===16){
+   panel.append(element("h4","Lesson 16 · Reading & Listening Comprehension"));addFrenchLesson16ComprehensionDepth(panel);
+   status.textContent="Lesson 16 reading/listening comprehension studio ready.";previous.disabled=false;next.disabled=false;previous.textContent="← Lesson 15";next.textContent="Next Lesson →";journey.textContent="French 101 · Canonical Lesson 16 of 18 · Integrated French. Transcript-supported practice is distinguished from independent listening.";return;
+  }
   if(d.day===15){
    panel.append(element("h4","Lesson 15 · Places, Directions & Transportation"));addFrenchLesson15DirectionsDepth(panel);addFrenchLesson15ReviewArchive(panel);
-   status.textContent="Lesson 15 places/directions studio ready. Earlier Unit 01 review remains optional and preserved.";previous.disabled=false;next.disabled=true;previous.textContent="← Lesson 14";next.textContent="Lesson 16 · in development";journey.textContent="French 101 · Canonical Lesson 15 of 18 · Independent Interaction. Daily formative work is separate from official 80% mastery.";return;
+   status.textContent="Lesson 15 places/directions studio ready. Earlier Unit 01 review remains optional and preserved.";previous.disabled=false;next.disabled=false;previous.textContent="← Lesson 14";next.textContent="Next Lesson →";journey.textContent="French 101 · Canonical Lesson 15 of 18 · Independent Interaction. Daily formative work is separate from official 80% mastery.";return;
   }
   if(d.day===14){
    panel.append(element("h4","Lesson 14 · Present-Tense Verbs & Daily Routines"));addFrenchLesson14RoutinesDepth(panel);addFrenchLesson14ReadingArchive(panel);
@@ -3078,7 +3102,7 @@ function addUnit01DailySequence(parent){
    
    status.textContent="Lesson 06 noun/article review ready. Earlier listening evidence remains in optional enrichment.";previous.disabled=false;next.disabled=false;previous.textContent="← Previous Lesson";journey.textContent="Course Level 1 · Viewing Lesson 06 of 15 · Nouns, Articles and Gender. Official mastery remains separate at 80%.";return;
   }
-  if(d.day>=16){
+  if(d.day>=19){
    panel.append(element("h4","Archival enrichment · Earlier Lesson "+String(d.day).padStart(2,"0")+" · "+d.title),element("p","This material is preserved from the earlier Unit 01 phonology/literacy sequence. It remains useful practice, but it is not the canonical French 101 Lesson "+String(d.day).padStart(2,"0")+". The canonical replacement will be developed separately without deleting this work."));
   }else{
    panel.append(element("h4","Lesson "+String(d.day).padStart(2,"0")+" · "+(d.day===2?"Numbers · 0–100":d.title)));
@@ -3145,9 +3169,9 @@ function addUnit01DailySequence(parent){
   panel.append(deeper);
   const print=element("button","Print lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(d.day));panel.append(print);
   cohereFrenchDailyPanel(panel,d.day);
-  status.textContent=d.day>=16?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=16?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
+  status.textContent=d.day>=19?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=19?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
  }
- previous.addEventListener("click",()=>{if(Number(picker.value)===2){document.getElementById("french101-unit01-day01")?.scrollIntoView({block:"start",behavior:"smooth"});return}picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
+ previous.addEventListener("click",()=>{if(Number(picker.value)===2){document.getElementById("french101-unit01-day01")?.scrollIntoView({block:"start",behavior:"smooth"});return}picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(18,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
 }
 
 /* Verified Academy tools — optional practice; never modify French 101 mastery records. */
@@ -3519,7 +3543,7 @@ $("selectLearner").addEventListener("click",()=>reset("Learner selected. Choose 
 <script id="french101-direct-lesson-review">
 /* Direct access to existing self-paced Level 1 lesson content, not to official graded levels. */
 document.addEventListener("DOMContentLoaded",()=>{
- const match=location.hash.match(/^#lesson-(0?[1-9]|1[0-5])$/i);
+ const match=location.hash.match(/^#lesson-(0?[1-9]|1[0-8])$/i);
  if(!match)return;
  const requested=Number(match[1]);
  try{
