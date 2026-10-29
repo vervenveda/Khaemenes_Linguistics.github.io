@@ -1,0 +1,172 @@
+{
+  "schema_version": "1.0",
+  "assessment_id": "KH-LANG-FR-101-FINAL-2026",
+  "curriculum_id": "KH-LANG-FR-101-2026",
+  "title": "French 101 Comprehensive Final",
+  "scope": {
+    "lessons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18
+    ],
+    "units": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ]
+  },
+  "status": "blueprint-not-yet-live",
+  "policy": {
+    "closed_book": true,
+    "mastery_threshold_percent": 80,
+    "corrections_after_attempt": true,
+    "below_mastery_parallel_retake": true,
+    "earned_mastery_never_downgraded": true,
+    "legacy_final_and_certificates_preserved": true,
+    "privileged_reviewer_account_required": false
+  },
+  "objective_section": {
+    "recommended_items": 30,
+    "recommended_bank_minimum": 120,
+    "pass_rule": "24/30 or better",
+    "domains": [
+      {
+        "id": "foundations",
+        "items": 5,
+        "focus": "alphabet, numbers, pronouns, greetings, articles"
+      },
+      {
+        "id": "language-use",
+        "items": 5,
+        "focus": "être/avoir, agreement, dates/time, questions/negation, present-tense routines"
+      },
+      {
+        "id": "practical-communication",
+        "items": 5,
+        "focus": "café, objects/locations, directions, transport, conversation repair"
+      },
+      {
+        "id": "interpretive-reading",
+        "items": 5,
+        "focus": "new short connected beginner texts with gist, details, inference and source limits"
+      },
+      {
+        "id": "interpretive-listening",
+        "items": 5,
+        "focus": "new spoken beginner messages; no visible transcript before response"
+      },
+      {
+        "id": "integrated-transfer",
+        "items": 5,
+        "focus": "novel situations, error analysis, cross-unit reasoning"
+      }
+    ],
+    "answer_disclosure": "after submitted attempt",
+    "question_ids": "stable and versioned",
+    "form_strategy": "parallel equivalent forms, not identical memorized retries"
+  },
+  "performance_section": {
+    "writing": {
+      "prompts": 1,
+      "requirement": "12–16 connected beginner sentences responding to an unfamiliar practical or descriptive prompt",
+      "rubric": [
+        "comprehensibility",
+        "task_completion",
+        "language_control",
+        "organization_and_revision"
+      ],
+      "review_required": true
+    },
+    "speaking": {
+      "prompts": 1,
+      "requirement": "short unfamiliar interpersonal or presentational task without reading a complete prepared script",
+      "rubric": [
+        "comprehensibility",
+        "task_completion",
+        "language_control",
+        "interaction_or_repair"
+      ],
+      "review_required": true
+    },
+    "listening": {
+      "independence_rule": "spoken source must be unfamiliar and presented before any transcript",
+      "fallback_rule": "written transcript fallback changes measurement scope and cannot be recorded as independent listening mastery"
+    }
+  },
+  "corrections": {
+    "required_below_mastery": true,
+    "requires_reasoning": true,
+    "fields": [
+      "question_or_skill_id",
+      "original_response",
+      "misconception_or_uncertainty",
+      "corrected_response",
+      "reason",
+      "new_parallel_example"
+    ]
+  },
+  "reviewer_roles": [
+    "Parent",
+    "Teacher",
+    "Homeschool Parent/Teacher",
+    "Mentor",
+    "Self-Directed Adult",
+    "Other Local Reviewer"
+  ],
+  "reviewer_policy": "Reviewer role records context and evidence; Parent and Teacher may be the same person. Independent third-party attestation is required only when a specific final-performance prompt explicitly requires it.",
+  "completion_policy": {
+    "objective_requirement": "80% or better",
+    "performance_requirement": "writing and speaking evidence reviewed; listening measurement mode recorded",
+    "certificate_transition": "future canonical certificate path must be versioned separately and must not invalidate preserved 12-level certificates"
+  },
+  "record_fields": [
+    "assessment_id",
+    "assessment_version",
+    "form_id",
+    "learner_scope",
+    "attempt_number",
+    "started_at",
+    "submitted_at",
+    "objective_score",
+    "objective_percent",
+    "domain_scores",
+    "listening_mode",
+    "writing_review",
+    "speaking_review",
+    "correction_status",
+    "reviewer_role",
+    "review_notes"
+  ],
+  "release_gates": [
+    "minimum 120-item vetted objective bank with stable IDs",
+    "independent answer-key and accepted-response review",
+    "closed-book UI behavior and no premature answer disclosure",
+    "parallel retake form coverage",
+    "two-learner storage isolation",
+    "no-audio / transcript measurement-scope behavior",
+    "writing and speaking rubric workflow",
+    "soft reviewer-role behavior",
+    "print/export/backup/recovery",
+    "legacy final/certificate non-mutation",
+    "desktop/tablet/phone/255px browser checks",
+    "offline attempt/recovery test"
+  ]
+}
