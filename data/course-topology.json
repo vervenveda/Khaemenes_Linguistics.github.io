@@ -1,0 +1,216 @@
+{
+  "schema_version": "1.0.0",
+  "generated_for": "Khaemenes Linguistics · Polyglot",
+  "authority_policy": {
+    "principle": "One course may have many learning surfaces, but it must have one declared academic identity and one authoritative mastery record.",
+    "learner_experience": "The student-facing page or hub where learning occurs.",
+    "academic_authority": "The course definition that owns official Academy completion semantics.",
+    "evidence_surface": "A supplemental page may collect local practice evidence without becoming a second course authority.",
+    "archive": "Historical generations remain readable for continuity and migration, but never become default new-course entrances."
+  },
+  "stats": {
+    "formal_v4_languages": 5,
+    "formal_v4_courses": 55,
+    "atlas_dossiers": 206,
+    "foundation_modules": 40,
+    "local_app_registry_count": 29,
+    "principal_language_routes": 7
+  },
+  "campus": {
+    "home": "index.html",
+    "formal_academy": "Halls/index.html",
+    "canonical_translator": "apps/translator.html",
+    "language_worlds": "apps/language-worlds/index.html",
+    "mentor_manifest": "mentor-manifest.json"
+  },
+  "record_authorities": {
+    "v4_five_language": {
+      "path": "Halls/index.html",
+      "storage_namespace": "arshif.languageHall.v4",
+      "languages": [
+        "spanish",
+        "french",
+        "german",
+        "mandarin",
+        "japanese"
+      ],
+      "status": "canonical-formal-authority"
+    },
+    "arabic_year_i": {
+      "path": "Halls/courses/arabic-1/index.html",
+      "evidence_namespace_prefix": "khae-language-evidence-v1:arabic-1:",
+      "status": "canonical-year-i-authority"
+    },
+    "russian_year_i": {
+      "path": "Halls/courses/russian-1/index.html",
+      "evidence_namespace_prefix": "khae-language-evidence-v1:russian-1:",
+      "status": "canonical-year-i-authority"
+    }
+  },
+  "principal_routes": [
+    {
+      "id": "spanish",
+      "label": "Spanish",
+      "public_role": "foundation-path",
+      "learner_experience": "apps/language-worlds/spanish/index.html",
+      "academic_authority": "Halls/index.html?language=spanish",
+      "record_authority": "v4_five_language",
+      "bridge_status": "experience-does-not-own-formal-completion",
+      "supplements": [
+        "apps/translator.html"
+      ]
+    },
+    {
+      "id": "french",
+      "label": "French",
+      "public_role": "course-experience",
+      "learner_experience": "apps/French_101_index.html",
+      "academic_authority": "Halls/index.html?language=french&course=101",
+      "record_authority": "v4_five_language",
+      "experience_storage": [
+        "french101_progress",
+        "french101_progress_v2_",
+        "french101_active_learner"
+      ],
+      "bridge_status": "bridge-required-before-single-authority-completion",
+      "supplements": [
+        "apps/chroniques-francophones/index.html",
+        "apps/atelier-des-sons/index.html",
+        "apps/le-monde-vivant/index.html",
+        "apps/maitrise-constellation/index.html",
+        "apps/translator.html"
+      ]
+    },
+    {
+      "id": "german",
+      "label": "German",
+      "public_role": "course-hub",
+      "learner_experience": "apps/German_hub_index.html",
+      "academic_authority": "Halls/index.html?language=german",
+      "record_authority": "v4_five_language",
+      "bridge_status": "bridge-required-before-single-authority-completion",
+      "supplements": [
+        "apps/German_coach_index.html",
+        "apps/deutsche-geschichten/index.html",
+        "apps/deutsches-klanglabor/index.html",
+        "apps/die-lebendige-welt/index.html",
+        "apps/german-mastery-constellation/index.html",
+        "apps/translator.html"
+      ]
+    },
+    {
+      "id": "mandarin",
+      "label": "Mandarin Chinese",
+      "public_role": "foundation-path",
+      "learner_experience": "apps/language-worlds/mandarin/index.html",
+      "academic_authority": "Halls/index.html?language=mandarin",
+      "record_authority": "v4_five_language",
+      "bridge_status": "experience-does-not-own-formal-completion",
+      "supplements": [
+        "apps/translator.html"
+      ]
+    },
+    {
+      "id": "japanese",
+      "label": "Japanese",
+      "public_role": "foundation-path",
+      "learner_experience": "apps/language-worlds/japanese/index.html",
+      "academic_authority": "Halls/index.html?language=japanese",
+      "record_authority": "v4_five_language",
+      "bridge_status": "experience-does-not-own-formal-completion",
+      "supplements": [
+        "apps/translator.html"
+      ]
+    },
+    {
+      "id": "arabic",
+      "label": "Arabic",
+      "public_role": "formal-year-i-course",
+      "learner_experience": "Halls/courses/arabic-1/index.html",
+      "academic_authority": "Halls/courses/arabic-1/index.html",
+      "record_authority": "arabic_year_i",
+      "bridge_status": "canonical",
+      "supplements": [
+        "Halls/courses/arabic-1/mastery-map.html",
+        "apps/arabic-learning-worlds/index.html",
+        "apps/translator.html"
+      ]
+    },
+    {
+      "id": "russian",
+      "label": "Russian",
+      "public_role": "formal-year-i-course",
+      "learner_experience": "Halls/courses/russian-1/index.html",
+      "academic_authority": "Halls/courses/russian-1/index.html",
+      "record_authority": "russian_year_i",
+      "bridge_status": "canonical",
+      "supplements": [
+        "apps/Russian_hub_index.html",
+        "apps/Russian_skills_lab_index.html",
+        "apps/russian-conversation-world/index.html",
+        "apps/russian-mastery-constellation/index.html",
+        "apps/translator.html"
+      ]
+    }
+  ],
+  "translator_surfaces": {
+    "canonical": {
+      "path": "apps/translator.html",
+      "role": "canonical-sovereign-translator"
+    },
+    "compatibility": [
+      {
+        "path": "multilingual-translator_index.html",
+        "role": "legacy-compatible-translator"
+      },
+      {
+        "path": "apps/translator-entry.html",
+        "role": "translator-entry"
+      },
+      {
+        "path": "apps/translation_helper_index.html",
+        "role": "legacy-helper"
+      }
+    ]
+  },
+  "archives": [
+    {
+      "path": "Halls/language-learning-v3_index.html",
+      "generation": "V3",
+      "role": "migration-reference",
+      "new_course_entry": false
+    },
+    {
+      "path": "apps/Language_learning_hall_index.html",
+      "generation": "original",
+      "role": "historical-reference",
+      "new_course_entry": false
+    }
+  ],
+  "offline_policy": {
+    "shell_level": "Cache campus and canonical course entrances; large courses use runtime caching or future opt-in packs.",
+    "canonical_entrances": [
+      "index.html",
+      "Halls/index.html",
+      "apps/language-worlds/index.html",
+      "apps/language-worlds/spanish/index.html",
+      "apps/French_101_index.html",
+      "apps/German_hub_index.html",
+      "apps/language-worlds/mandarin/index.html",
+      "apps/language-worlds/japanese/index.html",
+      "Halls/courses/arabic-1/index.html",
+      "Halls/courses/russian-1/index.html",
+      "apps/ESL_course_index.html",
+      "apps/translator.html"
+    ]
+  },
+  "invariants": [
+    "Every principal language route must resolve to an existing learner experience.",
+    "Every principal language route must declare exactly one record authority.",
+    "Archived Hall generations must not be default principal routes.",
+    "The public app count must equal the appRegistry count.",
+    "PWA shortcuts must resolve to live homepage anchors.",
+    "NAIB/mentor discovery must expose the campus, formal academy, principal routes, atlas/foundations access, and canonical translator.",
+    "The service worker must cache the topology registry and canonical entrance shell without attempting to pre-cache every lesson."
+  ]
+}
