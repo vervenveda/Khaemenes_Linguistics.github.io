@@ -58,3 +58,7 @@ Reusable focused browser check: `node scripts/test-french-lesson04-browser.cjs` 
 ## Release assessment
 
 Lesson 04's requested development sequence is implemented and locally browser-tested. This is not certification of the full course, the proposed 18-lesson program, human oral proficiency or all remote ecosystem resources. Next curriculum work is Lesson 05 under the same preservation contract; resolve backup compatibility before relying on full-course restore as a recovery mechanism.
+
+## Publication and CI verification
+
+Lesson implementation commit: `70f713bca9c3d86e642f2922302391f1a8c03d05` on main. GitHub Pages deployment, Beta index coverage and French German Browser Accessibility all completed successfully. The broader Linguistics Repository Integrity check failed with the identical four messages already present on baseline commit `4b4f3ed166dda197ea5b5e9f9519db802116c318`: French stage 7 themes mismatch for 16 weeks; French quiz must cover both translation directions; French quiz accepted translations missing; index.html Unexpected token '<'. Compare baseline integrity run 40792362543 with implementation run 40794966121. These are unresolved pre-existing diagnostics, not a green repository-wide certification. Official quiz source is unchanged and its two translation directions were exercised in the focused gate tests.
