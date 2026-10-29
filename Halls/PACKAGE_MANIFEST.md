@@ -1,6 +1,14 @@
 # PACKAGE_MANIFEST.md
 
-Generated: 2026-08-11T01:59:43
+> **Historical snapshot — not a current release manifest.**  
+> This file records the Five-Language Hall package as generated on **2026-08-11T01:59:43**. The Hall and repository have changed substantially since then. Do not use the byte counts or SHA-256 values below to validate the current October 2026 build.
+>
+> Current route and authority topology: `../data/course-topology.json`  
+> Current architecture contract: `../docs/TOPOLOGY_ARCHITECTURE.md`
+>
+> A fresh generated package manifest remains a roadmap item. The historical values below are preserved for forensic continuity.
+
+## Historical 2026-08-11 snapshot
 
 | File | Bytes | SHA-256 |
 |---|---:|---|
