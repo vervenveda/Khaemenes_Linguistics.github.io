@@ -1,0 +1,36 @@
+name: V4 learner-scope integrity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/v4-learner-scope.js'
+      - 'Halls/index.html'
+      - 'data/course-topology.json'
+      - 'service-worker.js'
+      - 'tests/v4-learner-scope-regression.mjs'
+      - '.github/workflows/v4-learner-scope-integrity.yml'
+  pull_request:
+    paths:
+      - 'assets/v4-learner-scope.js'
+      - 'Halls/index.html'
+      - 'data/course-topology.json'
+      - 'service-worker.js'
+      - 'tests/v4-learner-scope-regression.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  learner-scope:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify learner isolation and legacy preservation
+        run: node tests/v4-learner-scope-regression.mjs
+      - name: Verify authority bridge remains review-only
+        run: node scripts/audit-authority-bridge.mjs
