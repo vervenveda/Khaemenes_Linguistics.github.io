@@ -30,11 +30,14 @@ for(const route of topology.principal_routes||[]){
   check(exists(learner),"Missing learner experience: "+learner);
   check(exists(authority),"Missing academic authority: "+authority);
   check(Boolean(topology.record_authorities?.[route.record_authority]),"Missing record authority for "+route.id);
-  const homeHref="./"+learner.replace(/index\.html$/,"");
+  const publicBase="https://vervenveda.com/Khaemenes_Linguistics.github.io/";
   const acceptable=[
     'href="./'+learner+'"',
     'href="./'+learner.replace(/index\.html$/,"")+'"',
-    'href="./'+learner.replace(/\/index\.html$/,"/")+'"'
+    'href="./'+learner.replace(/\/index\.html$/,"/")+'"',
+    'href="'+publicBase+learner+'"',
+    'href="'+publicBase+learner.replace(/index\.html$/,"")+'"',
+    'href="'+publicBase+learner.replace(/\/index\.html$/,"/")+'"'
   ];
   check(acceptable.some(token=>home.includes(token)),"Homepage principal route missing: "+route.id+" -> "+learner);
 }
