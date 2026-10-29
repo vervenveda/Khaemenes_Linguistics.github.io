@@ -12,6 +12,8 @@ const stripQuery=p=>String(p||"").split("?")[0].split("#")[0];
 
 const topology=JSON.parse(read("data/course-topology.json"));
 const home=read("index.html");
+const scriptStarts=(home.match(/<script\b[^>]*>/gi)||[]).length;
+const scriptEnds=(home.match(/<\/script>/gi)||[]).length;
 const manifest=JSON.parse(read("manifest.webmanifest"));
 const mentor=JSON.parse(read("mentor-manifest.json"));
 const sw=read("service-worker.js");
@@ -51,6 +53,10 @@ if(appMatch){
   check(new Set(apps.map(a=>a.file)).size===apps.length,"Homepage appRegistry has duplicate file paths");
   for(const app of apps)check(exists(join("apps",app.file)),"Homepage app target missing: "+app.file);
 }
+check(scriptStarts===scriptEnds,"Homepage script tags are unbalanced");
+check(!home.includes('<script src="./assets/khaemenes-campus-phrases.js" defer>\n<script'),"Homepage contains malformed nested external script tags");
+check(home.includes('href="https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/French_101_index.html"'),"French 101 canonical home entry is missing");
+check(home.includes("pointer-events:auto!important"),"Language entry buttons are not explicitly pointer-enabled");
 check(home.includes(topology.stats.local_app_registry_count+" local language apps"),"Homepage visible app count is stale");
 check(home.includes("Browse "+topology.stats.local_app_registry_count+" local apps"),"Homepage browse-app count is stale");
 
