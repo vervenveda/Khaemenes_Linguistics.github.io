@@ -44,7 +44,7 @@ function frenchCandidate(label){
  const practice=parse(safeGet("khaemenes_french_practice_v1_"+id)||"{}",{});
  const practiceCount=practice&&typeof practice==="object"&&!Array.isArray(practice)?Object.values(practice).reduce((n,v)=>n+(Array.isArray(v)?v.length:0),0):0;
  const checkpoint=parse(safeGet(progressKey+"_u01_checkpoint_v1")||"null",null);
- const reviewNotesPresent=Boolean((parse(safeGet("khaemenes_french_portfolio_review_v1_"+id)||'""',"")||"").trim?.());
+ const reviewNotesPresent=Boolean((parse(safeGet("khaemenes_french_portfolio_review_v1_"+progressKey)||'""',"")||"").trim?.());
  const evidenceComplete=completedLevels===12&&quizzesAt80===12&&finalPercent!==null&&finalPercent>=80&&progress.examPassed===true;
  return {
   ...base("french-101","Halls/index.html?language=french&course=101",label,id),
