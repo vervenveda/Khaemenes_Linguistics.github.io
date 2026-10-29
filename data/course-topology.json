@@ -72,14 +72,16 @@
         "french101_progress_v2_",
         "french101_active_learner"
       ],
-      "bridge_status": "bridge-required-before-single-authority-completion",
+      "bridge_status": "review-only-evidence-bridge-v1",
       "supplements": [
         "apps/chroniques-francophones/index.html",
         "apps/atelier-des-sons/index.html",
         "apps/le-monde-vivant/index.html",
         "apps/maitrise-constellation/index.html",
         "apps/translator.html"
-      ]
+      ],
+      "bridge_namespace": "khaemenes.courseAuthorityBridge.v1:",
+      "bridge_effect": "evidence-visible-to-formal-authority-without-changing-mastery"
     },
     {
       "id": "german",
@@ -88,7 +90,7 @@
       "learner_experience": "apps/German_hub_index.html",
       "academic_authority": "Halls/index.html?language=german",
       "record_authority": "v4_five_language",
-      "bridge_status": "bridge-required-before-single-authority-completion",
+      "bridge_status": "review-only-evidence-bridge-v1",
       "supplements": [
         "apps/German_coach_index.html",
         "apps/deutsche-geschichten/index.html",
@@ -96,7 +98,9 @@
         "apps/die-lebendige-welt/index.html",
         "apps/german-mastery-constellation/index.html",
         "apps/translator.html"
-      ]
+      ],
+      "bridge_namespace": "khaemenes.courseAuthorityBridge.v1:",
+      "bridge_effect": "evidence-visible-to-formal-authority-without-changing-mastery"
     },
     {
       "id": "mandarin",
@@ -211,6 +215,8 @@
     "The public app count must equal the appRegistry count.",
     "PWA shortcuts must resolve to live homepage anchors.",
     "NAIB/mentor discovery must expose the campus, formal academy, principal routes, atlas/foundations access, and canonical translator.",
-    "The service worker must cache the topology registry and canonical entrance shell without attempting to pre-cache every lesson."
+    "The service worker must cache the topology registry and canonical entrance shell without attempting to pre-cache every lesson.",
+    "French and German bridge evidence must never write formal V4 mastery or completion fields.",
+    "Bridge preparation requires a named learner; anonymous shared-device records cannot be promoted into formal authority evidence."
   ]
 }
