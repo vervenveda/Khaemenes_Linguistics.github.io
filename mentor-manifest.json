@@ -53,7 +53,7 @@
     {
       "id": "sovereign-interlingual-translator",
       "title": "Sovereign Interlingual Translator",
-      "description": "Offline-first translation, language learning, and literary comparison across 77 modern and heritage language options, with optional consent-gated online translation.",
+      "description": "Compatibility translator surface retained for continuity. The canonical repository translator is apps/translator.html; this route must not be treated as a separate academic or dictionary authority.",
       "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/multilingual-translator_index.html",
       "audiences": [
         "elementary",
@@ -88,10 +88,12 @@
         "interlingual",
         "offline-first",
         "sovereign",
-        "literary-comparison"
+        "literary-comparison",
+        "compatibility-surface",
+        "noncanonical-translator"
       ],
       "mentorEligible": true,
-      "featured": true,
+      "featured": false,
       "minutes": 10,
       "energy": "steady",
       "resourceType": "tool",
@@ -305,7 +307,8 @@
       "mentorEligible": true,
       "featured": true,
       "minutes": 20,
-      "energy": "steady"
+      "energy": "steady",
+      "topologyRegistry": "data/course-topology.json"
     },
     {
       "id": "spanish-learning-world",
@@ -339,7 +342,8 @@
       ],
       "mentorEligible": true,
       "minutes": 20,
-      "energy": "steady"
+      "energy": "steady",
+      "topologyRegistry": "data/course-topology.json"
     },
     {
       "id": "french-101-sovereign",
@@ -375,7 +379,8 @@
       "mentorEligible": true,
       "featured": true,
       "minutes": 30,
-      "energy": "steady"
+      "energy": "steady",
+      "topologyRegistry": "data/course-topology.json"
     },
     {
       "id": "german-learning-hub",
@@ -409,7 +414,8 @@
       ],
       "mentorEligible": true,
       "minutes": 20,
-      "energy": "steady"
+      "energy": "steady",
+      "topologyRegistry": "data/course-topology.json"
     },
     {
       "id": "mandarin-learning-world",
@@ -443,7 +449,8 @@
       ],
       "mentorEligible": true,
       "minutes": 20,
-      "energy": "steady"
+      "energy": "steady",
+      "topologyRegistry": "data/course-topology.json"
     },
     {
       "id": "japanese-learning-world",
@@ -477,7 +484,8 @@
       ],
       "mentorEligible": true,
       "minutes": 20,
-      "energy": "steady"
+      "energy": "steady",
+      "topologyRegistry": "data/course-topology.json"
     },
     {
       "id": "arabic-i",
@@ -512,7 +520,8 @@
       "mentorEligible": true,
       "featured": true,
       "minutes": 30,
-      "energy": "steady"
+      "energy": "steady",
+      "topologyRegistry": "data/course-topology.json"
     },
     {
       "id": "russian-i",
@@ -547,7 +556,8 @@
       "mentorEligible": true,
       "featured": true,
       "minutes": 30,
-      "energy": "steady"
+      "energy": "steady",
+      "topologyRegistry": "data/course-topology.json"
     },
     {
       "id": "canonical-sovereign-translator",
@@ -585,7 +595,9 @@
       "mentorEligible": true,
       "featured": true,
       "minutes": 10,
-      "energy": "steady"
+      "energy": "steady",
+      "authorityRole": "canonical-translator",
+      "topologyRegistry": "data/course-topology.json"
     }
   ],
   "mentorNotes": "Faith-specific language resources are tagged for preference-aware recommendation; the future resolver should honor requiresPreferenceMatch before proactive suggestions. The Sovereign Interlingual Translator is offline-first; its optional MyMemory online mode requires explicit in-page consent before text is sent externally. Canonical course and route authority is declared in data/course-topology.json; mentor discovery should not infer formal completion authority from a supplemental app alone."
