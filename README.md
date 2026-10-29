@@ -106,6 +106,12 @@ The Five-Language Academy V4 now separates named learners on a shared browser/de
 
 The historical shared record is never silently merged into a learner. It may be explicitly copied into a new named record, with overwrite protection, while leaving the original preserved.
 
+## Learner backup and recovery
+
+Named Five-Language V4 learners can export a dedicated restore-capable JSON backup. Restore requires the matching active learner, validates record identity and structure, creates a local pre-restore recovery snapshot, and supports **Undo Last Restore**. Generic archival V4 JSON is not accepted for restoration.
+
+Recovery snapshots are local to the browser; downloaded learner backups are the portable recovery mechanism.
+
 ## Learner records and privacy
 
 Polyglot is primarily browser-local and privacy-conscious.
