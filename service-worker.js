@@ -1,13 +1,22 @@
 /* Polyglot — Khaemenes Academy Linguistics Hall
    Static-site service worker. Update CACHE_VERSION whenever core files change. */
 
-const CACHE_VERSION = 'polyglot-v1.4.6-german-portfolio';
+const CACHE_VERSION = 'polyglot-v1.5.0-topology';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
 const APP_SHELL = [
   './',
   './index.html',
+  './data/course-topology.json',
+  './Halls/index.html',
+  './apps/language-worlds/index.html',
+  './apps/language-worlds/spanish/index.html',
+  './apps/language-worlds/mandarin/index.html',
+  './apps/language-worlds/japanese/index.html',
+  './Halls/courses/arabic-1/index.html',
+  './Halls/courses/russian-1/index.html',
+  './apps/ESL_course_index.html',
   './404.html',
   './offline.html',
   './manifest.webmanifest',
