@@ -1065,6 +1065,7 @@ function printUnit01Day(day,educator=false){
  if(day===9){printFrenchLesson09(false);return}
  if(day===10){printFrenchLesson10(false);return}
  if(day===11){printFrenchLesson11(false);return}
+ if(day===12){printFrenchLesson12(false);return}
  const source=day===1?document.getElementById("french101-unit01-day01"):document.querySelector("#unit01-daily-lessons .unit01-active-day");
  if(!source)return;
  const previous=document.getElementById("unit01-print-copy");if(previous)previous.remove();
@@ -2282,23 +2283,135 @@ function addFrenchLesson11ReadingArchive(panel){
  const transfer=element("textarea");transfer.rows=4;transfer.setAttribute("aria-label","Earlier Lesson 11 transfer");transfer.value=safeGet(learnerKey+"_u01_day11_transfer_v1")||"";transfer.addEventListener("input",()=>safeSet(learnerKey+"_u01_day11_transfer_v1",transfer.value));archive.append(transfer);
  const notes=element("textarea");notes.rows=3;notes.setAttribute("aria-label","Earlier Lesson 11 review notes");notes.value=safeGet(learnerKey+"_u01_d11_review_notes")||"";notes.addEventListener("input",()=>safeSet(learnerKey+"_u01_d11_review_notes",notes.value));archive.append(notes);panel.append(archive);
 }
+/* French 101 · Canonical Lesson 12 · Home, School & Everyday Objects.
+   Historical Day 12 pronunciation-in-greetings material remains archival enrichment. */
+const FRENCH_U01_L12_OBJECTS_BANK=[
+{"skill":"objects","prompt":"Which phrase means a notebook?","choices":["un cahier","une chaise","un tableau"],"answer":0,"explain":"Un cahier is a notebook."},
+{"skill":"objects","prompt":"Which phrase means an eraser?","choices":["une gomme","un stylo","une porte"],"answer":0,"explain":"Une gomme is an eraser."},
+{"skill":"objects","prompt":"Which phrase means a chair?","choices":["une chaise","une table","un sac"],"answer":0,"explain":"Une chaise is a chair."},
+{"skill":"objects","prompt":"Which phrase means a window?","choices":["une fenêtre","une porte","une classe"],"answer":0,"explain":"Une fenêtre is a window."},
+{"skill":"objects","prompt":"Which phrase means a pencil?","choices":["un crayon","un cahier","une gomme"],"answer":0,"explain":"Un crayon is a pencil."},
+{"skill":"objects","prompt":"Which phrase means a classroom board?","choices":["un tableau","un livre","une cuisine"],"answer":0,"explain":"Un tableau is a board."},
+{"skill":"location","prompt":"Which phrase means on the table?","choices":["sur la table","sous la table","dans la table"],"answer":0,"explain":"Sur means on/top of in this context."},
+{"skill":"location","prompt":"Which phrase means under the chair?","choices":["sous la chaise","sur la chaise","à côté de la chaise"],"answer":0,"explain":"Sous means under."},
+{"skill":"location","prompt":"Which phrase means in the bag?","choices":["dans le sac","sur le sac","devant le sac"],"answer":0,"explain":"Dans means in/inside."},
+{"skill":"location","prompt":"Which phrase means next to the window?","choices":["à côté de la fenêtre","derrière la fenêtre","dans la fenêtre"],"answer":0,"explain":"À côté de means next to."},
+{"skill":"location","prompt":"Which phrase means behind the door?","choices":["derrière la porte","devant la porte","sur la porte"],"answer":0,"explain":"Derrière means behind."},
+{"skill":"location","prompt":"Which phrase means in front of the board?","choices":["devant le tableau","sous le tableau","dans le tableau"],"answer":0,"explain":"Devant means in front of."},
+{"skill":"possession","prompt":"Which phrase means my notebook?","choices":["mon cahier","ma cahier","mes cahier"],"answer":0,"explain":"Cahier is masculine singular: mon cahier."},
+{"skill":"possession","prompt":"Which phrase means my eraser?","choices":["ma gomme","mon gomme","mes gomme"],"answer":0,"explain":"Gomme is feminine singular: ma gomme."},
+{"skill":"possession","prompt":"Which phrase means my books?","choices":["mes livres","mon livres","ma livres"],"answer":0,"explain":"Plural nouns use mes."},
+{"skill":"possession","prompt":"Which sentence says there is a book on the table?","choices":["Il y a un livre sur la table.","Le livre a la table.","Je suis un livre sur la table."],"answer":0,"explain":"Il y a introduces existence; sur gives location."},
+{"skill":"possession","prompt":"Which sentence identifies one object?","choices":["C'est mon stylo.","Ce sont mon stylo.","Il sont mon stylo."],"answer":0,"explain":"C'est introduces a singular item."},
+{"skill":"possession","prompt":"Which sentence identifies several objects?","choices":["Ce sont mes cahiers.","C'est mes cahiers.","Ils est mes cahiers."],"answer":0,"explain":"Ce sont is the standard written plural introduction in this course."},
+{"skill":"reading","prompt":"Read: « Le cahier est dans le sac. » Where is the notebook?","choices":["in the bag","on the table","under the chair"],"answer":0,"explain":"Dans le sac means in the bag."},
+{"skill":"reading","prompt":"Read: « Il y a deux livres sur la table. » How many books are there?","choices":["two","one","three"],"answer":0,"explain":"Deux livres means two books."},
+{"skill":"reading","prompt":"Read: « Ma gomme est à côté du cahier. » What is next to the notebook?","choices":["the eraser","the chair","the window"],"answer":0,"explain":"Ma gomme is next to the notebook."},
+{"skill":"reading","prompt":"Read: « La chaise est devant la fenêtre. » What is in front of the window?","choices":["the chair","the door","the board"],"answer":0,"explain":"La chaise is the chair."},
+{"skill":"reading","prompt":"Read: « Les crayons sont sous le tableau. » Where are the pencils?","choices":["under the board","behind the door","inside the bag"],"answer":0,"explain":"Sous le tableau means under the board."},
+{"skill":"reading","prompt":"A classroom description does not mention who owns a bag. What should you conclude?","choices":["Ownership is unknown.","The teacher owns it.","The learner owns it."],"answer":0,"explain":"Do not invent ownership not stated by the source."},
+{"skill":"transfer","prompt":"A learner writes « ma cahier ». What should change?","choices":["ma → mon","cahier → chaise","add plural s"],"answer":0,"explain":"Cahier is masculine singular: mon cahier."},
+{"skill":"transfer","prompt":"You want to say two pens are on the table. Which is accurate?","choices":["Il y a deux stylos sur la table.","Il y a deux stylo sous la table.","C'est deux stylos dans table."],"answer":0,"explain":"The first sentence preserves quantity, plural noun and location."},
+{"skill":"transfer","prompt":"Which task best demonstrates location-language transfer?","choices":["Describe a new fictional desk arrangement without copying the lesson model.","Copy « sur la table » five times.","Choose the corrected answer after seeing it."],"answer":0,"explain":"A new arrangement requires independent application."},
+{"skill":"transfer","prompt":"If a classroom term varies across Francophone communities, what should the learner do?","choices":["Use the course term for the task and note an accurate regional alternative when supplied.","Assume one community's word is the only valid French.","Invent a translation from English spelling."],"answer":0,"explain":"Regional variation should be handled explicitly and respectfully."},
+{"skill":"transfer","prompt":"A learner does not want to describe a real bedroom or house. What evidence is acceptable?","choices":["A fictional room/classroom description.","No evidence is possible.","A required real address."],"answer":0,"explain":"A fictional space fully demonstrates the target language without private disclosure."},
+{"skill":"transfer","prompt":"For independent oral evidence, what should be documented?","choices":["The unseen arrangement/prompt, learner response, reviewer role, support used and corrections.","Only that synthetic speech played.","The learner's real home location."],"answer":0,"explain":"Evidence should describe the language task without unnecessary personal data."}
+];
+
+function printFrenchLesson12(answers){
+ const source=document.getElementById("french-u01-lesson12-objects");if(!source)return;document.getElementById("unit01-print-copy")?.remove();const copy=element("article");copy.id="unit01-print-copy";
+ copy.append(element("h2",answers?"French 101 · Lesson 12 · Reviewer guidance":"French 101 · Lesson 12 · Learner worksheet and evidence"));
+ for(const id of answers?["french-l12-answer-guide","french-l12-review-key"]:["french-l12-worksheet"]){const n=document.getElementById(id)?.cloneNode(true);if(n){n.removeAttribute("id");if(n.tagName==="DETAILS")n.open=true;copy.append(n)}}
+ if(!answers){source.querySelectorAll("textarea").forEach(t=>{copy.append(element("h4",t.getAttribute("aria-label")||"Saved response"));const p=element("p",t.value||"(No response entered)");p.className="french-print-response";copy.append(p)});source.querySelectorAll("select[id^='french-l12-rating']").forEach(s=>copy.append(element("p",s.getAttribute("aria-label")+": "+s.value)))}
+ copy.append(element("p","Formative evidence only. Fictional spaces are fully acceptable; no real address/home disclosure is required. Reviewer roles remain local and flexible."));
+ document.body.append(copy);document.body.classList.add("printing-unit01");const clean=()=>{document.body.classList.remove("printing-unit01");copy.remove();window.removeEventListener("afterprint",clean)};window.addEventListener("afterprint",clean);window.print();
+}
+
+function addFrenchLesson12ObjectsDepth(panel){
+ const sec=element("section");sec.id="french-u01-lesson12-objects";sec.className="french-day02-depth";const prefix=learnerKey+"_beginner2026_lesson12_objects_";
+ const saveStatus=element("p","Lesson 12 work saves locally for the selected learner.");saveStatus.setAttribute("role","status");
+ function save(suffix,value){const ok=safeSet(prefix+suffix,value);saveStatus.textContent=ok?"Lesson 12 evidence saved on this device.":"Saving failed. Copy or print your work before leaving.";return ok}
+ function field(label,suffix,rows=5){const wrap=element("label");wrap.append(element("span",label));const t=element("textarea");t.rows=rows;t.setAttribute("aria-label",label);t.value=safeGet(prefix+suffix)||"";t.addEventListener("input",()=>save(suffix,t.value));wrap.append(t);return wrap}
+ function h(text,id){const n=element("h4",text);if(id)n.id=id;sec.append(n)}function p(text){sec.append(element("p",text))}
+ h("Lesson 12 · Home, School & Everyday Objects · Full learning studio");
+ p("Learning targets: name familiar school/home objects with an article; identify possession with mon/ma/mes; describe simple locations with dans, sur, sous, devant, derrière and à côté de; use c'est/ce sont and il y a; interpret a new room/classroom description; and create an original fictional-space description. Real addresses, bedroom details or household information are never required.");
+ const nav=element("nav");nav.setAttribute("aria-label","Lesson 12 studio sections");[["Objects","french-l12-objects"],["Location","french-l12-location"],["Read","french-l12-read"],["Arrangement lab","french-l12-lab"],["Independent work","french-l12-writing"],["Review","french-l12-review"],["Evidence","french-l12-evidence"]].forEach(([label,id])=>{const a=element("a",label);a.href="#"+id;nav.append(a)});sec.append(nav,saveStatus);
+ h("Your route · noun → possession → location");
+ p("Retrieve first: un/une/le/la from Lesson 06, mon/ma/mes from Lesson 08 and color descriptions from Lesson 09. Stage A: learn everyday objects with their article. Stage B: place them in relation to other objects. Stage C: interpret a new room description. Stage D: describe a new fictional arrangement and correct ambiguity.");
+ h("1 · Everyday objects with their article","french-l12-objects");
+ const objects=[["un livre","a book"],["un cahier","a notebook"],["un stylo","a pen"],["un crayon","a pencil"],["une gomme","an eraser"],["un sac","a bag"],["une table","a table"],["une chaise","a chair"],["un tableau","a board"],["une porte","a door"],["une fenêtre","a window"],["une classe","a class/classroom context"],["une maison","a house/home"],["une chambre","a room/bedroom"],["une cuisine","a kitchen"]];
+ const grid=element("div");grid.className="french-l12-reference";objects.forEach(([fr,en])=>{const card=element("article");card.append(element("h4",fr),element("p",en));addButton(card,"Listen · "+fr,()=>speakFR(fr));grid.append(card)});sec.append(grid);
+ p("Learn the noun with its article instead of guessing gender later. School vocabulary varies by region and institution; the course uses broadly recognizable beginner terms and accepts accurate regional alternatives when they are supplied or referenced. A word's grammatical gender does not describe the owner.");
+ h("2 · Possession: mon, ma, mes");
+ p("Use mon with a masculine singular noun: mon cahier, mon stylo, mon sac. Use ma with a feminine singular noun before a consonant sound: ma gomme, ma table, ma chaise. Use mes with plural nouns: mes livres, mes crayons. As in Lesson 08, the form follows the noun, not the learner's gender.");
+ p("C'est mon stylo introduces one object. Ce sont mes cahiers introduces several. These are useful identification frames. Ownership should be stated, not guessed: « un sac » means a bag; « mon sac » means my bag.");
+ h("3 · Location phrases","french-l12-location");
+ const locs=[["dans","in/inside","dans le sac"],["sur","on","sur la table"],["sous","under","sous la chaise"],["devant","in front of","devant le tableau"],["derrière","behind","derrière la porte"],["à côté de","next to","à côté de la fenêtre"]];
+ const lg=element("div");lg.className="french-l12-reference";locs.forEach(([fr,en,ex])=>{const card=element("article");card.append(element("h4",fr),element("p",en),element("p",ex));addButton(card,"Listen · "+ex,()=>speakFR(ex));lg.append(card)});sec.append(lg);
+ p("Use il y a to say that something exists in a place: « Il y a un livre sur la table. » « Il y a deux crayons dans le sac. » The phrase il y a does not change for plural existence. Use est/sont when describing the location of an identified subject: « Le livre est sur la table. Les crayons sont dans le sac. »");
+ p("À côté de changes when de combines with some articles: à côté du cahier, à côté de la table, à côté de l'école, à côté des livres. Today, use supplied models rather than treating every contraction as already mastered.");
+ h("4 · Practical classroom instructions · recognition first");
+ p("You may see « Ouvrez le livre », « Fermez la porte », « Écoutez », « Répétez » and « Écrivez votre nom » in classroom materials. Recognize the action from context, but command formation is not today's grammar target. The lesson tests object/location communication, not memorization of an imperative paradigm.");
+ h("5 · Original reading · Une salle imaginaire","french-l12-read");
+ const reading="Dans la salle imaginaire, il y a deux tables et quatre chaises. Un livre bleu est sur la première table. Deux crayons sont dans un sac noir. La gomme est à côté du cahier. Une chaise est devant la fenêtre. Le tableau est derrière les tables.";
+ p("« "+reading+" »");sec.lastElementChild.lang="fr";addButton(sec,"Listen · imaginary room",()=>speakFR(reading));
+ p("Support: salle = room; première = first. The passage describes a fictional space. It does not identify an actual school, learner address, owner of the black bag or exact dimensions of the room.");
+ ["List every object and its stated quantity/color/location.","Where are the pencils, eraser and chair? Cite the French location phrases.","Name three facts not stated. Explain why ownership and real-world identity should not be invented."].forEach((q,i)=>{p((i+1)+". "+q);sec.append(field("Lesson 12 reading evidence "+(i+1),"reading_"+i+"_v1",4))});
+ h("6 · Arrangement laboratory","french-l12-lab");
+ const tasks=[["a book on the table","un livre sur la table"],["two pencils in the bag","deux crayons dans le sac"],["an eraser next to the notebook","une gomme à côté du cahier"],["a chair in front of the window","une chaise devant la fenêtre"],["a bag under the table","un sac sous la table"],["the board behind the tables","le tableau derrière les tables"],["my notebook","mon cahier"],["my books","mes livres"]];
+ const lab=element("section"),prompt=element("p"),input=element("input"),feedback=element("p");input.type="text";input.autocomplete="off";input.setAttribute("aria-label","Type the French object/location phrase");let at=0;function show(){prompt.textContent=(at+1)+"/8 · Express: "+tasks[at][0];input.value="";feedback.textContent="Build the phrase from meaning, then correct from evidence."}show();lab.append(prompt,input);addButton(lab,"Check",()=>{const expected=tasks[at][1];feedback.textContent=normalize(input.value)===normalize(expected)?"Accurate: "+expected+".":"Review: "+expected+"."});addButton(lab,"Next",()=>{at=(at+1)%tasks.length;show()});lab.append(feedback);sec.append(lab);
+ h("7 · Independent fictional-space portfolio","french-l12-writing");
+ p("Invent a classroom, study corner, library table or fictional room. Write at least ten French sentences. Include eight different objects, three different location phrases, two plural noun phrases, one possessive phrase, one color description, one c'est/ce sont identification and two il y a sentences. You may draw a simple diagram, but the French description is the required evidence.");
+ sec.append(field("Lesson 12 independent fictional-space description","composition_v1",11));
+ p("Explain three language choices: one article/gender choice, one possessive choice and one location expression. Then respond to two unfamiliar reviewer-supplied arrangements without copying the model.");
+ sec.append(field("Lesson 12 explanations and unfamiliar transfer","transfer_v1",7));
+ h("8 · Listening and speaking evidence");
+ p("Independent listening: a reviewer describes a new object arrangement without showing the text; the learner places or identifies objects from what was heard. Independent speaking: describe a different arrangement without reading a prepared answer. Record support used. No real home description is required.");
+ sec.append(field("Lesson 12 oral evidence · prompt, response, support and correction","oral_v1",6));
+ h("9 · Balanced formative review · 30 authored questions","french-l12-review");
+ p("Each ten-question round draws two items from objects, location, possession, reading and transfer. These are formative rounds and never change official legacy mastery.");
+ addFrenchCohesiveReview(sec,12,FRENCH_U01_L12_OBJECTS_BANK,["objects","location","possession","reading","transfer"]);
+ h("10 · Correction and reflection");
+ p("Repair and explain: « ma cahier »; « deux stylo »; « le livre est dans la table » when it is on the table; « C'est mes cahiers » in this lesson's standard written model; and an ownership claim that the source never stated. Add two corrections from your own work.");
+ sec.append(field("Lesson 12 corrections and next goal","corrections_v1",7));
+ h("11 · Reviewer rubric","french-l12-evidence");
+ const roles=element("select");roles.setAttribute("aria-label","Lesson 12 reviewer role");["Not reviewed","Parent","Teacher","Homeschool Parent/Teacher","Mentor","Self-Directed Adult","Other Local Reviewer"].forEach(v=>{const o=element("option",v);o.value=v;roles.append(o)});roles.value=safeGet(prefix+"reviewer_role_v1")||"Not reviewed";roles.addEventListener("change",()=>save("reviewer_role_v1",roles.value));sec.append(roles);
+ const criteria=[["Object/phrase meaning","Identifies taught objects and article phrases in unfamiliar arrangements."],["Location/possession control","Uses taught location and possessive forms to preserve intended meaning."],["Reading/writing transfer","Interprets the new room passage and creates an original fictional-space description."],["Independent oral evidence","Understands and/or produces a new object-location description; mark Not assessed if unobserved."]];
+ criteria.forEach(([name,desc],i)=>{const row=element("div");row.className="french-day02-rubric-row";const label=element("label",name),select=element("select");select.id="french-l12-rating-"+i;label.htmlFor=select.id;select.setAttribute("aria-label","Lesson 12 rubric · "+name);["Not assessed","0","1","2","3"].forEach(v=>{const o=element("option",v);o.value=v;select.append(o)});select.value=safeGet(prefix+"rubric_"+i+"_v1")||"Not assessed";select.addEventListener("change",()=>save("rubric_"+i+"_v1",select.value));row.append(label,select);sec.append(row,element("p",desc))});sec.append(field("Reviewer context, evidence observed, support and next goal","review_notes_v1",6));
+ const worksheet=element("section");worksheet.id="french-l12-worksheet";worksheet.className="unit01-worksheet";worksheet.append(element("h4","French 101 · Lesson 12 · Home, School & Everyday Objects"),element("p","Learner: __________________ Date: ______________"));
+ ["Write fifteen taught object phrases with their articles.","Create six location phrases using dans, sur, sous, devant, derrière and à côté de.","Interpret the fictional-room reading and identify three unstated facts.","Write a new ten-sentence fictional-space description with plural, possession and color.","Correct five object/location errors and explain them.","Record unfamiliar oral arrangement evidence separately or mark it Not assessed."].forEach(t=>worksheet.append(element("p",t),element("p","________________________________________________________________________")));sec.append(worksheet);
+ const guide=element("details");guide.id="french-l12-answer-guide";guide.append(element("summary","Lesson 12 reviewer guidance · open after independent work"),element("p","Core nouns include un livre/cahier/stylo/crayon/sac/tableau and une gomme/table/chaise/porte/fenêtre/classe/maison/chambre/cuisine. Accurate regional alternatives may be accepted with a reliable reference."),element("p","Core locations: dans, sur, sous, devant, derrière, à côté de. Il y a introduces existence; est/sont locate an identified subject. Ownership must be stated rather than inferred."),element("p","Reading: two tables, four chairs; blue book on first table; two pencils in black bag; eraser next to notebook; chair in front of window; board behind tables. Actual school/address and bag ownership are unstated."),element("p","Synthetic speech and copied visible text do not establish independent listening/speaking."));sec.append(guide);
+ const key=element("details");key.id="french-l12-review-key";key.append(element("summary","Thirty-question formative key · reviewer reference"));FRENCH_U01_L12_OBJECTS_BANK.forEach((q,i)=>key.append(element("p",(i+1)+". "+q.prompt+" · Answer: "+q.choices[q.answer]+". "+q.explain)));sec.append(key);
+ const actions=element("div");addButton(actions,"Print learner evidence",()=>printFrenchLesson12(false));addButton(actions,"Print reviewer guidance",()=>printFrenchLesson12(true));sec.append(actions);panel.append(sec);
+}
+
+function addFrenchLesson12PronunciationArchive(panel){
+ const d=FRENCH_101_UNIT01_DAYS.find(x=>x.day===12);if(!d)return;const archive=element("details");archive.className="french-legacy-extra";archive.append(element("summary","Optional archival enrichment · earlier Lesson 12 pronunciation in greetings"),element("p","This earlier pronunciation/greetings material remains available for continuity. Its saved work is not reclassified as Home, School & Everyday Objects mastery."),element("h4",d.title),element("p",d.lecture),element("p","Examples: "+d.models),element("p","Guided: "+d.guided),element("p","Earlier assignment: "+d.assignment));
+ const old=element("textarea");old.rows=5;old.setAttribute("aria-label","Earlier Lesson 12 pronunciation writing");old.value=safeGet(learnerKey+"_u01_day12_writing")||"";old.addEventListener("input",()=>safeSet(learnerKey+"_u01_day12_writing",old.value));archive.append(old);
+ const transfer=element("textarea");transfer.rows=4;transfer.setAttribute("aria-label","Earlier Lesson 12 transfer");transfer.value=safeGet(learnerKey+"_u01_day12_transfer_v1")||"";transfer.addEventListener("input",()=>safeSet(learnerKey+"_u01_day12_transfer_v1",transfer.value));archive.append(transfer);
+ const notes=element("textarea");notes.rows=3;notes.setAttribute("aria-label","Earlier Lesson 12 review notes");notes.value=safeGet(learnerKey+"_u01_d12_review_notes")||"";notes.addEventListener("input",()=>safeSet(learnerKey+"_u01_d12_review_notes",notes.value));archive.append(notes);panel.append(archive);
+}
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
- wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–11 are developed in the current curriculum. Earlier daily topics that once occupied Lessons 12–15 remain available as archival enrichment until their canonical replacements are developed. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
+ wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–12 are developed in the current curriculum. Earlier daily topics that once occupied Lessons 13–15 remain available as archival enrichment until their canonical replacements are developed. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
  const picker=element("select");picker.setAttribute("aria-label","Choose Unit 01 lesson");picker.style.cssText="width:100%;padding:10px;margin:8px 0";
  const lessonSelectionKey=()=>learnerKey+"_u01_selected_lesson_v1";
  const savedSelection=safeGet(lessonSelectionKey());
 
- FRENCH_101_UNIT01_DAYS.forEach(d=>{const current=d.day===11?"Food & Café":d.day===10?"Dates & Time":d.day===9?"Colors, Shapes & Descriptions":d.day===8?"Family and Relationships":d.day===7?"Être and Avoir":d.day===6?"Nouns, Articles and Gender":d.day===2?"Numbers · 0–100":d.title;const label=d.day>=12?"Archive · Earlier "+String(d.day).padStart(2,"0")+" — "+d.title:"Lesson "+String(d.day).padStart(2,"0")+" — "+current;const o=element("option",label);o.value=d.day;picker.append(o)});
+ FRENCH_101_UNIT01_DAYS.forEach(d=>{const current=d.day===12?"Home, School & Everyday Objects":d.day===11?"Food & Café":d.day===10?"Dates & Time":d.day===9?"Colors, Shapes & Descriptions":d.day===8?"Family and Relationships":d.day===7?"Être and Avoir":d.day===6?"Nouns, Articles and Gender":d.day===2?"Numbers · 0–100":d.title;const label=d.day>=13?"Archive · Earlier "+String(d.day).padStart(2,"0")+" — "+d.title:"Lesson "+String(d.day).padStart(2,"0")+" — "+current;const o=element("option",label);o.value=d.day;picker.append(o)});
  if(savedSelection&&FRENCH_101_UNIT01_DAYS.some(d=>String(d.day)===savedSelection))picker.value=savedSelection;
  const panel=element("article");panel.className="unit01-active-day";panel.style.cssText="max-width:780px;margin:0 auto;line-height:1.65";const navigation=element("div");navigation.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0";const previous=element("button","← Previous Lesson"),next=element("button","Next Lesson →");previous.type=next.type="button";navigation.append(previous,next);const journey=element("p");journey.setAttribute("role","status");const status=element("p");status.setAttribute("role","status");
  function draw(){
   const d=FRENCH_101_UNIT01_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_UNIT01_DAYS[0];
   safeSet(lessonSelectionKey(),String(d.day));
   panel.replaceChildren();
+  if(d.day===12){
+   panel.append(element("h4","Lesson 12 · Home, School & Everyday Objects"));addFrenchLesson12ObjectsDepth(panel);addFrenchLesson12PronunciationArchive(panel);
+   status.textContent="Lesson 12 home/school/objects studio ready. Earlier pronunciation-in-greetings work remains optional and preserved.";previous.disabled=false;next.disabled=true;previous.textContent="← Lesson 11";next.textContent="Midterm follows this instructional block";journey.textContent="French 101 · Canonical Lesson 12 of 18 · Everyday Life. Daily formative work is separate from official 80% mastery.";return;
+  }
   if(d.day===11){
    panel.append(element("h4","Lesson 11 · Food & Café"));addFrenchLesson11CafeDepth(panel);addFrenchLesson11ReadingArchive(panel);
-   status.textContent="Lesson 11 food/café studio ready. Earlier unfamiliar-word copying remains optional and preserved.";previous.disabled=false;next.disabled=true;previous.textContent="← Lesson 10";next.textContent="Lesson 12 · in development";journey.textContent="French 101 · Canonical Lesson 11 of 18 · Everyday Life. Daily formative work is separate from official 80% mastery.";return;
+   status.textContent="Lesson 11 food/café studio ready. Earlier unfamiliar-word copying remains optional and preserved.";previous.disabled=false;next.disabled=false;previous.textContent="← Lesson 10";next.textContent="Next Lesson →";journey.textContent="French 101 · Canonical Lesson 11 of 18 · Everyday Life. Daily formative work is separate from official 80% mastery.";return;
   }
   if(d.day===10){
    panel.append(element("h4","Lesson 10 · Dates & Time"));addFrenchLesson10TimeDepth(panel);addFrenchLesson10SpellingArchive(panel);
@@ -2321,7 +2434,7 @@ function addUnit01DailySequence(parent){
    
    status.textContent="Lesson 06 noun/article review ready. Earlier listening evidence remains in optional enrichment.";previous.disabled=false;next.disabled=false;previous.textContent="← Previous Lesson";journey.textContent="Course Level 1 · Viewing Lesson 06 of 15 · Nouns, Articles and Gender. Official mastery remains separate at 80%.";return;
   }
-  if(d.day>=12){
+  if(d.day>=13){
    panel.append(element("h4","Archival enrichment · Earlier Lesson "+String(d.day).padStart(2,"0")+" · "+d.title),element("p","This material is preserved from the earlier Unit 01 phonology/literacy sequence. It remains useful practice, but it is not the canonical French 101 Lesson "+String(d.day).padStart(2,"0")+". The canonical replacement will be developed separately without deleting this work."));
   }else{
    panel.append(element("h4","Lesson "+String(d.day).padStart(2,"0")+" · "+(d.day===2?"Numbers · 0–100":d.title)));
@@ -2388,7 +2501,7 @@ function addUnit01DailySequence(parent){
   panel.append(deeper);
   const print=element("button","Print lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(d.day));panel.append(print);
   cohereFrenchDailyPanel(panel,d.day);
-  status.textContent=d.day>=12?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=12?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
+  status.textContent=d.day>=13?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=13?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
  }
  previous.addEventListener("click",()=>{if(Number(picker.value)===2){document.getElementById("french101-unit01-day01")?.scrollIntoView({block:"start",behavior:"smooth"});return}picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
 }
