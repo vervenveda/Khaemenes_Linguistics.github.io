@@ -95,6 +95,17 @@ Polyglot uses a service worker for a lightweight application shell and runtime c
 
 The shell now includes the topology registry and canonical course entrances. It intentionally does **not** pre-cache every lesson in the repository. Large language courses should use runtime caching now and may later receive explicit, quota-aware offline packs.
 
+## Learner-scoped formal records
+
+The Five-Language Academy V4 now separates named learners on a shared browser/device.
+
+- historical shared V4: `arshif.languageHall.v4`
+- named learner V4: `arshif.languageHall.v4.learner:<learner-id>`
+- active learner pointer: `arshif.languageHall.v4.activeLearner`
+- learner registry: `arshif.languageHall.v4.learners`
+
+The historical shared record is never silently merged into a learner. It may be explicitly copied into a new named record, with overwrite protection, while leaving the original preserved.
+
 ## Learner records and privacy
 
 Polyglot is primarily browser-local and privacy-conscious.
