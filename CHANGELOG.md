@@ -4,12 +4,26 @@ This file records meaningful public changes to Polyglot. Dates use the `YYYY-MM-
 
 ## Unreleased
 
-### Planned
+### Changed — 2026-10-29 · Topology stabilization
 
-- Connect the web-app manifest and service-worker registration to `index.html`.
-- Add approved application icons.
-- Introduce structured language and phrase data files.
-- Begin human-reviewed foundation course development.
+- Added `data/course-topology.json` as the canonical machine-readable route and academic-authority registry.
+- Added `docs/TOPOLOGY_ARCHITECTURE.md`.
+- Added `scripts/audit-topology.mjs` and a topology-integrity GitHub Actions workflow.
+- Classified learner experiences, formal authorities, supplements and archives separately.
+- Declared `apps/translator.html` the canonical sovereign translator while preserving compatibility surfaces.
+- Reconciled the homepage application inventory from 30 to the live 29-entry registry.
+- Repaired PWA shortcuts to live homepage anchors.
+- Expanded mentor discovery to principal language routes and formal course authorities.
+- Expanded the offline application shell to include the topology registry and canonical course entrances without pre-caching every lesson.
+- Reclassified the August Hall package manifest as a historical snapshot instead of current release evidence.
+- Updated project README and roadmap to describe the live repository rather than the original prototype state.
+
+### Next
+
+- Implement versioned French and German evidence-to-authority bridges without deleting existing learner records.
+- Establish Language World evidence parity for Spanish, Mandarin and Japanese.
+- Continue Arabic/Russian academic release hardening and live-browser QA.
+- Generate a current package manifest from the live repository.
 
 ## 1.1.0 — 2026-08-02
 
