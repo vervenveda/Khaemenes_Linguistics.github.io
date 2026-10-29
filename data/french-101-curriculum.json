@@ -187,37 +187,37 @@
     {
       "lesson": 13,
       "title": "Questions, Negation & Conversation",
-      "status": "next-development",
+      "status": "developed",
       "legacy_preservation": "earlier dictation/correction lesson to remain enrichment"
     },
     {
       "lesson": 14,
       "title": "Present-Tense Verbs & Daily Routines",
-      "status": "planned",
+      "status": "developed",
       "legacy_preservation": "earlier reading/transfer lesson to remain enrichment"
     },
     {
       "lesson": 15,
       "title": "Places, Directions & Transportation",
-      "status": "planned",
+      "status": "developed",
       "legacy_preservation": "earlier Unit 01 review to remain enrichment"
     },
     {
       "lesson": 16,
       "title": "Reading & Listening Comprehension",
-      "status": "planned",
+      "status": "developed",
       "legacy_preservation": "Chroniques and sound-lab evidence remain supplemental"
     },
     {
       "lesson": 17,
       "title": "Writing & Speaking",
-      "status": "planned",
+      "status": "developed",
       "legacy_preservation": "existing portfolios and rubrics remain supplemental"
     },
     {
       "lesson": 18,
       "title": "Integration, Corrections & Final Preparation",
-      "status": "planned",
+      "status": "developed",
       "legacy_preservation": "legacy final/certificates preserved"
     }
   ],
@@ -249,7 +249,7 @@
       "assessment_id": "KH-LANG-FR-101-MIDTERM-2026"
     },
     "final_after_lesson_18": {
-      "status": "planned",
+      "status": "blueprint-complete-not-yet-live",
       "threshold_percent": 80,
       "skills": [
         "reading",
@@ -259,7 +259,10 @@
         "writing",
         "reviewed-speaking"
       ],
-      "legacy_ten_translation_final_preserved": true
+      "legacy_ten_translation_final_preserved": true,
+      "blueprint": "data/french-101-final-blueprint.json",
+      "assessment_id": "KH-LANG-FR-101-FINAL-2026",
+      "closed_book": true
     },
     "retry_policy": "below 80% permits correction and parallel retake; earned mastery is never downgraded"
   },
@@ -271,10 +274,11 @@
     "No new curriculum version may erase or downgrade earned legacy completion."
   ],
   "development_status": {
-    "developed_lessons": "01-12",
-    "next_lesson": 13,
-    "next_topic": "Questions, Negation & Conversation",
+    "developed_lessons": "01-18",
+    "instructional_spine_complete": true,
     "midterm_boundary_reached": true,
+    "final_preparation_complete": true,
+    "next_work": "midterm/final item-bank implementation and full learner-journey QA",
     "updated_at": "2026-10-29"
   }
 }
