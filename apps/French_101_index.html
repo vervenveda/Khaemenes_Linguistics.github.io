@@ -1167,8 +1167,8 @@ function addFrenchLesson03VowelsPronounsDepth(panel){
  element("p","Complete these without looking at the pronoun reference table. Explain each decision: (1) Address two visitors respectfully. (2) Describe a group of three women without including yourself. (3) Speak for yourself and a friend together. (4) Address one close friend. (5) Replace « Sophie et Karim » with a subject pronoun. Distinguish addressing people from talking about them."),
  element("h4","Vowel observation · unfamiliar words"),
  element("p","Study « autobus », « fenêtre » and « musique ». List the written vowels in each word, identify the accented vowel in fenêtre, and explain why the number of vowel letters does not establish the number of spoken syllables. These are spelling observations; ask an educator to assess spoken vowels separately."),
- element("h4","Educator answer guidance · check after independent work"),
- element("p","Suggested pronoun choices: (1) vous; (2) elles; (3) nous; (4) tu; (5) ils for a mixed group. In fenêtre, ê is an accented e. Look for clear reasoning and accurate reference, not copied memorization. For discussion, ask the learner why « vous » and « ils » are not interchangeable."));
+ element("p","Complete the challenge before opening educator answer guidance."));
+ const answerGuide=element("details");answerGuide.className="french-legacy-extra";answerGuide.append(element("summary","Educator answer guidance · open after the challenge"),element("p","Suggested pronoun choices: (1) vous; (2) elles; (3) nous; (4) tu; (5) ils for a mixed group. In fenêtre, ê is an accented e. Look for clear reasoning and accurate reference, not copied memorization. Ask the learner why « vous » and « ils » are not interchangeable."));sec.append(answerGuide);
  sec.append(element("h4","7 · Balanced formative assessment"),
  element("p","Ten questions in each round, two from each of five domains: written vowels, pronoun meanings, reading, grammar in context, and transfer. Practice does not unlock the official mastery gate."));
  const board=element("div"),status=element("p");status.setAttribute("role","status");sec.append(board,status);
