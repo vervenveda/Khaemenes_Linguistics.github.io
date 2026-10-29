@@ -172,6 +172,7 @@ function boot(){
   new MutationObserver(()=>{if(!document.getElementById("courseAuthorityBridgeReview"))queueMicrotask(renderHall)}).observe(host,{childList:true,subtree:false});
   document.getElementById("saveProfile")?.addEventListener("click",()=>setTimeout(renderHall,0));
   document.getElementById("tabs")?.addEventListener("click",()=>setTimeout(renderHall,0));
+  window.addEventListener("khaemenes-v4-learner-change",()=>setTimeout(renderHall,0));
  }
 }
 window.KhaemenesCourseAuthorityBridge={schema:SCHEMA,prepareFrench:frenchCandidate,prepareGerman:germanCandidate,save:saveCandidate,read:readCandidate};
