@@ -1,0 +1,202 @@
+{
+  "schema_version": "1.0",
+  "assessment_id": "KH-LANG-FR-101-MIDTERM-2026",
+  "curriculum_id": "KH-LANG-FR-101-2026",
+  "scope": {
+    "lessons": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "units": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "status": "blueprint-not-yet-live",
+  "mastery_threshold_percent": 80,
+  "preservation": {
+    "legacy_progress_unchanged": true,
+    "legacy_level_quizzes_unchanged": true,
+    "legacy_unit01_checkpoint_unchanged": true,
+    "no_retroactive_downgrade": true
+  },
+  "structure": {
+    "objective_section": {
+      "recommended_items": 24,
+      "recommended_bank_minimum": 72,
+      "domains": [
+        {
+          "id": "foundations",
+          "weight_items": 4,
+          "lessons": [
+            1,
+            2,
+            3
+          ]
+        },
+        {
+          "id": "communication-structure",
+          "weight_items": 4,
+          "lessons": [
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "id": "people-description",
+          "weight_items": 4,
+          "lessons": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "id": "everyday-life",
+          "weight_items": 4,
+          "lessons": [
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "id": "interpretive-reading",
+          "weight_items": 4,
+          "lessons": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        },
+        {
+          "id": "transfer-error-analysis",
+          "weight_items": 4,
+          "lessons": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12
+          ]
+        }
+      ],
+      "scoring": "auto-scored",
+      "pass_rule": "20/24 or better",
+      "answer_disclosure": "after submitted attempt only",
+      "retry": "parallel form after corrections"
+    },
+    "interpretive_listening": {
+      "prompts": 2,
+      "requirement": "unfamiliar spoken French appropriate to Lessons 01–12",
+      "fallback": "written fallback changes measurement scope and cannot be recorded as listening mastery",
+      "scoring": "reviewed evidence"
+    },
+    "writing": {
+      "prompts": 1,
+      "requirement": "new connected beginner response using multiple course structures; no copied model",
+      "scoring": "0-3 analytic rubric"
+    },
+    "speaking": {
+      "prompts": 1,
+      "requirement": "new short interaction or description without reading a prepared script",
+      "scoring": "0-3 analytic rubric",
+      "self_directed_adult_allowed": true,
+      "independent_attestation_only_if_prompt_explicitly_requires": true
+    },
+    "correction": {
+      "required_below_mastery": true,
+      "requires_reasoning": true,
+      "fields": [
+        "item_or_skill",
+        "original_error_or_uncertainty",
+        "corrected_response",
+        "reason",
+        "new_example"
+      ]
+    }
+  },
+  "rubric": [
+    {
+      "criterion": "comprehensibility",
+      "scale": "0-3"
+    },
+    {
+      "criterion": "task_completion",
+      "scale": "0-3"
+    },
+    {
+      "criterion": "language_control",
+      "scale": "0-3"
+    },
+    {
+      "criterion": "interpretation_and_evidence",
+      "scale": "0-3"
+    }
+  ],
+  "reviewer_roles": [
+    "Parent",
+    "Teacher",
+    "Homeschool Parent/Teacher",
+    "Mentor",
+    "Self-Directed Adult",
+    "Other Local Reviewer"
+  ],
+  "reviewer_account_required": false,
+  "record_fields": [
+    "assessment_id",
+    "assessment_version",
+    "learner_scope",
+    "attempt_number",
+    "timestamp",
+    "objective_score",
+    "objective_percent",
+    "form_id",
+    "listening_mode",
+    "listening_review",
+    "writing_review",
+    "speaking_review",
+    "correction_status",
+    "reviewer_role",
+    "review_notes"
+  ],
+  "release_gates": [
+    "minimum 72-item vetted objective bank",
+    "answer-key and accepted-response review",
+    "parallel retake form generation test",
+    "two-learner storage isolation",
+    "no-audio measurement-scope test",
+    "print/export/recovery",
+    "legacy progress non-mutation",
+    "desktop/tablet/phone/255px browser checks"
+  ]
+}
