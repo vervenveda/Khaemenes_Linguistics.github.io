@@ -128,6 +128,7 @@ if(requestedLanguage&&APP.languages[requestedLanguage]){
  requestedAtlasLanguage=requestedLanguage;
 }
 function save(){state.updatedAt=new Date().toISOString();localStorage.setItem(KEY,JSON.stringify(state))}
+window.KhaemenesLanguageAuthorityContext=()=>({learner:String(state.profile?.learner||"").trim(),language:state.activeLanguage,course:state.activeCourse,courseKey:ckey()});
 function lang(){return APP.languages[state.activeLanguage]||APP.languages.spanish}
 function level(){return APP.levels.find(x=>x.id===state.activeCourse)||APP.levels[0]}
 function stage(){return lang().stages[APP.levels.findIndex(x=>x.id===state.activeCourse)]}
