@@ -2819,6 +2819,113 @@ function addFrenchLesson16ComprehensionDepth(panel){
  const key=element("details");key.id="french-l16-review-key";key.append(element("summary","Thirty-question formative key · reviewer reference"));FRENCH_U01_L16_COMPREHENSION_BANK.forEach((q,i)=>key.append(element("p",(i+1)+". "+q.prompt+" · Answer: "+q.choices[q.answer]+". "+q.explain)));sec.append(key);
  const actions=element("div");addButton(actions,"Print learner evidence",()=>printFrenchLesson16(false));addButton(actions,"Print reviewer guidance",()=>printFrenchLesson16(true));sec.append(actions);panel.append(sec);
 }
+/* French 101 · Canonical Lesson 17 · Writing & Speaking. */
+const FRENCH_U01_L17_PRODUCTION_BANK=[
+{"skill":"organization","prompt":"What should a beginner writer decide before drafting?","choices":["purpose and audience","every possible advanced tense","the final score"],"answer":0,"explain":"Purpose and audience guide what information and register the text needs."},
+{"skill":"organization","prompt":"Which connector means but?","choices":["mais","et","puis"],"answer":0,"explain":"Mais introduces contrast."},
+{"skill":"organization","prompt":"Which connector can give a reason?","choices":["parce que","à gauche","midi"],"answer":0,"explain":"Parce que introduces a reason."},
+{"skill":"organization","prompt":"Which sequence best supports a connected beginner paragraph?","choices":["introduce topic → add details → connect ideas → close","list unrelated words → stop","translate an English essay word for word"],"answer":0,"explain":"A simple planned sequence improves comprehensibility."},
+{"skill":"organization","prompt":"What is a useful role for puis / ensuite?","choices":["connect actions in sequence","mark grammatical gender","ask who"],"answer":0,"explain":"Puis and ensuite help sequence actions."},
+{"skill":"organization","prompt":"Why should a writer avoid forcing advanced vocabulary they cannot control?","choices":["Clear accurate beginner language is stronger than guessed complexity.","Advanced words are forbidden.","Only single words are allowed."],"answer":0,"explain":"Comprehensibility and control matter more than decorative complexity."},
+{"skill":"accuracy","prompt":"Which sentence has correct article/adjective agreement?","choices":["une porte bleue","une porte bleu","un porte bleue"],"answer":0,"explain":"Porte is feminine singular and bleu becomes bleue."},
+{"skill":"accuracy","prompt":"Which sentence has the correct regular -er form?","choices":["nous parlons français","nous parle français","nous parlez français"],"answer":0,"explain":"Nous takes -ons in the taught regular pattern."},
+{"skill":"accuracy","prompt":"Which sentence uses standard beginner negation?","choices":["Je ne comprends pas.","Je comprends pas ne.","Je ne pas comprends."],"answer":0,"explain":"Ne…pas surrounds the conjugated verb."},
+{"skill":"accuracy","prompt":"Which sentence gives a coherent time expression?","choices":["À huit heures, je vais à l'école.","Je huit heures vais à l'école.","À huit je école."],"answer":0,"explain":"The first sentence clearly links time and action."},
+{"skill":"accuracy","prompt":"Which writing correction best preserves meaning?","choices":["Change only the forms needed for grammar/spelling while keeping the intended message.","Replace the whole idea with an answer-key sentence.","Add facts the writer never intended."],"answer":0,"explain":"Revision should improve accuracy without erasing the learner's message."},
+{"skill":"accuracy","prompt":"What should an editing pass check?","choices":["subject/verb, articles, agreement, accents, punctuation and meaning","only word count","only handwriting size"],"answer":0,"explain":"A focused editing checklist targets language control and meaning."},
+{"skill":"writing","prompt":"Which task best demonstrates presentational writing?","choices":["Create a new connected message for a stated reader/purpose.","Copy a model paragraph unchanged.","Choose multiple-choice answers only."],"answer":0,"explain":"Presentational writing requires original connected language."},
+{"skill":"writing","prompt":"A beginner paragraph contains one repeated noun. What can improve cohesion?","choices":["Use an appropriate pronoun when the referent stays clear.","Delete all subjects.","Change every sentence to English."],"answer":0,"explain":"Pronouns can reduce repetition when reference remains clear."},
+{"skill":"writing","prompt":"What makes a correction log useful?","choices":["It records the original issue, correction and reason.","It hides all mistakes.","It only lists a score."],"answer":0,"explain":"Reasoned correction shows what changed and why."},
+{"skill":"writing","prompt":"Which response shows audience awareness?","choices":["Use vous in a polite message to an unfamiliar adult when that context is supplied.","Use tu for everyone automatically.","Avoid greetings in every message."],"answer":0,"explain":"Register choices should fit the stated relationship/context."},
+{"skill":"writing","prompt":"Which is appropriate for French 101 connected writing?","choices":["Several understandable linked sentences using course structures.","An advanced research essay.","Only isolated vocabulary."],"answer":0,"explain":"The course target is short connected beginner language."},
+{"skill":"writing","prompt":"What should a learner do if they need an untaught word?","choices":["Consult a reliable source and record the support if it matters to evidence.","Invent a French-looking word.","Replace every idea with English."],"answer":0,"explain":"Accurate reference use is better than guessing."},
+{"skill":"speaking","prompt":"What is the difference between reading a script and speaking independently?","choices":["Independent speaking requires producing language from the task without reading a prepared full answer.","There is no difference.","Reading always proves spontaneous interaction."],"answer":0,"explain":"Prepared reading and spontaneous production are different evidence conditions."},
+{"skill":"speaking","prompt":"Which speaking behavior supports comprehensibility?","choices":["Use clear phrasing, known structures and repair when needed.","Speak as fast as possible.","Avoid correcting misunderstandings."],"answer":0,"explain":"Clear controlled language and repair support communication."},
+{"skill":"speaking","prompt":"If a speaker forgets a word, what can they do?","choices":["Use a simpler known phrase, ask for help or rephrase.","Invent a word confidently.","End the task immediately."],"answer":0,"explain":"Circumlocution/repair is useful communication."},
+{"skill":"speaking","prompt":"Which task best shows interpersonal speaking?","choices":["Respond to a partner's new questions and ask follow-ups.","Read a memorized paragraph alone.","Listen silently."],"answer":0,"explain":"Interpersonal speaking involves exchange and response."},
+{"skill":"speaking","prompt":"Which task best shows presentational speaking?","choices":["Give a short organized description/message for an audience.","Choose a written answer.","Copy a transcript."],"answer":0,"explain":"Presentational speaking is an organized spoken message."},
+{"skill":"speaking","prompt":"What should a reviewer note?","choices":["prompt, support, comprehensibility, task completion, repair and corrections","only accent similarity to one region","a privileged account credential"],"answer":0,"explain":"Evidence should describe performance conditions and communicative success."},
+{"skill":"transfer","prompt":"Which integrated production task is strongest?","choices":["Write a new message, revise it, then discuss the same topic without reading the full text.","Copy a model and read it aloud.","Repeat a vocabulary list."],"answer":0,"explain":"The first task separates writing revision from independent speaking."},
+{"skill":"transfer","prompt":"A learner's message is understandable but has two agreement errors. What is the best next step?","choices":["Preserve the message, correct the errors and explain the changes.","Mark the entire message meaningless.","Replace it with the reviewer’s own paragraph."],"answer":0,"explain":"Revision should build on successful communication."},
+{"skill":"transfer","prompt":"A learner uses a dictionary for three words. How should evidence handle this?","choices":["Record that support and evaluate what the learner still did independently.","Pretend no support was used.","Automatically fail the work."],"answer":0,"explain":"Transparent support records make evidence interpretable."},
+{"skill":"transfer","prompt":"Which topic can satisfy the lesson without private disclosure?","choices":["a fictional day, person, café, route or room","the learner's real home address","required family medical information"],"answer":0,"explain":"Fictional scenarios fully demonstrate language."},
+{"skill":"transfer","prompt":"What is the purpose of a final speaking retry?","choices":["Use feedback to improve a new parallel task rather than memorize the exact old answer.","Repeat the identical script until remembered.","Erase the first evidence."],"answer":0,"explain":"A parallel task shows transfer after correction."},
+{"skill":"transfer","prompt":"What should Lesson 17 primarily strengthen?","choices":["original connected production and revision in writing/speaking","new advanced grammar","translation-only recognition"],"answer":0,"explain":"Lesson 17 shifts toward productive independence."}
+];
+
+function printFrenchLesson17(answers){
+ const source=document.getElementById("french-u01-lesson17-production");if(!source)return;document.getElementById("unit01-print-copy")?.remove();const copy=element("article");copy.id="unit01-print-copy";
+ copy.append(element("h2",answers?"French 101 · Lesson 17 · Reviewer guidance":"French 101 · Lesson 17 · Learner worksheet and evidence"));
+ for(const id of answers?["french-l17-answer-guide","french-l17-review-key"]:["french-l17-worksheet"]){const n=document.getElementById(id)?.cloneNode(true);if(n){n.removeAttribute("id");if(n.tagName==="DETAILS")n.open=true;copy.append(n)}}
+ if(!answers){source.querySelectorAll("textarea").forEach(t=>{copy.append(element("h4",t.getAttribute("aria-label")||"Saved response"));const p=element("p",t.value||"(No response entered)");p.className="french-print-response";copy.append(p)});source.querySelectorAll("select[id^='french-l17-rating']").forEach(s=>copy.append(element("p",s.getAttribute("aria-label")+": "+s.value)))}
+ copy.append(element("p","Formative evidence only. Reviewer roles are local and flexible. Reading a prepared script is documented separately from independent speaking."));
+ document.body.append(copy);document.body.classList.add("printing-unit01");const clean=()=>{document.body.classList.remove("printing-unit01");copy.remove();window.removeEventListener("afterprint",clean)};window.addEventListener("afterprint",clean);window.print();
+}
+
+function addFrenchLesson17ProductionDepth(panel){
+ const sec=element("section");sec.id="french-u01-lesson17-production";sec.className="french-day02-depth";const prefix=learnerKey+"_beginner2026_lesson17_production_";
+ const saveStatus=element("p","Lesson 17 work saves locally for the selected learner.");saveStatus.setAttribute("role","status");
+ function save(suffix,value){const ok=safeSet(prefix+suffix,value);saveStatus.textContent=ok?"Lesson 17 evidence saved on this device.":"Saving failed. Copy or print your work before leaving.";return ok}
+ function field(label,suffix,rows=5){const wrap=element("label");wrap.append(element("span",label));const t=element("textarea");t.rows=rows;t.setAttribute("aria-label",label);t.value=safeGet(prefix+suffix)||"";t.addEventListener("input",()=>save(suffix,t.value));wrap.append(t);return wrap}
+ function h(text,id){const n=element("h4",text);if(id)n.id=id;sec.append(n)}function p(text){sec.append(element("p",text))}
+ h("Lesson 17 · Writing & Speaking · Integrated production studio");
+ p("Learning targets: plan a short message for a purpose/audience; connect beginner sentences; revise for meaning and accuracy; distinguish prepared reading from independent speaking; sustain a short original spoken message or exchange; repair communication; and document support/corrections. Fictional topics are fully acceptable.");
+ const nav=element("nav");nav.setAttribute("aria-label","Lesson 17 studio sections");[["Plan","french-l17-plan"],["Write","french-l17-write"],["Revise","french-l17-revise"],["Speak","french-l17-speak"],["Independent portfolio","french-l17-portfolio"],["Review","french-l17-review"],["Evidence","french-l17-evidence"]].forEach(([label,id])=>{const a=element("a",label);a.href="#"+id;nav.append(a)});sec.append(nav,saveStatus);
+ h("1 · Start with purpose and audience","french-l17-plan");
+ p("A message becomes easier to build when you know why you are communicating. Examples: introduce a fictional visitor; describe a fictional day; order at a café; explain a route; describe a room/poster; send a short schedule message. Decide who receives the message and whether tu or vous fits the supplied relationship.");
+ p("Plan with known French first. If one important idea needs an untaught word, consult a reliable dictionary/reference and record the support. Do not translate a long English paragraph word for word and hope the grammar survives.");
+ h("2 · Connect sentences without overloading the language");
+ p("Useful connectors: et = and; mais = but; puis / ensuite = then/next; parce que = because; aussi = also; enfin = finally. Use connectors only when they express the relationship you intend. A short accurate sentence can be stronger than a long sentence whose structure is guessed.");
+ const models=[
+ "Je m'appelle Lina et je parle un peu français.",
+ "Le café est petit, mais il est agréable.",
+ "D'abord, je vais à la bibliothèque. Ensuite, je prends le bus.",
+ "Je vais au café parce que j'ai soif.",
+ "Il y a un musée. Il y a aussi un parc."
+ ];
+ models.forEach(x=>{p(x);sec.lastElementChild.lang="fr";addButton(sec,"Listen · "+x,()=>speakFR(x))});
+ h("3 · Draft, then revise","french-l17-write");
+ p("Draft for meaning first. Then use a focused editing pass: subject/verb; articles; singular/plural; adjective agreement; accents/apostrophes; negation; question coherence; time/date/price accuracy; punctuation. Keep the learner's intended message—do not replace it with a reviewer-authored answer.");
+ p("Model correction: « Nous parle français et la porte est bleu. » → « Nous parlons français et la porte est bleue. » Explain both changes: nous needs parlons; porte is feminine, so bleue.");
+ sec.append(field("Lesson 17 guided draft · 6–8 connected sentences on a fictional topic","guided_draft_v1",9));
+ sec.append(field("Lesson 17 revision log · original issue → correction → reason","revision_log_v1",7));
+ h("4 · Speaking is not simply reading the draft","french-l17-speak");
+ p("Reading a revised paragraph aloud can help pronunciation practice, but it is prepared reading. Independent speaking asks the learner to communicate from a prompt, outline or picture without reading a complete prepared answer. Both can be useful; label them honestly.");
+ p("For presentational speaking, use a small outline of ideas rather than a full script. For interpersonal speaking, listen to the other person's question, respond meaningfully and ask a follow-up. If a word is missing, rephrase with known French or request help. Repair is part of communication.");
+ const speakPrompts=[
+ "Describe a fictional person and one family/friend relationship.",
+ "Describe a fictional day using times and sequence words.",
+ "Order three items at a fictional café and ask the price.",
+ "Give a short route between two fictional places.",
+ "Describe a fictional room/poster using colors and locations."
+ ];
+ const prompts=element("ol");speakPrompts.forEach(x=>prompts.append(element("li",x)));sec.append(prompts);
+ h("5 · Independent writing portfolio","french-l17-portfolio");
+ p("Choose one new scenario. Write 10–14 connected beginner sentences. Requirements: clear opening/topic, at least four connectors, three structures from different earlier units, one question or negative, one time/date/price/place detail, and a meaningful closing. Use fictional content if preferred.");
+ sec.append(field("Lesson 17 independent connected writing","independent_writing_v1",14));
+ p("Now revise the piece. Record at least five specific edits and why each edit improves meaning, accuracy or readability. A spellcheck suggestion is not enough by itself; decide whether the correction fits the intended French.");
+ sec.append(field("Lesson 17 independent revision evidence","independent_revision_v1",9));
+ h("6 · Independent speaking portfolio");
+ p("Choose a different scenario from your writing topic. Give a short connected spoken response or conversation without reading a full script. A reviewer may use a new prompt card. Record the prompt, whether an outline/vocabulary help was allowed, what the learner communicated, repair behavior and corrections. If speaking was not observed, mark Not assessed.");
+ sec.append(field("Lesson 17 independent speaking record · prompt, response summary, support, repairs, correction","independent_speaking_v1",9));
+ p("Optional prepared-reading evidence can also be recorded, but keep it separate from the independent speaking record.");
+ sec.append(field("Optional prepared reading/pronunciation notes","prepared_reading_v1",5));
+ h("7 · Balanced formative review · 30 authored questions","french-l17-review");
+ p("Each ten-question round draws two items from organization, accuracy, writing, speaking and transfer. These questions review production reasoning; they do not replace the actual writing/speaking portfolio.");
+ addFrenchCohesiveReview(sec,17,FRENCH_U01_L17_PRODUCTION_BANK,["organization","accuracy","writing","speaking","transfer"]);
+ h("8 · Final correction challenge");
+ p("Take one earlier piece of French writing from Lessons 04–15. Without deleting the old evidence, copy a short excerpt here and revise it using what you now know. Identify at least three changes and one part you intentionally kept because it was already clear/accurate.");
+ sec.append(field("Lesson 17 retrospective correction challenge","retrospective_v1",8));
+ h("9 · Reviewer rubric","french-l17-evidence");
+ const roles=element("select");roles.setAttribute("aria-label","Lesson 17 reviewer role");["Not reviewed","Parent","Teacher","Homeschool Parent/Teacher","Mentor","Self-Directed Adult","Other Local Reviewer"].forEach(v=>{const o=element("option",v);o.value=v;roles.append(o)});roles.value=safeGet(prefix+"reviewer_role_v1")||"Not reviewed";roles.addEventListener("change",()=>save("reviewer_role_v1",roles.value));sec.append(roles);
+ const criteria=[["Written comprehensibility/organization","Produces a connected beginner message with clear purpose and usable sequencing."],["Language control/revision","Uses taught forms with growing control and makes reasoned corrections."],["Independent speaking","Communicates from a new prompt without reading a complete prepared answer; repairs when needed."],["Audience/task completion","Uses suitable register/content and actually completes the communicative purpose."]];
+ criteria.forEach(([name,desc],i)=>{const row=element("div");row.className="french-day02-rubric-row";const label=element("label",name),select=element("select");select.id="french-l17-rating-"+i;label.htmlFor=select.id;select.setAttribute("aria-label","Lesson 17 rubric · "+name);["Not assessed","0","1","2","3"].forEach(v=>{const o=element("option",v);o.value=v;select.append(o)});select.value=safeGet(prefix+"rubric_"+i+"_v1")||"Not assessed";select.addEventListener("change",()=>save("rubric_"+i+"_v1",select.value));row.append(label,select);sec.append(row,element("p",desc))});sec.append(field("Reviewer context, prompts, supports, evidence and next goal","review_notes_v1",7));
+ const worksheet=element("section");worksheet.id="french-l17-worksheet";worksheet.className="unit01-worksheet";worksheet.append(element("h4","French 101 · Lesson 17 · Writing & Speaking"),element("p","Learner: __________________ Date: ______________"));
+ ["Plan a message by purpose/audience and list known French structures you can use.","Draft and revise a 10–14 sentence connected beginner text.","Record five reasoned edits with original/corrected forms.","Complete a different independent speaking prompt without reading the full writing.","Complete the retrospective correction challenge from an earlier lesson.","Record supports honestly and keep prepared reading separate from independent speaking."].forEach(t=>worksheet.append(element("p",t),element("p","________________________________________________________________________")));sec.append(worksheet);
+ const guide=element("details");guide.id="french-l17-answer-guide";guide.append(element("summary","Lesson 17 reviewer guidance · open after independent work"),element("p","Do not rewrite the learner's work into reviewer-authored French and then grade that product. Evaluate the learner's communicative message, revisions and explanation of support."),element("p","Writing target: connected beginner sentences, not advanced essay complexity. Speaking target: comprehensible original response/exchange from a new prompt; prepared reading is useful but separate."),element("p","A 0–3 rubric should reflect independence/support: 3 independent and accurate/comprehensible; 2 minor support; 1 substantial support; 0 not demonstrated; Not assessed when unobserved."));sec.append(guide);
+ const key=element("details");key.id="french-l17-review-key";key.append(element("summary","Thirty-question formative key · reviewer reference"));FRENCH_U01_L17_PRODUCTION_BANK.forEach((q,i)=>key.append(element("p",(i+1)+". "+q.prompt+" · Answer: "+q.choices[q.answer]+". "+q.explain)));sec.append(key);
+ const actions=element("div");addButton(actions,"Print learner evidence",()=>printFrenchLesson17(false));addButton(actions,"Print reviewer guidance",()=>printFrenchLesson17(true));sec.append(actions);panel.append(sec);
+}
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
  wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–15 are developed in the current curriculum. Lessons 16–18 are the remaining integrated-skill sequence and are developed separately from the preserved 12-level mastery path. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
