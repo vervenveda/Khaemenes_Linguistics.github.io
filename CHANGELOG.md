@@ -18,6 +18,17 @@ This file records meaningful public changes to Polyglot. Dates use the `YYYY-MM-
 - Reclassified the August Hall package manifest as a historical snapshot instead of current release evidence.
 - Updated project README and roadmap to describe the live repository rather than the original prototype state.
 
+### Changed — 2026-10-29 · Authority Bridge v1
+
+- Added a versioned learner-scoped French/German evidence bridge.
+- Bridge records live in a separate `khaemenes.courseAuthorityBridge.v1:` namespace.
+- Added review-only evidence preparation and JSON export to the French and German mastery dashboards.
+- Added a read-only bridge panel to the formal V4 Hall for matching named learners.
+- Bridge v1 never writes `arshif.languageHall.v4`, never changes unlocks, and never awards formal mastery or completion.
+- Anonymous/shared-device records are intentionally ineligible for bridge promotion.
+- German bridge scoring evaluates recorded exam evidence against the Academy 80% threshold even when an older Coach pass flag used a lower threshold.
+- Added bridge documentation, static safety audit and a dedicated GitHub Actions integrity workflow.
+
 ### Next
 
 - Implement versioned French and German evidence-to-authority bridges without deleting existing learner records.
