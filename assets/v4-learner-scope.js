@@ -8,6 +8,9 @@ const ACTIVE_KEY="arshif.languageHall.v4.activeLearner";
 const REGISTRY_KEY="arshif.languageHall.v4.learners";
 const PREFIX="arshif.languageHall.v4.learner:";
 const SCHEMA="khaemenes-language-hall-v4-learner-scope-v1";
+const BACKUP_FORMAT="khaemenes-five-language-v4-learner-backup-v1";
+const RECOVERY_PREFIX="arshif.languageHall.v4.recovery:";
+const MAX_RECOVERY=3;
 const MAX_LABEL=70;
 const safeGet=k=>{try{return localStorage.getItem(k)}catch{return null}};
 const safeSet=(k,v)=>{try{localStorage.setItem(k,v);return true}catch{return false}};
@@ -102,6 +105,94 @@ function assignLegacy(label){
  if(!safeSet(ACTIVE_KEY,id))throw Error("Learner copy was created but could not be activated.");
  return clone(copy);
 }
+
+function assertPlainObject(value,label){
+ if(!value||typeof value!=="object"||Array.isArray(value))throw Error(label+" must be an object.");
+ for(const key of Object.keys(value))if(["__proto__","prototype","constructor"].includes(key))throw Error(label+" contains an unsafe key.");
+ return value;
+}
+function validateStateShape(record){
+ assertPlainObject(record,"V4 record");
+ assertPlainObject(record.profile||{},"Profile");
+ assertPlainObject(record.courses||{},"Courses");
+ assertPlainObject(record.foundationDone||{},"Foundation progress");
+ assertPlainObject(record.favorites||{},"Favorites");
+ assertPlainObject(record.notes||{},"Notes");
+ if(typeof record.notebook!=="string")throw Error("Notebook must be text.");
+ if(typeof record.activeLanguage!=="string"||record.activeLanguage.length>40)throw Error("Invalid active language.");
+ if(typeof record.activeCourse!=="string"||record.activeCourse.length>40)throw Error("Invalid active course.");
+ if(Object.keys(record.courses||{}).length>100)throw Error("Backup has too many course records.");
+ if(Object.keys(record.foundationDone||{}).length>100)throw Error("Backup has too many foundation records.");
+ if(Object.keys(record.favorites||{}).length>500)throw Error("Backup has too many favorites.");
+ if(Object.keys(record.notes||{}).length>500)throw Error("Backup has too many notes.");
+ if(record.notebook.length>200000)throw Error("Notebook is too large.");
+ return record;
+}
+function makeBackup(state){
+ const d=currentDescriptor();
+ if(d.mode!=="learner"||!d.id)throw Error("Open a named learner record before creating a backup.");
+ const record=validateStateShape(clone(state));
+ record.profile={...(record.profile||{}),learner:d.label};
+ record.recordScope={schema:SCHEMA,type:"learner",learnerId:d.id,learnerLabel:d.label};
+ return {format:BACKUP_FORMAT,version:1,exportedAt:new Date().toISOString(),learner:{id:d.id,label:d.label},record};
+}
+function validateBackup(data){
+ assertPlainObject(data,"Backup");
+ if(data.format!==BACKUP_FORMAT||data.version!==1)throw Error("This is not a supported learner-scoped V4 backup.");
+ assertPlainObject(data.learner,"Backup learner");
+ const label=clean(data.learner.label),id=cleanId(data.learner.id);
+ if(!label||!id||id!==idFor(label))throw Error("Backup learner identity is invalid.");
+ const record=validateStateShape(clone(data.record));
+ const scope=assertPlainObject(record.recordScope||{},"Record scope");
+ if(scope.type!=="learner"||cleanId(scope.learnerId)!==id)throw Error("Backup record scope does not match its learner.");
+ if(clean(scope.learnerLabel)!==label||clean(record.profile?.learner)!==label)throw Error("Backup learner label does not match the record.");
+ return {format:BACKUP_FORMAT,version:1,exportedAt:String(data.exportedAt||""),learner:{id,label},record};
+}
+function recoveryKey(id){return RECOVERY_PREFIX+cleanId(id)}
+function recoveryHistory(id){
+ const list=parse(safeGet(recoveryKey(id))||"[]",[]);
+ return Array.isArray(list)?list.filter(x=>x&&typeof x==="object").slice(-MAX_RECOVERY):[];
+}
+function pushRecovery(id,label,record,reason){
+ const list=recoveryHistory(id);
+ list.push({savedAt:new Date().toISOString(),learnerId:id,learnerLabel:label,reason:String(reason||"restore"),record:clone(record)});
+ while(list.length>MAX_RECOVERY)list.shift();
+ if(!safeSet(recoveryKey(id),JSON.stringify(list)))throw Error("Unable to save the pre-restore recovery snapshot.");
+}
+function restoreBackup(data){
+ const parsed=validateBackup(data),d=currentDescriptor();
+ if(d.mode!=="learner"||!d.id)throw Error("Open the named learner record before restoring a backup.");
+ if(parsed.learner.id!==d.id||parsed.learner.label!==d.label)throw Error("Backup belongs to a different learner. No record was changed.");
+ const current=parse(safeGet(d.key)||"null",null);
+ if(current)pushRecovery(d.id,d.label,current,"before-backup-restore");
+ const restored=clone(parsed.record),now=new Date().toISOString();
+ restored.profile={...(restored.profile||{}),learner:d.label};
+ restored.recordScope={schema:SCHEMA,type:"learner",learnerId:d.id,learnerLabel:d.label,restoredFromBackupAt:now,backupExportedAt:parsed.exportedAt||null};
+ restored.updatedAt=now;
+ if(!safeSet(d.key,JSON.stringify(restored)))throw Error("Unable to restore the learner backup.");
+ touch(d.id,d.label,restored.createdAt);
+ return clone(restored);
+}
+function undoLastRestore(){
+ const d=currentDescriptor();
+ if(d.mode!=="learner"||!d.id)throw Error("Open a named learner record before using restore recovery.");
+ const list=recoveryHistory(d.id);
+ if(!list.length)throw Error("No pre-restore recovery snapshot is available for this learner.");
+ const prior=list.pop(),record=validateStateShape(clone(prior.record));
+ record.profile={...(record.profile||{}),learner:d.label};
+ record.recordScope={schema:SCHEMA,type:"learner",learnerId:d.id,learnerLabel:d.label,recoveredAt:new Date().toISOString(),recoverySource:prior.savedAt};
+ record.updatedAt=new Date().toISOString();
+ if(!safeSet(d.key,JSON.stringify(record)))throw Error("Unable to recover the previous learner record.");
+ if(list.length)safeSet(recoveryKey(d.id),JSON.stringify(list));else safeRemove(recoveryKey(d.id));
+ touch(d.id,d.label,record.createdAt);
+ return clone(record);
+}
+function recoverySummary(){
+ const d=currentDescriptor();
+ if(d.mode!=="learner"||!d.id)return {available:0,latest:null};
+ const list=recoveryHistory(d.id),latest=list.at(-1)||null;
+ return {available:list.length,latest:latest?{savedAt:latest.savedAt,reason:latest.reason}:null};
+}
 function clearCurrent(){
  const d=currentDescriptor();
  if(d.mode==="learner"){
@@ -118,6 +209,8 @@ function exportRegistry(){
 window.KhaemenesV4LearnerScope={
  schema:SCHEMA,LEGACY_KEY,OLD_V3_KEY,ACTIVE_KEY,REGISTRY_KEY,PREFIX,
  clean,cleanId,idFor,scopedKey,registry,list,activeId,currentKey,currentMode,currentDescriptor,
- loadCurrent,saveCurrent,openLearner,openById,openLegacy,legacyRecord,assignLegacy,clearCurrent,exportRegistry
+ loadCurrent,saveCurrent,openLearner,openById,openLegacy,legacyRecord,assignLegacy,
+ BACKUP_FORMAT,makeBackup,validateBackup,restoreBackup,undoLastRestore,recoverySummary,
+ clearCurrent,exportRegistry
 };
 })();
