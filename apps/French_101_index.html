@@ -515,7 +515,7 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
     <h1>Bienvenue à French 101</h1>
     <h3>Sovereign Edition</h3>
     <p>A language journey guided by your own light.</p>
-    <button onclick="startApp()">Commencer / Start Journey</button>
+    <button id="frenchStartJourney" type="button" onclick="startApp(event)">Commencer / Start Journey</button><p id="frenchStartStatus" role="status" aria-live="polite"></p>
   </div>
 </div>
 
@@ -643,9 +643,30 @@ function showOnly(name){
  assessmentSession++;
  for(const id of ["menu","lesson","quiz","exam","certificate"])$(id).classList.toggle("hidden",id!==name);
 }
-function startApp(){
- $("splash").style.display="none";$("app").classList.remove("hidden");
- $("learnerName").value=safeGet("french101_active_learner")||"";chooseLearner();document.body.classList.remove("dark");showOnly("menu");
+function startApp(event){
+ if(event&&typeof event.preventDefault==="function")event.preventDefault();
+ const splash=$("splash"),app=$("app"),status=$("frenchStartStatus");
+ try{
+  if(!splash||!app)throw new Error("French 101 entrance is unavailable.");
+  splash.style.display="none";app.classList.remove("hidden");
+  const learner=$("learnerName");if(learner)learner.value=safeGet("french101_active_learner")||"";
+  chooseLearner();document.body.classList.remove("dark");showOnly("menu");
+  if(status)status.textContent="";
+  return true;
+ }catch(error){
+  if(splash)splash.style.display="none";
+  if(app)app.classList.remove("hidden");
+  const menu=$("menu");if(menu)menu.classList.remove("hidden");
+  const grid=$("levelGrid");
+  if(grid&&!grid.children.length){
+   const recovery=document.createElement("button");recovery.type="button";recovery.className="level unlocked";recovery.textContent="L1";recovery.setAttribute("aria-label","Open Level 1");
+   recovery.addEventListener("click",()=>{try{openLesson(1)}catch(openError){if(status)status.textContent="French 101 could not open Level 1. Reload the page once; your saved progress has not been changed.";console.error("French 101 Level 1 recovery failed",openError)}});
+   grid.append(recovery);
+  }
+  if(status)status.textContent="French 101 recovered its entrance. Your saved progress has not been changed.";
+  console.error("French 101 entrance initialization recovered",error);
+  return false;
+ }
 }
 /* Fixed Academy palette: historical theme preferences retained but no longer applied here. */
 function buildLevelGrid(){
@@ -662,6 +683,13 @@ function buildLevelGrid(){
  }
 }
 function backToMenu(){showOnly("menu");buildLevelGrid()}
+document.addEventListener("DOMContentLoaded",()=>{
+ const start=$("frenchStartJourney");
+ if(start&&!start.dataset.frenchStartBound){
+  start.dataset.frenchStartBound="true";
+  start.addEventListener("click",startApp);
+ }
+});
 document.addEventListener("DOMContentLoaded",()=>{
  const vol=document.getElementById("frenchSpeechVolume"),out=document.getElementById("frenchVolumeValue");
  const selector=document.getElementById("frenchVoiceSelect");
