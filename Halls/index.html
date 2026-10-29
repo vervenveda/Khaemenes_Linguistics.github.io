@@ -93,7 +93,7 @@
 
 <section class="panel" id="panel-sources" role="tabpanel" aria-labelledby="tab-sources"><div class="heading"><p class="kicker">Source Vault · 53 Gateways</p><h2>General frameworks plus language-specific authoritative pathways.</h2><p>Advanced work should add current community, teacher, university, corpus, archive and language-specific sources rather than rely on one generic phrase site.</p></div><div class="source-grid" id="sourceGrid"></div></section>
 
-<section class="panel" id="panel-vault" role="tabpanel" aria-labelledby="tab-vault"><div class="heading"><p class="kicker">Language Vault V4</p><h2>One learner can study several languages without overwriting progress.</h2><p>V4 stores progress by language → course → competencies / assessments / portfolio. Existing V3 data is preserved as a legacy snapshot and can inform the new profile without automatically awarding course completion.</p></div><div class="portfolio"><article><h3>Current Record</h3><p id="recordSummary"></p><div class="actions"><button class="btn primary" id="downloadVault">Download V4 JSON</button><button class="btn" id="copySnapshot">Copy Mentor / NAIB Snapshot</button></div></article><article><h3>Legacy V3 Preservation</h3><p id="legacySummary"></p><p>Legacy Hall generations are preserved for review, export, and migration reference. New coursework belongs in this V4 Academy.</p><div class="actions"><button class="btn" id="inspectLegacy">Inspect Legacy Summary</button><a class="btn" href="./language-learning-v3_index.html">Open V3 Archive</a><a class="btn" href="../apps/Language_learning_hall_index.html">Open Original Hall Archive</a></div></article><article><h3>Learner Records</h3><p id="recordScopeStatus"></p><label for="learnerName">Learner name</label><input class="search" id="learnerName" maxlength="70" autocomplete="off" style="margin-top:8px"><div class="actions"><button class="btn primary" id="openLearnerRecord">Open / Create Learner</button><button class="btn" id="openLegacyV4">Open Legacy Shared V4</button></div><label for="learnerRecordSelect" style="display:block;margin-top:12px">Saved learner records on this device</label><select class="search" id="learnerRecordSelect" style="margin-top:8px"></select><div class="actions"><button class="btn" id="openSelectedLearner">Open Selected Learner</button></div><p style="margin-top:14px">The original shared V4 record is preserved until explicitly assigned. Copying it creates a learner record and leaves the original untouched.</p><div class="actions"><button class="btn" id="assignLegacyV4">Copy Legacy V4 to This Learner</button></div><p id="learnerRecordMessage" role="status" aria-live="polite"></p></article><article><h3>Profile Details</h3><p>Learner identity belongs to the active record. Use Learner Records above to switch students; profile details below cannot rename another learner's transcript.</p><label style="display:block;margin-top:12px">Home / heritage language(s)</label><input class="search" id="homeLang" style="margin-top:8px"><label style="display:block;margin-top:12px">Teacher / mentor</label><input class="search" id="teacherName" style="margin-top:8px"><div class="actions"><button class="btn primary" id="saveProfile">Save Profile Details</button></div></article><article><h3>Research & Reflection Notebook</h3><textarea class="journal" id="notebook" placeholder="Source checks · pronunciation questions · dialect/register notes · cultural context · errors and corrections · next steps…"></textarea></article><article><h3>Local Controls</h3><p>Browser localStorage is convenient, not a secure student-information system. Export intentionally if you need a portable record.</p><div class="actions"><button class="btn" id="printRecord">Print</button><button class="btn danger" id="clearV4">Clear V4 Progress Only</button></div></article><article><h3>Field Lab Bridge</h3><p>A future Language Immersion Hall Pack can launch real-world scenarios—train station, host family, market, school, interview, museum, restaurant—while this Hall supplies the language curriculum and evidence record.</p><div class="actions"><a class="btn" href="https://vervenveda.com/Arshif.github.io/tools/field-lab/">Open Current Field Lab →</a></div></article></div></section>
+<section class="panel" id="panel-vault" role="tabpanel" aria-labelledby="tab-vault"><div class="heading"><p class="kicker">Language Vault V4</p><h2>One learner can study several languages without overwriting progress.</h2><p>V4 stores progress by language → course → competencies / assessments / portfolio. Existing V3 data is preserved as a legacy snapshot and can inform the new profile without automatically awarding course completion.</p></div><div class="portfolio"><article><h3>Current Record</h3><p id="recordSummary"></p><div class="actions"><button class="btn primary" id="downloadVault">Download V4 JSON</button><button class="btn" id="copySnapshot">Copy Mentor / NAIB Snapshot</button></div></article><article><h3>Legacy V3 Preservation</h3><p id="legacySummary"></p><p>Legacy Hall generations are preserved for review, export, and migration reference. New coursework belongs in this V4 Academy.</p><div class="actions"><button class="btn" id="inspectLegacy">Inspect Legacy Summary</button><a class="btn" href="./language-learning-v3_index.html">Open V3 Archive</a><a class="btn" href="../apps/Language_learning_hall_index.html">Open Original Hall Archive</a></div></article><article><h3>Learner Records</h3><p id="recordScopeStatus"></p><label for="learnerName">Learner name</label><input class="search" id="learnerName" maxlength="70" autocomplete="off" style="margin-top:8px"><div class="actions"><button class="btn primary" id="openLearnerRecord">Open / Create Learner</button><button class="btn" id="openLegacyV4">Open Legacy Shared V4</button></div><label for="learnerRecordSelect" style="display:block;margin-top:12px">Saved learner records on this device</label><select class="search" id="learnerRecordSelect" style="margin-top:8px"></select><div class="actions"><button class="btn" id="openSelectedLearner">Open Selected Learner</button></div><p style="margin-top:14px">The original shared V4 record is preserved until explicitly assigned. Copying it creates a learner record and leaves the original untouched.</p><div class="actions"><button class="btn" id="assignLegacyV4">Copy Legacy V4 to This Learner</button></div><p id="learnerRecordMessage" role="status" aria-live="polite"></p></article><article><h3>Learner Backup & Recovery</h3><p>Backups are available only for named learner records. Restore files must match the active learner exactly. Before a restore replaces anything, the current learner record is saved as a local recovery snapshot.</p><div class="actions"><button class="btn primary" id="exportLearnerBackup">Download Learner Backup</button></div><label for="learnerBackupFile" style="display:block;margin-top:12px">Restore learner backup (.json)</label><input class="search" id="learnerBackupFile" type="file" accept=".json,application/json" style="margin-top:8px"><p id="learnerBackupPreview">No backup selected.</p><div class="actions"><button class="btn" id="confirmLearnerRestore" disabled>Restore Matching Learner Backup</button><button class="btn" id="undoLearnerRestore" disabled>Undo Last Restore</button></div><p id="learnerBackupStatus" role="status" aria-live="polite"></p></article><article><h3>Profile Details</h3><p>Learner identity belongs to the active record. Use Learner Records above to switch students; profile details below cannot rename another learner's transcript.</p><label style="display:block;margin-top:12px">Home / heritage language(s)</label><input class="search" id="homeLang" style="margin-top:8px"><label style="display:block;margin-top:12px">Teacher / mentor</label><input class="search" id="teacherName" style="margin-top:8px"><div class="actions"><button class="btn primary" id="saveProfile">Save Profile Details</button></div></article><article><h3>Research & Reflection Notebook</h3><textarea class="journal" id="notebook" placeholder="Source checks · pronunciation questions · dialect/register notes · cultural context · errors and corrections · next steps…"></textarea></article><article><h3>Local Controls</h3><p>Browser localStorage is convenient, not a secure student-information system. Export intentionally if you need a portable record.</p><div class="actions"><button class="btn" id="printRecord">Print</button><button class="btn danger" id="clearV4">Clear V4 Progress Only</button></div></article><article><h3>Field Lab Bridge</h3><p>A future Language Immersion Hall Pack can launch real-world scenarios—train station, host family, market, school, interview, museum, restaurant—while this Hall supplies the language curriculum and evidence record.</p><div class="actions"><a class="btn" href="https://vervenveda.com/Arshif.github.io/tools/field-lab/">Open Current Field Lab →</a></div></article></div></section>
 
 </div></main>
 
@@ -311,7 +311,9 @@ function freshNamedRecord(name){
 }
 function activateRecord(next,message){
  state=hydrate(next);
+ pendingLearnerBackup=null;
  renderAll();
+ resetBackupPreview(SCOPE.currentMode()==="learner"?"No backup selected.":"Open a named learner record to create or restore a backup.");
  recordMessage(message);
  setTimeout(()=>window.dispatchEvent(new Event("khaemenes-v4-learner-change")),0);
 }
@@ -325,7 +327,73 @@ function renderVault(){
  const select=$("#learnerRecordSelect"),records=SCOPE.list();select.replaceChildren();
  if(!records.length){const o=document.createElement("option");o.value="";o.textContent="No named learner records saved yet";select.append(o)}
  else for(const item of records){const o=document.createElement("option");o.value=item.id;o.textContent=item.label+(item.id===record.id?" · current":"");select.append(o);if(item.id===record.id)o.selected=true}
+ updateBackupRecoveryControls();
 }
+let pendingLearnerBackup=null;
+function backupStatus(message){const el=$("#learnerBackupStatus");if(el)el.textContent=message}
+function resetBackupPreview(message="No backup selected."){
+ pendingLearnerBackup=null;
+ const preview=$("#learnerBackupPreview"),confirm=$("#confirmLearnerRestore"),file=$("#learnerBackupFile");
+ if(preview)preview.textContent=message;
+ if(confirm)confirm.disabled=true;
+ if(file)file.value="";
+}
+function updateBackupRecoveryControls(){
+ const record=SCOPE.currentDescriptor(),named=record.mode==="learner";
+ const exportBtn=$("#exportLearnerBackup"),restoreBtn=$("#confirmLearnerRestore"),undo=$("#undoLearnerRestore"),file=$("#learnerBackupFile");
+ if(exportBtn)exportBtn.disabled=!named;
+ if(file)file.disabled=!named;
+ if(restoreBtn)restoreBtn.disabled=!named||!pendingLearnerBackup;
+ const recovery=named?SCOPE.recoverySummary():{available:0,latest:null};
+ if(undo){undo.disabled=!named||!recovery.available;undo.textContent=recovery.available?"Undo Last Restore · "+recovery.available+" recovery saved":"Undo Last Restore"}
+ if(!named&&$("#learnerBackupPreview"))$("#learnerBackupPreview").textContent="Open a named learner record to create or restore a backup.";
+}
+$("#exportLearnerBackup").onclick=()=>{
+ try{
+  const data=SCOPE.makeBackup(state),record=SCOPE.currentDescriptor();
+  download(`khaemenes-five-language-v4-${record.id}-backup.json`,data);
+  backupStatus(`Backup created for ${record.label}. No other learner record was included.`);
+ }catch(e){backupStatus(e.message||"Unable to create learner backup.")}
+};
+$("#learnerBackupFile").addEventListener("change",async()=>{
+ pendingLearnerBackup=null;$("#confirmLearnerRestore").disabled=true;
+ const file=$("#learnerBackupFile").files?.[0];
+ if(!file){resetBackupPreview();return}
+ if(file.size>2000000){resetBackupPreview("Backup exceeds the 2 MB safety limit.");return}
+ try{
+  const parsed=SCOPE.validateBackup(JSON.parse(await file.text())),current=SCOPE.currentDescriptor();
+  if(current.mode!=="learner")throw new Error("Open the matching named learner record before restoring.");
+  if(parsed.learner.id!==current.id||parsed.learner.label!==current.label)throw new Error(`This backup belongs to ${parsed.learner.label}, not the active learner ${current.label}. No record was changed.`);
+  const completed=Object.values(parsed.record.courses||{}).filter(x=>x&&x.complete===true).length;
+  const foundations=Object.values(parsed.record.foundationDone||{}).filter(Boolean).length;
+  pendingLearnerBackup=parsed;
+  $("#learnerBackupPreview").textContent=`Validated backup for ${parsed.learner.label} · exported ${parsed.exportedAt?new Date(parsed.exportedAt).toLocaleString():"date not recorded"} · ${completed}/55 formal courses complete · ${foundations}/40 foundations complete. Restore is not yet applied.`;
+  $("#confirmLearnerRestore").disabled=false;
+  backupStatus("Backup validated. Confirm restore only if you intend to replace the active learner record.");
+ }catch(e){resetBackupPreview(e.message||"Backup validation failed.");backupStatus("No learner record was changed.")}
+});
+$("#confirmLearnerRestore").onclick=()=>{
+ if(!pendingLearnerBackup){backupStatus("Choose and validate a matching learner backup first.");return}
+ const record=SCOPE.currentDescriptor();
+ if(record.mode!=="learner"||pendingLearnerBackup.learner.id!==record.id){resetBackupPreview("Active learner changed. Select the backup again.");backupStatus("No learner record was changed.");return}
+ if(!window.confirm(`Restore the validated backup for ${record.label}? The current record will first be saved as a local recovery snapshot.`))return;
+ try{
+  const restored=SCOPE.restoreBackup(pendingLearnerBackup);
+  state=hydrate(restored);pendingLearnerBackup=null;renderAll();resetBackupPreview("Restore complete. Select a file to perform another restore.");
+  backupStatus(`Restored ${record.label}. The previous version was preserved locally and can be recovered with Undo Last Restore.`);
+  updateBackupRecoveryControls();window.dispatchEvent(new Event("khaemenes-v4-learner-change"));
+ }catch(e){backupStatus(e.message||"Restore failed. No record was changed.")}
+};
+$("#undoLearnerRestore").onclick=()=>{
+ const record=SCOPE.currentDescriptor();
+ if(record.mode!=="learner")return;
+ if(!window.confirm(`Restore the most recent pre-import version for ${record.label}?`))return;
+ try{
+  state=hydrate(SCOPE.undoLastRestore());renderAll();resetBackupPreview();
+  backupStatus(`Recovered the previous local version for ${record.label}.`);
+  updateBackupRecoveryControls();window.dispatchEvent(new Event("khaemenes-v4-learner-change"));
+ }catch(e){backupStatus(e.message||"No recovery snapshot could be restored.")}
+};
 $("#openLearnerRecord").onclick=()=>{
  const name=SCOPE.clean($("#learnerName").value);
  try{const existed=SCOPE.registry()[SCOPE.idFor(name)]!==undefined,next=SCOPE.openLearner(name,(label)=>freshNamedRecord(label));activateRecord(next,existed?`Opened ${name}'s formal V4 record.`:`Created a new formal V4 record for ${name}. No course mastery was copied from another learner.`)}catch(e){recordMessage(e.message||"Unable to open learner record.")}
