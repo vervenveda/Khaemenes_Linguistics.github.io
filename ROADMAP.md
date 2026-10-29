@@ -46,11 +46,16 @@ French and German have rich learner experiences plus independent browser-local r
 - [x] Static bridge audit proves Bridge v1 cannot write the V4 authority key or completion field.
 - [x] Require the Academy 80% threshold when interpreting bridge exam evidence, even if a legacy app stored a lower local pass flag.
 
+### Learner-scoped V4 authority
+
+Named V4 records use `arshif.languageHall.v4.learner:` with an active-learner pointer and local learner registry. The historical `arshif.languageHall.v4` key remains a preserved shared record until explicitly copied or explicitly cleared.
+
 ### Bridge v2 release gates
+
 
 Do not implement automatic acceptance into V4 until:
 
-- [ ] V4 formal records are safely learner-scoped.
+- [x] V4 formal records are safely learner-scoped with explicit legacy-shared preservation.
 - [ ] Teacher/reviewer acceptance is distinguishable from learner self-entry.
 - [ ] Evidence-to-competency mappings are explicit and auditable.
 - [ ] Existing completion can never be downgraded.
