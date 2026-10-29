@@ -48,6 +48,22 @@
 - V3 deletion during learner operations: **blocked by architecture**
 - automatic legacy migration: **NOT IMPLEMENTED by design**
 
+## V4 learner backup / recovery
+- dedicated restore-capable learner backup format: **present**
+- named learner required: **PASS**
+- wrong-learner restore: **blocked**
+- generic/legacy V4 JSON restore: **blocked**
+- 2 MB Hall import limit: **present**
+- schema / learner / scope validation: **present**
+- unsafe object-key rejection: **present**
+- pre-restore local recovery snapshot: **present**
+- recovery snapshots retained per learner: **up to 3**
+- Undo Last Restore: **present**
+- sibling learner mutation during restore: **NONE**
+- legacy shared V4 mutation during restore: **NONE**
+- V3 mutation during restore: **NONE**
+- portable JSON recovery: **present**
+
 ## Authority Bridge v1
 - French learner-scoped review bridge: **present**
 - German learner-scoped supplemental bridge: **present**
