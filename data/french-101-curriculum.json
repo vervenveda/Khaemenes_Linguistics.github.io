@@ -163,31 +163,31 @@
     {
       "lesson": 9,
       "title": "Colors, Shapes & Descriptions",
-      "status": "next-development",
+      "status": "developed",
       "legacy_preservation": "earlier sound-combinations lesson preserved as enrichment"
     },
     {
       "lesson": 10,
       "title": "Dates & Time",
-      "status": "planned",
+      "status": "developed",
       "legacy_preservation": "earlier spelling-names lesson to remain enrichment"
     },
     {
       "lesson": 11,
       "title": "Food & Café",
-      "status": "planned",
+      "status": "developed",
       "legacy_preservation": "earlier unfamiliar-word copying lesson to remain enrichment"
     },
     {
       "lesson": 12,
       "title": "Home, School & Everyday Objects",
-      "status": "planned",
+      "status": "developed",
       "legacy_preservation": "earlier pronunciation-in-greetings lesson to remain enrichment"
     },
     {
       "lesson": 13,
       "title": "Questions, Negation & Conversation",
-      "status": "planned",
+      "status": "next-development",
       "legacy_preservation": "earlier dictation/correction lesson to remain enrichment"
     },
     {
@@ -236,7 +236,7 @@
       "legacy_checkpoint_preserved": true
     },
     "midterm_after_lesson_12": {
-      "status": "planned",
+      "status": "blueprint-next-after-developed-lessons-01-12",
       "threshold_percent": 80,
       "skills": [
         "reading",
@@ -267,5 +267,12 @@
     "Recognition scores remain distinct from independent writing and speaking evidence.",
     "Reviewer metadata records role and evidence context without requiring a privileged account.",
     "No new curriculum version may erase or downgrade earned legacy completion."
-  ]
+  ],
+  "development_status": {
+    "developed_lessons": "01-12",
+    "next_lesson": 13,
+    "next_topic": "Questions, Negation & Conversation",
+    "midterm_boundary_reached": true,
+    "updated_at": "2026-10-29"
+  }
 }
