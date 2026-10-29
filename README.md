@@ -120,6 +120,12 @@ Current local records may include course progress, formative evidence, portfolio
 
 Architecture changes must preserve existing storage namespaces unless a migration is separately designed, documented and regression-tested.
 
+## Parent / Teacher / Reviewer roles
+
+Polyglot is designed for families, homeschool environments, independent learners and teachers without requiring separate privileged accounts.
+
+A Parent and Teacher may be the same person. A reviewer role records who looked at the evidence and in what capacity; it is not an institutional credential. Self-directed adults may self-review where a course does not explicitly require independent attestation.
+
 ## Assessment boundary
 
 Course numbers and internal Academy records do not automatically confer:
