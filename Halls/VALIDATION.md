@@ -36,6 +36,18 @@
 - course-completion gate: **present**
 - external-credential boundary: **present**
 
+## V4 learner-scoped authority
+- named V4 storage prefix: **present**
+- active learner pointer: **present**
+- local learner registry: **present**
+- explicit open/create learner workflow: **present**
+- explicit legacy shared V4 workflow: **present**
+- legacy-to-learner copy: **non-destructive / overwrite-blocked**
+- cross-learner formal course isolation: **regression-covered**
+- current-record-only clear behavior: **regression-covered**
+- V3 deletion during learner operations: **blocked by architecture**
+- automatic legacy migration: **NOT IMPLEMENTED by design**
+
 ## Authority Bridge v1
 - French learner-scoped review bridge: **present**
 - German learner-scoped supplemental bridge: **present**
