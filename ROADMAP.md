@@ -33,17 +33,17 @@ Every phase must preserve:
 - [x] Add a GitHub Actions topology regression gate.
 
 ## Phase B — Single-authority evidence bridges
-**Status: NEXT**
+**Status: IN PROGRESS · Review-only Bridge v1 live**
 
 French and German have rich learner experiences plus independent browser-local records. They must not be flattened or replaced.
 
-- [ ] Specify a versioned evidence bridge contract.
-- [ ] Map French 101 qualifying evidence to the V4 French authority without deleting French storage.
-- [ ] Map German qualifying evidence to the V4 German authority without deleting German storage.
-- [ ] Keep practice evidence distinct from formal mastery.
-- [ ] Add two-learner regression tests.
-- [ ] Add export-before-migration protection.
-- [ ] Prove that a bridge cannot downgrade an existing completion record.
+- [x] Specify a versioned evidence bridge contract.
+- [x] Expose French 101 evidence to the V4 French authority as a learner-scoped, review-only bridge without deleting French storage.
+- [x] Expose German Coach/studio evidence to the V4 German authority as learner-scoped supplemental evidence without deleting German storage.
+- [x] Keep practice evidence distinct from formal mastery; Bridge v1 has zero V4 mastery writes.
+- [ ] Add two-learner runtime regression tests before any Bridge v2 acceptance/migration behavior.
+- [x] Add bridge JSON export before any future migration or acceptance workflow.
+- [x] Static bridge audit proves Bridge v1 cannot write the V4 authority key or completion field.
 
 ## Phase C — Spanish / Mandarin / Japanese parity
 
