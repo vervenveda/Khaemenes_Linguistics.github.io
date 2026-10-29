@@ -71,3 +71,14 @@ This learner-scoped authority layer is a prerequisite for any future Bridge v2 a
 - no clearing another learner while one learner is active;
 - no deletion of V3 during V4 learner operations;
 - existing course completion remains unchanged inside the record where it already exists.
+
+
+## Backup and recovery
+
+Learner-scoped storage is paired with a dedicated restore-capable backup format.
+
+See:
+
+`V4_LEARNER_BACKUP_RECOVERY.md`
+
+The restore workflow requires the matching named learner, validates learner/scope identity, preserves a pre-restore local recovery snapshot, and never restores into the legacy shared V4 key.
