@@ -55,6 +55,15 @@ This file records meaningful public changes to Polyglot. Dates use the `YYYY-MM-
 - Added **Undo Last Restore**.
 - Added regression coverage proving wrong-learner restore rejection and preservation of sibling learners, legacy V4 and V3.
 
+### Changed — 2026-10-29 · Soft reviewer-role contract
+
+- Clarified that Parent, Teacher, Mentor and reviewer are evidence roles rather than privileged account classes.
+- Explicitly supports one person serving as both Parent and Teacher in homeschool settings.
+- Added a Homeschool Parent/Teacher role to the planned review contract.
+- Allows self-directed adult review where a course does not explicitly require independent attestation.
+- Separate teacher logins, paid accounts, or institutional credentials are not prerequisites for local evidence review.
+- Independent third-party attestation remains available only where a specific assessment genuinely requires it.
+
 ### Next
 
 - Keep Bridge v2 automatic evidence acceptance deferred until teacher/reviewer acceptance and evidence-to-competency mapping are explicit.
