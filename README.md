@@ -1,311 +1,195 @@
 # Polyglot
+### Khaemenes Academy · Linguistics & World Language Campus
 
-### Khaemenes Academy Linguistics Hall
-
-**Polyglot — The World in Words** is an international language and linguistics landing page within the Khaemenes Academy learning ecosystem. It is designed as a calm, scholarly gateway for language study, cultural understanding, translation, literature, and the science of human communication.
-
-The project welcomes learners of different ages, backgrounds, abilities, and levels of experience. A visitor may begin with a single greeting, explore a language family, save an area of interest, or follow a future pathway toward structured study.
+**Polyglot — The World in Words** is the Khaemenes Academy language-learning and linguistics campus. It now contains formal course architecture, language-specific learner experiences, world-language reference material, local practice applications, translation tools, and preserved legacy generations.
 
 > Many languages. Many histories. One shared human conversation.
 
----
+## Current architecture
 
-## Project Purpose
+The canonical repository topology is declared in:
 
-Polyglot is intended to become a central home for:
+- `data/course-topology.json` — machine-readable route and authority registry
+- `docs/TOPOLOGY_ARCHITECTURE.md` — human-readable architecture contract
+- `scripts/audit-topology.mjs` — regression check preventing route/authority drift
 
-- world-language learning;
-- linguistics and language science;
-- reading, writing, listening, and speaking practice;
-- translation and interpretation studies;
-- world literature and oral traditions;
-- heritage-language learning;
-- signed languages and Deaf culture;
-- culturally respectful travel language;
-- multilingual family and homeschool resources; and
-- language preservation, history, and identity.
+The governing rule is:
 
-The current page establishes the visual system, navigation structure, learning pathways, and planned collection map for those future resources.
+> One course may have many learning surfaces, but it has one declared academic identity and one authoritative mastery record.
 
----
+### Campus layers
 
-## Current Features
+| Layer | Canonical surface | Purpose |
+|---|---|---|
+| Campus gateway | `index.html` | discovery, language matrix, apps, tools and campus navigation |
+| Formal Five-Language authority | `Halls/index.html` | Spanish, French, German, Mandarin Chinese and Japanese course architecture |
+| Arabic Year I | `Halls/courses/arabic-1/` | canonical 32-week Arabic I course |
+| Russian Year I | `Halls/courses/russian-1/` | canonical 32-week Russian I course |
+| Language Worlds | `apps/language-worlds/` | foundation and communication pathways |
+| Canonical translator | `apps/translator.html` | sovereign translation and language-comparison tool |
+| Archives | V3 + Original Hall | continuity and migration reference; not new-course authorities |
 
-The standalone `index.html` currently includes:
+## Current learning inventory
 
-- a multilingual welcome ribbon;
-- a responsive scholarly landing page;
-- light and dark display themes;
-- a rotating phrase compass;
-- browser-based phrase pronunciation when speech support is available;
-- nine searchable language and linguistics collections;
-- a personal **My Shelf** feature saved in the visitor's browser;
-- pathways for young learners, teens, adults, heritage learners, travelers, and academic study;
-- language skill studios for scripts, pronunciation, grammar, conversation, translation, vocabulary, reading, and writing;
-- sections for literature, living voices, etiquette, identity, and language history;
-- right-to-left text support;
-- keyboard-visible focus states;
-- reduced-motion support; and
-- clearly labeled notices for modules that are planned but not yet published.
+The campus currently exposes:
 
-Future destinations are intentionally presented as planned Academy wings instead of opening broken or unfinished links.
+- **5 formal V4 language programs**
+- **55 V4 formal course frameworks**
+- **7 principal learner-facing language routes**
+- **206 World Language Atlas dossiers**
+- **40 Language Learning Foundations modules**
+- **29 curated local application entries**
+- complete 32-week Arabic I and Russian I navigators
+- dedicated French and German learner ecosystems
+- Spanish, Mandarin and Japanese Language Worlds
+- English / ESL resources
+- a sovereign dictionary / translation stack
+- local-first evidence and portfolio tools on supported courses
 
----
+The repository deliberately distinguishes **formal course authority** from supplemental readers, games, sound labs, translators, practice tools and local formative evidence.
 
-## Language Collections
+## Principal learner routes
 
-Polyglot currently organizes future study resources into nine broad collections:
+| Language | Learner-facing entrance | Formal record authority |
+|---|---|---|
+| Spanish | `apps/language-worlds/spanish/` | Five-Language Academy V4 |
+| French | `apps/French_101_index.html` | Five-Language Academy V4 |
+| German | `apps/German_hub_index.html` | Five-Language Academy V4 |
+| Mandarin Chinese | `apps/language-worlds/mandarin/` | Five-Language Academy V4 |
+| Japanese | `apps/language-worlds/japanese/` | Five-Language Academy V4 |
+| Arabic | `Halls/courses/arabic-1/` | Arabic I |
+| Russian | `Halls/courses/russian-1/` | Russian I |
 
-1. **Global Foundations** — English, Spanish, French, Portuguese, and high-access international study.
-2. **Middle East & North Africa** — Arabic, Hebrew, Persian, Turkish, right-to-left scripts, and regional traditions.
-3. **East & Southeast Asia** — Mandarin Chinese, Japanese, Korean, Vietnamese, tonal listening, character systems, and honorifics.
-4. **South Asia** — Hindi and other modern and classical language traditions of the Indian subcontinent.
-5. **Africa & Indigenous Voices** — living languages, oral traditions, heritage reclamation, and respectful preservation.
-6. **Classical & Historical Languages** — Latin, Ancient Greek, and other historical language pathways.
-7. **Europe & the Mediterranean** — Romance, Germanic, Slavic, Hellenic, and Celtic language families.
-8. **Signed Languages** — visual grammar, fingerspelling, accessibility, signed-language diversity, and Deaf culture.
-9. **Linguistics & Language Science** — phonetics, phonology, morphology, syntax, semantics, sociolinguistics, acquisition, and language change.
+French and German retain their established browser-local learner records while a deliberate authority bridge is developed. Existing learner data must not be deleted or silently rewritten during that work.
 
-These collections are an organizational foundation, not a claim that every listed course is already complete.
+## Preserved Hall generations
 
----
+The current formal Hall is:
 
-## Learning Pathways
+`/Halls/index.html`
 
-Polyglot is structured to support multiple kinds of learners:
+Two older generations remain intentionally preserved:
 
-- **Young Learners** — stories, songs, sounds, images, and joyful first words.
-- **Teen Scholars** — coursework, projects, cultural study, literature, and future academic-credit pathways.
-- **Adult Learners** — practical pacing for work, community, travel, and lifelong learning.
-- **Heritage Language Learners** — reconnection with family language, stories, and intergenerational memory.
-- **Travelers** — useful speech, listening, etiquette, navigation, and respectful cultural preparation.
-- **Academic Learners** — grammar, translation, linguistics, literature, research, and exam preparation.
+- `/Halls/language-learning-v3_index.html` — V3 archive and migration reference
+- `/apps/Language_learning_hall_index.html` — original Hall archive
 
----
+They remain functional for continuity, notes, exports and migration evidence, but they are not coequal authorities for new formal coursework.
 
-## Design Direction
+## Translation architecture
 
-The visual language combines:
+The canonical translator is:
 
-- deep scholarly navy;
-- warm parchment;
-- antique gold;
-- restrained oxblood and teal accents;
-- atlas-inspired line work;
-- manuscript-style serif typography; and
-- script-aware international typefaces.
+`/apps/translator.html`
 
-The design avoids reducing international study to a collage of flags. Its global character comes through writing systems, language families, literature, maps, cultural context, and the shared study of human communication.
+Compatibility surfaces remain available while migration is tested:
 
-### Typography
+- `/multilingual-translator_index.html`
+- `/apps/translator-entry.html`
+- `/apps/translation_helper_index.html`
 
-The page uses the following externally hosted Google Fonts when an internet connection is available:
+The canonical translator uses the repository's sovereign dictionary, transliteration, interlingual core and review-policy resources. Optional external translation remains subject to explicit consent where implemented.
 
-- Cormorant Garamond
-- Inter
-- Noto Sans Arabic
-- Noto Sans Devanagari
-- Noto Sans Japanese
-- Noto Sans Simplified Chinese
+## Offline architecture
 
-System font fallbacks are included so that the page remains readable when those files cannot be loaded.
+Polyglot uses a service worker for a lightweight application shell and runtime caching.
 
----
+The shell now includes the topology registry and canonical course entrances. It intentionally does **not** pre-cache every lesson in the repository. Large language courses should use runtime caching now and may later receive explicit, quota-aware offline packs.
+
+## Learner records and privacy
+
+Polyglot is primarily browser-local and privacy-conscious.
+
+Current local records may include course progress, formative evidence, portfolio notes, learner labels, preferences and locally entered review notes. Individual modules explicitly distinguish unverified browser-local evidence from authenticated external credentials.
+
+Architecture changes must preserve existing storage namespaces unless a migration is separately designed, documented and regression-tested.
+
+## Assessment boundary
+
+Course numbers and internal Academy records do not automatically confer:
+
+- ACTFL or CEFR certification
+- DELF, Goethe, HSK, JLPT or other official examination credentials
+- interpreter or teacher credentials
+- transferable college credit
+- external accreditation
+
+Productive speaking/listening competence and formal summative assessment require appropriate evidence and review beyond recognition quizzes alone.
 
 ## Technology
 
-Polyglot is built as a self-contained front-end page using:
+The repository is designed around:
 
-- semantic HTML5;
-- modern CSS;
-- vanilla JavaScript;
-- `localStorage` for theme and saved-collection preferences;
-- the Web Speech API for optional phrase playback; and
-- native browser accessibility features.
+- semantic HTML
+- modern CSS
+- vanilla JavaScript
+- browser `localStorage`
+- the Web Speech API where supported
+- print / JSON evidence workflows on supported courses
+- same-origin offline caching
+- no required framework or package build for the public site
 
-No framework, package manager, database, or build process is required for the present version.
+Some optional public surfaces use external fonts, support links or explicitly consent-gated external translation. These are not required to define the core academic authority.
 
----
+## Accessibility and internationalization
 
-## Privacy
+The repository includes combinations of:
 
-The current page does not include user accounts, analytics, advertising trackers, or a remote database.
+- keyboard-visible focus
+- reduced-motion handling
+- responsive layouts
+- right-to-left Arabic support
+- multilingual interface translation
+- local speech synthesis
+- print evidence
+- learner-switching safeguards
 
-The following preferences are stored only in the visitor's browser:
+Automated source checks do not replace real-browser, screen-reader, phone/tablet, native-voice and language-specialist testing.
 
-- selected light or dark theme; and
-- saved language collections in **My Shelf**.
+## Automated quality gates
 
-Clearing browser site data removes these saved preferences. Speech playback is handled through the visitor's browser and operating-system speech capabilities; voice availability and pronunciation quality vary by device, browser, and language.
+Key checks include:
 
----
+- Linguistics structural integrity
+- topology integrity
+- multilingual source coverage
+- translator browser smoke tests
+- sovereign dictionary integrity
+- French / German browser regressions
+- Arabic / Russian learner and evidence regressions
+- Beta doorway coverage
 
-## Accessibility
+The topology workflow should fail whenever the canonical registry, homepage routes, mentor discovery, PWA shortcuts or offline entrances drift apart.
 
-The current page includes:
+## Content principles
 
-- a skip-to-content link;
-- semantic page regions and headings;
-- descriptive labels for interactive controls;
-- visible keyboard focus states;
-- responsive navigation;
-- reduced-motion behavior;
-- language and text-direction attributes for multilingual samples;
-- high-contrast light and dark palettes; and
-- status messages for saved items and planned modules.
+1. Teach languages with context.
+2. Respect dialect and regional variation.
+3. Do not equate language, ethnicity, nation, religion or writing system.
+4. Review machine-assisted translations before presenting them as authoritative instruction.
+5. Protect learner privacy and avoid unnecessary personal-data collection.
+6. Treat accessibility and offline use as educational infrastructure.
+7. Preserve historical learner records during migrations.
+8. Keep practice evidence, course mastery and external credentials conceptually separate.
 
-Accessibility should be retested whenever new lessons, media, games, dialogs, or portals are added.
+## Repository development rule
 
----
+Before adding another major course surface, determine:
 
-## Running Locally
+- its canonical learner entrance;
+- its academic authority;
+- its progress/evidence namespace;
+- whether it is formal, formative, supplemental or archival;
+- its offline policy;
+- its mentor/NAIB discovery status;
+- its relationship to existing language surfaces.
 
-No installation is necessary.
+Then update `data/course-topology.json` and the topology audit with the new route.
 
-1. Download or clone the repository.
-2. Open `index.html` in a modern web browser.
-
-For more consistent browser behavior, serve the folder through a small local web server:
-
-```bash
-python3 -m http.server 8000
-```
-
-Then visit:
-
-```text
-http://localhost:8000
-```
-
----
-
-## GitHub Pages Deployment
-
-1. Place `index.html`, `README.md`, and `LICENSE.md` in the repository root.
-2. Open the repository's **Settings**.
-3. Select **Pages**.
-4. Choose **Deploy from a branch**.
-5. Select the default branch and the root directory.
-6. Save the Pages settings.
-
-GitHub Pages will publish the static site after deployment completes.
-
----
-
-## Suggested Repository Structure
-
-```text
-Polyglot/
-├── index.html
-├── README.md
-├── LICENSE.md
-├── assets/
-│   ├── images/
-│   ├── icons/
-│   ├── audio/
-│   └── fonts/
-├── collections/
-├── courses/
-├── literature/
-├── linguistics/
-├── portals/
-└── resources/
-```
-
-Only create folders when content is ready to be published. Avoid linking visitors directly to repository browsing pages; public navigation should lead to finished Academy pages and applications.
-
----
-
-## Development Roadmap
-
-Potential future development includes:
-
-- individual language collection landing pages;
-- Student, Parent, and Educator portals;
-- structured beginner-to-advanced courses;
-- alphabet and script-tracing tools;
-- IPA and pronunciation laboratories;
-- multilingual dictionaries and personal vocabulary decks;
-- graded readers and parallel-text libraries;
-- translation and interpretation exercises;
-- signed-language learning modules;
-- heritage-language family archives;
-- teacher lesson builders and printable resources;
-- learner progress records and certificates;
-- offline-capable lessons and downloadable course packets;
-- age-appropriate assessments and portfolios; and
-- carefully reviewed links to free educational resources.
-
-Any future backend should be documented separately and should follow privacy-by-design principles, especially when serving children and families.
-
----
-
-## Content Principles
-
-Contributors should protect the purpose of the Hall by following these principles:
-
-1. **Teach languages with context.** Vocabulary and grammar should be connected to history, culture, place, and living communities.
-2. **Respect regional variation.** Dialects and varieties should not be treated as defective versions of a standard language.
-3. **Use living voices responsibly.** Obtain permission for community stories, recordings, interviews, and identifiable personal material.
-4. **Avoid cultural flattening.** A language, nation, religion, ethnicity, and writing system are related concepts, but they are not interchangeable.
-5. **Verify educational claims.** Grammar explanations, translations, pronunciation guidance, and historical statements should be reviewed before publication.
-6. **Identify machine assistance.** Machine-generated translations or examples should be checked by knowledgeable human speakers before being presented as authoritative.
-7. **Design for access.** New features should support keyboard use, readable contrast, mobile layouts, text direction, captions, transcripts, and reduced motion.
-8. **Protect learners.** Do not add behavioral advertising, hidden tracking, unsafe chat systems, or unnecessary collection of children's personal data.
-
----
-
-## Contributions
-
-Thoughtful contributions may include:
-
-- corrections to language samples;
-- accessibility improvements;
-- tested responsive-layout fixes;
-- culturally reviewed learning materials;
-- public-domain or properly licensed reading resources;
-- language-learning activities;
-- teacher and homeschool supports; and
-- documentation improvements.
-
-Before contributing third-party text, audio, illustrations, photographs, typefaces, or curriculum materials, confirm that their license permits inclusion and record the source and license in a notice file.
-
----
-
-## License
-
-This repository uses a **dual-license structure**:
-
-- original software code is available under the **MIT License**;
-- original educational text and curriculum material specifically identified as shareable are available under **Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International**;
-- the Khaemenes Academy and Polyglot names, seals, logos, visual identity, original artwork, and other reserved brand assets are **not** granted for reuse unless written permission is provided; and
-- third-party materials remain governed by their respective licenses.
-
-See [`LICENSE.md`](LICENSE.md) for the complete notice and scope.
-
----
-
-## Credits
-
-**Concept, creative direction, and Academy stewardship**  
-Jennifer Kay Pearl
-
-**Khaemenes Academy**  
-A Verve N Veda educational initiative
-
-Polyglot is created in support of free, creative, internationally minded learning and the belief that language study can deepen knowledge, dignity, memory, and human connection.
-
----
-
-## Academy Links
+## Academy links
 
 - Khaemenes Academy: https://vervenveda.com/Khaemenes_Academy.github.io/
 - Verve N Veda: https://vervenveda.com/
 
-For licensing, collaboration, or educational inquiries:
+**Concept, creative direction and Academy stewardship:** Jennifer Kay Pearl
 
-**KhaemenesAcademy@protonmail.com**
-
----
-
-© 2026 Jennifer Kay Pearl. Rights are granted only as described in `LICENSE.md`.
+© 2026 Jennifer Kay Pearl. See `LICENSE.md` for licensing scope.
