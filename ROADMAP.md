@@ -1,129 +1,129 @@
 # Polyglot Roadmap
+## Khaemenes Academy · Linguistics & World Language Campus
 
-This roadmap describes the intended growth of **Polyglot — Khaemenes Academy Linguistics Hall**. It is a planning document, not a promise of release dates. Priorities may change after educational, accessibility, cultural, legal, or technical review.
+This roadmap reflects the **current repository**, not the original August 2026 prototype plan. It preserves existing courses and learner records while moving the campus toward one coherent academic architecture.
 
-## Guiding principles
+## Permanent principles
 
-Every phase should preserve:
+Every phase must preserve:
 
-- free and dignified access;
-- cultural respect and source transparency;
+- free access;
 - learner privacy;
-- accessibility across devices and abilities;
-- clear separation between active and planned modules;
-- human review of language instruction;
+- accessibility;
+- cultural and dialect respect;
+- explicit academic authority;
+- browser-local continuity;
+- no silent deletion or rewriting of learner records;
+- clear separation between practice evidence, mastery and external credentials;
 - useful offline behavior; and
-- internal navigation through the Verve N Veda and Khaemenes Academy ecosystem.
+- source / reviewer transparency.
 
-## Phase 1 — Scholarly gateway
+## Phase A — Canonical topology
+**Status: COMPLETE · 2026-10-29**
 
-**Status: foundation complete**
+- [x] Create `data/course-topology.json`.
+- [x] Declare campus gateway, formal authorities, learner experiences, supplements and archives separately.
+- [x] Declare one canonical translator.
+- [x] Preserve V3 and Original Hall generations as archives rather than new-course authorities.
+- [x] Reconcile public app count to the live 29-entry registry.
+- [x] Repair PWA shortcuts to current homepage anchors.
+- [x] Expand mentor discovery to the principal course topology.
+- [x] Cache the canonical topology registry and principal entrances.
+- [x] Add `scripts/audit-topology.mjs`.
+- [x] Add a GitHub Actions topology regression gate.
 
-- [x] Create the Polyglot visual identity.
-- [x] Build responsive navigation and a multilingual welcome ribbon.
-- [x] Organize language collections, pathways, studios, and culture studies.
-- [x] Add language-card search.
-- [x] Add a locally saved **My Shelf**.
-- [x] Add rotating phrases with optional browser speech.
-- [x] Mark unfinished destinations as planned rather than broken links.
-- [x] Add light, dark, keyboard, and reduced-motion support.
+## Phase B — Single-authority evidence bridges
+**Status: NEXT**
 
-## Phase 2 — Repository foundation and offline shell
+French and German have rich learner experiences plus independent browser-local records. They must not be flattened or replaced.
 
-**Status: prepared for integration**
+- [ ] Specify a versioned evidence bridge contract.
+- [ ] Map French 101 qualifying evidence to the V4 French authority without deleting French storage.
+- [ ] Map German qualifying evidence to the V4 German authority without deleting German storage.
+- [ ] Keep practice evidence distinct from formal mastery.
+- [ ] Add two-learner regression tests.
+- [ ] Add export-before-migration protection.
+- [ ] Prove that a bridge cannot downgrade an existing completion record.
 
-- [x] Add repository governance documents.
-- [x] Add a custom `404.html`.
-- [x] Add `offline.html`.
-- [x] Add a web-app manifest.
-- [x] Add same-origin service-worker caching.
-- [ ] Link the manifest from `index.html`.
-- [ ] Link `register-service-worker.js` from `index.html`.
-- [ ] Create approved 192px, 512px, and maskable application icons.
-- [ ] Test installation and offline fallback on desktop and mobile.
-- [ ] Decide whether to self-host multilingual font files.
+## Phase C — Spanish / Mandarin / Japanese parity
 
-## Phase 3 — Structured language data
+- [ ] Define the formal relationship between each Language World and its V4 course ladder.
+- [ ] Add learner-scoped evidence/portfolio support where appropriate.
+- [ ] Confirm 80% gates where a gate is academically intended.
+- [ ] Add printable evidence and recovery.
+- [ ] Verify foundation checkpoints in a real browser.
+- [ ] Avoid making foundation practice a second formal transcript.
 
-**Status: planned**
+## Phase D — Arabic I / Russian I academic release hardening
 
-- [ ] Create `data/languages.json`.
-- [ ] Create `data/phrases.json`.
-- [ ] Create `data/language-families.json`.
-- [ ] Create `data/resources.json`.
-- [ ] Add validation for language tags, text direction, and required fields.
-- [ ] Separate verified course content from interface copy.
-- [ ] Record sources and reviewer status for every instructional entry.
+- [ ] Complete full 64-week-page route and browser regression.
+- [ ] Improve variable-depth weeks to integrated four-skill instruction.
+- [ ] Add reviewed listening models or instructor-delivered source procedures.
+- [ ] Keep productive speaking/writing assessment separate from recognition quizzes.
+- [ ] Maintain secure unseen summative prompts outside the public repository.
+- [ ] Obtain language-specialist review for Arabic register/inflection and Russian stress/case/idiomaticity.
+- [ ] Confirm mobile, RTL, print and two-learner behavior.
 
-## Phase 4 — Foundation learning wings
+## Phase E — Translator consolidation
 
-**Status: planned**
+- [x] Declare `apps/translator.html` canonical.
+- [ ] Inventory feature differences in all compatibility translators.
+- [ ] Move unique safe features into the canonical translator where needed.
+- [ ] Convert compatibility pages to clearly labeled legacy/entry roles.
+- [ ] Test saved-data and deep-link compatibility before any redirect behavior.
+- [ ] Keep consent-gated external translation boundaries explicit.
 
-Develop initial pathways only after content and review standards are approved.
+## Phase F — Offline course packs
 
-Candidate starting wings:
+- [x] Cache campus shell and canonical entrances.
+- [ ] Define per-course offline manifests.
+- [ ] Add explicit learner-controlled download/remove controls.
+- [ ] Estimate storage before download.
+- [ ] Handle quota failure and storage eviction.
+- [ ] Verify cold-start offline behavior separately from previously visited runtime cache.
 
-- Spanish Foundations;
-- English for multilingual learners;
-- French Foundations;
-- Arabic Script and Greetings;
-- Mandarin Sound and Character Foundations;
-- American Sign Language awareness and verified learning resources;
-- Latin and Ancient Greek language roots; and
-- Heritage Language Studio.
+The default service worker should not pre-cache hundreds of large lessons.
 
-Each course should include learning objectives, visible vocabulary, listening alternatives, practice, review, assessment guidance, sources, accessibility checks, and dialect or regional labels.
+## Phase G — Mentor / NAIB course awareness
 
-## Phase 5 — Skill studios
+- [x] Expose principal current routes in `mentor-manifest.json`.
+- [ ] Teach NAIB the difference between formal authority and supplemental practice.
+- [ ] Add course-code and authority metadata to mentor resources.
+- [ ] Map portfolio/evidence destinations by course.
+- [ ] Prevent a supplemental game or reader from being treated as course completion.
+- [ ] Integrate Academy-wide Readiness / Refresh / Retention / Course Mastery records only through an explicit versioned contract.
 
-**Status: planned**
+## Phase H — Repository normalization
 
-- [ ] Alphabet and Writing Studio.
-- [ ] Pronunciation and Listening Studio.
-- [ ] Conversation Studio.
-- [ ] Vocabulary and Memory Studio.
-- [ ] Grammar Workshop.
-- [ ] Translation Laboratory.
-- [ ] World Literature Reading Hall.
-- [ ] Linguistics and Language-Family Atlas.
+Do **not** rename old public paths merely for neatness.
 
-## Phase 6 — Learner pathways and records
+- [ ] Add aliases/canonical metadata before any path normalization.
+- [ ] Inventory `*_index.html` legacy paths.
+- [ ] Normalize new files to predictable lower-case directory `index.html` patterns.
+- [ ] Keep old URLs alive while external links and saved learner paths may depend on them.
+- [ ] Generate manifests instead of manually maintaining counts.
 
-**Status: planned; privacy review required**
+## Phase I — Documentation and release evidence
 
-- [ ] Student portal.
-- [ ] Parent and guardian portal.
-- [ ] Educator commons.
-- [ ] Local-first progress records.
-- [ ] Exportable learner portfolio.
-- [ ] Course pacing and independent-study guidance.
-- [ ] Clearly qualified certificates of completion.
-- [ ] Data-retention and account-deletion rules before any hosted accounts.
+- [x] Replace the original prototype README with current architecture documentation.
+- [x] Replace the prototype roadmap with this live roadmap.
+- [ ] Generate a current Hall package manifest rather than treating the August snapshot as current.
+- [ ] Add deployed-browser screenshots / visual checks to release evidence.
+- [ ] Record accessibility, language review and offline verification separately from source syntax checks.
 
-No student-data system should launch until privacy, security, guardian access, accessibility, and records policies are complete.
+## Quality gate for every new public course surface
 
-## Phase 7 — Community and preservation
+Before a new course or app is promoted, verify:
 
-**Status: future study**
-
-- [ ] Community-reviewed oral histories.
-- [ ] Endangered-language awareness resources.
-- [ ] Ethical partnerships with language communities.
-- [ ] Regional speaker and educator review circles.
-- [ ] Translation contribution workflow.
-- [ ] Preservation standards for recordings and transcripts.
-
-Community-held, sacred, ceremonial, or restricted material must not be published merely because it can be found online.
-
-## Quality gates for every public release
-
-A feature should not be marked complete until it has passed:
-
-- content and source review;
-- language or subject-matter review;
-- cultural-respect review;
-- keyboard and responsive testing;
-- privacy and security review;
-- link validation;
-- offline-impact review when relevant; and
-- changelog documentation.
+1. canonical route;
+2. authority classification;
+3. storage/evidence namespace;
+4. navigation in and out;
+5. 80% mastery semantics if applicable;
+6. retry/correction behavior if applicable;
+7. privacy and shared-device behavior;
+8. accessibility;
+9. offline impact;
+10. mentor/NAIB discoverability;
+11. print/export/recovery where academic evidence is collected;
+12. topology audit remains green.
