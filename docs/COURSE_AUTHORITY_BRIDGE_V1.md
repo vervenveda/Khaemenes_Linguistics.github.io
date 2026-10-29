@@ -118,10 +118,18 @@ A future bridge may support teacher-reviewed acceptance into specific V4 evidenc
 
 1. V4 has a safe learner-scoped record model;
 2. evidence-to-competency mappings are explicit;
-3. teacher/reviewer actions are distinguished from learner self-entry;
+3. review actions are explicitly attributed by reviewer role, while allowing Parent and Teacher to be the same person and allowing self-review for self-directed adults where independent attestation is not explicitly required;
 4. existing V4 completion can never be downgraded;
 5. export/recovery exists before migration;
 6. two-learner shared-device regression passes;
 7. every accepted mapping has an audit trail.
+
+### Reviewer-role principle
+
+Khaemenes is a free online educational platform and does not treat review as a privileged-account function.
+
+A reviewer may be a Parent, Teacher, Homeschool Parent/Teacher, Mentor, Self-Directed Adult, or another local reviewer. One person may hold more than one of those roles. The purpose of reviewer metadata is to make the evidence trail clear, not to create an institutional gate.
+
+Independent third-party review should be required only when a specific assessment explicitly says it needs independent attestation.
 
 Until those gates are satisfied, bridge evidence remains review-only.
