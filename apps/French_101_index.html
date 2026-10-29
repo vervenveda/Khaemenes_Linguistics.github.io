@@ -1068,6 +1068,7 @@ function printUnit01Day(day,educator=false){
  if(day===12){printFrenchLesson12(false);return}
  if(day===13){printFrenchLesson13(false);return}
  if(day===14){printFrenchLesson14(false);return}
+ if(day===15){printFrenchLesson15(false);return}
  const source=day===1?document.getElementById("french101-unit01-day01"):document.querySelector("#unit01-daily-lessons .unit01-active-day");
  if(!source)return;
  const previous=document.getElementById("unit01-print-copy");if(previous)previous.remove();
@@ -2613,23 +2614,137 @@ function addFrenchLesson14ReadingArchive(panel){
  const transfer=element("textarea");transfer.rows=4;transfer.setAttribute("aria-label","Earlier Lesson 14 transfer");transfer.value=safeGet(learnerKey+"_u01_day14_transfer_v1")||"";transfer.addEventListener("input",()=>safeSet(learnerKey+"_u01_day14_transfer_v1",transfer.value));archive.append(transfer);
  const notes=element("textarea");notes.rows=3;notes.setAttribute("aria-label","Earlier Lesson 14 review notes");notes.value=safeGet(learnerKey+"_u01_d14_review_notes")||"";notes.addEventListener("input",()=>safeSet(learnerKey+"_u01_d14_review_notes",notes.value));archive.append(notes);panel.append(archive);
 }
+/* French 101 · Canonical Lesson 15 · Places, Directions & Transportation.
+   Historical Day 15 Unit 01 review remains archival enrichment. */
+const FRENCH_U01_L15_DIRECTIONS_BANK=[
+{"skill":"places","prompt":"Which phrase means the train station?","choices":["la gare","la rue","la mairie"],"answer":0,"explain":"La gare is the train station."},
+{"skill":"places","prompt":"Which phrase means the museum?","choices":["le musée","le marché","le parc"],"answer":0,"explain":"Le musée is the museum."},
+{"skill":"places","prompt":"Which phrase means the pharmacy?","choices":["la pharmacie","la bibliothèque","la boulangerie"],"answer":0,"explain":"La pharmacie is the pharmacy."},
+{"skill":"places","prompt":"Which phrase means the bakery?","choices":["la boulangerie","la gare","la classe"],"answer":0,"explain":"La boulangerie is the bakery."},
+{"skill":"places","prompt":"Which phrase means the town/city hall?","choices":["la mairie","le musée","la station"],"answer":0,"explain":"La mairie is the town/city hall."},
+{"skill":"places","prompt":"Which question asks where the library is?","choices":["Où est la bibliothèque ?","Quand est la bibliothèque ?","Combien bibliothèque ?"],"answer":0,"explain":"Où asks location."},
+{"skill":"directions","prompt":"Which phrase means turn left?","choices":["Tournez à gauche.","Tournez à droite.","Allez tout droit."],"answer":0,"explain":"Tournez à gauche means turn left."},
+{"skill":"directions","prompt":"Which phrase means go straight ahead?","choices":["Allez tout droit.","Tournez à gauche.","Revenez hier."],"answer":0,"explain":"Allez tout droit means go straight ahead."},
+{"skill":"directions","prompt":"Which phrase means across from the museum?","choices":["en face du musée","derrière le musée","dans le musée"],"answer":0,"explain":"En face de means across from/opposite; de + le becomes du."},
+{"skill":"directions","prompt":"Which phrase means next to the park?","choices":["à côté du parc","sous le parc","dans le parc"],"answer":0,"explain":"À côté de means next to; de + le becomes du."},
+{"skill":"directions","prompt":"Which phrase means near here?","choices":["près d'ici","loin d'ici","à droite"],"answer":0,"explain":"Près d'ici means near here."},
+{"skill":"directions","prompt":"Which phrase means far from here?","choices":["loin d'ici","près d'ici","tout droit"],"answer":0,"explain":"Loin d'ici means far from here."},
+{"skill":"transport","prompt":"Which phrase means on foot?","choices":["à pied","en train","en bus"],"answer":0,"explain":"À pied means on foot."},
+{"skill":"transport","prompt":"Which phrase means by train?","choices":["en train","à train","au train"],"answer":0,"explain":"The taught transport phrase is en train."},
+{"skill":"transport","prompt":"Which phrase means by bus?","choices":["en bus","à bus","dans bus"],"answer":0,"explain":"The taught transport phrase is en bus."},
+{"skill":"transport","prompt":"Which phrase means by bicycle?","choices":["à vélo","en pied","au vélo"],"answer":0,"explain":"The taught transport phrase is à vélo."},
+{"skill":"transport","prompt":"Which question asks how to get to the station?","choices":["Comment aller à la gare ?","Pourquoi est la gare ?","Quelle heure la gare ?"],"answer":0,"explain":"Comment aller à la gare ? is a useful route question."},
+{"skill":"transport","prompt":"Which sentence means I go to the museum by bus?","choices":["Je vais au musée en bus.","Je suis le musée à bus.","Je prends musée en pied."],"answer":0,"explain":"Je vais au musée en bus is a clear taught pattern."},
+{"skill":"reading","prompt":"Read: « Allez tout droit, puis tournez à droite. » What happens after going straight?","choices":["turn right","turn left","stop at noon"],"answer":0,"explain":"Puis introduces the right turn."},
+{"skill":"reading","prompt":"Read: « La pharmacie est à côté de la boulangerie. » What is beside the bakery?","choices":["the pharmacy","the station","the museum"],"answer":0,"explain":"La pharmacie is next to the bakery."},
+{"skill":"reading","prompt":"Read: « Le musée est en face du parc. » Where is the museum?","choices":["across from the park","inside the park","behind the station"],"answer":0,"explain":"En face du parc means across from the park."},
+{"skill":"reading","prompt":"Read: « La gare est loin d'ici. Prenez le bus. » Why is the bus suggested?","choices":["The station is far from here.","The station is closed.","The bus is a museum."],"answer":0,"explain":"The text explicitly says the station is far."},
+{"skill":"reading","prompt":"Read: « Le café est près d'ici, à gauche après la pharmacie. » Which landmark comes before the café?","choices":["the pharmacy","the station","the school"],"answer":0,"explain":"The café is left after the pharmacy."},
+{"skill":"reading","prompt":"A route says turn left but does not state the street name. What should you do?","choices":["Keep the street name unknown.","Invent a street name.","Assume it is Rue de Paris."],"answer":0,"explain":"Do not invent route details not supplied."},
+{"skill":"transfer","prompt":"A learner writes « Tournez à droit ». What is the correction?","choices":["Tournez à droite.","Tournez au droite.","Tournez droite à."],"answer":0,"explain":"The direction phrase is à droite."},
+{"skill":"transfer","prompt":"You need to describe a location opposite the library. Which phrase fits?","choices":["en face de la bibliothèque","dans la bibliothèque","sous la bibliothèque"],"answer":0,"explain":"En face de gives opposite/across-from location."},
+{"skill":"transfer","prompt":"Which task best demonstrates route-language transfer?","choices":["Follow a new fictional route and then give a different route using landmarks and turns.","Copy « à gauche » ten times.","Memorize five place nouns without using them."],"answer":0,"explain":"A new route requires interpretation and production."},
+{"skill":"transfer","prompt":"A learner needs a transport phrase not taught in the lesson. What is the best strategy?","choices":["Consult an accurate reference or supplied model rather than guessing the preposition.","Use en before every transport word.","Translate English word for word."],"answer":0,"explain":"Transport prepositions are lexical patterns and should be verified."},
+{"skill":"transfer","prompt":"A map task gives two possible routes. What can a strong beginner response do?","choices":["Choose one route, state the landmarks/turns clearly and acknowledge another route may also work.","Claim only one route can exist.","Ignore the destination."],"answer":0,"explain":"Communication can allow multiple valid routes if the instructions reach the destination."},
+{"skill":"transfer","prompt":"For reviewed route-speaking evidence, what should be recorded?","choices":["The map/starting point, destination, learner directions, support used, corrections and reviewer role.","Only that the learner pressed Play Audio.","The learner's real home address."],"answer":0,"explain":"Use fictional maps and transparent evidence without unnecessary personal data."}
+];
+
+function printFrenchLesson15(answers){
+ const source=document.getElementById("french-u01-lesson15-directions");if(!source)return;document.getElementById("unit01-print-copy")?.remove();const copy=element("article");copy.id="unit01-print-copy";
+ copy.append(element("h2",answers?"French 101 · Lesson 15 · Reviewer guidance":"French 101 · Lesson 15 · Learner worksheet and evidence"));
+ for(const id of answers?["french-l15-answer-guide","french-l15-review-key"]:["french-l15-worksheet"]){const n=document.getElementById(id)?.cloneNode(true);if(n){n.removeAttribute("id");if(n.tagName==="DETAILS")n.open=true;copy.append(n)}}
+ if(!answers){source.querySelectorAll("textarea").forEach(t=>{copy.append(element("h4",t.getAttribute("aria-label")||"Saved response"));const p=element("p",t.value||"(No response entered)");p.className="french-print-response";copy.append(p)});source.querySelectorAll("select[id^='french-l15-rating']").forEach(s=>copy.append(element("p",s.getAttribute("aria-label")+": "+s.value)))}
+ copy.append(element("p","Formative evidence only. Fictional maps and routes are preferred; no real home address or travel location is required. Reviewer roles remain local and flexible."));
+ document.body.append(copy);document.body.classList.add("printing-unit01");const clean=()=>{document.body.classList.remove("printing-unit01");copy.remove();window.removeEventListener("afterprint",clean)};window.addEventListener("afterprint",clean);window.print();
+}
+
+function addFrenchLesson15DirectionsDepth(panel){
+ const sec=element("section");sec.id="french-u01-lesson15-directions";sec.className="french-day02-depth";const prefix=learnerKey+"_beginner2026_lesson15_directions_";
+ const saveStatus=element("p","Lesson 15 work saves locally for the selected learner.");saveStatus.setAttribute("role","status");
+ function save(suffix,value){const ok=safeSet(prefix+suffix,value);saveStatus.textContent=ok?"Lesson 15 evidence saved on this device.":"Saving failed. Copy or print your work before leaving.";return ok}
+ function field(label,suffix,rows=5){const wrap=element("label");wrap.append(element("span",label));const t=element("textarea");t.rows=rows;t.setAttribute("aria-label",label);t.value=safeGet(prefix+suffix)||"";t.addEventListener("input",()=>save(suffix,t.value));wrap.append(t);return wrap}
+ function h(text,id){const n=element("h4",text);if(id)n.id=id;sec.append(n)}function p(text){sec.append(element("p",text))}
+ h("Lesson 15 · Places, Directions & Transportation · Full learning studio");
+ p("Learning targets: identify common public places; ask where a place is and how to get there; interpret and give short route instructions; use landmark relationships; choose several high-frequency transport phrases; read a new fictional route; and create original directions with corrections. All maps/routes may be fictional—real home or travel locations are never required.");
+ const nav=element("nav");nav.setAttribute("aria-label","Lesson 15 studio sections");[["Places","french-l15-places"],["Directions","french-l15-directions"],["Transport","french-l15-transport"],["Read route","french-l15-read"],["Route lab","french-l15-lab"],["Independent work","french-l15-writing"],["Review","french-l15-review"],["Evidence","french-l15-evidence"]].forEach(([label,id])=>{const a=element("a",label);a.href="#"+id;nav.append(a)});sec.append(nav,saveStatus);
+ h("Your route · place → landmark → movement");
+ p("Retrieve first: où/comment questions from Lesson 13, location phrases from Lesson 12 and sequence words from Lesson 14. Stage A: identify destinations. Stage B: place them relative to landmarks. Stage C: follow and give a short route. Stage D: choose a transport phrase when distance/context requires it.");
+ h("1 · Common places","french-l15-places");
+ const places=[["la gare","train station"],["le musée","museum"],["le parc","park"],["la bibliothèque","library"],["la pharmacie","pharmacy"],["la boulangerie","bakery"],["la mairie","town/city hall"],["le café","café"],["l'école","school"],["le marché","market"]];
+ const pg=element("div");pg.className="french-l15-reference";places.forEach(([fr,en])=>{const card=element("article");card.append(element("h4",fr),element("p",en));addButton(card,"Listen · "+fr,()=>speakFR(fr));pg.append(card)});sec.append(pg);
+ p("Place vocabulary varies with local institutions and regions. The course uses broadly useful beginner terms and accepts accurate alternatives with context. Do not assume every community has identical transit, municipal or school systems.");
+ h("2 · Ask and understand location","french-l15-directions");
+ p("Ask « Où est la gare ? » or « Comment aller à la gare ? » Useful answers: « C'est près d'ici. » « C'est loin d'ici. » « La pharmacie est à côté de la boulangerie. » « Le musée est en face du parc. » Reuse devant/derrière/à côté de from Lesson 12.");
+ p("De combines with articles in common location phrases: à côté du parc, en face du musée, près de la gare, près de l'école, à côté des cafés. Use supplied models and notice the contraction rather than applying one unverified formula everywhere.");
+ h("3 · Give a short route");
+ const dirs=[["Allez tout droit.","Go straight ahead."],["Tournez à gauche.","Turn left."],["Tournez à droite.","Turn right."],["Continuez tout droit.","Continue straight."],["Prenez la première rue à gauche.","Take the first street on the left."],["C'est à côté du parc.","It's next to the park."],["C'est en face du musée.","It's across from the museum."]];
+ const dg=element("div");dg.className="french-l15-reference";dirs.forEach(([fr,en])=>{const card=element("article");card.append(element("h4",fr),element("p",en));addButton(card,"Listen",()=>speakFR(fr));dg.append(card)});sec.append(dg);
+ p("Allez, tournez, continuez and prenez are presented as useful direction chunks in the polite/plural vous form. This lesson does not require learners to derive the complete imperative system. The communication target is a route that another person can follow.");
+ p("Sequence a route with puis, ensuite and après: « Allez tout droit. Puis tournez à gauche. Après la pharmacie, tournez à droite. La gare est en face du parc. » If several routes could work, more than one answer may be valid as long as the route reaches the stated destination and the language is clear.");
+ h("4 · Transportation phrases","french-l15-transport");
+ const transport=[["à pied","on foot"],["à vélo","by bicycle"],["en bus","by bus"],["en train","by train"],["en métro","by metro"],["en voiture","by car"]];
+ const tg=element("div");tg.className="french-l15-reference";transport.forEach(([fr,en])=>{const card=element("article");card.append(element("h4",fr),element("p",en));addButton(card,"Listen · "+fr,()=>speakFR(fr));tg.append(card)});sec.append(tg);
+ p("These are lexical transport patterns: à pied, à vélo, but en bus/train/métro/voiture. Do not guess the preposition for an unfamiliar transport mode; consult a reliable model. A simple sentence is « Je vais au musée en bus. »");
+ h("5 · Fictional route reading · De l'école à la gare","french-l15-read");
+ const reading="Vous êtes devant l'école. Pour aller à la gare, allez tout droit jusqu'à la pharmacie. Tournez à gauche après la pharmacie. Continuez tout droit. Le parc est à droite. La gare est en face du parc, à côté d'un café.";
+ p("« "+reading+" »");sec.lastElementChild.lang="fr";addButton(sec,"Listen · route",()=>speakFR(reading));
+ p("Support: jusqu'à = until/as far as. The route supplies a starting point, landmark, two movement instructions and destination relationship. It does not provide a street name, distance in meters or transport time.");
+ ["List the route steps in order from school to station.","Which landmarks help confirm the route? Where is the station relative to the park and café?","Name three details not stated. Explain why an alternative valid route could still be acceptable if a different map supplied it."].forEach((q,i)=>{p((i+1)+". "+q);sec.append(field("Lesson 15 route-reading evidence "+(i+1),"reading_"+i+"_v1",4))});
+ h("6 · Route laboratory","french-l15-lab");
+ const tasks=[["go straight","Allez tout droit."],["turn left","Tournez à gauche."],["turn right","Tournez à droite."],["next to the park","à côté du parc"],["across from the museum","en face du musée"],["near here","près d'ici"],["by bus","en bus"],["on foot","à pied"]];
+ const lab=element("section"),prompt=element("p"),input=element("input"),feedback=element("p");input.type="text";input.autocomplete="off";input.setAttribute("aria-label","Type the French route phrase");let at=0;function show(){prompt.textContent=(at+1)+"/8 · Express: "+tasks[at][0];input.value="";feedback.textContent="Use the supplied route/transport pattern."}show();lab.append(prompt,input);addButton(lab,"Check",()=>{const expected=tasks[at][1];feedback.textContent=normalize(input.value)===normalize(expected)?"Accurate: "+expected:"Review one model: "+expected});addButton(lab,"Next",()=>{at=(at+1)%tasks.length;show()});lab.append(feedback);sec.append(lab);
+ h("7 · Independent map mission","french-l15-writing");
+ p("Create a fictional mini-map with at least six places. Choose a start and destination. Write 8–10 route instructions using at least four movement/landmark phrases, three sequence words and one transport choice. Then write a second shorter route to a different destination. A sketch is optional; the French directions are the evidence.");
+ sec.append(field("Lesson 15 original route directions","composition_v1",12));
+ p("Explain four choices: one contraction such as du/des, one sequence word, one transport preposition and one landmark relation. Then respond to two unfamiliar reviewer-supplied routes or map questions.");
+ sec.append(field("Lesson 15 route reasoning and unfamiliar transfer","transfer_v1",8));
+ h("8 · Listening and speaking evidence");
+ p("Independent listening: follow a new short spoken route on a fictional map without seeing the transcript. Independent speaking: give a different route from a new start to destination without reading a prepared script. Record support used and any repair question. Synthetic speech is rehearsal only.");
+ sec.append(field("Lesson 15 oral evidence · route, response, support and corrections","oral_v1",7));
+ h("9 · Balanced formative review · 30 authored questions","french-l15-review");
+ p("Each ten-question round draws two items from places, directions, transport, reading and transfer. Formative rounds never change official legacy mastery.");
+ addFrenchCohesiveReview(sec,15,FRENCH_U01_L15_DIRECTIONS_BANK,["places","directions","transport","reading","transfer"]);
+ h("10 · Correction journal");
+ p("Repair and explain: « à droit »; « en pied »; an incorrect contraction in « à côté de le parc »; a route that never reaches the destination; and a made-up street name not present on the map. Add two corrections from your own directions.");
+ sec.append(field("Lesson 15 corrections and next goal","corrections_v1",8));
+ h("11 · Reviewer rubric","french-l15-evidence");
+ const roles=element("select");roles.setAttribute("aria-label","Lesson 15 reviewer role");["Not reviewed","Parent","Teacher","Homeschool Parent/Teacher","Mentor","Self-Directed Adult","Other Local Reviewer"].forEach(v=>{const o=element("option",v);o.value=v;roles.append(o)});roles.value=safeGet(prefix+"reviewer_role_v1")||"Not reviewed";roles.addEventListener("change",()=>save("reviewer_role_v1",roles.value));sec.append(roles);
+ const criteria=[["Place/landmark meaning","Identifies destinations and spatial relationships accurately."],["Route/transport control","Uses taught movement and transport phrases to preserve intended meaning."],["Reading/writing transfer","Follows a new route and creates clear original directions."],["Independent oral evidence","Follows and/or gives an unfamiliar spoken route; mark Not assessed if unobserved."]];
+ criteria.forEach(([name,desc],i)=>{const row=element("div");row.className="french-day02-rubric-row";const label=element("label",name),select=element("select");select.id="french-l15-rating-"+i;label.htmlFor=select.id;select.setAttribute("aria-label","Lesson 15 rubric · "+name);["Not assessed","0","1","2","3"].forEach(v=>{const o=element("option",v);o.value=v;select.append(o)});select.value=safeGet(prefix+"rubric_"+i+"_v1")||"Not assessed";select.addEventListener("change",()=>save("rubric_"+i+"_v1",select.value));row.append(label,select);sec.append(row,element("p",desc))});sec.append(field("Reviewer context, evidence observed, support and next goal","review_notes_v1",6));
+ const worksheet=element("section");worksheet.id="french-l15-worksheet";worksheet.className="unit01-worksheet";worksheet.append(element("h4","French 101 · Lesson 15 · Places, Directions & Transportation"),element("p","Learner: __________________ Date: ______________"));
+ ["Write ten place nouns with articles and six landmark/location phrases.","Write six route instruction chunks and six transport phrases.","Follow the school-to-station route and list each step/landmark.","Create a fictional six-place map and two original routes.","Explain four route/transport language choices and correct five errors.","Record unfamiliar spoken-route evidence separately or mark it Not assessed."].forEach(t=>worksheet.append(element("p",t),element("p","________________________________________________________________________")));sec.append(worksheet);
+ const guide=element("details");guide.id="french-l15-answer-guide";guide.append(element("summary","Lesson 15 reviewer guidance · open after independent work"),element("p","Core places: gare, musée, parc, bibliothèque, pharmacie, boulangerie, mairie, café, école, marché. Accurate regional alternatives may be accepted with context."),element("p","Route chunks: allez/continuez tout droit; tournez à gauche/droite; prenez la première rue; près/loin d'ici; à côté de; en face de. Transport: à pied/à vélo, en bus/train/métro/voiture."),element("p","Reading route: start school; straight to pharmacy; left after pharmacy; straight; park right; station across from park and next to café. Street name, exact distance/time are unstated."),element("p","Accept more than one route when the supplied fictional map permits it and directions are coherent."));sec.append(guide);
+ const key=element("details");key.id="french-l15-review-key";key.append(element("summary","Thirty-question formative key · reviewer reference"));FRENCH_U01_L15_DIRECTIONS_BANK.forEach((q,i)=>key.append(element("p",(i+1)+". "+q.prompt+" · Answer: "+q.choices[q.answer]+". "+q.explain)));sec.append(key);
+ const actions=element("div");addButton(actions,"Print learner evidence",()=>printFrenchLesson15(false));addButton(actions,"Print reviewer guidance",()=>printFrenchLesson15(true));sec.append(actions);panel.append(sec);
+}
+
+function addFrenchLesson15ReviewArchive(panel){
+ const d=FRENCH_101_UNIT01_DAYS.find(x=>x.day===15);if(!d)return;const archive=element("details");archive.className="french-legacy-extra";archive.append(element("summary","Optional archival enrichment · earlier Lesson 15 Unit 01 review"),element("p","This earlier alphabet/spelling review remains available for continuity. It is not reclassified as Places, Directions & Transportation mastery and does not replace the separate compatibility checkpoint."),element("h4",d.title),element("p",d.lecture),element("p","Examples: "+d.models),element("p","Guided: "+d.guided),element("p","Earlier assignment: "+d.assignment));
+ const old=element("textarea");old.rows=5;old.setAttribute("aria-label","Earlier Lesson 15 Unit 01 review writing");old.value=safeGet(learnerKey+"_u01_day15_writing")||"";old.addEventListener("input",()=>safeSet(learnerKey+"_u01_day15_writing",old.value));archive.append(old);
+ const transfer=element("textarea");transfer.rows=4;transfer.setAttribute("aria-label","Earlier Lesson 15 transfer");transfer.value=safeGet(learnerKey+"_u01_day15_transfer_v1")||"";transfer.addEventListener("input",()=>safeSet(learnerKey+"_u01_day15_transfer_v1",transfer.value));archive.append(transfer);
+ const notes=element("textarea");notes.rows=3;notes.setAttribute("aria-label","Earlier Lesson 15 review notes");notes.value=safeGet(learnerKey+"_u01_d15_review_notes")||"";notes.addEventListener("input",()=>safeSet(learnerKey+"_u01_d15_review_notes",notes.value));archive.append(notes);panel.append(archive);
+}
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
- wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–14 are developed in the current curriculum. The earlier daily topic that occupied Lesson 15 remains available as archival enrichment until its canonical replacement is developed. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
+ wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–15 are developed in the current curriculum. Lessons 16–18 are the remaining integrated-skill sequence and are developed separately from the preserved 12-level mastery path. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
  const picker=element("select");picker.setAttribute("aria-label","Choose Unit 01 lesson");picker.style.cssText="width:100%;padding:10px;margin:8px 0";
  const lessonSelectionKey=()=>learnerKey+"_u01_selected_lesson_v1";
  const savedSelection=safeGet(lessonSelectionKey());
 
- FRENCH_101_UNIT01_DAYS.forEach(d=>{const current=d.day===14?"Present-Tense Verbs & Daily Routines":d.day===13?"Questions, Negation & Conversation":d.day===12?"Home, School & Everyday Objects":d.day===11?"Food & Café":d.day===10?"Dates & Time":d.day===9?"Colors, Shapes & Descriptions":d.day===8?"Family and Relationships":d.day===7?"Être and Avoir":d.day===6?"Nouns, Articles and Gender":d.day===2?"Numbers · 0–100":d.title;const label=d.day>=15?"Archive · Earlier "+String(d.day).padStart(2,"0")+" — "+d.title:"Lesson "+String(d.day).padStart(2,"0")+" — "+current;const o=element("option",label);o.value=d.day;picker.append(o)});
+ FRENCH_101_UNIT01_DAYS.forEach(d=>{const current=d.day===15?"Places, Directions & Transportation":d.day===14?"Present-Tense Verbs & Daily Routines":d.day===13?"Questions, Negation & Conversation":d.day===12?"Home, School & Everyday Objects":d.day===11?"Food & Café":d.day===10?"Dates & Time":d.day===9?"Colors, Shapes & Descriptions":d.day===8?"Family and Relationships":d.day===7?"Être and Avoir":d.day===6?"Nouns, Articles and Gender":d.day===2?"Numbers · 0–100":d.title;const label=d.day>=16?"Archive · Earlier "+String(d.day).padStart(2,"0")+" — "+d.title:"Lesson "+String(d.day).padStart(2,"0")+" — "+current;const o=element("option",label);o.value=d.day;picker.append(o)});
  if(savedSelection&&FRENCH_101_UNIT01_DAYS.some(d=>String(d.day)===savedSelection))picker.value=savedSelection;
  const panel=element("article");panel.className="unit01-active-day";panel.style.cssText="max-width:780px;margin:0 auto;line-height:1.65";const navigation=element("div");navigation.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0";const previous=element("button","← Previous Lesson"),next=element("button","Next Lesson →");previous.type=next.type="button";navigation.append(previous,next);const journey=element("p");journey.setAttribute("role","status");const status=element("p");status.setAttribute("role","status");
  function draw(){
   const d=FRENCH_101_UNIT01_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_UNIT01_DAYS[0];
   safeSet(lessonSelectionKey(),String(d.day));
   panel.replaceChildren();
+  if(d.day===15){
+   panel.append(element("h4","Lesson 15 · Places, Directions & Transportation"));addFrenchLesson15DirectionsDepth(panel);addFrenchLesson15ReviewArchive(panel);
+   status.textContent="Lesson 15 places/directions studio ready. Earlier Unit 01 review remains optional and preserved.";previous.disabled=false;next.disabled=true;previous.textContent="← Lesson 14";next.textContent="Lesson 16 · in development";journey.textContent="French 101 · Canonical Lesson 15 of 18 · Independent Interaction. Daily formative work is separate from official 80% mastery.";return;
+  }
   if(d.day===14){
    panel.append(element("h4","Lesson 14 · Present-Tense Verbs & Daily Routines"));addFrenchLesson14RoutinesDepth(panel);addFrenchLesson14ReadingArchive(panel);
-   status.textContent="Lesson 14 verb/routine studio ready. Earlier independent-reading work remains optional and preserved.";previous.disabled=false;next.disabled=true;previous.textContent="← Lesson 13";next.textContent="Lesson 15 · in development";journey.textContent="French 101 · Canonical Lesson 14 of 18 · Independent Interaction. Daily formative work is separate from official 80% mastery.";return;
+   status.textContent="Lesson 14 verb/routine studio ready. Earlier independent-reading work remains optional and preserved.";previous.disabled=false;next.disabled=false;previous.textContent="← Lesson 13";next.textContent="Next Lesson →";journey.textContent="French 101 · Canonical Lesson 14 of 18 · Independent Interaction. Daily formative work is separate from official 80% mastery.";return;
   }
   if(d.day===13){
    panel.append(element("h4","Lesson 13 · Questions, Negation & Conversation"));addFrenchLesson13QuestionsDepth(panel);addFrenchLesson13DictationArchive(panel);
@@ -2664,7 +2779,7 @@ function addUnit01DailySequence(parent){
    
    status.textContent="Lesson 06 noun/article review ready. Earlier listening evidence remains in optional enrichment.";previous.disabled=false;next.disabled=false;previous.textContent="← Previous Lesson";journey.textContent="Course Level 1 · Viewing Lesson 06 of 15 · Nouns, Articles and Gender. Official mastery remains separate at 80%.";return;
   }
-  if(d.day>=15){
+  if(d.day>=16){
    panel.append(element("h4","Archival enrichment · Earlier Lesson "+String(d.day).padStart(2,"0")+" · "+d.title),element("p","This material is preserved from the earlier Unit 01 phonology/literacy sequence. It remains useful practice, but it is not the canonical French 101 Lesson "+String(d.day).padStart(2,"0")+". The canonical replacement will be developed separately without deleting this work."));
   }else{
    panel.append(element("h4","Lesson "+String(d.day).padStart(2,"0")+" · "+(d.day===2?"Numbers · 0–100":d.title)));
@@ -2731,7 +2846,7 @@ function addUnit01DailySequence(parent){
   panel.append(deeper);
   const print=element("button","Print lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(d.day));panel.append(print);
   cohereFrenchDailyPanel(panel,d.day);
-  status.textContent=d.day>=15?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=15?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
+  status.textContent=d.day>=16?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=16?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
  }
  previous.addEventListener("click",()=>{if(Number(picker.value)===2){document.getElementById("french101-unit01-day01")?.scrollIntoView({block:"start",behavior:"smooth"});return}picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
 }
