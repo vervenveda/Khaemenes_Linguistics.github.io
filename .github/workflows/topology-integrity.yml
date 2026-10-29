@@ -1,0 +1,40 @@
+name: Linguistics topology integrity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'manifest.webmanifest'
+      - 'mentor-manifest.json'
+      - 'service-worker.js'
+      - 'data/course-topology.json'
+      - 'scripts/audit-topology.mjs'
+      - '.github/workflows/topology-integrity.yml'
+      - 'Halls/**'
+      - 'apps/**'
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'manifest.webmanifest'
+      - 'mentor-manifest.json'
+      - 'service-worker.js'
+      - 'data/course-topology.json'
+      - 'scripts/audit-topology.mjs'
+      - 'Halls/**'
+      - 'apps/**'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  topology:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Validate canonical course topology
+        run: node scripts/audit-topology.mjs
