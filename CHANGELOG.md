@@ -31,6 +31,18 @@ This file records meaningful public changes to Polyglot. Dates use the `YYYY-MM-
 - Added a two-learner regression test covering French and German learner isolation, anonymous-record blocking, 80% interpretation and zero V4 mutation.
 - Corrected French bridge compatibility with the established portfolio-review note key.
 
+### Changed — 2026-10-29 · Learner-scoped V4 authority
+
+- Added `assets/v4-learner-scope.js` as the formal Hall record-scope layer.
+- Named learner records now use `arshif.languageHall.v4.learner:<learner-id>`.
+- Added active learner and learner registry keys.
+- Preserved the historical `arshif.languageHall.v4` key as a legacy shared record rather than silently migrating it.
+- Added explicit learner create/open/switch controls to the V4 Vault.
+- Added explicit legacy-shared open and non-destructive copy-to-learner controls.
+- Changing a learner name no longer relabels the current transcript.
+- Current-record clearing no longer deletes another learner or the preserved V3 key.
+- Added learner-scope regression and static integration audits.
+
 ### Next
 
 - Make the formal V4 record itself safely learner-scoped before any Bridge v2 evidence acceptance.
