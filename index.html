@@ -179,6 +179,12 @@ h1,h2,h3{margin:0;font-family:var(--serif);font-weight:500;line-height:1.12;text
 .brand-copy{text-decoration:none}.brand-copy:focus-visible,.seal:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
 html[dir="rtl"] .campus-breadcrumbs{direction:rtl}
 
+
+/* Academy Front Desk parity · lightweight geometry only; campus colors and functions are preserved. */
+:where(.card,.school,.campus-card,.path-card,.course-card,.feature-card){box-sizing:border-box;min-width:0}
+:where(.grid,.cards,.school-grid,.course-grid,.campus-grid){justify-content:center;align-items:stretch}
+:where(.card,.school,.campus-card,.path-card,.course-card,.feature-card) :where(a,button){border-radius:7px}
+:where(.card,.school,.campus-card,.path-card,.course-card,.feature-card) :where(.btn,.button,.card-action){box-sizing:border-box;min-height:42px;text-align:center;overflow-wrap:break-word}
 </style>
 <link rel="stylesheet" href="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-global-header.css">
 <link rel="stylesheet" href="https://vervenveda.com/assets/vnv-ecosystem-menu.css">
