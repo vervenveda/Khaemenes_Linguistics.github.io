@@ -38,7 +38,8 @@
       "legacy_storage_key": "arshif.languageHall.v4",
       "active_learner_key": "arshif.languageHall.v4.activeLearner",
       "learner_registry_key": "arshif.languageHall.v4.learners",
-      "migration_policy": "legacy shared V4 remains preserved until explicitly copied to a named learner; no automatic merge or overwrite"
+      "migration_policy": "legacy shared V4 remains preserved until explicitly copied to a named learner; no automatic merge or overwrite",
+      "learner_storage_prefix": "arshif.languageHall.v4.learner:"
     },
     "arabic_year_i": {
       "path": "Halls/courses/arabic-1/index.html",
