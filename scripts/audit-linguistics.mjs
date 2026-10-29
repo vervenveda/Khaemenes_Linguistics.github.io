@@ -243,7 +243,7 @@ if(errors.length){
  console.error("LINGUISTICS_INTEGRITY=FAIL\n"+errors.map(e=>" - "+e).join("\n"));
  process.exitCode=1;
 }else{
- console.log("LINGUISTICS_INTEGRITY=PASS; apps=30, formal=5x11, atlas=206, foundations=40, French=12x5, languages=13");
+ console.log("LINGUISTICS_INTEGRITY=PASS; apps=29, formal=5x11, atlas=206, foundations=40, French=12x5, languages=13");
 }
 
 const germanPortfolio=read("apps/german-mastery-constellation/index.html");
