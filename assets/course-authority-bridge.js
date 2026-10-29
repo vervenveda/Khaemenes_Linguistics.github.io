@@ -141,7 +141,7 @@ function hallContext(){try{return typeof window.KhaemenesLanguageAuthorityContex
 function renderHall(){
  const host=document.getElementById("courseDetail");if(!host)return;
  document.getElementById("courseAuthorityBridgeReview")?.remove();
- const ctx=hallContext();if(!ctx||!clean(ctx.learner))return;
+ const ctx=hallContext();if(!ctx||ctx.recordScope!=="learner"||!clean(ctx.learner))return;
  let courseId=null,locale="en";
  if(ctx.language==="french"&&ctx.course==="101")courseId="french-101";
  else if(ctx.language==="german"){courseId="german-learning-evidence";locale="de"}
