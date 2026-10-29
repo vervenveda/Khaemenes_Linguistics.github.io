@@ -226,5 +226,17 @@
     "Formal V4 course progress must be learner-scoped on shared devices.",
     "The legacy shared V4 key must remain preserved until an explicit learner assignment or explicit legacy clear.",
     "Changing learner identity must switch records rather than rename another learner's transcript."
-  ]
+  ],
+  "curriculum_contracts": {
+    "french_101": {
+      "id": "KH-LANG-FR-101-2026",
+      "path": "data/french-101-curriculum.json",
+      "duration_weeks": 18,
+      "units": 6,
+      "lessons": 18,
+      "status": "canonical-current-development",
+      "legacy_12_level_progress": "preserved",
+      "formal_authority": "v4_five_language"
+    }
+  }
 }
