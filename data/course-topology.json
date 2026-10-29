@@ -26,7 +26,7 @@
   "record_authorities": {
     "v4_five_language": {
       "path": "Halls/index.html",
-      "storage_namespace": "arshif.languageHall.v4",
+      "storage_namespace": "arshif.languageHall.v4.learner:",
       "languages": [
         "spanish",
         "french",
@@ -34,7 +34,11 @@
         "mandarin",
         "japanese"
       ],
-      "status": "canonical-formal-authority"
+      "status": "canonical-formal-authority-learner-scoped-v1",
+      "legacy_storage_key": "arshif.languageHall.v4",
+      "active_learner_key": "arshif.languageHall.v4.activeLearner",
+      "learner_registry_key": "arshif.languageHall.v4.learners",
+      "migration_policy": "legacy shared V4 remains preserved until explicitly copied to a named learner; no automatic merge or overwrite"
     },
     "arabic_year_i": {
       "path": "Halls/courses/arabic-1/index.html",
@@ -217,6 +221,9 @@
     "NAIB/mentor discovery must expose the campus, formal academy, principal routes, atlas/foundations access, and canonical translator.",
     "The service worker must cache the topology registry and canonical entrance shell without attempting to pre-cache every lesson.",
     "French and German bridge evidence must never write formal V4 mastery or completion fields.",
-    "Bridge preparation requires a named learner; anonymous shared-device records cannot be promoted into formal authority evidence."
+    "Bridge preparation requires a named learner; anonymous shared-device records cannot be promoted into formal authority evidence.",
+    "Formal V4 course progress must be learner-scoped on shared devices.",
+    "The legacy shared V4 key must remain preserved until an explicit learner assignment or explicit legacy clear.",
+    "Changing learner identity must switch records rather than rename another learner's transcript."
   ]
 }
