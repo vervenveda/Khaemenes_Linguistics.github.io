@@ -1064,6 +1064,7 @@ function printUnit01Day(day,educator=false){
  if(day===8){printFrenchLesson08(false);return}
  if(day===9){printFrenchLesson09(false);return}
  if(day===10){printFrenchLesson10(false);return}
+ if(day===11){printFrenchLesson11(false);return}
  const source=day===1?document.getElementById("french101-unit01-day01"):document.querySelector("#unit01-daily-lessons .unit01-active-day");
  if(!source)return;
  const previous=document.getElementById("unit01-print-copy");if(previous)previous.remove();
@@ -2176,23 +2177,132 @@ function addFrenchLesson10SpellingArchive(panel){
  const transfer=element("textarea");transfer.rows=4;transfer.setAttribute("aria-label","Earlier Lesson 10 transfer");transfer.value=safeGet(learnerKey+"_u01_day10_transfer_v1")||"";transfer.addEventListener("input",()=>safeSet(learnerKey+"_u01_day10_transfer_v1",transfer.value));archive.append(transfer);
  const notes=element("textarea");notes.rows=3;notes.setAttribute("aria-label","Earlier Lesson 10 review notes");notes.value=safeGet(learnerKey+"_u01_d10_review_notes")||"";notes.addEventListener("input",()=>safeSet(learnerKey+"_u01_d10_review_notes",notes.value));archive.append(notes);panel.append(archive);
 }
+/* French 101 · Canonical Lesson 11 · Food & Café.
+   Historical Day 11 unfamiliar-word copying remains archival enrichment. */
+const FRENCH_U01_L11_CAFE_BANK=[
+{"skill":"vocabulary","prompt":"Which phrase means some water?","choices":["de l'eau","du eau","une eau"],"answer":0,"explain":"Before a vowel sound, the partitive article is de l': de l'eau."},
+{"skill":"vocabulary","prompt":"Which phrase means some bread?","choices":["du pain","de la pain","un eau"],"answer":0,"explain":"Pain is masculine here: du pain."},
+{"skill":"vocabulary","prompt":"Which phrase means an apple?","choices":["une pomme","un pomme","de la pomme"],"answer":0,"explain":"Pomme is a feminine countable noun: une pomme."},
+{"skill":"vocabulary","prompt":"Which phrase names tea?","choices":["un thé","une thé","du pomme"],"answer":0,"explain":"The taught countable café order is un thé."},
+{"skill":"vocabulary","prompt":"Which phrase means the menu in a café context?","choices":["la carte","la gare","la classe"],"answer":0,"explain":"La carte can mean the menu in a café/restaurant context."},
+{"skill":"vocabulary","prompt":"Which phrase means the bill/check in this lesson?","choices":["l'addition","la question","le devoir"],"answer":0,"explain":"L'addition is the bill/check in a café or restaurant."},
+{"skill":"articles","prompt":"Choose the accurate beginner phrase for some cheese.","choices":["du fromage","de la fromage","une fromage"],"answer":0,"explain":"Fromage is masculine: du fromage."},
+{"skill":"articles","prompt":"Choose the accurate phrase for some soup.","choices":["de la soupe","du soupe","un soupe"],"answer":0,"explain":"Soupe is feminine: de la soupe."},
+{"skill":"articles","prompt":"Choose the accurate phrase for some salad.","choices":["de la salade","du salade","une eau"],"answer":0,"explain":"Salade is feminine: de la salade."},
+{"skill":"articles","prompt":"Why might « une pomme » and « de la pomme » express different ideas?","choices":["Une pomme counts one whole apple; de la pomme can refer to some apple as a substance/ingredient.","They are always identical.","French articles never affect meaning."],"answer":0,"explain":"Countable and partitive choices can change how the food is conceptualized."},
+{"skill":"articles","prompt":"Which phrase correctly uses elision before a vowel sound?","choices":["de l'eau","de la eau","du eau"],"answer":0,"explain":"De l' is used before the vowel sound in eau."},
+{"skill":"articles","prompt":"Which statement is safest for a beginner?","choices":["Learn food nouns with their article and use the supplied context instead of guessing article choice from English.","Every food takes du.","Every drink takes une."],"answer":0,"explain":"Article choice depends on noun gender, sound and whether the meaning is countable/partitive."},
+{"skill":"interaction","prompt":"Which phrase politely begins an order?","choices":["Je voudrais…","Donnez-moi !","Au revoir."],"answer":0,"explain":"Je voudrais… is a useful polite beginner ordering frame."},
+{"skill":"interaction","prompt":"Which phrase asks how much something costs?","choices":["Combien ça coûte ?","Quelle heure est-il ?","Comment ça s'écrit ?"],"answer":0,"explain":"Combien ça coûte ? asks the price."},
+{"skill":"interaction","prompt":"Which phrase asks for the bill?","choices":["L'addition, s'il vous plaît.","La gare, s'il vous plaît.","Quelle couleur ?"],"answer":0,"explain":"L'addition, s'il vous plaît is a standard beginner request for the bill."},
+{"skill":"interaction","prompt":"A server says « Cela fait cinq euros. » What information is given?","choices":["the total is five euros","the café closes at five","there are five servers"],"answer":0,"explain":"Cela fait cinq euros gives the total price."},
+{"skill":"interaction","prompt":"Which repair phrase is useful if you did not understand the price?","choices":["Pardon, vous pouvez répéter ?","Je m'appelle cinq euros.","Bonne nuit."],"answer":0,"explain":"Pardon, vous pouvez répéter ? asks politely for repetition."},
+{"skill":"interaction","prompt":"Which exchange is coherent?","choices":["— Je voudrais un thé, s'il vous plaît. — Bien sûr.","— Quelle heure est-il ? — Une pomme rouge.","— Au revoir. — Combien ça coûte mon frère ?"],"answer":0,"explain":"The first exchange pairs a café request with an appropriate response."},
+{"skill":"reading","prompt":"Menu: « Thé 2 € · Jus 3 € · Soupe 5 € ». Which item costs 3 euros?","choices":["le jus","le thé","la soupe"],"answer":0,"explain":"The menu lists jus at 3 €."},
+{"skill":"reading","prompt":"Read: « Je voudrais de la soupe et de l'eau. » What is ordered?","choices":["soup and water","bread and tea","salad and juice"],"answer":0,"explain":"The sentence explicitly requests soup and water."},
+{"skill":"reading","prompt":"Read: « La carte propose une salade à six euros. » What costs six euros?","choices":["the salad","the menu itself","an unstated sandwich"],"answer":0,"explain":"The sentence states that the salad is six euros."},
+{"skill":"reading","prompt":"Read: « Lina commande un café. Noé commande un jus. » Who orders juice?","choices":["Noé","Lina","the server"],"answer":0,"explain":"Noé commande un jus."},
+{"skill":"reading","prompt":"Read: « Il n'y a pas de fromage aujourd'hui. » What is unavailable?","choices":["cheese","water","bread"],"answer":0,"explain":"The sentence says there is no cheese today. Full negation is taught later; interpret this supplied phrase here."},
+{"skill":"reading","prompt":"A menu lists prices but no ingredients. What should you NOT infer?","choices":["the exact ingredients/allergens","the listed prices","the item names"],"answer":0,"explain":"Do not invent ingredient or allergy information that the menu does not provide."},
+{"skill":"transfer","prompt":"You want one apple and some water. Which order is accurate?","choices":["Je voudrais une pomme et de l'eau, s'il vous plaît.","Je voudrais un pomme et du eau.","Je suis une pomme et eau."],"answer":0,"explain":"The first order uses the taught countable and elided partitive forms."},
+{"skill":"transfer","prompt":"A learner writes « Je voudrais de la eau ». What should change?","choices":["de la eau → de l'eau","eau → eaux always","voudrais → suis"],"answer":0,"explain":"Use de l' before the vowel sound: de l'eau."},
+{"skill":"transfer","prompt":"A learner does not understand the total. What is the best communicative next step?","choices":["Ask the server to repeat the price.","Pretend to understand.","Change the topic to weather."],"answer":0,"explain":"Conversation repair is a valid communication skill."},
+{"skill":"transfer","prompt":"Which task best shows independent café communication?","choices":["Read a new menu, choose items within a stated budget and make a short original order.","Copy the model order exactly three times.","Select the same corrected answer after seeing it."],"answer":0,"explain":"A new menu and original order require transfer."},
+{"skill":"transfer","prompt":"A fictional customer has a dietary restriction. What should the learner do if the needed French is not taught?","choices":["Ask for or consult accurate vocabulary rather than inventing a phrase.","Guess a medical/dietary claim from similar English words.","Skip clarity because the activity is only practice."],"answer":0,"explain":"Practical communication should prioritize accurate, supplied language when safety or dietary meaning matters."},
+{"skill":"transfer","prompt":"For spoken café evidence, what should be recorded?","choices":["The scenario, learner response, reviewer role, support used and correction if needed.","Only that a Play Audio button was pressed.","A claim of restaurant expertise."],"answer":0,"explain":"Transparent observed evidence is the goal, not a privileged credential."}
+];
+
+function printFrenchLesson11(answers){
+ const source=document.getElementById("french-u01-lesson11-cafe");if(!source)return;document.getElementById("unit01-print-copy")?.remove();const copy=element("article");copy.id="unit01-print-copy";
+ copy.append(element("h2",answers?"French 101 · Lesson 11 · Reviewer guidance":"French 101 · Lesson 11 · Learner worksheet and evidence"));
+ for(const id of answers?["french-l11-answer-guide","french-l11-review-key"]:["french-l11-worksheet"]){const n=document.getElementById(id)?.cloneNode(true);if(n){n.removeAttribute("id");if(n.tagName==="DETAILS")n.open=true;copy.append(n)}}
+ if(!answers){source.querySelectorAll("textarea").forEach(t=>{copy.append(element("h4",t.getAttribute("aria-label")||"Saved response"));const p=element("p",t.value||"(No response entered)");p.className="french-print-response";copy.append(p)});source.querySelectorAll("select[id^='french-l11-rating']").forEach(s=>copy.append(element("p",s.getAttribute("aria-label")+": "+s.value)))}
+ copy.append(element("p","Formative evidence only. Reviewer roles are local and flexible. Dietary or allergy-related language should be checked for accuracy rather than guessed."));
+ document.body.append(copy);document.body.classList.add("printing-unit01");const clean=()=>{document.body.classList.remove("printing-unit01");copy.remove();window.removeEventListener("afterprint",clean)};window.addEventListener("afterprint",clean);window.print();
+}
+
+function addFrenchLesson11CafeDepth(panel){
+ const sec=element("section");sec.id="french-u01-lesson11-cafe";sec.className="french-day02-depth";const prefix=learnerKey+"_beginner2026_lesson11_cafe_";
+ const saveStatus=element("p","Lesson 11 work saves locally for the selected learner.");saveStatus.setAttribute("role","status");
+ function save(suffix,value){const ok=safeSet(prefix+suffix,value);saveStatus.textContent=ok?"Lesson 11 evidence saved on this device.":"Saving failed. Copy or print your work before leaving.";return ok}
+ function field(label,suffix,rows=5){const wrap=element("label");wrap.append(element("span",label));const t=element("textarea");t.rows=rows;t.setAttribute("aria-label",label);t.value=safeGet(prefix+suffix)||"";t.addEventListener("input",()=>save(suffix,t.value));wrap.append(t);return wrap}
+ function h(text,id){const n=element("h4",text);if(id)n.id=id;sec.append(n)}function p(text){sec.append(element("p",text))}
+ h("Lesson 11 · Food & Café · Full learning studio");
+ p("Learning targets: recognize a core café/menu vocabulary; distinguish useful countable and partitive article patterns; make a polite order; ask and interpret a simple price; repair a misunderstanding; read a new beginner menu; and create an original café exchange. Fictional orders are encouraged. No learner needs to disclose real dietary, medical or financial information.");
+ const nav=element("nav");nav.setAttribute("aria-label","Lesson 11 studio sections");[["Food language","french-l11-food"],["Café exchange","french-l11-cafe"],["Read menu","french-l11-read"],["Order lab","french-l11-lab"],["Independent work","french-l11-writing"],["Review","french-l11-review"],["Evidence","french-l11-evidence"]].forEach(([label,id])=>{const a=element("a",label);a.href="#"+id;nav.append(a)});sec.append(nav,saveStatus);
+ h("Your route · noun phrase → request → transaction");
+ p("Retrieve first: numbers/prices from Lessons 02 and 10, articles from Lesson 06 and courteous greetings from Lesson 04. Stage A: learn food/drink phrases with their article. Stage B: use je voudrais and price questions. Stage C: read a menu and calculate a simple total. Stage D: perform a new café interaction and correct errors.");
+ h("1 · Learn the food phrase, not only the noun","french-l11-food");
+ const foods=[["du pain","some bread"],["de l'eau","some water"],["du fromage","some cheese"],["de la soupe","some soup"],["de la salade","some salad"],["une pomme","an apple"],["une banane","a banana"],["un sandwich","a sandwich"],["un café","a coffee"],["un thé","a tea"],["un jus","a juice"],["un verre d'eau","a glass of water"]];
+ const grid=element("div");grid.className="french-l11-reference";foods.forEach(([fr,en])=>{const card=element("article");card.append(element("h4",fr),element("p",en));addButton(card,"Listen · "+fr,()=>speakFR(fr));grid.append(card)});sec.append(grid);
+ p("Countable versus partitive meaning matters. « Une pomme » counts one apple. « De la pomme » can refer to some apple as an ingredient or substance in a supplied context. « Un café » is a countable café order; « du café » can refer to some coffee as a substance. Do not turn this into a rule that every food uses du or every drink uses un.");
+ p("Core partitive patterns: du + masculine noun, de la + feminine noun, de l' before a vowel sound. Examples: du pain, de la soupe, de l'eau. Full article behavior after negation is taught with negation later; today you may encounter a supplied phrase such as « Il n'y a pas de fromage » and interpret it without having to generate the whole rule.");
+ h("2 · A polite café exchange","french-l11-cafe");
+ p("Useful opening: « Bonjour. Je voudrais un thé et une pomme, s'il vous plaît. » Je voudrais means I would like and is a practical polite frame. The course does not require one universal service ritual: greetings, ordering styles, table service and payment customs differ among Francophone communities and establishments.");
+ p("Ask a price: « Combien ça coûte ? » A total may be given as « Cela fait cinq euros. » If you do not understand, repair the conversation: « Pardon, vous pouvez répéter ? » or « Plus lentement, s'il vous plaît. » Asking for repetition is evidence of communication, not failure.");
+ p("Ask for the menu: « La carte, s'il vous plaît. » Ask for the bill/check: « L'addition, s'il vous plaît. » Carte has multiple meanings in French; the café context tells us that la carte is the menu here. Learn words in context rather than assuming one English equivalent everywhere.");
+ const dialogue="— Bonjour. Je voudrais de la soupe et un jus, s'il vous plaît. — Bien sûr. Autre chose ? — Une pomme, merci. — Cela fait huit euros. — Pardon, vous pouvez répéter ? — Huit euros. — Merci.";
+ p("Model exchange: "+dialogue);addButton(sec,"Listen · café exchange",()=>speakFR(dialogue.replaceAll("— ","")));
+ h("3 · Read a new menu","french-l11-read");
+ const menu=[["Thé","2 €"],["Jus de pomme","3 €"],["Soupe de légumes","5 €"],["Salade","6 €"],["Sandwich au fromage","7 €"],["Pomme","2 €"]];
+ const table=element("div");table.className="french-l11-menu";menu.forEach(([item,price])=>table.append(element("p",item+" · "+price)));sec.append(table);
+ p("This is a fictional classroom menu. It supplies item names and prices only. It does not provide a complete ingredient list, allergy information, portion size, taxes/service rules or nutritional claims. Do not infer those facts from the item name.");
+ ["Choose two items and calculate the listed total in euros. Write the French order.","Which item is most expensive? Which two different items could total 5 €?","Name three facts the menu does not state. Explain why a real dietary/allergy question would require accurate additional information rather than guessing."].forEach((q,i)=>{p((i+1)+". "+q);sec.append(field("Lesson 11 menu-reading evidence "+(i+1),"reading_"+i+"_v1",4))});
+ h("4 · Order-building laboratory","french-l11-lab");
+ const tasks=[["one tea","un thé"],["some water","de l'eau"],["some bread","du pain"],["some soup","de la soupe"],["one apple","une pomme"],["some cheese","du fromage"],["the bill, please","l'addition, s'il vous plaît"],["how much does it cost?","combien ça coûte ?"]];
+ const lab=element("section"),prompt=element("p"),input=element("input"),feedback=element("p");input.type="text";input.autocomplete="off";input.setAttribute("aria-label","Type the French café phrase");let at=0;function show(){prompt.textContent=(at+1)+"/8 · Express: "+tasks[at][0];input.value="";feedback.textContent="Build the phrase from meaning, then correct from evidence."}show();lab.append(prompt,input);addButton(lab,"Check",()=>{const expected=tasks[at][1];feedback.textContent=normalize(input.value)===normalize(expected)?"Accurate: "+expected+".":"Review: "+expected+"."});addButton(lab,"Next",()=>{at=(at+1)%tasks.length;show()});lab.append(feedback);sec.append(lab);
+ h("5 · Independent café mission","french-l11-writing");
+ p("Using the fictional menu, create an original 8–10 turn café interaction. Include a greeting, at least three items using more than one article pattern, a price question or total, one repair request, thanks and a farewell. Then create a second short order with different items and no copied sentence sequence.");
+ sec.append(field("Lesson 11 original café interaction","composition_v1",11));
+ p("Explain three choices: why one item used un/une, why one used du/de la/de l', and how your repair phrase helped communication. Then answer two unfamiliar reviewer-supplied menu/order prompts. If the scenario includes a dietary restriction, use supplied or verified vocabulary rather than improvising a potentially misleading claim.");
+ sec.append(field("Lesson 11 article reasoning and unfamiliar transfer","transfer_v1",7));
+ h("6 · Listening and speaking evidence");
+ p("Independent listening: a reviewer reads a new short order or price without showing the text; record the learner's interpretation. Independent speaking: the learner completes a new café role-play without reading the model. System speech is rehearsal only. If oral work was not observed, use Not assessed.");
+ sec.append(field("Lesson 11 oral evidence · prompt, response, support and correction","oral_v1",6));
+ h("7 · Balanced formative review · 30 authored questions","french-l11-review");
+ p("Ten questions per round: two each from vocabulary, articles, interaction, reading and transfer. Formative rounds never change official mastery.");
+ addFrenchCohesiveReview(sec,11,FRENCH_U01_L11_CAFE_BANK,["vocabulary","articles","interaction","reading","transfer"]);
+ h("8 · Correction journal");
+ p("Repair and explain: « de la eau »; « du soupe »; « un pomme »; an order that omits the requested item; and a response that pretends to understand a missed price. Add two corrections from your own work and one next goal.");
+ sec.append(field("Lesson 11 corrections and next goal","corrections_v1",7));
+ h("9 · Reviewer rubric","french-l11-evidence");
+ const roles=element("select");roles.setAttribute("aria-label","Lesson 11 reviewer role");["Not reviewed","Parent","Teacher","Homeschool Parent/Teacher","Mentor","Self-Directed Adult","Other Local Reviewer"].forEach(v=>{const o=element("option",v);o.value=v;roles.append(o)});roles.value=safeGet(prefix+"reviewer_role_v1")||"Not reviewed";roles.addEventListener("change",()=>save("reviewer_role_v1",roles.value));sec.append(roles);
+ const criteria=[["Food/menu meaning","Interprets taught food/drink phrases and prices in a new menu."],["Article and sentence control","Uses countable/partitive patterns accurately for taught items and contexts."],["Interaction and repair","Makes a coherent request, handles a price and repairs misunderstanding."],["Independent oral evidence","Understands and/or produces an unfamiliar café exchange; mark Not assessed if unobserved."]];
+ criteria.forEach(([name,desc],i)=>{const row=element("div");row.className="french-day02-rubric-row";const label=element("label",name),select=element("select");select.id="french-l11-rating-"+i;label.htmlFor=select.id;select.setAttribute("aria-label","Lesson 11 rubric · "+name);["Not assessed","0","1","2","3"].forEach(v=>{const o=element("option",v);o.value=v;select.append(o)});select.value=safeGet(prefix+"rubric_"+i+"_v1")||"Not assessed";select.addEventListener("change",()=>save("rubric_"+i+"_v1",select.value));row.append(label,select);sec.append(row,element("p",desc))});sec.append(field("Reviewer context, evidence observed, support and next goal","review_notes_v1",6));
+ const worksheet=element("section");worksheet.id="french-l11-worksheet";worksheet.className="unit01-worksheet";worksheet.append(element("h4","French 101 · Lesson 11 · Food & Café"),element("p","Learner: __________________ Date: ______________"));
+ ["Write twelve taught food/drink phrases with their article.","Explain one countable/partitive contrast using a supplied noun.","Read the fictional menu, choose items and calculate two totals.","Write an original 8–10 turn café exchange with one repair request.","Correct five article/communication errors and explain them.","Record new oral café evidence separately or mark it Not assessed."].forEach(t=>worksheet.append(element("p",t),element("p","________________________________________________________________________")));sec.append(worksheet);
+ const guide=element("details");guide.id="french-l11-answer-guide";guide.append(element("summary","Lesson 11 reviewer guidance · open after independent work"),element("p","Core models: du pain, de l'eau, du fromage, de la soupe, de la salade, une pomme, une banane, un café, un thé, un jus. Accept other accurate food phrases when the learner has an appropriate reference."),element("p","Menu totals: tea 2, juice 3, soup 5, salad 6, sandwich 7, apple 2. Tea + juice or apple + juice totals 5. Exact ingredients/allergens are not supplied."),element("p","Look for communicative coherence as well as articles. Asking for repetition after a missed price is successful repair. Do not reward guessing a dietary/medical statement."),element("p","Synthetic playback and self-entered ratings do not establish independent oral proficiency."));sec.append(guide);
+ const key=element("details");key.id="french-l11-review-key";key.append(element("summary","Thirty-question formative key · reviewer reference"));FRENCH_U01_L11_CAFE_BANK.forEach((q,i)=>key.append(element("p",(i+1)+". "+q.prompt+" · Answer: "+q.choices[q.answer]+". "+q.explain)));sec.append(key);
+ const actions=element("div");addButton(actions,"Print learner evidence",()=>printFrenchLesson11(false));addButton(actions,"Print reviewer guidance",()=>printFrenchLesson11(true));sec.append(actions);panel.append(sec);
+}
+
+function addFrenchLesson11ReadingArchive(panel){
+ const d=FRENCH_101_UNIT01_DAYS.find(x=>x.day===11);if(!d)return;const archive=element("details");archive.className="french-legacy-extra";archive.append(element("summary","Optional archival enrichment · earlier Lesson 11 reading/copying unfamiliar words"),element("p","This earlier orthography lesson remains available for continuity. Its saved work is not reclassified as Food & Café mastery."),element("h4",d.title),element("p",d.lecture),element("p","Examples: "+d.models),element("p","Guided: "+d.guided),element("p","Earlier assignment: "+d.assignment));
+ const old=element("textarea");old.rows=5;old.setAttribute("aria-label","Earlier Lesson 11 unfamiliar-word writing");old.value=safeGet(learnerKey+"_u01_day11_writing")||"";old.addEventListener("input",()=>safeSet(learnerKey+"_u01_day11_writing",old.value));archive.append(old);
+ const transfer=element("textarea");transfer.rows=4;transfer.setAttribute("aria-label","Earlier Lesson 11 transfer");transfer.value=safeGet(learnerKey+"_u01_day11_transfer_v1")||"";transfer.addEventListener("input",()=>safeSet(learnerKey+"_u01_day11_transfer_v1",transfer.value));archive.append(transfer);
+ const notes=element("textarea");notes.rows=3;notes.setAttribute("aria-label","Earlier Lesson 11 review notes");notes.value=safeGet(learnerKey+"_u01_d11_review_notes")||"";notes.addEventListener("input",()=>safeSet(learnerKey+"_u01_d11_review_notes",notes.value));archive.append(notes);panel.append(archive);
+}
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
- wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–10 are developed in the current curriculum. Earlier daily topics that once occupied Lessons 11–15 remain available as archival enrichment until their canonical replacements are developed. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
+ wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–11 are developed in the current curriculum. Earlier daily topics that once occupied Lessons 12–15 remain available as archival enrichment until their canonical replacements are developed. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
  const picker=element("select");picker.setAttribute("aria-label","Choose Unit 01 lesson");picker.style.cssText="width:100%;padding:10px;margin:8px 0";
  const lessonSelectionKey=()=>learnerKey+"_u01_selected_lesson_v1";
  const savedSelection=safeGet(lessonSelectionKey());
 
- FRENCH_101_UNIT01_DAYS.forEach(d=>{const current=d.day===10?"Dates & Time":d.day===9?"Colors, Shapes & Descriptions":d.day===8?"Family and Relationships":d.day===7?"Être and Avoir":d.day===6?"Nouns, Articles and Gender":d.day===2?"Numbers · 0–100":d.title;const label=d.day>=11?"Archive · Earlier "+String(d.day).padStart(2,"0")+" — "+d.title:"Lesson "+String(d.day).padStart(2,"0")+" — "+current;const o=element("option",label);o.value=d.day;picker.append(o)});
+ FRENCH_101_UNIT01_DAYS.forEach(d=>{const current=d.day===11?"Food & Café":d.day===10?"Dates & Time":d.day===9?"Colors, Shapes & Descriptions":d.day===8?"Family and Relationships":d.day===7?"Être and Avoir":d.day===6?"Nouns, Articles and Gender":d.day===2?"Numbers · 0–100":d.title;const label=d.day>=12?"Archive · Earlier "+String(d.day).padStart(2,"0")+" — "+d.title:"Lesson "+String(d.day).padStart(2,"0")+" — "+current;const o=element("option",label);o.value=d.day;picker.append(o)});
  if(savedSelection&&FRENCH_101_UNIT01_DAYS.some(d=>String(d.day)===savedSelection))picker.value=savedSelection;
  const panel=element("article");panel.className="unit01-active-day";panel.style.cssText="max-width:780px;margin:0 auto;line-height:1.65";const navigation=element("div");navigation.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0";const previous=element("button","← Previous Lesson"),next=element("button","Next Lesson →");previous.type=next.type="button";navigation.append(previous,next);const journey=element("p");journey.setAttribute("role","status");const status=element("p");status.setAttribute("role","status");
  function draw(){
   const d=FRENCH_101_UNIT01_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_UNIT01_DAYS[0];
   safeSet(lessonSelectionKey(),String(d.day));
   panel.replaceChildren();
+  if(d.day===11){
+   panel.append(element("h4","Lesson 11 · Food & Café"));addFrenchLesson11CafeDepth(panel);addFrenchLesson11ReadingArchive(panel);
+   status.textContent="Lesson 11 food/café studio ready. Earlier unfamiliar-word copying remains optional and preserved.";previous.disabled=false;next.disabled=true;previous.textContent="← Lesson 10";next.textContent="Lesson 12 · in development";journey.textContent="French 101 · Canonical Lesson 11 of 18 · Everyday Life. Daily formative work is separate from official 80% mastery.";return;
+  }
   if(d.day===10){
    panel.append(element("h4","Lesson 10 · Dates & Time"));addFrenchLesson10TimeDepth(panel);addFrenchLesson10SpellingArchive(panel);
-   status.textContent="Lesson 10 dates/time studio ready. Earlier spelling-in-conversation work remains optional and preserved.";previous.disabled=false;next.disabled=true;previous.textContent="← Lesson 09";next.textContent="Lesson 11 · in development";journey.textContent="French 101 · Canonical Lesson 10 of 18 · Everyday Life. Daily formative work is separate from official 80% mastery.";return;
+   status.textContent="Lesson 10 dates/time studio ready. Earlier spelling-in-conversation work remains optional and preserved.";previous.disabled=false;next.disabled=false;previous.textContent="← Lesson 09";next.textContent="Next Lesson →";journey.textContent="French 101 · Canonical Lesson 10 of 18 · Everyday Life. Daily formative work is separate from official 80% mastery.";return;
   }
   if(d.day===9){
    panel.append(element("h4","Lesson 09 · Colors, Shapes & Descriptions"));addFrenchLesson09ColorsDepth(panel);addFrenchLesson09SoundArchive(panel);
@@ -2211,7 +2321,7 @@ function addUnit01DailySequence(parent){
    
    status.textContent="Lesson 06 noun/article review ready. Earlier listening evidence remains in optional enrichment.";previous.disabled=false;next.disabled=false;previous.textContent="← Previous Lesson";journey.textContent="Course Level 1 · Viewing Lesson 06 of 15 · Nouns, Articles and Gender. Official mastery remains separate at 80%.";return;
   }
-  if(d.day>=11){
+  if(d.day>=12){
    panel.append(element("h4","Archival enrichment · Earlier Lesson "+String(d.day).padStart(2,"0")+" · "+d.title),element("p","This material is preserved from the earlier Unit 01 phonology/literacy sequence. It remains useful practice, but it is not the canonical French 101 Lesson "+String(d.day).padStart(2,"0")+". The canonical replacement will be developed separately without deleting this work."));
   }else{
    panel.append(element("h4","Lesson "+String(d.day).padStart(2,"0")+" · "+(d.day===2?"Numbers · 0–100":d.title)));
@@ -2278,7 +2388,7 @@ function addUnit01DailySequence(parent){
   panel.append(deeper);
   const print=element("button","Print lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(d.day));panel.append(print);
   cohereFrenchDailyPanel(panel,d.day);
-  status.textContent=d.day>=11?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=11?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
+  status.textContent=d.day>=12?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=12?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
  }
  previous.addEventListener("click",()=>{if(Number(picker.value)===2){document.getElementById("french101-unit01-day01")?.scrollIntoView({block:"start",behavior:"smooth"});return}picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
 }
