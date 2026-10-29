@@ -15,8 +15,11 @@ Every phase must preserve:
 - browser-local continuity;
 - no silent deletion or rewriting of learner records;
 - clear separation between practice evidence, mastery and external credentials;
-- useful offline behavior; and
-- source / reviewer transparency.
+- useful offline behavior;
+- source / reviewer transparency; and
+- **soft reviewer roles**: Parent, Teacher, Mentor, Homeschool Parent/Teacher, and Self-Directed Adult are evidence roles, not privileged account classes.
+
+A parent may also be the teacher. A homeschool parent/teacher may perform both roles in the same record. An adult learner may self-review where the course does not explicitly require independent attestation. The platform must not require a paid account, institutional credential, or separate teacher login merely to review local learning evidence.
 
 ## Phase A — Canonical topology
 **Status: COMPLETE · 2026-10-29**
@@ -54,13 +57,27 @@ Named V4 records use `arshif.languageHall.v4.learner:` with an active-learner po
 
 Named V4 records now have a dedicated restore-capable backup format, matching-learner validation, automatic pre-restore recovery snapshots, and an Undo Last Restore path. Generic archival V4 JSON is intentionally not restore-capable.
 
-### Bridge v2 release gates
+### Soft reviewer-role contract
 
+Future review/acceptance must record **who reviewed, what role they were serving, what evidence they reviewed, and when**. It must not assume that Parent and Teacher are different people.
+
+Allowed local reviewer roles may include:
+
+- Parent
+- Teacher
+- Homeschool Parent/Teacher
+- Mentor
+- Self-Directed Adult
+- Other Local Reviewer
+
+The same person may hold more than one role. A separate privileged teacher account is not required. Independent third-party attestation should be required only for a specific activity when the curriculum explicitly says that independent review is necessary.
+
+### Bridge v2 release gates
 
 Do not implement automatic acceptance into V4 until:
 
 - [x] V4 formal records are safely learner-scoped with explicit legacy-shared preservation.
-- [ ] Teacher/reviewer acceptance is distinguishable from learner self-entry.
+- [ ] Review actions are explicitly attributed to a reviewer role without requiring a separate privileged account or assuming Parent and Teacher are different people.
 - [ ] Evidence-to-competency mappings are explicit and auditable.
 - [ ] Existing completion can never be downgraded.
 - [x] Learner-scoped export/restore/recovery precedes any future migration or Bridge v2 acceptance.
