@@ -1,28 +1,18 @@
-# ARSHIF · Khaemenes Academy
+# Polyglot · Khaemenes Academy
 # Five-Language Academy · V4
 
-## Canonical live Hall
+## Canonical formal Hall
 
-The current instructional authority for the Language Hall is:
+The current formal academic authority for the five V4 language programs is:
 
 `/Halls/index.html`
 
-Public GitHub Pages path:
+Public path:
 
 `https://vervenveda.com/Khaemenes_Linguistics.github.io/Halls/`
 
-New coursework, formal course completion, competencies, assessments, portfolio evidence, and V4 learner records belong in this Hall.
+The Hall owns the V4 course definitions and formal Academy completion semantics for:
 
-## Preserved legacy generations
-
-Two older Hall generations remain in the repository so existing browser-local records, notes, exports, and migration evidence are not destroyed:
-
-- `/Halls/language-learning-v3_index.html` — V3 archive / migration reference
-- `/apps/Language_learning_hall_index.html` — original Hall archive
-
-They remain functional, but they are not coequal current curriculum authorities and should not be used to begin new formal coursework.
-
-Five complete spoken-language programs:
 - Spanish
 - French
 - German
@@ -30,26 +20,60 @@ Five complete spoken-language programs:
 - Japanese
 
 Each program contains:
+
 - 3 middle-school courses
 - 4 high-school courses
-- 4 lower-division collegiate courses (101, 102, 201, 202)
+- 4 lower-division courses: 101, 102, 201 and 202
 
-Total: **55 formal courses**.
+Total: **55 formal course frameworks**.
 
-The existing **206-dossier World Language Atlas** and **40-module Language Learning Foundations Library** are preserved.
+## Relationship to learner-facing language experiences
 
-## Important
+The formal Hall is an **academic authority**, not a requirement that every language use one identical visual interface.
 
-Course numbers and internal records are Khaemenes architecture. They do not automatically confer:
+The repository may route learners through language-specific experiences such as French 101, the German Hub, or a Language World. Those experiences may collect practice and local evidence, but they must not silently create a second official completion authority.
+
+Canonical route and authority mapping is declared in:
+
+`../data/course-topology.json`
+
+Architecture explanation:
+
+`../docs/TOPOLOGY_ARCHITECTURE.md`
+
+## ARSHIF relationship
+
+The Hall descends from earlier ARSHIF language-learning work and continues to preserve its atlas, reference and archival value. In the current architecture, **Polyglot / Khaemenes Linguistics is the language campus**, while ARSHIF remains an important archive and research partner rather than a competing curricular authority.
+
+## Preserved legacy generations
+
+Two older Hall generations remain intentionally preserved:
+
+- `/Halls/language-learning-v3_index.html` — V3 archive / migration reference
+- `/apps/Language_learning_hall_index.html` — original Hall archive
+
+They may retain browser-local records, notes, exports and migration evidence. They are not default entrances for new formal coursework.
+
+## Preserved reference collections
+
+The Hall retains:
+
+- **206 World Language Atlas dossiers**
+- **40 Language Learning Foundations modules**
+
+American Sign Language remains represented in the Atlas and is a priority candidate for future full-program development.
+
+## Credential boundary
+
+Course numbers and local records do not automatically confer:
+
 - ACTFL ratings
 - CEFR certification
-- DELF / Goethe / Japanese / Chinese official exam credentials
+- DELF, Goethe, HSK, JLPT or other official exam credentials
 - interpreter credentials
 - teaching licenses
-- transferable college or AA credit
+- transferable college credit
 
-American Sign Language remains in the Atlas and is the recommended sixth full program.
+## Platform boundary
 
-## Current platform boundary
-
-GitHub Pages remains the live functional platform for this repository. Any STOS-oriented files or integration elements are future-migration material only and remain dormant until an explicit STOS migration stage begins.
+GitHub Pages remains the live public platform for this repository. Browser-local records and exports must be preserved during architecture work. Any future authority migration must be explicit, versioned and regression-tested.
