@@ -50,6 +50,10 @@ French and German have rich learner experiences plus independent browser-local r
 
 Named V4 records use `arshif.languageHall.v4.learner:` with an active-learner pointer and local learner registry. The historical `arshif.languageHall.v4` key remains a preserved shared record until explicitly copied or explicitly cleared.
 
+### Learner backup & recovery
+
+Named V4 records now have a dedicated restore-capable backup format, matching-learner validation, automatic pre-restore recovery snapshots, and an Undo Last Restore path. Generic archival V4 JSON is intentionally not restore-capable.
+
 ### Bridge v2 release gates
 
 
@@ -59,7 +63,7 @@ Do not implement automatic acceptance into V4 until:
 - [ ] Teacher/reviewer acceptance is distinguishable from learner self-entry.
 - [ ] Evidence-to-competency mappings are explicit and auditable.
 - [ ] Existing completion can never be downgraded.
-- [ ] Export/recovery precedes migration.
+- [x] Learner-scoped export/restore/recovery precedes any future migration or Bridge v2 acceptance.
 - [ ] Runtime browser testing confirms two-learner behavior.
 
 ## Phase C — Spanish / Mandarin / Japanese parity
