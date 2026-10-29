@@ -19,13 +19,14 @@ const idFor=label=>{
  const s=clean(label).toLocaleLowerCase("en");
  return s?Array.from(s,c=>c.codePointAt(0).toString(16)).join("-"):"";
 };
-const scopedKey=id=>PREFIX+id;
+const cleanId=v=>{const s=String(v||"").trim().slice(0,700);return /^[0-9a-f-]+$/i.test(s)?s:""};
+const scopedKey=id=>PREFIX+cleanId(id);
 function registry(){
  const r=parse(safeGet(REGISTRY_KEY)||"{}",{});
  return r&&typeof r==="object"&&!Array.isArray(r)?r:{};
 }
 function writeRegistry(r){return safeSet(REGISTRY_KEY,JSON.stringify(r))}
-function activeId(){return clean(safeGet(ACTIVE_KEY)||"")}
+function activeId(){return cleanId(safeGet(ACTIVE_KEY)||"")}
 function currentKey(){const id=activeId();return id?scopedKey(id):LEGACY_KEY}
 function currentMode(){return activeId()?"learner":"legacy-shared"}
 function currentDescriptor(){
@@ -72,12 +73,12 @@ function openLearner(label,createRecord){
  return clone(record);
 }
 function openById(id){
- const cleanId=clean(id),r=registry(),entry=r[cleanId];
- if(!cleanId||!entry)throw Error("Learner record was not found.");
- const record=parse(safeGet(scopedKey(cleanId))||"null",null);
+ const learnerId=cleanId(id),r=registry(),entry=r[learnerId];
+ if(!learnerId||!entry)throw Error("Learner record was not found.");
+ const record=parse(safeGet(scopedKey(learnerId))||"null",null);
  if(!record)throw Error("Learner record data is missing.");
- touch(cleanId,entry.label,record.createdAt);
- if(!safeSet(ACTIVE_KEY,cleanId))throw Error("Unable to activate learner record.");
+ touch(learnerId,entry.label,record.createdAt);
+ if(!safeSet(ACTIVE_KEY,learnerId))throw Error("Unable to activate learner record.");
  return clone(record);
 }
 function openLegacy(){
@@ -116,7 +117,7 @@ function exportRegistry(){
 }
 window.KhaemenesV4LearnerScope={
  schema:SCHEMA,LEGACY_KEY,OLD_V3_KEY,ACTIVE_KEY,REGISTRY_KEY,PREFIX,
- clean,idFor,scopedKey,registry,list,activeId,currentKey,currentMode,currentDescriptor,
+ clean,cleanId,idFor,scopedKey,registry,list,activeId,currentKey,currentMode,currentDescriptor,
  loadCurrent,saveCurrent,openLearner,openById,openLegacy,legacyRecord,assignLegacy,clearCurrent,exportRegistry
 };
 })();
