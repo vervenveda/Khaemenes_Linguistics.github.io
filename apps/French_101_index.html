@@ -1063,6 +1063,7 @@ function printUnit01Day(day,educator=false){
  if(day===7){printFrenchLesson07(false);return}
  if(day===8){printFrenchLesson08(false);return}
  if(day===9){printFrenchLesson09(false);return}
+ if(day===10){printFrenchLesson10(false);return}
  const source=day===1?document.getElementById("french101-unit01-day01"):document.querySelector("#unit01-daily-lessons .unit01-active-day");
  if(!source)return;
  const previous=document.getElementById("unit01-print-copy");if(previous)previous.remove();
@@ -2063,23 +2064,139 @@ function addFrenchLesson09SoundArchive(panel){
  const note=element("textarea");note.rows=3;note.setAttribute("aria-label","Earlier Lesson 09 review notes");note.value=safeGet(learnerKey+"_u01_d9_review_notes")||"";note.addEventListener("input",()=>safeSet(learnerKey+"_u01_d9_review_notes",note.value));archive.append(note);
  panel.append(archive);
 }
+/* French 101 · Canonical Lesson 10 · Dates & Time.
+   Historical Day 10 spelling-in-conversation material remains archival enrichment. */
+const FRENCH_U01_L10_TIME_BANK=[
+{"skill":"calendar","prompt":"Which French weekday is Monday?","choices":["lundi","mardi","dimanche"],"answer":0,"explain":"Lundi is Monday."},
+{"skill":"calendar","prompt":"Which French month is January?","choices":["janvier","juin","juillet"],"answer":0,"explain":"Janvier is January."},
+{"skill":"calendar","prompt":"Which spelling is standard in an ordinary French sentence?","choices":["lundi","Lundi","LUNDI"],"answer":0,"explain":"French weekdays are normally lowercase unless sentence position or typography requires otherwise."},
+{"skill":"calendar","prompt":"Which sequence is in calendar order?","choices":["mars, avril, mai","mai, avril, mars","avril, mars, mai"],"answer":0,"explain":"March, April, May are mars, avril, mai."},
+{"skill":"calendar","prompt":"Which phrase means tomorrow morning?","choices":["demain matin","hier soir","aujourd'hui"],"answer":0,"explain":"Demain matin means tomorrow morning."},
+{"skill":"calendar","prompt":"Which phrase means last night / yesterday evening?","choices":["hier soir","demain soir","ce matin"],"answer":0,"explain":"Hier soir refers to yesterday evening/last night."},
+{"skill":"dates","prompt":"How do you normally say May 3 in this beginner pattern?","choices":["le 3 mai","mai le 3","le troisième mai"],"answer":0,"explain":"French dates normally place the day number before the month: le 3 mai."},
+{"skill":"dates","prompt":"Which form is used for the first day of a month?","choices":["le premier mai","le un mai","le première mai"],"answer":0,"explain":"The first of the month uses premier: le premier mai."},
+{"skill":"dates","prompt":"Which question asks for the date?","choices":["Quelle est la date ?","Quelle heure est-il ?","Quel âge as-tu ?"],"answer":0,"explain":"Quelle est la date ? asks what the date is."},
+{"skill":"dates","prompt":"Which answer accurately gives November 12?","choices":["Nous sommes le 12 novembre.","Nous sommes novembre 12.","Nous sommes le douzième novembre."],"answer":0,"explain":"The course model uses le + cardinal day + month."},
+{"skill":"dates","prompt":"Why is « 05/06 » potentially unclear across communities?","choices":["Numeric date order can be interpreted differently; writing the month name removes ambiguity.","French has no numbers.","A slash always means June 5 everywhere."],"answer":0,"explain":"Written month names make the intended date clearer across different conventions."},
+{"skill":"dates","prompt":"Which line keeps the month lowercase in ordinary running text?","choices":["le 14 juillet","le 14 Juillet","le 14 JUILLET"],"answer":0,"explain":"Month names are normally lowercase in French running text."},
+{"skill":"time","prompt":"Which question asks the time?","choices":["Quelle heure est-il ?","Quelle est la date ?","Où est la gare ?"],"answer":0,"explain":"Quelle heure est-il ? asks what time it is."},
+{"skill":"time","prompt":"How do you say 1:00?","choices":["Il est une heure.","Il est un heure.","Il sont une heure."],"answer":0,"explain":"Heure is feminine: une heure."},
+{"skill":"time","prompt":"Which phrase means 2:30?","choices":["Il est deux heures et demie.","Il est deux heures et demi.","Il est deux heure et demie."],"answer":0,"explain":"Heures is plural and demie agrees with the feminine noun heure."},
+{"skill":"time","prompt":"Which phrase means noon?","choices":["midi","minuit","matin"],"answer":0,"explain":"Midi means noon."},
+{"skill":"time","prompt":"Which phrase means midnight?","choices":["minuit","midi","soir"],"answer":0,"explain":"Minuit means midnight."},
+{"skill":"time","prompt":"A schedule shows « 14 h 30 ». Which reading matches that 24-hour time?","choices":["quatorze heures trente","quatre heures trente","deux heures trente du matin"],"answer":0,"explain":"14 h 30 is quatorze heures trente in a 24-hour reading."},
+{"skill":"reading","prompt":"Read: « Le cours commence mardi à neuf heures. » When does class begin?","choices":["Tuesday at 9:00","Monday at 9:00","Tuesday at 8:00"],"answer":0,"explain":"Mardi is Tuesday and à neuf heures is at nine o'clock."},
+{"skill":"reading","prompt":"Read: « Vendredi 6 mars : bibliothèque à 14 h. » What is scheduled?","choices":["the library on Friday March 6 at 14:00","the café on March 5","school on Saturday"],"answer":0,"explain":"The line explicitly gives Friday March 6, library, 14 h."},
+{"skill":"reading","prompt":"Read: « Le rendez-vous est à midi. » What time is the appointment?","choices":["12:00 noon","12:00 midnight","2:00"],"answer":0,"explain":"Midi is noon."},
+{"skill":"reading","prompt":"Read: « Demain matin, nous avons français à huit heures et quart. » What time is French?","choices":["8:15","8:30","7:45"],"answer":0,"explain":"Huit heures et quart is 8:15."},
+{"skill":"reading","prompt":"Read: « Aujourd'hui, nous sommes le 21 octobre. » Which fact is NOT stated?","choices":["the weekday","the date is October 21","it is today"],"answer":0,"explain":"The sentence gives today and October 21 but no weekday."},
+{"skill":"reading","prompt":"Read: « Le musée ferme à dix-sept heures. » What can you conclude?","choices":["The museum closes at 17:00.","The museum opens at 17:00.","The museum is closed all day."],"answer":0,"explain":"Ferme à dix-sept heures states the closing time."},
+{"skill":"transfer","prompt":"A learner writes « le 4 Avril ». What is the ordinary running-text correction?","choices":["le 4 avril","Avril le 4","le quatrième avril"],"answer":0,"explain":"The month is normally lowercase and follows the day number."},
+{"skill":"transfer","prompt":"You need an unambiguous written date for a cross-community class. Which is clearest?","choices":["le 5 juin 2026","05/06/26","5-6"],"answer":0,"explain":"Writing the month name reduces numeric-order ambiguity."},
+{"skill":"transfer","prompt":"A timetable says 18 h. Which beginner interpretation is correct?","choices":["six in the evening / eighteen hundred hours","eight in the morning","midnight"],"answer":0,"explain":"18 h is 18:00, or six in the evening."},
+{"skill":"transfer","prompt":"Repair « Il est trois heure ».","choices":["Il est trois heures.","Il est trois heure.","Ils sont trois heures."],"answer":0,"explain":"With numbers above one, heure is plural: trois heures."},
+{"skill":"transfer","prompt":"Which task best demonstrates independent time communication?","choices":["Read a new mini-schedule and answer when events occur without copying the model.","Repeat « Il est deux heures » while viewing it and call the whole skill mastered.","Memorize the month list without using a date."],"answer":0,"explain":"Independent application requires interpreting or producing time/date language in a new context."},
+{"skill":"transfer","prompt":"For an oral time task, what should the record include?","choices":["The unfamiliar prompt, learner response, support used and correction if needed.","Only a synthetic audio-play event.","A claim that the reviewer has a privileged teacher account."],"answer":0,"explain":"Transparent evidence matters more than a privileged account label."}
+];
+
+function printFrenchLesson10(answers){
+ const source=document.getElementById("french-u01-lesson10-time");if(!source)return;
+ document.getElementById("unit01-print-copy")?.remove();const copy=element("article");copy.id="unit01-print-copy";
+ copy.append(element("h2",answers?"French 101 · Lesson 10 · Reviewer guidance":"French 101 · Lesson 10 · Learner worksheet and evidence"));
+ for(const id of answers?["french-l10-answer-guide","french-l10-review-key"]:["french-l10-worksheet"]){const n=document.getElementById(id)?.cloneNode(true);if(n){n.removeAttribute("id");if(n.tagName==="DETAILS")n.open=true;copy.append(n)}}
+ if(!answers){source.querySelectorAll("textarea").forEach(t=>{copy.append(element("h4",t.getAttribute("aria-label")||"Saved response"));const p=element("p",t.value||"(No response entered)");p.className="french-print-response";copy.append(p)});source.querySelectorAll("select[id^='french-l10-rating']").forEach(s=>copy.append(element("p",s.getAttribute("aria-label")+": "+s.value)))}
+ copy.append(element("p","Formative evidence only. Parent and Teacher may be the same person; record the reviewer role and support actually used. Synthetic speech is practice support, not independent listening."));
+ document.body.append(copy);document.body.classList.add("printing-unit01");const clean=()=>{document.body.classList.remove("printing-unit01");copy.remove();window.removeEventListener("afterprint",clean)};window.addEventListener("afterprint",clean);window.print();
+}
+
+function addFrenchLesson10TimeDepth(panel){
+ const sec=element("section");sec.id="french-u01-lesson10-time";sec.className="french-day02-depth";const prefix=learnerKey+"_beginner2026_lesson10_time_";
+ const saveStatus=element("p","Lesson 10 work saves locally for the selected learner.");saveStatus.setAttribute("role","status");
+ function save(suffix,value){const ok=safeSet(prefix+suffix,value);saveStatus.textContent=ok?"Lesson 10 evidence saved on this device.":"Saving failed. Copy or print your work before leaving.";return ok}
+ function field(label,suffix,rows=5){const wrap=element("label");wrap.append(element("span",label));const t=element("textarea");t.rows=rows;t.setAttribute("aria-label",label);t.value=safeGet(prefix+suffix)||"";t.addEventListener("input",()=>save(suffix,t.value));wrap.append(t);return wrap}
+ function h(text,id){const n=element("h4",text);if(id)n.id=id;sec.append(n)}function p(text){sec.append(element("p",text))}
+ h("Lesson 10 · Dates & Time · Full learning studio");
+ p("Learning targets: identify days and months; give and interpret simple dates; ask and tell basic time; read beginner schedules in 12-hour or 24-hour notation; use yesterday/today/tomorrow in context; and create an original mini-schedule with corrections. Personal birthdays, addresses and real appointments are never required—fictional dates and schedules are fully acceptable.");
+ const nav=element("nav");nav.setAttribute("aria-label","Lesson 10 studio sections");[["Calendar","french-l10-calendar"],["Time","french-l10-time"],["Read","french-l10-read"],["Schedule lab","french-l10-lab"],["Independent work","french-l10-writing"],["Review","french-l10-review"],["Evidence","french-l10-evidence"]].forEach(([label,id])=>{const a=element("a",label);a.href="#"+id;nav.append(a)});sec.append(nav,saveStatus);
+ h("Your route · calendar → clock → schedule");
+ p("Retrieve first: read unfamiliar numbers from Lesson 02 and use est from Lesson 07. Stage A: learn weekdays and months as calendar words. Stage B: build dates. Stage C: ask/tell time. Stage D: interpret a new schedule, then create one independently. The goal is practical communication, not reciting twelve months without context.");
+ h("1 · Days and months","french-l10-calendar");
+ const days="lundi · mardi · mercredi · jeudi · vendredi · samedi · dimanche",months="janvier · février · mars · avril · mai · juin · juillet · août · septembre · octobre · novembre · décembre";
+ p("Weekdays: "+days+".");addButton(sec,"Listen · weekdays",()=>speakFR(days.replaceAll(" · ",". ")));
+ p("Months: "+months+".");addButton(sec,"Listen · months",()=>speakFR(months.replaceAll(" · ",". ")));
+ p("In ordinary French running text, weekday and month names are normally lowercase: lundi, mars, octobre. Capitalization can still appear at the beginning of a sentence or in display typography, so the learning target is the normal written convention, not a claim that uppercase is impossible.");
+ p("Time words: aujourd'hui = today; hier = yesterday; demain = tomorrow; ce matin = this morning; cet après-midi = this afternoon; ce soir = this evening; demain matin = tomorrow morning; hier soir = yesterday evening / last night. These words depend on the speaker's reference day, so a schedule should give an actual date when ambiguity matters.");
+ h("2 · Give a date");
+ p("Ask: « Quelle est la date ? » A clear beginner answer is « Nous sommes le 12 novembre. » or simply « Le 12 novembre. » French normally places the day number before the month in this pattern. For the first day of a month, use premier: « le premier mai ». Other days use cardinal numbers: le 2 mai, le 14 juillet, le 31 décembre.");
+ p("Dates written only as digits can be ambiguous across communities. A form such as 05/06 may be interpreted differently depending on convention. For Academy evidence, writing « le 5 juin 2026 » is clearer than relying on a numeric-only date when readers may use different systems.");
+ p("To include a weekday, use a complete context such as « Le cours est lundi 9 novembre » or « Nous sommes lundi 9 novembre » in an informal date statement. Do not force a weekday if the source does not provide one. Calendar software and formal documents may use additional conventions; today's task is intelligible beginner French.");
+ h("3 · Ask and tell the time","french-l10-time");
+ p("Ask: « Quelle heure est-il ? » Answer: « Il est une heure » for 1:00 and « Il est deux heures » for 2:00. Heure is feminine, so one o'clock uses une. With larger numbers, use plural heures.");
+ const times=[["8:00","Il est huit heures."],["8:15","Il est huit heures et quart."],["8:30","Il est huit heures et demie."],["8:45","Il est neuf heures moins le quart."],["12:00","Il est midi."],["00:00","Il est minuit."],["14:30","Il est quatorze heures trente."]];
+ const tg=element("div");tg.className="french-l10-reference";times.forEach(([clock,fr])=>{const card=element("article");card.append(element("h4",clock),element("p",fr));addButton(card,"Listen",()=>speakFR(fr));tg.append(card)});sec.append(tg);
+ p("Et quart means quarter past; et demie means half past, with demie agreeing with the feminine noun heure; moins le quart means quarter to the next hour. These are useful spoken patterns. Schedules often use 24-hour notation: 14 h 30 can be read quatorze heures trente. In conversation, context may also support « deux heures et demie de l'après-midi ». Learn to interpret both rather than treating one as the only valid system.");
+ h("4 · At a stated time");
+ p("Use à before a time: « Le cours commence à neuf heures. » « La bibliothèque ferme à dix-sept heures. » A schedule may omit full sentences and show « Français · 9 h »; interpretation still requires connecting the event and time. Distinguish « Il est neuf heures » (it is 9:00) from « à neuf heures » (at 9:00).");
+ h("5 · Original reading · Le programme de mercredi","french-l10-read");
+ const reading="Mercredi 18 novembre. À huit heures et quart, Lina a français. À dix heures, elle va à la bibliothèque. Le déjeuner est à midi. À quatorze heures trente, elle a un atelier d'art. Le soir, elle lit à la maison.";
+ p("« "+reading+" »");sec.lastElementChild.lang="fr";addButton(sec,"Listen · Wednesday schedule",()=>speakFR(reading));
+ p("Support: déjeuner = lunch; atelier d'art = art workshop; le soir = in the evening. The text gives one date and several times. It does not give Lina's age, the end time of each activity or a reason for the schedule.");
+ ["What is the date? List the four timed events in chronological order.","Convert 8 h 15 and 14 h 30 into another supported way of expressing those times. Explain the equivalence.","Name two details not stated. Why should you not invent an ending time or personal biography?"].forEach((q,i)=>{p((i+1)+". "+q);sec.append(field("Lesson 10 reading evidence "+(i+1),"reading_"+i+"_v1",4))});
+ h("6 · Schedule laboratory","french-l10-lab");
+ const tasks=[["Monday at 9:00","lundi à neuf heures"],["March 5","le 5 mars"],["May 1","le premier mai"],["8:30","huit heures et demie"],["12:00 noon","midi"],["18:00","dix-huit heures"],["tomorrow morning","demain matin"],["Friday November 6","vendredi 6 novembre"]];
+ const lab=element("section"),prompt=element("p"),input=element("input"),feedback=element("p");input.type="text";input.autocomplete="off";input.setAttribute("aria-label","Type the French date or time expression");let at=0;function show(){prompt.textContent=(at+1)+"/8 · Express: "+tasks[at][0];input.value="";feedback.textContent="Use the lesson model, then explain any correction."}show();lab.append(prompt,input);addButton(lab,"Check",()=>{const expected=tasks[at][1];feedback.textContent=normalize(input.value)===normalize(expected)?"Accurate: "+expected+".":"Review: "+expected+"."});addButton(lab,"Next",()=>{at=(at+1)%tasks.length;show()});lab.append(feedback);sec.append(lab);
+ h("7 · Independent calendar and schedule","french-l10-writing");
+ p("Create a fictional three-day beginner schedule. Include three different weekdays, two written dates, at least six times, one 24-hour time, midi or minuit, and the words hier/aujourd'hui/demain in a separate three-sentence timeline. Use events such as class, library, café, art, sport or reading; no real personal schedule is required.");
+ sec.append(field("Lesson 10 independent three-day schedule","composition_v1",11));
+ p("Explain three choices: one date-order decision, one use of à before a time, and one clock expression such as et quart, et demie or 24-hour notation. Then respond to two unfamiliar reviewer-supplied date/time prompts.");
+ sec.append(field("Lesson 10 explanations and unfamiliar transfer","transfer_v1",7));
+ h("8 · Listening and speaking evidence");
+ p("For independent listening, a reviewer reads two unfamiliar dates/times without showing the text; the learner records what was heard. For independent speaking, the learner answers a new date/time question or explains a fictional schedule without reading a prepared line. Synthetic speech can rehearse but does not independently verify either skill.");
+ sec.append(field("Lesson 10 oral evidence · prompts, responses, support, corrections","oral_v1",6));
+ h("9 · Balanced formative review · 30 authored questions","french-l10-review");
+ p("Each ten-question round draws two items from calendar, dates, time, reading and transfer. This is formative practice and never changes the official legacy mastery gate.");
+ addFrenchCohesiveReview(sec,10,FRENCH_U01_L10_TIME_BANK,["calendar","dates","time","reading","transfer"]);
+ h("10 · Correction and reflection");
+ p("Repair and explain: « le 4 Avril »; « Il est trois heure »; « le un mai »; « à midi heures »; a numeric-only date that your intended reader could misinterpret. Then include two corrections from your own schedule and one next goal.");
+ sec.append(field("Lesson 10 correction journal","corrections_v1",7));
+ h("11 · Reviewer rubric","french-l10-evidence");
+ const roles=element("select");roles.setAttribute("aria-label","Lesson 10 reviewer role");["Not reviewed","Parent","Teacher","Homeschool Parent/Teacher","Mentor","Self-Directed Adult","Other Local Reviewer"].forEach(v=>{const o=element("option",v);o.value=v;roles.append(o)});roles.value=safeGet(prefix+"reviewer_role_v1")||"Not reviewed";roles.addEventListener("change",()=>save("reviewer_role_v1",roles.value));sec.append(roles);
+ const criteria=[["Calendar/date meaning","Interprets and produces taught weekdays, months and clear dates."],["Time control","Asks/tells basic time and interprets beginner schedule notation."],["Reading/writing transfer","Uses date/time language accurately in a new schedule rather than copying models."],["Independent oral evidence","Understands and/or produces unfamiliar date/time prompts; mark Not assessed if unobserved."]];
+ criteria.forEach(([name,desc],i)=>{const row=element("div");row.className="french-day02-rubric-row";const label=element("label",name),select=element("select");select.id="french-l10-rating-"+i;label.htmlFor=select.id;select.setAttribute("aria-label","Lesson 10 rubric · "+name);["Not assessed","0","1","2","3"].forEach(v=>{const o=element("option",v);o.value=v;select.append(o)});select.value=safeGet(prefix+"rubric_"+i+"_v1")||"Not assessed";select.addEventListener("change",()=>save("rubric_"+i+"_v1",select.value));row.append(label,select);sec.append(row,element("p",desc))});sec.append(field("Reviewer context, evidence observed, support and next goal","review_notes_v1",6));
+ const worksheet=element("section");worksheet.id="french-l10-worksheet";worksheet.className="unit01-worksheet";worksheet.append(element("h4","French 101 · Lesson 10 · Dates & Time"),element("p","Learner: __________________ Date: ______________"));
+ ["Write the seven weekdays and twelve months using ordinary French capitalization.","Write five dates, including the first day of a month; use month words rather than ambiguous numeric-only dates.","Express 8:00, 8:15, 8:30, 8:45, noon, midnight and 14:30.","Interpret the Wednesday schedule and identify two facts it does not state.","Create a new three-day schedule and explain three language choices.","Record unfamiliar oral date/time evidence separately or mark it Not assessed."].forEach(t=>worksheet.append(element("p",t),element("p","________________________________________________________________________")));sec.append(worksheet);
+ const guide=element("details");guide.id="french-l10-answer-guide";guide.append(element("summary","Lesson 10 reviewer guidance · open after independent work"),element("p","Calendar: lundi–dimanche; janvier–décembre, normally lowercase in running text. Dates use day before month in the taught model; the first uses premier."),element("p","Time: une heure; two or more heures; et quart; et demie; moins le quart; midi; minuit; 24-hour schedule forms such as quatorze heures trente. Accept other accurate beginner formulations when meaning is clear."),element("p","Wednesday reading: 18 November; French 8:15; library 10:00; lunch noon; art 14:30; evening reading. End times and biography are unstated."),element("p","Do not treat a voice-play event as independent listening. Record the actual unfamiliar prompt and support used."));sec.append(guide);
+ const key=element("details");key.id="french-l10-review-key";key.append(element("summary","Thirty-question formative key · reviewer reference"));FRENCH_U01_L10_TIME_BANK.forEach((q,i)=>key.append(element("p",(i+1)+". "+q.prompt+" · Answer: "+q.choices[q.answer]+". "+q.explain)));sec.append(key);
+ const actions=element("div");addButton(actions,"Print learner evidence",()=>printFrenchLesson10(false));addButton(actions,"Print reviewer guidance",()=>printFrenchLesson10(true));sec.append(actions);panel.append(sec);
+}
+
+function addFrenchLesson10SpellingArchive(panel){
+ const d=FRENCH_101_UNIT01_DAYS.find(x=>x.day===10);if(!d)return;const archive=element("details");archive.className="french-legacy-extra";archive.append(element("summary","Optional archival enrichment · earlier Lesson 10 spelling names in conversation"),element("p","This earlier spelling/conversation material remains available for continuity. Its saved work is not reclassified as Dates & Time mastery."),element("h4",d.title),element("p",d.lecture),element("p","Examples: "+d.models),element("p","Guided: "+d.guided),element("p","Earlier assignment: "+d.assignment));
+ const old=element("textarea");old.rows=5;old.setAttribute("aria-label","Earlier Lesson 10 spelling writing");old.value=safeGet(learnerKey+"_u01_day10_writing")||"";old.addEventListener("input",()=>safeSet(learnerKey+"_u01_day10_writing",old.value));archive.append(old);
+ const transfer=element("textarea");transfer.rows=4;transfer.setAttribute("aria-label","Earlier Lesson 10 transfer");transfer.value=safeGet(learnerKey+"_u01_day10_transfer_v1")||"";transfer.addEventListener("input",()=>safeSet(learnerKey+"_u01_day10_transfer_v1",transfer.value));archive.append(transfer);
+ const notes=element("textarea");notes.rows=3;notes.setAttribute("aria-label","Earlier Lesson 10 review notes");notes.value=safeGet(learnerKey+"_u01_d10_review_notes")||"";notes.addEventListener("input",()=>safeSet(learnerKey+"_u01_d10_review_notes",notes.value));archive.append(notes);panel.append(archive);
+}
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
- wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–09 are developed in the current curriculum. Earlier daily topics that once occupied Lessons 10–15 remain available as archival enrichment until their canonical replacements are developed. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
+ wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–10 are developed in the current curriculum. Earlier daily topics that once occupied Lessons 11–15 remain available as archival enrichment until their canonical replacements are developed. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
  const picker=element("select");picker.setAttribute("aria-label","Choose Unit 01 lesson");picker.style.cssText="width:100%;padding:10px;margin:8px 0";
  const lessonSelectionKey=()=>learnerKey+"_u01_selected_lesson_v1";
  const savedSelection=safeGet(lessonSelectionKey());
 
- FRENCH_101_UNIT01_DAYS.forEach(d=>{const current=d.day===9?"Colors, Shapes & Descriptions":d.day===8?"Family and Relationships":d.day===7?"Être and Avoir":d.day===6?"Nouns, Articles and Gender":d.day===2?"Numbers · 0–100":d.title;const label=d.day>=10?"Archive · Earlier "+String(d.day).padStart(2,"0")+" — "+d.title:"Lesson "+String(d.day).padStart(2,"0")+" — "+current;const o=element("option",label);o.value=d.day;picker.append(o)});
+ FRENCH_101_UNIT01_DAYS.forEach(d=>{const current=d.day===10?"Dates & Time":d.day===9?"Colors, Shapes & Descriptions":d.day===8?"Family and Relationships":d.day===7?"Être and Avoir":d.day===6?"Nouns, Articles and Gender":d.day===2?"Numbers · 0–100":d.title;const label=d.day>=11?"Archive · Earlier "+String(d.day).padStart(2,"0")+" — "+d.title:"Lesson "+String(d.day).padStart(2,"0")+" — "+current;const o=element("option",label);o.value=d.day;picker.append(o)});
  if(savedSelection&&FRENCH_101_UNIT01_DAYS.some(d=>String(d.day)===savedSelection))picker.value=savedSelection;
  const panel=element("article");panel.className="unit01-active-day";panel.style.cssText="max-width:780px;margin:0 auto;line-height:1.65";const navigation=element("div");navigation.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0";const previous=element("button","← Previous Lesson"),next=element("button","Next Lesson →");previous.type=next.type="button";navigation.append(previous,next);const journey=element("p");journey.setAttribute("role","status");const status=element("p");status.setAttribute("role","status");
  function draw(){
   const d=FRENCH_101_UNIT01_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_UNIT01_DAYS[0];
   safeSet(lessonSelectionKey(),String(d.day));
   panel.replaceChildren();
+  if(d.day===10){
+   panel.append(element("h4","Lesson 10 · Dates & Time"));addFrenchLesson10TimeDepth(panel);addFrenchLesson10SpellingArchive(panel);
+   status.textContent="Lesson 10 dates/time studio ready. Earlier spelling-in-conversation work remains optional and preserved.";previous.disabled=false;next.disabled=true;previous.textContent="← Lesson 09";next.textContent="Lesson 11 · in development";journey.textContent="French 101 · Canonical Lesson 10 of 18 · Everyday Life. Daily formative work is separate from official 80% mastery.";return;
+  }
   if(d.day===9){
    panel.append(element("h4","Lesson 09 · Colors, Shapes & Descriptions"));addFrenchLesson09ColorsDepth(panel);addFrenchLesson09SoundArchive(panel);
-   status.textContent="Lesson 09 description studio ready. Earlier sound-combination work remains optional and preserved.";previous.disabled=false;next.disabled=true;previous.textContent="← Lesson 08";next.textContent="Lesson 10 · in development";journey.textContent="French 101 · Canonical Lesson 09 of 18 · People & Description. Daily formative work is separate from official 80% mastery.";return;
+   status.textContent="Lesson 09 description studio ready. Earlier sound-combination work remains optional and preserved.";previous.disabled=false;next.disabled=false;previous.textContent="← Lesson 08";next.textContent="Next Lesson →";journey.textContent="French 101 · Canonical Lesson 09 of 18 · People & Description. Daily formative work is separate from official 80% mastery.";return;
   }
   if(d.day===8){
    panel.append(element("h4","Lesson 08 · Family and Relationships"));addFrenchLesson08FamilyDepth(panel);addFrenchLesson08NasalVowelsArchive(panel);
@@ -2094,7 +2211,7 @@ function addUnit01DailySequence(parent){
    
    status.textContent="Lesson 06 noun/article review ready. Earlier listening evidence remains in optional enrichment.";previous.disabled=false;next.disabled=false;previous.textContent="← Previous Lesson";journey.textContent="Course Level 1 · Viewing Lesson 06 of 15 · Nouns, Articles and Gender. Official mastery remains separate at 80%.";return;
   }
-  if(d.day>=10){
+  if(d.day>=11){
    panel.append(element("h4","Archival enrichment · Earlier Lesson "+String(d.day).padStart(2,"0")+" · "+d.title),element("p","This material is preserved from the earlier Unit 01 phonology/literacy sequence. It remains useful practice, but it is not the canonical French 101 Lesson "+String(d.day).padStart(2,"0")+". The canonical replacement will be developed separately without deleting this work."));
   }else{
    panel.append(element("h4","Lesson "+String(d.day).padStart(2,"0")+" · "+(d.day===2?"Numbers · 0–100":d.title)));
@@ -2161,7 +2278,7 @@ function addUnit01DailySequence(parent){
   panel.append(deeper);
   const print=element("button","Print lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(d.day));panel.append(print);
   cohereFrenchDailyPanel(panel,d.day);
-  status.textContent=d.day>=10?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=10?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
+  status.textContent=d.day>=11?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=11?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
  }
  previous.addEventListener("click",()=>{if(Number(picker.value)===2){document.getElementById("french101-unit01-day01")?.scrollIntoView({block:"start",behavior:"smooth"});return}picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
 }
