@@ -515,7 +515,7 @@ function chooseLearner(){
  for(const key of Object.keys(progress))delete progress[key];
  Object.assign(progress,readKey(learnerKey));
  safeSet("french101_active_learner",name);
- $("learnerStatus").textContent="Current learner: "+(name||"Anonymous")+". Progress is stored on this device.";
+ $("learnerStatus").textContent="Current learner: "+(name||"Anonymous")+". Progress is stored on this device."+(name?"":" Anonymous work is shared by anyone using this browser without choosing a name. Select a learner before saving coursework.");
  buildLevelGrid();showOnly("menu");
 }
 $("selectLearner").addEventListener("click",chooseLearner);
@@ -526,6 +526,21 @@ $("exportRecord").addEventListener("click",()=>{
  link.href=url;link.download="khaemenes-french101-progress.json";link.click();
  setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
+/* Optional, additive backup of learner-specific lesson evidence. Does not change existing progress exports. */
+function exportFrench101LessonEvidence(){
+ const prefix=learnerKey+"_";const records={};
+ try{
+  for(let i=0;i<localStorage.length;i++){
+   const key=localStorage.key(i);
+   if(key&&(key.startsWith(prefix)||key===learnerKey))records[key]=localStorage.getItem(key);
+  }
+ }catch(error){window.alert("Local learning records cannot be read on this browser. No backup was created.");return}
+ const payload={format:"khaemenes-french101-lesson-evidence-v1",learner:document.getElementById("learnerName").value.trim()||"Anonymous",exportedAt:new Date().toISOString(),records};
+ const file=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),url=URL.createObjectURL(file),a=document.createElement("a");
+ a.href=url;a.download="french101-lesson-evidence.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+const exportEvidenceControl=element("button","Export lesson writing and review evidence");exportEvidenceControl.type="button";exportEvidenceControl.addEventListener("click",exportFrench101LessonEvidence);
+document.getElementById("exportRecord")?.insertAdjacentElement("afterend",exportEvidenceControl);
 let currentLevel=null;
 function saveProgress(){return safeSet(learnerKey,JSON.stringify(progress))}
 function available(level){if(level===2&&progress.u01GateRequired===true&&!progress[2]&&!progress.u01CheckpointPassed)return false;return level===1||progress[level]==="completed"||progress[level]==="unlocked"||progress[level-1]==="completed"}
@@ -868,7 +883,7 @@ const UNIT01_TRANSFER_QUESTIONS=[
 ];
 function addUnit01Checkpoint(parent){
  const section=element("section");section.className="study-section";section.id="unit01-checkpoint";
- section.append(element("h3","Unit 01 · Cumulative Knowledge Check"),element("p","15 independently answered questions covering alphabet, accents, spelling, sound patterns and useful expressions. 80% (12/15) is required for a recorded Unit 01 knowledge pass. This new record does not reset or retroactively revoke previously earned Level 1 mastery."));
+ section.append(element("h3","Official Unit 01 Checkpoint · 80% Knowledge Gate"),element("p","This is NOT a lesson practice quiz. It is the 15-question cumulative assessment for Unit 01, testing alphabet, accents, spelling, sound patterns and useful expressions. A recorded pass requires 12 correct out of 15 (80%). The separate Level 1 quiz also requires 80%. Neither this checkpoint nor its results revoke previously earned mastery."));
  const container=element("div");section.append(container);const status=element("p");status.setAttribute("role","status");section.append(status);
  const key=learnerKey+"_u01_checkpoint_v1";const saved=()=>{try{return JSON.parse(safeGet(key)||"null")}catch{return null}};
  function draw(){
@@ -1198,7 +1213,7 @@ function addFrenchBeginnerCore(panel,num){
 
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
- wrap.append(element("h3","Unit 01 · Alphabet and French Sounds · Self-Paced"),element("p","Fourteen additional self-paced lessons follow Lesson 01. Work through them in order at your own pace. Practice reviews are formative and do not change the 80% official mastery gate."));
+ wrap.append(element("h3","Unit 01 · Self-Paced Lesson Library"),element("p","This section contains Lessons 02–15 inside Course Level 1. Level 1 and Lesson 01 are different: a course level is the official mastery stage, while a lesson is a learning activity. You may review lessons freely; the separate official Level 1 quiz and Unit 01 checkpoint still require 80% mastery."));
  const picker=element("select");picker.setAttribute("aria-label","Choose Unit 01 lesson");picker.style.cssText="width:100%;padding:10px;margin:8px 0";
  const lessonSelectionKey=()=>learnerKey+"_u01_selected_lesson_v1";
  const savedSelection=safeGet(lessonSelectionKey());
@@ -1211,7 +1226,7 @@ function addUnit01DailySequence(parent){
   safeSet(lessonSelectionKey(),String(d.day));
   panel.replaceChildren();
   panel.append(element("h4","Lesson "+String(d.day).padStart(2,"0")+" · "+d.title),element("h4","Step 1 · Learn"),element("p",d.lecture),element("h4","French examples"),element("p",d.models));
-  const legacyExtra=element("details");legacyExtra.className="french-legacy-extra";legacyExtra.append(element("summary","Earlier alphabet and phonetics enrichment · optional"));
+  const legacyExtra=element("details");legacyExtra.className="french-legacy-extra";legacyExtra.append(element("summary","Optional archival enrichment · earlier vowel lesson (not required for Numbers)"));
   if(d.day===2){
    legacyExtra.append(element("h4","Learning targets · Letter names and vowel families"),
     element("p","Recognize the written vowels A, E, I, O, U; hear their French letter names when speech is available; explain that Y sometimes functions as a vowel; and distinguish spelling a word from pronouncing it."),
@@ -1236,8 +1251,8 @@ function addUnit01DailySequence(parent){
   if(d.day===2)addFrenchLesson02NumbersDepth(panel);
   if(d.day===3)addFrenchLesson03VowelsPronounsDepth(panel);
   addFrench101ArchiveVideoSlot(panel,d.day);
-  if(d.day===3){const historical=element("details");historical.className="french-legacy-extra";historical.append(element("summary","Earlier consonant spelling enrichment · optional"));addFrenchLesson03Depth(historical);panel.append(historical)}
-  if(d.day===4){const historical=element("details");historical.className="french-legacy-extra";historical.append(element("summary","Earlier accents enrichment · optional"));addFrenchLesson04Depth(historical);panel.append(historical)}
+  if(d.day===3){const historical=element("details");historical.className="french-legacy-extra";historical.append(element("summary","Optional archival enrichment · earlier consonant lesson (not required for Vowels and Pronouns)"));addFrenchLesson03Depth(historical);panel.append(historical)}
+  if(d.day===4){const historical=element("details");historical.className="french-legacy-extra";historical.append(element("summary","Optional archival enrichment · earlier accents lesson (not required for Greetings)"));addFrenchLesson04Depth(historical);panel.append(historical)}
   if(d.day===2)panel.append(legacyExtra);
 
   const audio=element("button","Listen to French examples");audio.type="button";audio.addEventListener("click",()=>speakFR(d.models));panel.append(audio);
@@ -1267,9 +1282,9 @@ function addUnit01DailySequence(parent){
   deeper.append(element("p","Review rubric: 1) New examples are original; 2) spelling and accents are accurate; 3) explanations are meaningful; 4) corrections demonstrate understanding. An educator must review spoken and written performance separately."));
   panel.append(deeper);
   const print=element("button","Print lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(d.day));panel.append(print);
-  status.textContent="Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=d.day<=2;next.disabled=d.day>=15;journey.textContent="Selected: Lesson "+String(d.day).padStart(2,"0")+" of 15 · Lesson 01 is above. Your pace is flexible; saved drafts are independent and only official mastery unlocks levels.";
+  status.textContent="Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous Lesson";journey.textContent="Course Level 1 · Viewing Lesson "+String(d.day).padStart(2,"0")+" of 15. Lesson review is open; official level mastery is assessed separately at 80%. Independent work saves under this learner profile.";
  }
- previous.addEventListener("click",()=>{picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
+ previous.addEventListener("click",()=>{if(Number(picker.value)===2){document.getElementById("french101-unit01-day01")?.scrollIntoView({block:"start",behavior:"smooth"});return}picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
 }
 
 /* Verified Academy tools — optional practice; never modify French 101 mastery records. */
