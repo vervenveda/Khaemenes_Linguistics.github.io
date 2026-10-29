@@ -997,7 +997,7 @@ const UNIT01_TRANSFER_QUESTIONS=[
 ];
 function addUnit01Checkpoint(parent){
  const section=element("section");section.className="study-section";section.id="unit01-checkpoint";
- section.append(element("h3","Official Unit 01 Checkpoint · 80% Knowledge Gate"),element("p","This is NOT a lesson practice quiz. It is the 15-question cumulative assessment for Unit 01, testing alphabet, accents, spelling, sound patterns and useful expressions. A recorded pass requires 12 correct out of 15 (80%). The separate Level 1 quiz also requires 80%. Neither this checkpoint nor its results revoke previously earned mastery."));
+ section.append(element("h3","Compatibility Unit 01 Checkpoint · 80% Knowledge Gate"),element("p","This preserved 15-question checkpoint belongs to the earlier Unit 01/Level 1 progression and remains required where an existing learner record expects it. It tests alphabet, accents, spelling, sound patterns and useful expressions; 12/15 (80%) passes. It is not the future cumulative checkpoint for canonical Lessons 01–06, and it never revokes previously earned mastery."));
  const container=element("div");section.append(container);const status=element("p");status.setAttribute("role","status");section.append(status);
  const key=learnerKey+"_u01_checkpoint_v1";const saved=()=>{try{return JSON.parse(safeGet(key)||"null")}catch{return null}};
  function draw(){
@@ -1062,6 +1062,7 @@ function printUnit01Day(day,educator=false){
  if(day===6){printFrenchLesson06(false);return}
  if(day===7){printFrenchLesson07(false);return}
  if(day===8){printFrenchLesson08(false);return}
+ if(day===9){printFrenchLesson09(false);return}
  const source=day===1?document.getElementById("french101-unit01-day01"):document.querySelector("#unit01-daily-lessons .unit01-active-day");
  if(!source)return;
  const previous=document.getElementById("unit01-print-copy");if(previous)previous.remove();
@@ -1925,20 +1926,161 @@ function addFrenchBeginnerCore(panel,num){
  panel.append(sec);
 }
 
+/* French 101 · Canonical Lesson 09 · Colors, Shapes & Descriptions.
+   Additive curriculum development. Historical Day 09 sound-combination work remains available as archival enrichment. */
+const FRENCH_U01_L09_DESCRIPTIONS_BANK=[
+{"skill":"colors","prompt":"Which phrase means a blue book?","choices":["un livre bleu","un livre bleue","une livre bleu"],"answer":0,"explain":"Livre is masculine singular, so the beginner model is un livre bleu."},
+{"skill":"colors","prompt":"Which word means green?","choices":["vert","rouge","noir"],"answer":0,"explain":"Vert means green."},
+{"skill":"colors","prompt":"Which phrase means a white flower?","choices":["une fleur blanche","une fleur blanc","un fleur blanche"],"answer":0,"explain":"Fleur is feminine, so blanche agrees with it."},
+{"skill":"colors","prompt":"Which spelling names the color gray in a masculine singular phrase?","choices":["gris","grise","grises"],"answer":0,"explain":"Gris is the masculine singular form; grise is feminine singular."},
+{"skill":"colors","prompt":"Which color word is normally unchanged in the beginner phrase « des sacs ___ »?","choices":["orange","verts","blanches"],"answer":0,"explain":"Orange, originally a noun used as a color term, is normally invariable here."},
+{"skill":"colors","prompt":"Which is the accurate phrase for a yellow star?","choices":["une étoile jaune","un étoile jaune","une étoile jaunes"],"answer":0,"explain":"Étoile is feminine singular; jaune has the same singular form for masculine and feminine."},
+{"skill":"agreement","prompt":"Complete: « une pomme ___ » for a green apple.","choices":["verte","vert","verts"],"answer":0,"explain":"The adjective agrees with feminine singular pomme: verte."},
+{"skill":"agreement","prompt":"Complete: « deux carrés ___ » for two blue squares.","choices":["bleus","bleu","bleues"],"answer":0,"explain":"Carrés is masculine plural, so bleu becomes bleus."},
+{"skill":"agreement","prompt":"Complete: « trois lignes ___ » for three black lines.","choices":["noires","noirs","noire"],"answer":0,"explain":"Lignes is feminine plural, so noir becomes noires."},
+{"skill":"agreement","prompt":"Which statement is accurate?","choices":["The color adjective usually agrees with the noun it describes.","The speaker's gender chooses every color ending.","All color words are always invariable."],"answer":0,"explain":"In the core patterns here, agreement follows the described noun, with explicitly taught exceptions such as orange and marron."},
+{"skill":"agreement","prompt":"Repair « une voiture blanc ».","choices":["une voiture blanche","un voiture blanc","une voiture blancs"],"answer":0,"explain":"Voiture is feminine singular; blanc changes to blanche."},
+{"skill":"agreement","prompt":"Repair « les étoiles bleu ».","choices":["les étoiles bleues","les étoiles bleus","la étoiles bleue"],"answer":0,"explain":"Étoiles is feminine plural, so bleu becomes bleues."},
+{"skill":"shapes","prompt":"Which word means a circle?","choices":["un cercle","un carré","un triangle"],"answer":0,"explain":"Un cercle is a circle."},
+{"skill":"shapes","prompt":"Which word means a square?","choices":["un carré","un rectangle","une ligne"],"answer":0,"explain":"Un carré is a square."},
+{"skill":"shapes","prompt":"Which word is feminine?","choices":["une étoile","un triangle","un cercle"],"answer":0,"explain":"Étoile is introduced here as une étoile."},
+{"skill":"shapes","prompt":"Which phrase means two rectangles?","choices":["deux rectangles","deux rectangle","deux étoiles"],"answer":0,"explain":"Rectangle takes the plural -s in writing: deux rectangles."},
+{"skill":"shapes","prompt":"Which sentence identifies several shapes?","choices":["Ce sont trois triangles.","C'est trois triangles.","Il est trois triangles."],"answer":0,"explain":"Ce sont is the standard written plural identification model used in this lesson."},
+{"skill":"shapes","prompt":"Which question asks what shape something is?","choices":["Quelle forme est-ce ?","Quelle couleur est-ce ?","Quel âge as-tu ?"],"answer":0,"explain":"Quelle forme est-ce ? asks about shape."},
+{"skill":"reading","prompt":"Read: « Le cercle est rouge. Le carré est bleu. » Which shape is blue?","choices":["le carré","le cercle","l'étoile"],"answer":0,"explain":"The second sentence states that the square is blue."},
+{"skill":"reading","prompt":"Read: « Il y a deux étoiles jaunes et une ligne noire. » How many stars are there?","choices":["two","one","three"],"answer":0,"explain":"Deux étoiles means two stars."},
+{"skill":"reading","prompt":"Read: « La grande affiche a trois triangles verts. » What is green?","choices":["the three triangles","the poster itself","an unstated circle"],"answer":0,"explain":"Verts agrees with triangles; the text does not say the poster itself is green."},
+{"skill":"reading","prompt":"Read: « Une porte blanche est à gauche. » What color is the door?","choices":["white","black","yellow"],"answer":0,"explain":"Blanche describes porte."},
+{"skill":"reading","prompt":"Read: « Les deux lignes sont grises. » Which phrase shows plural agreement?","choices":["les lignes grises","la ligne gris","un ligne grise"],"answer":0,"explain":"Les lignes grises marks a feminine plural noun phrase."},
+{"skill":"reading","prompt":"Read: « Le sac est marron. » What should you infer about the owner's identity?","choices":["Nothing; the sentence only describes the bag's color.","The owner is male.","The owner is female."],"answer":0,"explain":"Color and noun gender do not identify the owner."},
+{"skill":"transfer","prompt":"You need to describe two red books. Which phrase preserves number and agreement?","choices":["deux livres rouges","deux livre rouge","deux livres rouge"],"answer":0,"explain":"Livres is plural and rouges agrees in the plural."},
+{"skill":"transfer","prompt":"A learner writes « une étoile vert ». What should be corrected?","choices":["vert → verte","étoile → étoilé","une → un"],"answer":0,"explain":"Étoile is feminine singular, so the adjective is verte."},
+{"skill":"transfer","prompt":"Which sentence gives both shape and color without inventing extra information?","choices":["C'est un cercle noir.","Le cercle appartient à Marie.","Le cercle est ancien et cher."],"answer":0,"explain":"The first sentence states only the supplied shape and color."},
+{"skill":"transfer","prompt":"A poster has one blue square and two yellow stars. Which description is accurate?","choices":["Il y a un carré bleu et deux étoiles jaunes.","Il y a une carré bleue et deux étoile jaune.","Ce sont un carré bleu et deux étoiles jaune."],"answer":0,"explain":"The accurate sentence preserves noun gender, number and adjective agreement."},
+{"skill":"transfer","prompt":"Which is the best correction strategy for an unfamiliar adjective ending?","choices":["Identify the noun's gender/number, consult the supplied model or dictionary, then revise.","Guess from the speaker's gender.","Remove every adjective ending."],"answer":0,"explain":"Agreement decisions should be evidence-based rather than guessed."},
+{"skill":"transfer","prompt":"For independent speaking evidence, what should the learner do?","choices":["Describe a new image or arrangement without reading the model, with the reviewer noting support used.","Replay synthetic speech and mark speaking secure.","Copy the written answer aloud while looking at it and call it independent."],"answer":0,"explain":"Independent production requires a new task and transparent record of support."}
+];
+
+function printFrenchLesson09(answers){
+ const source=document.getElementById("french-u01-lesson09-descriptions");if(!source)return;
+ document.getElementById("unit01-print-copy")?.remove();
+ const copy=element("article");copy.id="unit01-print-copy";copy.className="french-lesson09-print";
+ copy.append(element("h2",answers?"French 101 · Lesson 09 · Reviewer guidance":"French 101 · Lesson 09 · Learner worksheet and evidence"));
+ for(const id of answers?["french-l09-answer-guide","french-l09-review-key"]:["french-l09-worksheet"]){
+  const n=document.getElementById(id)?.cloneNode(true);if(n){n.removeAttribute("id");if(n.tagName==="DETAILS")n.open=true;copy.append(n)}
+ }
+ if(!answers){
+  source.querySelectorAll("textarea").forEach(t=>{copy.append(element("h4",t.getAttribute("aria-label")||t.closest("label")?.querySelector("span")?.textContent||"Saved response"));const p=element("p",t.value||"(No response entered)");p.className="french-print-response";copy.append(p)});
+  source.querySelectorAll("select[id^='french-l09-rating']").forEach(s=>copy.append(element("p",s.getAttribute("aria-label")+": "+s.value)));
+  const summary=document.getElementById("french-l09-round-summary");if(summary)copy.append(element("p",summary.textContent));
+ }
+ copy.append(element("p","Formative evidence only. Reviewer roles may include Parent, Teacher, Homeschool Parent/Teacher, Mentor, Self-Directed Adult or another local reviewer. Synthetic speech is practice support, not proof of independent listening."));
+ document.body.append(copy);document.body.classList.add("printing-unit01");
+ const clean=()=>{document.body.classList.remove("printing-unit01");copy.remove();window.removeEventListener("afterprint",clean)};
+ window.addEventListener("afterprint",clean);window.print();
+}
+
+function addFrenchLesson09ColorsDepth(panel){
+ const sec=element("section");sec.id="french-u01-lesson09-descriptions";sec.className="french-day02-depth";
+ const prefix=learnerKey+"_beginner2026_lesson09_descriptions_";
+ const saveStatus=element("p","Lesson 09 work saves locally for the selected learner.");saveStatus.setAttribute("role","status");
+ const audioStatus=element("p","French system speech is optional rehearsal. Independent listening/speaking must be recorded separately.");audioStatus.setAttribute("role","status");
+ function save(suffix,value){const ok=safeSet(prefix+suffix,value);saveStatus.textContent=ok?"Lesson 09 evidence saved on this device.":"Saving failed. Copy or print your work before leaving.";return ok}
+ function field(label,suffix,rows=5){const wrap=element("label");wrap.append(element("span",label));const t=element("textarea");t.rows=rows;t.setAttribute("aria-label",label);t.value=safeGet(prefix+suffix)||"";t.addEventListener("input",()=>save(suffix,t.value));wrap.append(t);return wrap}
+ function h(text,id){const n=element("h4",text);if(id)n.id=id;sec.append(n)}function p(text){sec.append(element("p",text))}
+ h("Lesson 09 · Colors, Shapes & Descriptions · Full learning studio");
+ p("Learning targets: identify common colors and shapes; describe visible objects with a noun and adjective; make core gender/number agreement choices; ask and answer simple color/shape questions; interpret an unfamiliar visual description without inventing facts; and create original descriptions with corrections. This is canonical French 101 Lesson 09, not official legacy Level 9.");
+ const nav=element("nav");nav.setAttribute("aria-label","Lesson 09 studio sections");
+ [["Learn","french-l09-learn"],["Read","french-l09-read"],["Description lab","french-l09-lab"],["Independent work","french-l09-writing"],["Review","french-l09-review"],["Evidence","french-l09-evidence"]].forEach(([label,id])=>{const a=element("a",label);a.href="#"+id;nav.append(a)});sec.append(nav,saveStatus,audioStatus);
+ h("Your route · observe, agree, describe");
+ p("Retrieve first: choose un/une for a familiar noun, distinguish singular from plural, and use est/sont from Lesson 07. Stage A: learn colors as adjectives in complete noun phrases. Stage B: learn six shape nouns. Stage C: combine number, noun and adjective. Stage D: interpret a new description, then create one independently. Work from meaning toward form rather than memorizing an isolated color list.");
+ h("1 · Learn colors inside noun phrases","french-l09-learn");
+ p("A color word often describes a noun and normally follows it in the beginner patterns here: un livre bleu, une pomme verte, une porte blanche. Because the adjective describes the noun, many color adjectives change for gender or number. Do not choose an ending from the learner's gender, the object's owner or an English spelling.");
+ const colors=[["rouge","red","un livre rouge · une pomme rouge"],["bleu / bleue","blue","un livre bleu · une porte bleue"],["vert / verte","green","un carré vert · une étoile verte"],["noir / noire","black","un sac noir · une ligne noire"],["blanc / blanche","white","un mur blanc · une porte blanche"],["gris / grise","gray","un ciel gris · une table grise"],["jaune","yellow","un triangle jaune · une étoile jaune"],["violet / violette","purple","un cercle violet · une forme violette"],["orange","orange","un sac orange · des sacs orange"],["marron","brown","un sac marron · des sacs marron"]];
+ const grid=element("div");grid.className="french-l09-reference";
+ colors.forEach(([form,en,example])=>{const card=element("article");card.append(element("h4",form),element("p",en),element("p",example));addButton(card,"Listen · "+example,()=>{const ok=speakFR(example.replace(" · ",". "));audioStatus.textContent=ok?"French model requested. Rehearsal is not independent listening.":"French audio unavailable; written instruction remains available."});grid.append(card)});sec.append(grid);
+ p("Core agreement examples: bleu → bleue → bleus → bleues; vert → verte → verts → vertes; noir → noire → noirs → noires; blanc → blanche → blancs → blanches; gris → grise → gris → grises. Rouge and jaune keep the same masculine/feminine singular spelling but add -s in ordinary plural phrases. This lesson explicitly teaches orange and marron as common invariable color adjectives: des sacs orange, des yeux marron. More complex color terms belong to later study.");
+ h("2 · Shapes are nouns with their own gender");
+ const shapes=[["un cercle","a circle"],["un carré","a square"],["un triangle","a triangle"],["un rectangle","a rectangle"],["une étoile","a star"],["une ligne","a line"],["une forme","a shape/form"]];
+ const sg=element("div");sg.className="french-l09-reference";shapes.forEach(([fr,en])=>{const card=element("article");card.append(element("h4",fr),element("p",en));addButton(card,"Listen · "+fr,()=>speakFR(fr));sg.append(card)});sec.append(sg);
+ p("Learn the article with the noun: un cercle, un carré, un triangle, un rectangle, but une étoile and une ligne. Plural writing uses des or les plus the plural noun: des cercles, des carrés, des étoiles. The final written plural letters may not all be audible, so written agreement and listening evidence remain separate skills.");
+ h("3 · Build a complete description");
+ p("Use a simple frame: article + noun + adjective. Un cercle rouge. Une étoile bleue. Deux carrés verts. Trois lignes noires. When the noun becomes plural, the article/number and adjective must make sense together. In « deux carrés bleus », the -s on carrés and bleus marks written plural agreement.");
+ p("For identification, use C'est with one item and Ce sont with several: C'est un triangle jaune. Ce sont deux étoiles vertes. Use Il y a to say there is/there are: Il y a un cercle noir. Il y a trois rectangles rouges. French does not require a different il y a form for plural existence.");
+ p("Questions: « Quelle couleur est-ce ? » asks what color it is. « Quelle forme est-ce ? » asks what shape it is. A short answer can be « C'est bleu » when the referent/context supports an adjective used predicatively, but today's strongest evidence uses a complete noun phrase: « C'est un carré bleu. »");
+ h("4 · Worked reasoning");
+ ["A · une voiture blanche: voiture is feminine singular, so blanc changes to blanche.","B · deux livres rouges: livres is plural; rouge receives plural -s.","C · une étoile jaune: jaune has the same masculine/feminine singular spelling here, so no extra feminine ending is added.","D · des sacs orange: orange is treated as invariable in this color use, so no plural -s is added.","E · les lignes grises: ligne is feminine and plural, so gris becomes grises."].forEach(p);
+ h("5 · Read and interpret · L'affiche de la classe","french-l09-read");
+ const reading="Dans la classe, il y a une grande affiche. Le cercle est rouge. Le carré est bleu. Il y a deux étoiles jaunes et trois triangles verts. Une ligne noire est à gauche. Deux rectangles orange sont à droite.";
+ p("« "+reading+" »");sec.lastElementChild.lang="fr";addButton(sec,"Listen · classroom poster",()=>speakFR(reading));
+ p("Reading support: affiche = poster; grande = large; à gauche = on the left; à droite = on the right. The text states colors, shapes, quantities and two locations. It does not state who made the poster, why those colors were chosen or what they symbolize.");
+ ["List every shape and the color attached to it. Keep singular/plural evidence.","How many stars and triangles are stated? Where is the black line? Where are the orange rectangles?","Name two facts the reading does not state. Explain why color alone should not be treated as proof of cultural symbolism or ownership."].forEach((q,i)=>{p((i+1)+". "+q);sec.append(field("Lesson 09 reading evidence "+(i+1),"reading_"+i+"_v1",4))});
+ h("6 · Description laboratory","french-l09-lab");
+ const tasks=[["one blue square","un carré bleu"],["one green star","une étoile verte"],["two black lines","deux lignes noires"],["three red circles","trois cercles rouges"],["two white rectangles","deux rectangles blancs"],["three yellow stars","trois étoiles jaunes"],["two orange bags","deux sacs orange"],["one purple shape","une forme violette"]];
+ const lab=element("section"),prompt=element("p"),input=element("input"),feedback=element("p");input.type="text";input.autocomplete="off";input.setAttribute("aria-label","Type the French description");let at=0;
+ function show(){prompt.textContent=(at+1)+"/8 · Describe: "+tasks[at][0];input.value="";feedback.textContent="Build the phrase from meaning; accents and agreement matter."}
+ addButton(lab,"Check description",()=>{const expected=tasks[at][1],ok=normalize(input.value)===normalize(expected);feedback.textContent=ok?"Accurate: "+expected+".":"Review the noun, number and adjective: "+expected+"."});
+ addButton(lab,"Next description",()=>{at=(at+1)%tasks.length;show()});lab.prepend(prompt,input);lab.append(feedback);sec.append(lab);show();
+ h("7 · Independent visual-language portfolio","french-l09-writing");
+ p("Create a fictional poster, room, geometric design or object arrangement. Write at least ten French sentences. Include four different colors, four shapes or familiar objects, at least three plural descriptions, one use of C'est, one use of Ce sont, one use of Il y a, and two sentences that require a visible adjective change such as verte, blanche, bleus or grises. A drawing is optional; the French description itself is the evidence.");
+ sec.append(field("Lesson 09 independent composition","composition_v1",10));
+ p("Then explain three agreement decisions in English or simple French: identify the noun, its number/gender where relevant, and why the adjective form fits. Add two unfamiliar combinations supplied by a Parent/Teacher, Homeschool Parent/Teacher, Mentor, Self-Directed Adult reviewer, or another local reviewer.");
+ sec.append(field("Lesson 09 agreement explanations and unfamiliar transfer","transfer_v1",7));
+ h("8 · Speaking and listening evidence");
+ p("Practice: use the French system voice to rehearse complete phrases. Independent listening: a reviewer describes a new picture or arrangement without showing the written sentence; record what you understood. Independent speaking: describe a different new arrangement without reading a model. If no independent observation occurs, mark the oral criterion Not assessed rather than converting synthetic playback into proficiency.");
+ sec.append(field("Lesson 09 listening/speaking observation notes · prompt, support used, response and correction","oral_v1",6));
+ h("9 · Balanced formative review · 30 authored questions","french-l09-review");
+ p("Each practice round draws ten questions: two each from colors, agreement, shapes, reading and transfer. Responses lock after one choice; a new round creates new practice. These records are formative and never change official mastery.");
+ addFrenchCohesiveReview(sec,9,FRENCH_U01_L09_DESCRIPTIONS_BANK,["colors","agreement","shapes","reading","transfer"]);
+ const roundSummary=element("p");roundSummary.id="french-l09-round-summary";const roundKey=learnerKey+"_u01_l09_cohesive_rounds_v1";try{const rounds=JSON.parse(safeGet(roundKey)||"[]");roundSummary.textContent=Array.isArray(rounds)&&rounds.length?"Saved Lesson 09 formative rounds: "+rounds.length+". Most recent: "+rounds.at(-1).correct+"/10.":"No completed Lesson 09 formative round saved yet."}catch{roundSummary.textContent="Formative history could not be read."}sec.append(roundSummary);
+ h("10 · Correction journal");
+ p("Repair and explain: « une étoile vert »; « deux carré bleu »; « une porte blanc »; « les lignes noir »; « trois sacs oranges » under this lesson's invariable-orange convention. Then include two corrections from your own work. Explain the intended meaning before changing the form.");
+ sec.append(field("Lesson 09 corrections and next goal","corrections_v1",7));
+ h("11 · Reviewer rubric and evidence","french-l09-evidence");
+ p("Choose the role that best describes the person reviewing this evidence. Parent and Teacher may be the same person. A separate privileged account is not required. Self-Directed Adult is appropriate where independent third-party attestation is not explicitly required.");
+ const roles=element("select");roles.id="french-l09-reviewer-role";roles.setAttribute("aria-label","Lesson 09 reviewer role");["Not reviewed","Parent","Teacher","Homeschool Parent/Teacher","Mentor","Self-Directed Adult","Other Local Reviewer"].forEach(v=>{const o=element("option",v);o.value=v;roles.append(o)});roles.value=safeGet(prefix+"reviewer_role_v1")||"Not reviewed";roles.addEventListener("change",()=>save("reviewer_role_v1",roles.value));sec.append(roles);
+ const criteria=[
+ ["Color/shape meaning","Identifies supplied colors/shapes and preserves the stated meaning in unfamiliar examples."],
+ ["Agreement and sentence control","Builds noun phrases and short descriptions with appropriate number/gender agreement for taught forms."],
+ ["Reading/writing transfer","Interprets the new reading and creates original descriptions without copying the model."],
+ ["Independent oral evidence","Responds to an unfamiliar heard description and/or gives a new spoken description; mark Not assessed if unobserved."]
+ ];
+ const rubric=element("section");rubric.className="french-l09-rubric";criteria.forEach(([name,desc],i)=>{const row=element("div");row.className="french-day02-rubric-row";const label=element("label",name),select=element("select");select.id="french-l09-rating-"+i;label.htmlFor=select.id;select.setAttribute("aria-label","Lesson 09 rubric · "+name);["Not assessed","0","1","2","3"].forEach(v=>{const o=element("option",v);o.value=v;select.append(o)});select.value=safeGet(prefix+"rubric_"+i+"_v1")||"Not assessed";select.addEventListener("change",()=>save("rubric_"+i+"_v1",select.value));row.append(label,select);rubric.append(row,element("p",desc))});sec.append(rubric,field("Reviewer name/role context, evidence observed, support used and next goal","review_notes_v1",6));
+ const worksheet=element("section");worksheet.id="french-l09-worksheet";worksheet.className="unit01-worksheet";worksheet.append(element("h4","French 101 · Lesson 09 · Colors, Shapes & Descriptions"),element("p","Learner: __________________ Date: ______________"));
+ ["Retrieval: write one être sentence and one noun/article phrase from Lessons 07–08.","Agreement: create four noun phrases showing masculine singular, feminine singular, masculine plural and feminine plural color agreement.","Shapes: describe a fictional arrangement using at least four shapes and three quantities.","Reading: summarize the classroom-poster passage and identify two unstated facts.","Independent production: write a new ten-sentence description; explain three agreement choices and correct two errors.","Oral evidence: record an unfamiliar listening prompt and a new spoken description separately; use Not assessed when unobserved."].forEach(t=>worksheet.append(element("p",t),element("p","________________________________________________________________________")));sec.append(worksheet);
+ const guide=element("details");guide.id="french-l09-answer-guide";guide.append(element("summary","Lesson 09 reviewer guidance · open after independent work"),element("p","Core forms: un livre bleu / une porte bleue / deux livres bleus / deux portes bleues; un carré vert / une étoile verte; un mur blanc / une porte blanche; un ciel gris / une table grise; des sacs orange; des yeux marron. Accept other accurate beginner descriptions that preserve meaning."),element("p","Reading: circle red; square blue; two stars yellow; three triangles green; one black line left; two orange rectangles right. Author, symbolism and ownership are not stated."),element("p","Corrections under this lesson's models: une étoile verte; deux carrés bleus; une porte blanche; les lignes noires; trois sacs orange. Evaluate meaning first, then agreement and spelling."),element("p","Do not infer listening or speaking proficiency from synthetic playback, visible transcripts or self-entered scores. Record what was actually observed and the support used."));sec.append(guide);
+ const key=element("details");key.id="french-l09-review-key";key.append(element("summary","Thirty-question formative key · reviewer reference"));FRENCH_U01_L09_DESCRIPTIONS_BANK.forEach((q,i)=>key.append(element("p",(i+1)+". "+q.prompt+" · Answer: "+q.choices[q.answer]+". "+q.explain)));sec.append(key);
+ const actions=element("div");addButton(actions,"Print learner evidence",()=>printFrenchLesson09(false));addButton(actions,"Print reviewer guidance",()=>printFrenchLesson09(true));sec.append(actions);
+ panel.append(sec);
+}
+
+function addFrenchLesson09SoundArchive(panel){
+ const d=FRENCH_101_UNIT01_DAYS.find(x=>x.day===9);if(!d)return;
+ const archive=element("details");archive.className="french-legacy-extra";archive.append(element("summary","Optional archival enrichment · earlier Lesson 09 sound combinations"));
+ archive.append(element("p","This earlier phonology/spelling lesson remains available for continuity. Its saved work is not reclassified as mastery of Colors, Shapes & Descriptions."),element("h4",d.title),element("p",d.lecture),element("p","Examples: "+d.models),element("p","Guided practice: "+d.guided),element("p","Earlier assignment: "+d.assignment));
+ const old=element("textarea");old.rows=5;old.setAttribute("aria-label","Earlier Lesson 09 sound-combinations writing");old.value=safeGet(learnerKey+"_u01_day9_writing")||"";old.addEventListener("input",()=>safeSet(learnerKey+"_u01_day9_writing",old.value));archive.append(old);
+ const transfer=element("textarea");transfer.rows=4;transfer.setAttribute("aria-label","Earlier Lesson 09 sound-combinations transfer");transfer.value=safeGet(learnerKey+"_u01_day9_transfer_v1")||"";transfer.addEventListener("input",()=>safeSet(learnerKey+"_u01_day9_transfer_v1",transfer.value));archive.append(transfer);
+ const note=element("textarea");note.rows=3;note.setAttribute("aria-label","Earlier Lesson 09 review notes");note.value=safeGet(learnerKey+"_u01_d9_review_notes")||"";note.addEventListener("input",()=>safeSet(learnerKey+"_u01_d9_review_notes",note.value));archive.append(note);
+ panel.append(archive);
+}
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
- wrap.append(element("h3","Unit 01 · Self-Paced Lesson Library"),element("p","This section contains Lessons 02–15 inside Course Level 1. Level 1 and Lesson 01 are different: a course level is the official mastery stage, while a lesson is a learning activity. You may review lessons freely; the separate official Level 1 quiz and Unit 01 checkpoint still require 80% mastery."));
+ wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–09 are developed in the current curriculum. Earlier daily topics that once occupied Lessons 10–15 remain available as archival enrichment until their canonical replacements are developed. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
  const picker=element("select");picker.setAttribute("aria-label","Choose Unit 01 lesson");picker.style.cssText="width:100%;padding:10px;margin:8px 0";
  const lessonSelectionKey=()=>learnerKey+"_u01_selected_lesson_v1";
  const savedSelection=safeGet(lessonSelectionKey());
 
- FRENCH_101_UNIT01_DAYS.forEach(d=>{const o=element("option","Lesson "+String(d.day).padStart(2,"0")+" — "+(d.day===8?"Family and Relationships":d.day===7?"Être and Avoir":d.day===6?"Nouns, Articles and Gender":d.day===2?"Numbers · 0–100":d.title));o.value=d.day;picker.append(o)});
+ FRENCH_101_UNIT01_DAYS.forEach(d=>{const current=d.day===9?"Colors, Shapes & Descriptions":d.day===8?"Family and Relationships":d.day===7?"Être and Avoir":d.day===6?"Nouns, Articles and Gender":d.day===2?"Numbers · 0–100":d.title;const label=d.day>=10?"Archive · Earlier "+String(d.day).padStart(2,"0")+" — "+d.title:"Lesson "+String(d.day).padStart(2,"0")+" — "+current;const o=element("option",label);o.value=d.day;picker.append(o)});
  if(savedSelection&&FRENCH_101_UNIT01_DAYS.some(d=>String(d.day)===savedSelection))picker.value=savedSelection;
  const panel=element("article");panel.className="unit01-active-day";panel.style.cssText="max-width:780px;margin:0 auto;line-height:1.65";const navigation=element("div");navigation.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0";const previous=element("button","← Previous Lesson"),next=element("button","Next Lesson →");previous.type=next.type="button";navigation.append(previous,next);const journey=element("p");journey.setAttribute("role","status");const status=element("p");status.setAttribute("role","status");
  function draw(){
   const d=FRENCH_101_UNIT01_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_UNIT01_DAYS[0];
   safeSet(lessonSelectionKey(),String(d.day));
   panel.replaceChildren();
+  if(d.day===9){
+   panel.append(element("h4","Lesson 09 · Colors, Shapes & Descriptions"));addFrenchLesson09ColorsDepth(panel);addFrenchLesson09SoundArchive(panel);
+   status.textContent="Lesson 09 description studio ready. Earlier sound-combination work remains optional and preserved.";previous.disabled=false;next.disabled=true;previous.textContent="← Lesson 08";next.textContent="Lesson 10 · in development";journey.textContent="French 101 · Canonical Lesson 09 of 18 · People & Description. Daily formative work is separate from official 80% mastery.";return;
+  }
   if(d.day===8){
    panel.append(element("h4","Lesson 08 · Family and Relationships"));addFrenchLesson08FamilyDepth(panel);addFrenchLesson08NasalVowelsArchive(panel);
    status.textContent="Lesson 08 family/relationships review ready. Earlier nasal-vowel observations remain optional.";previous.disabled=false;next.disabled=false;previous.textContent="← Previous Lesson";journey.textContent="Course Level 1 · Viewing Lesson 08 of 15 · Family and Relationships. Daily formative work is separate from official 80% mastery.";return;
@@ -1952,7 +2094,12 @@ function addUnit01DailySequence(parent){
    
    status.textContent="Lesson 06 noun/article review ready. Earlier listening evidence remains in optional enrichment.";previous.disabled=false;next.disabled=false;previous.textContent="← Previous Lesson";journey.textContent="Course Level 1 · Viewing Lesson 06 of 15 · Nouns, Articles and Gender. Official mastery remains separate at 80%.";return;
   }
-  panel.append(element("h4","Lesson "+String(d.day).padStart(2,"0")+" · "+(d.day===2?"Numbers · 0–100":d.title)),element("h4","Step 1 · Learn"),element("p",d.lecture),element("h4","French examples"),element("p",d.models));
+  if(d.day>=10){
+   panel.append(element("h4","Archival enrichment · Earlier Lesson "+String(d.day).padStart(2,"0")+" · "+d.title),element("p","This material is preserved from the earlier Unit 01 phonology/literacy sequence. It remains useful practice, but it is not the canonical French 101 Lesson "+String(d.day).padStart(2,"0")+". The canonical replacement will be developed separately without deleting this work."));
+  }else{
+   panel.append(element("h4","Lesson "+String(d.day).padStart(2,"0")+" · "+(d.day===2?"Numbers · 0–100":d.title)));
+  }
+  panel.append(element("h4","Step 1 · Learn"),element("p",d.lecture),element("h4","French examples"),element("p",d.models));
   const legacyExtra=element("details");legacyExtra.className="french-legacy-extra";legacyExtra.append(element("summary","Optional archival enrichment · earlier vowel lesson (not required for Numbers)"));
   if(d.day===2){
    legacyExtra.append(element("h4","Learning targets · Letter names and vowel families"),
@@ -2014,7 +2161,7 @@ function addUnit01DailySequence(parent){
   panel.append(deeper);
   const print=element("button","Print lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(d.day));panel.append(print);
   cohereFrenchDailyPanel(panel,d.day);
-  status.textContent="Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous Lesson";journey.textContent="Course Level 1 · Viewing Lesson "+String(d.day).padStart(2,"0")+" of 15. Lesson review is open; official level mastery is assessed separately at 80%. Independent work saves under this learner profile.";
+  status.textContent=d.day>=10?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=10?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
  }
  previous.addEventListener("click",()=>{if(Number(picker.value)===2){document.getElementById("french101-unit01-day01")?.scrollIntoView({block:"start",behavior:"smooth"});return}picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
 }
@@ -2310,7 +2457,7 @@ function openQuiz(level){
 function openExam(){
  if(!Array.from({length:totalLevels},(_,i)=>i+1).every(i=>progress[i]==="completed")){backToMenu();return}
  const box=$("exam");box.replaceChildren();
- box.append(element("h2","French 101 — Final Exam"),element("p","Answer 10 questions from the 12 levels. At least 80% is required for a certificate."));
+ box.append(element("h2","French 101 — Preserved 12-Level Final Exam"),element("p","This compatibility final remains valid for the existing 12-level pathway and previously established certificate route. Answer 10 translation questions from the 12 levels; at least 80% is required. The canonical 18-lesson curriculum will receive a separate integrated final without invalidating this result."));
  const pool=Object.values(LESSONS).flat();
  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
  const questions=pool.slice(0,10),prompt=element("p");prompt.lang="fr";prompt.style.fontSize="1.2rem";
