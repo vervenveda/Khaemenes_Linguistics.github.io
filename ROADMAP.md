@@ -33,7 +33,7 @@ Every phase must preserve:
 - [x] Add a GitHub Actions topology regression gate.
 
 ## Phase B — Single-authority evidence bridges
-**Status: IN PROGRESS · Review-only Bridge v1 live**
+**Status: REVIEW-ONLY BRIDGE V1 COMPLETE · acceptance/migration intentionally deferred**
 
 French and German have rich learner experiences plus independent browser-local records. They must not be flattened or replaced.
 
@@ -41,9 +41,21 @@ French and German have rich learner experiences plus independent browser-local r
 - [x] Expose French 101 evidence to the V4 French authority as a learner-scoped, review-only bridge without deleting French storage.
 - [x] Expose German Coach/studio evidence to the V4 German authority as learner-scoped supplemental evidence without deleting German storage.
 - [x] Keep practice evidence distinct from formal mastery; Bridge v1 has zero V4 mastery writes.
-- [ ] Add two-learner runtime regression tests before any Bridge v2 acceptance/migration behavior.
+- [x] Add two-learner regression tests proving learner isolation and zero V4 mutation.
 - [x] Add bridge JSON export before any future migration or acceptance workflow.
 - [x] Static bridge audit proves Bridge v1 cannot write the V4 authority key or completion field.
+- [x] Require the Academy 80% threshold when interpreting bridge exam evidence, even if a legacy app stored a lower local pass flag.
+
+### Bridge v2 release gates
+
+Do not implement automatic acceptance into V4 until:
+
+- [ ] V4 formal records are safely learner-scoped.
+- [ ] Teacher/reviewer acceptance is distinguishable from learner self-entry.
+- [ ] Evidence-to-competency mappings are explicit and auditable.
+- [ ] Existing completion can never be downgraded.
+- [ ] Export/recovery precedes migration.
+- [ ] Runtime browser testing confirms two-learner behavior.
 
 ## Phase C — Spanish / Mandarin / Japanese parity
 
