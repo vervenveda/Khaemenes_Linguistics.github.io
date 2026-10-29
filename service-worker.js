@@ -1,7 +1,7 @@
 /* Polyglot — Khaemenes Academy Linguistics Hall
    Static-site service worker. Update CACHE_VERSION whenever core files change. */
 
-const CACHE_VERSION = 'polyglot-v1.5.0-topology';
+const CACHE_VERSION = 'polyglot-v1.5.1-authority-bridge';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
@@ -9,6 +9,7 @@ const APP_SHELL = [
   './',
   './index.html',
   './data/course-topology.json',
+  './assets/course-authority-bridge.js',
   './Halls/index.html',
   './apps/language-worlds/index.html',
   './apps/language-worlds/spanish/index.html',
