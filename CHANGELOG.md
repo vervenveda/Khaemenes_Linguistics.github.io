@@ -43,9 +43,21 @@ This file records meaningful public changes to Polyglot. Dates use the `YYYY-MM-
 - Current-record clearing no longer deletes another learner or the preserved V3 key.
 - Added learner-scope regression and static integration audits.
 
+### Changed — 2026-10-29 · Learner backup & recovery
+
+- Added a restore-capable `khaemenes-five-language-v4-learner-backup-v1` format for named V4 learners.
+- Added matching learner-ID and learner-label validation before restore.
+- Generic archival V4 JSON and legacy shared records are intentionally not accepted by the learner restore path.
+- Added a 2 MB import safety limit in the Hall.
+- Added structural validation and unsafe-key rejection.
+- Every successful restore first saves the current learner record as a local pre-restore recovery snapshot.
+- Up to three recovery snapshots are retained per learner.
+- Added **Undo Last Restore**.
+- Added regression coverage proving wrong-learner restore rejection and preservation of sibling learners, legacy V4 and V3.
+
 ### Next
 
-- Make the formal V4 record itself safely learner-scoped before any Bridge v2 evidence acceptance.
+- Keep Bridge v2 automatic evidence acceptance deferred until teacher/reviewer acceptance and evidence-to-competency mapping are explicit.
 - Establish Language World evidence parity for Spanish, Mandarin and Japanese.
 - Continue Arabic/Russian academic release hardening and live-browser QA.
 - Generate a current package manifest from the live repository.
