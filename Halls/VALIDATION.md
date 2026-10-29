@@ -36,16 +36,29 @@
 - course-completion gate: **present**
 - external-credential boundary: **present**
 
+## Authority Bridge v1
+- French learner-scoped review bridge: **present**
+- German learner-scoped supplemental bridge: **present**
+- formal V4 writes from bridge: **NONE by design**
+- anonymous/shared-device bridge promotion: **blocked**
+- Academy 80% interpretation for bridge exam evidence: **enforced**
+- bridge JSON export: **present**
+- read-only V4 evidence panel: **present**
+- two-learner regression test: **present**
+- automatic V4 mastery acceptance: **NOT IMPLEMENTED by design**
+- Bridge v2 prerequisite: **learner-scoped V4 authority record**
+
 ## Privacy / code
 - CSP `connect-src 'none'`: **preserved**
 - V4 localStorage is separate from V3: **PASS**
 - V3 legacy snapshot migration: **present**
-- inline JavaScript blocks checked with Node: **1 — PASS**
-- duplicate static IDs: **NONE**
+- bridge namespace is separate from V4: **PASS**
+- inline JavaScript blocks checked with Node: **existing regression coverage**
+- duplicate static IDs: **NONE in established V4 validation**
 - ARIA tab structure / keyboard navigation: **present**
 - modal focus trap / restoration: **present**
 - reduced-motion support: **present**
 - skip link resolves to `#main`: **PASS**
 
 ## Visual limitation
-No screenshot-level deployed-browser validation was performed in this build.
+No screenshot-level deployed-browser validation was performed in this build. Bridge v1 requires live-browser verification before any future Bridge v2 acceptance/migration behavior.
