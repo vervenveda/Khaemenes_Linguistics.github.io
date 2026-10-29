@@ -12,7 +12,7 @@ The existing lesson had a short lecture, focus-word list (le/la/un/une/et/est/da
 ## Additive development
 
 - Substantial teaching on noun phrases, subjects, est as a verb and et as a conjunction; meaning as well as form.
-- Familiar masculine/feminine article–noun pairs, introduction versus reference, bounded l’école recognition, c’est contraction and punctuation. Complete gender/article rules remain in Lesson 06.
+- Familiar masculine/feminine article–noun pairs, introduction versus reference, bounded l’école recognition, c’est contraction and punctuation. Complete gender/article rules belong to the proposed dedicated Lesson 06; the current legacy Lesson 06 is Listening: same or different? and is not relabeled in this pass.
 - Sur/dans based on actual location; mon/ma based on the noun rather than owner gender; positive oui/non question/response patterns. Full negative construction and negative-question si are deferred.
 - Five worked examples with reasoning, two additional original readings and saved interpretation prompts. Preserve the earlier reading and all original assignments.
 - Three guided decision/repair stations, a select-based location-sentence workshop and keyboard-friendly word-order cards with checks and reset. These are temporary rehearsal activities, not official mastery or persistent lab-state records.
@@ -47,3 +47,7 @@ Reusable test: `node scripts/test-french-lesson05-browser.cjs`, with Playwright 
 ## Existing course-wide follow-up
 
 The previous audit’s backup-import allowlist incompatibility, evidence-restore gap, proposed 18-lesson migration, narrower Lesson 02 number range, midterm/final assessment breadth and service-worker scope issues remain separate work. The four repository-wide integrity failures recorded in the Lesson 04 audit predate this pass; do not represent targeted browser checks as a green whole-repository certification. A qualified educator should review new French tasks and independent performance before formal proficiency claims.
+
+## Publication verification
+
+Implementation commit `9df62aa59b6632cc49ecb97fa38c4fd47f525620`: Pages deployment, French German Browser Accessibility and Beta index coverage completed successfully. The wider integrity job remains failed; its known pre-existing diagnostics are recorded in the Lesson 04 audit. Forward references distinguish the proposed nouns/articles/gender topic from the current legacy Lesson 06 listening activity.
