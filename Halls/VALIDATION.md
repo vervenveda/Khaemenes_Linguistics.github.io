@@ -64,6 +64,14 @@
 - V3 mutation during restore: **NONE**
 - portable JSON recovery: **present**
 
+## Reviewer-role boundary
+- Parent and Teacher may be the same person: **SUPPORTED BY POLICY**
+- Homeschool Parent/Teacher role: **SUPPORTED**
+- Self-Directed Adult review where independent attestation is not required: **SUPPORTED**
+- separate privileged teacher account: **NOT REQUIRED**
+- paid/institutional credential for local review: **NOT REQUIRED**
+- independent third-party attestation: **ONLY WHEN A SPECIFIC ASSESSMENT EXPLICITLY REQUIRES IT**
+
 ## Authority Bridge v1
 - French learner-scoped review bridge: **present**
 - German learner-scoped supplemental bridge: **present**
