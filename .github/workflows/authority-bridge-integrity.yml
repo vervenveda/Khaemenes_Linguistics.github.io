@@ -1,0 +1,40 @@
+name: Language authority bridge integrity
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'assets/course-authority-bridge.js'
+      - 'apps/French_101_index.html'
+      - 'apps/maitrise-constellation/index.html'
+      - 'apps/German_coach_index.html'
+      - 'apps/german-mastery-constellation/index.html'
+      - 'Halls/index.html'
+      - 'data/course-topology.json'
+      - 'service-worker.js'
+      - 'scripts/audit-authority-bridge.mjs'
+      - '.github/workflows/authority-bridge-integrity.yml'
+  pull_request:
+    paths:
+      - 'assets/course-authority-bridge.js'
+      - 'apps/maitrise-constellation/index.html'
+      - 'apps/german-mastery-constellation/index.html'
+      - 'Halls/index.html'
+      - 'data/course-topology.json'
+      - 'service-worker.js'
+      - 'scripts/audit-authority-bridge.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  bridge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Verify review-only authority bridge
+        run: node scripts/audit-authority-bridge.mjs
