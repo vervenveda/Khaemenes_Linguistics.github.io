@@ -1067,6 +1067,7 @@ function printUnit01Day(day,educator=false){
  if(day===11){printFrenchLesson11(false);return}
  if(day===12){printFrenchLesson12(false);return}
  if(day===13){printFrenchLesson13(false);return}
+ if(day===14){printFrenchLesson14(false);return}
  const source=day===1?document.getElementById("french101-unit01-day01"):document.querySelector("#unit01-daily-lessons .unit01-active-day");
  if(!source)return;
  const previous=document.getElementById("unit01-print-copy");if(previous)previous.remove();
@@ -2502,23 +2503,137 @@ function addFrenchLesson13DictationArchive(panel){
  const transfer=element("textarea");transfer.rows=4;transfer.setAttribute("aria-label","Earlier Lesson 13 transfer");transfer.value=safeGet(learnerKey+"_u01_day13_transfer_v1")||"";transfer.addEventListener("input",()=>safeSet(learnerKey+"_u01_day13_transfer_v1",transfer.value));archive.append(transfer);
  const notes=element("textarea");notes.rows=3;notes.setAttribute("aria-label","Earlier Lesson 13 review notes");notes.value=safeGet(learnerKey+"_u01_d13_review_notes")||"";notes.addEventListener("input",()=>safeSet(learnerKey+"_u01_d13_review_notes",notes.value));archive.append(notes);panel.append(archive);
 }
+/* French 101 · Canonical Lesson 14 · Present-Tense Verbs & Daily Routines.
+   Historical Day 14 independent-reading work remains archival enrichment. */
+const FRENCH_U01_L14_ROUTINES_BANK=[
+{"skill":"verbs","prompt":"Complete with parler: « je ___ français ».","choices":["parle","parles","parlons"],"answer":0,"explain":"Je takes the -e form in the regular -er pattern: je parle."},
+{"skill":"verbs","prompt":"Complete with parler: « nous ___ français ».","choices":["parlons","parlez","parlent"],"answer":0,"explain":"Nous takes -ons: nous parlons."},
+{"skill":"verbs","prompt":"Complete with travailler: « vous ___ aujourd'hui ».","choices":["travaillez","travaillons","travaille"],"answer":0,"explain":"Vous takes -ez: vous travaillez."},
+{"skill":"verbs","prompt":"Complete with habiter: « ils ___ ici ».","choices":["habitent","habitez","habitons"],"answer":0,"explain":"Ils takes -ent in the regular written pattern: ils habitent."},
+{"skill":"verbs","prompt":"Which phrase means I go?","choices":["je vais","je fais","je prends"],"answer":0,"explain":"Je vais is a present form of aller."},
+{"skill":"verbs","prompt":"Which phrase means we take?","choices":["nous prenons","nous faisons","nous allons"],"answer":0,"explain":"Nous prenons is a present form of prendre."},
+{"skill":"routines","prompt":"Which phrase means I wake up?","choices":["je me réveille","je me couche","je travaille"],"answer":0,"explain":"Je me réveille means I wake up."},
+{"skill":"routines","prompt":"Which phrase means I get dressed?","choices":["je m'habille","je me lève","je lis"],"answer":0,"explain":"Je m'habille means I get dressed."},
+{"skill":"routines","prompt":"Which phrase means I go to bed?","choices":["je me couche","je me réveille","je déjeune"],"answer":0,"explain":"Je me couche means I go to bed."},
+{"skill":"routines","prompt":"Which sentence means I take the bus?","choices":["Je prends le bus.","Je fais le bus.","Je suis le bus."],"answer":0,"explain":"Prendre is used in the taught chunk je prends le bus."},
+{"skill":"routines","prompt":"Which sentence means I do my homework?","choices":["Je fais mes devoirs.","Je prends mes devoirs.","Je vais mes devoirs."],"answer":0,"explain":"The taught expression is faire ses devoirs: je fais mes devoirs."},
+{"skill":"routines","prompt":"Which sentence means I go home?","choices":["Je rentre à la maison.","Je prends la maison.","Je suis maison."],"answer":0,"explain":"Je rentre à la maison means I go/return home."},
+{"skill":"sequence","prompt":"Which word means first?","choices":["d'abord","ensuite","enfin"],"answer":0,"explain":"D'abord means first."},
+{"skill":"sequence","prompt":"Which word means then/next?","choices":["ensuite","hier","pourquoi"],"answer":0,"explain":"Ensuite means then/next."},
+{"skill":"sequence","prompt":"Which word means finally?","choices":["enfin","puis","demain"],"answer":0,"explain":"Enfin means finally."},
+{"skill":"sequence","prompt":"Which sentence correctly combines routine and time?","choices":["À huit heures, je vais à l'école.","Je huit heures vais école.","À huit je suis école heure."],"answer":0,"explain":"À huit heures places the time before the routine statement."},
+{"skill":"sequence","prompt":"Which sequence is coherent?","choices":["D'abord je me lève. Ensuite je m'habille. Enfin je me couche le soir.","Enfin je me couche. D'abord je me lève yesterday.","Pourquoi je me lève. Combien je dors."],"answer":0,"explain":"The first sequence uses logical routine connectors."},
+{"skill":"sequence","prompt":"Which phrase indicates repeated routine?","choices":["tous les jours","hier seulement","une fois demain"],"answer":0,"explain":"Tous les jours means every day."},
+{"skill":"reading","prompt":"Read: « Salma se lève à sept heures. Ensuite, elle prend le petit déjeuner. » What happens second?","choices":["She has breakfast.","She gets up.","She goes to bed."],"answer":0,"explain":"Ensuite introduces breakfast as the second event."},
+{"skill":"reading","prompt":"Read: « À huit heures, Noé va à l'école. » Where does Noé go?","choices":["to school","to the café","to the station"],"answer":0,"explain":"Va à l'école means goes to school."},
+{"skill":"reading","prompt":"Read: « Le soir, Lina lit puis elle fait ses devoirs. » What does Lina do after reading?","choices":["does homework","takes the bus","eats breakfast"],"answer":0,"explain":"Puis elle fait ses devoirs follows lit."},
+{"skill":"reading","prompt":"Read: « Nous travaillons à neuf heures. » Who works at nine?","choices":["we","you plural","they"],"answer":0,"explain":"Nous means we."},
+{"skill":"reading","prompt":"Read: « Ils parlent français tous les jours. » Is this presented as a repeated routine?","choices":["Yes","No, it only happened yesterday","No, it is a future plan"],"answer":0,"explain":"Tous les jours signals repetition."},
+{"skill":"reading","prompt":"A routine passage gives no wake-up time. What should you do?","choices":["Leave the time unknown.","Invent 7:00.","Assume all students wake at the same time."],"answer":0,"explain":"Do not invent details not stated."},
+{"skill":"transfer","prompt":"Repair « nous parle français ».","choices":["nous parlons français","nous parlez français","nous parlent français"],"answer":0,"explain":"Nous takes -ons in the taught regular -er pattern."},
+{"skill":"transfer","prompt":"Repair « vous travaillons aujourd'hui ».","choices":["vous travaillez aujourd'hui","vous travaillent aujourd'hui","vous travaille aujourd'hui"],"answer":0,"explain":"Vous takes -ez."},
+{"skill":"transfer","prompt":"Which task best demonstrates verb/routine transfer?","choices":["Create a new fictional routine with times, sequence words and several subjects without copying the model.","Recite one conjugation table only.","Copy the same sentence ten times."],"answer":0,"explain":"A new connected routine requires form, meaning and sequence."},
+{"skill":"transfer","prompt":"A learner writes « je me réveilles ». What should be checked?","choices":["The je form is je me réveille in this taught verb.","Add nous before je.","Replace me with vous automatically."],"answer":0,"explain":"The supplied je form is je me réveille."},
+{"skill":"transfer","prompt":"Why does the lesson not require every irregular present-tense paradigm?","choices":["The goal is controlled beginner communication with high-frequency forms; broader paradigms can be expanded later.","Irregular verbs do not exist.","Only nouns matter in French."],"answer":0,"explain":"Scope control supports meaningful use rather than overload."},
+{"skill":"transfer","prompt":"For reviewed routine speaking evidence, what should be recorded?","choices":["The new prompt, learner's connected response, support used, corrections and reviewer role.","Only the number of words spoken.","A privileged account credential."],"answer":0,"explain":"Transparent observed evidence supports the local review model."}
+];
+
+function printFrenchLesson14(answers){
+ const source=document.getElementById("french-u01-lesson14-routines");if(!source)return;document.getElementById("unit01-print-copy")?.remove();const copy=element("article");copy.id="unit01-print-copy";
+ copy.append(element("h2",answers?"French 101 · Lesson 14 · Reviewer guidance":"French 101 · Lesson 14 · Learner worksheet and evidence"));
+ for(const id of answers?["french-l14-answer-guide","french-l14-review-key"]:["french-l14-worksheet"]){const n=document.getElementById(id)?.cloneNode(true);if(n){n.removeAttribute("id");if(n.tagName==="DETAILS")n.open=true;copy.append(n)}}
+ if(!answers){source.querySelectorAll("textarea").forEach(t=>{copy.append(element("h4",t.getAttribute("aria-label")||"Saved response"));const p=element("p",t.value||"(No response entered)");p.className="french-print-response";copy.append(p)});source.querySelectorAll("select[id^='french-l14-rating']").forEach(s=>copy.append(element("p",s.getAttribute("aria-label")+": "+s.value)))}
+ copy.append(element("p","Formative evidence only. A fictional routine is fully acceptable; students need not disclose real schedules. Reviewer roles remain local and flexible."));
+ document.body.append(copy);document.body.classList.add("printing-unit01");const clean=()=>{document.body.classList.remove("printing-unit01");copy.remove();window.removeEventListener("afterprint",clean)};window.addEventListener("afterprint",clean);window.print();
+}
+
+function addFrenchLesson14RoutinesDepth(panel){
+ const sec=element("section");sec.id="french-u01-lesson14-routines";sec.className="french-day02-depth";const prefix=learnerKey+"_beginner2026_lesson14_routines_";
+ const saveStatus=element("p","Lesson 14 work saves locally for the selected learner.");saveStatus.setAttribute("role","status");
+ function save(suffix,value){const ok=safeSet(prefix+suffix,value);saveStatus.textContent=ok?"Lesson 14 evidence saved on this device.":"Saving failed. Copy or print your work before leaving.";return ok}
+ function field(label,suffix,rows=5){const wrap=element("label");wrap.append(element("span",label));const t=element("textarea");t.rows=rows;t.setAttribute("aria-label",label);t.value=safeGet(prefix+suffix)||"";t.addEventListener("input",()=>save(suffix,t.value));wrap.append(t);return wrap}
+ function h(text,id){const n=element("h4",text);if(id)n.id=id;sec.append(n)}function p(text){sec.append(element("p",text))}
+ h("Lesson 14 · Present-Tense Verbs & Daily Routines · Full learning studio");
+ p("Learning targets: use one regular -er present-tense pattern with several subjects; recognize and use selected high-frequency irregular chunks; describe a routine with time and sequence words; interpret a new routine passage; and produce an original connected routine with corrections. A fictional person/routine is fully acceptable—real wake times, school schedules or household routines are not required.");
+ const nav=element("nav");nav.setAttribute("aria-label","Lesson 14 studio sections");[["Verb pattern","french-l14-verbs"],["Routine language","french-l14-routine"],["Read","french-l14-read"],["Sequence lab","french-l14-lab"],["Independent work","french-l14-writing"],["Review","french-l14-review"],["Evidence","french-l14-evidence"]].forEach(([label,id])=>{const a=element("a",label);a.href="#"+id;nav.append(a)});sec.append(nav,saveStatus);
+ h("Your route · subject → verb → time → sequence");
+ p("Retrieve first: subject pronouns from Lesson 03, être/avoir from Lesson 07 and time expressions from Lesson 10. Stage A: learn one productive regular -er pattern. Stage B: add a few high-frequency irregular routine chunks. Stage C: connect actions with time and sequence words. Stage D: interpret and create a routine rather than listing verbs.");
+ h("1 · One useful regular -er pattern","french-l14-verbs");
+ p("Use parler as a model: je parle, tu parles, il/elle/on parle, nous parlons, vous parlez, ils/elles parlent. The written endings are -e, -es, -e, -ons, -ez, -ent. Several endings may sound alike in ordinary speech, so written form and independently observed listening remain different evidence.");
+ const verbs=[["parler","to speak"],["travailler","to work"],["habiter","to live/reside"],["étudier","to study"],["regarder","to watch/look at"]];
+ const vg=element("div");vg.className="french-l14-reference";verbs.forEach(([inf,en])=>{const stem=inf.slice(0,-2);const forms=["je "+stem+"e","tu "+stem+"es","il/elle "+stem+"e","nous "+stem+"ons","vous "+stem+"ez","ils/elles "+stem+"ent"].join(" · ");const card=element("article");card.append(element("h4",inf),element("p",en),element("p",forms));addButton(card,"Listen · forms",()=>speakFR(forms.replaceAll(" · ",". ")));vg.append(card)});sec.append(vg);
+ p("This pattern is useful, but not every French verb follows it. Do not apply -er endings to être, avoir, aller, faire or prendre. Those high-frequency verbs have irregular forms and need their own models.");
+ h("2 · High-frequency routine chunks");
+ const chunks=[["je vais / nous allons","I go / we go"],["je fais / nous faisons","I do/make / we do/make"],["je prends / nous prenons","I take / we take"],["je lis / nous lisons","I read / we read"],["je rentre","I return/go home"],["je déjeune","I have lunch"]];
+ const cg=element("div");cg.className="french-l14-reference";chunks.forEach(([fr,en])=>{const card=element("article");card.append(element("h4",fr),element("p",en));addButton(card,"Listen",()=>speakFR(fr.replace(" / ",". ")));cg.append(card)});sec.append(cg);
+ p("Today you use these as accurate high-frequency chunks. You do not need to derive a complete irregular paradigm from them. When you need a form not supplied, consult a reliable reference rather than guessing from the -er pattern.");
+ h("3 · Reflexive routine phrases · meaningful chunks","french-l14-routine");
+ const refl=[["je me réveille","I wake up"],["je me lève","I get up"],["je m'habille","I get dressed"],["je me couche","I go to bed"]];
+ const rg=element("div");rg.className="french-l14-reference";refl.forEach(([fr,en])=>{const card=element("article");card.append(element("h4",fr),element("p",en));addButton(card,"Listen",()=>speakFR(fr));rg.append(card)});sec.append(rg);
+ p("In these phrases, me refers back to the subject je. Before a vowel sound it becomes m', as in je m'habille. Full reflexive-verb conjugation is not a hidden prerequisite today; use the supplied je phrases accurately and expand to other subjects only with a reliable model.");
+ h("4 · Connect actions in time");
+ p("Sequence words: d'abord = first; ensuite = next; puis = then; après = afterward; enfin = finally. Time frames: le matin, l'après-midi, le soir, à sept heures, à midi, tous les jours. A connected routine tells the listener when or in what order actions occur.");
+ p("Model: « D'abord, je me lève à sept heures. Ensuite, je prends le petit déjeuner. À huit heures, je vais à l'école. Après les cours, je rentre à la maison. Enfin, je lis et je me couche. » The exact routine is fictional; the language structure is the evidence.");
+ h("5 · Original reading · La routine de Salma","french-l14-read");
+ const reading="Salma se réveille à sept heures. D'abord, elle se lève et elle s'habille. À huit heures, elle va à l'école. À midi, elle déjeune. Après les cours, elle rentre à la maison. Le soir, elle fait ses devoirs, puis elle lit. Enfin, elle se couche.";
+ p("« "+reading+" »");sec.lastElementChild.lang="fr";addButton(sec,"Listen · routine",()=>speakFR(reading));
+ p("Support: après les cours = after classes. This passage uses third-person reflexive forms as reading input. The learner may interpret them without being required to generate the full third-person reflexive paradigm independently.");
+ ["Put the routine events in order and attach every stated time.","Identify the regular/irregular or reflexive-looking verb phrases you recognize. Which forms were explicitly taught for production?","Name three facts not stated, such as exact school, age or bedtime clock time. Do not invent them."].forEach((q,i)=>{p((i+1)+". "+q);sec.append(field("Lesson 14 reading evidence "+(i+1),"reading_"+i+"_v1",4))});
+ h("6 · Routine sequence laboratory","french-l14-lab");
+ const tasks=[["I speak French.","Je parle français."],["We work today.","Nous travaillons aujourd'hui."],["You (polite/plural) study French.","Vous étudiez le français."],["I go to school at eight.","Je vais à l'école à huit heures."],["I take the bus.","Je prends le bus."],["I do my homework.","Je fais mes devoirs."],["First, I get up.","D'abord, je me lève."],["Finally, I go to bed.","Enfin, je me couche."]];
+ const lab=element("section"),prompt=element("p"),input=element("input"),feedback=element("p");input.type="text";input.autocomplete="off";input.setAttribute("aria-label","Type the French routine sentence");let at=0;function show(){prompt.textContent=(at+1)+"/8 · "+tasks[at][0];input.value="";feedback.textContent="Use the supplied verb pattern/chunk and preserve the meaning."}show();lab.append(prompt,input);addButton(lab,"Check",()=>{const expected=tasks[at][1];feedback.textContent=normalize(input.value)===normalize(expected)?"Accurate: "+expected:"Review one model: "+expected});addButton(lab,"Next",()=>{at=(at+1)%tasks.length;show()});lab.append(feedback);sec.append(lab);
+ h("7 · Independent routine portfolio","french-l14-writing");
+ p("Create a fictional person's routine in 10–12 connected sentences. Include at least four regular -er forms with more than one subject, three supplied irregular chunks, three sequence words, four time expressions and two reflexive je phrases if your narrator is first-person. If you choose third-person reflexive language, use a supplied/reliable reference and identify that support.");
+ sec.append(field("Lesson 14 original connected routine","composition_v1",12));
+ p("Explain four verb choices: one regular -er ending, one irregular chunk, one reflexive phrase and one sequence/time expression. Then respond to two unfamiliar reviewer-supplied routine prompts without copying the model.");
+ sec.append(field("Lesson 14 verb reasoning and unfamiliar transfer","transfer_v1",8));
+ h("8 · Listening and speaking evidence");
+ p("Independent listening: hear a new short routine without the transcript and order its main events. Independent speaking: describe a different fictional routine with sequence words and times without reading a prepared script. Record support used; synthetic speech is rehearsal.");
+ sec.append(field("Lesson 14 oral evidence · prompt, response, sequence, support and correction","oral_v1",7));
+ h("9 · Balanced formative review · 30 authored questions","french-l14-review");
+ p("Each ten-question round draws two items from verb forms, routines, sequence/time, reading and transfer. Formative rounds never change official legacy mastery.");
+ addFrenchCohesiveReview(sec,14,FRENCH_U01_L14_ROUTINES_BANK,["verbs","routines","sequence","reading","transfer"]);
+ h("10 · Correction journal");
+ p("Repair and explain: « nous parle »; « vous travaillons »; « je me réveilles »; an -er ending incorrectly applied to je vais; and a routine with events in an impossible order unless the writer explains the context. Add two corrections from your own work.");
+ sec.append(field("Lesson 14 corrections and next goal","corrections_v1",8));
+ h("11 · Reviewer rubric","french-l14-evidence");
+ const roles=element("select");roles.setAttribute("aria-label","Lesson 14 reviewer role");["Not reviewed","Parent","Teacher","Homeschool Parent/Teacher","Mentor","Self-Directed Adult","Other Local Reviewer"].forEach(v=>{const o=element("option",v);o.value=v;roles.append(o)});roles.value=safeGet(prefix+"reviewer_role_v1")||"Not reviewed";roles.addEventListener("change",()=>save("reviewer_role_v1",roles.value));sec.append(roles);
+ const criteria=[["Verb-form control","Uses the taught regular pattern and supplied irregular/reflexive chunks accurately."],["Sequence/time control","Connects routine events coherently with time and sequence expressions."],["Reading/writing transfer","Interprets a new routine and creates an original connected routine."],["Independent oral evidence","Understands and/or produces a new routine without reading the model; mark Not assessed if unobserved."]];
+ criteria.forEach(([name,desc],i)=>{const row=element("div");row.className="french-day02-rubric-row";const label=element("label",name),select=element("select");select.id="french-l14-rating-"+i;label.htmlFor=select.id;select.setAttribute("aria-label","Lesson 14 rubric · "+name);["Not assessed","0","1","2","3"].forEach(v=>{const o=element("option",v);o.value=v;select.append(o)});select.value=safeGet(prefix+"rubric_"+i+"_v1")||"Not assessed";select.addEventListener("change",()=>save("rubric_"+i+"_v1",select.value));row.append(label,select);sec.append(row,element("p",desc))});sec.append(field("Reviewer context, evidence observed, support and next goal","review_notes_v1",6));
+ const worksheet=element("section");worksheet.id="french-l14-worksheet";worksheet.className="unit01-worksheet";worksheet.append(element("h4","French 101 · Lesson 14 · Present-Tense Verbs & Daily Routines"),element("p","Learner: __________________ Date: ______________"));
+ ["Conjugate one taught regular -er verb for six subject pronouns.","Write six meaningful routine chunks using supplied irregular/reflexive forms.","Create a timeline with d'abord/ensuite/puis/après/enfin and five times.","Interpret Salma's routine and separate stated from unstated details.","Write a new 10–12 sentence fictional routine and explain four verb choices.","Record unfamiliar oral routine evidence separately or mark it Not assessed."].forEach(t=>worksheet.append(element("p",t),element("p","________________________________________________________________________")));sec.append(worksheet);
+ const guide=element("details");guide.id="french-l14-answer-guide";guide.append(element("summary","Lesson 14 reviewer guidance · open after independent work"),element("p","Regular -er model: parle/parles/parle/parlons/parlez/parlent. Use accurate supplied irregular chunks rather than forcing the -er pattern onto aller, faire or prendre."),element("p","Production chunks include je vais/nous allons, je fais/nous faisons, je prends/nous prenons, je lis/nous lisons, je rentre, je déjeune; reflexive je phrases: je me réveille, je me lève, je m'habille, je me couche."),element("p","Reading: wake 7; get up/get dressed; school 8; lunch noon; home after classes; homework then reading; finally bed. Exact age/school/bedtime clock time are unstated."),element("p","Evaluate connected meaning and independent transfer, not table memorization alone."));sec.append(guide);
+ const key=element("details");key.id="french-l14-review-key";key.append(element("summary","Thirty-question formative key · reviewer reference"));FRENCH_U01_L14_ROUTINES_BANK.forEach((q,i)=>key.append(element("p",(i+1)+". "+q.prompt+" · Answer: "+q.choices[q.answer]+". "+q.explain)));sec.append(key);
+ const actions=element("div");addButton(actions,"Print learner evidence",()=>printFrenchLesson14(false));addButton(actions,"Print reviewer guidance",()=>printFrenchLesson14(true));sec.append(actions);panel.append(sec);
+}
+
+function addFrenchLesson14ReadingArchive(panel){
+ const d=FRENCH_101_UNIT01_DAYS.find(x=>x.day===14);if(!d)return;const archive=element("details");archive.className="french-legacy-extra";archive.append(element("summary","Optional archival enrichment · earlier Lesson 14 independent reading and transfer"),element("p","This earlier reading/orthography material remains available for continuity. Its saved work is not reclassified as Present-Tense Verbs & Daily Routines mastery."),element("h4",d.title),element("p",d.lecture),element("p","Examples: "+d.models),element("p","Guided: "+d.guided),element("p","Earlier assignment: "+d.assignment));
+ const old=element("textarea");old.rows=5;old.setAttribute("aria-label","Earlier Lesson 14 reading writing");old.value=safeGet(learnerKey+"_u01_day14_writing")||"";old.addEventListener("input",()=>safeSet(learnerKey+"_u01_day14_writing",old.value));archive.append(old);
+ const transfer=element("textarea");transfer.rows=4;transfer.setAttribute("aria-label","Earlier Lesson 14 transfer");transfer.value=safeGet(learnerKey+"_u01_day14_transfer_v1")||"";transfer.addEventListener("input",()=>safeSet(learnerKey+"_u01_day14_transfer_v1",transfer.value));archive.append(transfer);
+ const notes=element("textarea");notes.rows=3;notes.setAttribute("aria-label","Earlier Lesson 14 review notes");notes.value=safeGet(learnerKey+"_u01_d14_review_notes")||"";notes.addEventListener("input",()=>safeSet(learnerKey+"_u01_d14_review_notes",notes.value));archive.append(notes);panel.append(archive);
+}
 function addUnit01DailySequence(parent){
  const wrap=element("section");wrap.className="study-section";wrap.id="unit01-daily-lessons";
- wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–13 are developed in the current curriculum. Earlier daily topics that once occupied Lessons 14–15 remain available as archival enrichment until their canonical replacements are developed. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
+ wrap.append(element("h3","French 101 · Current Lesson Library"),element("p","The canonical course is now an 18-lesson sequence. Lessons 01–14 are developed in the current curriculum. The earlier daily topic that occupied Lesson 15 remains available as archival enrichment until its canonical replacement is developed. Existing 12-level mastery records and the compatibility checkpoint remain preserved."));
  const picker=element("select");picker.setAttribute("aria-label","Choose Unit 01 lesson");picker.style.cssText="width:100%;padding:10px;margin:8px 0";
  const lessonSelectionKey=()=>learnerKey+"_u01_selected_lesson_v1";
  const savedSelection=safeGet(lessonSelectionKey());
 
- FRENCH_101_UNIT01_DAYS.forEach(d=>{const current=d.day===13?"Questions, Negation & Conversation":d.day===12?"Home, School & Everyday Objects":d.day===11?"Food & Café":d.day===10?"Dates & Time":d.day===9?"Colors, Shapes & Descriptions":d.day===8?"Family and Relationships":d.day===7?"Être and Avoir":d.day===6?"Nouns, Articles and Gender":d.day===2?"Numbers · 0–100":d.title;const label=d.day>=14?"Archive · Earlier "+String(d.day).padStart(2,"0")+" — "+d.title:"Lesson "+String(d.day).padStart(2,"0")+" — "+current;const o=element("option",label);o.value=d.day;picker.append(o)});
+ FRENCH_101_UNIT01_DAYS.forEach(d=>{const current=d.day===14?"Present-Tense Verbs & Daily Routines":d.day===13?"Questions, Negation & Conversation":d.day===12?"Home, School & Everyday Objects":d.day===11?"Food & Café":d.day===10?"Dates & Time":d.day===9?"Colors, Shapes & Descriptions":d.day===8?"Family and Relationships":d.day===7?"Être and Avoir":d.day===6?"Nouns, Articles and Gender":d.day===2?"Numbers · 0–100":d.title;const label=d.day>=15?"Archive · Earlier "+String(d.day).padStart(2,"0")+" — "+d.title:"Lesson "+String(d.day).padStart(2,"0")+" — "+current;const o=element("option",label);o.value=d.day;picker.append(o)});
  if(savedSelection&&FRENCH_101_UNIT01_DAYS.some(d=>String(d.day)===savedSelection))picker.value=savedSelection;
  const panel=element("article");panel.className="unit01-active-day";panel.style.cssText="max-width:780px;margin:0 auto;line-height:1.65";const navigation=element("div");navigation.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0";const previous=element("button","← Previous Lesson"),next=element("button","Next Lesson →");previous.type=next.type="button";navigation.append(previous,next);const journey=element("p");journey.setAttribute("role","status");const status=element("p");status.setAttribute("role","status");
  function draw(){
   const d=FRENCH_101_UNIT01_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_UNIT01_DAYS[0];
   safeSet(lessonSelectionKey(),String(d.day));
   panel.replaceChildren();
+  if(d.day===14){
+   panel.append(element("h4","Lesson 14 · Present-Tense Verbs & Daily Routines"));addFrenchLesson14RoutinesDepth(panel);addFrenchLesson14ReadingArchive(panel);
+   status.textContent="Lesson 14 verb/routine studio ready. Earlier independent-reading work remains optional and preserved.";previous.disabled=false;next.disabled=true;previous.textContent="← Lesson 13";next.textContent="Lesson 15 · in development";journey.textContent="French 101 · Canonical Lesson 14 of 18 · Independent Interaction. Daily formative work is separate from official 80% mastery.";return;
+  }
   if(d.day===13){
    panel.append(element("h4","Lesson 13 · Questions, Negation & Conversation"));addFrenchLesson13QuestionsDepth(panel);addFrenchLesson13DictationArchive(panel);
-   status.textContent="Lesson 13 questions/negation studio ready. Earlier dictation/correction work remains optional and preserved.";previous.disabled=false;next.disabled=true;previous.textContent="← Lesson 12";next.textContent="Lesson 14 · in development";journey.textContent="French 101 · Canonical Lesson 13 of 18 · Independent Interaction. Daily formative work is separate from official 80% mastery.";return;
+   status.textContent="Lesson 13 questions/negation studio ready. Earlier dictation/correction work remains optional and preserved.";previous.disabled=false;next.disabled=false;previous.textContent="← Lesson 12";next.textContent="Next Lesson →";journey.textContent="French 101 · Canonical Lesson 13 of 18 · Independent Interaction. Daily formative work is separate from official 80% mastery.";return;
   }
   if(d.day===12){
    panel.append(element("h4","Lesson 12 · Home, School & Everyday Objects"));addFrenchLesson12ObjectsDepth(panel);addFrenchLesson12PronunciationArchive(panel);
@@ -2549,7 +2664,7 @@ function addUnit01DailySequence(parent){
    
    status.textContent="Lesson 06 noun/article review ready. Earlier listening evidence remains in optional enrichment.";previous.disabled=false;next.disabled=false;previous.textContent="← Previous Lesson";journey.textContent="Course Level 1 · Viewing Lesson 06 of 15 · Nouns, Articles and Gender. Official mastery remains separate at 80%.";return;
   }
-  if(d.day>=14){
+  if(d.day>=15){
    panel.append(element("h4","Archival enrichment · Earlier Lesson "+String(d.day).padStart(2,"0")+" · "+d.title),element("p","This material is preserved from the earlier Unit 01 phonology/literacy sequence. It remains useful practice, but it is not the canonical French 101 Lesson "+String(d.day).padStart(2,"0")+". The canonical replacement will be developed separately without deleting this work."));
   }else{
    panel.append(element("h4","Lesson "+String(d.day).padStart(2,"0")+" · "+(d.day===2?"Numbers · 0–100":d.title)));
@@ -2616,7 +2731,7 @@ function addUnit01DailySequence(parent){
   panel.append(deeper);
   const print=element("button","Print lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(d.day));panel.append(print);
   cohereFrenchDailyPanel(panel,d.day);
-  status.textContent=d.day>=14?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=14?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
+  status.textContent=d.day>=15?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=15?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
  }
  previous.addEventListener("click",()=>{if(Number(picker.value)===2){document.getElementById("french101-unit01-day01")?.scrollIntoView({block:"start",behavior:"smooth"});return}picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(15,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
 }
