@@ -27,11 +27,13 @@ This file records meaningful public changes to Polyglot. Dates use the `YYYY-MM-
 - Bridge v1 never writes `arshif.languageHall.v4`, never changes unlocks, and never awards formal mastery or completion.
 - Anonymous/shared-device records are intentionally ineligible for bridge promotion.
 - German bridge scoring evaluates recorded exam evidence against the Academy 80% threshold even when an older Coach pass flag used a lower threshold.
-- Added bridge documentation, static safety audit and a dedicated GitHub Actions integrity workflow.
+- Added bridge documentation, static safety audit and dedicated GitHub Actions integrity workflow.
+- Added a two-learner regression test covering French and German learner isolation, anonymous-record blocking, 80% interpretation and zero V4 mutation.
+- Corrected French bridge compatibility with the established portfolio-review note key.
 
 ### Next
 
-- Implement versioned French and German evidence-to-authority bridges without deleting existing learner records.
+- Make the formal V4 record itself safely learner-scoped before any Bridge v2 evidence acceptance.
 - Establish Language World evidence parity for Spanish, Mandarin and Japanese.
 - Continue Arabic/Russian academic release hardening and live-browser QA.
 - Generate a current package manifest from the live repository.
