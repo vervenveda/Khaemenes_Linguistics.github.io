@@ -23,5 +23,6 @@ $("learner").value=learner();$("identity").textContent="Selected: "+(learner()||
 $("download").onclick=()=>{const payload={format:"khaemenes-russian-world-v1",learner:learner()||"anonymous",graded:false,results:records()};const u=URL.createObjectURL(new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}));const a=document.createElement("a");a.href=u;a.download="russian-conversation-practice.json";a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};
 $("print").onclick=()=>{const p=$("printout");p.replaceChildren();for(const t of ["Khaemenes Academy","Russian Conversation World · Ungraded Homeschool Evidence","Student: "+(learner()||"____________________")+" · Date: "+new Date().toLocaleDateString(),"Course: Russian · Weeks 1–6","Stored practice attempts: "+records().length,"Parent / teacher review: __________________________________","Notes: ______________________________________________"]){const e=document.createElement("p");e.textContent=t;p.append(e)}window.print()};
 window.addEventListener("storage",e=>{if(e.key==="russian_active_learner"){$("learner").value=learner();status();draw()}});draw();status();</script><script src="../../assets/vnv-language.js" defer></script><script>if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("../../service-worker.js",{scope:"../../"}).catch(()=>{}));</script>
-<script src="/assets/vnv-beta-link.js" defer></script>
+
+<script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
 </body></html>

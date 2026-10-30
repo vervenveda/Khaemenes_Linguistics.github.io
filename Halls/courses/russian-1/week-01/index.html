@@ -34,9 +34,10 @@ q[1].forEach((option,j)=>{const label=document.createElement("label");label.clas
 document.getElementById("grade").addEventListener("click",()=>{let answered=0,score=0;const output=document.getElementById("feedback");output.replaceChildren();QUESTIONS.forEach((q,i)=>{const choice=quizEl.querySelector('input[name="q'+i+'"]:checked');if(!choice)return;answered++;const correct=Number(choice.value)===q[2];if(correct)score++;const p=document.createElement("p");p.textContent="Question "+(i+1)+": "+(correct?"Correct. ":"Review: ")+q[3];output.append(p)});document.getElementById("status").textContent=answered<10?"Please answer all 10 questions before scoring ("+answered+"/10 answered).":score+"/10 — "+(score>=8?"Readiness guideline met; complete oral and writing checks.":"Review the lesson and try again.");if(answered<10)output.replaceChildren()});
 document.getElementById("retry").addEventListener("click",()=>{quizEl.reset();document.getElementById("status").textContent="Quiz reset.";document.getElementById("feedback").replaceChildren()});
 </script>
-<script src="/assets/vnv-beta-link.js" defer></script>
+
 <!-- VNV_OFFICIAL_SITE_TRANSLATOR -->
 <script defer src="../../../../assets/vnv-language.js"></script>
 <nav data-year-i-week-navigation aria-label="Course week navigation" style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:18px auto;padding:10px"><a href="../index.html">All course weeks</a><a href="../week-02/index.html">Next week →</a></nav>
 <script defer src="../../../../assets/year-i-evidence-journal.js"></script>\n<script defer src="../../../../assets/year-i-teacher-review.js"></script>
+<script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
 </body></html>

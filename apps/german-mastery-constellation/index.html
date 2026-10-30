@@ -30,7 +30,8 @@ function exportOverview(){const data=snapshot();const u=URL.createObjectURL(new 
 function loadNotes(){$("parentNotes").value=String(read(notesKey(),"")||"").slice(0,4000);$("notesStatus").textContent="Review notes are stored on this device and are not grades."}
 $("saveParentNotes").onclick=()=>{try{localStorage.setItem(notesKey(),JSON.stringify($("parentNotes").value.slice(0,4000)));$("notesStatus").textContent="Review notes saved locally."}catch{$("notesStatus").textContent="Saving failed. Copy your notes before leaving."}};
 $("export").onclick=exportOverview;$("portfolioReport").onclick=unifiedPortfolioReport;render();loadNotes();window.addEventListener("afterprint",()=>document.body.classList.remove("printing-unified-german"));window.addEventListener("storage",e=>{if(e.key==="german_active_learner"){render();loadNotes();}});</script>
-<script src="/assets/vnv-beta-link.js" defer></script>
+
 <script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("../../service-worker.js",{scope:"../../"}).catch(()=>{});});}</script><script src="../../assets/german-portfolio-print.js" defer></script><!-- VNV_OFFICIAL_SITE_TRANSLATOR -->
 <script defer src="../../assets/vnv-language.js"></script>
-<script src="../../assets/course-authority-bridge.js" defer></script></body></html>
+<script src="../../assets/course-authority-bridge.js" defer></script><script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
+</body></html>

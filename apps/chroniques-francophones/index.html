@@ -32,7 +32,8 @@ $("again").onclick=resetQuestions;
 $("inference").oninput=()=>{try{localStorage.setItem(writingKey()+"_inference",$("inference").value)}catch{$("saved").textContent="Saving unavailable. Copy your inference response."}};$("journal").oninput=()=>{try{localStorage.setItem(writingKey(),$("journal").value);$("saved").textContent="Saved locally for this learner and story."}catch{$("saved").textContent="Could not save; copy your writing to keep it."}};
 $("export").onclick=()=>{const data={format:"khaemenes-french-stories-v3",level,title:story().title,learnerRecord:learnerId(),date:new Date().toISOString(),score,total:story().questions.length,answers,writing:$("journal").value,inference:$("inference").value,graded:false};const url=URL.createObjectURL(new Blob([JSON.stringify(data,null,2)],{type:"application/json"}));const a=document.createElement("a");a.href=url;a.download="khaemenes-french-story-level-"+level+".json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)};
 const queryLevel=Number(new URLSearchParams(location.search).get("level"));setLevel(Number.isInteger(queryLevel)&&queryLevel>=1&&queryLevel<=12?queryLevel:7);</script>
-<script src="/assets/vnv-beta-link.js" defer></script>
+
 <script>if("serviceWorker" in navigator){window.addEventListener("load",()=>{navigator.serviceWorker.register("../../service-worker.js",{scope:"../../"}).catch(()=>{});});}</script><!-- VNV_OFFICIAL_SITE_TRANSLATOR -->
 <script defer src="../../assets/vnv-language.js"></script>
+<script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
 </body></html>

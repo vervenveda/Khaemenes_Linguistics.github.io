@@ -5,5 +5,6 @@ $("restoreFile").onchange=async()=>{resetPreview("Reviewing backup…");const fi
 $("restoreConfirm").onclick=()=>{if(!pending||pending.student!==current()){resetPreview("Learner changed. Select the backup again.");return}try{const p=check(pending.data);const staged=sections.filter(([name])=>Object.prototype.hasOwnProperty.call(p,name)).map(([name,prefix])=>[prefix+token(),name==="review"?p[name]:JSON.stringify(p[name])]);const previous=staged.map(([key])=>[key,get(key)]);try{for(const [key,value] of staged)localStorage.setItem(key,value)}catch(e){for(const [key,old] of previous){try{if(old===null)localStorage.removeItem(key);else localStorage.setItem(key,old)}catch{}}throw e}render();resetPreview("Learner backup restored. Legacy shared-device progress was not modified.")}catch(e){resetPreview("Restore failed; original records were preserved where possible.")}};
 $("choose").addEventListener("click",()=>resetPreview("Student selection changed. Re-select a backup."));window.addEventListener("storage",e=>{if(e.key==="russian_active_learner")resetPreview("Student changed. Re-select a backup.")});
 })();</script><script src="../../assets/vnv-language.js" defer></script><script>if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("../../service-worker.js",{scope:"../../"}).catch(()=>{}));</script>
-<script src="/assets/vnv-beta-link.js" defer></script>
+
+<script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
 </body></html>
