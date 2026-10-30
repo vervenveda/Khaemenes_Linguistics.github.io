@@ -522,6 +522,9 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 .french-canonical-lesson span{margin-top:4px;font-size:12px;line-height:1.35;color:#59605d}
 .french-canonical-lesson[data-protected="true"]{box-shadow:inset 0 0 0 1px rgba(60,103,95,.25)}
 .french-canonical-lesson:hover,.french-canonical-lesson:focus-visible{background:#f0e5d0}
+.french-canonical-assessment{margin-top:12px;padding:12px;border:1px solid #9f8c69;border-radius:7px;background:#fffdf7;text-align:center}
+.french-canonical-assessment p{margin:0 0 8px}
+.french-canonical-assessment button{min-height:44px;padding:9px 14px;border:1px solid #6f6047;border-radius:7px;background:#2f3835;color:#fff}
 .french-legacy-path{max-width:1040px;margin:18px auto;border:1px solid #cfc2aa;border-radius:7px;background:#faf6ed}
 .french-legacy-path>summary{padding:14px 16px;cursor:pointer;font:500 16px/1.4 "Cinzel",Georgia,serif}
 .french-legacy-path-inner{padding:0 16px 16px}
@@ -703,6 +706,119 @@ function startApp(event){
  }
 }
 /* Fixed Academy palette: historical theme preferences retained but no longer applied here. */
+
+const FRENCH_101_UNIT01_CANONICAL_BANK=[
+ {strand:"alphabet",prompt:"How many basic letters are in the French alphabet?",choices:["26","25","28"],answer:0,explain:"French uses the 26 basic Latin letters; accents and the cedilla do not add new basic letters."},
+ {strand:"alphabet",prompt:"Which spelling preserves the acute accent correctly?",choices:["école","ecole","ècole"],answer:0,explain:"École begins with é, an e with an acute accent."},
+ {strand:"alphabet",prompt:"Which spelling preserves the cedilla?",choices:["garçon","garcon","garćon"],answer:0,explain:"Garçon uses ç before o."},
+ {strand:"alphabet",prompt:"Which spelling preserves the diaeresis?",choices:["Noël","Noel","Nöel"],answer:0,explain:"Noël uses ë to show that the vowels are pronounced separately."},
+ {strand:"alphabet",prompt:"Which prompt asks how a word is spelled?",choices:["Comment ça s'écrit ?","Comment ça va ?","Où est la gare ?"],answer:0,explain:"Comment ça s'écrit ? asks how something is written or spelled."},
+ {strand:"numbers",prompt:"Which French number is 14?",choices:["quatorze","quarante","quatre"],answer:0,explain:"Quatorze means fourteen."},
+ {strand:"numbers",prompt:"Which French number is 70?",choices:["soixante-dix","septante","soixante-sept"],answer:0,explain:"In the core France-French system used in this course, 70 is soixante-dix."},
+ {strand:"numbers",prompt:"A learner says « J'ai treize ans. » How old are they?",choices:["13","30","3"],answer:0,explain:"Treize means thirteen."},
+ {strand:"numbers",prompt:"Which phrase correctly gives the quantity 21?",choices:["vingt et un","vingt-un","deux et un"],answer:0,explain:"The standard beginner form for 21 is vingt et un."},
+ {strand:"numbers",prompt:"Which number is larger?",choices:["quatre-vingts","soixante","cinquante"],answer:0,explain:"Quatre-vingts is 80, larger than 60 and 50."},
+ {strand:"pronouns",prompt:"Which subject pronoun means 'we'?",choices:["nous","vous","ils"],answer:0,explain:"Nous means we."},
+ {strand:"pronouns",prompt:"Which pronoun would normally replace 'Marie' when she is the subject?",choices:["elle","il","nous"],answer:0,explain:"Elle is the feminine singular subject pronoun."},
+ {strand:"pronouns",prompt:"Which pair are both plural subject pronouns?",choices:["nous / vous","je / tu","il / elle"],answer:0,explain:"Nous and vous are plural-capable subject pronouns; the other pairs are singular."},
+ {strand:"pronouns",prompt:"In « Paul et Léa sont ici », which pronoun can replace the two names?",choices:["ils","il","elle"],answer:0,explain:"A mixed-gender plural group is referred to with ils in the beginner system taught here."},
+ {strand:"pronouns",prompt:"Which sentence has a subject pronoun followed by a verb?",choices:["Je suis ici.","Le livre bleu.","Une école."],answer:0,explain:"Je is the subject pronoun and suis is the verb."},
+ {strand:"greetings",prompt:"Which is a polite daytime greeting?",choices:["Bonjour !","Bonne nuit !","Au revoir !"],answer:0,explain:"Bonjour is the standard polite daytime greeting."},
+ {strand:"greetings",prompt:"Which phrase introduces your name?",choices:["Je m'appelle Lina.","J'ai douze ans.","Je vais bien."],answer:0,explain:"Je m'appelle… introduces a name."},
+ {strand:"greetings",prompt:"Which expression politely asks another person's name?",choices:["Comment vous appelez-vous ?","Quel âge avez-vous ?","Où habitez-vous ?"],answer:0,explain:"Comment vous appelez-vous ? asks a person's name."},
+ {strand:"greetings",prompt:"Which response appropriately answers « Comment ça va ? »?",choices:["Je vais bien, merci.","Je m'appelle Hugo.","Au revoir."],answer:0,explain:"Je vais bien, merci answers how someone is doing."},
+ {strand:"greetings",prompt:"Which expression is an appropriate leave-taking?",choices:["Au revoir.","Bonjour.","Enchanté."],answer:0,explain:"Au revoir is a common leave-taking."},
+ {strand:"sentences",prompt:"Choose the sentence meaning 'The book is here.'",choices:["Le livre est ici.","Le livre et ici.","Livre le ici."],answer:0,explain:"Est is the verb 'is'; et means 'and'."},
+ {strand:"sentences",prompt:"Which word means 'and'?",choices:["et","est","un"],answer:0,explain:"Et means and; est is a form of être."},
+ {strand:"sentences",prompt:"Which is a complete beginner sentence?",choices:["Je suis ici.","Le rouge.","Une et."],answer:0,explain:"Je suis ici contains a subject and verb and expresses a complete idea."},
+ {strand:"sentences",prompt:"Complete: « Marie ___ Paul sont ici. »",choices:["et","est","une"],answer:0,explain:"Et joins Marie and Paul."},
+ {strand:"sentences",prompt:"Which repair makes « Je et ici » grammatical in the intended meaning 'I am here'?",choices:["Je suis ici.","Je et ici.","Je une ici."],answer:0,explain:"Je suis ici uses the correct verb form."},
+ {strand:"articles",prompt:"Which article normally introduces a masculine singular noun?",choices:["un","une","les"],answer:0,explain:"Un is the indefinite masculine singular article."},
+ {strand:"articles",prompt:"Which article normally introduces a feminine singular noun?",choices:["une","un","des"],answer:0,explain:"Une is the indefinite feminine singular article."},
+ {strand:"articles",prompt:"Which phrase is correct for 'the books'?",choices:["les livres","le livres","la livres"],answer:0,explain:"Les is the plural definite article."},
+ {strand:"articles",prompt:"Which phrase correctly introduces 'a picture' if image is feminine?",choices:["une image","un image","les image"],answer:0,explain:"Une is used with a feminine singular noun."},
+ {strand:"articles",prompt:"A noun has already been introduced as « un livre ». Which form naturally refers back to 'the book'?",choices:["le livre","un livre","des livres"],answer:0,explain:"Le livre refers back to the known masculine singular noun."},
+ {strand:"transfer",prompt:"Choose the best short introduction.",choices:["Bonjour. Je m'appelle Inès. Je suis ici pour apprendre le français.","Bonjour. Une livre et.","Au revoir. Je une Inès."],answer:0,explain:"The first option combines a greeting, name introduction and complete sentence structure."},
+ {strand:"transfer",prompt:"Which sentence correctly combines number, noun and article knowledge?",choices:["J'ai deux livres.","J'ai deux le livre.","Je deux livres."],answer:0,explain:"Deux livres is the normal plural noun phrase after the number."},
+ {strand:"transfer",prompt:"Which sentence correctly introduces two objects, one masculine and one feminine?",choices:["Voici un livre et une image.","Voici une livre et un image.","Voici le une livre."],answer:0,explain:"Livre is introduced with un and image with une in the course examples."},
+ {strand:"transfer",prompt:"Which sentence correctly refers to Léa with a pronoun?",choices:["Léa est ici. Elle est prête.","Léa est ici. Il est prête.","Léa est ici. Nous est prête."],answer:0,explain:"Elle correctly replaces Léa as the feminine singular subject."},
+ {strand:"transfer",prompt:"Which mini-dialogue is coherent?",choices:["— Bonjour. Comment vous appelez-vous ? — Je m'appelle Sami.","— Bonjour. Combien ? — Une je.","— Au revoir. Comment ça s'écrit ? — Treize ans."],answer:0,explain:"The first exchange asks and answers a name question coherently."},
+ {strand:"transfer",prompt:"Which correction is accurate?",choices:["« Marie est ici » uses est; « Marie et Paul » uses et.","Est always means and.","Et is a form of être."],answer:0,explain:"Est is a verb form; et is the conjunction and."}
+];
+function frenchUnit01AssessmentKey(){return learnerKey+"_canonical_unit01_assessment_v1"}
+function frenchUnit01AttemptKey(){return learnerKey+"_canonical_unit01_attempts_v1"}
+function readFrenchUnit01Assessment(){try{return JSON.parse(safeGet(frenchUnit01AssessmentKey())||"null")}catch{return null}}
+function balancedFrenchUnit01AssessmentSet(){
+ const grouped={};
+ FRENCH_101_UNIT01_CANONICAL_BANK.forEach((q,i)=>{(grouped[q.strand]||=[]).push({...q,id:"u01-"+i})});
+ const order=["alphabet","numbers","pronouns","greetings","sentences","articles","transfer"];
+ const counts={alphabet:3,numbers:3,pronouns:3,greetings:3,sentences:3,articles:3,transfer:2};
+ const selected=[];
+ order.forEach(strand=>selected.push(...shuffleQuestions(grouped[strand]||[]).slice(0,counts[strand]||0)));
+ return shuffleQuestions(selected);
+}
+function appendFrenchUnit01Attempt(record){
+ const key=frenchUnit01AttemptKey();let history=[];
+ try{const parsed=JSON.parse(safeGet(key)||"[]");if(Array.isArray(parsed))history=parsed}catch{}
+ history.push(record);safeSet(key,JSON.stringify(history.slice(-50)));
+}
+function openCanonicalUnit01Assessment(){
+ const box=$("exam");box.replaceChildren();
+ const prior=readFrenchUnit01Assessment();
+ box.append(element("h2","French 101 · Unit 01 Assessment"),element("p","Canonical cumulative checkpoint for Lessons 01–06 · Foundations. A score of 80% or higher is required: 16 of 20."));
+ box.append(element("p","This assessment covers alphabet and spelling foundations, numbers 0–100, vowels and subject pronouns, greetings and introductions, first-sentence structure, and nouns/articles/gender. Spoken-language practice remains separate from verified listening and speaking evidence."));
+ const evidence=element("section");evidence.className="study-section";
+ evidence.append(element("h3","Independent performance evidence"),element("p","Before or after the knowledge checkpoint, complete an original six-strand task: spell an unfamiliar name; interpret two quantities through 100; explain two pronoun referents; write a polite introduction; distinguish et/est in original sentences; and introduce then refer back to singular/plural nouns. Preserve at least one correction and its reason."));
+ const task=element("textarea");task.rows=7;task.setAttribute("aria-label","Unit 01 independent performance evidence");task.placeholder="My independent Unit 01 response, correction and explanation…";
+ const taskKey=learnerKey+"_canonical_unit01_performance_v1";task.value=safeGet(taskKey)||"";task.addEventListener("input",()=>safeSet(taskKey,task.value));evidence.append(task);
+ const review=element("textarea");review.rows=4;review.setAttribute("aria-label","Unit 01 reviewer notes");review.placeholder="Reviewer observations: written accuracy, independent transfer, speaking/listening evidence if actually observed, corrections and next goal…";
+ const reviewKey=learnerKey+"_canonical_unit01_review_v1";review.value=safeGet(reviewKey)||"";review.addEventListener("input",()=>safeSet(reviewKey,review.value));evidence.append(review,element("p","Synthetic speech, visible transcripts and self-entered ratings do not certify independent listening or speaking proficiency."));
+ box.append(evidence);
+ if(prior?.passed){
+  const done=element("section");done.className="study-section";
+  done.append(element("h3","Mastery recorded"),element("p","Passed: "+prior.score+"/"+prior.total+" ("+Math.round(prior.score/prior.total*100)+"%). Completed "+new Date(prior.completedAt).toLocaleDateString()+". This result is locked and preserved."));
+  addButton(done,"Return to French 101 Journey",backToMenu);box.append(done);showOnly("exam");return;
+ }
+ const start=element("button","Begin 20-question assessment");start.type="button";box.append(start);
+ const status=element("p");status.setAttribute("role","status");box.append(status);
+ addButton(box,"Return to French 101 Journey",backToMenu);
+ start.addEventListener("click",()=>{
+  const set=balancedFrenchUnit01AssessmentSet(),area=element("section");area.className="study-section";box.insertBefore(area,status);
+  start.disabled=true;let at=0,correct=0,answers=[];
+  const draw=()=>{
+   area.replaceChildren();
+   if(at>=set.length){
+    const passed=correct>=16,record={score:correct,total:set.length,passed,completedAt:new Date().toISOString(),questionIds:set.map(q=>q.id),answers};
+    appendFrenchUnit01Attempt(record);
+    if(passed)safeSet(frenchUnit01AssessmentKey(),JSON.stringify(record));
+    status.textContent="Unit 01 result: "+correct+"/"+set.length+" · "+(passed?"Passed — 80% mastery recorded. Unit 02 is academically ready.":"Below 80%. Review corrections and retry; your saved lesson work remains unchanged.");
+    if(passed){
+      const next=element("button","Continue to Unit 02");next.type="button";next.addEventListener("click",()=>{backToMenu();requestAnimationFrame(()=>document.querySelector('[data-lesson="7"]')?.focus())});area.append(next);
+    }else{
+      const retry=element("button","Retry with a new balanced selection");retry.type="button";retry.addEventListener("click",()=>openCanonicalUnit01Assessment());area.append(retry);
+    }
+    return;
+   }
+   const q=set[at];area.append(element("h3","Question "+(at+1)+" of "+set.length),element("p",q.prompt));
+   const feedback=element("p");feedback.setAttribute("role","status");
+   const options=shuffleQuestions(q.choices.map((label,i)=>({label,ok:i===q.answer})));
+   options.forEach(option=>{
+    const b=element("button",option.label);b.type="button";b.addEventListener("click",()=>{
+      if(area.dataset.answered==="1")return;area.dataset.answered="1";
+      if(option.ok)correct++;
+      answers.push({id:q.id,correct:option.ok});
+      feedback.textContent=option.ok?"Correct. "+q.explain:"Correction: "+q.choices[q.answer]+". "+q.explain;
+      [...area.querySelectorAll("button")].forEach(x=>x.disabled=true);
+      const next=element("button",at===set.length-1?"See result":"Next question");next.type="button";next.disabled=false;next.addEventListener("click",()=>{at++;area.dataset.answered="";draw()});area.append(next);
+    });area.append(b);
+   });
+   area.append(feedback);
+  };
+  draw();
+ });
+ showOnly("exam");
+}
+
 const FRENCH_101_CANONICAL_SPINE=[
  {unit:1,title:"Unit 01 · Foundations",range:"Lessons 01–06",description:"Sound, number, identity and first-sentence foundations.",lessons:[
   [1,"Alphabet & pronunciation foundations"],[2,"Numbers · 0–100"],[3,"Vowels & Subject Pronouns"],[4,"Greetings & Introductions"],[5,"Small Words & First Sentences"],[6,"Nouns, Articles & Gender"]
@@ -753,7 +869,15 @@ function buildCanonicalCourseMap(){
    button.addEventListener("click",()=>openCanonicalFrench101Lesson(day));
    grid.append(button);
   }
-  section.append(grid);host.append(section);
+  section.append(grid);
+  if(unit.unit===1){
+   const assessment=element("div");assessment.className="french-canonical-assessment";
+   const prior=readFrenchUnit01Assessment();
+   assessment.append(element("p",prior?.passed?"Unit 01 mastery recorded · "+prior.score+"/"+prior.total:"Unit 01 assessment · 80% mastery required"));
+   const button=element("button",prior?.passed?"Review Unit 01 mastery":"Take Unit 01 Assessment");button.type="button";button.addEventListener("click",openCanonicalUnit01Assessment);assessment.append(button);
+   section.append(assessment);
+  }
+  host.append(section);
  }
 }
 function buildLevelGrid(){
