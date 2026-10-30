@@ -183,11 +183,17 @@ $("#tabs").onkeydown=e=>{if(!["ArrowLeft","ArrowRight","Home","End"].includes(e.
 $$("[data-go]").forEach(b=>b.onclick=()=>{showPanel(b.dataset.go,false);$("#tab-"+b.dataset.go)?.scrollIntoView({behavior:"smooth",block:"center"})});
 
 function renderAcademy(){
+ const learnerRoutes={
+  spanish:{href:"../apps/language-worlds/spanish/",label:"Enter Spanish"},
+  french:{href:"../apps/French_101_index.html",label:"Enter French 101"},
+  german:{href:"../apps/German_hub_index.html",label:"Enter German"},
+  mandarin:{href:"../apps/language-worlds/mandarin/",label:"Enter Mandarin"},
+  japanese:{href:"../apps/language-worlds/japanese/",label:"Enter Japanese"}
+ };
  $("#languageGrid").innerHTML=Object.entries(APP.languages).map(([id,L])=>{
-  const frenchDirect=id==="french"
-    ? '<a class="btn good" data-french101-entry href="../apps/French_101_index.html">Enter French 101</a>'
-    : "";
-  return `<article class="langcard" style="--accent:${L.accent}"><div class="langsymbol">${esc(L.symbol)}</div><div class="meta">${esc(L.family)}</div><h3>${esc(L.name)} · ${esc(L.native)}</h3><p>${esc(L.regions)}</p><p>${esc(L.notes)}</p><div class="actions"><button class="btn primary" data-lang="${id}">Choose ${esc(L.name)}</button>${frenchDirect}</div></article>`;
+  const route=learnerRoutes[id];
+  const direct=route?`<a class="btn good" data-language-direct="${id}" href="${route.href}">${route.label}</a>`:"";
+  return `<article class="langcard" style="--accent:${L.accent}"><div class="langsymbol">${esc(L.symbol)}</div><div class="meta">${esc(L.family)}</div><h3>${esc(L.name)} · ${esc(L.native)}</h3><p>${esc(L.regions)}</p><p>${esc(L.notes)}</p><div class="actions"><button class="btn primary" data-lang="${id}">Choose ${esc(L.name)}</button>${direct}</div></article>`;
  }).join("");
  $$("[data-lang]",$("#languageGrid")).forEach(b=>b.onclick=()=>{state.activeLanguage=b.dataset.lang;save();renderAcademy();renderCourse();renderSkills();renderPractice();renderAssess();renderVault()});
  const L=lang();
@@ -200,8 +206,18 @@ function renderAcademy(){
   return `<article class="course ${state.activeCourse===lv.id?"selected":""}" style="--accent:${L.accent}"><div class="code">${esc(lv.label)} · ${state.activeLanguage==="french"&&["101","102","201","202"].includes(lv.id)?18:lv.weeks} weeks</div><h3>${esc(st.title)}</h3><p>${esc(lv.band)}<br>${esc(lv.cefr)}</p><ul>${st.themes.map(x=>`<li>${esc(x)}</li>`).join("")}</ul><div class="coursefoot">${done?"✓ Course completion recorded":"Not yet recorded complete"}<br>${esc(st.performance)}</div><div class="actions">${action}</div></article>`;
  }).join("");
  $("[data-course]",$("#courseGrid")).forEach(b=>b.onclick=()=>{state.activeCourse=b.dataset.course;save();renderAcademy();renderCourse();renderSkills();renderPractice();renderAssess();renderVault();showPanel("course",false)});
+ $("[data-language-direct]",$("#panel-academy")).forEach(link=>{
+   link.addEventListener("click",event=>{
+     const route=learnerRoutes[link.dataset.languageDirect];
+     if(!route)return;
+     event.preventDefault();
+     event.stopPropagation();
+     window.location.assign(new URL(route.href,document.baseURI).href);
+   });
+ });
  $("[data-french101-entry]",$("#panel-academy")).forEach(link=>{
    link.addEventListener("click",event=>{
+     event.preventDefault();
      event.stopPropagation();
      window.location.assign(new URL("../apps/French_101_index.html",document.baseURI).href);
    });
