@@ -507,6 +507,27 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 
 #french-l08-builder select{max-width:100%;box-sizing:border-box}#french-u01-lesson08-family fieldset{min-width:0;overflow-wrap:anywhere}#french-u01-lesson08-family .french-l08-field span{display:block;margin-bottom:7px}
 </style>
+<style id="french101-canonical-spine">
+.french-canonical-entry{max-width:1040px;margin:24px auto;padding:24px;border:1px solid #b9a987;border-radius:7px;background:#fffdf7;text-align:center}
+.french-canonical-kicker{margin:0 0 7px;color:#7d5a2f;font:500 14px/1.4 "Cinzel",Georgia,serif;letter-spacing:.06em}
+.french-canonical-entry h2{margin:0;font:500 33px/1.2 "Cinzel",Georgia,serif}
+.french-canonical-entry>p:not(.french-canonical-kicker){max-width:760px;margin:10px auto 20px}
+.french-canonical-course-map{display:grid;gap:14px;text-align:left}
+.french-canonical-unit{padding:16px;border:1px solid #d8ccb4;border-radius:7px;background:#f8f2e6}
+.french-canonical-unit h3{margin:0 0 4px;font:500 24px/1.25 "Cinzel",Georgia,serif}
+.french-canonical-unit>p{margin:0 0 12px;color:#59605d}
+.french-canonical-lessons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.french-canonical-lesson{min-height:70px;padding:10px 12px;border:1px solid #9f8c69;border-radius:7px;background:#fff;color:#293331;text-align:left;display:flex;flex-direction:column;justify-content:center}
+.french-canonical-lesson strong{font:500 14px/1.25 "Cinzel",Georgia,serif}
+.french-canonical-lesson span{margin-top:4px;font-size:12px;line-height:1.35;color:#59605d}
+.french-canonical-lesson[data-protected="true"]{box-shadow:inset 0 0 0 1px rgba(60,103,95,.25)}
+.french-canonical-lesson:hover,.french-canonical-lesson:focus-visible{background:#f0e5d0}
+.french-legacy-path{max-width:1040px;margin:18px auto;border:1px solid #cfc2aa;border-radius:7px;background:#faf6ed}
+.french-legacy-path>summary{padding:14px 16px;cursor:pointer;font:500 16px/1.4 "Cinzel",Georgia,serif}
+.french-legacy-path-inner{padding:0 16px 16px}
+@media(max-width:760px){.french-canonical-lessons{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:460px){.french-canonical-lessons{grid-template-columns:1fr}.french-canonical-entry{padding:16px}}
+</style>
 </head>
 
 <body>
@@ -536,7 +557,7 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
  </div>
 </header>
  <main id="frenchCampusMain">
-  <div class="french-landing-intro"><span class="french-landing-eyebrow">Khaemenes Academy · World Languages</span><h1 id="title">French 101</h1><p class="french-landing-subtitle">A thoughtful beginning in French language, pronunciation, reading and communication.</p><p class="french-landing-caption">Choose your learning level below. Your progress stays with your learner record on this device.</p></div>
+  <div class="french-landing-intro"><span class="french-landing-eyebrow">Khaemenes Academy · World Languages</span><h1 id="title">French 101</h1><p class="french-landing-subtitle">A thoughtful beginning in French language, pronunciation, reading and communication.</p><p class="french-landing-caption">Follow the 18-lesson French 101 curriculum below. Your progress and preserved legacy records stay with your learner record on this device.</p></div>
   <aside id="frenchAudioControls" aria-label="French lesson audio controls">
  <label for="frenchVoiceSelect">French narrator</label>
  <select id="frenchVoiceSelect" aria-label="Select French narrator"><option value="">Finding French voices…</option></select>
@@ -552,7 +573,20 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
  <small>Volume here controls the lesson voice, not your computer's sound output.</small>
 </aside>
   <div id="menu">
-    <section class="french-level-entry" aria-labelledby="frenchChooseLevel"><h2 id="frenchChooseLevel">Enter your learning journey</h2><p>Begin with Level 1, or continue an unlocked level.</p><div class="level-grid" id="levelGrid"></div></section>
+    <section class="french-canonical-entry" aria-labelledby="frenchCanonicalJourney">
+      <p class="french-canonical-kicker">French 101 · 18-Lesson Curriculum</p>
+      <h2 id="frenchCanonicalJourney">Continue your French 101 journey</h2>
+      <p>Lessons 01–08 are the protected developed foundation. Continue through Units 01–03 without changing previously earned work.</p>
+      <div id="frenchCanonicalCourseMap" class="french-canonical-course-map" aria-live="polite"></div>
+    </section>
+    <details class="french-level-entry french-legacy-path">
+      <summary>Legacy 12-level compatibility pathway</summary>
+      <div class="french-legacy-path-inner">
+        <h2 id="frenchChooseLevel">Preserved historical mastery levels</h2>
+        <p>This pathway remains available for existing progress, backups and certificates. It does not replace the current 18-lesson curriculum.</p>
+        <div class="level-grid" id="levelGrid"></div>
+      </div>
+    </details>
     <details class="french-learner-record"><summary>Manage learner record, backup and restore</summary><div class="french-learner-record-inner">
     <label for="learnerName">Learner record (optional name)</label>
     <input id="learnerName" maxlength="70" autocomplete="off" placeholder="Learner name">
@@ -611,7 +645,7 @@ function chooseLearner(){
  Object.assign(progress,readKey(learnerKey));
  safeSet("french101_active_learner",name);
  $("learnerStatus").textContent="Current learner: "+(name||"Anonymous")+". Progress is stored on this device."+(name?"":" Anonymous work is shared by anyone using this browser without choosing a name. Select a learner before saving coursework.");
- buildLevelGrid();showOnly("menu");
+ buildCanonicalCourseMap();buildLevelGrid();showOnly("menu");
 }
 $("selectLearner").addEventListener("click",chooseLearner);
 $("exportRecord").addEventListener("click",()=>{
@@ -669,6 +703,59 @@ function startApp(event){
  }
 }
 /* Fixed Academy palette: historical theme preferences retained but no longer applied here. */
+const FRENCH_101_CANONICAL_SPINE=[
+ {unit:1,title:"Unit 01 · Foundations",range:"Lessons 01–06",description:"Sound, number, identity and first-sentence foundations.",lessons:[
+  [1,"Alphabet & pronunciation foundations"],[2,"Numbers · 0–100"],[3,"Vowels & Subject Pronouns"],[4,"Greetings & Introductions"],[5,"Small Words & First Sentences"],[6,"Nouns, Articles & Gender"]
+ ]},
+ {unit:2,title:"Unit 02 · Everyday French",range:"Lessons 07–12",description:"Core verbs, relationships, description, time, food and everyday objects.",lessons:[
+  [7,"Être & Avoir"],[8,"Family & Relationships"],[9,"Colors, Shapes & Descriptions"],[10,"Dates & Time"],[11,"Food & Café"],[12,"Home, School & Everyday Objects"]
+ ]},
+ {unit:3,title:"Unit 03 · Independent Communication",range:"Lessons 13–18",description:"Conversation, routines, navigation, comprehension and integrated production.",lessons:[
+  [13,"Questions, Negation & Conversation"],[14,"Present-Tense Verbs & Daily Routines"],[15,"Places, Directions & Transportation"],[16,"Reading & Listening Comprehension"],[17,"Writing & Speaking"],[18,"Integration, Corrections & Final Preparation"]
+ ]}
+];
+function openCanonicalFrench101Lesson(day){
+ const n=Number(day);
+ if(!Number.isInteger(n)||n<1||n>18)return false;
+ const key=learnerKey+"_u01_selected_lesson_v1";
+ if(!safeSet(key,String(n)))return false;
+ try{
+  openLesson(1);
+  requestAnimationFrame(()=>{
+   const picker=document.querySelector("#unit01-daily-lessons select");
+   if(picker&&picker.value!==String(n)){
+    picker.value=String(n);
+    picker.dispatchEvent(new Event("change",{bubbles:true}));
+   }
+   document.getElementById("unit01-daily-lessons")?.scrollIntoView({block:"start"});
+  });
+  return true;
+ }catch(error){
+  console.error("French 101 canonical lesson navigation failed",error);
+  return false;
+ }
+}
+function buildCanonicalCourseMap(){
+ const host=$("frenchCanonicalCourseMap");if(!host)return;
+ host.replaceChildren();
+ for(const unit of FRENCH_101_CANONICAL_SPINE){
+  const section=element("section");section.className="french-canonical-unit";
+  section.append(element("h3",unit.title),element("p",unit.range+" · "+unit.description));
+  const grid=element("div");grid.className="french-canonical-lessons";
+  for(const [day,title] of unit.lessons){
+   const button=element("button");button.type="button";button.className="french-canonical-lesson";
+   button.dataset.lesson=String(day);
+   if(day<=8)button.dataset.protected="true";
+   const number=element("strong","Lesson "+String(day).padStart(2,"0"));
+   const name=element("span",title+(day<=8?" · protected developed core":""));
+   button.append(number,name);
+   button.setAttribute("aria-label","Open French 101 Lesson "+day+": "+title);
+   button.addEventListener("click",()=>openCanonicalFrench101Lesson(day));
+   grid.append(button);
+  }
+  section.append(grid);host.append(section);
+ }
+}
 function buildLevelGrid(){
  const grid=$("levelGrid");grid.replaceChildren();
  for(let i=1;i<=totalLevels;i++){
@@ -682,7 +769,7 @@ function buildLevelGrid(){
   grid.append(button);
  }
 }
-function backToMenu(){showOnly("menu");buildLevelGrid()}
+function backToMenu(){showOnly("menu");buildCanonicalCourseMap();buildLevelGrid()}
 document.addEventListener("DOMContentLoaded",()=>{
  const start=$("frenchStartJourney");
  if(start&&!start.dataset.frenchStartBound){
