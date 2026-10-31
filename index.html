@@ -193,35 +193,10 @@ html[dir="rtl"] .campus-breadcrumbs{direction:rtl}
 @media(max-width:760px){.language-route-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:420px){.language-route-grid{grid-template-columns:1fr}}
 </style>
-<link rel="stylesheet" href="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-global-header.css">
-<link rel="stylesheet" href="https://vervenveda.com/assets/vnv-ecosystem-menu.css">
 <link rel="stylesheet" href="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-landing-standard.css">
 <link rel="stylesheet" href="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-landing-toolbar.css">
 </head>
 <body>
-<header data-khae-header class="khae-global-campus-header">
-  <div data-khae-header-inner>
-    <a data-khae-brand href="https://vervenveda.com/Khaemenes_Academy.github.io/" aria-label="Khaemenes Academy home">
-      <span data-khae-brand-mark>語</span>
-      <span><strong data-khae-brand-name>Khaemenes Academy</strong><small data-khae-brand-sub>Linguistics & World Language Campus</small></span>
-    </a>
-    <nav data-khae-nav aria-label="Academy and Polyglot navigation">
-      <a href="#academy" data-ticker>Academy</a>
-      <a href="#apps" data-ticker>Language Apps</a>
-      <a href="#voice-studio" data-ticker>Voice Studio</a>
-      <a href="#atlas" data-ticker>World Atlas</a>
-      <a href="#matrix" data-ticker>Language Matrix</a>
-      <a href="https://vervenveda.com/Khaemenes_Academy.github.io/student/" data-ticker>Student</a>
-      <a href="https://vervenveda.com/Khaemenes_Academy.github.io/family/" data-ticker>Family</a>
-    </nav>
-    <div data-khae-actions>
-      <a data-khae-secondary href="https://vervenveda.com/Khaemenes_Academy.github.io/student/">Student Profile</a>
-      <a href="https://buy.stripe.com/7sY9AU9Nv6G02jj3En4AU0r" target="_blank" rel="noopener noreferrer external">Support</a>
-      <button class="icon-button" id="themeButton" type="button" aria-label="Switch color theme">☼</button>
-    </div>
-    <div data-vnv-ecosystem-slot aria-label="Ecosystem menu"></div>
-  </div>
-</header>
 <a class="skip-link" href="#main">Skip to main content</a>
 <div class="world-ribbon" aria-label="Greetings from around the world"><div class="world-track" aria-hidden="true"><div class="world-set">
 <span><b>Welcome</b> · English</span><span><b>Bienvenidos</b> · Español</span><span><b>Bienvenue</b> · Français</span><span dir="rtl"><b>أهلاً وسهلاً</b> · العربية</span><span><b>欢迎</b> · 中文</span><span><b>ようこそ</b> · 日本語</span><span><b>Willkommen</b> · Deutsch</span><span><b>Добро пожаловать</b> · Русский</span>
@@ -323,8 +298,28 @@ const APPS=JSON.parse($('#appRegistry').textContent);
 const STORAGE={theme:'polyglot_theme_v2',voice:'polyglot_voice_v2',filter:'polyglot_app_filter_v3'};
 const safeParse=(v,f)=>{try{return v?JSON.parse(v):f}catch{return f}};
 const toast=$('#toast');function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>toast.classList.remove('show'),2300)}
-const themeButton=$('#themeButton');function applyTheme(theme){document.documentElement.dataset.theme=theme;themeButton.textContent=theme==='dark'?'☾':'☼';themeButton.setAttribute('aria-label',theme==='dark'?'Switch to light theme':'Switch to dark theme')}
-applyTheme(readLocal(STORAGE.theme)||(window.matchMedia?.('(prefers-color-scheme: dark)').matches?'dark':'light'));themeButton.onclick=()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';writeLocal(STORAGE.theme,next);applyTheme(next)};
+const themeButton=$('#themeButton');
+function syncThemeControls(theme){
+  if(themeButton){
+    themeButton.textContent=theme==='dark'?'☾':'☼';
+    themeButton.setAttribute('aria-label',theme==='dark'?'Switch to light theme':'Switch to dark theme');
+  }
+  document.querySelectorAll('a[href="#theme-toggle"]').forEach(link=>{
+    link.textContent=theme==='dark'?'Light Theme':'Dark Theme';
+    link.setAttribute('aria-label',theme==='dark'?'Switch to light theme':'Switch to dark theme');
+  });
+}
+function applyTheme(theme){document.documentElement.dataset.theme=theme;syncThemeControls(theme)}
+applyTheme(readLocal(STORAGE.theme)||(window.matchMedia?.('(prefers-color-scheme: dark)').matches?'dark':'light'));
+themeButton?.addEventListener('click',()=>{const next=document.documentElement.dataset.theme==='dark'?'light':'dark';writeLocal(STORAGE.theme,next);applyTheme(next)});
+document.addEventListener('click',event=>{
+  const link=event.target.closest?.('a[href="#theme-toggle"]');
+  if(!link)return;
+  event.preventDefault();
+  const next=document.documentElement.dataset.theme==='dark'?'light':'dark';
+  writeLocal(STORAGE.theme,next);
+  applyTheme(next);
+});
 const phrases=[
 {language:'Spanish',text:'Cada idioma abre una puerta.',translation:'Each language opens a door.',lang:'es'},
 {language:'French',text:'Chaque langue ouvre une porte.',translation:'Each language opens a door.',lang:'fr'},
@@ -364,7 +359,6 @@ $('#year').textContent=new Date().getFullYear();renderPhrase();renderFilters();r
 <script src="./register-service-worker.js" defer></script>
 <script src="https://vervenveda.com/assets/vnv-support.js" defer></script>
 <aside aria-label="Khaemenes Academy shared academic evidence" style="max-width:940px;margin:18px auto;padding:17px;border:1px solid #b2a99d;border-radius:7px;background:#faf5eb;color:#292e30"><h2 style="font-weight:400">Academy Academic Evidence Companion</h2><p>Collect research citations, vocabulary and translation reflections, writing, and language-learning evidence in the same optional printable format used across Khaemenes Academy. No separate grading system or account.</p><p><a href="https://vervenveda.com/Khaemenes_High.github.io/courses/science/integrated-science-9/academic-evidence-companion.html?course=linguistics" style="display:inline-block;padding:11px;border:1px solid #9a9083;border-radius:7px;color:#164f7b;background:#fff">Open Linguistics Evidence Companion</a></p></aside>
-<script src="https://vervenveda.com/assets/vnv-ecosystem-menu.js" defer></script>
 <script src="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-landing-toolbar.js" defer></script>
 <script id="french-direct-entry-guard">
 (()=>{"use strict";
@@ -378,11 +372,11 @@ $('#year').textContent=new Date().getFullYear();renderPhrase();renderFilters();r
  },true);
 })();
 </script>
+<script src="https://vervenveda.com/assets/vnv-header-autopopulate.js"></script>
+<script>VNV_HEADER.mount({"title":"Khaemenes Academy","subtitle":"Linguistics & World Language Campus","icon":"語","home":"https://vervenveda.com/Khaemenes_Academy.github.io/","actions":[{"label":"Academy","href":"#academy"},{"label":"Language Apps","href":"#apps"},{"label":"Voice Studio","href":"#voice-studio"},{"label":"Student Profile","href":"https://vervenveda.com/Khaemenes_Academy.github.io/student/"},{"label":"Theme","href":"#theme-toggle"}]});</script>
 <script src="https://vervenveda.com/assets/vnv-333-ticker.js"></script>
 <script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js" data-vnv-ticker-autopopulate></script>
 <script>VNV_TICKER.autoPopulate({label:"Polyglot Quick Links",max:12});</script>
-
-<script src="https://vervenveda.com/assets/vnv-header-autopopulate.js"></script>
-<script>VNV_HEADER.mount({replaceLegacy:true});</script>
+<script>VNV_HEADER.mount({"title":"Khaemenes Academy","subtitle":"Linguistics & World Language Campus","icon":"語","home":"https://vervenveda.com/Khaemenes_Academy.github.io/","actions":[{"label":"Academy","href":"#academy"},{"label":"Language Apps","href":"#apps"},{"label":"Voice Studio","href":"#voice-studio"},{"label":"Student Profile","href":"https://vervenveda.com/Khaemenes_Academy.github.io/student/"},{"label":"Theme","href":"#theme-toggle"}]});</script>
 <script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
 </body></html>
