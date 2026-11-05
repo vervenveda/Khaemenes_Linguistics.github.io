@@ -61,3 +61,22 @@ Before this change, the canonical map called Lesson 02 **Numbers 0–100**, but 
 ## Integrity statement
 
 No live learner records were read, edited or reset. No formal V4 mastery or certificate was issued. All changes are additive or scoped to the canonical Unit 01 question-bank logic and preserved route. The full application must be browser-tested before merging to \`main\`.
+
+
+## Nov. 5 follow-up: Lesson 01 is now five manageable alphabet sessions
+
+The original Lesson 01 covered all letters, accents, writing, oral rehearsal, a multi-strand assessment, matching practice and comprehensive teacher review on one long page. The preserved lesson's original DOM children and event listeners are now placed in a collapsed **Full original Lesson 01 reference and saved historical work** section. Student records and keys remain the same.
+
+The added entry is titled **Unit One · The French Alphabet**, with five independently navigable instructional sessions:
+
+1. **Alphabet A / 1 — A–G:** first seven letters, upper/lowercase, names vs word sounds, and reading for stated versus unknown facts.
+2. **Alphabet B / 2 — H–N:** name spelling, letter-name H versus word pronunciation, contextual reading and correction.
+3. **Alphabet C / 3 — O–U:** spelling versus pronunciation (tu/tout), positions, reading and evidence limits.
+4. **Alphabet D / 4 — V–Z & A–Z:** last five letters, full 26-letter retrieval, missing/misordered letters.
+5. **Alphabet E / 5 — Accents and spelling dialogue:** é/è/ê/ë/ç, accurate names, spelling requests, and original communication.
+
+Each session has three short instructional steps, original French reading plus English support, a speech-rehearsal button and individual letter-name buttons, reading comprehension, independent writing and correction fields, ten answer-keyed MC questions, stable same-question retry, learner-scoped local evidence, independent learner worksheet and educator print, plus a forward/back lesson control. **8/10 is only formative practice readiness; it does not replace the official 80% unit gate.**
+
+The main French 101 course map now links directly to all five alphabet sessions, inside the current Lesson 01 academic route. This is a **safe transitional learner-facing unit structure**; the canonical 18-lesson/three-unit numbering, previous 12-level progression and V4 authority have not been renumbered. A formal Unit 01 repartition would require a separate, deliberately migrated authority and transcript policy.
+
+Read-only checks performed on this branch: source and 12 inline scripts parse; five sessions cover all A–Z exactly once plus accents; 5 × 10 uniquely answer-keyed questions validate; mock DOM mounting, legacy node preservation, course-map navigation, 10/10 scoring, learner-scoped writing save and formal-key isolation pass. **Live** audio, print preview, student tablet and cross-account testing remain release blockers.
