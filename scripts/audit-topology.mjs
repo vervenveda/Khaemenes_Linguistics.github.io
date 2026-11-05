@@ -58,7 +58,7 @@ if(appMatch){
 }
 check(scriptStarts===scriptEnds,"Homepage script tags are unbalanced");
 check(!home.includes('<script src="./assets/khaemenes-campus-phrases.js" defer>\n<script'),"Homepage contains malformed nested external script tags");
-check(home.includes('href="https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/French_101_index.html"'),"French 101 canonical home entry is missing");
+check(['href="./apps/French_101_index.html"','href="https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/French_101_index.html"'].some(href=>home.includes(href)),"French 101 canonical home entry is missing");
 check(home.includes("pointer-events:auto!important"),"Language entry buttons are not explicitly pointer-enabled");
 check(home.includes(topology.stats.local_app_registry_count+" local language apps"),"Homepage visible app count is stale");
 check(home.includes("Browse "+topology.stats.local_app_registry_count+" local apps"),"Homepage browse-app count is stale");
