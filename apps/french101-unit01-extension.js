@@ -161,7 +161,7 @@ const LESSONS=[
  ["evidence","Where is the event taking place?",["At the school","At a library","The location is not stated."],2,"The passage supplies no location."],
  ["spelling","Which form is 80?",["quatre-vingts","quatre-vingt","quatre-vingts-un"],0,"80 takes terminal s."],
  ["spelling","Which is the taught 71?",["soixante-onze","soixante et onze","soixante-dix-un"],1,"71 is soixante et onze."],
- ["spelling","Which is 95?",["quatre-vingt-cinq","quatre-vingts-quinze","quatre-vingt-quinze"],2,"80+15=95."),
+ ["spelling","Which is 95?",["quatre-vingt-cinq","quatre-vingts-quinze","quatre-vingt-quinze"],2,"80+15=95."],
  ["source","Which activity demonstrates verified independent speaking?",["An educator-observed unprompted reply","Pressing the audio playback button","Reading a written transcript silently"],0,"Independent speaking requires separately observed evidence."],
  ["transfer","Which sentence combines an accurate greeting and quantity?",["Bonjour. Je est cinquante livres.","Bonjour. J'ai cinquante livres.","Bonsoir. Je cinquante livres."],1,"J'ai cinquante livres is grammatical and has the intended quantity."]
  ]}
