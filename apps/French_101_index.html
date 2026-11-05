@@ -615,6 +615,8 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
  </main>
 </div>
 
+<script src="./french101-alphabet-five.js"></script>
+<script src="./french101-unit01-extension.js"></script>
 <script>
 /* French 101 — 12 lesson study pathway with 80% assessment gates.
    Preserves the existing theme, splash, progress key, audio, and certificate UI.
@@ -700,42 +702,474 @@ function startApp(event){
 /* Fixed Academy palette: historical theme preferences retained but no longer applied here. */
 
 const FRENCH_101_UNIT01_CANONICAL_BANK=[
- {strand:"alphabet",prompt:"How many basic letters are in the French alphabet?",choices:["26","25","28"],answer:0,explain:"French uses the 26 basic Latin letters; accents and the cedilla do not add new basic letters."},
- {strand:"alphabet",prompt:"Which spelling preserves the acute accent correctly?",choices:["école","ecole","ècole"],answer:0,explain:"École begins with é, an e with an acute accent."},
- {strand:"alphabet",prompt:"Which spelling preserves the cedilla?",choices:["garçon","garcon","garćon"],answer:0,explain:"Garçon uses ç before o."},
- {strand:"alphabet",prompt:"Which spelling preserves the diaeresis?",choices:["Noël","Noel","Nöel"],answer:0,explain:"Noël uses ë to show that the vowels are pronounced separately."},
- {strand:"alphabet",prompt:"Which prompt asks how a word is spelled?",choices:["Comment ça s'écrit ?","Comment ça va ?","Où est la gare ?"],answer:0,explain:"Comment ça s'écrit ? asks how something is written or spelled."},
- {strand:"numbers",prompt:"Which French number is 14?",choices:["quatorze","quarante","quatre"],answer:0,explain:"Quatorze means fourteen."},
- {strand:"numbers",prompt:"Which French number is 70?",choices:["soixante-dix","septante","soixante-sept"],answer:0,explain:"In the core France-French system used in this course, 70 is soixante-dix."},
- {strand:"numbers",prompt:"A learner says « J'ai treize ans. » How old are they?",choices:["13","30","3"],answer:0,explain:"Treize means thirteen."},
- {strand:"numbers",prompt:"Which phrase correctly gives the quantity 21?",choices:["vingt et un","vingt-un","deux et un"],answer:0,explain:"The standard beginner form for 21 is vingt et un."},
- {strand:"numbers",prompt:"Which number is larger?",choices:["quatre-vingts","soixante","cinquante"],answer:0,explain:"Quatre-vingts is 80, larger than 60 and 50."},
- {strand:"pronouns",prompt:"Which subject pronoun means 'we'?",choices:["nous","vous","ils"],answer:0,explain:"Nous means we."},
- {strand:"pronouns",prompt:"Which pronoun would normally replace 'Marie' when she is the subject?",choices:["elle","il","nous"],answer:0,explain:"Elle is the feminine singular subject pronoun."},
- {strand:"pronouns",prompt:"Which pair are both plural subject pronouns?",choices:["nous / vous","je / tu","il / elle"],answer:0,explain:"Nous and vous are plural-capable subject pronouns; the other pairs are singular."},
- {strand:"pronouns",prompt:"In « Paul et Léa sont ici », which pronoun can replace the two names?",choices:["ils","il","elle"],answer:0,explain:"A mixed-gender plural group is referred to with ils in the beginner system taught here."},
- {strand:"pronouns",prompt:"Which sentence has a subject pronoun followed by a verb?",choices:["Je suis ici.","Le livre bleu.","Une école."],answer:0,explain:"Je is the subject pronoun and suis is the verb."},
- {strand:"greetings",prompt:"Which is a polite daytime greeting?",choices:["Bonjour !","Bonne nuit !","Au revoir !"],answer:0,explain:"Bonjour is the standard polite daytime greeting."},
- {strand:"greetings",prompt:"Which phrase introduces your name?",choices:["Je m'appelle Lina.","J'ai douze ans.","Je vais bien."],answer:0,explain:"Je m'appelle… introduces a name."},
- {strand:"greetings",prompt:"Which expression politely asks another person's name?",choices:["Comment vous appelez-vous ?","Quel âge avez-vous ?","Où habitez-vous ?"],answer:0,explain:"Comment vous appelez-vous ? asks a person's name."},
- {strand:"greetings",prompt:"Which response appropriately answers « Comment ça va ? »?",choices:["Je vais bien, merci.","Je m'appelle Hugo.","Au revoir."],answer:0,explain:"Je vais bien, merci answers how someone is doing."},
- {strand:"greetings",prompt:"Which expression is an appropriate leave-taking?",choices:["Au revoir.","Bonjour.","Enchanté."],answer:0,explain:"Au revoir is a common leave-taking."},
- {strand:"sentences",prompt:"Choose the sentence meaning 'The book is here.'",choices:["Le livre est ici.","Le livre et ici.","Livre le ici."],answer:0,explain:"Est is the verb 'is'; et means 'and'."},
- {strand:"sentences",prompt:"Which word means 'and'?",choices:["et","est","un"],answer:0,explain:"Et means and; est is a form of être."},
- {strand:"sentences",prompt:"Which is a complete beginner sentence?",choices:["Je suis ici.","Le rouge.","Une et."],answer:0,explain:"Je suis ici contains a subject and verb and expresses a complete idea."},
- {strand:"sentences",prompt:"Complete: « Marie ___ Paul sont ici. »",choices:["et","est","une"],answer:0,explain:"Et joins Marie and Paul."},
- {strand:"sentences",prompt:"Which repair makes « Je et ici » grammatical in the intended meaning 'I am here'?",choices:["Je suis ici.","Je et ici.","Je une ici."],answer:0,explain:"Je suis ici uses the correct verb form."},
- {strand:"articles",prompt:"Which article normally introduces a masculine singular noun?",choices:["un","une","les"],answer:0,explain:"Un is the indefinite masculine singular article."},
- {strand:"articles",prompt:"Which article normally introduces a feminine singular noun?",choices:["une","un","des"],answer:0,explain:"Une is the indefinite feminine singular article."},
- {strand:"articles",prompt:"Which phrase is correct for 'the books'?",choices:["les livres","le livres","la livres"],answer:0,explain:"Les is the plural definite article."},
- {strand:"articles",prompt:"Which phrase correctly introduces 'a picture' if image is feminine?",choices:["une image","un image","les image"],answer:0,explain:"Une is used with a feminine singular noun."},
- {strand:"articles",prompt:"A noun has already been introduced as « un livre ». Which form naturally refers back to 'the book'?",choices:["le livre","un livre","des livres"],answer:0,explain:"Le livre refers back to the known masculine singular noun."},
- {strand:"transfer",prompt:"Choose the best short introduction.",choices:["Bonjour. Je m'appelle Inès. Je suis ici pour apprendre le français.","Bonjour. Une livre et.","Au revoir. Je une Inès."],answer:0,explain:"The first option combines a greeting, name introduction and complete sentence structure."},
- {strand:"transfer",prompt:"Which sentence correctly combines number, noun and article knowledge?",choices:["J'ai deux livres.","J'ai deux le livre.","Je deux livres."],answer:0,explain:"Deux livres is the normal plural noun phrase after the number."},
- {strand:"transfer",prompt:"Which sentence correctly introduces two objects, one masculine and one feminine?",choices:["Voici un livre et une image.","Voici une livre et un image.","Voici le une livre."],answer:0,explain:"Livre is introduced with un and image with une in the course examples."},
- {strand:"transfer",prompt:"Which sentence correctly refers to Léa with a pronoun?",choices:["Léa est ici. Elle est prête.","Léa est ici. Il est prête.","Léa est ici. Nous est prête."],answer:0,explain:"Elle correctly replaces Léa as the feminine singular subject."},
- {strand:"transfer",prompt:"Which mini-dialogue is coherent?",choices:["— Bonjour. Comment vous appelez-vous ? — Je m'appelle Sami.","— Bonjour. Combien ? — Une je.","— Au revoir. Comment ça s'écrit ? — Treize ans."],answer:0,explain:"The first exchange asks and answers a name question coherently."},
- {strand:"transfer",prompt:"Which correction is accurate?",choices:["« Marie est ici » uses est; « Marie et Paul » uses et.","Est always means and.","Et is a form of être."],answer:0,explain:"Est is a verb form; et is the conjunction and."}
+  {
+    "strand": "alphabet",
+    "prompt": "How many basic letters are in the French alphabet?",
+    "choices": [
+      "26",
+      "25",
+      "28"
+    ],
+    "answer": 0,
+    "explain": "French uses the 26 basic Latin letters; accents and the cedilla do not add new basic letters."
+  },
+  {
+    "strand": "alphabet",
+    "prompt": "Which spelling preserves the acute accent correctly?",
+    "choices": [
+      "ecole",
+      "ècole",
+      "école"
+    ],
+    "answer": 2,
+    "explain": "École begins with é, an e with an acute accent."
+  },
+  {
+    "strand": "alphabet",
+    "prompt": "Which spelling preserves the cedilla?",
+    "choices": [
+      "garćon",
+      "garçon",
+      "garcon"
+    ],
+    "answer": 1,
+    "explain": "Garçon uses ç before o."
+  },
+  {
+    "strand": "alphabet",
+    "prompt": "Which spelling preserves the diaeresis?",
+    "choices": [
+      "Noël",
+      "Noel",
+      "Nöel"
+    ],
+    "answer": 0,
+    "explain": "Noël uses ë to show that the vowels are pronounced separately."
+  },
+  {
+    "strand": "alphabet",
+    "prompt": "Which prompt asks how a word is spelled?",
+    "choices": [
+      "Comment ça va ?",
+      "Où est la gare ?",
+      "Comment ça s'écrit ?"
+    ],
+    "answer": 2,
+    "explain": "Comment ça s'écrit ? asks how something is written or spelled."
+  },
+  {
+    "strand": "numbers",
+    "prompt": "Which French number is 14?",
+    "choices": [
+      "quatre",
+      "quatorze",
+      "quarante"
+    ],
+    "answer": 1,
+    "explain": "Quatorze means fourteen."
+  },
+  {
+    "strand": "numbers",
+    "prompt": "Which French number is 70?",
+    "choices": [
+      "soixante-dix",
+      "septante",
+      "soixante-sept"
+    ],
+    "answer": 0,
+    "explain": "In the core France-French system used in this course, 70 is soixante-dix."
+  },
+  {
+    "strand": "numbers",
+    "prompt": "A learner says « J'ai treize ans. » How old are they?",
+    "choices": [
+      "30",
+      "3",
+      "13"
+    ],
+    "answer": 2,
+    "explain": "Treize means thirteen."
+  },
+  {
+    "strand": "numbers",
+    "prompt": "Which phrase correctly gives the quantity 21?",
+    "choices": [
+      "deux et un",
+      "vingt et un",
+      "vingt-un"
+    ],
+    "answer": 1,
+    "explain": "The standard beginner form for 21 is vingt et un."
+  },
+  {
+    "strand": "numbers",
+    "prompt": "Which number is larger?",
+    "choices": [
+      "quatre-vingts",
+      "soixante",
+      "cinquante"
+    ],
+    "answer": 0,
+    "explain": "Quatre-vingts is 80, larger than 60 and 50."
+  },
+  {
+    "strand": "pronouns",
+    "prompt": "Which subject pronoun means 'we'?",
+    "choices": [
+      "vous",
+      "ils",
+      "nous"
+    ],
+    "answer": 2,
+    "explain": "Nous means we."
+  },
+  {
+    "strand": "pronouns",
+    "prompt": "Which pronoun would normally replace 'Marie' when she is the subject?",
+    "choices": [
+      "nous",
+      "elle",
+      "il"
+    ],
+    "answer": 1,
+    "explain": "Elle is the feminine singular subject pronoun."
+  },
+  {
+    "strand": "pronouns",
+    "prompt": "Which pair are both plural subject pronouns?",
+    "choices": [
+      "nous / vous",
+      "je / tu",
+      "il / elle"
+    ],
+    "answer": 0,
+    "explain": "Nous and vous are plural-capable subject pronouns; the other pairs are singular."
+  },
+  {
+    "strand": "pronouns",
+    "prompt": "In « Paul et Léa sont ici », which pronoun can replace the two names?",
+    "choices": [
+      "il",
+      "elle",
+      "ils"
+    ],
+    "answer": 2,
+    "explain": "A mixed-gender plural group is referred to with ils in the beginner system taught here."
+  },
+  {
+    "strand": "pronouns",
+    "prompt": "Which sentence has a subject pronoun followed by a verb?",
+    "choices": [
+      "Une école.",
+      "Je suis ici.",
+      "Le livre bleu."
+    ],
+    "answer": 1,
+    "explain": "Je is the subject pronoun and suis is the verb."
+  },
+  {
+    "strand": "greetings",
+    "prompt": "Which is a polite daytime greeting?",
+    "choices": [
+      "Bonjour !",
+      "Bonne nuit !",
+      "Au revoir !"
+    ],
+    "answer": 0,
+    "explain": "Bonjour is the standard polite daytime greeting."
+  },
+  {
+    "strand": "greetings",
+    "prompt": "Which phrase introduces your name?",
+    "choices": [
+      "J'ai douze ans.",
+      "Je vais bien.",
+      "Je m'appelle Lina."
+    ],
+    "answer": 2,
+    "explain": "Je m'appelle… introduces a name."
+  },
+  {
+    "strand": "greetings",
+    "prompt": "Which expression politely asks another person's name?",
+    "choices": [
+      "Où habitez-vous ?",
+      "Comment vous appelez-vous ?",
+      "Quel âge avez-vous ?"
+    ],
+    "answer": 1,
+    "explain": "Comment vous appelez-vous ? asks a person's name."
+  },
+  {
+    "strand": "greetings",
+    "prompt": "Which response appropriately answers « Comment ça va ? »?",
+    "choices": [
+      "Je vais bien, merci.",
+      "Je m'appelle Hugo.",
+      "Au revoir."
+    ],
+    "answer": 0,
+    "explain": "Je vais bien, merci answers how someone is doing."
+  },
+  {
+    "strand": "greetings",
+    "prompt": "Which expression is an appropriate leave-taking?",
+    "choices": [
+      "Bonjour.",
+      "Enchanté.",
+      "Au revoir."
+    ],
+    "answer": 2,
+    "explain": "Au revoir is a common leave-taking."
+  },
+  {
+    "strand": "sentences",
+    "prompt": "Choose the sentence meaning 'The book is here.'",
+    "choices": [
+      "Livre le ici.",
+      "Le livre est ici.",
+      "Le livre et ici."
+    ],
+    "answer": 1,
+    "explain": "Est is the verb 'is'; et means 'and'."
+  },
+  {
+    "strand": "sentences",
+    "prompt": "Which word means 'and'?",
+    "choices": [
+      "et",
+      "est",
+      "un"
+    ],
+    "answer": 0,
+    "explain": "Et means and; est is a form of être."
+  },
+  {
+    "strand": "sentences",
+    "prompt": "Which is a complete beginner sentence?",
+    "choices": [
+      "Le rouge.",
+      "Une et.",
+      "Je suis ici."
+    ],
+    "answer": 2,
+    "explain": "Je suis ici contains a subject and verb and expresses a complete idea."
+  },
+  {
+    "strand": "sentences",
+    "prompt": "Complete: « Marie ___ Paul sont ici. »",
+    "choices": [
+      "une",
+      "et",
+      "est"
+    ],
+    "answer": 1,
+    "explain": "Et joins Marie and Paul."
+  },
+  {
+    "strand": "sentences",
+    "prompt": "Which repair makes « Je et ici » grammatical in the intended meaning 'I am here'?",
+    "choices": [
+      "Je suis ici.",
+      "Je et ici.",
+      "Je une ici."
+    ],
+    "answer": 0,
+    "explain": "Je suis ici uses the correct verb form."
+  },
+  {
+    "strand": "articles",
+    "prompt": "Which article normally introduces a masculine singular noun?",
+    "choices": [
+      "une",
+      "les",
+      "un"
+    ],
+    "answer": 2,
+    "explain": "Un is the indefinite masculine singular article."
+  },
+  {
+    "strand": "articles",
+    "prompt": "Which article normally introduces a feminine singular noun?",
+    "choices": [
+      "des",
+      "une",
+      "un"
+    ],
+    "answer": 1,
+    "explain": "Une is the indefinite feminine singular article."
+  },
+  {
+    "strand": "articles",
+    "prompt": "Which phrase is correct for 'the books'?",
+    "choices": [
+      "les livres",
+      "le livres",
+      "la livres"
+    ],
+    "answer": 0,
+    "explain": "Les is the plural definite article."
+  },
+  {
+    "strand": "articles",
+    "prompt": "Which phrase correctly introduces 'a picture' if image is feminine?",
+    "choices": [
+      "un image",
+      "les image",
+      "une image"
+    ],
+    "answer": 2,
+    "explain": "Une is used with a feminine singular noun."
+  },
+  {
+    "strand": "articles",
+    "prompt": "A noun has already been introduced as « un livre ». Which form naturally refers back to 'the book'?",
+    "choices": [
+      "des livres",
+      "le livre",
+      "un livre"
+    ],
+    "answer": 1,
+    "explain": "Le livre refers back to the known masculine singular noun."
+  },
+  {
+    "strand": "transfer",
+    "prompt": "Choose the best short introduction.",
+    "choices": [
+      "Bonjour. Je m'appelle Inès. Je suis ici pour apprendre le français.",
+      "Bonjour. Une livre et.",
+      "Au revoir. Je une Inès."
+    ],
+    "answer": 0,
+    "explain": "This response combines a greeting, name introduction and complete sentence structure."
+  },
+  {
+    "strand": "transfer",
+    "prompt": "Which sentence correctly combines number, noun and article knowledge?",
+    "choices": [
+      "J'ai deux le livre.",
+      "Je deux livres.",
+      "J'ai deux livres."
+    ],
+    "answer": 2,
+    "explain": "Deux livres is the normal plural noun phrase after the number."
+  },
+  {
+    "strand": "transfer",
+    "prompt": "Which sentence correctly introduces two objects, one masculine and one feminine?",
+    "choices": [
+      "Voici le une livre.",
+      "Voici un livre et une image.",
+      "Voici une livre et un image."
+    ],
+    "answer": 1,
+    "explain": "Livre is introduced with un and image with une in the course examples."
+  },
+  {
+    "strand": "transfer",
+    "prompt": "Which sentence correctly refers to Léa with a pronoun?",
+    "choices": [
+      "Léa est ici. Elle est prête.",
+      "Léa est ici. Il est prête.",
+      "Léa est ici. Nous est prête."
+    ],
+    "answer": 0,
+    "explain": "Elle correctly replaces Léa as the feminine singular subject."
+  },
+  {
+    "strand": "transfer",
+    "prompt": "Which mini-dialogue is coherent?",
+    "choices": [
+      "— Bonjour. Combien ? — Une je.",
+      "— Au revoir. Comment ça s'écrit ? — Treize ans.",
+      "— Bonjour. Comment vous appelez-vous ? — Je m'appelle Sami."
+    ],
+    "answer": 2,
+    "explain": "This exchange asks and answers a name question coherently."
+  },
+  {
+    "strand": "transfer",
+    "prompt": "Which correction is accurate?",
+    "choices": [
+      "Et is a form of être.",
+      "« Marie est ici » uses est; « Marie et Paul » uses et.",
+      "Est always means and."
+    ],
+    "answer": 1,
+    "explain": "Est is a verb form; et is the conjunction and."
+  },
+  {
+    "strand": "numbers",
+    "depth": "advanced",
+    "prompt": "What number is « soixante et onze »?",
+    "choices": [
+      "71",
+      "61",
+      "70"
+    ],
+    "answer": 0,
+    "explain": "The taught 71 uses 60 + 11: soixante et onze."
+  },
+  {
+    "strand": "numbers",
+    "depth": "advanced",
+    "prompt": "Which spelling represents 81?",
+    "choices": [
+      "quatre-vingts-un",
+      "quatre-vingt-un",
+      "quatre-vingt et un"
+    ],
+    "answer": 1,
+    "explain": "81 uses quatre-vingt-un, without terminal s or et."
+  },
+  {
+    "strand": "numbers",
+    "depth": "advanced",
+    "prompt": "Which spelling correctly represents exactly 80?",
+    "choices": [
+      "quatre-vingt",
+      "quatre-vingts",
+      "quatre-vingt-un"
+    ],
+    "answer": 1,
+    "explain": "The cardinal 80 is quatre-vingts, with terminal s."
+  },
+  {
+    "strand": "numbers",
+    "depth": "advanced",
+    "prompt": "Which number is « quatre-vingt-dix-neuf »?",
+    "choices": [
+      "89",
+      "79",
+      "99"
+    ],
+    "answer": 2,
+    "explain": "Four twenties plus nineteen gives 99."
+  },
+  {
+    "strand": "numbers",
+    "depth": "advanced",
+    "prompt": "Which French cardinal form is 100?",
+    "choices": [
+      "un-cents",
+      "cent",
+      "cents"
+    ],
+    "answer": 1,
+    "explain": "100 is cent."
+  },
+  {
+    "strand": "numbers",
+    "depth": "advanced",
+    "prompt": "What quantity is « quatre-vingt-quinze »?",
+    "choices": [
+      "95",
+      "85",
+      "75"
+    ],
+    "answer": 0,
+    "explain": "80 + 15 is 95."
+  }
 ];
 function frenchUnit01AssessmentKey(){return learnerKey+"_canonical_unit01_assessment_v1"}
 function frenchUnit01AttemptKey(){return learnerKey+"_canonical_unit01_attempts_v1"}
@@ -746,7 +1180,13 @@ function balancedFrenchUnit01AssessmentSet(){
  const order=["alphabet","numbers","pronouns","greetings","sentences","articles","transfer"];
  const counts={alphabet:3,numbers:3,pronouns:3,greetings:3,sentences:3,articles:3,transfer:2};
  const selected=[];
- order.forEach(strand=>selected.push(...shuffleQuestions(grouped[strand]||[]).slice(0,counts[strand]||0)));
+ order.forEach(strand=>{
+  if(strand==="numbers"){
+   // Two upper-number questions plus one original foundational question.
+   selected.push(...shuffleQuestions((grouped.numbers||[]).filter(q=>q.depth==="advanced")).slice(0,2));
+   selected.push(...shuffleQuestions((grouped.numbers||[]).filter(q=>q.depth!=="advanced")).slice(0,1));
+  }else selected.push(...shuffleQuestions(grouped[strand]||[]).slice(0,counts[strand]||0));
+ });
  return shuffleQuestions(selected);
 }
 function appendFrenchUnit01Attempt(record){
@@ -754,7 +1194,7 @@ function appendFrenchUnit01Attempt(record){
  try{const parsed=JSON.parse(safeGet(key)||"[]");if(Array.isArray(parsed))history=parsed}catch{}
  history.push(record);safeSet(key,JSON.stringify(history.slice(-50)));
 }
-function openCanonicalUnit01Assessment(){
+function openCanonicalUnit01Assessment(retryState){
  const box=$("exam");box.replaceChildren();
  const prior=readFrenchUnit01Assessment();
  box.append(element("h2","French 101 · Unit 01 Assessment"),element("p","Canonical cumulative checkpoint for Lessons 01–06 · Foundations. A score of 80% or higher is required: 16 of 20."));
@@ -775,7 +1215,9 @@ function openCanonicalUnit01Assessment(){
  const status=element("p");status.setAttribute("role","status");box.append(status);
  addButton(box,"Return to French 101 Journey",backToMenu);
  start.addEventListener("click",()=>{
-  const set=balancedFrenchUnit01AssessmentSet(),area=element("section");area.className="study-section";box.insertBefore(area,status);
+  const set=Array.isArray(retryState?.questions)?retryState.questions:balancedFrenchUnit01AssessmentSet();
+  const questionOrders=retryState?.questionOrders||Object.create(null);
+  const area=element("section");area.className="study-section";box.insertBefore(area,status);
   start.disabled=true;let at=0,correct=0,answers=[];
   const draw=()=>{
    area.replaceChildren();
@@ -787,13 +1229,13 @@ function openCanonicalUnit01Assessment(){
     if(passed){
       const next=element("button","Continue to Unit 02");next.type="button";next.addEventListener("click",()=>{backToMenu();requestAnimationFrame(()=>document.querySelector('[data-lesson="7"]')?.focus())});area.append(next);
     }else{
-      const retry=element("button","Retry with a new balanced selection");retry.type="button";retry.addEventListener("click",()=>openCanonicalUnit01Assessment());area.append(retry);
+      const retry=element("button","Review and retry the same questions");retry.type="button";retry.addEventListener("click",()=>openCanonicalUnit01Assessment({questions:set,questionOrders}));area.append(retry);
     }
     return;
    }
    const q=set[at];area.append(element("h3","Question "+(at+1)+" of "+set.length),element("p",q.prompt));
    const feedback=element("p");feedback.setAttribute("role","status");
-   const options=shuffleQuestions(q.choices.map((label,i)=>({label,ok:i===q.answer})));
+   const options=questionOrders[q.id]||(questionOrders[q.id]=shuffleQuestions(q.choices.map((label,i)=>({label,ok:i===q.answer}))));
    options.forEach(option=>{
     const b=element("button",option.label);b.type="button";b.addEventListener("click",()=>{
       if(area.dataset.answered==="1")return;area.dataset.answered="1";
@@ -1003,6 +1445,8 @@ function buildCanonicalCourseMap(){
   }
   section.append(grid);
   if(unit.unit===1){
+   window.French101AlphabetFive?.mountMenu(section,{learnerKey,safeSet,openLessonOne:()=>openLesson(1)});
+   window.French101Unit01Extensions?.mountUnit(section,{learnerKey,safeGet,safeSet,speakFR});
    const assessment=element("div");assessment.className="french-canonical-assessment";
    const prior=readFrenchUnit01Assessment();
    assessment.append(element("p",prior?.passed?"Unit 01 mastery recorded · "+prior.score+"/"+prior.total:"Unit 01 assessment · 80% mastery required"));
@@ -1324,11 +1768,13 @@ function addAlphabetDailyLesson(parent){
  addUnit01Worksheet(section,1,"Meet the French Alphabet","Write the alphabet in four groups, spell two names, and explain the difference between a letter name and a word sound.");
  addUnit01EducatorRubric(section,1);
  const print=element("button","Print this lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(1));section.append(print);
- enhanceFrenchEarlyStudio(section,1);parent.append(section);
+ enhanceFrenchEarlyStudio(section,1);
+ window.French101AlphabetFive?.mount(section,{learnerKey,safeGet,safeSet,speakFR});
+ parent.append(section);
 }
 
 
-const FRENCH_101_UNIT01_DAYS=[{"day":2,"title":"Numbers · 0–20","lecture":"French numbers help learners count objects, introduce age and recognize quantities. Learn zéro through dix first, then onze to vingt. Some number names link sounds together; spellings and accents matter.","models":"zéro · un · deux · trois · quatre · cinq · six · sept · huit · neuf · dix · onze · douze · treize · quatorze · quinze · seize · dix-sept · dix-huit · dix-neuf · vingt","guided":"Count five objects in French, then compare 8 (huit), 10 (dix), 12 (douze), 15 (quinze) and 20 (vingt). Match each numeral to its written word.","assignment":"Write 0–20 in French, then compose three original number sentences or labels and explain two confusing spellings.","questions":[{"prompt":"What is the French word for 2?","choices":["deux","douze","dix"],"answer":0},{"prompt":"Which number is quinze?","choices":["15","5","50"],"answer":0},{"prompt":"Which is the correct spelling of 0?","choices":["zéro","zero","zèro"],"answer":0}]},{"day":3,"title":"Vowels and subject pronouns","lecture":"Review the five basic written vowels A E I O U, and note that Y sometimes represents a vowel. Learn the French subject pronouns je, tu, il, elle, nous, vous, ils and elles. Pronouns tell us who is speaking or being discussed; tu and vous differ in familiarity and politeness.","models":"A · E · I · O · U · je · tu · il · elle · nous · vous · ils · elles","guided":"Identify the vowels in Marie, Hugo and école. Match je to I, tu to familiar you, vous to polite/plural you, nous to we, and elle to she.","assignment":"Write the subject pronouns with their meanings, underline vowels in five French words, and compose four new pronoun phrases.","questions":[{"prompt":"Which subject pronoun means we?","choices":["nous","vous","tu"],"answer":0},{"prompt":"Which means she?","choices":["elle","il","ils"],"answer":0},{"prompt":"Which pronoun addresses one friend informally?","choices":["tu","vous","nous"],"answer":0}]},{"day":4,"title":"Greetings and introductions","lecture":"French greetings vary by time of day, relationship and situation. Bonjour is a standard daytime greeting, bonsoir an evening greeting, salut is informal, and au revoir closes an exchange. Introduce yourself using Je m'appelle… and ask how someone is using Comment ça va ?.","models":"Bonjour · Bonsoir · Salut · Au revoir · Merci · S'il vous plaît · Je m'appelle… · Comment ça va ? · Ça va bien.","guided":"Choose a polite greeting for a new teacher and an informal greeting for a close friend. Practice a two-person introduction and appropriate farewell.","assignment":"Write two original short dialogues, one formal and one informal, with greetings, names, polite language and leave-taking.","questions":[{"prompt":"Which is a polite daytime greeting?","choices":["Bonjour","Au revoir","Merci"],"answer":0},{"prompt":"What means goodbye?","choices":["Au revoir","Bonjour","Bonsoir"],"answer":0},{"prompt":"Which phrase introduces your name?","choices":["Je m'appelle…","Comment ça va ?","À bientôt"],"answer":0}]},{"day":5,"title":"Small words and first sentences","lecture":"Small, frequent words make beginner sentences possible: le, la, un, une, et, est, dans, sur, oui, non, mon and ma. French articles can mark grammatical gender. Distinguish est (is) from et (and), and use short meaningful sentences rather than disconnected vocabulary lists.","models":"le · la · un · une · et · est · dans · sur · oui · non · mon · ma · C'est un livre. · Le chat est là.","guided":"Match le and la with sample nouns, distinguish et from est in short sentences, and arrange word cards into a complete sentence.","assignment":"Write eight original short French sentences using at least six focus words. Underline articles and explain the difference between et and est.","questions":[{"prompt":"Which French word means and?","choices":["et","est","un"],"answer":0},{"prompt":"Which word means is?","choices":["est","et","la"],"answer":0},{"prompt":"Choose the indefinite article in « un livre ».","choices":["un","livre","le"],"answer":0}]},{"day":6,"title":"Listening: same or different?","lecture":"French vowel distinctions need repeated focused listening. Compare the beginnings of école and elle, and the words tu and tout. Never rely on English spelling alone to predict pronunciation.","models":"tu · tout · le · les · école · elle","guided":"Listen to pairs several times, then identify which words sound alike or different; replay as needed.","assignment":"Record three pairs in writing and describe one sound contrast.","questions":[{"prompt":"Which pair contrasts u and ou?","choices":["tu / tout","papa / maman","bonjour / salut"],"answer":0},{"prompt":"Which word begins with é?","choices":["école","elle","le"],"answer":0},{"prompt":"Which word is spelled with ou?","choices":["tout","tu","le"],"answer":0}]},{"day":7,"title":"Silent letters at word endings","lecture":"Many French words end with letters that are not sounded. This is a tendency, not an absolute rule. Compare petit, grand and Paris using a French-language audio model.","models":"petit · grand · Paris · salut","guided":"Hear and repeat each word; underline the written final letters and identify which need teacher or audio confirmation.","assignment":"Build a four-word spelling-and-sound observation table.","questions":[{"prompt":"Which word ends with written t?","choices":["petit","Paris","grand"],"answer":0},{"prompt":"Which word ends with written s?","choices":["Paris","petit","grand"],"answer":0},{"prompt":"Are all final consonants always silent?","choices":["No","Yes","Only in names"],"answer":0}]},{"day":8,"title":"Nasal vowels: introduction","lecture":"In many French words, the vowel before n or m forms a nasal sound. This does not mean pronouncing the letter n fully. Start by observing bon, pain and un; exact regional pronunciation can differ.","models":"bon · pain · un · maman","guided":"Listen to bon, pain and un; compare with maman, where the sounds differ.","assignment":"Write an observation about how bon and maman differ in the audio.","questions":[{"prompt":"Which word includes the spelling on?","choices":["bon","pain","un"],"answer":0},{"prompt":"Which word uses ain?","choices":["pain","bon","maman"],"answer":0},{"prompt":"Do nasal vowels always sound like a separate n?","choices":["No","Yes","Only in English"],"answer":0}]},{"day":9,"title":"Useful sound combinations","lecture":"A combination of letters can represent one sound. Observe ou in vous, oi in moi and ch in chat. Learn by listening to complete words, not by assigning one English sound to each French letter.","models":"vous · moi · chat · chou","guided":"Sort sample words by written combination: ou, oi or ch. Say each one with audio support.","assignment":"Find two words with ou or ch and copy them with a short explanation.","questions":[{"prompt":"Which word contains oi?","choices":["moi","vous","chat"],"answer":0},{"prompt":"Which word contains ch?","choices":["chat","moi","vous"],"answer":0},{"prompt":"Which word includes ou?","choices":["vous","moi","chat"],"answer":0}]},{"day":10,"title":"Spelling names in conversation","lecture":"Spelling is a practical conversation skill. Use « Comment ça s'écrit ? » to ask for spelling and « Ça s'écrit… » to respond. Speak clearly and repeat unfamiliar letters.","models":"Comment ça s'écrit ? · Ça s'écrit L-É-A.","guided":"Role-play asking for a name and repeating its letters. Compare a spelling with the printed answer.","assignment":"Write a three-turn exchange that asks for and confirms a name spelling.","questions":[{"prompt":"Which asks how to spell something?","choices":["Comment ça s'écrit ?","Au revoir","Merci"],"answer":0},{"prompt":"Which response introduces spelling?","choices":["Ça s'écrit…","Il pleut","Bonjour"],"answer":0},{"prompt":"Which letter has an accent in Léa?","choices":["É","L","A"],"answer":0}]},{"day":11,"title":"Reading and copying unfamiliar words","lecture":"Accurate reading begins with noticing every letter and accent. Copy words carefully before guessing meanings. A dictionary can confirm meaning, but the student's task is to recognize the written structure.","models":"école · fenêtre · garçon · français · bibliothèque","guided":"Copy each word, highlight accents, count letters and read using the available voice.","assignment":"Choose three words and note their first letter, final letter and accented characters.","questions":[{"prompt":"Which has ç?","choices":["français","école","fenêtre"],"answer":0},{"prompt":"Which includes ê?","choices":["fenêtre","école","garçon"],"answer":0},{"prompt":"Which begins with b?","choices":["bibliothèque","école","français"],"answer":0}]},{"day":12,"title":"Pronunciation in greetings","lecture":"Use the alphabet knowledge when reading bonjour, salut, merci and au revoir. Focus on hearing complete expressions, grouping syllables naturally and choosing a polite greeting.","models":"Bonjour ! · Salut ! · Merci. · Au revoir !","guided":"Listen, shadow and record your own reading outside the application if you have access to a recorder.","assignment":"Write a two-turn greeting and identify the first letters of each French expression.","questions":[{"prompt":"Which is a daytime greeting?","choices":["Bonjour","Au revoir","Merci"],"answer":0},{"prompt":"Which means thank you?","choices":["Merci","Salut","Bonjour"],"answer":0},{"prompt":"Which is a farewell?","choices":["Au revoir","Merci","Salut"],"answer":0}]},{"day":13,"title":"Dictation and spelling correction","lecture":"During dictation, listen first, attempt a spelling, then compare with an accurate written model. Correct each mistake and explain its cause. Do not treat copying a displayed word as independent dictation.","models":"école · bonjour · garçon · Léa","guided":"With a French voice or partner, hear each word without viewing it, write it, then reveal the written spelling.","assignment":"Make a correction log for four words, including every missed accent.","questions":[{"prompt":"Which word needs an acute accent?","choices":["école","bonjour","salut"],"answer":0},{"prompt":"Which word needs a cedilla?","choices":["garçon","bonjour","Léa"],"answer":0},{"prompt":"Which name contains é?","choices":["Léa","Hugo","Paul"],"answer":0}]},{"day":14,"title":"Independent reading and transfer","lecture":"Transfer spelling knowledge to new sentences. Identify letter boundaries, accents and familiar greetings. Understanding requires reading meaning as well as recognizing letters.","models":"Bonjour, Léa ! · Voici mon école. · Merci, garçon.","guided":"Read three short sentences aloud, circle accents, and explain each sentence in simple English.","assignment":"Copy two sentences with accents, write an original short greeting and reflect on one pronunciation challenge.","questions":[{"prompt":"Which sentence mentions school?","choices":["Voici mon école.","Bonjour, Léa !","Merci, garçon."],"answer":0},{"prompt":"Which sentence includes a name?","choices":["Bonjour, Léa !","Voici mon école.","Merci, garçon."],"answer":0},{"prompt":"Which word means thank you?","choices":["Merci","Voici","Mon"],"answer":0}]},{"day":15,"title":"Unit 01 review and readiness","lecture":"Bring together alphabet order, vowel and consonant names, accents, sound patterns, spelling in conversation and short reading. Correct mistakes and document improvement. The official Level 1 mastery quiz remains a separate 80% unlock gate.","models":"alphabet · accents · syllables · spelling · greetings","guided":"Read the alphabet, spell two names, identify five written accents or letter combinations and read a short greeting without prompting.","assignment":"Create a one-page unit review with five corrected spellings, a three-line dialogue, and an educator or self-reflection note.","questions":[{"prompt":"How many basic French letters?","choices":["26","25","27"],"answer":0},{"prompt":"Which is a spelling question?","choices":["Comment ça s'écrit ?","Il fait chaud","À droite"],"answer":0},{"prompt":"Which contains a cedilla?","choices":["garçon","école","bonjour"],"answer":0}]}];
+const FRENCH_101_UNIT01_DAYS=[{"day":2,"title":"Numbers · 0–100","lecture":"French numbers help learners count objects, introduce age and recognize quantities. Learn zéro through dix first, then onze to vingt. Some number names link sounds together; spellings and accents matter. Continue to 100: tens plus units for 21–69; soixante patterns for 70–79; quatre-vingt for 80–99; and cent for 100. Distinguish 71, 80 and 81.","models":"zéro · un · deux · trois · quatre · cinq · six · sept · huit · neuf · dix · onze · douze · treize · quatorze · quinze · seize · dix-sept · dix-huit · dix-neuf · vingt","guided":"Count five objects in French, then compare 8 (huit), 10 (dix), 12 (douze), 15 (quinze) and 20 (vingt). Match each numeral to its written word. Continue with unfamiliar values 31, 47, 61, 70, 71, 80, 81, 95 and 100; distinguish their spelling patterns.","assignment":"Write 0–20 in French, then compose three original number sentences or labels and explain two confusing spellings. Extend the assignment with ten unfamiliar numbers through 100, including 71, 80, 81 and 99, and explain each pattern.","questions":[{"prompt":"What is the French word for 2?","choices":["deux","douze","dix"],"answer":0},{"prompt":"Which number is quinze?","choices":["15","5","50"],"answer":0},{"prompt":"Which is the correct spelling of 0?","choices":["zéro","zero","zèro"],"answer":0}]},{"day":3,"title":"Vowels and subject pronouns","lecture":"Review the five basic written vowels A E I O U, and note that Y sometimes represents a vowel. Learn the French subject pronouns je, tu, il, elle, nous, vous, ils and elles. Pronouns tell us who is speaking or being discussed; tu and vous differ in familiarity and politeness.","models":"A · E · I · O · U · je · tu · il · elle · nous · vous · ils · elles","guided":"Identify the vowels in Marie, Hugo and école. Match je to I, tu to familiar you, vous to polite/plural you, nous to we, and elle to she.","assignment":"Write the subject pronouns with their meanings, underline vowels in five French words, and compose four new pronoun phrases.","questions":[{"prompt":"Which subject pronoun means we?","choices":["nous","vous","tu"],"answer":0},{"prompt":"Which means she?","choices":["elle","il","ils"],"answer":0},{"prompt":"Which pronoun addresses one friend informally?","choices":["tu","vous","nous"],"answer":0}]},{"day":4,"title":"Greetings and introductions","lecture":"French greetings vary by time of day, relationship and situation. Bonjour is a standard daytime greeting, bonsoir an evening greeting, salut is informal, and au revoir closes an exchange. Introduce yourself using Je m'appelle… and ask how someone is using Comment ça va ?.","models":"Bonjour · Bonsoir · Salut · Au revoir · Merci · S'il vous plaît · Je m'appelle… · Comment ça va ? · Ça va bien.","guided":"Choose a polite greeting for a new teacher and an informal greeting for a close friend. Practice a two-person introduction and appropriate farewell.","assignment":"Write two original short dialogues, one formal and one informal, with greetings, names, polite language and leave-taking.","questions":[{"prompt":"Which is a polite daytime greeting?","choices":["Bonjour","Au revoir","Merci"],"answer":0},{"prompt":"What means goodbye?","choices":["Au revoir","Bonjour","Bonsoir"],"answer":0},{"prompt":"Which phrase introduces your name?","choices":["Je m'appelle…","Comment ça va ?","À bientôt"],"answer":0}]},{"day":5,"title":"Small words and first sentences","lecture":"Small, frequent words make beginner sentences possible: le, la, un, une, et, est, dans, sur, oui, non, mon and ma. French articles can mark grammatical gender. Distinguish est (is) from et (and), and use short meaningful sentences rather than disconnected vocabulary lists.","models":"le · la · un · une · et · est · dans · sur · oui · non · mon · ma · C'est un livre. · Le chat est là.","guided":"Match le and la with sample nouns, distinguish et from est in short sentences, and arrange word cards into a complete sentence.","assignment":"Write eight original short French sentences using at least six focus words. Underline articles and explain the difference between et and est.","questions":[{"prompt":"Which French word means and?","choices":["et","est","un"],"answer":0},{"prompt":"Which word means is?","choices":["est","et","la"],"answer":0},{"prompt":"Choose the indefinite article in « un livre ».","choices":["un","livre","le"],"answer":0}]},{"day":6,"title":"Listening: same or different?","lecture":"French vowel distinctions need repeated focused listening. Compare the beginnings of école and elle, and the words tu and tout. Never rely on English spelling alone to predict pronunciation.","models":"tu · tout · le · les · école · elle","guided":"Listen to pairs several times, then identify which words sound alike or different; replay as needed.","assignment":"Record three pairs in writing and describe one sound contrast.","questions":[{"prompt":"Which pair contrasts u and ou?","choices":["tu / tout","papa / maman","bonjour / salut"],"answer":0},{"prompt":"Which word begins with é?","choices":["école","elle","le"],"answer":0},{"prompt":"Which word is spelled with ou?","choices":["tout","tu","le"],"answer":0}]},{"day":7,"title":"Silent letters at word endings","lecture":"Many French words end with letters that are not sounded. This is a tendency, not an absolute rule. Compare petit, grand and Paris using a French-language audio model.","models":"petit · grand · Paris · salut","guided":"Hear and repeat each word; underline the written final letters and identify which need teacher or audio confirmation.","assignment":"Build a four-word spelling-and-sound observation table.","questions":[{"prompt":"Which word ends with written t?","choices":["petit","Paris","grand"],"answer":0},{"prompt":"Which word ends with written s?","choices":["Paris","petit","grand"],"answer":0},{"prompt":"Are all final consonants always silent?","choices":["No","Yes","Only in names"],"answer":0}]},{"day":8,"title":"Nasal vowels: introduction","lecture":"In many French words, the vowel before n or m forms a nasal sound. This does not mean pronouncing the letter n fully. Start by observing bon, pain and un; exact regional pronunciation can differ.","models":"bon · pain · un · maman","guided":"Listen to bon, pain and un; compare with maman, where the sounds differ.","assignment":"Write an observation about how bon and maman differ in the audio.","questions":[{"prompt":"Which word includes the spelling on?","choices":["bon","pain","un"],"answer":0},{"prompt":"Which word uses ain?","choices":["pain","bon","maman"],"answer":0},{"prompt":"Do nasal vowels always sound like a separate n?","choices":["No","Yes","Only in English"],"answer":0}]},{"day":9,"title":"Useful sound combinations","lecture":"A combination of letters can represent one sound. Observe ou in vous, oi in moi and ch in chat. Learn by listening to complete words, not by assigning one English sound to each French letter.","models":"vous · moi · chat · chou","guided":"Sort sample words by written combination: ou, oi or ch. Say each one with audio support.","assignment":"Find two words with ou or ch and copy them with a short explanation.","questions":[{"prompt":"Which word contains oi?","choices":["moi","vous","chat"],"answer":0},{"prompt":"Which word contains ch?","choices":["chat","moi","vous"],"answer":0},{"prompt":"Which word includes ou?","choices":["vous","moi","chat"],"answer":0}]},{"day":10,"title":"Spelling names in conversation","lecture":"Spelling is a practical conversation skill. Use « Comment ça s'écrit ? » to ask for spelling and « Ça s'écrit… » to respond. Speak clearly and repeat unfamiliar letters.","models":"Comment ça s'écrit ? · Ça s'écrit L-É-A.","guided":"Role-play asking for a name and repeating its letters. Compare a spelling with the printed answer.","assignment":"Write a three-turn exchange that asks for and confirms a name spelling.","questions":[{"prompt":"Which asks how to spell something?","choices":["Comment ça s'écrit ?","Au revoir","Merci"],"answer":0},{"prompt":"Which response introduces spelling?","choices":["Ça s'écrit…","Il pleut","Bonjour"],"answer":0},{"prompt":"Which letter has an accent in Léa?","choices":["É","L","A"],"answer":0}]},{"day":11,"title":"Reading and copying unfamiliar words","lecture":"Accurate reading begins with noticing every letter and accent. Copy words carefully before guessing meanings. A dictionary can confirm meaning, but the student's task is to recognize the written structure.","models":"école · fenêtre · garçon · français · bibliothèque","guided":"Copy each word, highlight accents, count letters and read using the available voice.","assignment":"Choose three words and note their first letter, final letter and accented characters.","questions":[{"prompt":"Which has ç?","choices":["français","école","fenêtre"],"answer":0},{"prompt":"Which includes ê?","choices":["fenêtre","école","garçon"],"answer":0},{"prompt":"Which begins with b?","choices":["bibliothèque","école","français"],"answer":0}]},{"day":12,"title":"Pronunciation in greetings","lecture":"Use the alphabet knowledge when reading bonjour, salut, merci and au revoir. Focus on hearing complete expressions, grouping syllables naturally and choosing a polite greeting.","models":"Bonjour ! · Salut ! · Merci. · Au revoir !","guided":"Listen, shadow and record your own reading outside the application if you have access to a recorder.","assignment":"Write a two-turn greeting and identify the first letters of each French expression.","questions":[{"prompt":"Which is a daytime greeting?","choices":["Bonjour","Au revoir","Merci"],"answer":0},{"prompt":"Which means thank you?","choices":["Merci","Salut","Bonjour"],"answer":0},{"prompt":"Which is a farewell?","choices":["Au revoir","Merci","Salut"],"answer":0}]},{"day":13,"title":"Dictation and spelling correction","lecture":"During dictation, listen first, attempt a spelling, then compare with an accurate written model. Correct each mistake and explain its cause. Do not treat copying a displayed word as independent dictation.","models":"école · bonjour · garçon · Léa","guided":"With a French voice or partner, hear each word without viewing it, write it, then reveal the written spelling.","assignment":"Make a correction log for four words, including every missed accent.","questions":[{"prompt":"Which word needs an acute accent?","choices":["école","bonjour","salut"],"answer":0},{"prompt":"Which word needs a cedilla?","choices":["garçon","bonjour","Léa"],"answer":0},{"prompt":"Which name contains é?","choices":["Léa","Hugo","Paul"],"answer":0}]},{"day":14,"title":"Independent reading and transfer","lecture":"Transfer spelling knowledge to new sentences. Identify letter boundaries, accents and familiar greetings. Understanding requires reading meaning as well as recognizing letters.","models":"Bonjour, Léa ! · Voici mon école. · Merci, garçon.","guided":"Read three short sentences aloud, circle accents, and explain each sentence in simple English.","assignment":"Copy two sentences with accents, write an original short greeting and reflect on one pronunciation challenge.","questions":[{"prompt":"Which sentence mentions school?","choices":["Voici mon école.","Bonjour, Léa !","Merci, garçon."],"answer":0},{"prompt":"Which sentence includes a name?","choices":["Bonjour, Léa !","Voici mon école.","Merci, garçon."],"answer":0},{"prompt":"Which word means thank you?","choices":["Merci","Voici","Mon"],"answer":0}]},{"day":15,"title":"Unit 01 review and readiness","lecture":"Bring together alphabet order, vowel and consonant names, accents, sound patterns, spelling in conversation and short reading. Correct mistakes and document improvement. The official Level 1 mastery quiz remains a separate 80% unlock gate.","models":"alphabet · accents · syllables · spelling · greetings","guided":"Read the alphabet, spell two names, identify five written accents or letter combinations and read a short greeting without prompting.","assignment":"Create a one-page unit review with five corrected spellings, a three-line dialogue, and an educator or self-reflection note.","questions":[{"prompt":"How many basic French letters?","choices":["26","25","27"],"answer":0},{"prompt":"Which is a spelling question?","choices":["Comment ça s'écrit ?","Il fait chaud","À droite"],"answer":0},{"prompt":"Which contains a cedilla?","choices":["garçon","école","bonjour"],"answer":0}]}];
 /* Unit 01 cumulative evidence: independent of legacy Level 1 records and progression. */
 const UNIT01_TRANSFER_QUESTIONS=[
  ["Which spelling contains an acute accent?",["école","père","garçon"],0],
@@ -1424,10 +1870,10 @@ function printUnit01Day(day,educator=false){
  if(day===16){printFrenchLesson16(false);return}
  if(day===17){printFrenchLesson17(false);return}
  if(day===18){printFrenchLesson18(false);return}
- const source=day===1?document.getElementById("french101-unit01-day01"):document.querySelector("#unit01-daily-lessons .unit01-active-day");
+ const source=day===1?(document.querySelector("#french101-unit01-day01 > .french-alphabet-legacy")||document.getElementById("french101-unit01-day01")):document.querySelector("#unit01-daily-lessons .unit01-active-day");
  if(!source)return;
  const previous=document.getElementById("unit01-print-copy");if(previous)previous.remove();
- const copy=source.cloneNode(true);copy.id="unit01-print-copy";copy.querySelectorAll("details").forEach(detail=>detail.open=true);
+ const copy=source.cloneNode(true);copy.id="unit01-print-copy";if(day===1&&copy.tagName==="DETAILS")copy.open=true;copy.querySelectorAll("details").forEach(detail=>detail.open=true);
  // Copy saved draft values, since cloning textareas does not reliably clone current values.
  const from=source.querySelectorAll("textarea"),to=copy.querySelectorAll("textarea");
  from.forEach((v,i)=>{if(to[i]){to[i].value=v.value;to[i].textContent=v.value;}});
@@ -1466,7 +1912,12 @@ function addFrenchCohesiveReview(parent,day,bank,skills){
  function records(){try{const a=JSON.parse(safeGet(key)||'[]');return Array.isArray(a)?a:[]}catch{return []}}
  function showHistory(){const a=records();history.textContent=a.length?'Saved formative rounds: '+a.length+' (most recent '+a[a.length-1].correct+'/10). Up to 20 completed rounds are retained.':'No completed formative rounds saved yet. Complete all ten questions to record a round.'}
  function draw(){board.replaceChildren();let done=0,correct=0;const responses=[];
-  const chosen=shuffleQuestions(skills.flatMap(skill=>shuffleQuestions(bank.filter(q=>q.skill===skill)).slice(0,day===2&&['sequence','quantities'].includes(skill)?1:2)));
+  const chosen=day===2&&bank.some(q=>q.range==="21-100")
+   ?shuffleQuestions(skills.flatMap(skill=>[
+    ...shuffleQuestions(bank.filter(q=>q.skill===skill&&q.range==="21-100")).slice(0,1),
+    ...shuffleQuestions(bank.filter(q=>q.skill===skill&&q.range!=="21-100")).slice(0,['sequence','quantities'].includes(skill)?0:1)
+   ]))
+   :shuffleQuestions(skills.flatMap(skill=>shuffleQuestions(bank.filter(q=>q.skill===skill)).slice(0,day===2&&['sequence','quantities'].includes(skill)?1:2)));
   chosen.forEach((q,i)=>{const field=element('fieldset');field.dataset.skill=q.skill;field.dataset.questionId='l0'+day+'-'+(bank.indexOf(q)+1);field.append(element('legend',(i+1)+'. '+q.prompt));const feedback=element('p');feedback.setAttribute('role','status');
    shuffleQuestions(q.choices.map((choice,j)=>({choice,index:j}))).forEach(opt=>{const b=element('button',opt.choice);b.type='button';b.addEventListener('click',()=>{if(field.dataset.answered)return;field.dataset.answered='yes';done++;if(opt.index===q.answer)correct++;responses.push({questionId:field.dataset.questionId,selected:opt.index,correct:opt.index===q.answer});feedback.textContent=(opt.index===q.answer?'Correct. ':'Correction: '+q.choices[q.answer]+'. ')+q.explain;field.querySelectorAll('button').forEach(x=>x.disabled=true);status.textContent=correct+'/'+done+' correct · '+(10-done)+' remaining · formative only.';if(done===10){const a=records();a.push({correct,total:10,questionIds:chosen.map(x=>'l0'+day+'-'+(bank.indexOf(x)+1)),responses,timestamp:new Date().toISOString(),formative:true,oralProficiencyCertified:false});const ok=safeSet(key,JSON.stringify(a.slice(-20)));status.textContent+=' '+(ok?'Completed round saved.':'Saving failed. Copy the result.');showHistory()}});field.append(b)});field.append(feedback);board.append(field)});
   status.textContent='Ten-question round ready. Each response locks once answered. No official grade or unlock changes.';
@@ -1711,12 +2162,16 @@ function addFrenchLesson02NumbersDepth(panel){
  element("p","A. Write French number words for 3, 6, 9, 12, 16, 17 and 20. B. Correct these unfamiliar attempts: zero, dis-sept and vingt-neuf when the intended quantity is 19. C. Create a six-line original market or classroom exchange using at least four different quantities. D. Explain how you check a number's spelling without depending on an English pronunciation."),
  element("h4","6 · Original writing and corrections"));
  const area=element("textarea");area.rows=9;area.setAttribute("aria-label","Lesson 02 original number writing and corrections");area.placeholder="My number words, spelling corrections, original conversation and reasoning…";const key=learnerKey+"_beginner2026_lesson02_numbers_performance_v1";area.value=safeGet(key)||"";area.addEventListener("input",()=>safeSet(key,area.value));sec.append(area);
- sec.append(element("h4","7 · Balanced formative review"),element("p","Ten questions per practice round, selected from 30 authored prompts across recognition, writing, sequence, quantities, reasoning and transfer. Correct answers are explained. This practice does not award official mastery."));
- addFrenchCohesiveReview(sec,2,FRENCH_U01_NUMBERS_QUESTION_BANK,["recognition", "writing", "sequence", "quantities", "reasoning", "transfer"]);
+ sec.append(element("h4","7 · Balanced formative review"),element("p","Ten questions per practice round from the original 30 prompts plus 30 companion prompts through 100, balanced across recognition, writing, sequence, quantities, reasoning and transfer. Correct answers are explained. This practice does not award official mastery."));
+ const numberBank=window.French101Unit01Extensions?.numberQuestions
+  ?FRENCH_U01_NUMBERS_QUESTION_BANK.concat(window.French101Unit01Extensions.numberQuestions)
+  :FRENCH_U01_NUMBERS_QUESTION_BANK;
+ addFrenchCohesiveReview(sec,2,numberBank,["recognition", "writing", "sequence", "quantities", "reasoning", "transfer"]);
  sec.append(element("h4","8 · Educator review and reflection"),element("p","Ask the learner to read five unseen numerals and spell five unfamiliar numbers without copying. Record whether recognition, written spelling, numerical meaning and spoken response were independently demonstrated. If no educator observed speaking, mark it not assessed."));
  const notes=element("textarea");notes.rows=4;notes.setAttribute("aria-label","Lesson 02 number review observations");notes.placeholder="Unseen prompts, errors corrected, educator observations and next learning goal…";const nk=learnerKey+"_beginner2026_lesson02_numbers_review_v1";notes.value=safeGet(nk)||"";notes.addEventListener("input",()=>safeSet(nk,notes.value));sec.append(notes);
  ["Accurate number recognition","Unprompted French spelling","Original quantitative dialogue","Independently observed listening/speaking"].forEach((label,i)=>{const row=element("div");row.className="french-day02-rubric-row";row.append(element("label",label));const select=element("select");select.setAttribute("aria-label","Lesson 02 Numbers rubric "+label);["Not reviewed","0 · Not demonstrated","1 · Developing","2 · Mostly independent","3 · Independent and accurate","Not assessed"].forEach(v=>{const o=element("option",v);o.value=v;select.append(o)});const rk=learnerKey+"_beginner2026_lesson02_numbers_rubric_"+i;select.value=safeGet(rk)||"Not reviewed";select.addEventListener("change",()=>safeSet(rk,select.value));row.append(select);sec.append(row)});
  sec.append(element("p","Evidence and educator ratings are formative and stored locally; neither video playback nor practice questions change official 80% mastery results."));
+ window.French101Unit01Extensions?.mountNumbers(sec,{learnerKey,safeGet,safeSet,speakFR});
  enhanceFrenchEarlyStudio(sec,2);panel.append(sec);
 }
 
