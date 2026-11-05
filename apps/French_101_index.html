@@ -1193,7 +1193,7 @@ function appendFrenchUnit01Attempt(record){
  try{const parsed=JSON.parse(safeGet(key)||"[]");if(Array.isArray(parsed))history=parsed}catch{}
  history.push(record);safeSet(key,JSON.stringify(history.slice(-50)));
 }
-function openCanonicalUnit01Assessment(){
+function openCanonicalUnit01Assessment(retryState){
  const box=$("exam");box.replaceChildren();
  const prior=readFrenchUnit01Assessment();
  box.append(element("h2","French 101 · Unit 01 Assessment"),element("p","Canonical cumulative checkpoint for Lessons 01–06 · Foundations. A score of 80% or higher is required: 16 of 20."));
@@ -1214,7 +1214,9 @@ function openCanonicalUnit01Assessment(){
  const status=element("p");status.setAttribute("role","status");box.append(status);
  addButton(box,"Return to French 101 Journey",backToMenu);
  start.addEventListener("click",()=>{
-  const set=balancedFrenchUnit01AssessmentSet(),area=element("section");area.className="study-section";box.insertBefore(area,status);
+  const set=Array.isArray(retryState?.questions)?retryState.questions:balancedFrenchUnit01AssessmentSet();
+  const questionOrders=retryState?.questionOrders||Object.create(null);
+  const area=element("section");area.className="study-section";box.insertBefore(area,status);
   start.disabled=true;let at=0,correct=0,answers=[];
   const draw=()=>{
    area.replaceChildren();
@@ -1226,13 +1228,13 @@ function openCanonicalUnit01Assessment(){
     if(passed){
       const next=element("button","Continue to Unit 02");next.type="button";next.addEventListener("click",()=>{backToMenu();requestAnimationFrame(()=>document.querySelector('[data-lesson="7"]')?.focus())});area.append(next);
     }else{
-      const retry=element("button","Retry with a new balanced selection");retry.type="button";retry.addEventListener("click",()=>openCanonicalUnit01Assessment());area.append(retry);
+      const retry=element("button","Review and retry the same questions");retry.type="button";retry.addEventListener("click",()=>openCanonicalUnit01Assessment({questions:set,questionOrders}));area.append(retry);
     }
     return;
    }
    const q=set[at];area.append(element("h3","Question "+(at+1)+" of "+set.length),element("p",q.prompt));
    const feedback=element("p");feedback.setAttribute("role","status");
-   const options=shuffleQuestions(q.choices.map((label,i)=>({label,ok:i===q.answer})));
+   const options=questionOrders[q.id]||(questionOrders[q.id]=shuffleQuestions(q.choices.map((label,i)=>({label,ok:i===q.answer}))));
    options.forEach(option=>{
     const b=element("button",option.label);b.type="button";b.addEventListener("click",()=>{
       if(area.dataset.answered==="1")return;area.dataset.answered="1";
