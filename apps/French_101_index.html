@@ -701,42 +701,474 @@ function startApp(event){
 /* Fixed Academy palette: historical theme preferences retained but no longer applied here. */
 
 const FRENCH_101_UNIT01_CANONICAL_BANK=[
- {strand:"alphabet",prompt:"How many basic letters are in the French alphabet?",choices:["26","25","28"],answer:0,explain:"French uses the 26 basic Latin letters; accents and the cedilla do not add new basic letters."},
- {strand:"alphabet",prompt:"Which spelling preserves the acute accent correctly?",choices:["école","ecole","ècole"],answer:0,explain:"École begins with é, an e with an acute accent."},
- {strand:"alphabet",prompt:"Which spelling preserves the cedilla?",choices:["garçon","garcon","garćon"],answer:0,explain:"Garçon uses ç before o."},
- {strand:"alphabet",prompt:"Which spelling preserves the diaeresis?",choices:["Noël","Noel","Nöel"],answer:0,explain:"Noël uses ë to show that the vowels are pronounced separately."},
- {strand:"alphabet",prompt:"Which prompt asks how a word is spelled?",choices:["Comment ça s'écrit ?","Comment ça va ?","Où est la gare ?"],answer:0,explain:"Comment ça s'écrit ? asks how something is written or spelled."},
- {strand:"numbers",prompt:"Which French number is 14?",choices:["quatorze","quarante","quatre"],answer:0,explain:"Quatorze means fourteen."},
- {strand:"numbers",prompt:"Which French number is 70?",choices:["soixante-dix","septante","soixante-sept"],answer:0,explain:"In the core France-French system used in this course, 70 is soixante-dix."},
- {strand:"numbers",prompt:"A learner says « J'ai treize ans. » How old are they?",choices:["13","30","3"],answer:0,explain:"Treize means thirteen."},
- {strand:"numbers",prompt:"Which phrase correctly gives the quantity 21?",choices:["vingt et un","vingt-un","deux et un"],answer:0,explain:"The standard beginner form for 21 is vingt et un."},
- {strand:"numbers",prompt:"Which number is larger?",choices:["quatre-vingts","soixante","cinquante"],answer:0,explain:"Quatre-vingts is 80, larger than 60 and 50."},
- {strand:"pronouns",prompt:"Which subject pronoun means 'we'?",choices:["nous","vous","ils"],answer:0,explain:"Nous means we."},
- {strand:"pronouns",prompt:"Which pronoun would normally replace 'Marie' when she is the subject?",choices:["elle","il","nous"],answer:0,explain:"Elle is the feminine singular subject pronoun."},
- {strand:"pronouns",prompt:"Which pair are both plural subject pronouns?",choices:["nous / vous","je / tu","il / elle"],answer:0,explain:"Nous and vous are plural-capable subject pronouns; the other pairs are singular."},
- {strand:"pronouns",prompt:"In « Paul et Léa sont ici », which pronoun can replace the two names?",choices:["ils","il","elle"],answer:0,explain:"A mixed-gender plural group is referred to with ils in the beginner system taught here."},
- {strand:"pronouns",prompt:"Which sentence has a subject pronoun followed by a verb?",choices:["Je suis ici.","Le livre bleu.","Une école."],answer:0,explain:"Je is the subject pronoun and suis is the verb."},
- {strand:"greetings",prompt:"Which is a polite daytime greeting?",choices:["Bonjour !","Bonne nuit !","Au revoir !"],answer:0,explain:"Bonjour is the standard polite daytime greeting."},
- {strand:"greetings",prompt:"Which phrase introduces your name?",choices:["Je m'appelle Lina.","J'ai douze ans.","Je vais bien."],answer:0,explain:"Je m'appelle… introduces a name."},
- {strand:"greetings",prompt:"Which expression politely asks another person's name?",choices:["Comment vous appelez-vous ?","Quel âge avez-vous ?","Où habitez-vous ?"],answer:0,explain:"Comment vous appelez-vous ? asks a person's name."},
- {strand:"greetings",prompt:"Which response appropriately answers « Comment ça va ? »?",choices:["Je vais bien, merci.","Je m'appelle Hugo.","Au revoir."],answer:0,explain:"Je vais bien, merci answers how someone is doing."},
- {strand:"greetings",prompt:"Which expression is an appropriate leave-taking?",choices:["Au revoir.","Bonjour.","Enchanté."],answer:0,explain:"Au revoir is a common leave-taking."},
- {strand:"sentences",prompt:"Choose the sentence meaning 'The book is here.'",choices:["Le livre est ici.","Le livre et ici.","Livre le ici."],answer:0,explain:"Est is the verb 'is'; et means 'and'."},
- {strand:"sentences",prompt:"Which word means 'and'?",choices:["et","est","un"],answer:0,explain:"Et means and; est is a form of être."},
- {strand:"sentences",prompt:"Which is a complete beginner sentence?",choices:["Je suis ici.","Le rouge.","Une et."],answer:0,explain:"Je suis ici contains a subject and verb and expresses a complete idea."},
- {strand:"sentences",prompt:"Complete: « Marie ___ Paul sont ici. »",choices:["et","est","une"],answer:0,explain:"Et joins Marie and Paul."},
- {strand:"sentences",prompt:"Which repair makes « Je et ici » grammatical in the intended meaning 'I am here'?",choices:["Je suis ici.","Je et ici.","Je une ici."],answer:0,explain:"Je suis ici uses the correct verb form."},
- {strand:"articles",prompt:"Which article normally introduces a masculine singular noun?",choices:["un","une","les"],answer:0,explain:"Un is the indefinite masculine singular article."},
- {strand:"articles",prompt:"Which article normally introduces a feminine singular noun?",choices:["une","un","des"],answer:0,explain:"Une is the indefinite feminine singular article."},
- {strand:"articles",prompt:"Which phrase is correct for 'the books'?",choices:["les livres","le livres","la livres"],answer:0,explain:"Les is the plural definite article."},
- {strand:"articles",prompt:"Which phrase correctly introduces 'a picture' if image is feminine?",choices:["une image","un image","les image"],answer:0,explain:"Une is used with a feminine singular noun."},
- {strand:"articles",prompt:"A noun has already been introduced as « un livre ». Which form naturally refers back to 'the book'?",choices:["le livre","un livre","des livres"],answer:0,explain:"Le livre refers back to the known masculine singular noun."},
- {strand:"transfer",prompt:"Choose the best short introduction.",choices:["Bonjour. Je m'appelle Inès. Je suis ici pour apprendre le français.","Bonjour. Une livre et.","Au revoir. Je une Inès."],answer:0,explain:"The first option combines a greeting, name introduction and complete sentence structure."},
- {strand:"transfer",prompt:"Which sentence correctly combines number, noun and article knowledge?",choices:["J'ai deux livres.","J'ai deux le livre.","Je deux livres."],answer:0,explain:"Deux livres is the normal plural noun phrase after the number."},
- {strand:"transfer",prompt:"Which sentence correctly introduces two objects, one masculine and one feminine?",choices:["Voici un livre et une image.","Voici une livre et un image.","Voici le une livre."],answer:0,explain:"Livre is introduced with un and image with une in the course examples."},
- {strand:"transfer",prompt:"Which sentence correctly refers to Léa with a pronoun?",choices:["Léa est ici. Elle est prête.","Léa est ici. Il est prête.","Léa est ici. Nous est prête."],answer:0,explain:"Elle correctly replaces Léa as the feminine singular subject."},
- {strand:"transfer",prompt:"Which mini-dialogue is coherent?",choices:["— Bonjour. Comment vous appelez-vous ? — Je m'appelle Sami.","— Bonjour. Combien ? — Une je.","— Au revoir. Comment ça s'écrit ? — Treize ans."],answer:0,explain:"The first exchange asks and answers a name question coherently."},
- {strand:"transfer",prompt:"Which correction is accurate?",choices:["« Marie est ici » uses est; « Marie et Paul » uses et.","Est always means and.","Et is a form of être."],answer:0,explain:"Est is a verb form; et is the conjunction and."}
+  {
+    "strand": "alphabet",
+    "prompt": "How many basic letters are in the French alphabet?",
+    "choices": [
+      "26",
+      "25",
+      "28"
+    ],
+    "answer": 0,
+    "explain": "French uses the 26 basic Latin letters; accents and the cedilla do not add new basic letters."
+  },
+  {
+    "strand": "alphabet",
+    "prompt": "Which spelling preserves the acute accent correctly?",
+    "choices": [
+      "ecole",
+      "ècole",
+      "école"
+    ],
+    "answer": 2,
+    "explain": "École begins with é, an e with an acute accent."
+  },
+  {
+    "strand": "alphabet",
+    "prompt": "Which spelling preserves the cedilla?",
+    "choices": [
+      "garćon",
+      "garçon",
+      "garcon"
+    ],
+    "answer": 1,
+    "explain": "Garçon uses ç before o."
+  },
+  {
+    "strand": "alphabet",
+    "prompt": "Which spelling preserves the diaeresis?",
+    "choices": [
+      "Noël",
+      "Noel",
+      "Nöel"
+    ],
+    "answer": 0,
+    "explain": "Noël uses ë to show that the vowels are pronounced separately."
+  },
+  {
+    "strand": "alphabet",
+    "prompt": "Which prompt asks how a word is spelled?",
+    "choices": [
+      "Comment ça va ?",
+      "Où est la gare ?",
+      "Comment ça s'écrit ?"
+    ],
+    "answer": 2,
+    "explain": "Comment ça s'écrit ? asks how something is written or spelled."
+  },
+  {
+    "strand": "numbers",
+    "prompt": "Which French number is 14?",
+    "choices": [
+      "quatre",
+      "quatorze",
+      "quarante"
+    ],
+    "answer": 1,
+    "explain": "Quatorze means fourteen."
+  },
+  {
+    "strand": "numbers",
+    "prompt": "Which French number is 70?",
+    "choices": [
+      "soixante-dix",
+      "septante",
+      "soixante-sept"
+    ],
+    "answer": 0,
+    "explain": "In the core France-French system used in this course, 70 is soixante-dix."
+  },
+  {
+    "strand": "numbers",
+    "prompt": "A learner says « J'ai treize ans. » How old are they?",
+    "choices": [
+      "30",
+      "3",
+      "13"
+    ],
+    "answer": 2,
+    "explain": "Treize means thirteen."
+  },
+  {
+    "strand": "numbers",
+    "prompt": "Which phrase correctly gives the quantity 21?",
+    "choices": [
+      "deux et un",
+      "vingt et un",
+      "vingt-un"
+    ],
+    "answer": 1,
+    "explain": "The standard beginner form for 21 is vingt et un."
+  },
+  {
+    "strand": "numbers",
+    "prompt": "Which number is larger?",
+    "choices": [
+      "quatre-vingts",
+      "soixante",
+      "cinquante"
+    ],
+    "answer": 0,
+    "explain": "Quatre-vingts is 80, larger than 60 and 50."
+  },
+  {
+    "strand": "pronouns",
+    "prompt": "Which subject pronoun means 'we'?",
+    "choices": [
+      "vous",
+      "ils",
+      "nous"
+    ],
+    "answer": 2,
+    "explain": "Nous means we."
+  },
+  {
+    "strand": "pronouns",
+    "prompt": "Which pronoun would normally replace 'Marie' when she is the subject?",
+    "choices": [
+      "nous",
+      "elle",
+      "il"
+    ],
+    "answer": 1,
+    "explain": "Elle is the feminine singular subject pronoun."
+  },
+  {
+    "strand": "pronouns",
+    "prompt": "Which pair are both plural subject pronouns?",
+    "choices": [
+      "nous / vous",
+      "je / tu",
+      "il / elle"
+    ],
+    "answer": 0,
+    "explain": "Nous and vous are plural-capable subject pronouns; the other pairs are singular."
+  },
+  {
+    "strand": "pronouns",
+    "prompt": "In « Paul et Léa sont ici », which pronoun can replace the two names?",
+    "choices": [
+      "il",
+      "elle",
+      "ils"
+    ],
+    "answer": 2,
+    "explain": "A mixed-gender plural group is referred to with ils in the beginner system taught here."
+  },
+  {
+    "strand": "pronouns",
+    "prompt": "Which sentence has a subject pronoun followed by a verb?",
+    "choices": [
+      "Une école.",
+      "Je suis ici.",
+      "Le livre bleu."
+    ],
+    "answer": 1,
+    "explain": "Je is the subject pronoun and suis is the verb."
+  },
+  {
+    "strand": "greetings",
+    "prompt": "Which is a polite daytime greeting?",
+    "choices": [
+      "Bonjour !",
+      "Bonne nuit !",
+      "Au revoir !"
+    ],
+    "answer": 0,
+    "explain": "Bonjour is the standard polite daytime greeting."
+  },
+  {
+    "strand": "greetings",
+    "prompt": "Which phrase introduces your name?",
+    "choices": [
+      "J'ai douze ans.",
+      "Je vais bien.",
+      "Je m'appelle Lina."
+    ],
+    "answer": 2,
+    "explain": "Je m'appelle… introduces a name."
+  },
+  {
+    "strand": "greetings",
+    "prompt": "Which expression politely asks another person's name?",
+    "choices": [
+      "Où habitez-vous ?",
+      "Comment vous appelez-vous ?",
+      "Quel âge avez-vous ?"
+    ],
+    "answer": 1,
+    "explain": "Comment vous appelez-vous ? asks a person's name."
+  },
+  {
+    "strand": "greetings",
+    "prompt": "Which response appropriately answers « Comment ça va ? »?",
+    "choices": [
+      "Je vais bien, merci.",
+      "Je m'appelle Hugo.",
+      "Au revoir."
+    ],
+    "answer": 0,
+    "explain": "Je vais bien, merci answers how someone is doing."
+  },
+  {
+    "strand": "greetings",
+    "prompt": "Which expression is an appropriate leave-taking?",
+    "choices": [
+      "Bonjour.",
+      "Enchanté.",
+      "Au revoir."
+    ],
+    "answer": 2,
+    "explain": "Au revoir is a common leave-taking."
+  },
+  {
+    "strand": "sentences",
+    "prompt": "Choose the sentence meaning 'The book is here.'",
+    "choices": [
+      "Livre le ici.",
+      "Le livre est ici.",
+      "Le livre et ici."
+    ],
+    "answer": 1,
+    "explain": "Est is the verb 'is'; et means 'and'."
+  },
+  {
+    "strand": "sentences",
+    "prompt": "Which word means 'and'?",
+    "choices": [
+      "et",
+      "est",
+      "un"
+    ],
+    "answer": 0,
+    "explain": "Et means and; est is a form of être."
+  },
+  {
+    "strand": "sentences",
+    "prompt": "Which is a complete beginner sentence?",
+    "choices": [
+      "Le rouge.",
+      "Une et.",
+      "Je suis ici."
+    ],
+    "answer": 2,
+    "explain": "Je suis ici contains a subject and verb and expresses a complete idea."
+  },
+  {
+    "strand": "sentences",
+    "prompt": "Complete: « Marie ___ Paul sont ici. »",
+    "choices": [
+      "une",
+      "et",
+      "est"
+    ],
+    "answer": 1,
+    "explain": "Et joins Marie and Paul."
+  },
+  {
+    "strand": "sentences",
+    "prompt": "Which repair makes « Je et ici » grammatical in the intended meaning 'I am here'?",
+    "choices": [
+      "Je suis ici.",
+      "Je et ici.",
+      "Je une ici."
+    ],
+    "answer": 0,
+    "explain": "Je suis ici uses the correct verb form."
+  },
+  {
+    "strand": "articles",
+    "prompt": "Which article normally introduces a masculine singular noun?",
+    "choices": [
+      "une",
+      "les",
+      "un"
+    ],
+    "answer": 2,
+    "explain": "Un is the indefinite masculine singular article."
+  },
+  {
+    "strand": "articles",
+    "prompt": "Which article normally introduces a feminine singular noun?",
+    "choices": [
+      "des",
+      "une",
+      "un"
+    ],
+    "answer": 1,
+    "explain": "Une is the indefinite feminine singular article."
+  },
+  {
+    "strand": "articles",
+    "prompt": "Which phrase is correct for 'the books'?",
+    "choices": [
+      "les livres",
+      "le livres",
+      "la livres"
+    ],
+    "answer": 0,
+    "explain": "Les is the plural definite article."
+  },
+  {
+    "strand": "articles",
+    "prompt": "Which phrase correctly introduces 'a picture' if image is feminine?",
+    "choices": [
+      "un image",
+      "les image",
+      "une image"
+    ],
+    "answer": 2,
+    "explain": "Une is used with a feminine singular noun."
+  },
+  {
+    "strand": "articles",
+    "prompt": "A noun has already been introduced as « un livre ». Which form naturally refers back to 'the book'?",
+    "choices": [
+      "des livres",
+      "le livre",
+      "un livre"
+    ],
+    "answer": 1,
+    "explain": "Le livre refers back to the known masculine singular noun."
+  },
+  {
+    "strand": "transfer",
+    "prompt": "Choose the best short introduction.",
+    "choices": [
+      "Bonjour. Je m'appelle Inès. Je suis ici pour apprendre le français.",
+      "Bonjour. Une livre et.",
+      "Au revoir. Je une Inès."
+    ],
+    "answer": 0,
+    "explain": "The first option combines a greeting, name introduction and complete sentence structure."
+  },
+  {
+    "strand": "transfer",
+    "prompt": "Which sentence correctly combines number, noun and article knowledge?",
+    "choices": [
+      "J'ai deux le livre.",
+      "Je deux livres.",
+      "J'ai deux livres."
+    ],
+    "answer": 2,
+    "explain": "Deux livres is the normal plural noun phrase after the number."
+  },
+  {
+    "strand": "transfer",
+    "prompt": "Which sentence correctly introduces two objects, one masculine and one feminine?",
+    "choices": [
+      "Voici le une livre.",
+      "Voici un livre et une image.",
+      "Voici une livre et un image."
+    ],
+    "answer": 1,
+    "explain": "Livre is introduced with un and image with une in the course examples."
+  },
+  {
+    "strand": "transfer",
+    "prompt": "Which sentence correctly refers to Léa with a pronoun?",
+    "choices": [
+      "Léa est ici. Elle est prête.",
+      "Léa est ici. Il est prête.",
+      "Léa est ici. Nous est prête."
+    ],
+    "answer": 0,
+    "explain": "Elle correctly replaces Léa as the feminine singular subject."
+  },
+  {
+    "strand": "transfer",
+    "prompt": "Which mini-dialogue is coherent?",
+    "choices": [
+      "— Bonjour. Combien ? — Une je.",
+      "— Au revoir. Comment ça s'écrit ? — Treize ans.",
+      "— Bonjour. Comment vous appelez-vous ? — Je m'appelle Sami."
+    ],
+    "answer": 2,
+    "explain": "The first exchange asks and answers a name question coherently."
+  },
+  {
+    "strand": "transfer",
+    "prompt": "Which correction is accurate?",
+    "choices": [
+      "Et is a form of être.",
+      "« Marie est ici » uses est; « Marie et Paul » uses et.",
+      "Est always means and."
+    ],
+    "answer": 1,
+    "explain": "Est is a verb form; et is the conjunction and."
+  },
+  {
+    "strand": "numbers",
+    "depth": "advanced",
+    "prompt": "What number is « soixante et onze »?",
+    "choices": [
+      "71",
+      "61",
+      "70"
+    ],
+    "answer": 0,
+    "explain": "The taught 71 uses 60 + 11: soixante et onze."
+  },
+  {
+    "strand": "numbers",
+    "depth": "advanced",
+    "prompt": "Which spelling represents 81?",
+    "choices": [
+      "quatre-vingts-un",
+      "quatre-vingt-un",
+      "quatre-vingt et un"
+    ],
+    "answer": 1,
+    "explain": "81 uses quatre-vingt-un, without terminal s or et."
+  },
+  {
+    "strand": "numbers",
+    "depth": "advanced",
+    "prompt": "Which spelling correctly represents exactly 80?",
+    "choices": [
+      "quatre-vingt",
+      "quatre-vingts",
+      "quatre-vingt-un"
+    ],
+    "answer": 1,
+    "explain": "The cardinal 80 is quatre-vingts, with terminal s."
+  },
+  {
+    "strand": "numbers",
+    "depth": "advanced",
+    "prompt": "Which number is « quatre-vingt-dix-neuf »?",
+    "choices": [
+      "89",
+      "79",
+      "99"
+    ],
+    "answer": 2,
+    "explain": "Four twenties plus nineteen gives 99."
+  },
+  {
+    "strand": "numbers",
+    "depth": "advanced",
+    "prompt": "Which French cardinal form is 100?",
+    "choices": [
+      "un-cents",
+      "cent",
+      "cents"
+    ],
+    "answer": 1,
+    "explain": "100 is cent."
+  },
+  {
+    "strand": "numbers",
+    "depth": "advanced",
+    "prompt": "What quantity is « quatre-vingt-quinze »?",
+    "choices": [
+      "95",
+      "85",
+      "75"
+    ],
+    "answer": 0,
+    "explain": "80 + 15 is 95."
+  }
 ];
 function frenchUnit01AssessmentKey(){return learnerKey+"_canonical_unit01_assessment_v1"}
 function frenchUnit01AttemptKey(){return learnerKey+"_canonical_unit01_attempts_v1"}
@@ -747,7 +1179,13 @@ function balancedFrenchUnit01AssessmentSet(){
  const order=["alphabet","numbers","pronouns","greetings","sentences","articles","transfer"];
  const counts={alphabet:3,numbers:3,pronouns:3,greetings:3,sentences:3,articles:3,transfer:2};
  const selected=[];
- order.forEach(strand=>selected.push(...shuffleQuestions(grouped[strand]||[]).slice(0,counts[strand]||0)));
+ order.forEach(strand=>{
+  if(strand==="numbers"){
+   // Two upper-number questions plus one original foundational question.
+   selected.push(...shuffleQuestions((grouped.numbers||[]).filter(q=>q.depth==="advanced")).slice(0,2));
+   selected.push(...shuffleQuestions((grouped.numbers||[]).filter(q=>q.depth!=="advanced")).slice(0,1));
+  }else selected.push(...shuffleQuestions(grouped[strand]||[]).slice(0,counts[strand]||0));
+ });
  return shuffleQuestions(selected);
 }
 function appendFrenchUnit01Attempt(record){
