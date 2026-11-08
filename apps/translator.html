@@ -242,6 +242,46 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
   .header-actions{gap:4px}
   .icon-button{min-width:36px}
 }
+/* Canonical translator controls: light cream, charcoal and fine gold. */
+.actions .btn,
+.workspace .btn,
+.service-row .btn,
+.study-panel .btn,
+.literary-panel .btn,
+.dictionary-actions .btn,
+.thesaurus-controls .btn,
+.icon-button,
+.swap,
+.mode-tab:not([aria-selected="true"]){
+  background:#fffaf0;
+  background-image:none;
+  color:#243038;
+  -webkit-text-fill-color:#243038;
+  border:1px solid #c5b18d;
+  border-radius:7px;
+  font:400 16px/1.35 var(--sans);
+  letter-spacing:.01em;
+  box-shadow:0 1px 2px rgba(8,21,34,.08);
+}
+.actions .btn,.workspace .btn,.service-row .btn,.study-panel .btn,.literary-panel .btn{
+  min-height:42px;padding:9px 15px;
+}
+.mode-tab{font:400 16px/1.35 var(--sans);}
+.mode-tab[aria-selected="true"]{
+  background:#243038;
+  color:#fff8e9;
+  border-color:#b79452;
+  font-weight:400;
+}
+.actions .btn:hover,.workspace .btn:hover,.service-row .btn:hover,
+.study-panel .btn:hover,.literary-panel .btn:hover,
+.icon-button:hover,.swap:hover,.mode-tab:not([aria-selected="true"]):hover{
+  background:#f3e6d0;
+  border-color:#b79452;
+}
+.actions .btn:disabled,.workspace .btn:disabled,.service-row .btn:disabled{
+  opacity:.65;
+}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
