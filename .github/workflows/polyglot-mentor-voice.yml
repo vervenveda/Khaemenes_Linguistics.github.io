@@ -1,0 +1,33 @@
+name: Polyglot Mentor Voice Profile Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'assets/polyglot-mentor-voice-profiles.v1.js'
+      - 'tests/polyglot-mentor-voice-default.test.mjs'
+      - '.github/workflows/polyglot-mentor-voice.yml'
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'assets/polyglot-mentor-voice-profiles.v1.js'
+      - 'tests/polyglot-mentor-voice-default.test.mjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  public-voice-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test public mentor voice defaults
+        run: node --test tests/polyglot-mentor-voice-default.test.mjs
