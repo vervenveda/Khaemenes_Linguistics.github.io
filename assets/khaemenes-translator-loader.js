@@ -31,6 +31,7 @@ async function ensure({full=false,upgradeLegacyCore=false}={}){
   for(const [key,file,ready] of definitions){
    if(!full&&["dictionary","lexicon","transliteration"].includes(key))continue;
    const coreUpgrade=key==="core"&&upgradeLegacyCore&&typeof root.KhaemenesSovereignTranslate?.listLocalEntries!=="function";
+   if(coreUpgrade&&full&&records.some(r=>["dictionary","lexicon","transliteration"].includes(r.key)&&!["existing","loaded"].includes(r.state))){records.push({key,state:"skipped-incomplete-resources"});continue}
    if(ready()&&!coreUpgrade){records.push({key,state:"existing"});continue}
    try{await loadFile(file);records.push({key,state:ready()?"loaded":"loaded-no-global"})}
    catch(error){records.push({key,state:"unavailable",reason:error.message})}
