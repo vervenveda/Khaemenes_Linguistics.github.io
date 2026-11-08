@@ -494,6 +494,16 @@ const removeLocal=key=>{try{window.localStorage.removeItem(key)}catch{}};
 const APPS=JSON.parse($('#appRegistry').textContent);
 const STORAGE={theme:'polyglot_theme_v2',voice:'polyglot_voice_v2',filter:'polyglot_app_filter_v3'};
 const safeParse=(v,f)=>{try{return v?JSON.parse(v):f}catch{return f}};
+const voicePrefNumber=(v,defaultValue)=>typeof v==='number'&&Number.isFinite(v)&&v>=0.5&&v<=1.5?v:defaultValue;
+function validVoicePreferences(raw){
+ if(!raw||typeof raw!=='object'||Array.isArray(raw))return {};
+ const result={};
+ if(typeof raw.name==='string'&&raw.name.length<=160)result.name=raw.name;
+ if(typeof raw.filter==='string'&&/^(all|[a-z]{2,3})$/i.test(raw.filter))result.filter=raw.filter;
+ if(typeof raw.rate==='number'&&Number.isFinite(raw.rate)&&raw.rate>=0.5&&raw.rate<=1.5)result.rate=raw.rate;
+ if(typeof raw.pitch==='number'&&Number.isFinite(raw.pitch)&&raw.pitch>=0.5&&raw.pitch<=1.5)result.pitch=raw.pitch;
+ return result;
+}
 const toast=$('#toast');function showToast(msg){toast.textContent=msg;toast.classList.add('show');clearTimeout(showToast.t);showToast.t=setTimeout(()=>toast.classList.remove('show'),2300)}
 const themeButton=$('#themeButton');
 function syncThemeControls(theme){
@@ -528,7 +538,7 @@ const phrases=[
 ];let phraseIndex=0;function renderPhrase(){const p=phrases[phraseIndex];$('#phraseLanguage').textContent=p.language;$('#phraseMain').textContent=p.text;$('#phraseMain').lang=p.lang;$('#phraseMain').dir=p.dir||'auto';$('#phraseTranslation').textContent=p.translation}$('#nextPhrase').onclick=()=>{phraseIndex=(phraseIndex+1)%phrases.length;renderPhrase()};
 const sharedZelleVoice=window.PolyglotMentorVoiceProfiles?.get('zelle');
 const ZELLE_VOICE_DEFAULT=Object.freeze({name:sharedZelleVoice?.voiceName||'Samantha',filter:'en',lang:sharedZelleVoice?.lang||'en-US',rate:sharedZelleVoice?.rate??1.10,pitch:sharedZelleVoice?.pitch??1.45});
-let voices=[],stored=safeParse(readLocal(STORAGE.voice),{});const voiceLanguage=$('#voiceLanguage'),voicePicker=$('#voicePicker'),voiceText=$('#voiceText'),voiceRate=$('#voiceRate'),voicePitch=$('#voicePitch'),voiceStatus=$('#voiceStatus');
+let voices=[],stored=validVoicePreferences(safeParse(readLocal(STORAGE.voice),{}));const voiceLanguage=$('#voiceLanguage'),voicePicker=$('#voicePicker'),voiceText=$('#voiceText'),voiceRate=$('#voiceRate'),voicePitch=$('#voicePitch'),voiceStatus=$('#voiceStatus');
 function languageName(code){try{return new Intl.DisplayNames([document.documentElement.lang||'en'],{type:'language'}).of(code.split('-')[0])||code}catch{return code}}
 function saveVoice(){writeLocal(STORAGE.voice,JSON.stringify({name:voicePicker.value,filter:voiceLanguage.value,rate:Number(voiceRate.value),pitch:Number(voicePitch.value)}))}
 function buildLanguageFilters(){const current=voiceLanguage.value||stored.filter||ZELLE_VOICE_DEFAULT.filter,map=new Map();voices.forEach(v=>{const base=(v.lang||'und').split('-')[0];if(!map.has(base))map.set(base,languageName(base))});voiceLanguage.innerHTML='<option value="all">All available languages</option>';[...map].sort((a,b)=>a[1].localeCompare(b[1])).forEach(([code,name])=>{const o=document.createElement('option');o.value=code;o.textContent=`${name} (${code})`;voiceLanguage.append(o)});voiceLanguage.value=[...voiceLanguage.options].some(o=>o.value===current)?current:'all'}
@@ -536,11 +546,47 @@ function buildVoicePicker(){const selected=Object.hasOwn(stored,'name')?stored.n
 function loadVoices(){if(!('speechSynthesis' in window)){voiceStatus.textContent='Speech synthesis is not supported in this browser.';voicePicker.disabled=true;voiceLanguage.disabled=true;return}voices=speechSynthesis.getVoices();buildLanguageFilters();buildVoicePicker()}
 function chosenVoice(lang=''){if(Object.hasOwn(stored,'name')&&stored.name===''&&voicePicker.value==='')return null;const exact=voices.find(v=>v.name===voicePicker.value);const base=lang.toLowerCase().split('-')[0];if(base&&base!=='en')return voices.find(v=>(v.lang||'').toLowerCase().startsWith(base))||null;if(exact)return exact;return voices.find(v=>v.name===ZELLE_VOICE_DEFAULT.name&&/^en-US$/i.test(v.lang||''))||voices.find(v=>(v.lang||'').toLowerCase().startsWith('en'))||null}
 function speak(text,lang=''){if(!('speechSynthesis' in window)){showToast('Speech playback is not available in this browser.');return}if(!text.trim()){showToast('Enter some practice text first.');return}speechSynthesis.cancel();const u=new SpeechSynthesisUtterance(text.trim()),v=chosenVoice(lang);if(v)u.voice=v;u.lang=v?.lang||lang||'en-US';u.rate=Number(voiceRate.value);u.pitch=Number(voicePitch.value);u.onerror=()=>showToast('That voice could not play this text. Try another voice.');speechSynthesis.speak(u)}
-voiceRate.value=String(stored.rate??ZELLE_VOICE_DEFAULT.rate);voicePitch.value=String(stored.pitch??ZELLE_VOICE_DEFAULT.pitch);$('#rateValue').textContent=`${Number(voiceRate.value).toFixed(2)}×`;$('#pitchValue').textContent=Number(voicePitch.value).toFixed(2);loadVoices();if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=loadVoices;setTimeout(loadVoices,350)}
+voiceRate.value=String(voicePrefNumber(stored.rate,ZELLE_VOICE_DEFAULT.rate));voicePitch.value=String(voicePrefNumber(stored.pitch,ZELLE_VOICE_DEFAULT.pitch));$('#rateValue').textContent=`${Number(voiceRate.value).toFixed(2)}×`;$('#pitchValue').textContent=Number(voicePitch.value).toFixed(2);loadVoices();if('speechSynthesis' in window){speechSynthesis.onvoiceschanged=loadVoices;setTimeout(loadVoices,350)}
 voiceLanguage.onchange=()=>{stored.filter=voiceLanguage.value;stored.name='';buildVoicePicker();saveVoice()};voicePicker.onchange=()=>{stored.name=voicePicker.value;saveVoice()};voiceRate.oninput=()=>{$('#rateValue').textContent=`${Number(voiceRate.value).toFixed(2)}×`;saveVoice()};voicePitch.oninput=()=>{$('#pitchValue').textContent=Number(voicePitch.value).toFixed(2);saveVoice()};$('#testVoice').onclick=()=>speak(voiceText.value,voicePicker.selectedOptions[0]?.textContent.match(/— ([a-z]{2,3}(?:-[A-Z]{2})?)/)?.[1]||'');$('#stopVoice').onclick=()=>window.speechSynthesis?.cancel();$('#resetVoice').onclick=()=>{stored={name:'',filter:'all',rate:1,pitch:1};voiceLanguage.value='all';voicePicker.value='';voiceRate.value='1';voicePitch.value='1';$('#rateValue').textContent='1.00×';$('#pitchValue').textContent='1.00';buildVoicePicker();saveVoice();showToast('Browser-default voice settings restored.')};$('#speakPhrase').onclick=()=>{const p=phrases[phraseIndex];speak(p.text,p.lang)};
 const categories=['All',...new Set(APPS.map(a=>a.category))];let category=readLocal(STORAGE.filter)||'All',query='';
-function renderFilters(){$('#filterRow').innerHTML=categories.map(c=>`<button class="filter ${c===category?'active':''}" type="button" data-filter="${c.replace(/"/g,'&quot;')}">${c}</button>`).join('')}
-function renderApps(){const q=query.trim().toLowerCase();const list=APPS.filter(a=>(category==='All'||a.category===category)&&(!q||JSON.stringify(a).toLowerCase().includes(q)));$('#resultCount').textContent=`${list.length} of ${APPS.length} local applications shown`;$('#resourceGrid').innerHTML=list.map(a=>`<article class="resource-card"><div class="resource-mark">${a.mark}</div><div class="resource-type">${a.category}</div><h3>${a.title}</h3><p>${a.desc}</p><div class="resource-features">${a.features.map(f=>`<span>${f}</span>`).join('')}</div>${a.preference?'<div class="preference-note">Preference-aware: faith / Qur’anic study</div>':''}<a class="button" href="./apps/${encodeURI(a.file)}">Open ${a.title}</a></article>`).join('')}
+function renderFilters(){
+ const target=$('#filterRow'),fragment=document.createDocumentFragment();
+ for(const c of categories){
+  const button=document.createElement('button');
+  button.className='filter'+(c===category?' active':'');
+  button.type='button';button.dataset.filter=c;button.textContent=c;
+  fragment.append(button);
+ }
+ target.replaceChildren(fragment);
+}
+function renderApps(){
+ const q=query.trim().toLowerCase();
+ const list=APPS.filter(a=>(category==='All'||a.category===category)&&(!q||JSON.stringify(a).toLowerCase().includes(q)));
+ $('#resultCount').textContent=`${list.length} of ${APPS.length} local applications shown`;
+ const fragment=document.createDocumentFragment();
+ const element=(tag,cls,value)=>{
+  const node=document.createElement(tag);
+  if(cls)node.className=cls;
+  if(value!==undefined)node.textContent=String(value);
+  return node;
+ };
+ for(const a of list){
+  const file=typeof a.file==='string'?a.file:'';
+  // Repository-local paths only; never cross to an arbitrary origin or parent directory.
+  if(!file||file.startsWith('/')||file.includes('\\')||file.split('/').some(p=>p==='..'||p==='.')||/^[a-z][a-z0-9+.-]*:/i.test(file))continue;
+  const card=element('article','resource-card');
+  card.append(element('div','resource-mark',a.mark),element('div','resource-type',a.category),
+    element('h3','',a.title),element('p','',a.desc));
+  const features=element('div','resource-features');
+  for(const feature of Array.isArray(a.features)?a.features:[])features.append(element('span','',feature));
+  card.append(features);
+  if(a.preference)card.append(element('div','preference-note','Preference-aware: faith / Qur’anic study'));
+  const link=element('a','button','Open '+a.title);
+  link.href='./apps/'+encodeURI(file);
+  card.append(link);fragment.append(card);
+ }
+ $('#resourceGrid').replaceChildren(fragment);
+}
 $('#filterRow').onclick=e=>{const b=e.target.closest('[data-filter]');if(!b)return;category=b.dataset.filter;writeLocal(STORAGE.filter,category);renderFilters();renderApps()};$('#appSearch').oninput=e=>{query=e.target.value;renderApps()};$('#clearSearch').onclick=()=>{query='';category='All';$('#appSearch').value='';removeLocal(STORAGE.filter);renderFilters();renderApps()};
 function jumpFilter(c){category=c;writeLocal(STORAGE.filter,c);renderFilters();renderApps();setTimeout(()=>$('#appSearch').focus(),350)};$$('[data-quick-filter],[data-footer-filter]').forEach(a=>a.addEventListener('click',()=>jumpFilter(a.dataset.quickFilter||a.dataset.footerFilter)));
 $('#year').textContent=new Date().getFullYear();renderPhrase();renderFilters();renderApps();
