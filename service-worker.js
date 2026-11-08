@@ -1,7 +1,7 @@
 /* Polyglot — Khaemenes Academy Linguistics Hall
    Static-site service worker. Update CACHE_VERSION whenever core files change. */
 
-const CACHE_VERSION = 'polyglot-v1.5.7-evidence-atlas-resource-balance';
+const CACHE_VERSION = 'polyglot-v1.5.8-runtime-safety';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
@@ -96,6 +96,28 @@ self.addEventListener('fetch', event => {
 
   // Cache only same-origin files. External fonts and services remain network-controlled.
   if (url.origin !== self.location.origin) return;
+
+  // Critical executable and style resources must not be pinned to an older shell.
+  // Offline fallback uses the existing pre-cache or last successful runtime copy.
+  // All other static lesson assets continue to use the established offline-first path.
+  if (request.destination === 'script' || request.destination === 'style' ||
+      /\.(?:js|mjs|css)$/i.test(url.pathname)) {
+    event.respondWith((async () => {
+      const cached = await caches.match(request);
+      try {
+        const response = await fetch(request);
+        if (!response.ok) return cached || response;
+        if (response.type === 'basic') {
+          const cache = await caches.open(RUNTIME_CACHE);
+          await cache.put(request, response.clone());
+        }
+        return response;
+      } catch (_) {
+        return cached || Response.error();
+      }
+    })());
+    return;
+  }
 
   event.respondWith(
     caches.match(request).then(cached => {
