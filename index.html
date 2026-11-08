@@ -261,6 +261,22 @@ footer button{
 @media(max-width:1040px){
   .hero .hero-copy-wrap{max-width:760px;margin-inline:auto}
 }
+
+/* Polyglot quick-band action parity: link remains one accessible click target. */
+.quick-band .quick-link{min-height:176px;justify-content:flex-start;gap:9px}
+.quick-band .quick-link .quick-mark{flex:0 0 auto}
+.quick-band .quick-link strong{line-height:1.3}
+.quick-band .quick-link small{line-height:1.45}
+.quick-band .quick-link .quick-action{
+ display:flex;align-items:center;justify-content:center;
+ align-self:stretch;margin-top:auto;min-height:44px;padding:9px 10px;
+ border:1px solid #cbbfa9;border-radius:7px;
+ background:#fff8e9;color:#243038;font:400 16px/1.3 var(--sans);
+ letter-spacing:.02em;text-align:center;
+}
+.quick-band .quick-link:hover .quick-action,
+.quick-band .quick-link:focus-visible .quick-action{background:#f1e5d1;border-color:#b79452}
+.quick-band .quick-link:focus-visible{outline:3px solid #e8c97f;outline-offset:3px}
 </style>
 <link rel="stylesheet" href="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-landing-standard.css">
 <link rel="stylesheet" href="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-landing-toolbar.css">
@@ -298,12 +314,12 @@ footer button{
 
 
 <section class="quick-band" aria-label="Quick access"><div class="wrap quick-grid">
-<a class="quick-link" href="./Halls/"><span class="quick-mark">55</span><strong>Formal Academy</strong><small>Spanish · French · German · Mandarin · Japanese</small></a>
-<a class="quick-link" href="#apps" data-quick-filter="Arabic Language"><span class="quick-mark">ع</span><strong>Arabic Suite</strong><small>Letters, daily study, numbers, memory and guided practice</small></a>
-<a class="quick-link" href="#apps" data-quick-filter="English / ESL"><span class="quick-mark">EN</span><strong>English / ESL</strong><small>Mastercourse plus four young-learner apps</small></a>
-<a class="quick-link" href="#apps" data-quick-filter="German"><span class="quick-mark">DE</span><strong>German Studio</strong><small>Hub, coach, traveler and word challenge</small></a>
-<a class="quick-link" href="#apps" data-quick-filter="Russian"><span class="quick-mark">Я</span><strong>Russian Studio</strong><small>Hub, numbers and skills laboratory</small></a>
-<a class="quick-link" href="#apps" data-quick-filter="Language Tools"><span class="quick-mark">⇄</span><strong>Language Tools</strong><small>Dictionary, translation, words and practice utilities</small></a>
+<a class="quick-link" href="./Halls/"><span class="quick-mark">55</span><strong>Formal Academy</strong><small>Spanish · French · German · Mandarin · Japanese</small><span class="quick-action" aria-hidden="true">Open</span></a>
+<a class="quick-link" href="#apps" data-quick-filter="Arabic Language"><span class="quick-mark">ع</span><strong>Arabic Suite</strong><small>Letters, daily study, numbers, memory and guided practice</small><span class="quick-action" aria-hidden="true">Open</span></a>
+<a class="quick-link" href="#apps" data-quick-filter="English / ESL"><span class="quick-mark">EN</span><strong>English / ESL</strong><small>Mastercourse plus four young-learner apps</small><span class="quick-action" aria-hidden="true">Open</span></a>
+<a class="quick-link" href="#apps" data-quick-filter="German"><span class="quick-mark">DE</span><strong>German Studio</strong><small>Hub, coach, traveler and word challenge</small><span class="quick-action" aria-hidden="true">Open</span></a>
+<a class="quick-link" href="#apps" data-quick-filter="Russian"><span class="quick-mark">Я</span><strong>Russian Studio</strong><small>Hub, numbers and skills laboratory</small><span class="quick-action" aria-hidden="true">Open</span></a>
+<a class="quick-link" href="#apps" data-quick-filter="Language Tools"><span class="quick-mark">⇄</span><strong>Language Tools</strong><small>Dictionary, translation, words and practice utilities</small><span class="quick-action" aria-hidden="true">Open</span></a>
 </div></section>
 
 <section class="section" id="academy" aria-labelledby="academyTitle"><div class="wrap">
