@@ -308,6 +308,74 @@ footer button{
   #resourceGrid>.resource-card:last-child:nth-child(3n + 1),
   #resourceGrid>.resource-card:last-child:nth-child(odd){grid-column:auto;max-width:none}
 }
+
+/* Polyglot Atlas, Academic Evidence & footer accessibility refinement. */
+#atlas .atlas-feature{
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+#atlas .atlas-feature>div{
+  width:100%;
+  max-width:610px;
+  margin:auto;
+  text-align:center;
+}
+#atlas .atlas-feature h3,
+#atlas .atlas-feature p{margin-left:auto;margin-right:auto;text-align:center}
+#atlas .atlas-feature .button{margin:19px auto 0}
+.polyglot-evidence-section{padding-block:76px}
+.polyglot-evidence-card{
+  max-width:940px;
+  margin:0 auto;
+  padding:clamp(30px,5vw,55px);
+  border:2px solid #b8a887;
+  border-radius:7px;
+  background:linear-gradient(145deg,#fffcf5,#f0e8d9);
+  box-shadow:0 12px 32px rgba(11,29,39,.09);
+  color:#243038;
+  text-align:center;
+}
+.polyglot-evidence-card>.eyebrow{
+  display:flex;justify-content:center;margin:0 auto 12px;
+  color:#76572d;font:400 16px/1.5 var(--serif);
+  text-transform:uppercase;letter-spacing:.1em;
+}
+.polyglot-evidence-card h2{
+  margin:0 auto 16px;
+  color:#243038;
+  font:400 clamp(28px,4.2vw,43px)/1.2 var(--serif);
+  text-align:center;
+}
+.polyglot-evidence-card>p:not(.eyebrow){
+  margin:0 auto;
+  max-width:680px;
+  color:#46535b;
+  font:400 17px/1.7 var(--sans);
+}
+.polyglot-evidence-card .polyglot-evidence-action{
+  margin:24px auto 0;
+  min-height:48px;
+  max-width:100%;
+  padding:12px 20px;
+  border:1px solid #243038;
+  border-radius:7px;
+  background:#243038;
+  color:#fff8e9;
+  font:400 16px/1.45 var(--sans);
+  text-align:center;
+  white-space:normal;
+}
+.polyglot-evidence-card .polyglot-evidence-action:hover{background:#38505a}
+.polyglot-evidence-card .polyglot-evidence-action:focus-visible{outline:3px solid #b79452;outline-offset:3px}
+/* The fixed universal utility dock occupies the viewport's lower-right.
+   Leave a bottom safe zone so footer links/copyright sit above it at page end. */
+footer.footer{padding-bottom:calc(190px + env(safe-area-inset-bottom,0px))}
+@media(max-width:760px){
+  .polyglot-evidence-section{padding-block:54px}
+  .polyglot-evidence-card{padding:28px 20px}
+  footer.footer{padding-bottom:calc(220px + env(safe-area-inset-bottom,0px))}
+}
 </style>
 <link rel="stylesheet" href="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-landing-standard.css">
 <link rel="stylesheet" href="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-landing-toolbar.css">
@@ -380,6 +448,17 @@ footer button{
 <div class="section-heading"><p class="eyebrow">World Languages &amp; Scripts</p><h2 id="atlasTitle">World Language Atlas</h2><p>The preserved Atlas contains 206 dossiers spanning language families, signed languages, heritage languages, classical and historical languages, scripts, acquisition, linguistics and cultural stewardship.</p></div>
 <div class="atlas-panel"><article class="atlas-feature"><div><h3>Explore 206 dossiers</h3><p>Enter the Academy and open its World Atlas chamber for comparative language study beyond the five full course systems.</p><a class="button gold" href="./Halls/">Open the World Language Atlas</a></div></article><div class="atlas-list"><article class="atlas-item"><h3>Writing Systems</h3><p>Alphabetic, abjad, abugida, syllabic, logographic and signed systems with directionality and cultural context.</p></article><article class="atlas-item"><h3>Language Science</h3><p>Phonetics, phonology, morphology, syntax, semantics, pragmatics, sociolinguistics, acquisition and change.</p></article><article class="atlas-item"><h3>Living & Heritage Languages</h3><p>Language learning stays connected to community, identity, regional variation and ethical source use.</p></article><article class="atlas-item"><h3>ASL remains visible</h3><p>American Sign Language remains in the Atlas and is identified in the Academy documentation as the priority sixth complete program.</p></article></div></div>
 </div></section>
+
+<section class="section alt polyglot-evidence-section" id="academic-evidence" aria-labelledby="academicEvidenceTitle">
+<div class="wrap">
+  <div class="polyglot-evidence-card">
+    <p class="eyebrow">Research &amp; Study Records</p>
+    <h2 id="academicEvidenceTitle">Academic Evidence Companion</h2>
+    <p>Collect research citations, vocabulary and translation reflections, writing, and language-learning evidence in the same optional printable format used across Khaemenes Academy. No separate grading system or account.</p>
+    <a class="button polyglot-evidence-action" href="https://vervenveda.com/Khaemenes_High.github.io/courses/science/integrated-science-9/academic-evidence-companion.html?course=linguistics">Open Linguistics Evidence Companion</a>
+  </div>
+</div>
+</section>
 
 <section class="section alt" id="matrix" aria-labelledby="matrixTitle"><div class="wrap">
 <div class="section-heading"><p class="eyebrow">Beyond Language Study</p><h2 id="matrixTitle">Connected Learning Matrix</h2><p>These doors deliberately cross into the larger learning ecosystem only where they add something the Linguistics repository itself does not need to duplicate.</p></div>
@@ -476,7 +555,6 @@ $('#year').textContent=new Date().getFullYear();renderPhrase();renderFilters();r
 <script src="./assets/vnv-language.js?v=20261108-cream-controls" defer></script>
 <script src="./register-service-worker.js" defer></script>
 <script src="https://vervenveda.com/assets/vnv-support.js" defer></script>
-<aside aria-label="Khaemenes Academy shared academic evidence" style="max-width:940px;margin:18px auto;padding:17px;border:1px solid #b2a99d;border-radius:7px;background:#faf5eb;color:#292e30"><h2 style="font-weight:400">Academy Academic Evidence Companion</h2><p>Collect research citations, vocabulary and translation reflections, writing, and language-learning evidence in the same optional printable format used across Khaemenes Academy. No separate grading system or account.</p><p><a href="https://vervenveda.com/Khaemenes_High.github.io/courses/science/integrated-science-9/academic-evidence-companion.html?course=linguistics" style="display:inline-block;padding:11px;border:1px solid #9a9083;border-radius:7px;color:#164f7b;background:#fff">Open Linguistics Evidence Companion</a></p></aside>
 <script src="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-landing-toolbar.js" defer></script>
 <script id="french-direct-entry-guard">
 (()=>{"use strict";
