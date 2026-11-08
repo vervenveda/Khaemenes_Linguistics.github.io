@@ -108,8 +108,11 @@ self.addEventListener('fetch', event => {
         const response = await fetch(request);
         if (!response.ok) return cached || response;
         if (response.type === 'basic') {
-          const cache = await caches.open(RUNTIME_CACHE);
-          await cache.put(request, response.clone());
+          // A full cache must never turn a successful network response into failure.
+          try {
+            const cache = await caches.open(RUNTIME_CACHE);
+            await cache.put(request, response.clone());
+          } catch (_) { /* Network content still remains usable. */ }
         }
         return response;
       } catch (_) {
