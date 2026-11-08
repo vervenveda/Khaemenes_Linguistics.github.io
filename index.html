@@ -417,6 +417,28 @@ footer.footer{padding-bottom:calc(190px + env(safe-area-inset-bottom,0px))}
  #apps .polyglot-app-summary{padding-inline:10px}
  #apps .polyglot-app-content{padding-bottom:20px}
 }
+
+/* Polyglot greeting card: centered contents and unified three-action row. */
+.hero .phrase-card{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;
+}
+.hero .phrase-card>h2,
+.hero .phrase-card>p{max-width:34ch;margin-left:auto;margin-right:auto;text-align:center}
+.hero .phrase-card .phrase{width:100%;text-align:center}
+.hero .phrase-card .phrase-language,
+.hero .phrase-card .phrase-main,
+.hero .phrase-card .phrase-translation{text-align:center}
+.hero .phrase-card .phrase-actions{
+  display:flex;flex-wrap:wrap;align-items:stretch;justify-content:center;
+  gap:8px;margin:18px auto 0;
+}
+.hero .phrase-card .phrase-actions>.button{
+  display:inline-flex;justify-content:center;align-items:center;
+  min-height:46px;padding:10px 13px;border-radius:7px;
+  font:400 16px/1.3 var(--sans);
+  text-align:center;white-space:normal;
+}
 </style>
 <link rel="stylesheet" href="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-landing-standard.css">
 <link rel="stylesheet" href="https://vervenveda.com/Khaemenes_Academy.github.io/assets/khaemenes-landing-toolbar.css">
@@ -437,7 +459,7 @@ footer.footer{padding-bottom:calc(190px + env(safe-area-inset-bottom,0px))}
 <main id="main">
 <section class="hero" aria-labelledby="heroTitle"><div class="wrap hero-grid">
 <div class="hero-copy-wrap"><p class="eyebrow">Khaemenes Academy · Linguistics & World Language Campus</p><h1 id="heroTitle">Polyglot</h1><p class="hero-subtitle">The World in Words</p><p class="hero-copy">One calm entrance to formal language study, linguistics, pronunciation, scripts, translation, cultural understanding and a growing library of local language applications—from first words through lower-division collegiate study.</p><p class="campus-line"><strong>Now inside this repository:</strong> 5 complete formal language pathways · 55 courses · 206 language dossiers · 40 foundations · 29 local language apps.</p><div class="actions"><a class="button gold" href="./Halls/">Enter Five-Language Academy</a><a class="button wine" data-french-direct-entry href="./apps/French_101_index.html">French 101</a><a class="button" href="#apps">Browse 29 local apps</a><a class="button secondary" href="#voice-studio">Choose a voice</a></div><div class="skill-line"><span>Listening</span><span>Speaking</span><span>Reading</span><span>Writing</span><span>Mediation</span><span>Translation</span><span>Culture</span><span>Linguistics</span></div></div>
-<aside class="phrase-card" aria-labelledby="phraseTitle"><div class="compass" aria-hidden="true"><div class="compass-center"><span>Language<br>Compass</span></div></div><h2 id="phraseTitle">Begin with a greeting.</h2><p>Hear a phrase using voices already available in the learner's browser or operating system.</p><div class="phrase" aria-live="polite"><div class="phrase-language" id="phraseLanguage">Spanish</div><div class="phrase-main" id="phraseMain" lang="es">Cada idioma abre una puerta.</div><div class="phrase-translation" id="phraseTranslation">Each language opens a door.</div><div class="phrase-actions"><button class="button" id="speakPhrase" type="button">Hear phrase</button><button class="button secondary" id="nextPhrase" type="button">Next phrase</button></div></div></aside>
+<aside class="phrase-card" aria-labelledby="phraseTitle"><div class="compass" aria-hidden="true"><div class="compass-center"><span>Language<br>Compass</span></div></div><h2 id="phraseTitle">Begin with a greeting.</h2><p>Hear a phrase using voices already available in the learner's browser or operating system.</p><div class="phrase" aria-live="polite"><div class="phrase-language" id="phraseLanguage">Spanish</div><div class="phrase-main" id="phraseMain" lang="es">Cada idioma abre una puerta.</div><div class="phrase-translation" id="phraseTranslation">Each language opens a door.</div><div class="phrase-actions"><button class="button" id="speakPhrase" type="button">Hear phrase</button><button class="button secondary" id="nextPhrase" type="button">Next phrase</button><a class="button secondary" href="https://vervenveda.com/Khaemenes_Higher_Learning.github.io/life-skills/" aria-label="Explore the Khaemenes Academy Life Skills Branch">Life Skills</a></div></div></aside>
 </div></section>
 <section class="language-route-section" id="language-matrix" aria-labelledby="languageMatrixTitle"><div class="wrap">
 <div class="language-route-heading"><p class="eyebrow">Learning Pathways</p><h2 id="languageMatrixTitle">Language Matrix</h2><p>Enter the principal learner-facing pathway for each language. Supporting studios, dictionaries, readers and practice tools remain available throughout the campus.</p></div>
