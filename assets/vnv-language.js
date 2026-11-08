@@ -278,6 +278,33 @@ body > #vnv-language-switch{display:flex;width:max-content;max-width:calc(100% -
 #vnv-language-select:focus-visible{outline:3px solid #b48b45;outline-offset:2px}
 html[dir="rtl"] #vnv-language-switch,html[dir="rtl"] #vnv-language-switch-drawer{direction:rtl}
 .vnv-translate-complete,.vnv-translation-audit{padding:6px 9px;border:1px solid #a89a79;border-radius:7px;background:#f5f0e4;color:#14261c;cursor:pointer;font:inherit;font-size:11px}.vnv-translate-complete:disabled{opacity:.6;cursor:wait}
+/* Linguistics-owned page translation controls: cream and charcoal. */
+#vnv-language-switch :is(.vnv-translate-complete,.vnv-translation-audit),
+#vnv-language-switch-drawer :is(.vnv-translate-complete,.vnv-translation-audit),
+#vnv-language-switch #vnv-language-select,
+#vnv-language-switch-drawer #vnv-language-select-drawer{
+  box-sizing:border-box;
+  min-height:40px;
+  padding:8px 13px;
+  border:1px solid #c5b18d;
+  border-radius:7px;
+  background:#fffaf0;
+  background-image:none;
+  color:#243038;
+  -webkit-text-fill-color:#243038;
+  font:400 16px/1.35 "Brandon Grotesque",Nunito,Arial,sans-serif;
+  box-shadow:0 1px 2px rgba(8,21,34,.08);
+}
+#vnv-language-switch :is(.vnv-translate-complete,.vnv-translation-audit):hover,
+#vnv-language-switch-drawer :is(.vnv-translate-complete,.vnv-translation-audit):hover{
+  background:#f3e6d0;
+  border-color:#b79452;
+}
+#vnv-language-switch :is(.vnv-translate-complete,.vnv-translation-audit):focus-visible,
+#vnv-language-switch-drawer :is(.vnv-translate-complete,.vnv-translation-audit):focus-visible{
+  outline:3px solid #b79452;
+  outline-offset:2px;
+}
 html[dir="rtl"] .ecosystem-category-grid,html[dir="rtl"] .quick-grid,html[dir="rtl"] .school-grid{direction:ltr}
 html[dir="rtl"] .ecosystem-category-grid > *,html[dir="rtl"] .quick-grid > *,html[dir="rtl"] .school-grid > *{direction:rtl}
 @media(max-width:480px){#vnv-language-switch{margin:6px auto}#vnv-language-select{min-width:106px}}
