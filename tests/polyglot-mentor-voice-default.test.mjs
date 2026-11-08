@@ -22,6 +22,6 @@ test("Polyglot loads shared profile before voice engine and keeps user choice",(
  assert.match(html,/stored\.rate\?\?ZELLE_VOICE_DEFAULT\.rate/);
  assert.match(html,/stored\.pitch\?\?ZELLE_VOICE_DEFAULT\.pitch/);
  assert.match(html,/Object\.hasOwn\(stored,'name'\)/);
- assert.match(html,/stored\.name===''&&voicePicker\.value===''\\)return null/);
+ assert.ok(html.includes("stored.name===''&&voicePicker.value==='')return null"));
  assert.match(html,/Samantha is unavailable here/);
 });
