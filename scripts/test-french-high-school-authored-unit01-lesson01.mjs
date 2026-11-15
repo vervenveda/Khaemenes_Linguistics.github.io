@@ -18,7 +18,7 @@ for(const course of courses){
   const checked=validateAssessmentBank(bp,bank);
   assert.deepEqual(checked.errors,[]);
   assert.equal(checked.ready,true);
-  assert.deepEqual([...new Set(bank.map(q=>q.domain))].sort(),domains);
+  assert.deepEqual([...new Set(bank.map(q=>q.domain))].sort(),[...domains].sort());
   for(const domain of domains)assert.equal(bank.filter(q=>q.domain===domain).length,9);
   assert.equal(new Set(bank.map(q=>q.prompt.normalize("NFC").toLowerCase().trim())).size,27);
   assert.deepEqual([0,1,2].map(i=>bank.filter(q=>q.answer===i).length),[9,9,9]);
