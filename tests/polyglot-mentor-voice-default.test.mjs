@@ -19,8 +19,8 @@ test("Polyglot loads shared profile before voice engine and keeps user choice",(
  const script=html.indexOf('src="./assets/polyglot-mentor-voice-profiles.v1.js"');
  const engine=html.indexOf("const sharedZelleVoice=");
  assert.ok(script>0&&engine>script);
- assert.match(html,/stored\.rate\?\?ZELLE_VOICE_DEFAULT\.rate/);
- assert.match(html,/stored\.pitch\?\?ZELLE_VOICE_DEFAULT\.pitch/);
+ assert.match(html,/voicePrefNumber\(stored\.rate,ZELLE_VOICE_DEFAULT\.rate\)/);
+ assert.match(html,/voicePrefNumber\(stored\.pitch,ZELLE_VOICE_DEFAULT\.pitch\)/);
  assert.match(html,/Object\.hasOwn\(stored,'name'\)/);
  assert.ok(html.includes("stored.name===''&&voicePicker.value==='')return null"));
  assert.match(html,/Samantha is unavailable here/);
