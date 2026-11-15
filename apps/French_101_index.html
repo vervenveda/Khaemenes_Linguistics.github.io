@@ -1153,7 +1153,7 @@ function openCanonicalUnit01Assessment(){
    }
    const q=set[at];area.append(element("h3","Question "+(at+1)+" of "+set.length),element("p",q.prompt));
    const feedback=element("p");feedback.setAttribute("role","status");
-   const options=shuffleQuestions(q.choices.map((label,i)=>({label,ok:i===q.answer})));
+   const options=q.savedChoiceOrder||shuffleQuestions(q.choices.map((label,i)=>({label,ok:i===q.answer})));q.savedChoiceOrder=options;
    options.forEach(option=>{
     const b=element("button",option.label);b.type="button";b.addEventListener("click",()=>{
       if(area.dataset.answered==="1")return;area.dataset.answered="1";
@@ -1205,7 +1205,7 @@ function frenchAssessmentRun(config){
  const status=element("p");status.setAttribute("role","status");box.append(status);
  addButton(box,"Return to French 101 Journey",backToMenu);
  start.addEventListener("click",()=>{
-  const set=config.makeSet(),area=element("section");area.className="study-section";box.insertBefore(area,status);
+  const set=config.savedSet||config.makeSet(),area=element("section");config.savedSet=set;area.className="study-section";box.insertBefore(area,status);
   start.disabled=true;let at=0,correct=0,answers=[];
   const draw=()=>{
    area.replaceChildren();
@@ -3898,6 +3898,7 @@ function addUnit01DailySequence(parent){
  const panel=element("article");panel.className="unit01-active-day";panel.style.cssText="max-width:780px;margin:0 auto;line-height:1.65";const navigation=element("div");navigation.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0";const previous=element("button","← Previous Lesson"),next=element("button","Next Lesson →");previous.type=next.type="button";navigation.append(previous,next);const journey=element("p");journey.setAttribute("role","status");const status=element("p");status.setAttribute("role","status");
  function draw(){
   if(!canonicalAvailable(Number(picker.value)))picker.value=String(Array.from({length:18},(_,i)=>i+1).filter(canonicalAvailable).pop()||1);
+  if(!canonicalAvailable(2)){panel.replaceChildren(element("p","Lesson 02 is locked. Complete Lesson 01 and pass its ten-question quiz at 80% before continuing."));previous.disabled=true;next.disabled=true;picker.disabled=true;journey.textContent="French 101 · Lesson 01 mastery required";status.textContent="Return to the course map to take Lesson 01 mastery quiz.";return}
   const d=FRENCH_101_CANONICAL_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_CANONICAL_DAYS[0];
   safeSet(lessonSelectionKey(),String(d.day));
   panel.replaceChildren();
@@ -4023,7 +4024,7 @@ function addUnit01DailySequence(parent){
   cohereFrenchDailyPanel(panel,d.day);
   status.textContent=d.day>=19?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=19?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
  }
- previous.addEventListener("click",()=>{if(Number(picker.value)===2){document.getElementById("french101-unit01-day01")?.scrollIntoView({block:"start",behavior:"smooth"});return}picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{const target=Math.min(18,Number(picker.value)+1);if(!canonicalAvailable(target)){status.textContent="Next lesson locked until 80% mastery and required unit gates.";return}picker.value=String(target);draw()});picker.addEventListener("change",draw);const mastery=element('button','Take Current Lesson Mastery Quiz · 80% Required');mastery.type='button';mastery.addEventListener('click',()=>canonicalQuiz(Number(picker.value)));wrap.append(journey,picker,navigation,panel,mastery,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
+ previous.addEventListener("click",()=>{if(Number(picker.value)===2){document.getElementById("french101-unit01-day01")?.scrollIntoView({block:"start",behavior:"smooth"});return}picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{const target=Math.min(18,Number(picker.value)+1);if(!canonicalAvailable(target)){status.textContent="Next lesson locked until 80% mastery and required unit gates.";return}picker.value=String(target);draw()});picker.addEventListener("change",draw);const mastery=element('button','Take Current Lesson Mastery Quiz · 80% Required');mastery.type='button';mastery.addEventListener('click',()=>canonicalQuiz(canonicalAvailable(2)?Number(picker.value):1));wrap.append(journey,picker,navigation,panel,mastery,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
 }
 
 /* Verified Academy tools — optional practice; never modify French 101 mastery records. */
