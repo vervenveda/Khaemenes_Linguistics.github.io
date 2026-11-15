@@ -1,0 +1,442 @@
+{
+  "version": "FR201-U01-L01-DEPTH-v1",
+  "lesson_id": "FR201-U01-L01",
+  "sections": [
+    {
+      "heading": "Une idée centrale — la thèse",
+      "explanation": "Un paragraphe argumentatif commence par une idée défendable. « À mon avis, les projets collectifs sont utiles » exprime un jugement, tandis que « Le projet dure deux semaines » apporte simplement une information. Les deux phrases peuvent être exactes, mais elles n'ont pas la même fonction.",
+      "model": "Opinion : « Je préfère apprendre en groupe. » Raison : « Les discussions m'aident à comprendre mes erreurs. » Exemple : « Hier, une camarade m'a expliqué une solution plus claire. »",
+      "warning": "Une opinion sans raison devient difficile à évaluer. Ajoutez une justification précise."
+    },
+    {
+      "heading": "De la raison à la conséquence",
+      "explanation": "Parce que et car introduisent une justification. Donc présente un résultat ou une conclusion. « Je progresse parce que je pratique » explique une cause; « Je pratique régulièrement ; donc, je progresse » avance une conséquence.",
+      "model": "« La bibliothèque est calme ; donc, j'y travaille quand je dois lire longtemps. »",
+      "warning": "Chaque connecteur doit correspondre au sens réel du raisonnement."
+    },
+    {
+      "heading": "Organiser, opposer, nuancer",
+      "explanation": "D'abord et ensuite ordonnent les idées. Cependant et pourtant expriment un contraste. « J'aime le travail en équipe. Cependant, j'ai parfois besoin de silence. » reconnaît deux besoins compatibles.",
+      "model": "« D'abord, nous discutons. Ensuite, nous vérifions nos exemples. Cependant, nous gardons aussi du temps individuel. »",
+      "warning": "Une liste de connecteurs ne remplace pas une argumentation."
+    },
+    {
+      "heading": "Résumer sans inventer",
+      "explanation": "Une lecture attentive distingue les faits présentés, les opinions attribuées et vos propres conclusions. Le texte sur Samira et Louis décrit des préférences différentes, mais ne compare pas leurs notes ni leurs résultats.",
+      "model": "« Samira aime comparer des idées en groupe, tandis que Louis préfère avancer à son rythme. La classe choisit une formule mixte. »",
+      "warning": "Ne transformez pas « préfère » en « réussit toujours mieux » sans preuve."
+    }
+  ],
+  "labs": [
+    {
+      "title": "Cause or consequence?",
+      "prompt": "Comparez « Je lis parce que j'aime apprendre » et « J'aime apprendre ; donc, je lis ». Expliquez ce qui justifie et ce qui résulte.",
+      "hint": "Repérez les deux connecteurs et identifiez la direction du raisonnement."
+    },
+    {
+      "title": "Fair comparison",
+      "prompt": "Résumez les préférences de Samira et Louis en deux phrases, puis expliquez la solution commune.",
+      "hint": "Le texte ne prouve pas qu'une méthode est universellement supérieure."
+    },
+    {
+      "title": "Sentence-to-paragraph workshop",
+      "prompt": "Réorganisez : « Les projets sont stimulants. Certains élèves aiment le silence. Il faut prévoir les deux. On peut partager ses idées. »",
+      "hint": "Commencez par une idée principale, ajoutez une raison, nuancez, puis concluez."
+    }
+  ],
+  "rubric": [
+    {
+      "criterion": "Clear central opinion",
+      "description": "Express a defensible view and orient the reader."
+    },
+    {
+      "criterion": "Evidence and reasons",
+      "description": "Provide two meaningful reasons and concrete examples."
+    },
+    {
+      "criterion": "Logical cohesion",
+      "description": "Use reason, consequence, sequence and contrast correctly."
+    },
+    {
+      "criterion": "Independent revision",
+      "description": "Explain at least one correction with a reason."
+    }
+  ],
+  "questions": [
+    {
+      "id": "fr201-u01-l01-q01",
+      "skill": "cohesion",
+      "prompt": "Quel connecteur introduit une cause ?",
+      "choices": [
+        "parce que",
+        "cependant",
+        "donc"
+      ],
+      "answer": 0,
+      "explain": "Parce que explique pourquoi une situation existe."
+    },
+    {
+      "id": "fr201-u01-l01-q02",
+      "skill": "cohesion",
+      "prompt": "Quel connecteur indique une conséquence ?",
+      "choices": [
+        "donc",
+        "d'abord",
+        "pourtant"
+      ],
+      "answer": 0,
+      "explain": "Donc introduit un résultat ou une conclusion."
+    },
+    {
+      "id": "fr201-u01-l01-q03",
+      "skill": "cohesion",
+      "prompt": "Quel connecteur exprime une opposition ?",
+      "choices": [
+        "cependant",
+        "ensuite",
+        "car"
+      ],
+      "answer": 0,
+      "explain": "Cependant nuance ou oppose une idée précédente."
+    },
+    {
+      "id": "fr201-u01-l01-q04",
+      "skill": "cohesion",
+      "prompt": "Quelle expression marque une première étape ?",
+      "choices": [
+        "d'abord",
+        "en revanche",
+        "par conséquent"
+      ],
+      "answer": 0,
+      "explain": "D'abord organise le début d'une séquence."
+    },
+    {
+      "id": "fr201-u01-l01-q05",
+      "skill": "cohesion",
+      "prompt": "Quelle expression marque une étape suivante ?",
+      "choices": [
+        "ensuite",
+        "bien que",
+        "or"
+      ],
+      "answer": 0,
+      "explain": "Ensuite indique la succession d'une étape."
+    },
+    {
+      "id": "fr201-u01-l01-q06",
+      "skill": "cohesion",
+      "prompt": "« Elle a relu son brouillon ; ___, elle a corrigé ses exemples. »",
+      "choices": [
+        "ensuite",
+        "cependant",
+        "parce que"
+      ],
+      "answer": 0,
+      "explain": "Ensuite indique ici la chronologie des actions."
+    },
+    {
+      "id": "fr201-u01-l01-q07",
+      "skill": "argument",
+      "prompt": "Quelle phrase est une thèse défendable ?",
+      "choices": [
+        "Les projets collectifs peuvent aider à apprendre en comparant des idées.",
+        "La salle compte vingt chaises.",
+        "Le cours commence à neuf heures."
+      ],
+      "answer": 0,
+      "explain": "Une thèse présente une position qu'on peut justifier."
+    },
+    {
+      "id": "fr201-u01-l01-q08",
+      "skill": "argument",
+      "prompt": "Quel énoncé donne une raison précise ?",
+      "choices": [
+        "Les discussions permettent d'expliquer ses choix et d'entendre d'autres arguments.",
+        "C'est mieux, voilà tout.",
+        "Tout le monde préfère cette méthode."
+      ],
+      "answer": 0,
+      "explain": "Une raison précise justifie une opinion."
+    },
+    {
+      "id": "fr201-u01-l01-q09",
+      "skill": "argument",
+      "prompt": "Quel énoncé est un exemple concret ?",
+      "choices": [
+        "Pendant le projet, deux élèves ont comparé leurs solutions et corrigé une erreur.",
+        "L'éducation est importante.",
+        "Il faut toujours travailler."
+      ],
+      "answer": 0,
+      "explain": "L'exemple décrit une situation observable."
+    },
+    {
+      "id": "fr201-u01-l01-q10",
+      "skill": "argument",
+      "prompt": "Quelle phrase reconnaît un contrepoint ?",
+      "choices": [
+        "Cependant, certains élèves ont besoin de moments de travail individuel.",
+        "Cette méthode est parfaite pour tout le monde.",
+        "Il n'existe aucun inconvénient."
+      ],
+      "answer": 0,
+      "explain": "Un contrepoint représente une limite ou un autre besoin."
+    },
+    {
+      "id": "fr201-u01-l01-q11",
+      "skill": "argument",
+      "prompt": "Quelle conclusion découle du raisonnement ?",
+      "choices": [
+        "Donc, nous proposerons des activités de groupe avec du temps individuel.",
+        "À mon avis, il fait froid.",
+        "Hier, la bibliothèque était fermée."
+      ],
+      "answer": 0,
+      "explain": "La conclusion découle des raisons données."
+    },
+    {
+      "id": "fr201-u01-l01-q12",
+      "skill": "argument",
+      "prompt": "Pourquoi ajouter un exemple à une opinion ?",
+      "choices": [
+        "Pour montrer sur quoi repose le raisonnement.",
+        "Pour allonger automatiquement le texte.",
+        "Pour éviter la lecture."
+      ],
+      "answer": 0,
+      "explain": "Un exemple permet au lecteur d'évaluer une idée."
+    },
+    {
+      "id": "fr201-u01-l01-q13",
+      "skill": "reading",
+      "prompt": "Dans le passage, qui préfère les projets collectifs ?",
+      "choices": [
+        "Samira",
+        "Louis",
+        "La professeure"
+      ],
+      "answer": 0,
+      "explain": "Samira préfère les projets collectifs."
+    },
+    {
+      "id": "fr201-u01-l01-q14",
+      "skill": "reading",
+      "prompt": "Pourquoi Louis préfère-t-il travailler seul ?",
+      "choices": [
+        "Il peut avancer à son rythme.",
+        "Il déteste tous ses camarades.",
+        "Il refuse de lire."
+      ],
+      "answer": 0,
+      "explain": "Le passage indique explicitement son rythme personnel."
+    },
+    {
+      "id": "fr201-u01-l01-q15",
+      "skill": "reading",
+      "prompt": "Que dit la professeure sur les méthodes ?",
+      "choices": [
+        "Il n'existe pas une méthode idéale pour tout le monde.",
+        "Le travail individuel est interdit.",
+        "Les projets sont toujours supérieurs."
+      ],
+      "answer": 0,
+      "explain": "Elle reconnaît différents besoins."
+    },
+    {
+      "id": "fr201-u01-l01-q16",
+      "skill": "reading",
+      "prompt": "Quelle décision prend le groupe ?",
+      "choices": [
+        "Associer un projet commun à du travail individuel.",
+        "Annuler tous les projets.",
+        "Imposer une méthode unique."
+      ],
+      "answer": 0,
+      "explain": "Le groupe retient une formule mixte."
+    },
+    {
+      "id": "fr201-u01-l01-q17",
+      "skill": "reading",
+      "prompt": "Quelle information est absente du passage ?",
+      "choices": [
+        "La note finale de Samira.",
+        "La préférence de Louis.",
+        "La solution collective."
+      ],
+      "answer": 0,
+      "explain": "Le passage ne fournit aucune note individuelle."
+    },
+    {
+      "id": "fr201-u01-l01-q18",
+      "skill": "reading",
+      "prompt": "Quel mot du passage justifie la préférence de Samira ?",
+      "choices": [
+        "car",
+        "mais",
+        "après"
+      ],
+      "answer": 0,
+      "explain": "Car explique pourquoi les projets lui plaisent."
+    },
+    {
+      "id": "fr201-u01-l01-q19",
+      "skill": "structure",
+      "prompt": "Quel ordre convient à un paragraphe argumentatif ?",
+      "choices": [
+        "Opinion → raisons → nuance → conclusion",
+        "Conclusion → liste sans lien → sujet",
+        "Exemples sans idée centrale"
+      ],
+      "answer": 0,
+      "explain": "Une progression claire aide le lecteur."
+    },
+    {
+      "id": "fr201-u01-l01-q20",
+      "skill": "structure",
+      "prompt": "Quelle phrase présente l'idée centrale ?",
+      "choices": [
+        "À mon avis, les deux méthodes peuvent être complémentaires.",
+        "Ensuite, ensuite, ensuite.",
+        "Mais et donc et car."
+      ],
+      "answer": 0,
+      "explain": "Cette phrase annonce une position claire."
+    },
+    {
+      "id": "fr201-u01-l01-q21",
+      "skill": "structure",
+      "prompt": "Dans « Je travaille seul parce que je me concentre mieux », la seconde proposition sert à…",
+      "choices": [
+        "donner une raison",
+        "présenter un résultat",
+        "indiquer une chronologie"
+      ],
+      "answer": 0,
+      "explain": "Parce que introduit la justification."
+    },
+    {
+      "id": "fr201-u01-l01-q22",
+      "skill": "structure",
+      "prompt": "« Les horaires sont flexibles ; cependant, les échanges sont moins spontanés » exprime…",
+      "choices": [
+        "un contraste",
+        "une cause unique",
+        "une succession d'étapes"
+      ],
+      "answer": 0,
+      "explain": "Cependant présente une limite contrastant avec un avantage."
+    },
+    {
+      "id": "fr201-u01-l01-q23",
+      "skill": "structure",
+      "prompt": "Quelle suite est cohérente ?",
+      "choices": [
+        "J'aime les projets. D'abord, je partage mes idées. Cependant, je travaille aussi seul.",
+        "J'aime les projets. Donc, parce que, ensuite.",
+        "Cependant, donc, d'abord. Il faut."
+      ],
+      "answer": 0,
+      "explain": "La bonne suite relie opinion, raison et nuance."
+    },
+    {
+      "id": "fr201-u01-l01-q24",
+      "skill": "structure",
+      "prompt": "Quelle révision réduit la répétition ?",
+      "choices": [
+        "Utiliser un connecteur pertinent entre deux idées liées.",
+        "Répéter la même phrase quatre fois.",
+        "Supprimer toutes les raisons."
+      ],
+      "answer": 0,
+      "explain": "Un connecteur pertinent rend la relation explicite."
+    },
+    {
+      "id": "fr201-u01-l01-q25",
+      "skill": "transfer",
+      "prompt": "Quelle question permet de comparer deux méthodes ?",
+      "choices": [
+        "Quels avantages et quelles limites chaque méthode présente-t-elle ?",
+        "Quelle phrase puis-je copier ?",
+        "Comment éviter les exemples ?"
+      ],
+      "answer": 0,
+      "explain": "Comparer exige des critères et des limites."
+    },
+    {
+      "id": "fr201-u01-l01-q26",
+      "skill": "transfer",
+      "prompt": "Quelle réponse reconnaît le point de vue d'autrui ?",
+      "choices": [
+        "Je comprends ton avis ; cependant, mon expérience est différente.",
+        "Ton avis est forcément faux.",
+        "Il n'y a rien à discuter."
+      ],
+      "answer": 0,
+      "explain": "Elle reconnaît un avis puis nuance."
+    },
+    {
+      "id": "fr201-u01-l01-q27",
+      "skill": "transfer",
+      "prompt": "« On partage des idées ; ___, on découvre de nouvelles solutions. »",
+      "choices": [
+        "donc",
+        "pourtant",
+        "d'abord"
+      ],
+      "answer": 0,
+      "explain": "La découverte est présentée comme conséquence."
+    },
+    {
+      "id": "fr201-u01-l01-q28",
+      "skill": "transfer",
+      "prompt": "Quel ajout renforce « Je préfère apprendre seul » ?",
+      "choices": [
+        "Je peux relire un texte difficile à mon rythme et noter mes questions.",
+        "C'est comme ça.",
+        "Les autres ont tort."
+      ],
+      "answer": 0,
+      "explain": "L'ajout donne une justification concrète."
+    },
+    {
+      "id": "fr201-u01-l01-q29",
+      "skill": "transfer",
+      "prompt": "Que faut-il éviter dans une synthèse fidèle ?",
+      "choices": [
+        "Inventer une opinion absente du texte.",
+        "Identifier des préférences différentes.",
+        "Citer un détail présent."
+      ],
+      "answer": 0,
+      "explain": "Il faut éviter d'attribuer au texte ce qu'il ne dit pas."
+    },
+    {
+      "id": "fr201-u01-l01-q30",
+      "skill": "transfer",
+      "prompt": "Comment réviser avant de rendre un paragraphe ?",
+      "choices": [
+        "Vérifier thèse, exemples, connecteurs et conclusion.",
+        "Compter uniquement les adjectifs.",
+        "Ne pas relire."
+      ],
+      "answer": 0,
+      "explain": "Une révision structurée vérifie cohésion et précision."
+    }
+  ],
+  "assessment": {
+    "questions_per_attempt": 20,
+    "passing_correct": 16,
+    "authored_bank_size": 30,
+    "domains": [
+      "cohesion",
+      "argument",
+      "reading",
+      "structure",
+      "transfer"
+    ],
+    "questions_per_domain": 4,
+    "formal_grade": false,
+    "kind": "formative mastery rehearsal"
+  }
+}

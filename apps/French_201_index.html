@@ -59,6 +59,29 @@ details.stage[open]>summary{border-bottom:1px solid var(--line)}
 @media print{header nav,.controls,.lessons,.actions,button,.footer{display:none!important}body{background:white}.hero,.panel{border:0;padding:7px;margin:0}details.stage{break-inside:avoid}details.stage .stage-content{display:block!important}textarea{border:1px solid #555}}
 </style>
 <script src="../assets/linguistics-global-standard-v1.js" defer data-linguistics-global-standard="16-33-66-chrome"></script>
+<style id="french201-lesson01-depth-v1">
+#lessonPanel .fr201-depth{max-width:940px;margin:20px auto;padding:20px;border:1px solid #C7BBA3;border-radius:7px;background:#FFF8E9}
+#lessonPanel .fr201-depth>h3,#lessonPanel .fr201-depth>p{text-align:center}
+#lessonPanel .fr201-studios{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:17px auto}
+#lessonPanel .fr201-studios details{background:#FFFDF8;border:1px solid #C7BBA3;border-radius:7px}
+#lessonPanel .fr201-studios summary{padding:15px;cursor:pointer;font:400 20px/1.4 Cinzel,Georgia,serif;color:#202724;text-align:center}
+#lessonPanel .fr201-studios .inner{padding:15px;border-top:1px solid #C7BBA3}
+#lessonPanel .fr201-studios .inner p{font-size:17px;line-height:1.7}
+#lessonPanel .fr201-help{border-left:3px solid #B48B45;padding:12px;background:#F7F1E5;margin:14px 0}
+#lessonPanel .fr201-quiz{margin:18px auto;padding:20px;background:#FFFDF8;border:1px solid #C7BBA3;border-radius:7px}
+#lessonPanel .fr201-quiz h4{text-align:center}
+#lessonPanel .fr201-quiz progress{display:block;width:100%;height:17px;accent-color:#202724}
+#lessonPanel .fr201-quiz .choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:14px 0}
+#lessonPanel .fr201-quiz button{padding:12px;border:1px solid #B48B45;background:#202724;color:#FFF8E9;border-radius:7px;min-height:46px;cursor:pointer;font-size:16px}
+#lessonPanel .fr201-quiz button[aria-pressed="true"]{background:#D8C8A7;color:#202724;border:2px solid #202724}
+#lessonPanel .fr201-quiz button:disabled{opacity:.55;cursor:not-allowed}
+#lessonPanel .fr201-quiz .quiz-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin:15px auto}
+#lessonPanel .fr201-quiz .quiz-status{font-size:16px;text-align:center}
+#lessonPanel .fr201-rubric{display:grid;gap:10px;margin:12px auto}
+#lessonPanel .fr201-rubric p{padding:10px;border:1px solid #C7BBA3;border-radius:7px;background:#FFFDF8}
+@media(max-width:700px){#lessonPanel .fr201-studios,#lessonPanel .fr201-quiz .choices{grid-template-columns:minmax(0,1fr)}#lessonPanel .fr201-depth{padding:13px}}
+@media print{#lessonPanel .fr201-quiz button{display:none!important}}
+</style>
 </head>
 <body>
 <main>
@@ -149,6 +172,143 @@ details.stage[open]>summary{border-bottom:1px solid var(--line)}
    host.append(b);
   })
  }
+ let depthPromise=null;
+ function loadLesson01Depth(){
+  if(!depthPromise)depthPromise=fetch("../data/french-201-unit01-lesson01-depth.json")
+    .then(r=>{if(!r.ok)throw Error("Detailed Lesson 01 data is unavailable");return r.json()})
+    .then(d=>{
+     if(d.lesson_id!=="FR201-U01-L01"||d.questions?.length!==30
+      ||new Set(d.questions.map(q=>q.id)).size!==30||d.sections?.length!==4||d.labs?.length!==3
+      ||d.assessment?.questions_per_attempt!==20||d.assessment?.passing_correct!==16
+      ||d.assessment.domains.some(k=>d.questions.filter(q=>q.skill===k).length!==6)
+      ||d.questions.some(q=>!q.prompt||!q.explain||q.choices?.length!==3||!Number.isInteger(q.answer)||q.answer<0||q.answer>2))
+       throw Error("Lesson 01 quality contract could not be validated");
+     return d;
+    }).catch(e=>{depthPromise=null;throw e});
+  return depthPromise;
+ }
+ function lesson01Quiz(root,data){
+  const section=node("section");section.className="fr201-quiz";section.setAttribute("aria-label","Lesson 01 formative mastery rehearsal");
+  section.append(node("h4","20-question Knowledge Challenge"));
+  section.append(p("Try 20 balanced questions from a bank of 30. Aim for at least 16 correct (80%). This is practice evidence only: it does not change the Academy's formal grades or unlock other courses."));
+  root.append(section);
+  const quizKey=key()+":lesson01:quiz-draft-v1",attemptKey=key()+":lesson01:attempts-v1";
+  const safeRead=(k)=>{try{return JSON.parse(localStorage.getItem(k)||"null")}catch{return null}};
+  const safeWrite=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v));return true}catch{display("Unable to save quiz data. Copy or export your writing before leaving.");return false}};
+  function drawSet(previous=[]){
+   const drawn=[];
+   for(const skill of data.assessment.domains){
+    const group=data.questions.filter(q=>q.skill===skill);
+    const fresh=group.filter(q=>!previous.includes(q.id)).sort(()=>Math.random()-.5);
+    const seen=group.filter(q=>previous.includes(q.id)).sort(()=>Math.random()-.5);
+    drawn.push(...[...fresh,...seen].slice(0,4));
+   }
+   if(drawn.length!==20||new Set(drawn.map(q=>q.id)).size!==20)throw Error("Insufficient unique practice questions");
+   return drawn.sort(()=>Math.random()-.5).map(q=>q.id);
+  }
+  function validDraft(d){
+   return d&&d.schema==="fr201-l01-quiz-v1"&&Array.isArray(d.ids)&&d.ids.length===20
+    &&new Set(d.ids).size===20&&d.ids.every(id=>data.questions.some(q=>q.id===id))
+    &&Array.isArray(d.answers)&&d.answers.length===20
+    &&d.answers.every(v=>v===null||Number.isInteger(v)&&v>=0&&v<=2)
+    &&Array.isArray(d.orders)&&d.orders.length===20
+    &&d.orders.every(o=>Array.isArray(o)&&o.length===3&&new Set(o).size===3&&o.every(i=>Number.isInteger(i)&&i>=0&&i<=2))
+    &&Number.isInteger(d.position)&&d.position>=0&&d.position<=20;
+  }
+  function saveDraft(d){return safeWrite(quizKey,d)}
+  function launch(d){
+   section.replaceChildren();
+   const questions=d.ids.map(id=>data.questions.find(q=>q.id===id));
+   const answered=()=>d.answers.filter(v=>v!==null).length;
+   const status=node("p");status.className="quiz-status";status.setAttribute("role","status");
+   function draw(){
+    section.replaceChildren();
+    const percent=Math.round(100*answered()/20);
+    section.append(node("h4","Lesson 01 · Knowledge Challenge"),p(answered()+" of 20 answered · "+percent+"% complete"));
+    const progress=node("progress");progress.max=20;progress.value=answered();progress.setAttribute("aria-label","Formative quiz progress");section.append(progress);
+    section.append(node("p","Checkpoint "+(Math.min(2,Math.floor(d.position/10)+1))+" of 2 · You can save and resume at any time."));
+    if(d.position===20){
+     section.append(node("h4","Ready to submit?"),p("Your answers are saved. You can return to earlier questions before submitting."));
+     const submit=node("button","Submit 20 answers");submit.disabled=answered()!==20;
+     submit.addEventListener("click",()=>{
+      if(answered()!==20)return;
+      const scored=questions.map((q,i)=>d.answers[i]===q.answer),correct=scored.filter(Boolean).length,passed=correct>=16;
+      const result={date:new Date().toISOString(),score:correct,total:20,passed,questionIds:d.ids.slice(),formal_grade:false};
+      const history=safeRead(attemptKey)||[];
+      if(!Array.isArray(history)||!safeWrite(attemptKey,[...history,result].slice(-50))){status.textContent="Unable to save result. Your quiz draft remains available.";return}
+      if(!safeWrite(quizKey,null)){status.textContent="Result saved but draft was not cleared. Export your work before retrying.";return}
+      section.replaceChildren(node("h4",passed?"Great progress · 80%+":"Your next learning opportunity"),p("You scored "+correct+"/20 ("+(correct*5)+"%). This is a formative knowledge score, not formal French 201 course mastery."));
+      const review=node("details");review.append(node("summary","Review explanations and corrections"));
+      questions.forEach((q,i)=>{if(!scored[i])review.append(p((i+1)+". "+q.prompt+" Correct response: "+q.choices[q.answer]+". "+q.explain))});
+      section.append(review,status);
+      const retry=node("button","Try a new Monte Carlo challenge");retry.addEventListener("click",()=>begin(d.ids));section.append(retry);
+      display("Lesson 01 formative result saved locally. The next attempt draws new questions where available.");
+     });section.append(submit);
+     const back=node("button","Review previous question");back.addEventListener("click",()=>{d.position=19;if(saveDraft(d))draw()});section.append(back);
+    }else{
+     const q=questions[d.position];section.append(node("h4","Question "+(d.position+1)+" of 20"),p(q.prompt));
+     const choices=node("div");choices.className="choices";
+     d.orders[d.position].forEach(i=>{const option=q.choices[i];
+      const b=node("button",option);b.type="button";b.setAttribute("aria-pressed",d.answers[d.position]===i?"true":"false");
+      b.addEventListener("click",()=>{const before=d.answers[d.position];d.answers[d.position]=i;if(saveDraft(d)){draw();status.textContent="Answer saved."}else{d.answers[d.position]=before;status.textContent="Answer not saved."}});
+      choices.append(b);
+     });section.append(choices);
+     const nav=node("div");nav.className="quiz-actions";
+     if(d.position>0){const back=node("button","Previous");back.addEventListener("click",()=>{d.position--;if(saveDraft(d))draw();else d.position++});nav.append(back)}
+     const next=node("button",d.position===19?"Review & submit":"Next question");next.disabled=d.answers[d.position]===null;
+     next.addEventListener("click",()=>{d.position++;if(saveDraft(d))draw();else d.position--});nav.append(next);section.append(nav);
+    }
+    const exit=node("button","Save & return to lesson");exit.addEventListener("click",()=>{if(saveDraft(d)){section.replaceChildren();renderWelcome()}});section.append(exit,status);
+   }
+   draw();
+  }
+  function begin(previous=[]){
+   let ids;try{ids=drawSet(previous)}catch(e){section.append(p(e.message));return}
+   const orderChoices=()=>{const a=[0,1,2];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+   const draft={schema:"fr201-l01-quiz-v1",ids,answers:Array(20).fill(null),orders:ids.map(()=>orderChoices()),position:0};
+   if(saveDraft(draft))launch(draft);
+  }
+  function renderWelcome(){
+   section.replaceChildren(node("h4","20-question Knowledge Challenge"),p("Five skills · four questions per skill · ten reserve questions for retries. Answers are explained after submission."));
+   const saved=safeRead(quizKey);
+   if(validDraft(saved)){
+    section.append(p("An unfinished attempt is saved on this browser."));
+    const resume=node("button","Resume saved attempt");resume.addEventListener("click",()=>launch(saved));section.append(resume);
+    const discard=node("button","Discard unfinished attempt");discard.addEventListener("click",()=>{
+     if(!window.confirm("Discard this unfinished practice attempt? Your writing and earlier results remain safe."))return;
+     if(safeWrite(quizKey,null))begin(saved.ids);
+    });section.append(discard);
+   }else if(saved!==null){
+    section.append(p("A saved attempt could not be validated and will not be overwritten automatically."));
+    const discard=node("button","Discard invalid attempt");discard.addEventListener("click",()=>{if(window.confirm("Discard invalid saved quiz data?")&&safeWrite(quizKey,null))begin()});section.append(discard);
+   }else{
+    const beginButton=node("button","Begin 20-question challenge");beginButton.addEventListener("click",()=>begin());section.append(beginButton);
+   }
+  }
+  renderWelcome();
+ }
+ function enhanceLesson01(host){
+  const placeholder=node("section");placeholder.className="fr201-depth";
+  placeholder.append(node("h3","Lesson 01 · Intermediate Language Studio"),p("Loading deeper instruction, writing investigations, and the knowledge challenge…"));host.append(placeholder);
+  loadLesson01Depth().then(data=>{
+   if(chosen!==1||!placeholder.isConnected)return;
+   placeholder.replaceChildren(node("h3","Build a Thoughtful French Paragraph"),p("Explore four short investigations, then create and revise an original argument. Open only the sections you need."));
+   const grid=node("div");grid.className="fr201-studios";placeholder.append(grid);
+   data.sections.forEach((item,i)=>{
+    const section=stage(String(i+1).padStart(2,"0")+" · "+item.heading,[p(item.explanation),p("Worked French example: "+item.model),p("Common pitfall: "+item.warning)],i===0);
+    section.querySelector(".stage-content")?.classList.add("inner");grid.append(section);
+   });
+   const lab=node("div");lab.className="fr201-studios";placeholder.append(node("h3","Interactive reasoning laboratory"),lab);
+   const saved=read()[1]||{};
+   data.labs.forEach((item,i)=>{
+    const section=stage("Laboratory "+(i+1)+" · "+item.title,[p(item.prompt),textarea("My answer · Laboratory "+(i+1),"lab"+(i+1),saved["lab"+(i+1)],"Réponse, raisonnement et correction…")]);
+    const hint=node("details");hint.className="fr201-help";hint.append(node("summary","Show learning hint"),p(item.hint));section.querySelector(".stage-content").append(hint);section.querySelector(".stage-content")?.classList.add("inner");lab.append(section);
+   });
+   const rub=node("div");rub.className="fr201-rubric";placeholder.append(node("h3","Writing quality & revision guide"),rub);
+   data.rubric.forEach(item=>rub.append(p(item.criterion+" — "+item.description)));
+   lesson01Quiz(placeholder,data);
+  }).catch(error=>{placeholder.replaceChildren(node("h3","Lesson 01 studio unavailable"),p("The original lesson remains intact. "+error.message+". Reload to retry; previously saved writing is preserved."))});
+ }
  function renderLesson(){
   const lesson=plan.lessons.find(l=>l.number===chosen),saved=read()[chosen]||{},host=$("lessonContent");
   host.replaceChildren();const title=node("h2",lesson.title);title.id="activeTitle";
@@ -165,6 +325,7 @@ details.stage[open]>summary{border-bottom:1px solid var(--line)}
   const create=stage("04 · Create & Communicate",[p(lesson.production),textarea("My original French writing","writing",saved.writing,"Rédigez votre texte original en français…")]);
   const reflect=stage("05 · Reflect & Review",[p("Reviewer focus: "+lesson.feedback),textarea("Corrections, notes and observations","reflection",saved.reflection,"Quels changements rendent mon français plus précis ?"),p("Speaking/listening: Not assessed unless separately observed and documented.")]);
   const grid=node("div");grid.className="steps";grid.append(targets,discover,interpret,guided,create,reflect);host.append(grid);
+  if(chosen===1)enhanceLesson01(host);
   const actions=node("div");actions.className="actions";
   if(chosen>1){const b=node("button","Previous lesson");b.type="button";b.addEventListener("click",()=>{chosen--;renderButtons();renderLesson()});actions.append(b)}
   if(chosen<6){const b=node("button","Next lesson");b.type="button";b.addEventListener("click",()=>{chosen++;renderButtons();renderLesson()});actions.append(b)}
