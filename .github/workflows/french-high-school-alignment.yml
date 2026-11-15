@@ -10,6 +10,11 @@ on:
       - 'scripts/test-french-high-school-assessment-provenance.mjs'
       - 'assets/french-high-school-assessment-contract.mjs'
       - 'scripts/test-french-high-school-assessment-contract.mjs'
+      - 'scripts/test-french-high-school-authored-unit01-lesson01.mjs'
+      - 'data/french-hs1-unit01-lesson01-bank.json'
+      - 'data/french-hs2-unit01-lesson01-bank.json'
+      - 'data/french-hs3-unit01-lesson01-bank.json'
+      - 'data/french-hs4-unit01-lesson01-bank.json'
       - '.github/workflows/french-high-school-alignment.yml'
   pull_request:
     paths:
@@ -19,6 +24,11 @@ on:
       - 'scripts/test-french-high-school-assessment-provenance.mjs'
       - 'assets/french-high-school-assessment-contract.mjs'
       - 'scripts/test-french-high-school-assessment-contract.mjs'
+      - 'scripts/test-french-high-school-authored-unit01-lesson01.mjs'
+      - 'data/french-hs1-unit01-lesson01-bank.json'
+      - 'data/french-hs2-unit01-lesson01-bank.json'
+      - 'data/french-hs3-unit01-lesson01-bank.json'
+      - 'data/french-hs4-unit01-lesson01-bank.json'
       - '.github/workflows/french-high-school-alignment.yml'
   workflow_dispatch:
 
@@ -41,3 +51,5 @@ jobs:
         run: node scripts/test-french-high-school-assessment-provenance.mjs
       - name: Test fail-closed French I-IV assessment contract
         run: node --test scripts/test-french-high-school-assessment-contract.mjs
+      - name: Validate authored Unit 01 Lesson 01 question banks for all four grades
+        run: node --test scripts/test-french-high-school-authored-unit01-lesson01.mjs
