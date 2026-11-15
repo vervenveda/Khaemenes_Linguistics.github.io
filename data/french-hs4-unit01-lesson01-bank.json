@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs4",
+  "unit": 1,
+  "lesson": 1,
+  "status": "authoring-review-not-published",
+  "title": "Historical memory, register and critical source synthesis",
+  "editorialReview": "pending-independent-linguistic-review",
+  "questions": [
+    {
+      "id": "hs4-u01-l01-q001",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Complete the counterfactual: « Si le débat avait été public, davantage d'habitants ___ participé. »",
+      "choices": [
+        "auraient",
+        "avaient",
+        "auront"
+      ],
+      "answer": 0,
+      "explanation": "A past counterfactual uses plus-que-parfait with conditionnel passé: auraient participé."
+    },
+    {
+      "id": "hs4-u01-l01-q002",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Choose the formal register for an evidence-based report.",
+      "choices": [
+        "C'est carrément un truc de ouf.",
+        "Ça prouve tout, sans discussion.",
+        "Les résultats suggèrent une évolution notable."
+      ],
+      "answer": 2,
+      "explanation": "A cautious impersonal formulation suits a formal evidence-based report."
+    },
+    {
+      "id": "hs4-u01-l01-q003",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which sentence correctly introduces a hypothetical concession?",
+      "choices": [
+        "Quand bien même cette mesure adopter, les obstacles disparaissaient.",
+        "Quand bien même cette mesure serait adoptée, des obstacles subsisteraient.",
+        "Quand bien même cette mesure est adoptée hier, des obstacles subsisteront hier."
+      ],
+      "answer": 1,
+      "explanation": "Quand bien même may introduce a hypothetical concession with conditional verb forms."
+    },
+    {
+      "id": "hs4-u01-l01-q004",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Choose the correct relative construction: « Les auteurs ___ les travaux sont cités »",
+      "choices": [
+        "dont",
+        "que",
+        "où"
+      ],
+      "answer": 0,
+      "explanation": "Dont expresses the relation of whose works: les travaux des auteurs."
+    },
+    {
+      "id": "hs4-u01-l01-q005",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which sentence uses the passive voice correctly?",
+      "choices": [
+        "La décision a contesté par plusieurs associations.",
+        "La décision était contester par les associations.",
+        "La décision a été contestée par plusieurs associations."
+      ],
+      "answer": 2,
+      "explanation": "The passive construction is auxiliary être plus past participle, here a été contestée."
+    },
+    {
+      "id": "hs4-u01-l01-q006",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Choose the connector most appropriate for presenting a qualification.",
+      "choices": [
+        "Par exemple,",
+        "Néanmoins,",
+        "Puisque"
+      ],
+      "answer": 1,
+      "explanation": "Néanmoins introduces a reservation or counterpoint."
+    },
+    {
+      "id": "hs4-u01-l01-q007",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Complete: « Il aurait fallu que les autorités ___ les résidents. »",
+      "choices": [
+        "consultent",
+        "consulteront",
+        "consulter"
+      ],
+      "answer": 0,
+      "explanation": "Il aurait fallu que calls for a subjunctive clause; consultent is the present subjunctive form."
+    },
+    {
+      "id": "hs4-u01-l01-q008",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which sentence distinguishes possibility from established fact?",
+      "choices": [
+        "Les chiffres ont forcément été sous-estimés.",
+        "Il est certain sans preuve que les chiffres sont faux.",
+        "Il se pourrait que les chiffres aient été sous-estimés."
+      ],
+      "answer": 2,
+      "explanation": "Il se pourrait que introduces uncertainty with the subjunctive."
+    },
+    {
+      "id": "hs4-u01-l01-q009",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which revision avoids an unsupported universal claim?",
+      "choices": [
+        "Aucun contre-exemple n'existe dans le monde.",
+        "Dans les sources étudiées, plusieurs exemples vont dans ce sens.",
+        "Tous les peuples ont toujours agi de la même façon."
+      ],
+      "answer": 1,
+      "explanation": "Limiting the claim to the studied sources avoids unjustified universality."
+    },
+    {
+      "id": "hs4-u01-l01-q010",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Le mémorial évoque certaines expériences de l'exil, sans prétendre représenter toutes les trajectoires. » What limitation is acknowledged?",
+      "choices": [
+        "Its narratives are selective, not universally representative.",
+        "It includes every possible migration experience.",
+        "It rejects the existence of exile."
+      ],
+      "answer": 0,
+      "explanation": "The phrase sans prétendre représenter toutes les trajectoires acknowledges partial coverage."
+    },
+    {
+      "id": "hs4-u01-l01-q011",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Selon l'archive municipale, le quartier a été réaménagé en 1978. » What is the claim's provenance?",
+      "choices": [
+        "A contemporary eyewitness necessarily present.",
+        "An unspecified social media comment.",
+        "A municipal archive."
+      ],
+      "answer": 2,
+      "explanation": "Selon l'archive municipale identifies the cited institutional source."
+    },
+    {
+      "id": "hs4-u01-l01-q012",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « L'éditorial défend la réforme, tandis que l'enquête en documente des effets contradictoires. » How do the genres differ?",
+      "choices": [
+        "The editorial has no viewpoint at all.",
+        "The editorial argues a position; the investigation reports mixed effects.",
+        "Both texts are neutral laboratory measurements."
+      ],
+      "answer": 1,
+      "explanation": "An éditorial advances an opinion, while enquête denotes investigation."
+    },
+    {
+      "id": "hs4-u01-l01-q013",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Les témoignages ont été recueillis vingt ans après les faits. » What interpretive caution applies?",
+      "choices": [
+        "Memory and later context may shape recollections.",
+        "Every recollection must be deliberately false.",
+        "No witness can remember any past event."
+      ],
+      "answer": 0,
+      "explanation": "A twenty-year interval is relevant to memory evaluation without discrediting all testimony."
+    },
+    {
+      "id": "hs4-u01-l01-q014",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Le film juxtapose des archives sonores et des scènes reconstituées. » What should viewers distinguish?",
+      "choices": [
+        "Two forms of identical primary-source footage.",
+        "All scenes as spontaneous recordings.",
+        "Documentary recordings from dramatized reconstruction."
+      ],
+      "answer": 2,
+      "explanation": "Reconstituted scenes are not identical to original archival recordings."
+    },
+    {
+      "id": "hs4-u01-l01-q015",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « L'étude corrige une première estimation après la découverte de nouveaux registres. » What does the revision show?",
+      "choices": [
+        "The records had no relevance.",
+        "New primary evidence prompted a revised estimate.",
+        "The first estimate was guaranteed to be fraudulent."
+      ],
+      "answer": 1,
+      "explanation": "Newly discovered registers can legitimately change an earlier estimate."
+    },
+    {
+      "id": "hs4-u01-l01-q016",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Le mot intégration possède des sens différents selon les acteurs interrogés. » What should an analyst avoid?",
+      "choices": [
+        "Treating the word as having one uncontested meaning.",
+        "Identifying how speakers define the term.",
+        "Comparing how the term is used in context."
+      ],
+      "answer": 0,
+      "explanation": "Different actor definitions require careful contextual interpretation."
+    },
+    {
+      "id": "hs4-u01-l01-q017",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « L'article cite une loi, mais ne mentionne ni les décrets d'application ni les décisions judiciaires. » What is a source limitation?",
+      "choices": [
+        "No law exists.",
+        "A statute alone automatically reveals every legal outcome.",
+        "The legal implementation and interpretation are not fully covered."
+      ],
+      "answer": 2,
+      "explanation": "Application decrees and court decisions may affect how a statute operates."
+    },
+    {
+      "id": "hs4-u01-l01-q018",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « L'auteur écrit “nous” sans préciser le groupe représenté. » What question is important?",
+      "choices": [
+        "Why French has no plural pronouns.",
+        "Who is included or excluded by nous?",
+        "Whether nous is always first-person singular."
+      ],
+      "answer": 1,
+      "explanation": "The referent of collective nous affects representation and authority."
+    },
+    {
+      "id": "hs4-u01-l01-q019",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You are analyzing a historical letter written by an official. What should you establish first?",
+      "choices": [
+        "Its date, author, intended audience and institutional context.",
+        "Only whether its handwriting is attractive.",
+        "That its claims are automatically neutral."
+      ],
+      "answer": 0,
+      "explanation": "Provenance and audience help situate the purpose and perspective of the source."
+    },
+    {
+      "id": "hs4-u01-l01-q020",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "An essay compares two portrayals of migration. Which thesis is best bounded?",
+      "choices": [
+        "Tous les récits migratoires sont identiques.",
+        "Un récit suffit à expliquer toutes les migrations.",
+        "Ces deux récits divergent surtout par la place accordée à la mémoire familiale."
+      ],
+      "answer": 2,
+      "explanation": "A bounded thesis identifies a specific contrast supported by the chosen texts."
+    },
+    {
+      "id": "hs4-u01-l01-q021",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "A source translated a politically charged term. What strengthens the analysis?",
+      "choices": [
+        "Remove the term without comment.",
+        "Consult the original wording and explain the translation choice.",
+        "Assume one translation is always context-free."
+      ],
+      "answer": 1,
+      "explanation": "Translation choices may affect connotation and require transparency."
+    },
+    {
+      "id": "hs4-u01-l01-q022",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You discover a claim quoted without its preceding paragraph. What is the sound next step?",
+      "choices": [
+        "Read the surrounding passage before interpreting the quotation.",
+        "Treat the isolated phrase as the whole argument.",
+        "Discard all sources that include quotations."
+      ],
+      "answer": 0,
+      "explanation": "Surrounding context is needed to avoid a misleading isolated citation."
+    },
+    {
+      "id": "hs4-u01-l01-q023",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "A documentary mixes interviews and staged scenes. Which annotation is most precise?",
+      "choices": [
+        "Présenter les reconstitutions comme des archives directes.",
+        "Dire que toute image filmée est une preuve indépendante.",
+        "Distinguer les témoignages filmés des reconstitutions narratives."
+      ],
+      "answer": 2,
+      "explanation": "Separating interviews and dramatizations preserves documentary evidence boundaries."
+    },
+    {
+      "id": "hs4-u01-l01-q024",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "An author writes a strong claim but the dataset covers just one region. Which revision fits?",
+      "choices": [
+        "Les données rendent inutile toute réserve.",
+        "Dans la région étudiée, les données semblent appuyer cette hypothèse.",
+        "Dans le monde entier, le phénomène est prouvé."
+      ],
+      "answer": 1,
+      "explanation": "The limited region calls for explicit geographic and epistemic qualification."
+    },
+    {
+      "id": "hs4-u01-l01-q025",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "Two sources contradict each other about a policy's effects. Which strategy is strongest?",
+      "choices": [
+        "Compare definitions, sampling, time periods and stated interests.",
+        "Select the newer source without reading it.",
+        "Average their claims without considering method."
+      ],
+      "answer": 0,
+      "explanation": "Method and context can explain apparent contradictions between sources."
+    },
+    {
+      "id": "hs4-u01-l01-q026",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You want to acknowledge a persuasive counterargument. Which phrase fits?",
+      "choices": [
+        "Toute objection est absurde.",
+        "Il est interdit de nuancer une thèse.",
+        "Cette objection mérite d'être examinée, bien qu'elle ne réfute pas entièrement la thèse."
+      ],
+      "answer": 2,
+      "explanation": "Acknowledging a challenge while evaluating its scope supports scholarly argument."
+    },
+    {
+      "id": "hs4-u01-l01-q027",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "A historical claim concerns a marginalized community. Which approach is responsible?",
+      "choices": [
+        "Invent missing quotations to improve balance.",
+        "Include relevant community voices and identify archive gaps.",
+        "Treat the institutional archive as the only possible perspective."
+      ],
+      "answer": 1,
+      "explanation": "Source diversity and transparent archival limitations improve historical analysis."
+    }
+  ]
+}
