@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs2",
+  "unit": 1,
+  "lesson": 1,
+  "status": "authoring-review-not-published",
+  "title": "Narrating past experiences: background and events",
+  "editorialReview": "pending-independent-linguistic-review",
+  "questions": [
+    {
+      "id": "hs2-u01-l01-q001",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Complete a past event: « Hier, nous ___ au musée. »",
+      "choices": [
+        "sommes allés",
+        "allons",
+        "avons allé"
+      ],
+      "answer": 0,
+      "explanation": "Aller takes être in the passé composé: nous sommes allés."
+    },
+    {
+      "id": "hs2-u01-l01-q002",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Choose the background description: « Quand j'étais petite, je ___ souvent chez ma grand-mère. »",
+      "choices": [
+        "ai joué",
+        "jouerai",
+        "jouais"
+      ],
+      "answer": 2,
+      "explanation": "Imparfait expresses a repeated past habit in this context."
+    },
+    {
+      "id": "hs2-u01-l01-q003",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Complete: « Soudain, le téléphone ___. »",
+      "choices": [
+        "sonnera hier",
+        "a sonné",
+        "sonnait toujours"
+      ],
+      "answer": 1,
+      "explanation": "A bounded event introduced by soudain normally uses passé composé."
+    },
+    {
+      "id": "hs2-u01-l01-q004",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Choose the correct auxiliary: « Elle ___ arrivée à huit heures. »",
+      "choices": [
+        "est",
+        "a",
+        "va"
+      ],
+      "answer": 0,
+      "explanation": "Arriver forms passé composé with être: elle est arrivée."
+    },
+    {
+      "id": "hs2-u01-l01-q005",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which form agrees with a feminine singular subject in the passé composé of partir?",
+      "choices": [
+        "Elle est parti.",
+        "Elle a partie.",
+        "Elle est partie."
+      ],
+      "answer": 2,
+      "explanation": "With être, the past participle agrees: elle est partie."
+    },
+    {
+      "id": "hs2-u01-l01-q006",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Complete the ongoing background: « Il ___ quand le bus est arrivé. »",
+      "choices": [
+        "pleuvra",
+        "pleuvait",
+        "a plu soudain"
+      ],
+      "answer": 1,
+      "explanation": "Pleuvait expresses weather in progress when another event happened."
+    },
+    {
+      "id": "hs2-u01-l01-q007",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which sentence uses a direct object pronoun correctly?",
+      "choices": [
+        "Je le regarde.",
+        "Je lui regarde.",
+        "Je regarde le."
+      ],
+      "answer": 0,
+      "explanation": "Regarder takes a direct object, and le precedes the conjugated verb."
+    },
+    {
+      "id": "hs2-u01-l01-q008",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which is the correct negative passé composé?",
+      "choices": [
+        "Je n'ai compris pas.",
+        "Je pas ai compris.",
+        "Je n'ai pas compris."
+      ],
+      "answer": 2,
+      "explanation": "Ne and pas surround the auxiliary in a simple passé composé."
+    },
+    {
+      "id": "hs2-u01-l01-q009",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Complete: « Nous avons visité Paris, puis nous ___ à Lyon. »",
+      "choices": [
+        "étions partir",
+        "sommes partis",
+        "avons parti"
+      ],
+      "answer": 1,
+      "explanation": "Partir forms its compound past with être: nous sommes partis."
+    },
+    {
+      "id": "hs2-u01-l01-q010",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Tous les étés, Lina allait à Nantes. L'an dernier, elle est restée chez elle. » What changed?",
+      "choices": [
+        "She did not make her usual summer trip last year.",
+        "She traveled to Nantes for the first time last year.",
+        "She has never traveled in summer."
+      ],
+      "answer": 0,
+      "explanation": "Tous les étés marks a former habit; l'an dernier introduces the exception."
+    },
+    {
+      "id": "hs2-u01-l01-q011",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Je préparais le dîner quand Maël a frappé. » Which event was underway?",
+      "choices": [
+        "Maël knocking.",
+        "Tomorrow's dinner.",
+        "Preparing dinner."
+      ],
+      "answer": 2,
+      "explanation": "Préparais is imparfait and describes the action in progress."
+    },
+    {
+      "id": "hs2-u01-l01-q012",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Le train avait du retard; nous avons attendu trente minutes. » What happened?",
+      "choices": [
+        "They missed every train that day.",
+        "They waited because the train was late.",
+        "They arrived thirty minutes early."
+      ],
+      "answer": 1,
+      "explanation": "Avait du retard describes the delay and avons attendu the wait."
+    },
+    {
+      "id": "hs2-u01-l01-q013",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Elle lui a écrit après le voyage. » What does lui represent?",
+      "choices": [
+        "The person who received the message.",
+        "The message itself.",
+        "The journey."
+      ],
+      "answer": 0,
+      "explanation": "Écrire à quelqu'un takes an indirect object, represented by lui."
+    },
+    {
+      "id": "hs2-u01-l01-q014",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Ils étaient fatigués, mais ils ont continué. » Which contrast is expressed?",
+      "choices": [
+        "They stopped because they had rested.",
+        "They had not begun.",
+        "They continued despite being tired."
+      ],
+      "answer": 2,
+      "explanation": "Mais contrasts their fatigue with the decision to continue."
+    },
+    {
+      "id": "hs2-u01-l01-q015",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Avant, nous habitions près du port. » What time reference does avant signal?",
+      "choices": [
+        "This exact moment.",
+        "An earlier period.",
+        "A confirmed future plan."
+      ],
+      "answer": 1,
+      "explanation": "Avant places the situation in an earlier time."
+    },
+    {
+      "id": "hs2-u01-l01-q016",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Elle s'est levée, puis elle est sortie. » What happened first?",
+      "choices": [
+        "She got up.",
+        "She went out.",
+        "She called someone."
+      ],
+      "answer": 0,
+      "explanation": "The first action, s'est levée, precedes puis elle est sortie."
+    },
+    {
+      "id": "hs2-u01-l01-q017",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Je n'ai jamais visité Marseille. » What is asserted?",
+      "choices": [
+        "The speaker visits Marseille each year.",
+        "The speaker is visiting Marseille now.",
+        "The speaker has never visited Marseille."
+      ],
+      "answer": 2,
+      "explanation": "Ne ... jamais negates occurrence at any time up to now."
+    },
+    {
+      "id": "hs2-u01-l01-q018",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Pendant le trajet, Hugo lisait. » What was Hugo doing?",
+      "choices": [
+        "Arriving at the station.",
+        "Reading during the journey.",
+        "Booking another journey."
+      ],
+      "answer": 1,
+      "explanation": "Lisait describes an activity in progress during the trip."
+    },
+    {
+      "id": "hs2-u01-l01-q019",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "Write a message about a finished event yesterday. Which phrase fits?",
+      "choices": [
+        "Hier, j'ai terminé mon projet.",
+        "Hier, je termine demain.",
+        "Hier, je terminerai."
+      ],
+      "answer": 0,
+      "explanation": "J'ai terminé expresses a completed past action."
+    },
+    {
+      "id": "hs2-u01-l01-q020",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "In a story, you describe habitual childhood activities. Choose the best sentence.",
+      "choices": [
+        "Quand j'étais enfant, je jouerai dehors.",
+        "Quand j'étais enfant, j'ai joué une fois.",
+        "Quand j'étais enfant, je jouais dehors."
+      ],
+      "answer": 2,
+      "explanation": "Imparfait aligns with repeated childhood habits."
+    },
+    {
+      "id": "hs2-u01-l01-q021",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "A trip story needs a sudden event after background description. Which works?",
+      "choices": [
+        "Il a fait froid tous les matins quand demain.",
+        "Il faisait froid quand la voiture est tombée en panne.",
+        "Il fera froid quand la voiture tombait."
+      ],
+      "answer": 1,
+      "explanation": "Imparfait supplies the background; passé composé presents the sudden breakdown."
+    },
+    {
+      "id": "hs2-u01-l01-q022",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You are describing two girls who arrived. Choose the correct agreement.",
+      "choices": [
+        "Elles sont arrivées.",
+        "Elles sont arrivés.",
+        "Elles ont arrivées."
+      ],
+      "answer": 0,
+      "explanation": "With être, arrivées agrees with feminine plural elles."
+    },
+    {
+      "id": "hs2-u01-l01-q023",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "Someone asks whether you have already eaten. Which reply is correct?",
+      "choices": [
+        "Oui, je suis déjà mangé.",
+        "Oui, j'ai mangé déjà pas.",
+        "Oui, j'ai déjà mangé."
+      ],
+      "answer": 2,
+      "explanation": "Manger takes avoir; déjà normally appears between auxiliary and participle."
+    },
+    {
+      "id": "hs2-u01-l01-q024",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "Replace « à ma sœur » with a pronoun: « Je téléphone à ma sœur. »",
+      "choices": [
+        "Je téléphone elle.",
+        "Je lui téléphone.",
+        "Je la téléphone."
+      ],
+      "answer": 1,
+      "explanation": "Téléphoner à takes an indirect object pronoun: lui."
+    },
+    {
+      "id": "hs2-u01-l01-q025",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You want to say you were studying when a friend called. Choose the best sentence.",
+      "choices": [
+        "J'étudiais quand mon amie a appelé.",
+        "J'étudierai quand mon amie appelait hier.",
+        "J'ai étudié quand mon amie appelera hier."
+      ],
+      "answer": 0,
+      "explanation": "Étudiais establishes a continuing past action interrupted by a call."
+    },
+    {
+      "id": "hs2-u01-l01-q026",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "Give a sequence of two completed events. Which sentence works?",
+      "choices": [
+        "Je fermais la porte demain, puis je partirai hier.",
+        "J'ai fermé la porte, puis j'ai parti.",
+        "J'ai fermé la porte, puis je suis parti."
+      ],
+      "answer": 2,
+      "explanation": "Fermer takes avoir and partir takes être in passé composé."
+    },
+    {
+      "id": "hs2-u01-l01-q027",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "A learner writes « Elle est allé au cinéma ». Choose the correction.",
+      "choices": [
+        "Elle est aller au cinéma.",
+        "Elle est allée au cinéma.",
+        "Elle a allée au cinéma."
+      ],
+      "answer": 1,
+      "explanation": "The être compound past requires feminine agreement: allée."
+    }
+  ]
+}
