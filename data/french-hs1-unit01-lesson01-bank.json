@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs1",
+  "unit": 1,
+  "lesson": 1,
+  "status": "authoring-review-not-published",
+  "title": "Greetings, identity and interpersonal foundations",
+  "editorialReview": "pending-independent-linguistic-review",
+  "questions": [
+    {
+      "id": "hs1-u01-l01-q001",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which greeting is appropriate when meeting a teacher in the morning?",
+      "choices": [
+        "Bonjour, Madame.",
+        "Bonne nuit, Madame.",
+        "Au revoir, Madame."
+      ],
+      "answer": 0,
+      "explanation": "Bonjour is an appropriate polite daytime greeting."
+    },
+    {
+      "id": "hs1-u01-l01-q002",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which sentence correctly introduces the speaker?",
+      "choices": [
+        "Tu s'appelle Léa.",
+        "Je t'appelle Léa.",
+        "Je m'appelle Léa."
+      ],
+      "answer": 2,
+      "explanation": "Je m'appelle is the standard first-person introduction."
+    },
+    {
+      "id": "hs1-u01-l01-q003",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which expression politely asks someone's name?",
+      "choices": [
+        "Où vous appelez-vous ?",
+        "Comment vous appelez-vous ?",
+        "Comment je m'appelle ?"
+      ],
+      "answer": 1,
+      "explanation": "Comment vous appelez-vous ? is a formal or polite question."
+    },
+    {
+      "id": "hs1-u01-l01-q004",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "A classmate says « Salut ! » Which response fits an informal greeting?",
+      "choices": [
+        "Salut !",
+        "Bonne nuit !",
+        "À demain matin !"
+      ],
+      "answer": 0,
+      "explanation": "Salut is an informal hello or goodbye among peers."
+    },
+    {
+      "id": "hs1-u01-l01-q005",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which is the correct first-person form of être in « Je ___ élève »?",
+      "choices": [
+        "est",
+        "sommes",
+        "suis"
+      ],
+      "answer": 2,
+      "explanation": "The first-person singular form of être is suis."
+    },
+    {
+      "id": "hs1-u01-l01-q006",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Choose the natural plural address to two classmates: « ___ êtes en classe. »",
+      "choices": [
+        "Je",
+        "Vous",
+        "Tu"
+      ],
+      "answer": 1,
+      "explanation": "Vous is used for addressing more than one person."
+    },
+    {
+      "id": "hs1-u01-l01-q007",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Complete the question: « ___ ça va ? »",
+      "choices": [
+        "Comment",
+        "Combien",
+        "Quand"
+      ],
+      "answer": 0,
+      "explanation": "Comment ça va ? asks how someone is doing."
+    },
+    {
+      "id": "hs1-u01-l01-q008",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which phrase communicates thanks politely?",
+      "choices": [
+        "Je ne sais pas.",
+        "J'ai quinze ans.",
+        "Merci beaucoup."
+      ],
+      "answer": 2,
+      "explanation": "Merci beaucoup expresses strong thanks or appreciation."
+    },
+    {
+      "id": "hs1-u01-l01-q009",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Choose the correct response to « Comment ça va ? »",
+      "choices": [
+        "J'habite onze.",
+        "Ça va bien, merci.",
+        "Je m'appelle lundi."
+      ],
+      "answer": 1,
+      "explanation": "Ça va bien, merci answers how a person is feeling."
+    },
+    {
+      "id": "hs1-u01-l01-q010",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Bonjour, je m'appelle Amine. » What is the speaker doing?",
+      "choices": [
+        "Introducing himself.",
+        "Asking for a price.",
+        "Giving directions."
+      ],
+      "answer": 0,
+      "explanation": "Je m'appelle introduces the speaker by name."
+    },
+    {
+      "id": "hs1-u01-l01-q011",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Elle s'appelle Zoé. » Who is being named?",
+      "choices": [
+        "The person speaking as je.",
+        "The listener addressed as tu.",
+        "A girl or woman referred to as elle."
+      ],
+      "answer": 2,
+      "explanation": "Elle is a third-person singular subject pronoun."
+    },
+    {
+      "id": "hs1-u01-l01-q012",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Nous sommes élèves. » How many people does nous include?",
+      "choices": [
+        "Only the people being addressed.",
+        "The speaker and at least one other person.",
+        "Exactly one person."
+      ],
+      "answer": 1,
+      "explanation": "Nous is first-person plural and includes the speaker."
+    },
+    {
+      "id": "hs1-u01-l01-q013",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Au revoir, à demain ! » What does the speaker expect?",
+      "choices": [
+        "To see the listener tomorrow.",
+        "To meet the listener yesterday.",
+        "To begin class immediately."
+      ],
+      "answer": 0,
+      "explanation": "À demain means until tomorrow or see you tomorrow."
+    },
+    {
+      "id": "hs1-u01-l01-q014",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Je suis de Lyon, mais j'habite à Lille. » Which city is the current home?",
+      "choices": [
+        "Lyon.",
+        "Neither city is mentioned.",
+        "Lille."
+      ],
+      "answer": 2,
+      "explanation": "J'habite à Lille states where the speaker lives now."
+    },
+    {
+      "id": "hs1-u01-l01-q015",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Bonjour, Madame Dupont. » What signals polite register?",
+      "choices": [
+        "The use of Salut.",
+        "The title Madame with the surname.",
+        "A familiar nickname."
+      ],
+      "answer": 1,
+      "explanation": "Madame followed by a surname signals polite address."
+    },
+    {
+      "id": "hs1-u01-l01-q016",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Il est professeur. » Which pronoun refers to the teacher?",
+      "choices": [
+        "Il.",
+        "Je.",
+        "Nous."
+      ],
+      "answer": 0,
+      "explanation": "Il is the masculine singular subject pronoun in this sentence."
+    },
+    {
+      "id": "hs1-u01-l01-q017",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Je parle français et anglais. » Which languages are mentioned?",
+      "choices": [
+        "French and Spanish.",
+        "English and German.",
+        "French and English."
+      ],
+      "answer": 2,
+      "explanation": "Français means French and anglais means English."
+    },
+    {
+      "id": "hs1-u01-l01-q018",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Elle est nouvelle dans notre classe. » What is described?",
+      "choices": [
+        "She has left the class.",
+        "She is new in the class.",
+        "She teaches an old class."
+      ],
+      "answer": 1,
+      "explanation": "Nouvelle means new and modifies the feminine pronoun elle."
+    },
+    {
+      "id": "hs1-u01-l01-q019",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "A student greets a principal for the first time. Which opening fits best?",
+      "choices": [
+        "Bonjour, Monsieur.",
+        "Salut, mec !",
+        "Bonne nuit, toi !"
+      ],
+      "answer": 0,
+      "explanation": "Bonjour, Monsieur maintains an appropriate polite register."
+    },
+    {
+      "id": "hs1-u01-l01-q020",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You meet a new student and want to say your name is Eva. Which sentence works?",
+      "choices": [
+        "Elle s'appelle Eva.",
+        "Vous vous appelez Eva.",
+        "Je m'appelle Eva."
+      ],
+      "answer": 2,
+      "explanation": "Je m'appelle Eva identifies the speaker's own name."
+    },
+    {
+      "id": "hs1-u01-l01-q021",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "A friend says « Merci ! » Which reply is appropriate?",
+      "choices": [
+        "Comment ça va ?",
+        "De rien !",
+        "Je suis quinze."
+      ],
+      "answer": 1,
+      "explanation": "De rien is a conventional response to thanks."
+    },
+    {
+      "id": "hs1-u01-l01-q022",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You must ask one classmate informally how they are. Choose the question.",
+      "choices": [
+        "Comment vas-tu ?",
+        "Comment allez-nous ?",
+        "Comment suis-je ?"
+      ],
+      "answer": 0,
+      "explanation": "Comment vas-tu ? uses informal singular tu correctly."
+    },
+    {
+      "id": "hs1-u01-l01-q023",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You are leaving and will see your friend later today. What fits?",
+      "choices": [
+        "Bonjour pour toujours !",
+        "Hier soir !",
+        "À tout à l'heure !"
+      ],
+      "answer": 2,
+      "explanation": "À tout à l'heure refers to seeing someone later soon."
+    },
+    {
+      "id": "hs1-u01-l01-q024",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "A teacher asks « Comment vous appelez-vous ? » Which answer gives your name?",
+      "choices": [
+        "Comment ça va ?",
+        "Je m'appelle Noé.",
+        "Tu t'appelles Noé."
+      ],
+      "answer": 1,
+      "explanation": "Je m'appelle followed by a name answers a name question."
+    },
+    {
+      "id": "hs1-u01-l01-q025",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You want to ask a friend where they live. Which question is grammatical?",
+      "choices": [
+        "Tu habites où ?",
+        "Tu es comment ans ?",
+        "Où je m'appelle ?"
+      ],
+      "answer": 0,
+      "explanation": "Tu habites où ? asks informally where someone lives."
+    },
+    {
+      "id": "hs1-u01-l01-q026",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You are speaking for yourself and a friend. Which subject pronoun fits?",
+      "choices": [
+        "Je.",
+        "Il.",
+        "Nous."
+      ],
+      "answer": 2,
+      "explanation": "Nous includes the speaker and at least one other person."
+    },
+    {
+      "id": "hs1-u01-l01-q027",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You want to respond politely when someone says « Enchanté ! » Which response works?",
+      "choices": [
+        "Il est onze.",
+        "Enchantée !",
+        "À cinq heures."
+      ],
+      "answer": 1,
+      "explanation": "Enchanté or enchantée can be reciprocated as a greeting."
+    }
+  ]
+}
