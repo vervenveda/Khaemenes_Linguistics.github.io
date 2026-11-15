@@ -1362,6 +1362,7 @@ function buildCanonicalCourseMap(){
  const overallLabel=element("p");overallLabel.setAttribute("role","status");
  const overallBar=document.createElement("progress");overallBar.max=18;overallBar.value=0;overallBar.setAttribute("aria-label","French 101 learner-confirmed lesson completion across 18 lessons");
  overall.append(overallLabel,overallBar,element("p","Completion percentages reflect learner-confirmed lesson checkmarks, not verified grades. Opening a lesson does not mark it complete."));
+ overall.append(element("p","Checklist marks are included in the separate lesson-evidence export; the standard progress JSON restore does not restore them."));
  host.append(overall);
  const refreshers=[];
  function refreshAll(){
@@ -4408,7 +4409,9 @@ document.addEventListener("DOMContentLoaded",()=>{
     const valid=p&&p.passed===true&&Number.isFinite(p.score)&&Number.isFinite(p.total)&&p.total>0&&p.score<=p.total;
     return {label,result:valid? p.score+"/"+p.total+" ("+Math.round(100*p.score/p.total)+"%) — Passed":"No confirmed passing result in this browser"};
   });
-  return {name:name||"Anonymous learner",legacyCompleted,results,saved};
+  let checklist=[];try{const raw=JSON.parse(read(key+"_canonical_lesson_checklist_v1")||"[]");if(Array.isArray(raw))checklist=[...new Set(raw.filter(x=>Number.isInteger(x)&&x>=1&&x<=18))]}catch{}
+  const units=[1,2,3].map(n=>{const total=checklist.filter(day=>day>=(n-1)*6+1&&day<=n*6).length;return {name:"Unit "+String(n).padStart(2,"0"),count:total,percentage:Math.round(100*total/6)}});
+  return {name:name||"Anonymous learner",legacyCompleted,results,saved,checklist,units};
  };
  const render=()=>{
   const d=data();
@@ -4416,14 +4419,17 @@ document.addEventListener("DOMContentLoaded",()=>{
   const head=document.createElement("strong");head.textContent="Current learner: "+d.name;
   const legacy=document.createElement("span");legacy.textContent="Historical 12-level pathway: "+d.legacyCompleted.length+"/12 completed levels recorded.";
   const results=document.createElement("span");results.textContent=d.results.map(r=>r.label+": "+r.result).join(" · ");
-  status.append(head,document.createElement("br"),legacy,document.createElement("br"),results);
+  const checklist=document.createElement("span");checklist.textContent="Canonical lesson checklist (learner-confirmed): "+d.checklist.length+"/18 ("+Math.round(100*d.checklist.length/18)+"%). "+d.units.map(u=>u.name+": "+u.percentage+"%").join(" · ")+".";
+  status.append(head,document.createElement("br"),checklist,document.createElement("br"),legacy,document.createElement("br"),results);
  };
  $("selectLearner")?.addEventListener("click",render);
+ document.addEventListener("french101:canonical-checklist-updated",render);
  window.addEventListener("storage",event=>{if(event.key==="french101_active_learner"||event.key?.startsWith("french101_progress"))render()});
  report.addEventListener("click",()=>{
    const d=data(),date=new Date().toLocaleString();
-   const rows=d.results.map(r=>"<tr><th scope='row'>"+escapeHTML(r.label)+"</th><td>"+escapeHTML(r.result)+"</td></tr>").join("");
-   const page="<!doctype html><html lang='en'><meta charset='utf-8'><title>French 101 Family Progress Report</title><style>body{font:16px/1.6 Arial,sans-serif;color:#202724;max-width:850px;margin:30px auto;padding:22px}h1,h2{text-align:center;font-family:Georgia,serif;font-weight:400}h1{font-size:33px}h2{font-size:24px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #C7BBA3;padding:12px;text-align:left}th{width:44%}footer{text-align:center;margin-top:28px;border-top:1px solid #C7BBA3;padding-top:14px}@media print{body{margin:0;padding:8px}}</style><h1>Khaemenes Academy</h1><h2>French 101 · Family Progress Report</h2><p><strong>Learner:</strong> "+escapeHTML(d.name)+"</p><p><strong>Exported:</strong> "+escapeHTML(date)+"</p><p><strong>Historical 12-level pathway:</strong> "+d.legacyCompleted.length+"/12 completed recorded. This is not the completion percentage of the canonical 18-lesson curriculum.</p><table><tbody>"+rows+"</tbody></table><p><strong>Important:</strong> This report summarizes records held by this browser, not verified teacher grades or formal proficiency. Missing assessments are unconfirmed, not failing scores. Lesson writing and evidence require the separate evidence export. Parent identity is not authenticated by this page.</p><footer>Verve N Veda · Khaemenes Academy · French 101</footer></html>";
+   const unitRows=d.units.map(u=>"<tr><th scope='row'>"+escapeHTML(u.name)+" lesson checklist</th><td>"+u.count+"/6 learner-confirmed ("+u.percentage+"%)</td></tr>").join("");
+   const rows=unitRows+d.results.map(r=>"<tr><th scope='row'>"+escapeHTML(r.label)+"</th><td>"+escapeHTML(r.result)+"</td></tr>").join("");
+   const page="<!doctype html><html lang='en'><meta charset='utf-8'><title>French 101 Family Progress Report</title><style>body{font:16px/1.6 Arial,sans-serif;color:#202724;max-width:850px;margin:30px auto;padding:22px}h1,h2{text-align:center;font-family:Georgia,serif;font-weight:400}h1{font-size:33px}h2{font-size:24px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #C7BBA3;padding:12px;text-align:left}th{width:44%}footer{text-align:center;margin-top:28px;border-top:1px solid #C7BBA3;padding-top:14px}@media print{body{margin:0;padding:8px}}</style><h1>Khaemenes Academy</h1><h2>French 101 · Family Progress Report</h2><p><strong>Learner:</strong> "+escapeHTML(d.name)+"</p><p><strong>Exported:</strong> "+escapeHTML(date)+"</p><p><strong>Historical 12-level pathway:</strong> "+d.legacyCompleted.length+"/12 completed recorded. This is not the completion percentage of the canonical 18-lesson curriculum.</p><table><tbody>"+rows+"</tbody></table><p><strong>Important:</strong> This report summarizes records held by this browser, not verified teacher grades or formal proficiency. Missing assessments are unconfirmed, not failing scores. Canonical lesson percentages represent learner-confirmed checkmarks, not verified academic mastery. Checklist records and lesson writing require the separate evidence export; the progress JSON restore does not restore checklist marks. Parent identity is not authenticated by this page.</p><footer>Verve N Veda · Khaemenes Academy · French 101</footer></html>";
    const blob=new Blob([page],{type:"text/html;charset=utf-8"}),url=URL.createObjectURL(blob),link=document.createElement("a");
    link.href=url;link.download="khaemenes-french101-family-progress.html";link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
  });
