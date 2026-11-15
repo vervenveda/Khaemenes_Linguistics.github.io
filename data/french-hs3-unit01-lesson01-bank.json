@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs3",
+  "unit": 1,
+  "lesson": 1,
+  "status": "authoring-review-not-published",
+  "title": "Evidence-based opinions and respectful debate",
+  "editorialReview": "pending-independent-linguistic-review",
+  "questions": [
+    {
+      "id": "hs3-u01-l01-q001",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Choose the connector introducing a concession: « ___ le coût, ce projet mérite un essai. »",
+      "choices": [
+        "Malgré",
+        "Parce que",
+        "Donc"
+      ],
+      "answer": 0,
+      "explanation": "Malgré introduces an obstacle that does not prevent the action."
+    },
+    {
+      "id": "hs3-u01-l01-q002",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Choose the verb after « Il faut que nous ___ des sources fiables. »",
+      "choices": [
+        "consultons",
+        "consulterons",
+        "consultions"
+      ],
+      "answer": 2,
+      "explanation": "Il faut que requires the present subjunctive: que nous consultions."
+    },
+    {
+      "id": "hs3-u01-l01-q003",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Complete: « Si nous avions plus de temps, nous ___ les résultats. »",
+      "choices": [
+        "comparons hier",
+        "comparerions",
+        "comparerons"
+      ],
+      "answer": 1,
+      "explanation": "An unreal present condition takes imparfait followed by conditional."
+    },
+    {
+      "id": "hs3-u01-l01-q004",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which relative pronoun replaces the subject in « Le document ___ explique ce phénomène »?",
+      "choices": [
+        "qui",
+        "que",
+        "dont"
+      ],
+      "answer": 0,
+      "explanation": "Qui acts as subject of explique."
+    },
+    {
+      "id": "hs3-u01-l01-q005",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which relative pronoun introduces a direct object? « L'article ___ j'ai lu »",
+      "choices": [
+        "qui",
+        "où",
+        "que"
+      ],
+      "answer": 2,
+      "explanation": "Que replaces the direct object of j'ai lu."
+    },
+    {
+      "id": "hs3-u01-l01-q006",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which sentence makes a measured claim rather than an absolute one?",
+      "choices": [
+        "Tout le monde sait que cette solution est parfaite.",
+        "Cette solution pourrait réduire les déchets.",
+        "Cette solution élimine toujours tous les déchets."
+      ],
+      "answer": 1,
+      "explanation": "Pourrait expresses a qualified possibility rather than certainty."
+    },
+    {
+      "id": "hs3-u01-l01-q007",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Complete the reason: « Je soutiens cette proposition ___ elle est réalisable. »",
+      "choices": [
+        "parce qu'",
+        "donc",
+        "malgré"
+      ],
+      "answer": 0,
+      "explanation": "Parce que introduces the reason; before elle, the final e elides."
+    },
+    {
+      "id": "hs3-u01-l01-q008",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Choose the expression that introduces evidence.",
+      "choices": [
+        "À mon avis seulement,",
+        "Sans aucune information,",
+        "Selon les données présentées,"
+      ],
+      "answer": 2,
+      "explanation": "Selon les données présentées attributes a claim to a source."
+    },
+    {
+      "id": "hs3-u01-l01-q009",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "language-use",
+      "prompt": "Which formulation correctly contrasts two viewpoints?",
+      "choices": [
+        "Certains approuvent; donc, d'autres hésitent sans lien.",
+        "Certains approuvent; cependant, d'autres hésitent.",
+        "Certains approuvent; parce que, d'autres hésitent."
+      ],
+      "answer": 1,
+      "explanation": "Cependant signals contrast between differing positions."
+    },
+    {
+      "id": "hs3-u01-l01-q010",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « L'enquête porte sur 80 élèves d'un seul lycée. » Which limitation matters?",
+      "choices": [
+        "The sample may not represent all students.",
+        "Every student in the country was surveyed.",
+        "The survey contains no student responses."
+      ],
+      "answer": 0,
+      "explanation": "One school and 80 students do not establish a national pattern."
+    },
+    {
+      "id": "hs3-u01-l01-q011",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « La mairie affirme que les pistes cyclables ont accru les déplacements à vélo. » Who makes the claim?",
+      "choices": [
+        "Every cyclist.",
+        "The author of an anonymous diary.",
+        "The municipal government."
+      ],
+      "answer": 2,
+      "explanation": "La mairie identifies the municipality as the source of the assertion."
+    },
+    {
+      "id": "hs3-u01-l01-q012",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Le rapport indique une baisse de 12 %, mais ne précise pas la période. » What's missing?",
+      "choices": [
+        "Whether there was a decrease.",
+        "The time period of the reported decrease.",
+        "The percentage value."
+      ],
+      "answer": 1,
+      "explanation": "A percentage change is difficult to interpret without its period."
+    },
+    {
+      "id": "hs3-u01-l01-q013",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Plusieurs habitants sont favorables au projet; d'autres craignent une hausse des loyers. » What tension is present?",
+      "choices": [
+        "Support for the project versus concern about housing costs.",
+        "Everyone opposes the project.",
+        "The project has already reduced rents."
+      ],
+      "answer": 0,
+      "explanation": "The two groups have different judgments and priorities."
+    },
+    {
+      "id": "hs3-u01-l01-q014",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « La chercheuse distingue corrélation et causalité. » What distinction is implied?",
+      "choices": [
+        "Any correlation always establishes a cause.",
+        "Causality means merely comparing two labels.",
+        "Two trends moving together does not prove one caused the other."
+      ],
+      "answer": 2,
+      "explanation": "Correlation alone does not establish the cause of an observed trend."
+    },
+    {
+      "id": "hs3-u01-l01-q015",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « L'auteur cite un témoin, puis nuance son propos avec une étude. » What does nuance mean here?",
+      "choices": [
+        "Deleting all supporting evidence.",
+        "Qualifying or refining the initial account.",
+        "Repeating the testimony without change."
+      ],
+      "answer": 1,
+      "explanation": "Nuancer means adding distinctions or qualifications."
+    },
+    {
+      "id": "hs3-u01-l01-q016",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Le sondage a été publié en 2021 et porte sur les usages de 2020. » What is the reference year for the data?",
+      "choices": [
+        "2020.",
+        "2021.",
+        "2026."
+      ],
+      "answer": 0,
+      "explanation": "The publication year differs from the year described by the data."
+    },
+    {
+      "id": "hs3-u01-l01-q017",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Le projet est économique à court terme, toutefois son entretien coûtera cher. » What is contrasted?",
+      "choices": [
+        "Two equally inexpensive periods.",
+        "The absence of maintenance needs.",
+        "Immediate affordability and long-term maintenance cost."
+      ],
+      "answer": 2,
+      "explanation": "Toutefois introduces a contrasting longer-term consideration."
+    },
+    {
+      "id": "hs3-u01-l01-q018",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "interpretation",
+      "prompt": "Read: « Aucun lien vers les données brutes n'est fourni. » What should a careful reader note?",
+      "choices": [
+        "The data are certainly complete and correct.",
+        "The underlying evidence cannot be independently checked from this source.",
+        "The data must therefore be false."
+      ],
+      "answer": 1,
+      "explanation": "Missing raw-data access limits independent verification without proving falsehood."
+    },
+    {
+      "id": "hs3-u01-l01-q019",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You need to disagree respectfully during a class debate. Choose the best reply.",
+      "choices": [
+        "Je comprends votre point de vue, mais les chiffres suggèrent autre chose.",
+        "Vous avez tort, point final.",
+        "Tout le monde sait que je gagne."
+      ],
+      "answer": 0,
+      "explanation": "Acknowledging a viewpoint and citing evidence supports respectful disagreement."
+    },
+    {
+      "id": "hs3-u01-l01-q020",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "A classmate claims a trend based on two examples. Which response encourages stronger reasoning?",
+      "choices": [
+        "Deux exemples prouvent toujours la règle.",
+        "Les chiffres ne sont jamais utiles.",
+        "Peut-on examiner un échantillon plus large ?"
+      ],
+      "answer": 2,
+      "explanation": "A larger sample can help evaluate whether a pattern is general."
+    },
+    {
+      "id": "hs3-u01-l01-q021",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You are writing a balanced conclusion. Which sentence works best?",
+      "choices": [
+        "Aucune objection n'est possible.",
+        "Bien que la mesure ait des avantages, son coût mérite une analyse.",
+        "La mesure est parfaite parce que je le dis."
+      ],
+      "answer": 1,
+      "explanation": "Bien que with the subjunctive frames a concession and qualified conclusion."
+    },
+    {
+      "id": "hs3-u01-l01-q022",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You must attribute a finding to a report. Which phrasing is most careful?",
+      "choices": [
+        "D'après le rapport, les résultats varient selon les régions.",
+        "Toutes les régions ont exactement les mêmes résultats.",
+        "Je sais que le rapport est toujours vrai."
+      ],
+      "answer": 0,
+      "explanation": "D'après le rapport distinguishes a sourced finding from universal certainty."
+    },
+    {
+      "id": "hs3-u01-l01-q023",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "Your argument needs a consequence rather than a cause. Choose the transition.",
+      "choices": [
+        "Parce que",
+        "En raison de",
+        "Par conséquent,"
+      ],
+      "answer": 2,
+      "explanation": "Par conséquent introduces a conclusion or consequence."
+    },
+    {
+      "id": "hs3-u01-l01-q024",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "Compare two proposals fairly. Which method is most defensible?",
+      "choices": [
+        "Choose the first proposal without evidence.",
+        "Use the same criteria for cost, access and environmental effects.",
+        "Compare cost for one proposal and popularity for the other only."
+      ],
+      "answer": 1,
+      "explanation": "Shared evaluation criteria make a comparison more coherent and fair."
+    },
+    {
+      "id": "hs3-u01-l01-q025",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You want to recommend action without promising guaranteed success. Which sentence fits?",
+      "choices": [
+        "Il serait utile d'essayer cette approche à petite échelle.",
+        "Cette approche réussira sans exception.",
+        "Cette approche n'a besoin d'aucune évaluation."
+      ],
+      "answer": 0,
+      "explanation": "The conditional serait expresses a cautious recommendation."
+    },
+    {
+      "id": "hs3-u01-l01-q026",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "A report shows improvement, but only over three weeks. What should a conclusion say?",
+      "choices": [
+        "L'amélioration est prouvée pour toujours.",
+        "Trois semaines démontrent un résultat universel.",
+        "Les premiers résultats sont encourageants, mais un suivi plus long est nécessaire."
+      ],
+      "answer": 2,
+      "explanation": "A short observation window supports a tentative, not permanent, conclusion."
+    },
+    {
+      "id": "hs3-u01-l01-q027",
+      "unit": 1,
+      "lesson": 1,
+      "domain": "transfer",
+      "prompt": "You need a source comparison question. Which is best?",
+      "choices": [
+        "Puis-je éviter de lire les deux textes ?",
+        "Quelles preuves les deux auteurs utilisent-ils pour défendre leurs conclusions ?",
+        "Quel auteur a le plus beau titre ?"
+      ],
+      "answer": 1,
+      "explanation": "Comparing supporting evidence reveals how authors justify their conclusions."
+    }
+  ]
+}
