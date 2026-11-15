@@ -1231,6 +1231,40 @@ function frenchUnit01LearningAid(parent,day){
  parent.append(note);
 }
 
+/* French 101 Lesson 01: nine-stage, non-destructive navigation pilot. */
+function addFrenchLesson01StageGuide(section){
+ const stages=[
+ ["Orientation","Learning targets","Unit 01 · Lesson 01"],
+ ["Discover","Alphabet and letter names","1 · Learn and observe"],
+ ["Listen & Observe","Accents and audio models","2 · Notice accents"],
+ ["Guided Practice","Examples and supported exercises","4 · Guided practice"],
+ ["Read & Understand","Original French passage","8 · Read and interpret"],
+ ["Create & Communicate","Independent original dialogue","9 · Independent language transfer"],
+ ["Practice Laboratory","Formative knowledge check","5 · Check your understanding"],
+ ["Review & Corrections","Recall and explain errors","10 · Retrieval and correction"],
+ ["Save, Print & Continue","Student evidence and review","Lesson 01 · Independent performance assessment"]
+ ];
+ const headings=[...section.querySelectorAll("h3,h4")];
+ const nav=document.createElement("nav");nav.className="french101-l01-stage-guide";nav.setAttribute("aria-label","Lesson 01 learning stages");
+ const title=document.createElement("h4");title.textContent="Your learning journey · Nine stages";
+ const intro=document.createElement("p");intro.textContent="Choose a stage to jump to the original lesson content. This guide does not change lesson activities, saved work or mastery.";
+ const grid=document.createElement("div");grid.className="french101-l01-stage-grid";
+ stages.forEach(([name,description,prefix],i)=>{
+  const dest=headings.find(h=>h.textContent.trim().startsWith(prefix));if(!dest)return;
+  if(!dest.id)dest.id="french101-l01-stage-"+(i+1);
+  const button=document.createElement("button");button.type="button";button.className="french101-l01-stage-link";button.setAttribute("aria-controls",dest.id);
+  const index=document.createElement("span");index.textContent=String(i+1).padStart(2,"0");
+  const copy=document.createElement("span"),label=document.createElement("strong"),detail=document.createElement("small");
+  label.textContent=name;detail.textContent=description;copy.append(label,detail);button.append(index,copy);
+  button.addEventListener("click",()=>{if(!dest.hasAttribute("tabindex"))dest.setAttribute("tabindex","-1");dest.focus({preventScroll:true});dest.scrollIntoView({block:"start",behavior:"auto"})});
+  grid.append(button);
+ });
+ nav.append(title,intro,grid);
+ const style=document.createElement("style");
+ style.textContent=".french101-l01-stage-guide{margin:18px 0 24px;padding:18px;border:1px solid #aa956d;border-radius:7px;background:#f6f0e3;color:#302d29}.french101-l01-stage-guide h4{margin:0 0 8px;font-size:24px}.french101-l01-stage-guide p{font-size:16px;margin:0 0 12px}.french101-l01-stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:11px}.french101-l01-stage-link{display:flex;gap:11px;align-items:flex-start;text-align:left;min-height:68px;padding:12px;border-radius:7px;border:1px solid #74684f;background:#30302e;color:#f8f1e6;cursor:pointer;font-size:16px}.french101-l01-stage-link>span:first-child{color:#e8ce8c;font-size:18px}.french101-l01-stage-link strong,.french101-l01-stage-link small{display:block;color:inherit;font-size:16px;font-weight:400}.french101-l01-stage-link small{font-size:16px;line-height:1.45;margin-top:2px}.french101-l01-stage-link:focus-visible{outline:3px solid #876327;outline-offset:3px}#french101-unit01-day01 h3:focus,#french101-unit01-day01 h4:focus{outline:2px solid #876327;outline-offset:5px}@media print{.french101-l01-stage-guide{display:none!important}}";
+ section.insertBefore(nav,section.firstChild);section.insertBefore(style,nav);
+}
+
 function addAlphabetDailyLesson(parent){
  const section=element("section");section.className="study-section";section.id="french101-unit01-day01";
  addFrench101ArchiveVideoSlot(section,1);
@@ -1325,7 +1359,7 @@ function addAlphabetDailyLesson(parent){
  addUnit01Worksheet(section,1,"Meet the French Alphabet","Write the alphabet in four groups, spell two names, and explain the difference between a letter name and a word sound.");
  addUnit01EducatorRubric(section,1);
  const print=element("button","Print this lesson");print.type="button";print.addEventListener("click",()=>printUnit01Day(1));section.append(print);
- enhanceFrenchEarlyStudio(section,1);parent.append(section);
+ enhanceFrenchEarlyStudio(section,1);addFrenchLesson01StageGuide(section);parent.append(section);
 }
 
 
