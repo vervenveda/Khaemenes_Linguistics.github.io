@@ -5,7 +5,7 @@
   "lesson": 1,
   "status": "authoring-review-not-published",
   "title": "Evidence-based opinions and respectful debate",
-  "editorialReview": "pending-independent-linguistic-review",
+  "editorialReview": "assistant-editorial-pass-complete-independent-review-pending",
   "questions": [
     {
       "id": "hs3-u01-l01-q001",
@@ -96,14 +96,14 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Complete the reason: « Je soutiens cette proposition ___ elle est réalisable. »",
+      "prompt": "Complete the causal link: « Je soutiens cette proposition ___ son coût est raisonnable. »",
       "choices": [
-        "parce qu'",
+        "parce que",
         "donc",
         "malgré"
       ],
       "answer": 0,
-      "explanation": "Parce que introduces the reason; before elle, the final e elides."
+      "explanation": "Parce que introduces the explanatory clause son coût est raisonnable. Donc introduces a result and malgré requires a noun phrase."
     },
     {
       "id": "hs3-u01-l01-q008",
@@ -124,14 +124,14 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Which formulation correctly contrasts two viewpoints?",
+      "prompt": "Which version presents contrasting opinions with a grammatically appropriate connector?",
       "choices": [
-        "Certains approuvent; donc, d'autres hésitent sans lien.",
+        "Certains approuvent; parce que d'autres hésitent.",
         "Certains approuvent; cependant, d'autres hésitent.",
-        "Certains approuvent; parce que, d'autres hésitent."
+        "Certains approuvent; par conséquent, d'autres hésitent."
       ],
       "answer": 1,
-      "explanation": "Cependant signals contrast between differing positions."
+      "explanation": "Cependant explicitly contrasts the supporters and those who hesitate; the other connectors express consequence or cause."
     },
     {
       "id": "hs3-u01-l01-q010",
@@ -236,14 +236,14 @@
       "unit": 1,
       "lesson": 1,
       "domain": "interpretation",
-      "prompt": "Read: « Le projet est économique à court terme, toutefois son entretien coûtera cher. » What is contrasted?",
+      "prompt": "Lisez : « Le projet est économique à court terme, toutefois son entretien coûtera cher. » Quelle opposition est exprimée ?",
       "choices": [
-        "Two equally inexpensive periods.",
-        "The absence of maintenance needs.",
-        "Immediate affordability and long-term maintenance cost."
+        "Un coût initial élevé face à un entretien gratuit.",
+        "Deux périodes où les coûts restent identiques.",
+        "Un coût initial faible face à des frais d'entretien élevés."
       ],
       "answer": 2,
-      "explanation": "Toutefois introduces a contrasting longer-term consideration."
+      "explanation": "À court terme indique l'avantage initial, mais toutefois annonce les coûts d'entretien à venir."
     },
     {
       "id": "hs3-u01-l01-q018",
@@ -334,14 +334,14 @@
       "unit": 1,
       "lesson": 1,
       "domain": "transfer",
-      "prompt": "Compare two proposals fairly. Which method is most defensible?",
+      "prompt": "Vous comparez deux propositions de transport. Quelle méthode permet une comparaison équitable ?",
       "choices": [
-        "Choose the first proposal without evidence.",
-        "Use the same criteria for cost, access and environmental effects.",
-        "Compare cost for one proposal and popularity for the other only."
+        "Choisir celle que vous connaissez déjà sans examiner les données.",
+        "Appliquer les mêmes critères de coût, d'accès et d'impact environnemental aux deux.",
+        "Évaluer seulement le prix de la première et la popularité de la seconde."
       ],
       "answer": 1,
-      "explanation": "Shared evaluation criteria make a comparison more coherent and fair."
+      "explanation": "Une comparaison équitable confronte les deux propositions aux mêmes critères explicites."
     },
     {
       "id": "hs3-u01-l01-q025",
