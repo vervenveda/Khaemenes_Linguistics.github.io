@@ -8,6 +8,8 @@ on:
       - 'scripts/test-french-high-school-four-grade-alignment.mjs'
       - 'scripts/test-french-four-grade-score-input.mjs'
       - 'scripts/test-french-high-school-assessment-provenance.mjs'
+      - 'assets/french-high-school-assessment-contract.mjs'
+      - 'scripts/test-french-high-school-assessment-contract.mjs'
       - '.github/workflows/french-high-school-alignment.yml'
   pull_request:
     paths:
@@ -15,6 +17,8 @@ on:
       - 'scripts/test-french-high-school-four-grade-alignment.mjs'
       - 'scripts/test-french-four-grade-score-input.mjs'
       - 'scripts/test-french-high-school-assessment-provenance.mjs'
+      - 'assets/french-high-school-assessment-contract.mjs'
+      - 'scripts/test-french-high-school-assessment-contract.mjs'
       - '.github/workflows/french-high-school-alignment.yml'
   workflow_dispatch:
 
@@ -35,3 +39,5 @@ jobs:
         run: node scripts/test-french-four-grade-score-input.mjs
       - name: Guard French I-IV score provenance and historical record disclosure
         run: node scripts/test-french-high-school-assessment-provenance.mjs
+      - name: Test fail-closed French I-IV assessment contract
+        run: node --test scripts/test-french-high-school-assessment-contract.mjs
