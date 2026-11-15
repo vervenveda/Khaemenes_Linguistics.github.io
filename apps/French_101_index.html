@@ -705,6 +705,58 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 @media(max-width:680px){#app #frenchLearnerDashboard .french-record-grid{grid-template-columns:minmax(0,1fr)}#app #frenchLearnerDashboard .french-learner-record-inner{padding:14px!important}}
 @media print{#app #frenchLearnerDashboard{display:none!important}}
 </style>
+<style id="french101-record-card-alignment-v2">
+/* Scoped layout refinement: each card has heading > descriptor > status > bottom controls. */
+#app #frenchLearnerDashboard .french-record-grid{
+ display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+ gap:14px!important;align-items:stretch!important;
+}
+#app #frenchLearnerDashboard .french-record-tile{
+ display:flex!important;flex-direction:column!important;align-items:stretch!important;
+ gap:0!important;height:100%!important;min-width:0!important;
+}
+#app #frenchLearnerDashboard .french-record-tile h3{
+ margin:0 0 9px!important;text-align:center!important;
+}
+#app #frenchLearnerDashboard .french-record-tile .french-record-descriptor{
+ margin:0 auto 16px!important;max-width:32ch!important;text-align:center!important;
+ font:400 16px/1.5 "Brandon Grotesque",Nunito,Arial,sans-serif!important;
+ color:#202724!important;
+}
+#app #frenchLearnerDashboard .french-record-body{
+ display:flex;flex:1 1 auto;flex-direction:column;gap:10px;min-width:0;
+}
+#app #frenchLearnerDashboard .french-record-body :is(p,.french-record-note){
+ margin:0!important;font-size:16px!important;line-height:1.6!important;
+ overflow-wrap:anywhere;
+}
+#app #frenchLearnerDashboard .french-record-body .french-record-note{
+ margin-top:auto!important;
+}
+#app #frenchLearnerDashboard .french-record-controls{
+ margin-top:auto!important;padding-top:18px!important;
+ display:flex!important;flex-direction:column!important;align-items:stretch!important;
+ gap:10px!important;min-width:0!important;
+}
+#app #frenchLearnerDashboard .french-record-controls :is(input,button,label){
+ width:100%!important;max-width:100%!important;margin:0!important;box-sizing:border-box!important;
+}
+#app #frenchLearnerDashboard .french-record-controls label{
+ text-align:left!important;font:400 16px/1.5 "Brandon Grotesque",Nunito,Arial,sans-serif!important;
+ color:#202724!important;
+}
+#app #frenchLearnerDashboard .french-record-actions{
+ display:grid;grid-template-columns:minmax(0,1fr);gap:10px;
+}
+#app #frenchLearnerDashboard .french-record-actions button{
+ width:100%!important;min-width:0!important;white-space:normal!important;
+}
+@media(max-width:680px){
+ #app #frenchLearnerDashboard .french-record-grid{
+  grid-template-columns:minmax(0,1fr)!important;
+ }
+}
+</style>
   <script src="/Khaemenes_Linguistics.github.io/assets/linguistics-global-standard-v1.js" defer data-linguistics-global-standard="16-33-66-chrome"></script>
 </head>
 
@@ -771,31 +823,52 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
         <div class="french-record-grid">
           <section class="french-record-tile" aria-labelledby="frenchRecordLearnerTitle">
             <h3 id="frenchRecordLearnerTitle">01 · Choose Learner</h3>
-            <label for="learnerName">Learner record (optional name)</label>
-            <input id="learnerName" maxlength="70" autocomplete="off" placeholder="Learner name">
-            <button id="selectLearner" type="button">Open Learner Record</button>
-            <p id="learnerStatus" role="status" aria-live="polite"></p>
+            <p class="french-record-descriptor">Open the correct student record stored in this browser.</p>
+            <div class="french-record-body">
+              <p id="learnerStatus" role="status" aria-live="polite"></p>
+              <p class="french-record-note">Select a learner before saving coursework. Anonymous work is shared by anyone using this browser.</p>
+            </div>
+            <div class="french-record-controls">
+              <label for="learnerName">Learner record (optional name)</label>
+              <input id="learnerName" maxlength="70" autocomplete="off" placeholder="Learner name">
+              <button id="selectLearner" type="button">Open Learner Record</button>
+            </div>
           </section>
           <section class="french-record-tile" aria-labelledby="frenchRecordOverviewTitle">
             <h3 id="frenchRecordOverviewTitle">02 · Progress Overview</h3>
-            <p id="frenchRecordOverview" role="status" aria-live="polite">Open a learner record to view available results.</p>
-            <button id="frenchDownloadFamilySummary" type="button">Download Family Progress Report</button>
-            <p class="french-record-note">Reports show recorded results only. Missing results are not treated as zero or as completed coursework.</p>
+            <p class="french-record-descriptor">Review saved progress and download a family-facing summary.</p>
+            <div class="french-record-body">
+              <p id="frenchRecordOverview" role="status" aria-live="polite">Open a learner record to view available results.</p>
+              <p class="french-record-note">Reports show recorded results only. Missing results are not treated as zero or as completed coursework.</p>
+            </div>
+            <div class="french-record-controls">
+              <button id="frenchDownloadFamilySummary" type="button">Download Family Progress Report</button>
+            </div>
           </section>
           <section class="french-record-tile" aria-labelledby="frenchRecordExportTitle">
             <h3 id="frenchRecordExportTitle">03 · Save &amp; Export</h3>
-            <div class="french-record-actions">
-              <button id="exportRecord" type="button">Export Progress JSON</button>
+            <p class="french-record-descriptor">Export progress and lesson evidence for safekeeping.</p>
+            <div class="french-record-body">
+              <p class="french-record-note">Export the progress record and the separate lesson-writing evidence before changing devices or restoring a backup. Keep the files private.</p>
             </div>
-            <p class="french-record-note">Export the progress record and the separate lesson-writing evidence before changing devices or restoring a backup.</p>
+            <div class="french-record-controls">
+              <div class="french-record-actions">
+                <button id="exportRecord" type="button">Export Progress JSON</button>
+              </div>
+            </div>
           </section>
           <section class="french-record-tile french-record-restore" aria-labelledby="frenchRecordRestoreTitle">
             <h3 id="frenchRecordRestoreTitle">04 · Review &amp; Restore</h3>
-            <label for="frenchImportFile">Select French 101 progress backup (maximum 250 KB)</label>
-            <input id="frenchImportFile" type="file" accept=".json,application/json">
-            <p id="frenchImportPreview" role="status" aria-live="polite">Select a backup for review. Nothing is restored automatically.</p>
-            <button id="frenchImportConfirm" type="button" disabled>Confirm learner progress replacement</button>
-            <p class="french-record-note">Restore replaces the selected learner's compatible progress record only after explicit confirmation. Lesson-evidence exports have a separate format and are not imported here.</p>
+            <p class="french-record-descriptor">Preview a compatible backup before restoring saved progress.</p>
+            <div class="french-record-body">
+              <p id="frenchImportPreview" role="status" aria-live="polite">Select a backup for review. Nothing is restored automatically.</p>
+              <p class="french-record-note">Restore replaces the selected learner's compatible progress record only after explicit confirmation. Lesson-evidence exports have a separate format and are not imported here.</p>
+            </div>
+            <div class="french-record-controls">
+              <label for="frenchImportFile">Select French 101 progress backup (maximum 250 KB)</label>
+              <input id="frenchImportFile" type="file" accept=".json,application/json">
+              <button id="frenchImportConfirm" type="button" disabled>Confirm learner progress replacement</button>
+            </div>
           </section>
         </div>
       </div>
