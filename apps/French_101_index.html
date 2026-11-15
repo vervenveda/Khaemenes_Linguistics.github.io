@@ -905,7 +905,7 @@ function chooseLearner(){
 }
 $("selectLearner").addEventListener("click",chooseLearner);
 $("exportRecord").addEventListener("click",()=>{
- const data={format:"khaemenes-french101-v2",learner:$("learnerName").value.trim()||"Anonymous",exportedAt:new Date().toISOString(),progress:{...progress}};
+ const data={format:"khaemenes-french101-v2",learner:safeGet("french101_active_learner")||"Anonymous",exportedAt:new Date().toISOString(),progress:{...progress}};
  const blob=new Blob([JSON.stringify(data,null,2)],{type:"application/json"});
  const link=document.createElement("a"),url=URL.createObjectURL(blob);
  link.href=url;link.download="khaemenes-french101-progress.json";link.click();
@@ -920,7 +920,7 @@ function exportFrench101LessonEvidence(){
    if(key&&(key.startsWith(prefix)||key===learnerKey))records[key]=localStorage.getItem(key);
   }
  }catch(error){window.alert("Local learning records cannot be read on this browser. No backup was created.");return}
- const payload={format:"khaemenes-french101-lesson-evidence-v1",learner:document.getElementById("learnerName").value.trim()||"Anonymous",exportedAt:new Date().toISOString(),records};
+ const payload={format:"khaemenes-french101-lesson-evidence-v1",learner:safeGet("french101_active_learner")||"Anonymous",exportedAt:new Date().toISOString(),records};
  const file=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"}),url=URL.createObjectURL(file),a=document.createElement("a");
  a.href=url;a.download="french101-lesson-evidence.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
 }
