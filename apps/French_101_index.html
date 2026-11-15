@@ -523,6 +523,36 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 @media(max-width:760px){.french-canonical-lessons{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:460px){.french-canonical-lessons{grid-template-columns:1fr}.french-canonical-entry{padding:16px}}
 </style>
+<style id="french101-ka-unit01-design-pilot-v2">
+/* Scoped VNV/KA visual alignment only. Official global chrome owns header, tickers and dock. */
+:root{--french-ka-charcoal:#202724;--french-ka-cream:#fff8e9;--french-ka-parchment:#f7f1e5;--french-ka-paper:#fffdf8;--french-ka-gold:#b48b45;--french-ka-border:#c7bba3}
+#app #frenchCampusMain{width:min(100%,1120px);max-width:1120px}
+#app #title{font-family:Cinzel,"Palatino Linotype",Georgia,serif!important;font-size:66px!important;font-weight:400!important;line-height:1.13!important;text-align:center!important}
+#app .french-landing-intro{max-width:1050px;text-align:center}
+#app .french-landing-subtitle{font-size:18px!important;max-width:820px;line-height:1.65}
+#app #frenchCanonicalJourney,#app #frenchChooseLevel{font-family:Cinzel,"Palatino Linotype",Georgia,serif!important;font-size:33px!important;font-weight:400!important;line-height:1.22!important;text-align:center}
+#app .french-canonical-entry p,#app #lesson .study-section p{font-size:18px;line-height:1.65}
+#app .french-canonical-entry,#app #lesson .study-section{border-radius:7px}
+#app .french-canonical-lessons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;align-items:stretch}
+#app .french-canonical-lessons>*{min-width:0;height:100%}
+#app #french101OfficialFooter{width:min(100%,1120px)!important;max-width:1120px!important;margin:33px auto 24px!important;text-align:center!important;background:var(--french-ka-charcoal)!important;color:var(--french-ka-cream)!important;border:1px solid var(--french-ka-gold)!important;border-radius:7px!important}
+#app #french101OfficialFooter :is(p,a){color:var(--french-ka-cream)!important}
+#app #french101OfficialFooter .french-footer-identity{font-family:Cinzel,Georgia,serif!important;font-size:24px!important}
+#app #french101OfficialFooter .french-footer-credit{font-size:16px!important}
+#app #french101OfficialFooter nav{display:flex;flex-wrap:wrap;justify-content:center;gap:11px;align-items:center}
+#app .french101-l01-stage-guide{background:var(--french-ka-parchment);color:var(--french-ka-charcoal);border:1px solid var(--french-ka-border);border-radius:7px;max-width:100%}
+#app .french101-l01-stage-guide h4{font:400 33px/1.2 Cinzel,Georgia,serif!important;text-align:center;margin:0 0 11px}
+#app .french101-l01-stage-guide>p{font-size:18px!important;text-align:center;max-width:800px;margin:0 auto 20px}
+#app .french101-l01-stage-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+#app .french101-l01-stage-link{width:100%;min-width:0;height:100%;min-height:96px;margin:0;justify-content:flex-start;align-items:center;background:var(--french-ka-charcoal);color:var(--french-ka-cream);border:1px solid var(--french-ka-gold);border-radius:7px}
+#app .french101-l01-stage-link strong,#app .french101-l01-stage-link small{font:400 16px/1.45 "Brandon Grotesque",Nunito,Arial,sans-serif;color:inherit}
+#app .french101-l01-stage-link strong{font-family:Cinzel,Georgia,serif;font-size:17px}
+#app .french101-l01-stage-guide .french101-printable-link{display:inline-flex;justify-content:center;align-items:center;min-height:48px;padding:10px 18px;margin:18px auto 0;border-radius:7px;background:var(--french-ka-charcoal);color:var(--french-ka-cream);border:1px solid var(--french-ka-gold);font-size:16px;text-decoration:none}
+#app .french101-l01-stage-guide .french101-printable-row{text-align:center}
+@media(max-width:850px){#app .french101-l01-stage-grid,#app .french-canonical-lessons{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:580px){#app #title{font-size:clamp(40px,10vw,66px)!important}#app .french101-l01-stage-grid,#app .french-canonical-lessons{grid-template-columns:minmax(0,1fr)}#app .french101-l01-stage-guide{padding:14px}#app .french101-l01-stage-link{min-height:72px}#app #french101OfficialFooter{padding:23px 16px!important}}
+@media print{#app .french101-l01-stage-guide{display:none!important}}
+</style>
   <script src="/Khaemenes_Linguistics.github.io/assets/linguistics-global-standard-v1.js" defer data-linguistics-global-standard="16-33-66-chrome"></script>
 </head>
 
@@ -1259,7 +1289,9 @@ function addFrenchLesson01StageGuide(section){
   button.addEventListener("click",()=>{if(!dest.hasAttribute("tabindex"))dest.setAttribute("tabindex","-1");dest.focus({preventScroll:true});dest.scrollIntoView({block:"start",behavior:"auto"})});
   grid.append(button);
  });
- nav.append(title,intro,grid);
+ const printableRow=document.createElement("div");printableRow.className="french101-printable-row";
+ const worksheet=document.createElement("a");worksheet.className="french101-printable-link";worksheet.href="./french-101-worksheets/lesson-01.html";worksheet.textContent="Open Lesson 01 printable worksheet";worksheet.setAttribute("aria-label","Open French 101 Lesson 01 printable worksheet in the print center");
+ printableRow.append(worksheet);nav.append(title,intro,grid,printableRow);
  const style=document.createElement("style");
  style.textContent=".french101-l01-stage-guide{margin:18px 0 24px;padding:18px;border:1px solid #aa956d;border-radius:7px;background:#f6f0e3;color:#302d29}.french101-l01-stage-guide h4{margin:0 0 8px;font-size:24px}.french101-l01-stage-guide p{font-size:16px;margin:0 0 12px}.french101-l01-stage-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:11px}.french101-l01-stage-link{display:flex;gap:11px;align-items:flex-start;text-align:left;min-height:68px;padding:12px;border-radius:7px;border:1px solid #74684f;background:#30302e;color:#f8f1e6;cursor:pointer;font-size:16px}.french101-l01-stage-link>span:first-child{color:#e8ce8c;font-size:18px}.french101-l01-stage-link strong,.french101-l01-stage-link small{display:block;color:inherit;font-size:16px;font-weight:400}.french101-l01-stage-link small{font-size:16px;line-height:1.45;margin-top:2px}.french101-l01-stage-link:focus-visible{outline:3px solid #876327;outline-offset:3px}#french101-unit01-day01 h3:focus,#french101-unit01-day01 h4:focus{outline:2px solid #876327;outline-offset:5px}@media print{.french101-l01-stage-guide{display:none!important}}";
  section.insertBefore(nav,section.firstChild);section.insertBefore(style,nav);
