@@ -1087,6 +1087,84 @@ function exportFrench101LessonEvidence(){
 }
 const exportEvidenceControl=element("button","Export lesson writing and review evidence");exportEvidenceControl.type="button";exportEvidenceControl.addEventListener("click",exportFrench101LessonEvidence);
 document.getElementById("exportRecord")?.insertAdjacentElement("afterend",exportEvidenceControl);
+/* French 101 Lesson 01 — non-destructive consolidated family record. */
+function french101Lesson01SourceKeys(){
+ const suffixes=[
+  "_u01_d01_assignment","_u01_d01_dialogue_v1","_u01_d01_corrections_v1",
+  "_u01_d01_spelling_v1","_u01_d01_oral_observation_v1",
+  "_u01_d01_performance_feedback_v1",
+  "_canonical_lesson01_mastery_v1","_canonical_lesson01_attempts_v1",
+  "_canonical_lesson01_mastery_v1_inprogress_v1",
+  "_canonical_lesson01_mastery_v1_previous_draw_v1",
+  "_canonical_lesson_checklist_v1",
+  "_canonical_unit01_assessment_v1","_canonical_unit01_attempts_v1",
+  "_canonical_unit01_assessment_v1_inprogress_v1"
+ ];
+ for(let i=0;i<4;i++)suffixes.push("_u01_d01_performance_"+i);
+ return suffixes.map(suffix=>learnerKey+suffix);
+}
+function french101Lesson01RawRecords(){
+ const keys=french101Lesson01SourceKeys(),records={};
+ for(const key of keys){const value=safeGet(key);if(value!==null)records[key]=value}
+ const legacy=safeGet(learnerKey);if(legacy!==null)records[learnerKey]=legacy;
+ return records;
+}
+function french101Lesson01Summary(){
+ const records=french101Lesson01RawRecords();
+ const readJson=key=>{try{return JSON.parse(records[key]||"null")}catch{return null}};
+ const prefix=learnerKey,mastery=readJson(prefix+"_canonical_lesson01_mastery_v1");
+ const attempts=readJson(prefix+"_canonical_lesson01_attempts_v1");
+ const saved=readJson(prefix+"_canonical_lesson_checklist_v1");
+ const keys=["_u01_d01_assignment","_u01_d01_dialogue_v1","_u01_d01_corrections_v1","_u01_d01_spelling_v1","_u01_d01_oral_observation_v1","_u01_d01_performance_feedback_v1"];
+ const labeled=["Original alphabet assignment","Independent French dialogue","Corrections and reflection","Accent and spelling transfer","Listening and speaking observation (self-entered)","Reviewer notes (unverified)"];
+ const evidence=keys.map((suffix,i)=>({label:labeled[i],value:records[prefix+suffix]||"",present:Boolean((records[prefix+suffix]||"").trim())}));
+ const rubric=Array.from({length:4},(_,i)=>({name:["Letter order and spelling","Accents and corrections","Original French communication","Listening and speaking"][i],rating:records[prefix+"_u01_d01_performance_"+i]||"Not reviewed"}));
+ const passing=mastery?.passed===true&&Number.isInteger(mastery.score)&&[10,20].includes(mastery.total)&&mastery.score>=Math.ceil(mastery.total*.8)&&mastery.score<=mastery.total;
+ return {schema:"khaemenes-french101-lesson01-family-v1",course:"French 101",lesson:"01",learner:safeGet("french101_active_learner")||"Anonymous",device_local:true,
+  formal_mastery:passing?{score:mastery.score,total:mastery.total,completedAt:mastery.completedAt||null}:null,
+  reported_attempts:Array.isArray(attempts)?attempts.length:0,
+  checklist_checked:Array.isArray(saved)&&saved.includes(1),
+  evidence,rubric,raw_records:records};
+}
+function french101Lesson01Download(payload){
+ const blob=new Blob([JSON.stringify({...payload,exportedAt:new Date().toISOString()},null,2)],{type:"application/json"});
+ const url=URL.createObjectURL(blob),a=document.createElement("a");a.href=url;
+ a.download="khaemenes-french101-lesson01-family-evidence.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);
+}
+function french101Lesson01FamilyPanel(){
+ const panel=document.createElement("details");panel.id="french101Lesson01FamilyRecord";
+ panel.style.cssText="margin:16px auto;border:1px solid #b7a88b;border-radius:7px;padding:14px;background:#fff8e9;color:#202724;max-width:900px";
+ const heading=document.createElement("summary");heading.textContent="French 101 · Lesson 01 Student & Family Report";heading.style.cssText="font-size:20px;font-family:Cinzel,Georgia,serif;cursor:pointer;text-align:center;color:#202724";
+ panel.append(heading);
+ const body=document.createElement("div");body.setAttribute("aria-live","polite");body.style.cssText="font-size:16px;line-height:1.6;padding:14px";panel.append(body);
+ function render(){
+  body.replaceChildren();let report;
+  try{report=french101Lesson01Summary()}catch(error){body.append(element("p","Records could not be read. Nothing was changed."));return}
+  body.append(element("h4","Learner: "+report.learner),element("p",report.formal_mastery
+   ?"Canonical lesson mastery: "+report.formal_mastery.score+"/"+report.formal_mastery.total+" ("+Math.round(report.formal_mastery.score/report.formal_mastery.total*100)+"%)."
+   :"Canonical lesson mastery: no verified passing record on this device."),
+   element("p","Saved lesson-quiz attempts: "+report.reported_attempts+". Learner-confirmed checklist: "+(report.checklist_checked?"checked":"not checked")+" (not a grade)."));
+  const list=document.createElement("ul");
+  report.evidence.forEach(item=>{const li=element("li",item.label+": "+(item.present?"saved":"not saved"));list.append(li)});
+  body.append(element("h4","Original writing and study evidence"),list);
+  const notes=document.createElement("details");notes.append(element("summary","Review saved writing and corrections"));
+  for(const item of report.evidence){if(!item.present)continue;const part=document.createElement("section");
+   part.append(element("h4",item.label));const pre=element("p",item.value);
+   pre.style.cssText="white-space:pre-wrap;overflow-wrap:anywhere;border:1px solid #b7a88b;padding:12px;border-radius:7px";
+   part.append(pre);notes.append(part)}
+  body.append(notes,element("h4","Parent / reviewer rubric (locally entered; unverified)"));
+  const ratings=document.createElement("ul");
+  report.rubric.forEach(item=>ratings.append(element("li",item.name+": "+item.rating)));body.append(ratings);
+  body.append(element("p","Listening and speaking are not certified from text, browser speech or self-reported rubrics. This report does not change official grades or historical records."));
+  const download=element("button","Export complete Lesson 01 report & source records");
+  download.type="button";download.style.cssText="min-height:48px;font-size:16px;padding:10px 16px;background:#202724;color:#fff8e9;border-radius:7px;border:1px solid #b48b45";
+  download.addEventListener("click",()=>{try{french101Lesson01Download(french101Lesson01Summary())}catch(error){window.alert("Unable to export records. No records were modified.")}});
+  body.append(download);
+ }
+ panel.addEventListener("toggle",()=>{if(panel.open)render()});
+ return panel;
+}
+document.getElementById("exportRecord")?.closest(".french-record-tile")?.insertAdjacentElement("afterend",french101Lesson01FamilyPanel());
 let currentLevel=null;
 function saveProgress(){return safeSet(learnerKey,JSON.stringify(progress))}
 function available(level){if(level===2&&progress.u01GateRequired===true&&!progress[2]&&!progress.u01CheckpointPassed)return false;return level===1||progress[level]==="completed"||progress[level]==="unlocked"||progress[level-1]==="completed"}
