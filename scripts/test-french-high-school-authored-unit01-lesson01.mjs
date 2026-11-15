@@ -11,7 +11,9 @@ for(const course of courses){
   assert.equal(data.course,course);
   assert.equal(data.unit,1);assert.equal(data.lesson,1);
   assert.equal(data.status,"authoring-review-not-published");
-  assert.equal(data.editorialReview,"pending-independent-linguistic-review");
+  assert.equal(data.editorialReview,"assistant-editorial-pass-complete-independent-review-pending");
+  assert.equal(data.status,"authoring-review-not-published");
+  assert.ok(data.questions.every(q=>q.prompt.trim().length>=12&&q.explanation.trim().length>=20));
   const bp=examBlueprint(course,"lesson",{lesson:1});
   const bank=data.questions;
   assert.equal(bank.length,27);
