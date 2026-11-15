@@ -683,6 +683,28 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 @media(max-width:680px){#app #frenchFourSkillReview .french-four-skills-grid{grid-template-columns:minmax(0,1fr)}#app #frenchFourSkillReview .french-four-skill-item>summary{min-height:120px}}
 @media print{#app #frenchFourSkillReview .french-four-skill-item{break-inside:avoid-page}#app #frenchFourSkillReview .french-skill-content{background:#fff}}
 </style>
+<style id="french101-learner-family-dashboard-v1">
+/* Scoped record interface only. No changes to canonical/legacy assessment semantics. */
+#app #frenchLearnerDashboard{background:#FFFDF8!important;color:#202724!important;border:1px solid #C7BBA3!important;box-shadow:0 5px 15px rgba(32,39,36,.1)!important;padding:0!important;border-radius:7px!important;overflow:hidden}
+#app #frenchLearnerDashboard>summary{cursor:pointer;list-style:none;background:#FFF8E9;padding:17px 20px!important;text-align:center;color:#202724!important;font:400 24px/1.3 Cinzel,Georgia,serif!important}
+#app #frenchLearnerDashboard>summary::-webkit-details-marker{display:none}
+#app #frenchLearnerDashboard .french-record-summary-detail{display:block;margin-top:6px;font:400 16px/1.5 "Brandon Grotesque",Nunito,Arial,sans-serif;color:#202724}
+#app #frenchLearnerDashboard .french-learner-record-inner{padding:20px!important;line-height:1.5}
+#app #frenchLearnerDashboard .french-record-intro{max-width:800px;margin:0 auto 18px!important;text-align:center;font-size:16px;line-height:1.6}
+#app #frenchLearnerDashboard .french-record-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:stretch}
+#app #frenchLearnerDashboard .french-record-tile{background:#FFF8E9;border:1px solid #C7BBA3;border-radius:7px;padding:18px;min-width:0;display:flex;flex-direction:column;align-items:stretch;gap:10px}
+#app #frenchLearnerDashboard .french-record-tile h3{font:400 24px/1.25 Cinzel,Georgia,serif;text-align:center;color:#202724!important;margin:0 0 5px!important}
+#app #frenchLearnerDashboard .french-record-tile :is(p,label){display:block;font:400 16px/1.55 "Brandon Grotesque",Nunito,Arial,sans-serif;color:#202724!important;margin:0!important;overflow-wrap:anywhere}
+#app #frenchLearnerDashboard .french-record-tile .french-record-note{font-size:16px!important;margin-top:auto!important}
+#app #frenchLearnerDashboard .french-record-tile :is(input,button){box-sizing:border-box;width:100%!important;min-height:46px;max-width:100%!important;font-size:16px!important;margin:0!important;border-radius:7px!important}
+#app #frenchLearnerDashboard .french-record-tile input{padding:10px;border:1px solid #AFA084;background:#FFFDF8;color:#202724}
+#app #frenchLearnerDashboard .french-record-tile button{padding:10px 14px;border:1px solid #B48B45;background:#202724;color:#FFF8E9;font-weight:400;cursor:pointer}
+#app #frenchLearnerDashboard .french-record-tile button:disabled{cursor:not-allowed;opacity:.65}
+#app #frenchLearnerDashboard .french-record-actions{display:grid;grid-template-columns:1fr;gap:10px}
+#app #frenchLearnerDashboard :is(summary,button,input):focus-visible{outline:3px solid #B48B45;outline-offset:3px}
+@media(max-width:680px){#app #frenchLearnerDashboard .french-record-grid{grid-template-columns:minmax(0,1fr)}#app #frenchLearnerDashboard .french-learner-record-inner{padding:14px!important}}
+@media print{#app #frenchLearnerDashboard{display:none!important}}
+</style>
   <script src="/Khaemenes_Linguistics.github.io/assets/linguistics-global-standard-v1.js" defer data-linguistics-global-standard="16-33-66-chrome"></script>
 </head>
 
@@ -742,13 +764,42 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
         <div class="level-grid" id="levelGrid"></div>
       </div>
     </details>
-    <details class="french-learner-record"><summary>Manage learner record, backup and restore</summary><div class="french-learner-record-inner">
-    <label for="learnerName">Learner record (optional name)</label>
-    <input id="learnerName" maxlength="70" autocomplete="off" placeholder="Learner name">
-    <button id="selectLearner" type="button">Open Learner Record</button>
-    <p id="learnerStatus" role="status"></p>
-    <button id="exportRecord" type="button">Export Progress JSON</button><label for="frenchImportFile">Restore a French 101 backup (maximum 250 KB)</label><input id="frenchImportFile" type="file" accept=".json,application/json"><p id="frenchImportPreview" role="status" aria-live="polite">Select a backup for review. Nothing is restored automatically.</p><button id="frenchImportConfirm" type="button" disabled>Confirm learner progress replacement</button>
-    </div></details>
+    <details class="french-learner-record" id="frenchLearnerDashboard">
+      <summary>Student &amp; Family Learning Records <span class="french-record-summary-detail">Progress · Evidence · Backup · Restore</span></summary>
+      <div class="french-learner-record-inner">
+        <p class="french-record-intro">Choose the learner whose work you wish to review. Students and supervising adults can export reports to keep or share privately. Names select local records; they do not authenticate a parent or synchronize devices.</p>
+        <div class="french-record-grid">
+          <section class="french-record-tile" aria-labelledby="frenchRecordLearnerTitle">
+            <h3 id="frenchRecordLearnerTitle">01 · Choose Learner</h3>
+            <label for="learnerName">Learner record (optional name)</label>
+            <input id="learnerName" maxlength="70" autocomplete="off" placeholder="Learner name">
+            <button id="selectLearner" type="button">Open Learner Record</button>
+            <p id="learnerStatus" role="status" aria-live="polite"></p>
+          </section>
+          <section class="french-record-tile" aria-labelledby="frenchRecordOverviewTitle">
+            <h3 id="frenchRecordOverviewTitle">02 · Progress Overview</h3>
+            <p id="frenchRecordOverview" role="status" aria-live="polite">Open a learner record to view available results.</p>
+            <button id="frenchDownloadFamilySummary" type="button">Download Family Progress Report</button>
+            <p class="french-record-note">Reports show recorded results only. Missing results are not treated as zero or as completed coursework.</p>
+          </section>
+          <section class="french-record-tile" aria-labelledby="frenchRecordExportTitle">
+            <h3 id="frenchRecordExportTitle">03 · Save &amp; Export</h3>
+            <div class="french-record-actions">
+              <button id="exportRecord" type="button">Export Progress JSON</button>
+            </div>
+            <p class="french-record-note">Export the progress record and the separate lesson-writing evidence before changing devices or restoring a backup.</p>
+          </section>
+          <section class="french-record-tile french-record-restore" aria-labelledby="frenchRecordRestoreTitle">
+            <h3 id="frenchRecordRestoreTitle">04 · Review &amp; Restore</h3>
+            <label for="frenchImportFile">Select French 101 progress backup (maximum 250 KB)</label>
+            <input id="frenchImportFile" type="file" accept=".json,application/json">
+            <p id="frenchImportPreview" role="status" aria-live="polite">Select a backup for review. Nothing is restored automatically.</p>
+            <button id="frenchImportConfirm" type="button" disabled>Confirm learner progress replacement</button>
+            <p class="french-record-note">Restore replaces the selected learner's compatible progress record only after explicit confirmation. Lesson-evidence exports have a separate format and are not imported here.</p>
+          </section>
+        </div>
+      </div>
+    </details>
   </div>
 
   <div id="lesson" class="hidden" data-i18n-ignore=""></div>
@@ -4178,6 +4229,49 @@ document.addEventListener("DOMContentLoaded",()=>{
 <script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js" data-vnv-ticker-autopopulate></script>
 <script>VNV_TICKER.autoPopulate({label:"French 101 Quick Links",max:14});</script>
 <script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
+<script id="french101-family-record-overview-v1">
+/* Local summary and printable family report. No privileged adult login or cloud sync is claimed. */
+document.addEventListener("DOMContentLoaded",()=>{
+ const $=id=>document.getElementById(id);
+ const status=$("frenchRecordOverview"),report=$("frenchDownloadFamilySummary");
+ if(!status||!report)return;
+ const read=(key)=>{try{return localStorage.getItem(key)}catch{return null}};
+ const escapeHTML=(value)=>String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+ const active=()=>read("french101_active_learner")||"";
+ const keyFor=(name)=>name?"french101_progress_v2_"+Array.from(name.toLocaleLowerCase("en"),c=>c.codePointAt(0).toString(16)).join("-"):"french101_progress";
+ const data=()=>{
+  const name=active(),key=keyFor(name);let saved={};try{const p=JSON.parse(read(key)||"{}");if(p&&typeof p==="object"&&!Array.isArray(p))saved=p}catch{}
+  const legacyCompleted=Array.from({length:12},(_,i)=>i+1).filter(n=>saved[n]==="completed");
+  const results=[
+   ["Unit 01 checkpoint","_canonical_unit01_assessment_v1"],
+   ["Unit 02 checkpoint","_canonical_unit02_assessment_v1"],
+   ["Cumulative midterm","_canonical_midterm_v1"]
+  ].map(([label,suffix])=>{let p=null;try{p=JSON.parse(read(key+suffix)||"null")}catch{}
+    const valid=p&&p.passed===true&&Number.isFinite(p.score)&&Number.isFinite(p.total)&&p.total>0&&p.score<=p.total;
+    return {label,result:valid? p.score+"/"+p.total+" ("+Math.round(100*p.score/p.total)+"%) — Passed":"No confirmed passing result in this browser"};
+  });
+  return {name:name||"Anonymous learner",legacyCompleted,results,saved};
+ };
+ const render=()=>{
+  const d=data();
+  status.replaceChildren();
+  const head=document.createElement("strong");head.textContent="Current learner: "+d.name;
+  const legacy=document.createElement("span");legacy.textContent="Historical 12-level pathway: "+d.legacyCompleted.length+"/12 completed levels recorded.";
+  const results=document.createElement("span");results.textContent=d.results.map(r=>r.label+": "+r.result).join(" · ");
+  status.append(head,document.createElement("br"),legacy,document.createElement("br"),results);
+ };
+ $("selectLearner")?.addEventListener("click",render);
+ window.addEventListener("storage",event=>{if(event.key==="french101_active_learner"||event.key?.startsWith("french101_progress"))render()});
+ report.addEventListener("click",()=>{
+   const d=data(),date=new Date().toLocaleString();
+   const rows=d.results.map(r=>"<tr><th scope='row'>"+escapeHTML(r.label)+"</th><td>"+escapeHTML(r.result)+"</td></tr>").join("");
+   const page="<!doctype html><html lang='en'><meta charset='utf-8'><title>French 101 Family Progress Report</title><style>body{font:16px/1.6 Arial,sans-serif;color:#202724;max-width:850px;margin:30px auto;padding:22px}h1,h2{text-align:center;font-family:Georgia,serif;font-weight:400}h1{font-size:33px}h2{font-size:24px}table{border-collapse:collapse;width:100%}th,td{border:1px solid #C7BBA3;padding:12px;text-align:left}th{width:44%}footer{text-align:center;margin-top:28px;border-top:1px solid #C7BBA3;padding-top:14px}@media print{body{margin:0;padding:8px}}</style><h1>Khaemenes Academy</h1><h2>French 101 · Family Progress Report</h2><p><strong>Learner:</strong> "+escapeHTML(d.name)+"</p><p><strong>Exported:</strong> "+escapeHTML(date)+"</p><p><strong>Historical 12-level pathway:</strong> "+d.legacyCompleted.length+"/12 completed recorded. This is not the completion percentage of the canonical 18-lesson curriculum.</p><table><tbody>"+rows+"</tbody></table><p><strong>Important:</strong> This report summarizes records held by this browser, not verified teacher grades or formal proficiency. Missing assessments are unconfirmed, not failing scores. Lesson writing and evidence require the separate evidence export. Parent identity is not authenticated by this page.</p><footer>Verve N Veda · Khaemenes Academy · French 101</footer></html>";
+   const blob=new Blob([page],{type:"text/html;charset=utf-8"}),url=URL.createObjectURL(blob),link=document.createElement("a");
+   link.href=url;link.download="khaemenes-french101-family-progress.html";link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
+ });
+ render();
+});
+</script>
 </body>
 </html>
 
