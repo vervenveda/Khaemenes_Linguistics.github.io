@@ -92,7 +92,7 @@ test("resumable assessment uses learner-scoped local checkpoints and section mil
   "answers:questions.map(()=>null)","orders:questions.map(()=>null)",
   "if(!persist())","closedBook=config.questionCount>=150",
   "new Set(saved.ids).size!==config.questionCount",
-  "Submit "+'config.questionCount'+' answers for grading'
+  '"Submit "+config.questionCount+" answers for grading"'
  ])assert.ok(html.includes(marker),marker);
 });
 test("saved drafts can be restored and tampered drafts fail closed",()=>{
