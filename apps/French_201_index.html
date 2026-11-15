@@ -403,6 +403,8 @@ details.stage[open]>summary{border-bottom:1px solid var(--line)}
    d.append(p(item.value.trim()||"No saved writing yet."));body.append(d);
   });
   body.append(p("These records are saved on this device, not synced to a parent cloud. The quiz is formative, and saved text or browser voice does not independently certify oral skills."));
+  const refresh=node("button","Refresh student progress");
+  refresh.type="button";refresh.addEventListener("click",french201RenderFamilyReport);body.append(refresh);
   const download=node("button","Export full writing, quiz history & saved draft");
   download.type="button";download.addEventListener("click",french201ExportFullReport);body.append(download);
  }
