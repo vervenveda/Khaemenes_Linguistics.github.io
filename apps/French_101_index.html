@@ -553,6 +553,23 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 @media(max-width:580px){#app #title{font-size:clamp(40px,10vw,66px)!important}#app .french101-l01-stage-grid,#app .french-canonical-lessons{grid-template-columns:minmax(0,1fr)}#app .french101-l01-stage-guide{padding:14px}#app .french101-l01-stage-link{min-height:72px}#app #french101OfficialFooter{padding:23px 16px!important}}
 @media print{#app .french101-l01-stage-guide{display:none!important}}
 </style>
+<style id="french101-secondary-navigation-narrator-v1">
+/* Preserve the VNV shared bar and the secondary Academy links, without duplicated internal branding. */
+#app .khae-global-campus-header [data-khae-header-inner]{min-height:55px!important;padding:8px 16px!important;justify-content:center!important;gap:16px!important}
+#app .khae-global-campus-header [data-khae-nav]{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:11px!important}
+#app .khae-global-campus-header [data-khae-actions]{display:flex;align-items:center;gap:10px!important;margin-left:auto}
+#app #frenchNarratorPanel{box-sizing:border-box;width:min(870px,calc(100vw - 40px));max-width:870px;margin:16px auto 28px;color:#202724;text-align:center}
+#app #frenchNarratorPanel>summary{display:flex;align-items:center;justify-content:center;gap:12px;list-style:none;cursor:pointer;width:min(100%,550px);min-height:48px;margin:0 auto;padding:12px 20px;background:#202724;color:#fff8e9;border:1px solid #b48b45;border-radius:7px;font:400 16px/1.4 "Brandon Grotesque",Nunito,Arial,sans-serif}
+#app #frenchNarratorPanel>summary::-webkit-details-marker{display:none}
+#app #frenchNarratorPanel>summary:focus-visible{outline:3px solid #b48b45;outline-offset:3px}
+#app #frenchNarratorPanel[open]>summary{margin-bottom:12px}
+#app #frenchNarratorPanel:not([open]) #frenchAudioControls{display:none!important}
+#app #frenchNarratorPanel #frenchAudioControls{width:100%!important;max-width:100%!important;margin:0!important;min-width:0!important;box-sizing:border-box}
+#app #frenchNarratorPanel #frenchAudioControls :is(label,select,button,small,output){font-size:16px!important}
+@media(max-width:760px){#app .khae-global-campus-header [data-khae-header-inner]{flex-wrap:wrap!important;gap:8px!important}#app .khae-global-campus-header [data-khae-nav]{flex-wrap:wrap;gap:8px!important}#app .khae-global-campus-header [data-khae-actions]{margin-left:0;justify-content:center;flex-wrap:wrap}}
+@media(max-width:480px){#app #frenchNarratorPanel{width:calc(100vw - 26px)}#app #frenchNarratorPanel>summary{padding:12px 10px}#app .khae-global-campus-header [data-khae-header-inner]{padding:8px!important}}
+@media print{#app #frenchNarratorPanel{display:none!important}}
+</style>
   <script src="/Khaemenes_Linguistics.github.io/assets/linguistics-global-standard-v1.js" defer data-linguistics-global-standard="16-33-66-chrome"></script>
 </head>
 
@@ -569,10 +586,6 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 <div id="app" class="hidden"><span id="frenchPageTop" aria-hidden="true"></span>
  <header data-khae-header class="khae-global-campus-header" aria-label="Khaemenes Academy header">
  <div data-khae-header-inner>
-  <a data-khae-brand href="https://vervenveda.com/Khaemenes_Academy.github.io/" aria-label="Khaemenes Academy home">
-   <span data-khae-brand-mark>語</span>
-   <span><strong data-khae-brand-name>Khaemenes Academy</strong><small data-khae-brand-sub>Linguistics &amp; World Language Campus</small></span>
-  </a>
   <nav data-khae-nav aria-label="Academy navigation">
    <a href="https://vervenveda.com/Khaemenes_Academy.github.io/">Academy Home</a>
    <a href="https://vervenveda.com/Khaemenes_Academy.github.io/student/">Student</a>
@@ -584,7 +597,9 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 </header>
  <main id="frenchCampusMain">
   <div class="french-landing-intro"><span class="french-landing-eyebrow">Khaemenes Academy · World Languages</span><h1 id="title">French 101</h1><p class="french-landing-subtitle">A thoughtful beginning in French language, pronunciation, reading and communication.</p><p class="french-landing-caption">Follow the 18-lesson French 101 curriculum below. Your progress and preserved legacy records stay with your learner record on this device.</p></div>
-  <aside id="frenchAudioControls" aria-label="French lesson audio controls">
+  <details id="frenchNarratorPanel" aria-label="French narrator controls">
+   <summary id="frenchNarratorToggle">French narrator · Voice &amp; pronunciation settings <span aria-hidden="true">▾</span></summary>
+   <aside id="frenchAudioControls" aria-label="French lesson audio controls">
  <label for="frenchVoiceSelect">French narrator</label>
  <select id="frenchVoiceSelect" aria-label="Select French narrator"><option value="">Finding French voices…</option></select>
  <label for="frenchSpeechVolume">Volume</label>
@@ -597,7 +612,8 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
  <button id="frenchSpeechStop" type="button">Stop</button>
  <p id="academyAudioStatus" role="status" aria-live="polite">Use Test voice to check French audio.</p>
  <small>Volume here controls the lesson voice, not your computer's sound output.</small>
-</aside>
+   </aside>
+ </details>
   <div id="menu">
     <section class="french-canonical-entry" aria-labelledby="frenchCanonicalJourney">
       <p class="french-canonical-kicker">French 101 · 18-Lesson Curriculum</p>
@@ -1073,6 +1089,19 @@ document.addEventListener("DOMContentLoaded",()=>{
   start.addEventListener("click",startApp);
  }
 });
+/* Preferred available French narrators: Amélie, Thomas, then Google French. */
+function frenchNarratorPriority(voice){
+ const name=String(voice?.name||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
+ const lang=String(voice?.lang||"").toLowerCase();
+ if(!lang.startsWith("fr"))return 999;
+ if(/\bamelie\b/.test(name))return 0;
+ if(/\bthomas\b/.test(name))return 1;
+ if(name.includes("google")&&(name.includes("fran")||name.includes("french")||lang.startsWith("fr")))return 2;
+ return lang==="fr-fr"?3:4;
+}
+function orderedFrenchNarrators(voices){
+ return (voices||[]).filter(v=>String(v.lang||"").toLowerCase().startsWith("fr")).slice().sort((a,b)=>frenchNarratorPriority(a)-frenchNarratorPriority(b)||String(a.name||"").localeCompare(String(b.name||""),"fr"));
+}
 document.addEventListener("DOMContentLoaded",()=>{
  const vol=document.getElementById("frenchSpeechVolume"),out=document.getElementById("frenchVolumeValue");
  const selector=document.getElementById("frenchVoiceSelect");
@@ -1085,8 +1114,8 @@ document.addEventListener("DOMContentLoaded",()=>{
 
  const populate=()=>{
   if(!selector)return;
-  const voices=("speechSynthesis" in window?window.speechSynthesis.getVoices():[]).filter(v=>String(v.lang||"").toLowerCase().startsWith("fr"));
-  const previous=selector.value||safeGet("french101_selected_voice")||"";
+  const voices=orderedFrenchNarrators("speechSynthesis" in window?window.speechSynthesis.getVoices():[]);
+  const previous=safeGet("french101_selected_voice")||selector.value||"";
   selector.replaceChildren();
   if(!voices.length){const o=document.createElement("option");o.value="";o.textContent="No French voice installed";selector.append(o);selector.disabled=true;return}
   selector.disabled=false;
@@ -1111,7 +1140,8 @@ function speakFR(text){
  let requested=String(text||"").trim();if(!requested)return false;
  function play(voices){
   const preferred=document.getElementById("frenchVoiceSelect")?.value||safeGet("french101_selected_voice")||"";
-  const french=(voices||[]).find(v=>String(v.lang||"").toLowerCase().startsWith("fr")&&(v.voiceURI===preferred||v.name===preferred))||(voices||[]).find(v=>String(v.lang||"").toLowerCase()==="fr-fr")||(voices||[]).find(v=>String(v.lang||"").toLowerCase().startsWith("fr"));
+  const choices=orderedFrenchNarrators(voices);
+   const french=choices.find(v=>v.voiceURI===preferred||v.name===preferred)||choices[0];
   if(!french){announce("No French system voice was found. Please enable a French voice in your device's speech settings; written practice is still available.");return false}
   try{
    engine.cancel();
