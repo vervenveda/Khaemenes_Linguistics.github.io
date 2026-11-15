@@ -1405,8 +1405,11 @@ function buildCanonicalCourseMap(){
  overall.append(element("p","Checklist marks are included in the separate lesson-evidence export; the standard progress JSON restore does not restore them."));
  host.append(overall);
  // Show only the current unit; completed and future unit cards stay hidden.
- const currentUnit=readFrenchUnit01Assessment()?.passed===true
-  ?(frenchAssessmentRead(frenchUnit02PassKey())?.passed===true&&frenchAssessmentRead(frenchMidtermPassKey())?.passed===true?3:2):1;
+ const firstUnitReady=Array.from({length:6},(_,i)=>i+1).every(canonicalPassed)&&readFrenchUnit01Assessment()?.passed===true;
+ const secondUnitReady=Array.from({length:6},(_,i)=>i+7).every(canonicalPassed)
+  &&frenchAssessmentRead(frenchUnit02PassKey())?.passed===true
+  &&frenchAssessmentRead(frenchMidtermPassKey())?.passed===true;
+ const currentUnit=!firstUnitReady?1:!secondUnitReady?2:3;
  const currentNote=element("p","Current unit · "+String(currentUnit).padStart(2,"0")+" of 03");
  currentNote.className="french-current-unit-note";host.append(currentNote);
  const refreshers=[];
