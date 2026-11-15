@@ -79,6 +79,38 @@ test("20/50/150/200 question Monte Carlo totals and one-third reserves",()=>{
  }
 });
 test("thresholds and preserved legacy results",()=>{
- for(const phrase of ["passCount:16,questionCount:20","passCount:40,questionCount:50","passCount:120,questionCount:150","passCount:160,questionCount:200","[10,20].includes(r.total)","config.previousQuestionIds=set.map(q=>q.id)"])
+ for(const phrase of ["passCount:16,questionCount:20","passCount:40,questionCount:50","passCount:120,questionCount:150","passCount:160,questionCount:200","[10,20].includes(r.total)","config.passKey()+\"_previous_draw_v1\""])
   assert.ok(html.includes(phrase),phrase);
+});
+
+test("resumable assessment uses learner-scoped local checkpoints and section milestones",()=>{
+ for(const marker of [
+  "function frenchAssessmentDraftKey(config)","function frenchAssessmentReadDraft(config)",
+  "function frenchAssessmentRestoreQuestion(id)","french101-resumable-v1",
+  'const sectionSize=config.questionCount>=50?25:10',
+  'Save & return to French 101',"Resume saved assessment",
+  "answers:questions.map(()=>null)","orders:questions.map(()=>null)",
+  "if(!persist())","closedBook=config.questionCount>=150",
+  "new Set(saved.ids).size!==config.questionCount",
+  "Submit "+'config.questionCount'+' answers for grading'
+ ])assert.ok(html.includes(marker),marker);
+});
+test("saved drafts can be restored and tampered drafts fail closed",()=>{
+ const snippet=html.slice(html.indexOf("function frenchAssessmentDraftKey("),html.indexOf("function frenchAssessmentRun(config)"));
+ const values=new Map();
+ const question={prompt:"Select the French greeting",choices:["bonjour","merci","oui"],answer:0};
+ const get=new Function("canonicalBank","safeGet",snippet+"return {frenchAssessmentDraftKey,frenchAssessmentReadDraft,frenchAssessmentRestoreQuestion}")(
+  day=>day===1?[question]:[],key=>values.get(key)||null
+ );
+ const config={passKey:()=>"student-001",questionCount:1};
+ assert.equal(get.frenchAssessmentReadDraft(config),null);
+ assert.equal(get.frenchAssessmentRestoreQuestion("f101-v2-1-0").prompt,question.prompt);
+ const saved={schema:"french101-resumable-v1",passKey:"student-001",ids:["f101-v2-1-0"],answers:[0],orders:[[0,1,2]],position:1,createdAt:"2026-11-15T18:00:00Z"};
+ values.set(get.frenchAssessmentDraftKey(config),JSON.stringify(saved));
+ const restored=get.frenchAssessmentReadDraft(config);
+ assert.equal(restored.saved.position,1);assert.equal(restored.saved.answers[0],0);
+ saved.orders[0]=[0,0,2];values.set(get.frenchAssessmentDraftKey(config),JSON.stringify(saved));
+ assert.equal(get.frenchAssessmentReadDraft(config).invalid,true);
+ saved.orders[0]=[0,1,2];saved.ids[0]="f101-v2-99-0";values.set(get.frenchAssessmentDraftKey(config),JSON.stringify(saved));
+ assert.equal(get.frenchAssessmentReadDraft(config).invalid,true);
 });
