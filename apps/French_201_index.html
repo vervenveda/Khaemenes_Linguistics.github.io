@@ -211,6 +211,8 @@ details.stage[open]>summary{border-bottom:1px solid var(--line)}
     &&new Set(d.ids).size===20&&d.ids.every(id=>data.questions.some(q=>q.id===id))
     &&Array.isArray(d.answers)&&d.answers.length===20
     &&d.answers.every(v=>v===null||Number.isInteger(v)&&v>=0&&v<=2)
+    &&Array.isArray(d.orders)&&d.orders.length===20
+    &&d.orders.every(o=>Array.isArray(o)&&o.length===3&&new Set(o).size===3&&o.every(i=>Number.isInteger(i)&&i>=0&&i<=2))
     &&Number.isInteger(d.position)&&d.position>=0&&d.position<=20;
   }
   function saveDraft(d){return safeWrite(quizKey,d)}
@@ -246,7 +248,7 @@ details.stage[open]>summary{border-bottom:1px solid var(--line)}
     }else{
      const q=questions[d.position];section.append(node("h4","Question "+(d.position+1)+" of 20"),p(q.prompt));
      const choices=node("div");choices.className="choices";
-     q.choices.forEach((option,i)=>{
+     d.orders[d.position].forEach(i=>{const option=q.choices[i];
       const b=node("button",option);b.type="button";b.setAttribute("aria-pressed",d.answers[d.position]===i?"true":"false");
       b.addEventListener("click",()=>{const before=d.answers[d.position];d.answers[d.position]=i;if(saveDraft(d)){draw();status.textContent="Answer saved."}else{d.answers[d.position]=before;status.textContent="Answer not saved."}});
       choices.append(b);
@@ -262,7 +264,8 @@ details.stage[open]>summary{border-bottom:1px solid var(--line)}
   }
   function begin(previous=[]){
    let ids;try{ids=drawSet(previous)}catch(e){section.append(p(e.message));return}
-   const draft={schema:"fr201-l01-quiz-v1",ids,answers:Array(20).fill(null),position:0};
+   const orderChoices=()=>{const a=[0,1,2];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
+   const draft={schema:"fr201-l01-quiz-v1",ids,answers:Array(20).fill(null),orders:ids.map(()=>orderChoices()),position:0};
    if(saveDraft(draft))launch(draft);
   }
   function renderWelcome(){
