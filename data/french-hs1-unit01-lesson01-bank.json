@@ -5,7 +5,7 @@
   "lesson": 1,
   "status": "authoring-review-not-published",
   "title": "Greetings, identity and interpersonal foundations",
-  "editorialReview": "pending-independent-linguistic-review",
+  "editorialReview": "assistant-editorial-pass-complete-independent-review-pending",
   "questions": [
     {
       "id": "hs1-u01-l01-q001",
@@ -26,14 +26,14 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Which sentence correctly introduces the speaker?",
+      "prompt": "Choose the sentence that introduces your own name as Léa, rather than identifying somebody else.",
       "choices": [
-        "Tu s'appelle Léa.",
-        "Je t'appelle Léa.",
+        "Elle s'appelle Léa.",
+        "Tu t'appelles Léa.",
         "Je m'appelle Léa."
       ],
       "answer": 2,
-      "explanation": "Je m'appelle is the standard first-person introduction."
+      "explanation": "Je m'appelle identifies the speaker; elle and tu refer to other people."
     },
     {
       "id": "hs1-u01-l01-q003",
@@ -138,14 +138,14 @@
       "unit": 1,
       "lesson": 1,
       "domain": "interpretation",
-      "prompt": "Read: « Bonjour, je m'appelle Amine. » What is the speaker doing?",
+      "prompt": "Read: « Bonjour, je m'appelle Amine. » Which information can you identify from the French sentence?",
       "choices": [
-        "Introducing himself.",
-        "Asking for a price.",
-        "Giving directions."
+        "The speaker introduces themself as Amine.",
+        "The speaker asks Amine for directions.",
+        "The speaker says Amine is a teacher."
       ],
       "answer": 0,
-      "explanation": "Je m'appelle introduces the speaker by name."
+      "explanation": "Je m'appelle Amine supplies the speaker's name; no job or request is stated."
     },
     {
       "id": "hs1-u01-l01-q011",
@@ -292,14 +292,14 @@
       "unit": 1,
       "lesson": 1,
       "domain": "transfer",
-      "prompt": "A friend says « Merci ! » Which reply is appropriate?",
+      "prompt": "A classmate thanks you for lending a pencil. Which French reply is most appropriate?",
       "choices": [
-        "Comment ça va ?",
+        "Merci pour le crayon !",
         "De rien !",
-        "Je suis quinze."
+        "Je vous en prie, Monsieur le Directeur."
       ],
       "answer": 1,
-      "explanation": "De rien is a conventional response to thanks."
+      "explanation": "De rien naturally responds to thanks in an informal classroom exchange; the other choices shift speaker or register."
     },
     {
       "id": "hs1-u01-l01-q022",
@@ -376,14 +376,14 @@
       "unit": 1,
       "lesson": 1,
       "domain": "transfer",
-      "prompt": "You want to respond politely when someone says « Enchanté ! » Which response works?",
+      "prompt": "You have just met someone who says « Enchanté ! ». Which response appropriately returns the greeting regardless of the speaker's gender?",
       "choices": [
-        "Il est onze.",
-        "Enchantée !",
-        "À cinq heures."
+        "J'ai onze heures.",
+        "Moi aussi, enchanté(e) !",
+        "Je m'appelle demain."
       ],
       "answer": 1,
-      "explanation": "Enchanté or enchantée can be reciprocated as a greeting."
+      "explanation": "Moi aussi returns the sentiment. The written form enchanté(e) explicitly allows gendered agreement, avoiding a single assumed form."
     }
   ]
 }
