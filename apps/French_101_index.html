@@ -763,7 +763,12 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 #app #menu .french-canonical-unit{padding:20px!important;border:1px solid #C7BBA3!important;border-radius:7px!important;background:#F7F1E5!important}
 #app #menu .french-canonical-unit>h3{text-align:center!important;font:400 24px/1.35 Cinzel,Georgia,serif!important;color:#202724!important}
 #app #menu .french-canonical-unit>p{text-align:center!important;max-width:70ch;margin:10px auto 15px!important;color:#202724!important;font-size:16px!important}
-#app #menu .french-canonical-lessons{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#app #menu .french-canonical-lessons{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+#app #menu .french-lesson-pair{box-sizing:border-box;min-width:0;display:flex;flex-direction:column;gap:10px;padding:12px;border:1px solid #C7BBA3;border-radius:7px;background:#FFFDF8}
+#app #menu .french-lesson-pair .french-canonical-lesson{flex:1;min-height:98px;width:100%}
+#app #menu .french-lesson-pair .french-canonical-quiz-action{box-sizing:border-box;min-height:46px;width:100%;padding:10px;border:1px solid #B48B45;border-radius:7px;background:#202724;color:#FFF8E9;font:400 16px/1.45 "Brandon Grotesque",Nunito,Arial,sans-serif;cursor:pointer}
+#app #menu .french-lesson-pair .french-canonical-quiz-action:disabled{opacity:1;background:#E6DDCB;color:#555B56;cursor:not-allowed}
+#app #menu .french-lesson-pair .french-canonical-quiz-action:focus-visible{outline:3px solid #B48B45;outline-offset:3px}
 #app #menu .french-canonical-lesson{min-width:0;min-height:80px;align-items:center;text-align:center;justify-content:center;padding:15px!important}
 #app #menu .french-canonical-lesson :is(span,strong){text-align:center;overflow-wrap:anywhere}
 #app #menu .french-canonical-lesson:disabled{opacity:1;background:#EEE7D8!important;color:#555B56!important;cursor:not-allowed}
@@ -1460,8 +1465,12 @@ function buildCanonicalCourseMap(){
    button.append(number,name);
    button.setAttribute("aria-label","Open French 101 Lesson "+day+": "+title);
    button.addEventListener("click",()=>openCanonicalFrench101Lesson(day));
-   grid.append(button);
-   const quiz=element('button',canonicalPassed(day)?'Lesson '+day+' · Mastered':'Lesson '+day+' · 80% Quiz');quiz.type='button';quiz.className='french-canonical-lesson';quiz.disabled=!canonicalAvailable(day)||canonicalPassed(day);quiz.addEventListener('click',()=>canonicalQuiz(day));grid.append(quiz);
+   const tile=element("article");tile.className="french-lesson-pair";
+   const quiz=element("button",canonicalPassed(day)?"Mastered · 80%+": "Take 10-Question Quiz");
+   quiz.type="button";quiz.className="french-canonical-quiz-action";quiz.disabled=!canonicalAvailable(day)||canonicalPassed(day);
+   quiz.setAttribute("aria-label","Lesson "+day+" mastery quiz · "+(canonicalPassed(day)?"passed":"80 percent required"));
+   quiz.addEventListener("click",()=>canonicalQuiz(day));
+   tile.append(button,quiz);grid.append(tile);
   }
   refreshers.push(saved=>{
    const total=unit.lessons.filter(([day])=>saved.includes(day)).length;
