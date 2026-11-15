@@ -1158,63 +1158,25 @@ function appendFrenchUnit01Attempt(record){
  history.push(record);safeSet(key,JSON.stringify(history.slice(-50)));
 }
 function openCanonicalUnit01Assessment(){
- const box=$("exam");box.replaceChildren();
- const prior=readFrenchUnit01Assessment();
- box.append(element("h2","French 101 · Unit 01 Assessment"),element("p","Canonical cumulative checkpoint for Lessons 01–06 · Foundations. A score of 80% or higher is required: 16 of 20."));
- box.append(element("p","This assessment covers alphabet and spelling foundations, numbers 0–100, vowels and subject pronouns, greetings and introductions, first-sentence structure, and nouns/articles/gender. Spoken-language practice remains separate from verified listening and speaking evidence."));
- const evidence=element("section");evidence.className="study-section";
- evidence.append(element("h3","Independent performance evidence"),element("p","Before or after the knowledge checkpoint, complete an original six-strand task: spell an unfamiliar name; interpret two quantities through 100; explain two pronoun referents; write a polite introduction; distinguish et/est in original sentences; and introduce then refer back to singular/plural nouns. Preserve at least one correction and its reason."));
- const task=element("textarea");task.rows=7;task.setAttribute("aria-label","Unit 01 independent performance evidence");task.placeholder="My independent Unit 01 response, correction and explanation…";
- const taskKey=learnerKey+"_canonical_unit01_performance_v1";task.value=safeGet(taskKey)||"";task.addEventListener("input",()=>safeSet(taskKey,task.value));evidence.append(task);
- const review=element("textarea");review.rows=4;review.setAttribute("aria-label","Unit 01 reviewer notes");review.placeholder="Reviewer observations: written accuracy, independent transfer, speaking/listening evidence if actually observed, corrections and next goal…";
- const reviewKey=learnerKey+"_canonical_unit01_review_v1";review.value=safeGet(reviewKey)||"";review.addEventListener("input",()=>safeSet(reviewKey,review.value));evidence.append(review,element("p","Synthetic speech, visible transcripts and self-entered ratings do not certify independent listening or speaking proficiency."));
- box.append(evidence);
- if(prior?.passed){
-  const done=element("section");done.className="study-section";
-  done.append(element("h3","Mastery recorded"),element("p","Passed: "+prior.score+"/"+prior.total+" ("+Math.round(prior.score/prior.total*100)+"%). Completed "+new Date(prior.completedAt).toLocaleDateString()+". This result is locked and preserved."));
-  addButton(done,"Return to French 101 Journey",backToMenu);box.append(done);showOnly("exam");return;
- }
- if(!Array.from({length:6},(_,i)=>i+1).every(canonicalPassed)){box.append(element("p","Pass lesson quizzes 01–06 at 80% before Unit 01 assessment."));addButton(box,"Back to Course",backToMenu);showOnly("exam");return}
- const start=element("button","Begin 20-question assessment");start.type="button";box.append(start);
- const status=element("p");status.setAttribute("role","status");box.append(status);
- addButton(box,"Return to French 101 Journey",backToMenu);
- start.addEventListener("click",()=>{
-  const set=balancedFrenchUnit01AssessmentSet(),area=element("section");area.className="study-section";box.insertBefore(area,status);
-  start.disabled=true;let at=0,correct=0,answers=[];
-  const draw=()=>{
-   area.replaceChildren();
-   if(at>=set.length){
-    const passed=correct>=16,record={score:correct,total:set.length,passed,completedAt:new Date().toISOString(),questionIds:set.map(q=>q.id),answers};
-    appendFrenchUnit01Attempt(record);
-    if(passed)safeSet(frenchUnit01AssessmentKey(),JSON.stringify(record));
-    status.textContent="Unit 01 result: "+correct+"/"+set.length+" · "+(passed?"Passed — 80% mastery recorded. Unit 02 is academically ready.":"Below 80%. Review corrections and retry; your saved lesson work remains unchanged.");
-    if(passed){
-      const next=element("button","Continue to Unit 02");next.type="button";next.addEventListener("click",()=>{backToMenu();requestAnimationFrame(()=>document.querySelector('[data-lesson="7"]')?.focus())});area.append(next);
-    }else{
-      const retry=element("button","Retry with a new balanced selection");retry.type="button";retry.addEventListener("click",()=>openCanonicalUnit01Assessment());area.append(retry);
-    }
-    return;
-   }
-   const q=set[at];area.append(element("h3","Question "+(at+1)+" of "+set.length),element("p",q.prompt));
-   const feedback=element("p");feedback.setAttribute("role","status");
-   const options=q.savedChoiceOrder||shuffleQuestions(q.choices.map((label,i)=>({label,ok:i===q.answer})));q.savedChoiceOrder=options;
-   options.forEach(option=>{
-    const b=element("button",option.label);b.type="button";b.addEventListener("click",()=>{
-      if(area.dataset.answered==="1")return;area.dataset.answered="1";
-      if(option.ok)correct++;
-      answers.push({id:q.id,correct:option.ok});
-      feedback.textContent=option.ok?"Correct. "+q.explain:"Correction: "+q.choices[q.answer]+". "+q.explain;
-      [...area.querySelectorAll("button")].forEach(x=>x.disabled=true);
-      const next=element("button",at===set.length-1?"See result":"Next question");next.type="button";next.disabled=false;next.addEventListener("click",()=>{at++;area.dataset.answered="";draw()});area.append(next);
-    });area.append(b);
-   });
-   area.append(feedback);
-  };
-  draw();
+ frenchAssessmentRun({
+  title:"French 101 · Unit 01 Assessment",
+  description:"Lessons 01–06 · Foundations · Knowledge assessment, with independent performance evidence recorded separately.",
+  requirement:"50 balanced questions; at least 40 correct (80%). Previously earned Unit 01 passing results remain recognized.",
+  passKey:frenchUnit01AssessmentKey,attemptKey:frenchUnit01AttemptKey,passCount:40,questionCount:50,
+  startLabel:"Begin 50-question Unit 01 assessment",
+  prerequisite:()=>Array.from({length:6},(_,i)=>i+1).every(canonicalPassed),
+  lockedText:"Pass the mastery quizzes in Lessons 01–06 before taking the Unit 01 assessment.",
+  performance:{
+   title:"Unit 01 independent performance evidence",
+   instructions:"Spell an unfamiliar name; interpret quantities up to 100; explain pronouns; introduce yourself politely; distinguish et and est; and apply article–noun choices. Save reasoning, corrections and any separately observed speaking/listening evidence.",
+   key:()=>learnerKey+"_canonical_unit01_performance_v1",
+   reviewKey:()=>learnerKey+"_canonical_unit01_review_v1"
+  },
+  makeSet:(avoid)=>frenchCumulativeSet([1,2,3,4,5,6],50,avoid),
+  resultText:(score,total,passed)=>"Unit 01: "+score+"/"+total+" · "+(passed?"Mastery recorded.":"Below 80%; review and take a freshly drawn quiz."),
+  passButtonLabel:"Continue to Unit 02",onPass:()=>{backToMenu();requestAnimationFrame(()=>document.querySelector('[data-lesson="7"]')?.focus())}
  });
- showOnly("exam");
 }
-
 
 function frenchAssessmentRead(key){try{return JSON.parse(safeGet(key)||"null")}catch{return null}}
 function frenchAssessmentAppend(key,record){
@@ -1249,25 +1211,29 @@ function frenchAssessmentRun(config){
  const status=element("p");status.setAttribute("role","status");box.append(status);
  addButton(box,"Return to French 101 Journey",backToMenu);
  start.addEventListener("click",()=>{
-  const set=config.savedSet||config.makeSet(),area=element("section");config.savedSet=set;area.className="study-section";box.insertBefore(area,status);
+  let set;
+  try{set=config.makeSet(config.previousQuestionIds||[])}
+  catch(error){status.textContent="Question bank unavailable: "+String(error.message||error);return}
+  if(!Array.isArray(set)||set.length!==config.questionCount||new Set(set.map(q=>q.id)).size!==config.questionCount){status.textContent="Assessment failed question-count or unique-item checks. No score issued.";return}
+  const area=element("section");area.className="study-section";box.insertBefore(area,status);
   start.disabled=true;let at=0,correct=0,answers=[];
   const draw=()=>{
    area.replaceChildren();
    if(at>=set.length){
     const passed=correct>=config.passCount,record={score:correct,total:set.length,passed,completedAt:new Date().toISOString(),questionIds:set.map(q=>q.id),answers};
     frenchAssessmentAppend(config.attemptKey(),record);
-    if(passed)safeSet(config.passKey(),JSON.stringify(record));
+    if(passed&&!safeSet(config.passKey(),JSON.stringify(record))){status.textContent="Mastery threshold reached but saving failed. The next lesson remains locked; export your work and resolve storage.";return}
     status.textContent=config.resultText(correct,set.length,passed);
     if(passed){
       const next=element("button",config.passButtonLabel);next.type="button";next.addEventListener("click",config.onPass);area.append(next);
     }else{
-      const retry=element("button","Retry with a new balanced selection");retry.type="button";retry.addEventListener("click",()=>frenchAssessmentRun(config));area.append(retry);
+      const retry=element("button","Retry with a new balanced selection");retry.type="button";retry.addEventListener("click",()=>{config.previousQuestionIds=set.map(q=>q.id);frenchAssessmentRun(config)});area.append(retry);
     }
     return;
    }
    const q=set[at];area.append(element("h3","Question "+(at+1)+" of "+set.length),element("p",q.prompt));
    const feedback=element("p");feedback.setAttribute("role","status");
-   const options=shuffleQuestions(q.choices.map((label,i)=>({label,ok:i===q.answer})));
+   const options=q.savedChoiceOrder||shuffleQuestions(q.choices.map((label,i)=>({label,ok:i===q.answer})));q.savedChoiceOrder=options;
    options.forEach(option=>{
     const b=element("button",option.label);b.type="button";b.addEventListener("click",()=>{
       if(area.dataset.answered==="1")return;area.dataset.answered="1";
@@ -1284,6 +1250,46 @@ function frenchAssessmentRun(config){
  });
  showOnly("exam");
 }
+/* Canonical balanced assessments v2. Monte Carlo retakes use authored reserve items. */
+function frenchLessonSet(day,count,avoidIds=[]){
+ const bank=canonicalBank(day);
+ if(!Number.isInteger(day)||day<1||day>18||!Array.isArray(bank)||bank.length<count)throw Error("Insufficient unique lesson questions");
+ const ids=new Set(avoidIds),groups=new Map();
+ bank.forEach((q,i)=>{
+  if(!q||typeof q.prompt!=="string"||!Array.isArray(q.choices)||q.choices.length<2||!Number.isInteger(q.answer)||q.answer<0||q.answer>=q.choices.length)throw Error("Invalid authored question");
+  const skill=String(q.skill||"general"),item={...q,id:"f101-v2-"+day+"-"+i};
+  if(!groups.has(skill))groups.set(skill,[]);
+  groups.get(skill).push(item);
+ });
+ for(const [k,items] of groups){
+  const fresh=shuffleQuestions(items.filter(q=>!ids.has(q.id)));
+  const seen=shuffleQuestions(items.filter(q=>ids.has(q.id)));
+  groups.set(k,[...fresh,...seen]);
+ }
+ const selected=[],indexes=new Map([...groups.keys()].map(k=>[k,0]));
+ while(selected.length<count){
+  let advanced=false;
+  for(const [k,items] of groups){
+   const p=indexes.get(k);
+   if(p<items.length&&selected.length<count){selected.push(items[p]);indexes.set(k,p+1);advanced=true}
+  }
+  if(!advanced)throw Error("Assessment bank exhausted");
+ }
+ if(new Set(selected.map(q=>q.id)).size!==count)throw Error("Question identity collision");
+ return shuffleQuestions(selected);
+}
+function frenchCumulativeSet(days,count,avoidIds=[]){
+ if(!Array.isArray(days)||!days.length||!Number.isInteger(count)||count<1)throw Error("Invalid exam settings");
+ const per=Math.floor(count/days.length),extra=count%days.length;
+ const selected=days.flatMap((day,i)=>frenchLessonSet(day,per+(i<extra?1:0),avoidIds));
+ if(selected.length!==count||new Set(selected.map(q=>q.id)).size!==count)throw Error("Incorrect exam question count");
+ return shuffleQuestions(selected);
+}
+function frenchAssessmentPassed(record){return Boolean(record?.passed===true&&Number.isInteger(record.score)&&Number.isInteger(record.total)&&record.total>0&&record.score<=record.total&&record.score>=Math.ceil(.8*record.total))}
+function frenchUnit03Key(){return learnerKey+"_canonical_unit03_assessment_v2"}
+function frenchFinalKey(){return learnerKey+"_canonical_final_v2"}
+function frenchUnit03Passed(){return frenchAssessmentPassed(frenchAssessmentRead(frenchUnit03Key()))}
+function frenchAllLessonsPassed(){return Array.from({length:18},(_,i)=>i+1).every(canonicalPassed)}
 function frenchUnit02Pool(){
  return [
   ...FRENCH_U01_L07_VERBS_BANK.map(q=>({...q,id:"u02-l07-"+q.id})),
@@ -1310,24 +1316,22 @@ function frenchUnit02AttemptKey(){return learnerKey+"_canonical_unit02_attempts_
 function openCanonicalUnit02Assessment(){
  frenchAssessmentRun({
   title:"French 101 · Unit 02 Assessment",
-  description:"Canonical cumulative checkpoint for Lessons 07–12 · Everyday French.",
-  requirement:"Twenty-four balanced questions are drawn across all six lessons. Pass with 80%: 20 of 24.",
-  passKey:frenchUnit02PassKey,attemptKey:frenchUnit02AttemptKey,passCount:20,startLabel:"Begin 24-question Unit 02 assessment",
-  prerequisite:()=>Boolean(readFrenchUnit01Assessment()?.passed)&&Array.from({length:6},(_,i)=>i+7).every(canonicalPassed),
-  lockedText:"Pass the canonical Unit 01 assessment before recording Unit 02 mastery.",
+  description:"Lessons 07–12 · Everyday French. Passing results from the previous assessment version are preserved.",
+  requirement:"50 balanced questions; at least 40 correct (80%).",
+  passKey:frenchUnit02PassKey,attemptKey:frenchUnit02AttemptKey,passCount:40,questionCount:50,
+  startLabel:"Begin 50-question Unit 02 assessment",
+  prerequisite:()=>frenchAssessmentPassed(readFrenchUnit01Assessment())&&Array.from({length:6},(_,i)=>i+7).every(canonicalPassed),
+  lockedText:"Pass Unit 01 and Lessons 07–12 before taking Unit 02.",
   performance:{
    title:"Unit 02 independent performance evidence",
-   instructions:"Create an original everyday-French response that uses être and avoir accurately, identifies a family or relationship, describes two objects with color/shape agreement, gives a date or time, completes a café request, and locates an everyday object. Preserve at least two corrections with reasons. Speaking/listening evidence must use an unfamiliar observed prompt.",
-   key:()=>learnerKey+"_canonical_unit02_performance_v1",
-   reviewKey:()=>learnerKey+"_canonical_unit02_review_v1"
+   instructions:"Combine être and avoir, family relations, object descriptions, dates and times, a café exchange and everyday object locations. Record original writing, corrections, and any independently observed oral performance.",
+   key:()=>learnerKey+"_canonical_unit02_performance_v1",reviewKey:()=>learnerKey+"_canonical_unit02_review_v1"
   },
-  makeSet:balancedFrenchUnit02AssessmentSet,
-  resultText:(score,total,passed)=>"Unit 02 result: "+score+"/"+total+" · "+(passed?"Passed — 80% mastery recorded. The cumulative midterm is now available.":"Below 80%. Review corrections and retry; lesson evidence remains unchanged."),
-  passButtonLabel:"Continue to Cumulative Midterm",
-  onPass:openFrench101CumulativeMidterm
+  makeSet:(avoid)=>frenchCumulativeSet([7,8,9,10,11,12],50,avoid),
+  resultText:(score,total,passed)=>"Unit 02: "+score+"/"+total+" · "+(passed?"Mastery recorded.":"Below 80%; review and take a newly balanced draw."),
+  passButtonLabel:"Continue to Cumulative Midterm",onPass:openFrench101CumulativeMidterm
  });
-}
-function frenchMidtermPassKey(){return learnerKey+"_canonical_midterm_v1"}
+}function frenchMidtermPassKey(){return learnerKey+"_canonical_midterm_v1"}
 function frenchMidtermAttemptKey(){return learnerKey+"_canonical_midterm_attempts_v1"}
 function balancedFrenchMidtermSet(){
  const unit1=shuffleQuestions(FRENCH_101_UNIT01_CANONICAL_BANK.map((q,i)=>({...q,id:"mid-u01-"+i}))).slice(0,15);
@@ -1337,24 +1341,56 @@ function balancedFrenchMidtermSet(){
 function openFrench101CumulativeMidterm(){
  frenchAssessmentRun({
   title:"French 101 · Cumulative Midterm",
-  description:"Cumulative mastery assessment for Lessons 01–12. It samples Foundations and Everyday French rather than testing Unit 02 in isolation.",
-  requirement:"Thirty questions: 15 from Lessons 01–06 and 15 from Lessons 07–12. Pass with 80%: 24 of 30.",
-  passKey:frenchMidtermPassKey,attemptKey:frenchMidtermAttemptKey,passCount:24,startLabel:"Begin 30-question cumulative midterm",
-  prerequisite:()=>Boolean(frenchAssessmentRead(frenchUnit02PassKey())?.passed)&&Array.from({length:12},(_,i)=>i+1).every(canonicalPassed),
-  lockedText:"Pass the canonical Unit 02 assessment before beginning the cumulative midterm.",
+  description:"Lessons 01–12 · Units 01 and 02 · Balanced cumulative knowledge checkpoint.",
+  requirement:"150 unique questions; at least 120 correct (80%). Earlier earned midterm passes remain preserved.",
+  passKey:frenchMidtermPassKey,attemptKey:frenchMidtermAttemptKey,passCount:120,questionCount:150,
+  startLabel:"Begin 150-question cumulative midterm",
+  prerequisite:()=>frenchAssessmentPassed(frenchAssessmentRead(frenchUnit02PassKey()))&&Array.from({length:12},(_,i)=>i+1).every(canonicalPassed),
+  lockedText:"Pass Unit 02 and all twelve lesson quizzes to unlock the cumulative midterm.",
   performance:{
    title:"Midterm integrated performance evidence",
-   instructions:"Complete one original written response combining an introduction, age/number information, a relationship, an everyday description, a time/date, and a practical café/home/school exchange. Then complete a different unfamiliar speaking or listening prompt with a reviewer if available. Record supports and corrections honestly.",
-   key:()=>learnerKey+"_canonical_midterm_performance_v1",
-   reviewKey:()=>learnerKey+"_canonical_midterm_review_v1"
+   instructions:"Write an original introduction, quantitative description, family reference, time/date and practical exchange. Complete separate unfamiliar listening/speaking observations when available. Keep correction notes.",
+   key:()=>learnerKey+"_canonical_midterm_performance_v1",reviewKey:()=>learnerKey+"_canonical_midterm_review_v1"
   },
-  makeSet:balancedFrenchMidtermSet,
-  resultText:(score,total,passed)=>"Midterm result: "+score+"/"+total+" · "+(passed?"Passed — cumulative 80% mastery recorded. Unit 03 is academically ready.":"Below 80%. Review the mixed-unit corrections and retry; previous unit passes remain preserved."),
-  passButtonLabel:"Continue to Unit 03",
-  onPass:()=>{backToMenu();requestAnimationFrame(()=>document.querySelector('[data-lesson="13"]')?.focus())}
+  makeSet:(avoid)=>frenchCumulativeSet(Array.from({length:12},(_,i)=>i+1),150,avoid),
+  resultText:(score,total,passed)=>"Midterm: "+score+"/"+total+" · "+(passed?"Cumulative mastery recorded.":"Below 80%; review and retry with new questions."),
+  passButtonLabel:"Continue to Unit 03",onPass:()=>{backToMenu();requestAnimationFrame(()=>document.querySelector('[data-lesson="13"]')?.focus())}
  });
 }
-
+function openCanonicalUnit03Assessment(){
+ frenchAssessmentRun({
+  title:"French 101 · Unit 03 Assessment",
+  description:"Lessons 13–18 · Independent Communication, grammar, comprehension and production reasoning.",
+  requirement:"50 balanced questions; at least 40 correct (80%). Written and oral performance evidence is recorded separately.",
+  passKey:frenchUnit03Key,attemptKey:()=>learnerKey+"_canonical_unit03_attempts_v2",
+  passCount:40,questionCount:50,startLabel:"Begin 50-question Unit 03 assessment",
+  prerequisite:()=>frenchAssessmentPassed(frenchAssessmentRead(frenchMidtermPassKey()))
+   &&Array.from({length:6},(_,i)=>i+13).every(canonicalPassed),
+  lockedText:"Pass all six Unit 03 lesson quizzes and the cumulative midterm first.",
+  performance:{title:"Unit 03 independent communication evidence",instructions:"Complete original written transfer and unfamiliar comprehension prompts, and record speaking/listening only when separately observed.",
+   key:()=>learnerKey+"_canonical_unit03_performance_v2",reviewKey:()=>learnerKey+"_canonical_unit03_review_v2"},
+  makeSet:(avoid)=>frenchCumulativeSet([13,14,15,16,17,18],50,avoid),
+  resultText:(score,total,passed)=>"Unit 03: "+score+"/"+total+" · "+(passed?"Mastery recorded.":"Below 80%; review and retry with new questions."),
+  passButtonLabel:"Continue to Final Exam",onPass:openFrench101CanonicalFinal
+ });
+}
+function openFrench101CanonicalFinal(){
+ frenchAssessmentRun({
+  title:"French 101 · Comprehensive Final Examination",
+  description:"Cumulative knowledge assessment across all eighteen canonical lessons.",
+  requirement:"200 unique, balanced questions; at least 160 correct (80%). This score does not automatically certify independent oral proficiency.",
+  passKey:frenchFinalKey,attemptKey:()=>learnerKey+"_canonical_final_attempts_v2",
+  passCount:160,questionCount:200,startLabel:"Begin 200-question comprehensive final",
+  prerequisite:()=>frenchUnit03Passed()&&frenchAllLessonsPassed()
+   &&frenchAssessmentPassed(frenchAssessmentRead(frenchMidtermPassKey())),
+  lockedText:"Pass all lessons, three unit assessments, and the cumulative midterm first.",
+  performance:{title:"Final independent portfolio",instructions:"Save original written work, unfamiliar reading and correction evidence. Listening and speaking must be observed separately before claiming four-skill proficiency.",
+   key:()=>learnerKey+"_canonical_final_performance_v2",reviewKey:()=>learnerKey+"_canonical_final_review_v2"},
+  makeSet:(avoid)=>frenchCumulativeSet(Array.from({length:18},(_,i)=>i+1),200,avoid),
+  resultText:(score,total,passed)=>"Comprehensive final: "+score+"/"+total+" · "+(passed?"Knowledge mastery recorded.":"Below 80%; review and retry with a new draw."),
+  passButtonLabel:"Return to French 101 Journey",onPass:backToMenu
+ });
+}
 const FRENCH_101_CANONICAL_SPINE=[
  {unit:1,title:"Unit 01 · Foundations",range:"Lessons 01–06",description:"Sound, number, identity and first-sentence foundations.",lessons:[
   [1,"Alphabet & pronunciation foundations"],[2,"Numbers · 0–100"],[3,"Vowels & Subject Pronouns"],[4,"Greetings & Introductions"],[5,"Small Words & First Sentences"],[6,"Nouns, Articles & Gender"]
@@ -1393,7 +1429,7 @@ function frenchReadLessonChecklist(){
  try{const a=JSON.parse(safeGet(frenchLessonChecklistKey())||"[]");return Array.isArray(a)?[...new Set(a.filter(x=>Number.isInteger(x)&&x>=1&&x<=18))]:[]}catch{return []}
 }
 function frenchUnitMasteryDescription(unit){
- if(unit===3)return "Unit 03: no separate comprehensive final result is recorded in this course.";
+ if(unit===3){const r=frenchAssessmentRead(frenchUnit03Key());return frenchUnit03Passed()?"Unit 03 knowledge checkpoint: "+r.score+"/"+r.total+" — passed":"Unit 03 knowledge checkpoint: no recorded passing result for this learner on this browser.";}
  const suffix=unit===1?"_canonical_unit01_assessment_v1":"_canonical_unit02_assessment_v1";
  let p=null;try{p=JSON.parse(safeGet(learnerKey+suffix)||"null")}catch{}
  return p?.passed===true&&Number.isFinite(p.score)&&Number.isFinite(p.total)&&p.total>0&&p.score<=p.total?
@@ -1466,7 +1502,7 @@ function buildCanonicalCourseMap(){
    button.setAttribute("aria-label","Open French 101 Lesson "+day+": "+title);
    button.addEventListener("click",()=>openCanonicalFrench101Lesson(day));
    const tile=element("article");tile.className="french-lesson-pair";
-   const quiz=element("button",canonicalPassed(day)?"Mastered · 80%+": "Take 10-Question Quiz");
+   const quiz=element("button",canonicalPassed(day)?"Mastered · 80%+": "Take 20-Question Quiz");
    quiz.type="button";quiz.className="french-canonical-quiz-action";quiz.disabled=!canonicalAvailable(day)||canonicalPassed(day);
    quiz.setAttribute("aria-label","Lesson "+day+" mastery quiz · "+(canonicalPassed(day)?"passed":"80 percent required"));
    quiz.addEventListener("click",()=>canonicalQuiz(day));
@@ -1496,6 +1532,18 @@ function buildCanonicalCourseMap(){
    const midButton=element("button",mid?.passed?"Review Midterm mastery":"Take Cumulative Midterm");midButton.type="button";midButton.disabled=(!unit02?.passed||!Array.from({length:12},(_,i)=>i+1).every(canonicalPassed))&&!mid?.passed;midButton.addEventListener("click",openFrench101CumulativeMidterm);assessment.append(midButton);
    if(!unit02?.passed)assessment.append(element("small","Pass Unit 02 to unlock the cumulative midterm."));
    section.append(assessment);
+  }
+  if(unit.unit===3){
+   const area=element("div");area.className="french-canonical-assessment";
+   const u3=frenchAssessmentRead(frenchUnit03Key()),final=frenchAssessmentRead(frenchFinalKey());
+   area.append(element("p",frenchUnit03Passed()?"Unit 03 mastery recorded · "+u3.score+"/"+u3.total:"Unit 03 assessment · 50 questions · 80%"));
+   const unitButton=element("button",frenchUnit03Passed()?"Review Unit 03 mastery":"Take Unit 03 Assessment (50)");
+   unitButton.type="button";unitButton.disabled=!frenchUnit03Passed()&&!Array.from({length:6},(_,i)=>i+13).every(canonicalPassed);
+   unitButton.addEventListener("click",openCanonicalUnit03Assessment);area.append(unitButton);
+   const finalButton=element("button",frenchAssessmentPassed(final)?"Review Final Result":"Take Comprehensive Final (200)");
+   finalButton.type="button";finalButton.disabled=!frenchAssessmentPassed(final)&&(!frenchUnit03Passed()||!frenchAllLessonsPassed());
+   finalButton.addEventListener("click",openFrench101CanonicalFinal);area.append(finalButton);
+   section.append(area);
   }
   host.append(section);
  }
@@ -3914,7 +3962,7 @@ function addFrenchLesson18IntegrationDepth(panel){
 }
 /* Canonical 18-lesson mastery gate v1. Protected 12-level records remain separate. */
 function canonicalKey(n){return learnerKey+"_canonical_lesson"+String(n).padStart(2,"0")+"_mastery_v1"}
-function canonicalRecord(n){const r=frenchAssessmentRead(canonicalKey(n));return r?.passed===true&&Number.isInteger(r.score)&&r.total===10&&r.score>=8&&r.score<=10?r:null}
+function canonicalRecord(n){const r=frenchAssessmentRead(canonicalKey(n));return r?.passed===true&&Number.isInteger(r.score)&&[10,20].includes(r.total)&&r.score>=Math.ceil(r.total*.8)&&r.score<=r.total?r:null}
 function canonicalPassed(n){return Boolean(canonicalRecord(n))}
 function canonicalAvailable(n){
  if(!Number.isInteger(n)||n<1||n>18)return false;
@@ -3925,21 +3973,20 @@ function canonicalAvailable(n){
 }
 function canonicalBank(n){return [null,FRENCH_U01_D01_REVIEW_BANK,FRENCH_U01_NUMBERS_QUESTION_BANK,FRENCH_U01_L03_VOWELS_PRONOUNS_BANK,FRENCH_U01_L04_GREETINGS_BANK,FRENCH_U01_L05_SENTENCES_BANK,FRENCH_U01_L06_NOUNS_BANK,FRENCH_U01_L07_VERBS_BANK,FRENCH_U01_L08_FAMILY_BANK,FRENCH_U01_L09_DESCRIPTIONS_BANK,FRENCH_U01_L10_TIME_BANK,FRENCH_U01_L11_CAFE_BANK,FRENCH_U01_L12_OBJECTS_BANK,FRENCH_U01_L13_QUESTIONS_BANK,FRENCH_U01_L14_ROUTINES_BANK,FRENCH_U01_L15_DIRECTIONS_BANK,FRENCH_U01_L16_COMPREHENSION_BANK,FRENCH_U01_L17_PRODUCTION_BANK,FRENCH_U01_L18_INTEGRATION_BANK][n]||[]}
 function canonicalQuiz(n){
- if(!canonicalAvailable(n)){window.alert("Pass previous lesson quizzes at 80% and required unit assessments first.");return}
+ if(!canonicalAvailable(n)){window.alert("Pass prior lesson quizzes and unit gates at 80% before continuing.");return}
  const bank=canonicalBank(n);
- if(bank.length<10||!bank.every(q=>q&&typeof q.prompt==="string"&&Array.isArray(q.choices)&&q.choices.length>=2&&Number.isInteger(q.answer)&&q.answer>=0&&q.answer<q.choices.length)){window.alert("Lesson bank validation failed; no mastery score issued.");return}
+ if(!Array.isArray(bank)||bank.length<27){window.alert("Lesson bank must contain at least 27 authored questions to supply a one-third retake reserve.");return}
  frenchAssessmentRun({
- title:"French 101 · Lesson "+String(n).padStart(2,"0")+" Mastery Quiz",
- description:"Lesson-specific knowledge check. Self-confirmed checklist marks and historical level scores do not grant canonical mastery.",
- requirement:"At least 80% (8/10) to unlock the next lesson.",
- passKey:()=>canonicalKey(n),attemptKey:()=>learnerKey+"_canonical_lesson"+String(n).padStart(2,"0")+"_attempts_v1",
- passCount:8,startLabel:"Begin ten-question mastery quiz",
- makeSet:()=>shuffleQuestions(bank.map((q,i)=>({...q,id:"canonical-"+n+"-"+i}))).slice(0,10),
- resultText:(score,total,passed)=>"Lesson "+n+": "+score+"/"+total+" · "+(passed?"Mastery achieved.":"Below 80%. Review and retry."),
- passButtonLabel:"Return to French 101 journey",onPass:backToMenu
+  title:"French 101 · Lesson "+String(n).padStart(2,"0")+" Mastery Quiz",
+  description:"Lesson-specific knowledge assessment across the authored learning domains.",
+  requirement:"20 questions; at least 16 correct (80%). Each lesson has 30 authored questions for Monte Carlo retakes. Previously earned 10-question passes remain recognized.",
+  passKey:()=>canonicalKey(n),attemptKey:()=>learnerKey+"_canonical_lesson"+String(n).padStart(2,"0")+"_attempts_v1",
+  passCount:16,questionCount:20,startLabel:"Begin 20-question mastery quiz",
+  makeSet:(avoid)=>frenchLessonSet(n,20,avoid),
+  resultText:(score,total,passed)=>"Lesson "+n+": "+score+"/"+total+" · "+(passed?"Mastery achieved.":"Below 80%; review and retry with new questions."),
+  passButtonLabel:"Return to French 101 Journey",onPass:backToMenu
  });
-}
-const FRENCH_101_CANONICAL_DAYS=[
+}const FRENCH_101_CANONICAL_DAYS=[
  ...FRENCH_101_UNIT01_DAYS,
  {day:16,title:"Reading & Listening Comprehension"},
  {day:17,title:"Writing & Speaking"},
