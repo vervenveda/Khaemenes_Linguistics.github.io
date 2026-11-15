@@ -757,6 +757,31 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
  }
 }
 </style>
+<style id="french101-unit-progress-v1">
+/* Parchment and charcoal unit panels, live local learner-confirmed checklist only. */
+#app #menu .french-course-progress-overall{padding:15px 18px;border:1px solid #C7BBA3;border-radius:7px;background:#FFFDF8;text-align:center}
+#app #menu .french-course-progress-overall p{font-size:16px!important;line-height:1.6!important;margin:7px auto!important;color:#202724!important}
+#app #menu .french-course-progress-overall p:first-child{font-family:Cinzel,Georgia,serif!important;font-size:20px!important}
+#app #menu progress{appearance:none;-webkit-appearance:none;width:100%;height:17px;display:block;border:1px solid #B48B45;border-radius:7px;overflow:hidden;background:#E6DDCB}
+#app #menu progress::-webkit-progress-bar{background:#E6DDCB}
+#app #menu progress::-webkit-progress-value{background:#202724;border-radius:6px}
+#app #menu progress::-moz-progress-bar{background:#202724;border-radius:6px}
+#app #menu .french-unit-progress-panel{margin:12px auto 18px;border:1px solid #C7BBA3;border-radius:7px;background:#FFFDF8;color:#202724}
+#app #menu .french-unit-progress-trigger{display:flex;justify-content:space-between;align-items:center;gap:12px;cursor:pointer;min-height:52px;padding:12px 16px;list-style:none;background:#202724;color:#FFF8E9;border-radius:6px;font:400 17px/1.45 Cinzel,Georgia,serif}
+#app #menu .french-unit-progress-trigger::-webkit-details-marker{display:none}
+#app #menu .french-unit-progress-trigger:focus-visible{outline:3px solid #B48B45;outline-offset:3px}
+#app #menu .french-unit-progress-pct{white-space:nowrap;font:400 18px/1.2 "Brandon Grotesque",Nunito,Arial,sans-serif;color:#FFF8E9}
+#app #menu .french-unit-progress-inner{padding:17px 18px;text-align:left}
+#app #menu .french-unit-progress-inner p{font-size:16px!important;color:#202724!important;line-height:1.6!important;margin:10px 0!important}
+#app #menu .french-unit-progress-mastery{padding:12px 14px;border-left:3px solid #B48B45;background:#F7F1E5}
+#app #menu .french-unit-progress-checklist{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:15px 0}
+#app #menu .french-unit-progress-check{display:flex;align-items:flex-start;gap:10px;padding:11px 12px;border:1px solid #C7BBA3;border-radius:7px;background:#FFF8E9;font:400 16px/1.5 "Brandon Grotesque",Nunito,Arial,sans-serif;color:#202724;cursor:pointer}
+#app #menu .french-unit-progress-check input{flex:0 0 auto;width:18px;height:18px;margin:3px 0 0;accent-color:#202724}
+#app #menu .french-canonical-lesson[data-learner-confirmed="true"]{border-color:#235F4B!important;box-shadow:inset 0 0 0 2px #235F4B!important}
+#app #menu .french-canonical-lesson[data-learner-confirmed="true"]::after{content:"Learner-confirmed ✓";display:block;font:400 16px/1.4 "Brandon Grotesque",Nunito,Arial,sans-serif;color:#202724;margin-top:5px}
+@media(max-width:630px){#app #menu .french-unit-progress-checklist{grid-template-columns:minmax(0,1fr)}#app #menu .french-unit-progress-trigger{font-size:16px}}
+@media print{#app #menu .french-unit-progress-panel{break-inside:avoid}}
+</style>
   <script src="/Khaemenes_Linguistics.github.io/assets/linguistics-global-standard-v1.js" defer data-linguistics-global-standard="16-33-66-chrome"></script>
 </head>
 
@@ -1317,12 +1342,63 @@ function openCanonicalFrench101Lesson(day){
   return false;
  }
 }
+/* Learner-confirmed completion is separate from official academic mastery. */
+function frenchLessonChecklistKey(){return learnerKey+"_canonical_lesson_checklist_v1"}
+function frenchReadLessonChecklist(){
+ try{const a=JSON.parse(safeGet(frenchLessonChecklistKey())||"[]");return Array.isArray(a)?[...new Set(a.filter(x=>Number.isInteger(x)&&x>=1&&x<=18))]:[]}catch{return []}
+}
+function frenchUnitMasteryDescription(unit){
+ if(unit===3)return "Unit 03: no separate comprehensive final result is recorded in this course.";
+ const suffix=unit===1?"_canonical_unit01_assessment_v1":"_canonical_unit02_assessment_v1";
+ let p=null;try{p=JSON.parse(safeGet(learnerKey+suffix)||"null")}catch{}
+ return p?.passed===true&&Number.isFinite(p.score)&&Number.isFinite(p.total)&&p.total>0&&p.score<=p.total?
+ "Verified stored knowledge checkpoint: "+p.score+"/"+p.total+" ("+Math.round(100*p.score/p.total)+"%) — passed":
+ "Knowledge checkpoint: no recorded passing result for this learner on this browser.";
+}
 function buildCanonicalCourseMap(){
  const host=$("frenchCanonicalCourseMap");if(!host)return;
  host.replaceChildren();
+ const overall=element("div");overall.className="french-course-progress-overall";
+ const overallLabel=element("p");overallLabel.setAttribute("role","status");
+ const overallBar=document.createElement("progress");overallBar.max=18;overallBar.value=0;overallBar.setAttribute("aria-label","French 101 learner-confirmed lesson completion across 18 lessons");
+ overall.append(overallLabel,overallBar,element("p","Completion percentages reflect learner-confirmed lesson checkmarks, not verified grades. Opening a lesson does not mark it complete."));
+ host.append(overall);
+ const refreshers=[];
+ function refreshAll(){
+  const saved=frenchReadLessonChecklist();overallBar.value=saved.length;
+  overallLabel.textContent="French 101 lesson checklist: "+saved.length+" of 18 learner-confirmed ("+Math.round(100*saved.length/18)+"%).";
+  refreshers.forEach(fn=>fn(saved));
+ }
  for(const unit of FRENCH_101_CANONICAL_SPINE){
   const section=element("section");section.className="french-canonical-unit";
   section.append(element("h3",unit.title),element("p",unit.range+" · "+unit.description));
+  const inspector=document.createElement("details");inspector.className="french-unit-progress-panel";
+  const trigger=document.createElement("summary");trigger.className="french-unit-progress-trigger";
+  const label=element("span","View Unit "+String(unit.unit).padStart(2,"0")+" Progress");
+  const percent=element("span","0%");percent.className="french-unit-progress-pct";trigger.append(label,percent);inspector.append(trigger);
+  const body=element("div");body.className="french-unit-progress-inner";
+  const count=element("p");count.className="french-unit-progress-count";count.setAttribute("role","status");
+  const bar=document.createElement("progress");bar.max=6;bar.value=0;bar.setAttribute("aria-label",unit.title+" learner-confirmed lesson completion");
+  const mastery=element("p",frenchUnitMasteryDescription(unit.unit));mastery.className="french-unit-progress-mastery";
+  const guidance=element("p","Check a lesson only after completing its activities. This self-reported checklist can be corrected; it does not unlock lessons or award official mastery.");guidance.className="french-unit-progress-guidance";
+  const checklist=element("div");checklist.className="french-unit-progress-checklist";
+  const boxes=[];
+  for(const [day,title] of unit.lessons){
+   const row=document.createElement("label");row.className="french-unit-progress-check";
+   const check=document.createElement("input");check.type="checkbox";check.value=String(day);
+   check.setAttribute("aria-label","Learner-confirmed completion of Lesson "+day+": "+title);
+   row.append(check,element("span","Lesson "+String(day).padStart(2,"0")+" · "+title));checklist.append(row);boxes.push([day,check]);
+   check.addEventListener("change",()=>{
+    const existing=frenchReadLessonChecklist(),updated=check.checked?[...existing,day]:existing.filter(x=>x!==day);
+    const unique=[...new Set(updated)].sort((a,b)=>a-b);
+    if(!safeSet(frenchLessonChecklistKey(),JSON.stringify(unique))){
+     check.checked=existing.includes(day);count.textContent="Unable to save checklist to this browser. Prior marks remain unchanged.";return;
+    }
+    refreshAll();
+    document.dispatchEvent(new Event("french101:canonical-checklist-updated"));
+   });
+  }
+  body.append(count,bar,mastery,guidance,checklist);inspector.append(body);section.append(inspector);
   const grid=element("div");grid.className="french-canonical-lessons";
   for(const [day,title] of unit.lessons){
    const button=element("button");button.type="button";button.className="french-canonical-lesson";
@@ -1335,6 +1411,14 @@ function buildCanonicalCourseMap(){
    button.addEventListener("click",()=>openCanonicalFrench101Lesson(day));
    grid.append(button);
   }
+  refreshers.push(saved=>{
+   const total=unit.lessons.filter(([day])=>saved.includes(day)).length;
+   const pct=Math.round(100*total/6);
+   percent.textContent=pct+"%";count.textContent=total+" of 6 lessons learner-confirmed complete ("+pct+"%).";
+   bar.value=total;mastery.textContent=frenchUnitMasteryDescription(unit.unit);
+   boxes.forEach(([day,box])=>{box.checked=saved.includes(day)});
+   for(const button of grid.querySelectorAll("[data-lesson]"))button.dataset.learnerConfirmed=saved.includes(Number(button.dataset.lesson))?"true":"false";
+  });
   section.append(grid);
   if(unit.unit===1){
    const assessment=element("div");assessment.className="french-canonical-assessment";
@@ -1354,6 +1438,7 @@ function buildCanonicalCourseMap(){
   }
   host.append(section);
  }
+ refreshAll();
 }
 function buildLevelGrid(){
  const grid=$("levelGrid");grid.replaceChildren();
