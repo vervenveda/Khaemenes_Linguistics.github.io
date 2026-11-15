@@ -663,6 +663,26 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 @media(prefers-reduced-motion:reduce){#app #frenchFourSkillReview .french-four-skill-chevron{transition:none}}
 @media print{#app #frenchFourSkillReview{break-inside:auto;box-shadow:none!important}}
 </style>
+<style id="french101-four-skill-expandable-grid-v5">
+/* Shared optional guidance cards only; no enrollment or assessment state. */
+#app #frenchFourSkillReview .french-four-skills-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;align-items:start;margin:20px 0 22px}
+#app #frenchFourSkillReview .french-four-skill-item{min-width:0;border:1px solid #C7BBA3;border-radius:7px;background:#FFF8E9;color:#202724;overflow:hidden}
+#app #frenchFourSkillReview .french-four-skill-item>summary{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;gap:6px;padding:20px 26px;min-height:150px;list-style:none;cursor:pointer;text-align:center;background:#FFF8E9;color:#202724}
+#app #frenchFourSkillReview .french-four-skill-item>summary::-webkit-details-marker{display:none}
+#app #frenchFourSkillReview .french-skill-icon{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid #B48B45;border-radius:7px;background:#202724;color:#FFF8E9;font-size:16px}
+#app #frenchFourSkillReview .french-skill-label{font:400 24px/1.25 Cinzel,"Palatino Linotype",Georgia,serif;color:#202724}
+#app #frenchFourSkillReview .french-skill-teaser{font:400 16px/1.45 "Brandon Grotesque",Nunito,Arial,sans-serif;color:#202724;max-width:28ch}
+#app #frenchFourSkillReview .french-skill-expand{position:absolute;right:12px;top:12px;color:#202724;font:400 22px/1 Cinzel,Georgia,serif}
+#app #frenchFourSkillReview .french-four-skill-item[open] .french-skill-expand{transform:rotate(45deg)}
+#app #frenchFourSkillReview .french-four-skill-item>summary:hover{background:#F7F1E5}
+#app #frenchFourSkillReview .french-four-skill-item>summary:focus-visible{outline:3px solid #B48B45;outline-offset:-3px}
+#app #frenchFourSkillReview .french-skill-content{padding:18px 20px;background:#FFFDF8;border-top:1px solid #C7BBA3;text-align:left}
+#app #frenchFourSkillReview .french-skill-content h3{font:400 20px/1.3 Cinzel,Georgia,serif;color:#202724;text-align:center;margin:18px auto 8px}
+#app #frenchFourSkillReview .french-skill-content p{font:400 16px/1.65 "Brandon Grotesque",Nunito,Arial,sans-serif;color:#202724;margin:9px 0}
+#app #frenchFourSkillReview .french-skill-content p[lang="fr"]{font-style:italic;padding:10px 12px;border-left:3px solid #B48B45;background:#F7F1E5}
+@media(max-width:680px){#app #frenchFourSkillReview .french-four-skills-grid{grid-template-columns:minmax(0,1fr)}#app #frenchFourSkillReview .french-four-skill-item>summary{min-height:120px}}
+@media print{#app #frenchFourSkillReview .french-four-skill-item{break-inside:avoid-page}#app #frenchFourSkillReview .french-skill-content{background:#fff}}
+</style>
   <script src="/Khaemenes_Linguistics.github.io/assets/linguistics-global-standard-v1.js" defer data-linguistics-global-standard="16-33-66-chrome"></script>
 </head>
 
@@ -744,7 +764,55 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 <summary aria-controls="frenchFourSkillReviewContent"><h2>Khaemenes Academy · French four-skill review guide</h2><span class="french-four-skill-chevron" aria-hidden="true">▾</span></summary>
 <div id="frenchFourSkillReviewContent" class="french-four-skill-body">
 <p>Use this independently of French 101 practice scores. A quiz pass or adjusted practice threshold does not demonstrate verified proficiency or award formal course credit.</p>
-<ol><li><strong>Reading:</strong> interpret an unfamiliar short French passage, explaining meaning and supporting details.</li><li><strong>Writing:</strong> write original French sentences using appropriate agreement, tense, accents and situational vocabulary.</li><li><strong>Listening:</strong> identify meaning from a new instructor-supplied audio clip; device-generated speech is rehearsal only.</li><li><strong>Speaking:</strong> sustain a brief comprehensible exchange with appropriate liaison, pronunciation and register.</li></ol>
+<div class="french-four-skills-grid" aria-label="Expand a skill to explore learning advice">
+  <details class="french-four-skill-item">
+   <summary><span class="french-skill-icon" aria-hidden="true">01</span><span class="french-skill-label">Reading</span><span class="french-skill-teaser">Understand meaning and supporting details.</span><span class="french-skill-expand" aria-hidden="true">+</span></summary>
+   <div class="french-skill-content">
+    <p><strong>Independent evidence:</strong> interpret an unfamiliar short French passage, explaining meaning and supporting details.</p>
+    <h3>A useful learning sequence</h3>
+    <p>Read the passage once for the main idea. Read again to identify names, actions, places and familiar words. Use surrounding sentences to infer meaning before checking a reference. Finally, explain the passage in your own words and cite one French phrase that supports your interpretation.</p>
+    <h3>Try it in French</h3>
+    <p lang="fr">« Je m’appelle Léa. J’habite à Paris. Le matin, je vais à l’école. »</p>
+    <p>Find the speaker’s name, location and morning activity. Which words support each answer? This is a practice model, not independent assessment evidence.</p>
+    <p><strong>Self-check:</strong> Can I explain both what a new passage says and how I know?</p>
+   </div>
+  </details>
+  <details class="french-four-skill-item">
+   <summary><span class="french-skill-icon" aria-hidden="true">02</span><span class="french-skill-label">Writing</span><span class="french-skill-teaser">Create clear, original French sentences.</span><span class="french-skill-expand" aria-hidden="true">+</span></summary>
+   <div class="french-skill-content">
+    <p><strong>Independent evidence:</strong> write original French sentences using appropriate agreement, tense, accents and situational vocabulary.</p>
+    <h3>A useful learning sequence</h3>
+    <p>Begin with a clear purpose: introduce yourself, describe something, or answer a question. Study a worked example, then close it and write your own response. Check subject and verb agreement, articles, word order, accents and punctuation. Revise one error and explain the rule you applied.</p>
+    <h3>Try it in French</h3>
+    <p lang="fr">« Je m’appelle Hugo. J’aime le français. »</p>
+    <p>Use this only as a model; write two new sentences with your own details. Keep a first draft and a corrected draft for comparison.</p>
+    <p><strong>Self-check:</strong> Could I write something meaningful without copying the model?</p>
+   </div>
+  </details>
+  <details class="french-four-skill-item">
+   <summary><span class="french-skill-icon" aria-hidden="true">03</span><span class="french-skill-label">Listening</span><span class="french-skill-teaser">Recognize sounds, ideas and details.</span><span class="french-skill-expand" aria-hidden="true">+</span></summary>
+   <div class="french-skill-content">
+    <p><strong>Independent evidence:</strong> identify meaning from a new instructor-supplied audio clip; device-generated speech is rehearsal only.</p>
+    <h3>A useful learning sequence</h3>
+    <p>Listen once without reading a transcript to identify the situation. On a second listening, note key words, numbers, names or questions. Compare what you heard with a transcript only after attempting an answer. Replay difficult sounds, then try a different recording to check transfer.</p>
+    <h3>Try it in French</h3>
+    <p>During practice, listen for <span lang="fr">bonjour</span>, <span lang="fr">merci</span> and <span lang="fr">au revoir</span> in short exchanges. For formal evaluation, use a new instructor-provided recording rather than the on-device narrator.</p>
+    <p><strong>Self-check:</strong> Could I identify the main idea and at least one supporting detail without reading along?</p>
+   </div>
+  </details>
+  <details class="french-four-skill-item">
+   <summary><span class="french-skill-icon" aria-hidden="true">04</span><span class="french-skill-label">Speaking</span><span class="french-skill-teaser">Respond naturally and comprehensibly.</span><span class="french-skill-expand" aria-hidden="true">+</span></summary>
+   <div class="french-skill-content">
+    <p><strong>Independent evidence:</strong> sustain a brief comprehensible exchange with appropriate liaison, pronunciation and register.</p>
+    <h3>A useful learning sequence</h3>
+    <p>Listen to a brief model, repeat for pronunciation, then say the idea without reading. Practice both informal and polite situations. Record a practice attempt if you choose, notice one sound to improve, and try a fresh exchange with a teacher or speaking partner. Pauses are part of learning.</p>
+    <h3>Try it in French</h3>
+    <p lang="fr">« Bonjour ! Comment vous appelez-vous ? » — « Je m’appelle Camille. Et vous ? »</p>
+    <p>Practice replacing the name and asking a follow-up question. Live teacher observation remains distinct from automated practice.</p>
+    <p><strong>Self-check:</strong> Can another person understand my message and respond appropriately?</p>
+   </div>
+  </details>
+ </div>
 <p>For each skill, document the learner's independent work, an instructor's observations, a correction, and the next practice goal. Keep learner evidence private. Instructor identity and assessment quality must be verified outside this public page.</p>
 </div>
 </details>
