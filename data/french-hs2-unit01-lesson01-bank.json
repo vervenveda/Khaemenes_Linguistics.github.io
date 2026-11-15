@@ -5,21 +5,21 @@
   "lesson": 1,
   "status": "authoring-review-not-published",
   "title": "Narrating past experiences: background and events",
-  "editorialReview": "pending-independent-linguistic-review",
+  "editorialReview": "assistant-editorial-pass-complete-independent-review-pending",
   "questions": [
     {
       "id": "hs2-u01-l01-q001",
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Complete a past event: « Hier, nous ___ au musée. »",
+      "prompt": "Two boys describe yesterday's visit. Complete: « Hier, nous ___ au musée. »",
       "choices": [
         "sommes allés",
-        "allons",
-        "avons allé"
+        "sommes allées",
+        "avons allés"
       ],
       "answer": 0,
-      "explanation": "Aller takes être in the passé composé: nous sommes allés."
+      "explanation": "Aller forms passé composé with être; for two boys, the masculine plural participle is allés."
     },
     {
       "id": "hs2-u01-l01-q002",
@@ -40,14 +40,14 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Complete: « Soudain, le téléphone ___. »",
+      "prompt": "Complete the sudden event in a past narrative: « Soudain, le téléphone ___. »",
       "choices": [
-        "sonnera hier",
+        "sonne",
         "a sonné",
-        "sonnait toujours"
+        "sonnait"
       ],
       "answer": 1,
-      "explanation": "A bounded event introduced by soudain normally uses passé composé."
+      "explanation": "A sonné presents the completed event. Sonnait could describe ongoing background, while sonne uses the present."
     },
     {
       "id": "hs2-u01-l01-q004",
@@ -278,14 +278,14 @@
       "unit": 1,
       "lesson": 1,
       "domain": "transfer",
-      "prompt": "In a story, you describe habitual childhood activities. Choose the best sentence.",
+      "prompt": "You are contrasting a repeated childhood habit with a single childhood event. Which sentence conveys the repeated habit?",
       "choices": [
-        "Quand j'étais enfant, je jouerai dehors.",
-        "Quand j'étais enfant, j'ai joué une fois.",
+        "Quand j'étais enfant, j'ai joué dehors une fois.",
+        "Quand j'étais enfant, je suis sorti un samedi.",
         "Quand j'étais enfant, je jouais dehors."
       ],
       "answer": 2,
-      "explanation": "Imparfait aligns with repeated childhood habits."
+      "explanation": "Je jouais in the imparfait describes a habitual action; the passé composé alternatives refer to particular completed events."
     },
     {
       "id": "hs2-u01-l01-q021",
@@ -362,14 +362,14 @@
       "unit": 1,
       "lesson": 1,
       "domain": "transfer",
-      "prompt": "Give a sequence of two completed events. Which sentence works?",
+      "prompt": "Describe two successive completed past events, using the correct auxiliary for each verb.",
       "choices": [
-        "Je fermais la porte demain, puis je partirai hier.",
         "J'ai fermé la porte, puis j'ai parti.",
+        "Je fermais la porte, puis je partais tous les soirs.",
         "J'ai fermé la porte, puis je suis parti."
       ],
       "answer": 2,
-      "explanation": "Fermer takes avoir and partir takes être in passé composé."
+      "explanation": "Ai fermé and suis parti describe successive bounded events; the imparfait alternative describes habitual background."
     },
     {
       "id": "hs2-u01-l01-q027",
