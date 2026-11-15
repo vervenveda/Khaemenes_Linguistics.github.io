@@ -1,0 +1,239 @@
+{
+  "schema_version": "1.0.0",
+  "curriculum_id": "KH-LANG-FR-201-2026",
+  "course": "French 201",
+  "unit": 1,
+  "unit_id": "FR201-U01",
+  "title": "Études, choix et avenir",
+  "status": "instructional_foundation_pilot_not_formal_mastery",
+  "level": "Intermediate college I; bridge from French 102",
+  "authority": {
+    "formal_record": "Halls/index.html",
+    "formal_program": "French 201 · Intermediate College I",
+    "learner_experience": "apps/French_201_index.html",
+    "mastery_policy": "No local lesson activity grants formal V4 mastery. Formal record integration requires a later verified bridge."
+  },
+  "course_duration_weeks": 18,
+  "planned_units": [
+    {
+      "unit": 1,
+      "lessons": "01–06",
+      "theme": "Education, work and the future",
+      "status": "foundation"
+    },
+    {
+      "unit": 2,
+      "lessons": "07–12",
+      "theme": "Media, environment and evidence",
+      "status": "planned"
+    },
+    {
+      "unit": 3,
+      "lessons": "13–18",
+      "theme": "Arts, identity and perspectives",
+      "status": "planned"
+    }
+  ],
+  "unit_outcomes": [
+    "Develop connected argumentation about education and professional choices.",
+    "Interpret intermediate passages with more than one point of view.",
+    "Use future simple, present conditional and basic relative clauses in context.",
+    "Produce revised original writing and separate, truthfully attributed oral/listening evidence."
+  ],
+  "assessment_plan": {
+    "lesson_quiz": {
+      "questions": 20,
+      "pass_correct": 16,
+      "min_authored_bank": 27,
+      "status": "not_published_until_27_validated_items_per_lesson"
+    },
+    "unit_exam": {
+      "questions": 50,
+      "pass_correct": 40,
+      "min_authored_bank": 67,
+      "status": "not_published_until_authored_bank_and_formal_authority_bridge"
+    },
+    "midterm": {
+      "questions": 150,
+      "pass_correct": 120,
+      "status": "planned_after_lesson_12"
+    },
+    "final": {
+      "questions": 200,
+      "pass_correct": 160,
+      "status": "planned_after_lesson_18"
+    },
+    "monte_carlo": "Unique items per attempt, balanced domains, one-third reserve; resume and retry without overwriting prior passes"
+  },
+  "record_policy": {
+    "storage_prefix": "khae.fr201.unit01.evidence.v1",
+    "device_local_only": true,
+    "student_selects_learner": true,
+    "export_required": true,
+    "formal_grade_awarded": false
+  },
+  "lessons": [
+    {
+      "id": "FR201-U01-L01",
+      "number": 1,
+      "title": "Passer de la phrase au paragraphe",
+      "english": "From sentences to connected paragraphs",
+      "focus": "Organizing an opinion about education",
+      "grammar": "Connectors: d'abord, ensuite, cependant, parce que, donc",
+      "targets": [
+        "Identify a main idea and two supporting details in a connected paragraph.",
+        "Distinguish a reason (parce que) from a consequence (donc).",
+        "Write a paragraph expressing an education preference with supporting evidence."
+      ],
+      "model": "À mon avis, apprendre plusieurs langues est utile parce qu'on peut échanger avec davantage de personnes. D'abord, on découvre de nouvelles idées. Ensuite, on comprend mieux d'autres cultures. Cependant, il faut pratiquer régulièrement. Donc, j'essaie d'écouter et de lire un peu chaque jour.",
+      "reading": "Dans notre classe, les élèves proposent plusieurs façons d'apprendre. Samira préfère les projets collectifs, car ils permettent de comparer des idées. Louis aime travailler seul : il peut avancer à son rythme. Leur professeure explique qu'il n'existe pas une seule méthode idéale. Elle demande à chacun de défendre son choix avec un exemple concret. Après la discussion, le groupe décide d'organiser un projet commun, mais de laisser du temps pour le travail individuel. Cette solution respecte les préférences des deux élèves.",
+      "questions": [
+        "Quelle différence y a-t-il entre la méthode de Samira et celle de Louis ?",
+        "Pourquoi le groupe choisit-il une solution mixte ? Citez une phrase du texte.",
+        "Dans le modèle, quelle expression introduit une conséquence ?"
+      ],
+      "guided": [
+        "Repérez la phrase qui présente l'opinion dans le modèle.",
+        "Classez parce que, cependant et donc comme raison, contraste ou conséquence.",
+        "Transformez deux phrases isolées en un paragraphe logique."
+      ],
+      "production": "Rédigez un paragraphe de 110 à 140 mots : « Quelle méthode d'apprentissage fonctionne le mieux pour moi ? » Présentez votre opinion, deux raisons, un contrepoint et une conclusion.",
+      "feedback": "Une opinion claire; deux raisons concrètes; connecteurs utilisés selon leur sens; révision d'une phrase."
+    },
+    {
+      "id": "FR201-U01-L02",
+      "number": 2,
+      "title": "Parler de ses projets au futur",
+      "english": "Discussing study and career plans",
+      "focus": "Predicting and planning",
+      "grammar": "Futur simple; contrast with futur proche; irregular stems: ser-, aur-, ir-, fer-",
+      "targets": [
+        "Interpret future simple in authentic study-plan contexts.",
+        "Choose futur proche for a near or planned action and futur simple for a broader future statement, without treating the distinction as absolute.",
+        "Express three plausible future goals and justify them."
+      ],
+      "model": "L'année prochaine, je suivrai des cours de sciences et je ferai du bénévolat. Cet été, je vais visiter une université. Plus tard, j'aurai peut-être envie d'étudier la médecine, mais je garderai plusieurs possibilités ouvertes.",
+      "reading": "Nadia hésite entre deux formations. La semaine prochaine, elle va rencontrer une conseillère d'orientation. Elle préparera une liste de questions et demandera des informations sur les stages. Si elle choisit la filière artistique, elle travaillera dans un atelier; si elle préfère les sciences, elle étudiera la biologie. Pour le moment, elle ne veut pas décider trop vite. Elle espère découvrir ce qu'elle aime vraiment avant de s'engager dans un long programme.",
+      "questions": [
+        "Quels événements sont déjà prévus pour la semaine prochaine ?",
+        "Pourquoi Nadia souhaite-t-elle garder plusieurs possibilités ?",
+        "Relevez deux verbes au futur simple et donnez leur infinitif."
+      ],
+      "guided": [
+        "Transformez « je travaille » en futur simple, puis expliquez le changement.",
+        "Comparez « je vais visiter » et « je visiterai » dans deux contextes.",
+        "Corrigez « nous serons » et « ils auront » si les sujets ou les temps sont mal associés."
+      ],
+      "production": "Écrivez un message de 120 mots à un conseiller : décrivez un projet concret à court terme et deux possibilités à long terme, avec au moins quatre verbes au futur simple.",
+      "feedback": "Temps choisis selon le contexte; formes irrégulières justes; projets motivés; absence de certitude inventée."
+    },
+    {
+      "id": "FR201-U01-L03",
+      "number": 3,
+      "title": "Exprimer des possibilités et des conseils",
+      "english": "Conditional and respectful recommendations",
+      "focus": "Giving advice about academic choices",
+      "grammar": "Conditionnel présent; je voudrais / on pourrait / il faudrait / à votre place",
+      "targets": [
+        "Recognize a polite request versus a possible or hypothetical outcome.",
+        "Form frequent present conditional expressions in advice and service contexts.",
+        "Explain why a recommendation is appropriate for a particular student."
+      ],
+      "model": "À votre place, je demanderais un entretien avec la conseillère. Vous pourriez comparer les programmes avant de choisir. Il faudrait également vérifier les horaires. Je voudrais comprendre les exigences de chaque formation.",
+      "reading": "Karim travaille après les cours et souhaite continuer ses études. Sa tutrice lui conseille de vérifier les horaires avant de s'inscrire. Elle explique : « Vous pourriez suivre certains cours en ligne, mais il faudrait aussi prévoir du temps pour les projets en groupe. » Karim répond qu'il aimerait discuter avec des étudiants du programme. Il ne demande pas qu'on décide à sa place; il veut comprendre les possibilités et faire son propre choix.",
+      "questions": [
+        "Quel problème pratique Karim doit-il résoudre ?",
+        "Citez deux conseils proposés dans le texte.",
+        "Pourquoi le conditionnel convient-il aux recommandations de la tutrice ?"
+      ],
+      "guided": [
+        "Réécrivez « Je veux un rendez-vous » en demande plus polie.",
+        "Proposez deux conseils différents à Karim avec on pourrait et il faudrait.",
+        "Distinguez une suggestion réaliste d'une promesse certaine."
+      ],
+      "production": "Rédigez un échange de huit répliques entre un élève et un conseiller. Posez deux questions, proposez trois conseils nuancés et terminez par un choix expliqué.",
+      "feedback": "Formes du conditionnel; politesse adaptée; autonomie du destinataire; recommandations réalistes."
+    },
+    {
+      "id": "FR201-U01-L04",
+      "number": 4,
+      "title": "Relier ses idées avec qui, que et où",
+      "english": "Relative clauses in education and work",
+      "focus": "Describing programs, places and people precisely",
+      "grammar": "Pronoms relatifs simples: qui, que / qu', où",
+      "targets": [
+        "Identify what a relative pronoun refers to in context.",
+        "Distinguish subject qui, direct-object que, and place/time où.",
+        "Combine short statements into meaningful connected descriptions."
+      ],
+      "model": "Je connais une étudiante qui prépare un projet scientifique. Le livre qu'elle consulte explique les expériences. L'école où elle travaille possède un laboratoire accessible aux élèves.",
+      "reading": "La médiathèque où Inès fait du bénévolat organise un atelier pour les jeunes. L'animatrice, qui connaît plusieurs langues, présente des ressources gratuites. Inès recommande un site que les participants peuvent consulter à la maison. Elle rappelle que certains documents contiennent des opinions plutôt que des faits vérifiés. À la fin de l'atelier, les élèves rédigent une courte fiche qui explique comment reconnaître une source fiable.",
+      "questions": [
+        "Quel lieu accueille l'atelier ?",
+        "Dans « un site que les participants peuvent consulter », que remplace-t-il ?",
+        "Pourquoi la fiche finale est-elle utile selon le texte ?"
+      ],
+      "guided": [
+        "Reliez « Je connais un professeur. Il parle français. » avec qui.",
+        "Reliez « Voici le livre. Je lis ce livre. » avec que.",
+        "Décrivez un endroit lié à l'apprentissage avec où."
+      ],
+      "production": "Présentez un établissement, une ressource et une personne qui vous aide à apprendre. Écrivez un paragraphe de 120 à 150 mots avec au moins une proposition introduite par qui, que et où.",
+      "feedback": "Antécédent identifiable; choix du pronom; phrases lisibles; détails précis plutôt que répétitions."
+    },
+    {
+      "id": "FR201-U01-L05",
+      "number": 5,
+      "title": "Lire et comparer des points de vue",
+      "english": "Intermediate reading and evidence",
+      "focus": "Education, employment and digital learning",
+      "grammar": "Opinion markers and concession: selon, pourtant, tandis que, en revanche",
+      "targets": [
+        "Distinguish reported opinions from independently established facts.",
+        "Compare two viewpoints and identify one point of agreement.",
+        "Summarize an unfamiliar paragraph without copying its sentences."
+      ],
+      "model": "Selon Ana, l'apprentissage en ligne facilite l'accès aux cours. En revanche, Malik pense que les rencontres en personne favorisent les échanges spontanés. Pourtant, tous deux reconnaissent qu'un bon accompagnement est important.",
+      "reading": "Deux étudiants discutent de l'enseignement à distance. Ana explique qu'elle peut suivre des cours malgré son travail à temps partiel. Elle apprécie les ressources gratuites et la possibilité de revoir une leçon. Malik, lui, préfère les échanges en classe : les discussions lui donnent des idées qu'il n'aurait pas trouvées seul. Il ajoute cependant que les outils numériques peuvent être utiles pour préparer ces rencontres. Leur désaccord ne porte donc pas sur la valeur de l'éducation, mais sur la manière de créer des occasions d'apprendre. Les deux étudiants demandent plus de souplesse et des conseils personnalisés.",
+      "questions": [
+        "Quelle affirmation décrit l'opinion d'Ana, et non un fait universel ?",
+        "Sur quel point les deux étudiants sont-ils d'accord ?",
+        "Que signifie « cependant » dans cette comparaison ?"
+      ],
+      "guided": [
+        "Classez trois phrases du texte comme position personnelle, observation ou conclusion.",
+        "Reformulez l'avis de Malik sans le présenter comme la seule bonne réponse.",
+        "Comparez les deux idées avec tandis que et en revanche."
+      ],
+      "production": "Rédigez une synthèse de 140 à 170 mots comparant les deux points de vue. Citez une courte expression du texte, expliquez un accord et un désaccord, puis défendez une solution équilibrée.",
+      "feedback": "Attribution des avis; fidélité au texte; comparaison nuancée; conclusion justifiée."
+    },
+    {
+      "id": "FR201-U01-L06",
+      "number": 6,
+      "title": "Mission : construire son parcours",
+      "english": "Unit 01 integrated communication mission",
+      "focus": "Presenting a reasoned study or career pathway",
+      "grammar": "Integration: future, conditional, simple relative clauses and paragraph cohesion",
+      "targets": [
+        "Interpret and compare two written educational proposals.",
+        "Write a connected recommendation with supporting reasons and accurately integrated grammar.",
+        "Present, revise and reflect on a realistic learning pathway."
+      ],
+      "model": "Je choisirai un programme qui me permettra de progresser tout en travaillant. Si j'avais besoin d'aide, je demanderais conseil. L'établissement où je voudrais étudier propose des projets collectifs, ce qui me semble utile. Pourtant, je comparerai encore les horaires avant de décider.",
+      "reading": "Le Centre Horizon propose deux parcours fictifs. Le parcours A comporte des rencontres en groupe deux jours par semaine et un projet pratique chaque mois. Le parcours B est plus flexible : les cours sont accessibles en ligne, mais les élèves doivent organiser eux-mêmes leurs séances de travail. Les deux parcours comprennent des évaluations écrites et un accompagnement individuel. Emma choisira probablement A parce qu'elle aime discuter avec ses camarades. Yanis, qui travaille souvent le soir, préférerait B. La brochure ne précise ni les coûts ni les résultats des anciens élèves. Avant de recommander un parcours, la conseillère demande donc des informations supplémentaires.",
+      "questions": [
+        "Quelles informations manquent pour comparer les parcours de manière responsable ?",
+        "Pourquoi Emma et Yanis ne font-ils pas le même choix ?",
+        "Identifiez une phrase au futur simple, une au conditionnel et une proposition relative."
+      ],
+      "guided": [
+        "Construisez un tableau comparatif : avantage, contrainte, information manquante.",
+        "Proposez une recommandation conditionnelle adaptée à Emma ou Yanis.",
+        "Vérifiez les pronoms relatifs et les connecteurs de votre recommandation."
+      ],
+      "production": "Mission finale : créez un dossier de 180 à 220 mots pour un élève fictif. Comparez A et B, expliquez votre recommandation avec trois preuves du texte, employez le futur simple, le conditionnel et qui/que/où, puis ajoutez deux questions nécessaires avant de décider.",
+      "feedback": "Interprétation fidèle; choix motivé; connecteurs et temps maîtrisés; révisions explicites; observations orales uniquement si réellement évaluées."
+    }
+  ]
+}

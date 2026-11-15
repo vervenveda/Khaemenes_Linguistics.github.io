@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>French 201 · Unit 01 | Khaemenes Academy</title>
+<meta name="description" content="French 201 intermediate study: education, choices and the future. Six original lessons with reading, writing and reflection.">
+<style>
+:root{color-scheme:light;--ink:#202724;--paper:#fffdf8;--cream:#fff8e9;--parchment:#f7f1e5;--gold:#b48b45;--line:#c7bba3}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--parchment);color:var(--ink);font:400 17px/1.6 "Brandon Grotesque",Nunito,Arial,sans-serif}
+button,input,textarea,select{font:inherit}
+button,a{touch-action:manipulation}
+a{color:var(--ink)}
+a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+main{max-width:1140px;margin:0 auto;padding:24px 18px 66px}
+.course-breadcrumb{display:flex;justify-content:center;flex-wrap:wrap;gap:14px;margin:4px auto 18px;padding:12px;background:var(--cream);border:1px solid var(--line);border-radius:7px}
+.course-breadcrumb a{font-size:16px;color:var(--ink)}
+h1,h2,h3,h4{font-family:Cinzel,Georgia,serif;font-weight:400;line-height:1.3}
+h1{font-size:clamp(34px,5vw,55px);margin:7px 0}h2{font-size:33px;margin:0 0 8px}h3{font-size:24px;margin:0 0 8px}h4{font-size:20px;margin:0 0 8px}
+.hero,.panel{border:1px solid var(--line);border-radius:7px;background:var(--paper);padding:24px;margin-bottom:20px}
+.hero{text-align:center}.hero>p{max-width:760px;margin:12px auto;font-size:18px}
+.eyebrow{font:400 16px/1.5 Cinzel,Georgia,serif;color:#765b31}
+.pill{display:inline-block;padding:5px 12px;border:1px solid var(--gold);border-radius:7px;background:var(--cream);font-size:16px}
+.notice{border-left:4px solid var(--gold);background:var(--cream);padding:12px 16px;border-radius:7px;margin:15px 0}
+.progress-row{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px auto}
+.stat{text-align:center;border:1px solid var(--line);background:var(--cream);border-radius:7px;padding:12px}
+.stat strong{display:block;font:400 24px/1.4 Cinzel,Georgia,serif}
+button.primary,.actions button,.lesson-button{min-height:48px;border:1px solid var(--gold);border-radius:7px;background:var(--ink);color:var(--cream);padding:10px 15px;cursor:pointer}
+button:disabled{opacity:.65;cursor:not-allowed}
+.controls{display:flex;justify-content:center;align-items:center;gap:12px;flex-wrap:wrap;margin-top:16px}
+.controls label{font-size:16px}
+input[type=text]{width:min(100%,320px);min-height:46px;padding:8px 12px;border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink)}
+textarea{display:block;width:100%;min-height:145px;padding:12px;border:1px solid var(--line);border-radius:7px;background:white;color:var(--ink);resize:vertical;margin:10px auto}
+progress{width:100%;height:18px;accent-color:var(--ink);margin-top:10px}
+.lessons{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:17px 0}
+.lesson-button{width:100%;text-align:center;min-height:100px}
+.lesson-button[aria-current=true]{background:#4d3920;outline:2px solid var(--gold);outline-offset:2px}
+.lesson-button small{display:block;font:400 16px/1.4 Nunito,Arial,sans-serif;margin-top:5px}
+.lesson-button strong{display:block;font:400 20px/1.3 Cinzel,Georgia,serif}
+.lesson-body{max-width:900px;margin:0 auto}
+.lesson-body>p{font-size:17px}
+.steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px 0}
+details.stage{border:1px solid var(--line);background:var(--cream);border-radius:7px;overflow:hidden}
+details.stage>summary{cursor:pointer;padding:17px;text-align:center;font:400 20px/1.4 Cinzel,Georgia,serif}
+details.stage[open]>summary{border-bottom:1px solid var(--line)}
+.stage-content{padding:17px;background:var(--paper)}
+.stage-content p{margin-top:0;line-height:1.7}
+.stage-content li{margin-bottom:9px}
+.french-passage{border-left:3px solid var(--gold);padding:15px;background:var(--parchment);font-size:18px;line-height:1.85}
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:20px}
+#feedback,#loadState{min-height:24px;text-align:center;font-size:16px}
+.footer{background:var(--ink);color:var(--cream);padding:24px;text-align:center;margin-top:25px}
+.footer a{color:var(--cream)}
+@media(max-width:760px){.lessons,.steps,.progress-row{grid-template-columns:repeat(2,minmax(0,1fr))}main{padding:14px 12px 45px}.hero,.panel{padding:16px}}
+@media(max-width:500px){.lessons,.steps,.progress-row{grid-template-columns:1fr}h2{font-size:26px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+@media print{header nav,.controls,.lessons,.actions,button,.footer{display:none!important}body{background:white}.hero,.panel{border:0;padding:7px;margin:0}details.stage{break-inside:avoid}details.stage .stage-content{display:block!important}textarea{border:1px solid #555}}
+</style>
+<script src="../assets/linguistics-global-standard-v1.js" defer data-linguistics-global-standard="16-33-66-chrome"></script>
+</head>
+<body>
+<main>
+<nav class="course-breadcrumb" aria-label="Course breadcrumbs">
+<a href="../index.html">Polyglot Campus</a><a href="./French_101_index.html">French 101</a><a href="../Halls/index.html?language=french">Formal French Program</a>
+</nav>
+<section class="hero" aria-labelledby="courseTitle">
+<p class="eyebrow">French 201 · Intermediate College I · Unit 01</p>
+<h1 id="courseTitle">Études, choix et avenir</h1>
+<p>Express your ideas, examine competing perspectives, and build a thoughtful learning pathway—in French.</p>
+<p><span class="pill">Six connected lessons</span> <span class="pill">Original intermediate readings</span> <span class="pill">Practice at your own pace</span></p>
+<div class="notice">Foundation pilot: these activities save your own study evidence locally. They do <strong>not</strong> issue official French 201 grades, unlock formal credit, or replace the Academy's existing formal course authority. Lesson and unit mastery assessments will open after their authored question banks and record bridge are validated.</div>
+</section>
+<section class="panel" aria-labelledby="profileTitle">
+<h2 id="profileTitle" style="text-align:center">My French 201 learning desk</h2>
+<p style="text-align:center">Your notes remain in this browser. Select a learner before saving. Your name does not authenticate an Academy account.</p>
+<div class="controls"><label for="learner">Learner label</label><input id="learner" type="text" maxlength="60" placeholder="Learner name (local only)"><button class="primary" id="selectLearner" type="button">Open learning desk</button></div>
+<div class="progress-row"><div class="stat"><strong id="visitedCount">0/6</strong><span>Lessons visited</span></div><div class="stat"><strong id="writtenCount">0/6</strong><span>Lessons with saved writing</span></div><div class="stat"><strong>80%</strong><span>Planned formal mastery</span></div></div>
+<progress id="portfolioProgress" value="0" max="6" aria-label="Lessons with saved writing"></progress>
+<p id="feedback" role="status" aria-live="polite">Choose a learner label or continue as a local guest.</p>
+<div class="actions"><button id="export" type="button">Export My Study Evidence JSON</button><button id="print" type="button">Print Current Lesson</button></div>
+</section>
+<section class="panel" aria-labelledby="unitTitle">
+<p class="eyebrow" style="text-align:center">Unit 01 · Studies, Choices & the Future</p>
+<h2 id="unitTitle" style="text-align:center">Choose a learning adventure</h2>
+<p style="text-align:center">Each lesson follows Discover → Interpret → Guided Practice → Create → Reflect. Lesson 06 brings the unit together in one mission. No timed pressure.</p>
+<div id="lessonButtons" class="lessons" aria-label="French 201 Unit 01 lessons"></div>
+</section>
+<section class="panel" id="lessonPanel" aria-labelledby="activeTitle">
+<div id="loadState" role="status" aria-live="polite">Loading the Unit 01 curriculum…</div>
+<div id="lessonContent" class="lesson-body" hidden></div>
+</section>
+<section class="panel">
+<h2 style="text-align:center">Assessment foundations</h2>
+<p>This pilot follows the Academy's planned assessment blueprint: 20 questions per lesson (16 correct to pass), a 50-question unit exam (40 correct), and Monte Carlo question banks with at least one-third reserve. The midterm and final are planned after the later units. Formal assessments are <strong>not yet active</strong>; no simulated grades or certificates are issued from practice writing.</p>
+<div class="notice">Reading and writing evidence can be saved here. Optional browser speech is pronunciation rehearsal only; it never certifies listening or speaking proficiency.</div>
+</section>
+</main>
+<footer class="footer">Khaemenes Academy · Verve N Veda · Free, thoughtful, independent learning</footer>
+<script>
+"use strict";
+(()=>{
+ const $=id=>document.getElementById(id);
+ let plan=null,chosen=1,learner="guest";
+ const key=()=> "khae.fr201.unit01.evidence.v1:"+Array.from(learner.toLocaleLowerCase("en"),x=>x.codePointAt(0).toString(16)).join("-");
+ const read=()=>{try{const x=JSON.parse(localStorage.getItem(key())||"{}");return x&&typeof x==="object"&&!Array.isArray(x)?x:{}}catch{return {}}};
+ const write=data=>{try{localStorage.setItem(key(),JSON.stringify(data));return true}catch{$("feedback").textContent="Unable to save on this device. Export or copy your writing before leaving.";return false}};
+ const display=(text)=>{$("feedback").textContent=text};
+ const node=(tag,text)=>{const e=document.createElement(tag);if(text!==undefined)e.textContent=text;return e};
+ function speak(text){
+  if(!("speechSynthesis" in window)){display("French speech is unavailable on this device. Read the written passage or ask a reviewer.");return}
+  const voices=speechSynthesis.getVoices(),fr=voices.find(v=>String(v.lang).toLowerCase().startsWith("fr"));
+  if(!fr){display("No French voice is installed. Do not treat this as assessed listening evidence.");return}
+  speechSynthesis.cancel();const msg=new SpeechSynthesisUtterance(text);msg.voice=fr;msg.lang=fr.lang;msg.rate=.85;speechSynthesis.speak(msg);
+  display("French voice practice playing. This is not an assessed listening result.");
+ }
+ function saveField(field,value){
+  const state=read(),current=state[chosen]||{};
+  state[chosen]={...current,[field]:value,visited:true,modifiedAt:new Date().toISOString()};
+  if(write(state))display("Saved study evidence for Lesson "+String(chosen).padStart(2,"0")+" on this device.");
+  updateProgress();
+ }
+ function updateProgress(){
+  const state=read(),items=plan?.lessons||[];
+  $("visitedCount").textContent=items.filter(l=>state[l.number]?.visited).length+"/6";
+  const writing=items.filter(l=>String(state[l.number]?.writing||"").trim()).length;
+  $("writtenCount").textContent=writing+"/6";$("portfolioProgress").value=writing;
+ }
+ function stage(title,children,expanded=false){
+  const d=node("details");d.className="stage";d.open=expanded;
+  d.append(node("summary",title));const body=node("div");body.className="stage-content";
+  children.forEach(c=>body.append(c));d.append(body);return d;
+ }
+ function p(text){return node("p",text)}
+ function list(rows){const ol=node("ol");rows.forEach(t=>ol.append(node("li",t)));return ol}
+ function textarea(label,field,value,placeholder){
+  const wrapper=node("div"),lab=node("label",label),input=node("textarea");
+  input.setAttribute("aria-label",label);input.placeholder=placeholder;input.value=value||"";
+  input.addEventListener("input",()=>saveField(field,input.value));
+  wrapper.append(lab,input);return wrapper;
+ }
+ function renderButtons(){
+  const host=$("lessonButtons");host.replaceChildren();
+  plan.lessons.forEach(l=>{
+   const b=node("button");b.type="button";b.className="lesson-button";b.setAttribute("aria-current",l.number===chosen?"true":"false");
+   b.append(node("strong","Lesson "+String(l.number).padStart(2,"0")),node("small",l.title));
+   b.addEventListener("click",()=>{chosen=l.number;renderButtons();renderLesson();document.getElementById("lessonPanel").scrollIntoView({block:"start",behavior:"auto"})});
+   host.append(b);
+  })
+ }
+ function renderLesson(){
+  const lesson=plan.lessons.find(l=>l.number===chosen),saved=read()[chosen]||{},host=$("lessonContent");
+  host.replaceChildren();const title=node("h2",lesson.title);title.id="activeTitle";
+  host.append(node("p","Lesson "+String(chosen).padStart(2,"0")+" · "+lesson.english),title,p(lesson.focus));
+  const targets=stage("Learning targets",[list(lesson.targets)],true);
+  const discover=stage("01 · Discover",[p("Grammar and discourse focus: "+lesson.grammar),node("div")],true);
+  const model=node("p",lesson.model);model.lang="fr";model.className="french-passage";
+  discover.lastChild.replaceWith(model);
+  const read=node("p",lesson.reading);read.lang="fr";read.className="french-passage";
+  const speech=node("button","Listen to the passage (optional voice practice)");speech.type="button";speech.className="primary";
+  speech.addEventListener("click",()=>speak(lesson.reading));
+  const interpret=stage("02 · Read & Interpret",[read,speech,list(lesson.questions)]);
+  const guided=stage("03 · Guided Practice",[p("Explain every choice in your own words rather than copying the model."),list(lesson.guided),textarea("My guided work and explanations","guided",saved.guided,"My observations, examples and corrections…")]);
+  const create=stage("04 · Create & Communicate",[p(lesson.production),textarea("My original French writing","writing",saved.writing,"Rédigez votre texte original en français…")]);
+  const reflect=stage("05 · Reflect & Review",[p("Reviewer focus: "+lesson.feedback),textarea("Corrections, notes and observations","reflection",saved.reflection,"Quels changements rendent mon français plus précis ?"),p("Speaking/listening: Not assessed unless separately observed and documented.")]);
+  const grid=node("div");grid.className="steps";grid.append(targets,discover,interpret,guided,create,reflect);host.append(grid);
+  const actions=node("div");actions.className="actions";
+  if(chosen>1){const b=node("button","Previous lesson");b.type="button";b.addEventListener("click",()=>{chosen--;renderButtons();renderLesson()});actions.append(b)}
+  if(chosen<6){const b=node("button","Next lesson");b.type="button";b.addEventListener("click",()=>{chosen++;renderButtons();renderLesson()});actions.append(b)}
+  host.append(actions);host.hidden=false;$("loadState").hidden=true;
+  const state=read();if(!state[chosen]?.visited){state[chosen]={...(state[chosen]||{}),visited:true};write(state)}
+  updateProgress();
+ }
+ function openDesk(){
+  learner=$("learner").value.trim().replace(/\s+/g," ").slice(0,60)||"guest";
+  display("Learning desk opened: "+learner+". Study evidence is local to this browser and learner label.");
+  if(plan){renderButtons();renderLesson()}
+ }
+ $("selectLearner").addEventListener("click",openDesk);
+ $("print").addEventListener("click",()=>{document.querySelectorAll("#lessonPanel details").forEach(x=>x.open=true);window.print()});
+ $("export").addEventListener("click",()=>{
+  const exportData={format:"khae-french201-unit01-evidence-v1",course:"French 201",unit:1,learner_label:learner,exported_at:new Date().toISOString(),evidence:read(),formal_grade:false};
+  const blob=new Blob([JSON.stringify(exportData,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=node("a");
+  a.href=url;a.download="khaemenes-french201-unit01-evidence.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);
+  display("Study evidence exported. Store the file privately; it contains learner writing.");
+ });
+ fetch("../data/french-201-unit01.json").then(r=>{if(!r.ok)throw Error("Curriculum file unavailable");return r.json()}).then(data=>{
+  if(data.curriculum_id!=="KH-LANG-FR-201-2026"||data.unit!==1||!Array.isArray(data.lessons)||data.lessons.length!==6||data.lessons.some((l,i)=>l.number!==i+1||!l.model||!l.reading||!l.production))throw Error("Curriculum data did not pass validation");
+  plan=data;renderButtons();renderLesson();
+ }).catch(err=>{$("loadState").textContent="The Unit 01 curriculum could not load. "+err.message+". Reload when the Academy files are available; no learner work has been deleted.";});
+})();
+</script>
+</body>
+</html>
