@@ -1253,7 +1253,7 @@ function frenchAssessmentRun(config){
 /* Canonical balanced assessments v2. Monte Carlo retakes use authored reserve items. */
 function frenchLessonSet(day,count,avoidIds=[]){
  const bank=canonicalBank(day);
- if(!Number.isInteger(day)||day<1||day>18||!Array.isArray(bank)||bank.length<count)throw Error("Insufficient unique lesson questions");
+ if(!Number.isInteger(day)||day<1||day>18||!Array.isArray(bank)||bank.length<Math.ceil(count*4/3))throw Error("Lesson bank requires an additional one-third question reserve");
  const ids=new Set(avoidIds),groups=new Map();
  bank.forEach((q,i)=>{
   if(!q||typeof q.prompt!=="string"||!Array.isArray(q.choices)||q.choices.length<2||!Number.isInteger(q.answer)||q.answer<0||q.answer>=q.choices.length)throw Error("Invalid authored question");
@@ -1280,6 +1280,8 @@ function frenchLessonSet(day,count,avoidIds=[]){
 }
 function frenchCumulativeSet(days,count,avoidIds=[]){
  if(!Array.isArray(days)||!days.length||!Number.isInteger(count)||count<1)throw Error("Invalid exam settings");
+ const available=days.reduce((total,day)=>total+(canonicalBank(day)?.length||0),0);
+ if(available<Math.ceil(count*4/3))throw Error("Cumulative exam needs an additional one-third authored question reserve");
  const per=Math.floor(count/days.length),extra=count%days.length;
  const selected=days.flatMap((day,i)=>frenchLessonSet(day,per+(i<extra?1:0),avoidIds));
  if(selected.length!==count||new Set(selected.map(q=>q.id)).size!==count)throw Error("Incorrect exam question count");
