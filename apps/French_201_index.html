@@ -82,6 +82,19 @@ details.stage[open]>summary{border-bottom:1px solid var(--line)}
 @media(max-width:700px){#lessonPanel .fr201-studios,#lessonPanel .fr201-quiz .choices{grid-template-columns:minmax(0,1fr)}#lessonPanel .fr201-depth{padding:13px}}
 @media print{#lessonPanel .fr201-quiz button{display:none!important}}
 </style>
+<style id="fr201-family-record-v1">
+#fr201FamilyReport{max-width:970px;margin:20px auto;border:1px solid #c7bba3;border-radius:7px;background:#fff8e9;padding:14px}
+#fr201FamilyReport>summary{font:400 24px/1.45 Cinzel,Georgia,serif;text-align:center;cursor:pointer;color:#202724;padding:12px}
+#fr201FamilyReport .family-body{padding:16px;font-size:16px;line-height:1.6}
+#fr201FamilyReport .family-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:15px auto}
+#fr201FamilyReport .family-grid>div{border:1px solid #c7bba3;padding:12px;border-radius:7px;background:#fffdf8;text-align:center}
+#fr201FamilyReport .family-grid strong{font:400 24px/1.5 Cinzel,Georgia,serif;display:block}
+#fr201FamilyReport .family-evidence{border:1px solid #c7bba3;border-radius:7px;background:#fffdf8;padding:12px;margin:12px 0}
+#fr201FamilyReport .family-evidence summary{cursor:pointer;font-size:17px}
+#fr201FamilyReport .family-evidence p{white-space:pre-wrap;overflow-wrap:anywhere}
+#fr201FamilyReport button{min-height:48px;border:1px solid #b48b45;border-radius:7px;background:#202724;color:#fff8e9;padding:10px 16px;font:400 16px/1.5 Nunito,Arial,sans-serif}
+@media(max-width:600px){#fr201FamilyReport .family-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <main>
@@ -102,6 +115,7 @@ details.stage[open]>summary{border-bottom:1px solid var(--line)}
 <div class="progress-row"><div class="stat"><strong id="visitedCount">0/6</strong><span>Lessons visited</span></div><div class="stat"><strong id="writtenCount">0/6</strong><span>Lessons with saved writing</span></div><div class="stat"><strong>80%</strong><span>Planned formal mastery</span></div></div>
 <progress id="portfolioProgress" value="0" max="6" aria-label="Lessons with saved writing"></progress>
 <p id="feedback" role="status" aria-live="polite">Choose a learner label or continue as a local guest.</p>
+<details id="fr201FamilyReport" aria-label="French 201 Lesson 01 student and family report"><summary>Lesson 01 · Student & Family Progress Report</summary><div id="fr201FamilyBody" class="family-body"><p>Open this section to review your current learner's saved work, quiz sessions and results.</p></div></details>
 <div class="actions"><button id="export" type="button">Export My Study Evidence JSON</button><button id="print" type="button">Print Current Lesson</button></div>
 </section>
 <section class="panel" aria-labelledby="unitTitle">
@@ -333,19 +347,75 @@ details.stage[open]>summary{border-bottom:1px solid var(--line)}
   const state=read();if(!state[chosen]?.visited){state[chosen]={...(state[chosen]||{}),visited:true};write(state)}
   updateProgress();
  }
+ /* French 201 Lesson 01 — family-facing report and complete versioned local export. */
+ function french201Lesson01Records(){
+  const prefix=key()+":lesson01:",records={};
+  const keys=[prefix+"quiz-draft-v1",prefix+"attempts-v1"];
+  for(const k of keys){const raw=localStorage.getItem(k);if(raw!==null)records[k]=raw}
+  return records;
+ }
+ function french201FamilySummary(){
+  const state=read(),lesson=state[1]||{},records=french201Lesson01Records();
+  const prefix=key()+":lesson01:";
+  const decode=k=>{try{return JSON.parse(records[k]||"null")}catch{return null}};
+  const attempts=decode(prefix+"attempts-v1");
+  const draft=decode(prefix+"quiz-draft-v1");
+  const answerCount=draft?.schema==="fr201-l01-quiz-v1"&&Array.isArray(draft.answers)&&draft.answers.length===20
+   ?draft.answers.filter(a=>Number.isInteger(a)&&a>=0&&a<=2).length:0;
+  const history=Array.isArray(attempts)?attempts.filter(a=>a&&Number.isInteger(a.score)&&a.total===20&&a.score>=0&&a.score<=20)
+   .map(a=>({date:a.date||null,score:a.score,total:20,passed:a.score>=16,formal_grade:false})):[]; 
+  const fields=[["Original French writing","writing"],["Guided practice","guided"],["Learning reflection","reflection"],
+   ["Reasoning laboratory 01","lab1"],["Reasoning laboratory 02","lab2"],["Reasoning laboratory 03","lab3"]];
+  return {schema:"khae-fr201-lesson01-family-report-v2",course:"French 201",lesson:1,learner_label:learner,
+   device_local:true,formal_grade:false,formal_mastery:false,visited:lesson.visited===true,
+   evidence:fields.map(([label,field])=>({label,field,value:typeof lesson[field]==="string"?lesson[field]:""})),
+   formative_attempts:history,unfinished_quiz:answerCount>0?{answered:answerCount,total:20}:null,
+   all_unit01_evidence:state,raw_quiz_records:records};
+ }
+ function french201ExportFullReport(){
+  let payload;try{payload=french201FamilySummary()}catch(error){display("Unable to read local records. Nothing was exported or modified.");return}
+  payload.exported_at=new Date().toISOString();
+  const blob=new Blob([JSON.stringify(payload,null,2)],{type:"application/json"});
+  const url=URL.createObjectURL(blob),a=node("a");a.href=url;
+  a.download="khaemenes-french201-lesson01-complete-family-report.json";
+  a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);
+  display("Complete French 201 local report exported, including quiz attempts and any unfinished draft. Store this file privately.");
+ }
+ function french201RenderFamilyReport(){
+  const body=$("fr201FamilyBody");if(!body)return;
+  body.replaceChildren();let report;
+  try{report=french201FamilySummary()}catch(error){body.append(p("This browser could not read the saved study records. No records were modified."));return}
+  body.append(node("h3","Learner: "+report.learner_label));
+  const grid=node("div");grid.className="family-grid";
+  function stat(label,value){const div=node("div");div.append(node("strong",String(value)),node("span",label));return div}
+  grid.append(stat("Writing activities saved",report.evidence.filter(e=>e.value.trim()).length+"/6"),
+   stat("Completed formative attempts",report.formative_attempts.length),
+   stat("Unfinished quiz answers",report.unfinished_quiz?.answered||0));
+  body.append(grid);
+  if(report.formative_attempts.length){
+   const attempts=node("ul");report.formative_attempts.forEach((a,i)=>attempts.append(node("li","Attempt "+(i+1)+": "+a.score+"/"+a.total+" ("+Math.round(a.score/a.total*100)+"%) · "+(a.passed?"Reached 80% target":"Review recommended")+" · formative only")));
+   body.append(node("h4","Recorded practice results"),attempts);
+  }else body.append(p("No completed formative quiz attempt has been saved for this learner."));
+  body.append(node("h4","Original assignments and learning evidence"));
+  report.evidence.forEach(item=>{
+   const d=node("details");d.className="family-evidence";
+   d.append(node("summary",item.label+" · "+(item.value.trim()?"saved":"not saved")));
+   d.append(p(item.value.trim()||"No saved writing yet."));body.append(d);
+  });
+  body.append(p("These records are saved on this device, not synced to a parent cloud. The quiz is formative, and saved text or browser voice does not independently certify oral skills."));
+  const download=node("button","Export full writing, quiz history & saved draft");
+  download.type="button";download.addEventListener("click",french201ExportFullReport);body.append(download);
+ }
+ $("fr201FamilyReport").addEventListener("toggle",()=>{if($("fr201FamilyReport").open)french201RenderFamilyReport()});
  function openDesk(){
   learner=$("learner").value.trim().replace(/\s+/g," ").slice(0,60)||"guest";
   display("Learning desk opened: "+learner+". Study evidence is local to this browser and learner label.");
   if(plan){renderButtons();renderLesson()}
+  if($("fr201FamilyReport").open)french201RenderFamilyReport();
  }
  $("selectLearner").addEventListener("click",openDesk);
  $("print").addEventListener("click",()=>{document.querySelectorAll("#lessonPanel details").forEach(x=>x.open=true);window.print()});
- $("export").addEventListener("click",()=>{
-  const exportData={format:"khae-french201-unit01-evidence-v1",course:"French 201",unit:1,learner_label:learner,exported_at:new Date().toISOString(),evidence:read(),formal_grade:false};
-  const blob=new Blob([JSON.stringify(exportData,null,2)],{type:"application/json"}),url=URL.createObjectURL(blob),a=node("a");
-  a.href=url;a.download="khaemenes-french201-unit01-evidence.json";a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);
-  display("Study evidence exported. Store the file privately; it contains learner writing.");
- });
+ $("export").addEventListener("click",french201ExportFullReport);
  fetch("../data/french-201-unit01.json").then(r=>{if(!r.ok)throw Error("Curriculum file unavailable");return r.json()}).then(data=>{
   if(data.curriculum_id!=="KH-LANG-FR-201-2026"||data.unit!==1||!Array.isArray(data.lessons)||data.lessons.length!==6||data.lessons.some((l,i)=>l.number!==i+1||!l.model||!l.reading||!l.production))throw Error("Curriculum data did not pass validation");
   plan=data;renderButtons();renderLesson();
