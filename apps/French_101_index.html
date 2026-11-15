@@ -3848,6 +3848,33 @@ function addFrenchLesson18IntegrationDepth(panel){
  const key=element("details");key.id="french-l18-review-key";key.append(element("summary","Thirty-question final-preparation key · reviewer reference"));FRENCH_U01_L18_INTEGRATION_BANK.forEach((q,i)=>key.append(element("p",(i+1)+". "+q.prompt+" · Answer: "+q.choices[q.answer]+". "+q.explain)));sec.append(key);
  const actions=element("div");addButton(actions,"Print integration portfolio",()=>printFrenchLesson18(false));addButton(actions,"Print reviewer guidance",()=>printFrenchLesson18(true));sec.append(actions);panel.append(sec);
 }
+/* Canonical 18-lesson mastery gate v1. Protected 12-level records remain separate. */
+function canonicalKey(n){return learnerKey+"_canonical_lesson"+String(n).padStart(2,"0")+"_mastery_v1"}
+function canonicalRecord(n){const r=frenchAssessmentRead(canonicalKey(n));return r?.passed===true&&Number.isInteger(r.score)&&r.total===10&&r.score>=8&&r.score<=10?r:null}
+function canonicalPassed(n){return Boolean(canonicalRecord(n))}
+function canonicalAvailable(n){
+ if(!Number.isInteger(n)||n<1||n>18)return false;
+ for(let p=1;p<n;p++)if(!canonicalPassed(p))return false;
+ if(n>=7&&!readFrenchUnit01Assessment()?.passed)return false;
+ if(n>=13&&(!frenchAssessmentRead(frenchUnit02PassKey())?.passed||!frenchAssessmentRead(frenchMidtermPassKey())?.passed))return false;
+ return true;
+}
+function canonicalBank(n){return [null,FRENCH_U01_D01_REVIEW_BANK,FRENCH_U01_NUMBERS_QUESTION_BANK,FRENCH_U01_L03_VOWELS_PRONOUNS_BANK,FRENCH_U01_L04_GREETINGS_BANK,FRENCH_U01_L05_SENTENCES_BANK,FRENCH_U01_L06_NOUNS_BANK,FRENCH_U01_L07_VERBS_BANK,FRENCH_U01_L08_FAMILY_BANK,FRENCH_U01_L09_DESCRIPTIONS_BANK,FRENCH_U01_L10_TIME_BANK,FRENCH_U01_L11_CAFE_BANK,FRENCH_U01_L12_OBJECTS_BANK,FRENCH_U01_L13_QUESTIONS_BANK,FRENCH_U01_L14_ROUTINES_BANK,FRENCH_U01_L15_DIRECTIONS_BANK,FRENCH_U01_L16_COMPREHENSION_BANK,FRENCH_U01_L17_PRODUCTION_BANK,FRENCH_U01_L18_INTEGRATION_BANK][n]||[]}
+function canonicalQuiz(n){
+ if(!canonicalAvailable(n)){window.alert("Pass previous lesson quizzes at 80% and required unit assessments first.");return}
+ const bank=canonicalBank(n);
+ if(bank.length<10||!bank.every(q=>q&&typeof q.prompt==="string"&&Array.isArray(q.choices)&&q.choices.length>=2&&Number.isInteger(q.answer)&&q.answer>=0&&q.answer<q.choices.length)){window.alert("Lesson bank validation failed; no mastery score issued.");return}
+ frenchAssessmentRun({
+ title:"French 101 · Lesson "+String(n).padStart(2,"0")+" Mastery Quiz",
+ description:"Lesson-specific knowledge check. Self-confirmed checklist marks and historical level scores do not grant canonical mastery.",
+ requirement:"At least 80% (8/10) to unlock the next lesson.",
+ passKey:()=>canonicalKey(n),attemptKey:()=>learnerKey+"_canonical_lesson"+String(n).padStart(2,"0")+"_attempts_v1",
+ passCount:8,startLabel:"Begin ten-question mastery quiz",
+ makeSet:()=>shuffleQuestions(bank.map((q,i)=>({...q,id:"canonical-"+n+"-"+i}))).slice(0,10),
+ resultText:(score,total,passed)=>"Lesson "+n+": "+score+"/"+total+" · "+(passed?"Mastery achieved.":"Below 80%. Review and retry."),
+ passButtonLabel:"Return to French 101 journey",onPass:backToMenu
+ });
+}
 const FRENCH_101_CANONICAL_DAYS=[
  ...FRENCH_101_UNIT01_DAYS,
  {day:16,title:"Reading & Listening Comprehension"},
