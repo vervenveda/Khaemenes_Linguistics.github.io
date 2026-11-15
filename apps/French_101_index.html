@@ -3892,11 +3892,12 @@ function addUnit01DailySequence(parent){
 
  FRENCH_101_CANONICAL_DAYS.forEach(d=>{
   const canonicalTitles={2:"Numbers · 0–100",3:"Vowels & Subject Pronouns",4:"Greetings & Introductions",5:"Small Words & First Sentences",6:"Nouns, Articles & Gender",7:"Être & Avoir",8:"Family & Relationships",9:"Colors, Shapes & Descriptions",10:"Dates & Time",11:"Food & Café",12:"Home, School & Everyday Objects",13:"Questions, Negation & Conversation",14:"Present-Tense Verbs & Daily Routines",15:"Places, Directions & Transportation",16:"Reading & Listening Comprehension",17:"Writing & Speaking",18:"Integration, Corrections & Final Preparation"};
-  const o=element("option","Lesson "+String(d.day).padStart(2,"0")+" — "+(canonicalTitles[d.day]||d.title));o.value=d.day;picker.append(o);
+  const o=element("option","Lesson "+String(d.day).padStart(2,"0")+" — "+(canonicalTitles[d.day]||d.title));o.value=d.day;o.disabled=!canonicalAvailable(Number(d.day));picker.append(o);
 });
- if(savedSelection&&FRENCH_101_CANONICAL_DAYS.some(d=>String(d.day)===savedSelection))picker.value=savedSelection;
+ if(savedSelection&&FRENCH_101_CANONICAL_DAYS.some(d=>String(d.day)===savedSelection)&&canonicalAvailable(Number(savedSelection)))picker.value=savedSelection;
  const panel=element("article");panel.className="unit01-active-day";panel.style.cssText="max-width:780px;margin:0 auto;line-height:1.65";const navigation=element("div");navigation.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0";const previous=element("button","← Previous Lesson"),next=element("button","Next Lesson →");previous.type=next.type="button";navigation.append(previous,next);const journey=element("p");journey.setAttribute("role","status");const status=element("p");status.setAttribute("role","status");
  function draw(){
+  if(!canonicalAvailable(Number(picker.value)))picker.value=String(Array.from({length:18},(_,i)=>i+1).filter(canonicalAvailable).pop()||1);
   const d=FRENCH_101_CANONICAL_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_CANONICAL_DAYS[0];
   safeSet(lessonSelectionKey(),String(d.day));
   panel.replaceChildren();
@@ -4022,7 +4023,7 @@ function addUnit01DailySequence(parent){
   cohereFrenchDailyPanel(panel,d.day);
   status.textContent=d.day>=19?"Archival enrichment ready; saved historical work remains available.":"Lesson "+String(d.day).padStart(2,"0")+" review ready.";previous.disabled=false;next.disabled=d.day>=15;previous.textContent=d.day===2?"← Lesson 01 · Alphabet":"← Previous";journey.textContent=d.day>=19?"French 101 · archival enrichment from the earlier daily sequence. This is not the canonical Lesson "+String(d.day).padStart(2,"0")+".":"French 101 · current lesson review. Official legacy level mastery remains assessed separately at 80%.";
  }
- previous.addEventListener("click",()=>{if(Number(picker.value)===2){document.getElementById("french101-unit01-day01")?.scrollIntoView({block:"start",behavior:"smooth"});return}picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{picker.value=String(Math.min(18,Number(picker.value)+1));draw()});picker.addEventListener("change",draw);wrap.append(journey,picker,navigation,panel,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
+ previous.addEventListener("click",()=>{if(Number(picker.value)===2){document.getElementById("french101-unit01-day01")?.scrollIntoView({block:"start",behavior:"smooth"});return}picker.value=String(Math.max(2,Number(picker.value)-1));draw()});next.addEventListener("click",()=>{const target=Math.min(18,Number(picker.value)+1);if(!canonicalAvailable(target)){status.textContent="Next lesson locked until 80% mastery and required unit gates.";return}picker.value=String(target);draw()});picker.addEventListener("change",draw);const mastery=element('button','Take Current Lesson Mastery Quiz · 80% Required');mastery.type='button';mastery.addEventListener('click',()=>canonicalQuiz(Number(picker.value)));wrap.append(journey,picker,navigation,panel,mastery,status);parent.append(wrap);draw();addUnit01AudioReadiness(parent);addUnit01Checkpoint(parent);addUnit01LearnerJourneyCheck(parent);
 }
 
 /* Verified Academy tools — optional practice; never modify French 101 mastery records. */
