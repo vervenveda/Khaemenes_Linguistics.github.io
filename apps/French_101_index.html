@@ -799,7 +799,26 @@ body>#vnv-language-switch+ #app{margin-top:10px!important}
 @media(max-width:440px){#app #menu #frenchLegacyArchive .level-grid{grid-template-columns:minmax(0,1fr)!important}}
 @media(prefers-reduced-motion:reduce){#app #menu #frenchLegacyArchive .french-archive-arrow{transition:none}}
 </style>
-<style id="french101-unit-progress-v1">
+<style id="french101-resumable-assessment-v1">
+#app #exam .french-assessment-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px;margin:18px auto}
+#app #exam .french-assessment-actions[hidden]{display:none}
+#app #exam .french-assessment-actions button,#app #exam .french-assessment-session>button{min-height:48px;padding:11px 17px;border:1px solid #B48B45;border-radius:7px;background:#202724;color:#FFF8E9;font:400 16px/1.5 "Brandon Grotesque",Nunito,Arial,sans-serif}
+#app #exam .french-assessment-actions button:disabled{opacity:.55;cursor:not-allowed}
+#app #exam .french-assessment-session{max-width:850px;margin:20px auto;padding:24px;border:1px solid #C7BBA3;border-radius:7px;background:#FFFDF8;color:#202724}
+#app #exam .french-assessment-session :is(h3,h4){font-family:Cinzel,Georgia,serif;font-weight:400;color:#202724;text-align:center}
+#app #exam .french-assessment-session p{font:400 17px/1.6 "Brandon Grotesque",Nunito,Arial,sans-serif;color:#202724}
+#app #exam .french-assessment-progress{text-align:center;background:#FFF8E9;padding:15px;border:1px solid #C7BBA3;border-radius:7px;margin-bottom:18px}
+#app #exam .french-assessment-progress progress{display:block;width:100%;height:17px;accent-color:#202724;margin:12px auto}
+#app #exam .french-assessment-progress button{padding:10px 15px;min-height:46px;border-radius:7px;background:#202724;color:#FFF8E9;border:1px solid #B48B45;font-size:16px}
+#app #exam .french-assessment-choices{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:18px auto}
+#app #exam .french-assessment-choices button{min-height:62px;padding:13px;border:1px solid #AFA084;background:#FFF8E9;color:#202724;border-radius:7px;font:400 16px/1.5 "Brandon Grotesque",Nunito,Arial,sans-serif;overflow-wrap:anywhere}
+#app #exam .french-assessment-choices button[aria-pressed="true"]{border:2px solid #202724;background:#E6DDCB}
+#app #exam .french-assessment-save-status{max-width:800px;margin:15px auto;text-align:center;color:#202724!important;font-size:16px}
+#app #exam .french-assessment-evidence summary,#app #exam .french-assessment-review summary{cursor:pointer;font-size:17px;color:#202724}
+#app #exam .french-assessment-session button:focus-visible{outline:3px solid #B48B45;outline-offset:3px}
+@media(max-width:680px){#app #exam .french-assessment-choices{grid-template-columns:minmax(0,1fr)}#app #exam .french-assessment-session{padding:15px}}
+@media print{#app #exam .french-assessment-actions{display:none!important}}
+</style><style id="french101-unit-progress-v1">
 /* Parchment and charcoal unit panels, live local learner-confirmed checklist only. */
 #app #menu .french-course-progress-overall{padding:15px 18px;border:1px solid #C7BBA3;border-radius:7px;background:#FFFDF8;text-align:center}
 #app #menu .french-course-progress-overall p{font-size:16px!important;line-height:1.6!important;margin:7px auto!important;color:#202724!important}
@@ -1181,25 +1200,59 @@ function openCanonicalUnit01Assessment(){
 function frenchAssessmentRead(key){try{return JSON.parse(safeGet(key)||"null")}catch{return null}}
 function frenchAssessmentAppend(key,record){
  let history=[];try{const parsed=JSON.parse(safeGet(key)||"[]");if(Array.isArray(parsed))history=parsed}catch{}
- history.push(record);safeSet(key,JSON.stringify(history.slice(-50)));
+ if(record.attemptId&&history.some(r=>r.attemptId===record.attemptId))return true;
+ history.push(record);return safeSet(key,JSON.stringify(history.slice(-50)));
+}
+/* French 101 v3: stable, learner-scoped, resumable and sectioned assessments.
+   Records only authored question IDs, answer indices, order and progress. No fabricated cloud sync. */
+function frenchAssessmentDraftKey(config){return config.passKey()+"_inprogress_v1"}
+function frenchAssessmentRestoreQuestion(id){
+ const match=/^f101-v2-(\d+)-(\d+)$/.exec(String(id));
+ if(!match)return null;
+ const day=Number(match[1]),index=Number(match[2]);
+ const bank=canonicalBank(day);
+ return bank&&bank[index]?{...bank[index],id}:null;
+}
+function frenchAssessmentReadDraft(config){
+ try{
+  const saved=JSON.parse(safeGet(frenchAssessmentDraftKey(config))||"null");
+  if(saved===null)return null;
+  if(!saved||saved.schema!=="french101-resumable-v1"||saved.passKey!==config.passKey()
+   ||!Array.isArray(saved.ids)||saved.ids.length!==config.questionCount
+   ||new Set(saved.ids).size!==config.questionCount
+   ||!Array.isArray(saved.answers)||saved.answers.length!==config.questionCount
+   ||!Array.isArray(saved.orders)||saved.orders.length!==config.questionCount
+   ||!Number.isInteger(saved.position)||saved.position<0||saved.position>config.questionCount
+   ||typeof saved.createdAt!=="string")return {invalid:true};
+  const questions=saved.ids.map(frenchAssessmentRestoreQuestion);
+  if(questions.some(q=>!q))return {invalid:true};
+  for(let i=0;i<questions.length;i++){
+   const answer=saved.answers[i],order=saved.orders[i];
+   if(answer!==null&&(!Number.isInteger(answer)||answer<0||answer>=questions[i].choices.length))return {invalid:true};
+   if(order!==null&&(!Array.isArray(order)||order.length!==questions[i].choices.length
+    ||new Set(order).size!==order.length||order.some(x=>!Number.isInteger(x)||x<0||x>=questions[i].choices.length)))return {invalid:true};
+  }
+  return {saved,questions};
+ }catch{return {invalid:true}}
 }
 function frenchAssessmentRun(config){
  const box=$("exam");box.replaceChildren();
  const prior=frenchAssessmentRead(config.passKey());
  box.append(element("h2",config.title),element("p",config.description),element("p",config.requirement));
  if(config.performance){
-  const evidence=element("section");evidence.className="study-section";
+  const evidence=element("details");evidence.className="study-section french-assessment-evidence";
+  evidence.append(element("summary","Optional learning portfolio & educator observations"));
   evidence.append(element("h3",config.performance.title),element("p",config.performance.instructions));
   const task=element("textarea");task.rows=7;task.setAttribute("aria-label",config.performance.title);task.placeholder="Independent response, correction and explanation…";
   task.value=safeGet(config.performance.key())||"";task.addEventListener("input",()=>safeSet(config.performance.key(),task.value));evidence.append(task);
-  const review=element("textarea");review.rows=4;review.setAttribute("aria-label","Reviewer notes");review.placeholder="Reviewer observations, support used, corrections and next goal…";
+  const review=element("textarea");review.rows=4;review.setAttribute("aria-label","Reviewer notes");review.placeholder="Observations, support, corrections and next learning goal…";
   review.value=safeGet(config.performance.reviewKey())||"";review.addEventListener("input",()=>safeSet(config.performance.reviewKey(),review.value));evidence.append(review);
-  evidence.append(element("p","Synthetic speech, visible transcripts and self-entered ratings do not certify independent listening or speaking proficiency."));
+  evidence.append(element("p","Audio playback and self-ratings do not independently certify listening or speaking."));
   box.append(evidence);
  }
  if(prior?.passed){
   const done=element("section");done.className="study-section";
-  done.append(element("h3","Mastery recorded"),element("p","Passed: "+prior.score+"/"+prior.total+" ("+Math.round(prior.score/prior.total*100)+"%). Completed "+new Date(prior.completedAt).toLocaleDateString()+". This result is locked and preserved."));
+  done.append(element("h3","Mastery recorded"),element("p","Passed: "+prior.score+"/"+prior.total+" ("+Math.round(prior.score/prior.total*100)+"%). Completed "+new Date(prior.completedAt).toLocaleDateString()+". Your earlier result remains protected."));
   addButton(done,"Return to French 101 Journey",backToMenu);box.append(done);showOnly("exam");return;
  }
  if(config.prerequisite&&!config.prerequisite()){
@@ -1207,46 +1260,124 @@ function frenchAssessmentRun(config){
   locked.append(element("h3","Assessment not yet unlocked"),element("p",config.lockedText||"Complete the required prior mastery checkpoint first."));
   addButton(locked,"Return to French 101 Journey",backToMenu);box.append(locked);showOnly("exam");return;
  }
- const start=element("button",config.startLabel);start.type="button";box.append(start);
- const status=element("p");status.setAttribute("role","status");box.append(status);
- addButton(box,"Return to French 101 Journey",backToMenu);
- start.addEventListener("click",()=>{
-  let set;
-  try{set=config.makeSet(config.previousQuestionIds||[])}
-  catch(error){status.textContent="Question bank unavailable: "+String(error.message||error);return}
-  if(!Array.isArray(set)||set.length!==config.questionCount||new Set(set.map(q=>q.id)).size!==config.questionCount){status.textContent="Assessment failed question-count or unique-item checks. No score issued.";return}
-  const area=element("section");area.className="study-section";box.insertBefore(area,status);
-  start.disabled=true;let at=0,correct=0,answers=[];
-  const draw=()=>{
+ const status=element("p");status.setAttribute("role","status");status.className="french-assessment-save-status";
+ box.append(status);
+ const start=element("button",config.startLabel);start.type="button";
+ const existing=frenchAssessmentReadDraft(config);
+ const resume=element("button","Resume saved assessment");resume.type="button";
+ const abandon=element("button","Discard saved draft and start new");abandon.type="button";
+ const actions=element("div");actions.className="french-assessment-actions";
+ if(existing){if(existing.invalid){status.textContent="A saved assessment cannot be verified. It has not been overwritten. You can discard it and start anew."}else{status.textContent="Your earlier session is saved on this device. Resume from question "+Math.min(existing.saved.position+1,config.questionCount)+" of "+config.questionCount+".";actions.append(resume)}actions.append(abandon)}
+ else actions.append(start);
+ const exit=element("button","Return to French 101 Journey");exit.type="button";exit.addEventListener("click",backToMenu);actions.append(exit);box.append(actions);
+ function launch(restored){
+  let questions,saved;
+  if(restored){questions=restored.questions;saved=restored.saved}
+  else{
+   try{
+    let previous=[];
+    try{const parsed=JSON.parse(safeGet(config.passKey()+"_previous_draw_v1")||"[]");if(Array.isArray(parsed))previous=parsed}catch{}
+    questions=config.makeSet(previous);
+   }catch(error){status.textContent="Assessment bank unavailable: "+String(error.message||error);return}
+   if(!Array.isArray(questions)||questions.length!==config.questionCount
+      ||new Set(questions.map(q=>q.id)).size!==config.questionCount
+      ||questions.some(q=>!frenchAssessmentRestoreQuestion(q.id))){status.textContent="Question count or identity validation failed. No score issued.";return}
+   saved={schema:"french101-resumable-v1",passKey:config.passKey(),
+    ids:questions.map(q=>q.id),answers:questions.map(()=>null),orders:questions.map(()=>null),
+    position:0,createdAt:new Date().toISOString()};
+   if(!safeSet(frenchAssessmentDraftKey(config),JSON.stringify(saved))){status.textContent="Unable to save the new assessment. Check device storage before beginning.";return}
+  }
+  actions.hidden=true;
+  const area=element("section");area.className="study-section french-assessment-session";box.insertBefore(area,status);
+  const sectionSize=config.questionCount>=50?25:10;
+  const closedBook=config.questionCount>=150;
+  const pages=Math.ceil(config.questionCount/sectionSize);
+  const completion=()=>saved.answers.filter(x=>x!==null).length;
+  function persist(){return safeSet(frenchAssessmentDraftKey(config),JSON.stringify(saved))}
+  function saveExit(){if(!persist()){status.textContent="Saving failed. Remain on this page and copy any important work.";return}backToMenu()}
+  function finish(){
+   if(completion()!==config.questionCount){status.textContent="Complete every question before submitting.";return}
+   const correctness=questions.map((q,i)=>saved.answers[i]===q.answer);
+   const score=correctness.filter(Boolean).length,passed=score>=config.passCount;
+   const record={score,total:questions.length,passed,completedAt:new Date().toISOString(),
+    questionIds:saved.ids,answers:questions.map((q,i)=>({id:q.id,correct:correctness[i]})),
+    attemptId:saved.createdAt+"::"+config.passKey(),assessmentVersion:"french101-resumable-v1"};
+   if(!frenchAssessmentAppend(config.attemptKey(),record)){status.textContent="Submission could not be stored. No result was unlocked; your answers remain saved.";return}
+   if(passed&&!safeSet(config.passKey(),JSON.stringify(record))){status.textContent="Score met 80%, but the passing record could not be saved. Your answer draft remains available.";return}
+   if(!safeSet(config.passKey()+"_previous_draw_v1",JSON.stringify(saved.ids))){status.textContent="Result saved, but the retry bank state did not save. Keep your work and refresh to verify.";return}
+   safeSet(frenchAssessmentDraftKey(config),"");
    area.replaceChildren();
-   if(at>=set.length){
-    const passed=correct>=config.passCount,record={score:correct,total:set.length,passed,completedAt:new Date().toISOString(),questionIds:set.map(q=>q.id),answers};
-    frenchAssessmentAppend(config.attemptKey(),record);
-    if(passed&&!safeSet(config.passKey(),JSON.stringify(record))){status.textContent="Mastery threshold reached but saving failed. The next lesson remains locked; export your work and resolve storage.";return}
-    status.textContent=config.resultText(correct,set.length,passed);
-    if(passed){
-      const next=element("button",config.passButtonLabel);next.type="button";next.addEventListener("click",config.onPass);area.append(next);
-    }else{
-      const retry=element("button","Retry with a new balanced selection");retry.type="button";retry.addEventListener("click",()=>{config.previousQuestionIds=set.map(q=>q.id);frenchAssessmentRun(config)});area.append(retry);
-    }
+   const heading=element("h3",passed?"Mastery achieved":"An opportunity to strengthen your skills");
+   area.append(heading,element("p",config.resultText(score,questions.length,passed)));
+   if(!passed){
+    const missed=element("details");missed.className="french-assessment-review";
+    missed.append(element("summary","Review corrections for "+(questions.length-score)+" missed questions"));
+    questions.forEach((q,i)=>{if(!correctness[i])missed.append(element("p","Question "+(i+1)+": "+q.prompt+" · Answer: "+q.choices[q.answer]+". "+(q.explain||"")))});
+    area.append(missed);
+    const retry=element("button","Try a fresh balanced question selection");retry.type="button";
+    retry.addEventListener("click",()=>frenchAssessmentRun(config));area.append(retry);
+   }else{
+    const next=element("button",config.passButtonLabel);next.type="button";next.addEventListener("click",config.onPass);area.append(next);
+   }
+   status.textContent="Assessment submitted. "+score+"/"+questions.length+" correct. Your earlier learner records remain preserved.";
+  }
+  function draw(){
+   area.replaceChildren();
+   const position=saved.position,sectionIndex=Math.min(Math.floor(position/sectionSize),pages-1);
+   const header=element("div");header.className="french-assessment-progress";
+   const title=element("h3","Learning checkpoint "+(sectionIndex+1)+" of "+pages);
+   const desc=element("p",completion()+" of "+config.questionCount+" answered · "+Math.round(100*completion()/config.questionCount)+"% complete");
+   const bar=document.createElement("progress");bar.max=config.questionCount;bar.value=completion();bar.setAttribute("aria-label","Assessment questions completed");
+   header.append(title,desc,bar);
+   const go=element("button","Save & return to French 101");go.type="button";go.addEventListener("click",saveExit);
+   header.append(go);area.append(header);
+   if(position>=questions.length){area.append(element("p","Every question has been answered. Review your progress, then submit when ready."));
+    const submit=element("button","Submit "+config.questionCount+" answers for grading");submit.type="button";submit.addEventListener("click",finish);area.append(submit);
+    const revise=element("button","Review last question");revise.type="button";revise.addEventListener("click",()=>{saved.position=questions.length-1;if(persist())draw();else status.textContent="Unable to save review position.";});area.append(revise);
     return;
    }
-   const q=set[at];area.append(element("h3","Question "+(at+1)+" of "+set.length),element("p",q.prompt));
-   const feedback=element("p");feedback.setAttribute("role","status");
-   const options=q.savedChoiceOrder||shuffleQuestions(q.choices.map((label,i)=>({label,ok:i===q.answer})));q.savedChoiceOrder=options;
-   options.forEach(option=>{
-    const b=element("button",option.label);b.type="button";b.addEventListener("click",()=>{
-      if(area.dataset.answered==="1")return;area.dataset.answered="1";
-      if(option.ok)correct++;
-      answers.push({id:q.id,correct:option.ok});
-      feedback.textContent=option.ok?"Correct. "+(q.explain||""):"Correction: "+q.choices[q.answer]+". "+(q.explain||"");
-      [...area.querySelectorAll("button")].forEach(x=>x.disabled=true);
-      const next=element("button",at===set.length-1?"See result":"Next question");next.type="button";next.disabled=false;next.addEventListener("click",()=>{at++;area.dataset.answered="";draw()});area.append(next);
-    });area.append(b);
-   });
-   area.append(feedback);
-  };
-  draw();
+   if(position>0&&position%sectionSize===0&&saved.answers[position]===null){
+    const marker=element("p","Checkpoint reached! You've completed "+position+" questions. Your progress is saved; you can take a break or continue.");
+    area.append(marker);
+   }
+   const q=questions[position];
+   area.append(element("h4","Question "+(position+1)+" of "+questions.length),element("p",q.prompt));
+   let order=saved.orders[position];
+   if(order===null){
+    order=shuffleQuestions(q.choices.map((_,i)=>i));
+    saved.orders[position]=order;
+    if(!persist()){status.textContent="Unable to save question order. No answer accepted.";return}
+   }
+   const group=element("div");group.className="french-assessment-choices";
+   for(const choiceIndex of order){
+    const b=element("button",q.choices[choiceIndex]);b.type="button";
+    b.setAttribute("aria-pressed",saved.answers[position]===choiceIndex?"true":"false");
+    b.addEventListener("click",()=>{
+     const old=saved.answers[position],oldPosition=saved.position;
+     saved.answers[position]=choiceIndex;saved.position=position;
+     if(!persist()){saved.answers[position]=old;saved.position=oldPosition;status.textContent="Answer not saved. Please check browser storage.";return}
+     status.textContent="Answer saved for question "+(position+1)+".";
+     draw();
+    });group.append(b);
+   }
+   area.append(group);
+   const nav=element("div");nav.className="french-assessment-actions";
+   if(position>0){const prev=element("button","Previous question");prev.type="button";prev.addEventListener("click",()=>{saved.position=position-1;if(persist())draw();else{saved.position=position;status.textContent="Could not save navigation."}});nav.append(prev)}
+   const next=element("button",position===questions.length-1?"Review & submit":"Next question");next.type="button";
+   next.disabled=saved.answers[position]===null;
+   next.addEventListener("click",()=>{const old=saved.position;saved.position=position+1;if(persist())draw();else{saved.position=old;status.textContent="Could not save your answer position."}});
+   nav.append(next);area.append(nav);
+   if(!closedBook)area.append(element("p","Review explanations after submission. Your answers are saved as you work."));
+   else area.append(element("p","Cumulative examination: answers and corrections are revealed only after submission."));
+  }
+  draw();status.textContent="Progress is saved on this device as you answer. Choose Save & return whenever you need a break.";
+ }
+ start.addEventListener("click",()=>launch(null));
+ resume.addEventListener("click",()=>{const check=frenchAssessmentReadDraft(config);if(!check||check.invalid){status.textContent="This saved session cannot be verified. No answers were changed.";return}launch(check)});
+ abandon.addEventListener("click",()=>{
+  if(!window.confirm("Discard this unfinished attempt? Previously completed grades and learner writing will remain untouched."))return;
+  if(!safeSet(frenchAssessmentDraftKey(config),"")){status.textContent="Could not discard the unfinished attempt.";return}
+  frenchAssessmentRun(config);
  });
  showOnly("exam");
 }
