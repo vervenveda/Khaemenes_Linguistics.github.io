@@ -9,6 +9,8 @@ on:
       - 'scripts/test-french-four-grade-score-input.mjs'
       - 'scripts/test-french-high-school-assessment-provenance.mjs'
       - 'assets/french-high-school-assessment-contract.mjs'
+      - 'assets/french-high-school-unit01-balanced-exam.mjs'
+      - 'scripts/test-french-high-school-unit01-balanced-exam.mjs'
       - 'scripts/test-french-high-school-assessment-contract.mjs'
       - 'scripts/test-french-high-school-authored-unit01-lesson01.mjs'
       - 'scripts/test-french-high-school-lesson01-editorial-regressions.mjs'
@@ -50,6 +52,8 @@ on:
       - 'scripts/test-french-four-grade-score-input.mjs'
       - 'scripts/test-french-high-school-assessment-provenance.mjs'
       - 'assets/french-high-school-assessment-contract.mjs'
+      - 'assets/french-high-school-unit01-balanced-exam.mjs'
+      - 'scripts/test-french-high-school-unit01-balanced-exam.mjs'
       - 'scripts/test-french-high-school-assessment-contract.mjs'
       - 'scripts/test-french-high-school-authored-unit01-lesson01.mjs'
       - 'scripts/test-french-high-school-lesson01-editorial-regressions.mjs'
@@ -121,3 +125,5 @@ jobs:
         run: node --test scripts/test-french-high-school-authored-unit01-lesson06.mjs
       - name: Audit complete six-lesson Unit 01 authored banks for four grades
         run: node --test scripts/test-french-high-school-unit01-six-lesson-integrity.mjs
+      - name: Guard six-lesson and three-domain balance for French I-IV Unit 01
+        run: node --test scripts/test-french-high-school-unit01-balanced-exam.mjs
