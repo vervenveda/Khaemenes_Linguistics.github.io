@@ -42,12 +42,12 @@
       "domain": "language-use",
       "prompt": "A migration documentary uses actors to stage a family's departure. Which French description labels the reconstruction responsibly?",
       "choices": [
-        "Un témoignage spontané joué par des acteurs.",
+        "Une scène adaptée d'un récit ancien, présentée comme une image d'époque.",
         "Une scène reconstituée par des acteurs, distincte des images d'archive.",
-        "Une archive filmée directement lors d'un événement non enregistré."
+        "Une reconstitution inspirée d'archives, présentée sans mention de la mise en scène."
       ],
       "answer": 1,
-      "explanation": "Reconstituée identifies actors' staged representation and explicitly distinguishes it from contemporaneous documentary footage without presuming the sources are independently established."
+      "explanation": "Only the keyed caption states clearly that actors staged the scene and separates it from historical archival footage."
     },
     {
       "id": "hs4-u01-l05-q004",
@@ -70,12 +70,12 @@
       "domain": "language-use",
       "prompt": "Reading a novel about intergenerational migration memory: choose a balanced interpretation of the narrator's relationship to the author.",
       "choices": [
-        "Le narrateur et l'auteur sont toujours la même personne.",
-        "Toute fiction est un document officiel.",
+        "Le narrateur reprend la mémoire de l'auteur, qui s'exprime nécessairement dans chaque scène.",
+        "Les souvenirs du narrateur peuvent évoquer le passé de l'auteur sans distinction narrative possible.",
         "Le narrateur présente une mémoire fragmentaire, qui ne se confond pas nécessairement avec celle de l'auteur."
       ],
       "answer": 2,
-      "explanation": "Narrator and author are distinct analytical roles unless evidence says otherwise."
+      "explanation": "Narrator and author remain analytically distinct even when fiction draws on biographical material; similarity does not establish identity."
     },
     {
       "id": "hs4-u01-l05-q006",
