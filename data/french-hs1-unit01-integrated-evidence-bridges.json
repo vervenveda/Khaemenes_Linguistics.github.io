@@ -1,0 +1,158 @@
+{
+  "schema": "khaemenes.french.unit01.integrated-evidence-bridge.v1",
+  "course": "hs1",
+  "status": "pilot-teacher-review-no-official-grade",
+  "gradeAuthority": "none",
+  "lessons": [
+    {
+      "lesson": 1,
+      "id": "hs1-u01-l01-bridge01",
+      "focus": "Introducing myself",
+      "retrieve": "Retrouvez le prénom de Lina, le nom de son professeur et le numéro de sa salle.",
+      "interpret": "Expliquez pourquoi Lina dit bonjour au professeur mais salut à son camarade.",
+      "listen": "Écoutez le dialogue d'accueil; identifiez une demande de répétition et la réponse donnée.",
+      "create": "Écrivez 4 à 6 phrases en français : prénom, salutation, présentation d'un camarade et question polie. Puis jouez le dialogue.",
+      "feedback": "Une présentation claire utilise je m'appelle et adapte les salutations. Douze est le numéro de salle, pas l'âge de Lina.",
+      "bridge": "À la leçon suivante, apprenez à épeler votre prénom et à demander de répéter une lettre.",
+      "criteria": [
+        "Je relève deux détails exacts du texte ou du dialogue",
+        "J'utilise une formule française adaptée à la situation",
+        "Je rédige plusieurs phrases personnelles ou inventées compréhensibles",
+        "Je relis mes accords et corrige une erreur avec de l'aide"
+      ],
+      "steps": [
+        "Find details in the reading",
+        "Explain the meaning at your level",
+        "Listen and find a matching detail",
+        "Write and speak in French",
+        "Use your checklist to improve",
+        "Connect to the next lesson"
+      ]
+    },
+    {
+      "lesson": 2,
+      "id": "hs1-u01-l02-bridge01",
+      "focus": "Spelling with confidence",
+      "retrieve": "Relevez l'orthographe de Chloé et Zoé, en respectant les accents.",
+      "interpret": "Expliquez pourquoi Chloe et Chloé ne sont pas écrits exactement de la même façon.",
+      "listen": "Écoutez l'échange et identifiez la lettre que Jules demande de répéter.",
+      "create": "Écrivez 4 à 6 phrases de dialogue pour épeler deux prénoms, demander de ralentir et corriger un accent.",
+      "feedback": "Un accent fait partie de l'orthographe du prénom. Demander une répétition est une stratégie de communication utile.",
+      "bridge": "Dans la prochaine leçon, utilisez des noms et des adjectifs pour présenter votre famille imaginaire.",
+      "criteria": [
+        "Je relève deux détails exacts du texte ou du dialogue",
+        "J'utilise une formule française adaptée à la situation",
+        "Je rédige plusieurs phrases personnelles ou inventées compréhensibles",
+        "Je relis mes accords et corrige une erreur avec de l'aide"
+      ],
+      "steps": [
+        "Find details in the reading",
+        "Explain the meaning at your level",
+        "Listen and find a matching detail",
+        "Write and speak in French",
+        "Use your checklist to improve",
+        "Connect to the next lesson"
+      ]
+    },
+    {
+      "lesson": 3,
+      "id": "hs1-u01-l03-bridge01",
+      "focus": "Describing my family",
+      "retrieve": "Identifiez les deux sœurs, le frère, le chien et deux adjectifs employés dans le texte.",
+      "interpret": "Expliquez pourquoi le texte dit grandes pour les sœurs et petit pour le frère.",
+      "listen": "Écoutez le dialogue de Sara et indiquez quels détails sont confirmés.",
+      "create": "Écrivez 5 à 7 phrases sur une famille réelle ou inventée, avec il y a et des adjectifs accordés. Présentez-la à voix haute.",
+      "feedback": "Les adjectifs changent selon le nom. Le texte décrit une famille imaginaire; nul besoin de partager des informations personnelles.",
+      "bridge": "La prochaine fois, présentez votre journée scolaire en utilisant le présent et des phrases de clarification.",
+      "criteria": [
+        "Je relève deux détails exacts du texte ou du dialogue",
+        "J'utilise une formule française adaptée à la situation",
+        "Je rédige plusieurs phrases personnelles ou inventées compréhensibles",
+        "Je relis mes accords et corrige une erreur avec de l'aide"
+      ],
+      "steps": [
+        "Find details in the reading",
+        "Explain the meaning at your level",
+        "Listen and find a matching detail",
+        "Write and speak in French",
+        "Use your checklist to improve",
+        "Connect to the next lesson"
+      ]
+    },
+    {
+      "lesson": 4,
+      "id": "hs1-u01-l04-bridge01",
+      "focus": "My school day",
+      "retrieve": "Retrouvez l'heure de début des cours, celle de la pause et la première consigne.",
+      "interpret": "Expliquez comment l'élève demande poliment une explication lorsqu'elle ne comprend pas.",
+      "listen": "Écoutez les élèves et le professeur et notez deux actions au présent.",
+      "create": "Écrivez 5 à 7 phrases sur une journée d'école fictive, avec l'heure et une demande de répétition. Jouez un dialogue.",
+      "feedback": "Une consigne non comprise peut être reformulée. Les actions habituelles sont exprimées ici au présent.",
+      "bridge": "Pour la prochaine leçon, entraînez-vous à demander des objets et des quantités avec politesse au café.",
+      "criteria": [
+        "Je relève deux détails exacts du texte ou du dialogue",
+        "J'utilise une formule française adaptée à la situation",
+        "Je rédige plusieurs phrases personnelles ou inventées compréhensibles",
+        "Je relis mes accords et corrige une erreur avec de l'aide"
+      ],
+      "steps": [
+        "Find details in the reading",
+        "Explain the meaning at your level",
+        "Listen and find a matching detail",
+        "Write and speak in French",
+        "Use your checklist to improve",
+        "Connect to the next lesson"
+      ]
+    },
+    {
+      "lesson": 5,
+      "id": "hs1-u01-l05-bridge01",
+      "focus": "A polite café visit",
+      "retrieve": "Citez la commande de Lina, le prix de la soupe et la question sur les ingrédients.",
+      "interpret": "Expliquez pourquoi le serveur doit vérifier la présence de noix plutôt que de deviner.",
+      "listen": "Écoutez l'échange et distinguez je voudrais de la question sur le prix.",
+      "create": "Rédigez un dialogue de 6 à 8 répliques au café : accueil, deux commandes, prix, question de vérification, remerciements.",
+      "feedback": "Je voudrais et s'il vous plaît expriment une demande polie. Une information alimentaire incertaine doit être vérifiée.",
+      "bridge": "Pour le dernier défi, réunissez présentations, directions, épellation et commande en une mission d'accueil.",
+      "criteria": [
+        "Je relève deux détails exacts du texte ou du dialogue",
+        "J'utilise une formule française adaptée à la situation",
+        "Je rédige plusieurs phrases personnelles ou inventées compréhensibles",
+        "Je relis mes accords et corrige une erreur avec de l'aide"
+      ],
+      "steps": [
+        "Find details in the reading",
+        "Explain the meaning at your level",
+        "Listen and find a matching detail",
+        "Write and speak in French",
+        "Use your checklist to improve",
+        "Connect to the next lesson"
+      ]
+    },
+    {
+      "lesson": 6,
+      "id": "hs1-u01-l06-bridge01",
+      "focus": "My welcome mission",
+      "retrieve": "Relevez les deux prénoms des élèves, le numéro de salle et la commande au café.",
+      "interpret": "Expliquez comment demander une information sans présumer que vous avez bien compris.",
+      "listen": "Écoutez la mission de Samira, Jules et Lina et identifiez les transitions entre les deux lieux.",
+      "create": "Créez un dialogue de 10 à 12 répliques dans deux lieux avec salutations, prénoms, salle, commande et réponse polie.",
+      "feedback": "Le dialogue doit rester clair et respectueux. Vérifiez les prénoms, l'heure ou le numéro avant d'inventer des détails.",
+      "bridge": "Pour la suite du cours, racontez en quelques phrases ce que vous faites habituellement et ce que vous avez fait hier.",
+      "criteria": [
+        "Je relève deux détails exacts du texte ou du dialogue",
+        "J'utilise une formule française adaptée à la situation",
+        "Je rédige plusieurs phrases personnelles ou inventées compréhensibles",
+        "Je relis mes accords et corrige une erreur avec de l'aide"
+      ],
+      "steps": [
+        "Find details in the reading",
+        "Explain the meaning at your level",
+        "Listen and find a matching detail",
+        "Write and speak in French",
+        "Use your checklist to improve",
+        "Connect to the next lesson"
+      ]
+    }
+  ]
+}
