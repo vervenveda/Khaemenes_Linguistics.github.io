@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs4",
+  "unit": 1,
+  "lesson": 6,
+  "status": "authoring-review-not-published",
+  "title": "Unit 01 archival, documentary and literary synthesis mission",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs4-u01-l06-q001",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Source mission: choose a defensible description of a council's original minutes.",
+      "choices": [
+        "Un procès-verbal contemporain, à interpréter dans son contexte institutionnel.",
+        "Un témoignage représentant nécessairement tous les habitants.",
+        "Une preuve que toute décision fut acceptée."
+      ],
+      "answer": 0,
+      "explanation": "Contemporaneous minutes are primary institutional evidence with perspective limits."
+    },
+    {
+      "id": "hs4-u01-l06-q002",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: distinguish a memoir from a historical novel.",
+      "choices": [
+        "Les deux genres offrent nécessairement des citations directes des mêmes événements.",
+        "Un roman est toujours un registre administratif.",
+        "Un mémoire témoigne d'un vécu revendiqué; un roman peut inventer des scènes."
+      ],
+      "answer": 2,
+      "explanation": "A memoir claims personal recollection while fiction can reconstruct imagined scenes."
+    },
+    {
+      "id": "hs4-u01-l06-q003",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: make a careful hypothetical past inference.",
+      "choices": [
+        "Les archives imaginaires prouvent ce qui s'est passé.",
+        "Si les archives avaient survécu, nous aurions pu comparer les versions.",
+        "Si les archives survivront, nous aurions comparé hier."
+      ],
+      "answer": 1,
+      "explanation": "A plus-que-parfait condition and past conditional denote an unreal past."
+    },
+    {
+      "id": "hs4-u01-l06-q004",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: acknowledge that an English subtitle changes a political nuance.",
+      "choices": [
+        "La traduction atténue une nuance du terme original, ce qui mérite une note.",
+        "La traduction est nécessairement identique à chaque nuance.",
+        "Aucun mot politique ne dépend de son contexte."
+      ],
+      "answer": 0,
+      "explanation": "Translation changes should be disclosed, especially for contested terminology."
+    },
+    {
+      "id": "hs4-u01-l06-q005",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: attribute a disputed historical claim rather than endorse it.",
+      "choices": [
+        "Il est incontestable que la réunion fut annulée sans source.",
+        "La chronique représente automatiquement chaque témoin.",
+        "Selon cette chronique tardive, la réunion aurait été annulée."
+      ],
+      "answer": 2,
+      "explanation": "Selon and the reporting conditional signal attribution and uncertainty."
+    },
+    {
+      "id": "hs4-u01-l06-q006",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: describe a documentary re-enactment responsibly.",
+      "choices": [
+        "Une preuve audiovisuelle originale créée après les faits.",
+        "Une scène reconstituée, distincte des archives d'époque.",
+        "Une prise de vue directe d'un événement non filmé."
+      ],
+      "answer": 1,
+      "explanation": "Reconstruction must be distinguished from contemporaneous documentary footage."
+    },
+    {
+      "id": "hs4-u01-l06-q007",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: avoid treating one community interview as universal.",
+      "choices": [
+        "Ce témoignage expose une expérience, sans épuiser les perspectives du groupe.",
+        "Ce témoignage décrit forcément chaque membre du groupe.",
+        "Une seule voix remplace toutes les archives."
+      ],
+      "answer": 0,
+      "explanation": "One interview does not stand for all people in a community."
+    },
+    {
+      "id": "hs4-u01-l06-q008",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: identify an editorial omission in a quoted text.",
+      "choices": [
+        "Les omissions sont cachées pour faciliter une conclusion.",
+        "Des paroles inexistantes sont ajoutées entre guillemets.",
+        "Les coupes sont signalées et les passages omis restent consultables."
+      ],
+      "answer": 2,
+      "explanation": "Transparent omissions preserve a clear boundary between original and edited text."
+    },
+    {
+      "id": "hs4-u01-l06-q009",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: formulate a balanced comparative thesis.",
+      "choices": [
+        "Le poème rend toute archive nécessairement fausse.",
+        "L'archive précise les décisions, tandis que le poème révèle une mémoire subjective.",
+        "Les deux sources prouvent le même vécu de chaque participant."
+      ],
+      "answer": 1,
+      "explanation": "Different genres can convey institutional evidence and subjective memory."
+    },
+    {
+      "id": "hs4-u01-l06-q010",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « La lettre date de 1912, mais sa traduction a été publiée en 1970 ». Which date belongs to the source letter?",
+      "choices": [
+        "1912.",
+        "1970.",
+        "Neither date is given."
+      ],
+      "answer": 0,
+      "explanation": "The letter's creation year is distinguished from the later translation."
+    },
+    {
+      "id": "hs4-u01-l06-q011",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Le récit utilise 'nous', sans préciser le groupe désigné ». What is unclear?",
+      "choices": [
+        "Whether French permits plural pronouns.",
+        "The document's punctuation length.",
+        "Whose collective perspective the author claims."
+      ],
+      "answer": 2,
+      "explanation": "Unspecified nous leaves collective representation ambiguous."
+    },
+    {
+      "id": "hs4-u01-l06-q012",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Le film fait entendre une voix d'acteur sur une lettre d'époque ». What is mediated?",
+      "choices": [
+        "The recording must be a voice from the event.",
+        "The historic letter is performed by a later actor.",
+        "The actor necessarily wrote the original letter."
+      ],
+      "answer": 1,
+      "explanation": "A later performance is not the original speaker's sound."
+    },
+    {
+      "id": "hs4-u01-l06-q013",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Des registres indiquent des départs, non leurs causes individuelles ». What cannot be inferred directly?",
+      "choices": [
+        "Why each person departed.",
+        "Whether departures were recorded.",
+        "That records had administrative uses."
+      ],
+      "answer": 0,
+      "explanation": "Departure counts alone do not establish personal motives."
+    },
+    {
+      "id": "hs4-u01-l06-q014",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « L'éditorial affirme que la réforme était juste, mais la correspondance révèle des protestations ». What is shown?",
+      "choices": [
+        "Everyone endorsed the reform.",
+        "No editorial opinion was offered.",
+        "A favorable argument and evidence of dissent coexist."
+      ],
+      "answer": 2,
+      "explanation": "A stated editorial position does not erase documented dissent."
+    },
+    {
+      "id": "hs4-u01-l06-q015",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Si la réunion avait été publique, d'autres voix auraient été entendues ». What sort of claim is this?",
+      "choices": [
+        "A verified audio transcript of that meeting.",
+        "A counterfactual about an unobserved alternative.",
+        "A certified list of actual speakers."
+      ],
+      "answer": 1,
+      "explanation": "The conditional past describes an alternative, not a witnessed event."
+    },
+    {
+      "id": "hs4-u01-l06-q016",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Le roman situe la scène dans une ville réelle, mais invente le dialogue ». What is documented?",
+      "choices": [
+        "The place may be real; dialogue remains fictional.",
+        "Every conversation in the novel is primary testimony.",
+        "The city is fictional by necessity."
+      ],
+      "answer": 0,
+      "explanation": "A real setting does not convert invented dialogue into historic evidence."
+    },
+    {
+      "id": "hs4-u01-l06-q017",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Le sous-titre gomme l'emploi d'un dialecte régional ». What is potentially lost?",
+      "choices": [
+        "The film's physical running time.",
+        "The date of every filmed scene.",
+        "A meaningful signal of speaker identity and register."
+      ],
+      "answer": 2,
+      "explanation": "Erasing a regional variety can remove sociolinguistic context."
+    },
+    {
+      "id": "hs4-u01-l06-q018",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Une photo a été recadrée sans mention de son contexte initial ». What question follows?",
+      "choices": [
+        "Whether framing can never affect interpretation.",
+        "What people or details may be excluded by the crop?",
+        "Whether the photograph was produced without light."
+      ],
+      "answer": 1,
+      "explanation": "Cropping may alter what a viewer understands about the original scene."
+    },
+    {
+      "id": "hs4-u01-l06-q019",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Synthesis: compare a survivor's recollection with an official report. What should the analysis preserve?",
+      "choices": [
+        "Distinct perspectives, dates and reasons for each document's creation.",
+        "An assumption that official sources automatically override all testimony.",
+        "A merged quotation never spoken by either source."
+      ],
+      "answer": 0,
+      "explanation": "Comparison must maintain provenance and perspective rather than fabricate agreement."
+    },
+    {
+      "id": "hs4-u01-l06-q020",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Synthesis: a museum label calls a reconstruction an original photograph. What correction is essential?",
+      "choices": [
+        "Keep the false caption to make the exhibit immersive.",
+        "Remove the image date to avoid scrutiny.",
+        "Identify the image as a later reconstruction and cite its basis."
+      ],
+      "answer": 2,
+      "explanation": "The exhibit must distinguish reconstruction from primary photographic evidence."
+    },
+    {
+      "id": "hs4-u01-l06-q021",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Synthesis: two translations render « mémoire » differently. What should be compared?",
+      "choices": [
+        "Which translator has the most prestigious surname.",
+        "Original passage, genre, register and intended meaning.",
+        "Only which translation is shorter."
+      ],
+      "answer": 1,
+      "explanation": "Mémoire varies with context, so comparison needs original-language evidence."
+    },
+    {
+      "id": "hs4-u01-l06-q022",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Synthesis: an archive omits voices of displaced people. Which response is ethical?",
+      "choices": [
+        "Name the gap and seek relevant community-held sources.",
+        "Invent testimonies to balance the archive.",
+        "Conclude that displaced people left no perspectives."
+      ],
+      "answer": 0,
+      "explanation": "Documenting gaps and seeking additional sources avoids fabrication."
+    },
+    {
+      "id": "hs4-u01-l06-q023",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Synthesis: an author claims a past treaty would certainly have prevented conflict. What is a careful revision?",
+      "choices": [
+        "Le traité aurait éliminé toute violence sans autre preuve.",
+        "Une hypothèse est une observation directe.",
+        "Le traité aurait peut-être réduit le risque, mais le scénario reste hypothétique."
+      ],
+      "answer": 2,
+      "explanation": "Maybe and an explicit counterfactual qualifier prevent false certainty."
+    },
+    {
+      "id": "hs4-u01-l06-q024",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Synthesis: a film combines archival sound with staged images. How should you annotate it?",
+      "choices": [
+        "Présenter le montage comme un document audiovisuel non édité.",
+        "Distinguer l'enregistrement d'époque des images reconstituées.",
+        "Attribuer chaque image mise en scène à une caméra d'époque."
+      ],
+      "answer": 1,
+      "explanation": "The provenance of audio and constructed images must remain distinct."
+    },
+    {
+      "id": "hs4-u01-l06-q025",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Synthesis: several sources use a historical label now considered derogatory. What should your report do?",
+      "choices": [
+        "Contextualize limited quotations and prefer respectful present-day description.",
+        "Repeat the label as neutral in every heading.",
+        "Erase the term without explaining its historical presence."
+      ],
+      "answer": 0,
+      "explanation": "Historical harmful language can be documented without endorsing its viewpoint."
+    },
+    {
+      "id": "hs4-u01-l06-q026",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Synthesis: an interview's French transcription silently removes hesitations. What should be recorded?",
+      "choices": [
+        "That the original speaker never hesitated.",
+        "That the edited transcript must be identical to the recording.",
+        "The editorial normalization and its possible effect on meaning."
+      ],
+      "answer": 2,
+      "explanation": "Transparency about editing helps readers evaluate spoken testimony."
+    },
+    {
+      "id": "hs4-u01-l06-q027",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Synthesis: finish an exhibit comparison with an evidence-aware conclusion.",
+      "choices": [
+        "Une œuvre choisie remplace toutes les sources contradictoires.",
+        "Ces œuvres éclairent des aspects différents de l'événement; aucune ne résume seule toutes les expériences.",
+        "Les archives, films et poèmes ont toujours une portée probante identique."
+      ],
+      "answer": 1,
+      "explanation": "A good synthesis recognizes genre differences and limits of representation."
+    }
+  ]
+}
