@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
 const page=readFileSync("Halls/french-high-school-unit01-instruction.html","utf8");
 const hall=readFileSync("Halls/index.html","utf8");
-const marker="const packs=",end=";\nfunction escapeHtml";
+const marker="const packs=",end=";\nconst themeCrosswalk";
 function extract(){
  const a=page.indexOf(marker),b=page.indexOf(end,a);
  assert.ok(a>=0&&b>a,"Study companion source must retain literal four-grade data");
