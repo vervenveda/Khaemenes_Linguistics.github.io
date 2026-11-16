@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
 
 const html=readFileSync("Halls/french-high-school-unit01-instruction.html","utf8");
-const start=html.indexOf("const extendedReadingPacks="),end=html.indexOf(";\nconst grade=",start);
+const start=html.indexOf("const extendedReadingPacks="),end=html.indexOf(";\nconst evidenceBridges=",start);
 assert.ok(start>=0&&end>start,"Reading labs must be embedded for zero-fetch/offline use");
 const embedded=JSON.parse(html.slice(start+"const extendedReadingPacks=".length,end));
 const expected={"hs3":"education","hs4":"migration"};
