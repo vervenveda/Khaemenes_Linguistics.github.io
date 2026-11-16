@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs2",
+  "unit": 1,
+  "lesson": 3,
+  "status": "authoring-review-not-published",
+  "title": "Imparfait habits, descriptions and past timelines",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs2-u01-l03-q001",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete a repeated childhood habit: « Tous les étés, nous ___ au bord de la mer ».",
+      "choices": [
+        "allions",
+        "sommes allés",
+        "irons"
+      ],
+      "answer": 0,
+      "explanation": "Allions is imparfait and matches the repeated past time marker tous les étés."
+    },
+    {
+      "id": "hs2-u01-l03-q002",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Choose the imperfect form of avoir with je.",
+      "choices": [
+        "j'ai eu",
+        "j'aurai",
+        "j'avais"
+      ],
+      "answer": 2,
+      "explanation": "J'avais describes a past situation or habit; j'ai eu is a completed event."
+    },
+    {
+      "id": "hs2-u01-l03-q003",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete a past background: « Il ___ froid quand nous sommes sortis ».",
+      "choices": [
+        "fera",
+        "faisait",
+        "a fait"
+      ],
+      "answer": 1,
+      "explanation": "Faisait provides the ongoing weather background to the completed departure."
+    },
+    {
+      "id": "hs2-u01-l03-q004",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Choose the correct imparfait form: « Vous ___ souvent à vélo ».",
+      "choices": [
+        "rouliez",
+        "roulait",
+        "rouleriez"
+      ],
+      "answer": 0,
+      "explanation": "Rouliez is the imperfect form for vous."
+    },
+    {
+      "id": "hs2-u01-l03-q005",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Which verb is imparfait for an ongoing past activity? « Je ___ quand le téléphone a sonné ».",
+      "choices": [
+        "ai lu",
+        "lirai",
+        "lisais"
+      ],
+      "answer": 2,
+      "explanation": "Lisais marks the action in progress when the phone rang."
+    },
+    {
+      "id": "hs2-u01-l03-q006",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete with a past habitual form: « Chaque lundi, elle ___ sa grand-mère ».",
+      "choices": [
+        "appellera",
+        "appelait",
+        "a appelé"
+      ],
+      "answer": 1,
+      "explanation": "Appelait expresses a recurring past activity signaled by chaque lundi."
+    },
+    {
+      "id": "hs2-u01-l03-q007",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Which imparfait is correct for nous with finir?",
+      "choices": [
+        "finissions",
+        "finissons",
+        "avons fini"
+      ],
+      "answer": 0,
+      "explanation": "Finissions is the nous imperfect; finissons is present."
+    },
+    {
+      "id": "hs2-u01-l03-q008",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete the former description: « La maison ___ trois chambres ».",
+      "choices": [
+        "a eu",
+        "aura",
+        "avait"
+      ],
+      "answer": 2,
+      "explanation": "Avait describes a former condition of the house."
+    },
+    {
+      "id": "hs2-u01-l03-q009",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Choose the proper imperfect form for être with ils.",
+      "choices": [
+        "étiez",
+        "étaient",
+        "étais"
+      ],
+      "answer": 1,
+      "explanation": "Étaient is third-person plural imperfect of être."
+    },
+    {
+      "id": "hs2-u01-l03-q010",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Autrefois, Camille jouait du piano tous les soirs. » What is described?",
+      "choices": [
+        "A former repeated routine.",
+        "One uniquely dated recital.",
+        "A confirmed future plan."
+      ],
+      "answer": 0,
+      "explanation": "Autrefois and tous les soirs frame jouait as a past habit."
+    },
+    {
+      "id": "hs2-u01-l03-q011",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Pendant que Nina travaillait, son frère préparait le repas. » How do the actions relate?",
+      "choices": [
+        "Both will happen tomorrow.",
+        "One happened years after the other.",
+        "They were ongoing at the same time."
+      ],
+      "answer": 2,
+      "explanation": "Pendant que links two concurrent background activities in the imperfect."
+    },
+    {
+      "id": "hs2-u01-l03-q012",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Il pleuvait lorsque le match a commencé. » Which event began?",
+      "choices": [
+        "The next day's journey.",
+        "The match.",
+        "The rain only after the match."
+      ],
+      "answer": 1,
+      "explanation": "A commencé is passé composé for the bounded starting event."
+    },
+    {
+      "id": "hs2-u01-l03-q013",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Nous habitions à Nantes avant 2019. » What does habitions describe?",
+      "choices": [
+        "Where we used to live.",
+        "Where we will live.",
+        "An action performed once in 2019."
+      ],
+      "answer": 0,
+      "explanation": "Habitions in the imperfect describes a former living situation."
+    },
+    {
+      "id": "hs2-u01-l03-q014",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Elle était timide, mais elle parlait souvent en classe. » What contrast is described?",
+      "choices": [
+        "A person who never spoke.",
+        "A student arriving tomorrow.",
+        "A shy personality alongside frequent classroom speaking."
+      ],
+      "answer": 2,
+      "explanation": "Était describes a trait and parlait souvent a recurring action."
+    },
+    {
+      "id": "hs2-u01-l03-q015",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Le ciel était clair; soudain, l'orage a éclaté. » Which clause is background?",
+      "choices": [
+        "Both clauses describe future events.",
+        "Le ciel était clair.",
+        "L'orage a éclaté."
+      ],
+      "answer": 1,
+      "explanation": "Était clair sets the scene; a éclaté introduces a sudden event."
+    },
+    {
+      "id": "hs2-u01-l03-q016",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Avant, les magasins fermaient à dix-huit heures. » What does fermaient indicate?",
+      "choices": [
+        "A past customary closing time.",
+        "A single closing tomorrow.",
+        "A current rule explicitly stated."
+      ],
+      "answer": 0,
+      "explanation": "Avant and fermaient describe a former recurring schedule."
+    },
+    {
+      "id": "hs2-u01-l03-q017",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Pendant mon enfance, je connaissais bien ce quartier. » What does connaissais express?",
+      "choices": [
+        "A one-time act of meeting.",
+        "A future memory.",
+        "A past state of familiarity."
+      ],
+      "answer": 2,
+      "explanation": "Connaissais in the imperfect describes a continuing past state."
+    },
+    {
+      "id": "hs2-u01-l03-q018",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Nous attendions le bus quand il est arrivé. » What interrupted the waiting?",
+      "choices": [
+        "Nobody was waiting.",
+        "The bus arrived.",
+        "The waiting began next week."
+      ],
+      "answer": 1,
+      "explanation": "Est arrivé marks the event that ends the continuing wait."
+    },
+    {
+      "id": "hs2-u01-l03-q019",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "Write about walking to school every day in childhood. Choose the sentence.",
+      "choices": [
+        "Quand j'étais enfant, j'allais à l'école à pied chaque jour.",
+        "Hier, je suis allé à l'école une fois.",
+        "Demain, j'irai à l'école à pied."
+      ],
+      "answer": 0,
+      "explanation": "Allais with chaque jour expresses a repeated past habit."
+    },
+    {
+      "id": "hs2-u01-l03-q020",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "Describe a room as it was before renovation. Choose the correct sentence.",
+      "choices": [
+        "La pièce sera sombre demain.",
+        "La pièce a été sombre une fois à midi.",
+        "La pièce était sombre et les murs étaient bleus."
+      ],
+      "answer": 2,
+      "explanation": "The imperfect conveys continuing past characteristics of the room."
+    },
+    {
+      "id": "hs2-u01-l03-q021",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "Tell a story with background and sudden event. Which is best?",
+      "choices": [
+        "Nous avons dîné tous les soirs quand demain.",
+        "Nous dînions quand quelqu'un a frappé à la porte.",
+        "Nous dînerons quand quelqu'un frappait hier."
+      ],
+      "answer": 1,
+      "explanation": "Dînions sets the ongoing scene, while a frappé marks the event."
+    },
+    {
+      "id": "hs2-u01-l03-q022",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "A learner writes « Quand j'étais petit, je suis allé chaque jour au parc ». Which version stresses the habit?",
+      "choices": [
+        "Quand j'étais petit, j'allais chaque jour au parc.",
+        "Quand j'étais petit, j'irai chaque jour au parc.",
+        "Quand j'étais petit, je vais chaque jour au parc."
+      ],
+      "answer": 0,
+      "explanation": "Allais is the natural imperfect for a recurring childhood routine."
+    },
+    {
+      "id": "hs2-u01-l03-q023",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "Write about your family regularly visiting relatives in the past. Which fits?",
+      "choices": [
+        "Un dimanche, nous avons rendu visite à nos cousins.",
+        "Le dimanche prochain, nous rendrons visite à nos cousins.",
+        "Tous les dimanches, nous rendions visite à nos cousins."
+      ],
+      "answer": 2,
+      "explanation": "Rendions with tous les dimanches expresses habitual past visits."
+    },
+    {
+      "id": "hs2-u01-l03-q024",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "Describe an action already happening when the lights went out. Choose the sentence.",
+      "choices": [
+        "Je ferai mes devoirs hier.",
+        "Je faisais mes devoirs quand la lumière s'est éteinte.",
+        "J'ai fait mes devoirs demain quand la lumière s'éteindra."
+      ],
+      "answer": 1,
+      "explanation": "Faisais is ongoing background; s'est éteinte is a bounded event."
+    },
+    {
+      "id": "hs2-u01-l03-q025",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "Describe what the weather used to be like each winter. Which is best?",
+      "choices": [
+        "Chaque hiver, il neigeait souvent ici.",
+        "Demain, il neigera pour la première fois.",
+        "Hier, il a neigé à midi."
+      ],
+      "answer": 0,
+      "explanation": "Neigeait often with chaque hiver depicts a recurring past condition."
+    },
+    {
+      "id": "hs2-u01-l03-q026",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "You need to explain a past preference, not a one-time decision. Which is best?",
+      "choices": [
+        "Hier, j'ai choisi le matin une seule fois.",
+        "Demain, je préférerai le matin.",
+        "À cette époque, je préférais travailler le matin."
+      ],
+      "answer": 2,
+      "explanation": "Préférais is the correctly accented imperfect of préférer and expresses a continuing past preference."
+    },
+    {
+      "id": "hs2-u01-l03-q027",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "A classmate mixes tenses: « Je regardais la télé quand ma mère entrait soudain ». Which revision highlights the interruption?",
+      "choices": [
+        "Je regarde la télé demain quand ma mère entre hier.",
+        "Je regardais la télé quand ma mère est entrée.",
+        "Je regarderai la télé quand ma mère entrait hier."
+      ],
+      "answer": 1,
+      "explanation": "Est entrée makes the arrival a bounded event against the ongoing regardais."
+    }
+  ]
+}
