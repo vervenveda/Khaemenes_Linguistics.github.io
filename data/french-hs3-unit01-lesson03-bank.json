@@ -112,12 +112,12 @@
       "domain": "language-use",
       "prompt": "Which school-access proposal expresses uncertainty rather than a guarantee?",
       "choices": [
-        "Cette politique scolaire améliorera forcément l'accès partout.",
-        "Cette politique scolaire a amélioré toutes les situations.",
+        "Cette politique scolaire améliorera probablement l'accès dans toutes les régions.",
+        "Cette politique scolaire améliorerait l'accès si le budget était déjà confirmé.",
         "Cette politique scolaire pourrait améliorer l'accès."
       ],
       "answer": 2,
-      "explanation": "Pourrait qualifies a proposed effect on access to schooling rather than guaranteeing success for every learner."
+      "explanation": "Pourrait marks a potential benefit without inventing regional generality or a confirmed budget. The conditional alternative makes a funding premise not supported by the prompt."
     },
     {
       "id": "hs3-u01-l03-q009",
@@ -280,12 +280,12 @@
       "domain": "transfer",
       "prompt": "You want to recommend a trial of after-school reading support rather than demand adoption in every school. Choose the formulation.",
       "choices": [
-        "Nous devons adopter cette mesure partout sans test.",
-        "Nous avons testé cette mesure demain.",
+        "Nous devrions intégrer ce programme à toutes les classes dès la rentrée.",
+        "Nous pourrions étendre le programme à deux autres lycées sans nouveau suivi.",
         "Nous pourrions tester cette mesure pendant un mois."
       ],
       "answer": 2,
-      "explanation": "Pourrions introduces a tentative pilot proposal."
+      "explanation": "The keyed option proposes a bounded one-month trial rather than immediate adoption or expansion without follow-up."
     },
     {
       "id": "hs3-u01-l03-q021",
