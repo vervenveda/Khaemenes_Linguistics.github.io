@@ -118,3 +118,6 @@ All Lesson 05 banks remain unpublished. Source-level verification has not replac
 **Authoring milestone reached, release remains on HOLD.** The 648-item set is a collection of four independent *draft* 162-item lesson pools, not a certified unit-exam bank. Each new assessment must be validated for lesson/domain balance, independent linguistic quality and actual instructional coverage. No automatic grade or unlock is authorized.
 
 **Regression repair:** The previous Lesson 03–05 test scripts incorrectly asserted a Lesson 02 metadata value; each test now checks its own lesson number. This is a test correction, not a learner-data migration.
+
+## Balanced Unit 01 examination design (four-grade synchronized)
+The new unpublished blueprint in [`FRENCH_HIGH_SCHOOL_UNIT01_BALANCED_EXAM_SPEC.md`](FRENCH_HIGH_SCHOOL_UNIT01_BALANCED_EXAM_SPEC.md) assigns exactly 50 exam questions across all six lessons (9, 9, 8, 8, 8, 8) and three domains (17 language-use, 17 interpretation, 16 transfer). A bank with a missing lesson/domain cell is withheld regardless of total size. This *does not* mark any item independently approved, update learner grades or activate official exams. The new test is `scripts/test-french-high-school-unit01-balanced-exam.mjs`.
