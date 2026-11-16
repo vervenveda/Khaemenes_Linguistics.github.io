@@ -138,7 +138,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "interpretation",
-      "prompt": "Read: « En 2030, la ville construira deux écoles ». What is described?",
+      "prompt": "Education infrastructure report: « En 2030, la ville construira deux écoles. » What future action is described?",
       "choices": [
         "A projected future construction.",
         "A completed construction last year.",
@@ -152,7 +152,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "interpretation",
-      "prompt": "Read: « Cette option serait moins coûteuse, selon l'estimation ». What is the claim's strength?",
+      "prompt": "School improvement estimate: « Cet atelier de tutorat serait moins coûteux, selon l'estimation. » How strong is this cost claim?",
       "choices": [
         "A guarantee that costs can never change.",
         "A report of a completed past purchase.",
@@ -166,7 +166,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "interpretation",
-      "prompt": "Read: « Si la fréquentation baissait, le service pourrait fermer ». What scenario is considered?",
+      "prompt": "After-school club plan: « Si la fréquentation baissait, le service de soutien pourrait fermer. » What scenario is being considered?",
       "choices": [
         "Use is certain to rise.",
         "A hypothetical drop in use might lead to closure.",
@@ -180,7 +180,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "interpretation",
-      "prompt": "Read: « Le comité rendra sa décision vendredi ». When is the decision expected?",
+      "prompt": "School committee statement: « Le comité scolaire rendra sa décision vendredi. » When is the decision expected?",
       "choices": [
         "On Friday in the future.",
         "Last Friday without exception.",
@@ -194,14 +194,14 @@
       "unit": 1,
       "lesson": 3,
       "domain": "interpretation",
-      "prompt": "Read: « Nous aimerions entendre les habitants avant de décider ». What attitude is expressed?",
+      "prompt": "School policy consultation: « Nous aimerions entendre les familles avant de décider. » What attitude is expressed?",
       "choices": [
-        "A command that forbids consultation.",
-        "Proof that consultation is finished.",
-        "A courteous wish to consult residents."
+        "A final ban on family input.",
+        "A confirmed past vote by residents.",
+        "A courteous wish to consult families."
       ],
       "answer": 2,
-      "explanation": "Aimerions expresses a polite, conditional wish."
+      "explanation": "Aimerions is conditional and presents a courteous desire to hear families before deciding."
     },
     {
       "id": "hs3-u01-l03-q015",
@@ -264,21 +264,21 @@
       "unit": 1,
       "lesson": 3,
       "domain": "transfer",
-      "prompt": "A town wants to announce a scheduled public meeting. Choose the accurate form.",
+      "prompt": "A school wants to announce a scheduled parent meeting next Tuesday. Choose the accurate future-tense form.",
       "choices": [
         "La réunion aura lieu mardi prochain.",
         "La réunion aurait lieu hier à coup sûr.",
         "La réunion avait lieu demain."
       ],
       "answer": 0,
-      "explanation": "Aura lieu is future simple and suits a scheduled future event."
+      "explanation": "Aura lieu is the future simple for a planned school parent meeting."
     },
     {
       "id": "hs3-u01-l03-q020",
       "unit": 1,
       "lesson": 3,
       "domain": "transfer",
-      "prompt": "You want to recommend a pilot rather than demand immediate adoption. Choose the formulation.",
+      "prompt": "You want to recommend a trial of after-school reading support rather than demand adoption in every school. Choose the formulation.",
       "choices": [
         "Nous devons adopter cette mesure partout sans test.",
         "Nous avons testé cette mesure demain.",
@@ -292,7 +292,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "transfer",
-      "prompt": "You are drafting an uncertain cost projection. Which sentence is proportionate?",
+      "prompt": "You are drafting an uncertain projection of school-program costs. Which sentence is proportionate?",
       "choices": [
         "Les dépenses ont déjà été calculées pour l'éternité.",
         "Les dépenses pourraient augmenter selon les scénarios retenus.",
@@ -306,7 +306,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "transfer",
-      "prompt": "Your team expects to present findings next week. Choose the suitable tense.",
+      "prompt": "The school research team will present its tutoring findings next week. Choose the appropriate tense.",
       "choices": [
         "Nous présenterons nos résultats la semaine prochaine.",
         "Nous présenterions nos résultats l'an dernier.",
@@ -320,7 +320,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "transfer",
-      "prompt": "A proposal depends on an unlikely funding increase. Choose the hypothetical construction.",
+      "prompt": "Your school-improvement proposal depends on an unlikely increase in tutoring funds. Which hypothetical construction is grammatical?",
       "choices": [
         "Si nous aurons plus de moyens, nous élargirons le programme.",
         "Si nous avions plus de moyens, nous élargirons hier.",
