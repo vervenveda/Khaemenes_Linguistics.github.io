@@ -16,7 +16,7 @@
     "later-unit": "Its explicit scenario belongs more naturally to a different Hall theme; retain for later-unit review instead of promoting it into Unit 01.",
     "requires-rewrite": "A narrow or ambiguous contextual/linguistic presentation deserves a targeted rewrite before any Unit 01 eligibility decision."
   },
-  "classificationMethod": "Each prompt reviewed in context; conservative theme fit labels, with transfer as nonapproved default. Prompt and keyed response are included for traceability. No learner score, syllabus or question bank is modified. Domain labels are copied from bank source to expose blueprint coverage gaps. French III language-use items received education-context edits on 2026-11-15; primary is provisional thematic screening, not independent review or automatic eligibility. 2026-11-15 follow-up: 60 French III interpretation and application questions (10 per lesson) revised and provisionally rescreened as primary; original bank IDs and keyed option positions remain intact. 2026-11-15 French IV: 54 language-use prompts contextually revised and rescreened to provisional primary; no source answers or indices changed.",
+  "classificationMethod": "Each prompt reviewed in context; conservative theme fit labels, with transfer as nonapproved default. Prompt and keyed response are included for traceability. No learner score, syllabus or question bank is modified. Domain labels are copied from bank source to expose blueprint coverage gaps. French III language-use items received education-context edits on 2026-11-15; primary is provisional thematic screening, not independent review or automatic eligibility. 2026-11-15 follow-up: 60 French III interpretation and application questions (10 per lesson) revised and provisionally rescreened as primary; original bank IDs and keyed option positions remain intact. 2026-11-15 French IV: 54 language-use prompts contextually revised and rescreened to provisional primary; no source answers or indices changed. Three targeted French IV source interpretation/transfer prompts were also contextualized to satisfy the preliminary one-item-per-cell reserve threshold; no independent approval is implied.",
   "courses": {
     "hs3": {
       "theme": "education",
@@ -2228,14 +2228,14 @@
             },
             {
               "id": "hs4-u01-l01-q019",
-              "category": "transfer",
+              "category": "primary",
               "review": "independent-review-pending",
               "sourceBank": "data/french-hs4-unit01-lesson01-bank.json",
-              "prompt": "You are analyzing a historical letter written by an official. What should you establish first?",
+              "prompt": "Migration archive analysis: you are examining a fictional historical letter written by a government official about a displaced community. What should you establish first?",
               "correctAnswer": "Its date, author, intended audience and institutional context.",
               "draftLesson": 1,
               "taughtPilotObjective": "identity and migration memory",
-              "rationale": "Assesses a broadly reusable grammar, evidence or interpretive skill but lacks sufficient Unit 01 topic anchoring for automatic exam eligibility.",
+              "rationale": "Fictional migration and displacement source question contextualized to preserve Unit 01 identity/migration focus, while retaining its original domain and keyed choice. Independent review pending.",
               "domain": "transfer"
             },
             {
@@ -2570,14 +2570,14 @@
             },
             {
               "id": "hs4-u01-l02-q020",
-              "category": "later-unit",
+              "category": "primary",
               "review": "independent-review-pending",
               "sourceBank": "data/french-hs4-unit01-lesson02-bank.json",
-              "prompt": "You analyze a photograph of a protest. What should you avoid inferring from one image?",
+              "prompt": "Migration-photo interpretation: you analyze a single archival photograph of a fictional family's arrival after displacement. What must you avoid inferring from this one image?",
               "correctAnswer": "That every participant shared a single motive.",
               "draftLesson": 2,
               "taughtPilotObjective": "migration-source provenance",
-              "rationale": "Its explicit scenario belongs more naturally to a different Hall theme; retain for later-unit review instead of promoting it into Unit 01.",
+              "rationale": "Fictional migration and displacement source question contextualized to preserve Unit 01 identity/migration focus, while retaining its original domain and keyed choice. Independent review pending.",
               "domain": "transfer"
             },
             {
@@ -2780,14 +2780,14 @@
             },
             {
               "id": "hs4-u01-l03-q010",
-              "category": "transfer",
+              "category": "primary",
               "review": "independent-review-pending",
               "sourceBank": "data/french-hs4-unit01-lesson03-bank.json",
-              "prompt": "Read: « Si la réunion avait été ouverte, davantage de riverains auraient pu intervenir. » What is asserted?",
+              "prompt": "Migration counterfactual reading: « Si la réunion sur la relocalisation avait été ouverte, davantage de familles déplacées auraient pu intervenir. » What does the sentence assert?",
               "correctAnswer": "More residents could hypothetically have spoken.",
               "draftLesson": 3,
               "taughtPilotObjective": "migration counterfactuals",
-              "rationale": "Assesses a broadly reusable grammar, evidence or interpretive skill but lacks sufficient Unit 01 topic anchoring for automatic exam eligibility.",
+              "rationale": "Fictional migration and displacement source question contextualized to preserve Unit 01 identity/migration focus, while retaining its original domain and keyed choice. Independent review pending.",
               "domain": "interpretation"
             },
             {
