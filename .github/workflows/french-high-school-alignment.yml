@@ -8,6 +8,8 @@ on:
       - 'Halls/french-high-school-unit01-instruction.html'
       - 'scripts/test-french-high-school-unit01-instructional-companion.mjs'
       - 'scripts/test-french-high-school-unit01-lesson01-canonical-layout.mjs'
+      - 'scripts/test-french-high-school-unit01-pilot-crosswalk.mjs'
+      - 'data/french-high-school-unit01-pilot-theme-crosswalk.json'
       - 'scripts/test-french-high-school-four-grade-alignment.mjs'
       - 'scripts/test-french-four-grade-score-input.mjs'
       - 'scripts/test-french-high-school-assessment-provenance.mjs'
@@ -54,6 +56,8 @@ on:
       - 'Halls/french-high-school-unit01-instruction.html'
       - 'scripts/test-french-high-school-unit01-instructional-companion.mjs'
       - 'scripts/test-french-high-school-unit01-lesson01-canonical-layout.mjs'
+      - 'scripts/test-french-high-school-unit01-pilot-crosswalk.mjs'
+      - 'data/french-high-school-unit01-pilot-theme-crosswalk.json'
       - 'scripts/test-french-high-school-four-grade-alignment.mjs'
       - 'scripts/test-french-four-grade-score-input.mjs'
       - 'scripts/test-french-high-school-assessment-provenance.mjs'
@@ -137,3 +141,5 @@ jobs:
         run: node --test scripts/test-french-high-school-unit01-instructional-companion.mjs
       - name: Enforce Lesson 01 canonical structure for all 24 guided lessons
         run: node --test scripts/test-french-high-school-unit01-lesson01-canonical-layout.mjs
+      - name: Preserve original French I-IV Hall themes against pilot crosswalk
+        run: node --test scripts/test-french-high-school-unit01-pilot-crosswalk.mjs
