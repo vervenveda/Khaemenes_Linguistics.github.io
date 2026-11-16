@@ -1,0 +1,260 @@
+{
+  "schema": "khaemenes.french.unit01.extended-reading-lab.v1",
+  "course": "hs3",
+  "status": "formative-pilot-no-official-grade",
+  "fictionalSources": true,
+  "lessons": [
+    {
+      "lesson": 1,
+      "id": "hs3-u01-l01-source01",
+      "title": "La bibliothèque après les cours",
+      "source": "Dossier pédagogique fictif · Bulletin du lycée des Amandiers, septembre 2026",
+      "passage": "Au lycée des Amandiers, la bibliothèque est restée ouverte une heure de plus, trois jours par semaine, pendant un trimestre. Le conseil des élèves souhaitait offrir un lieu calme à ceux qui n'avaient pas de bureau à la maison. Selon un comptage effectué par les bibliothécaires, les visites après les cours sont passées de 42 à 67 par semaine. Ce chiffre correspond à des entrées, et non à des élèves différents. Une élève explique qu'elle prépare désormais ses exposés avec des camarades; un autre élève regrette que le dernier autobus parte trop tôt pour profiter de l'horaire prolongé. La direction propose de continuer l'expérience, mais elle reconnaît que les résultats scolaires n'ont pas encore été comparés. Avant de décider, elle souhaite mesurer les usages sur une période plus longue et interroger les élèves qui ne viennent jamais.",
+      "questions": [
+        {
+          "id": "hs3-u01-l01-read-q01",
+          "prompt": "Pourquoi le chiffre de 67 ne permet-il pas de connaître le nombre d'élèves concernés ?",
+          "choices": [
+            "Il compte des visites et une même personne peut venir plusieurs fois.",
+            "Il concerne seulement des livres empruntés, sans entrée dans la salle.",
+            "Il provient d'un sondage où chaque élève répond une seule fois."
+          ],
+          "answer": 0,
+          "explanation": "Le bulletin précise que le comptage porte sur les entrées, pas sur des personnes uniques."
+        },
+        {
+          "id": "hs3-u01-l01-read-q02",
+          "prompt": "Quelle limite empêche d'attribuer une hausse des notes à l'horaire prolongé ?",
+          "choices": [
+            "Les résultats scolaires n'ont pas encore été comparés.",
+            "Le lycée a fermé la bibliothèque chaque après-midi.",
+            "Les élèves ont refusé toute consultation sur les horaires."
+          ],
+          "answer": 2,
+          "explanation": "La direction indique explicitement qu'aucune comparaison des résultats scolaires n'a été faite."
+        },
+        {
+          "id": "hs3-u01-l01-read-q03",
+          "prompt": "Quelle information aiderait le mieux à évaluer l'équité de l'expérience ?",
+          "choices": [
+            "Les horaires des transports et les réponses des élèves absents.",
+            "Le classement des romans les plus lus en juillet.",
+            "Le nombre total de fenêtres de la bibliothèque."
+          ],
+          "answer": 1,
+          "explanation": "Le problème du dernier autobus et la volonté de consulter les non-usagers concernent l'accès réel."
+        }
+      ]
+    },
+    {
+      "lesson": 2,
+      "id": "hs3-u01-l02-source01",
+      "title": "Un trajet pour participer",
+      "source": "Dossier pédagogique fictif · Compte rendu du conseil scolaire",
+      "passage": "Le conseil d'un établissement rural discute d'une navette après les cours afin que davantage d'élèves participent aux ateliers de langues et de sciences. Une enquête volontaire a recueilli 48 réponses, dont 31 favorables au projet. Les responsables précisent que le lycée accueille 390 élèves et que les personnes interrogées ne constituent pas nécessairement un échantillon représentatif. Deux parents soutiennent la navette parce qu'ils ne peuvent pas venir chercher leurs enfants. Une enseignante rappelle toutefois que les activités se terminent à des heures différentes. Le devis initial couvre le chauffeur et le carburant, mais pas encore l'entretien annuel du véhicule. Le conseil envisage un essai de six semaines avec deux itinéraires, suivi d'une enquête auprès des participants et des élèves restés à l'écart. Aucun transport supplémentaire n'a été mis en service à la date du compte rendu.",
+      "questions": [
+        {
+          "id": "hs3-u01-l02-read-q01",
+          "prompt": "Que peut-on conclure des 31 réponses favorables ?",
+          "choices": [
+            "La majorité de tous les élèves du lycée soutient le projet.",
+            "La majorité des 48 répondants se dit favorable, sans preuve pour tout le lycée.",
+            "Tous les parents souhaitent exactement les mêmes itinéraires."
+          ],
+          "answer": 0,
+          "explanation": "31 sur 48 est une majorité des répondants; la représentativité n'est pas établie."
+        },
+        {
+          "id": "hs3-u01-l02-read-q02",
+          "prompt": "Pourquoi le devis présenté ne suffit-il pas à connaître le coût complet ?",
+          "choices": [
+            "Il inclut déjà tous les frais de maintenance pendant dix ans.",
+            "Il concerne uniquement le prix des ateliers de sciences.",
+            "Il ne comprend pas encore l'entretien annuel du véhicule."
+          ],
+          "answer": 2,
+          "explanation": "L'entretien annuel est expressément absent du devis initial."
+        },
+        {
+          "id": "hs3-u01-l02-read-q03",
+          "prompt": "Quel énoncé décrit correctement la décision du conseil ?",
+          "choices": [
+            "Un essai limité est envisagé, mais aucun nouveau service ne fonctionne encore.",
+            "Une navette quotidienne fonctionne depuis le mois précédent.",
+            "Les itinéraires définitifs ont été imposés sans consultation."
+          ],
+          "answer": 1,
+          "explanation": "Le texte distingue un projet d'essai et un service déjà mis en place."
+        }
+      ]
+    },
+    {
+      "lesson": 3,
+      "id": "hs3-u01-l03-source01",
+      "title": "Tutorat : promesses et conditions",
+      "source": "Dossier pédagogique fictif · Lettre du proviseur aux familles",
+      "passage": "Le proviseur d'un lycée propose un tutorat de mathématiques deux fois par semaine pendant huit semaines. Les séances seraient animées par des enseignants volontaires, tandis que les élèves pourraient choisir d'y participer. Dans sa lettre, le proviseur écrit : « Si nous obtenions le financement prévu, nous ouvririons trois groupes ». Il ne dit pas que la somme a déjà été accordée. Un groupe pilote précédent réunissait douze élèves, mais le bilan ne mesure que leur présence et leur satisfaction; les notes avant et après les séances n'ont pas été recueillies. Le conseil des familles souhaite connaître les critères d'inscription et savoir si les élèves ayant un long trajet pourraient obtenir un horaire adapté. Le proviseur annonce qu'il présentera un budget détaillé vendredi et qu'une décision ne sera prise qu'après cette présentation. La lettre distingue donc une intention, une condition financière et une évaluation encore incomplète.",
+      "questions": [
+        {
+          "id": "hs3-u01-l03-read-q01",
+          "prompt": "Dans « Si nous obtenions…, nous ouvririons… », quelle relation est exprimée ?",
+          "choices": [
+            "Une action achevée dont le financement est confirmé.",
+            "Une obligation juridique déjà applicable à tous.",
+            "Une ouverture hypothétique dépendant d'une condition financière."
+          ],
+          "answer": 0,
+          "explanation": "L'imparfait dans la proposition introduite par si et le conditionnel expriment un scénario envisagé."
+        },
+        {
+          "id": "hs3-u01-l03-read-q02",
+          "prompt": "Que permet réellement d'affirmer le bilan du groupe précédent ?",
+          "choices": [
+            "La présence et la satisfaction de douze participants ont été observées.",
+            "Le programme a réduit les inégalités dans plusieurs régions.",
+            "Les notes de mathématiques ont augmenté dans toute l'école."
+          ],
+          "answer": 2,
+          "explanation": "Le bilan cité ne comprend ni notes scolaires ni évaluation externe."
+        },
+        {
+          "id": "hs3-u01-l03-read-q03",
+          "prompt": "Quel fait est annoncé pour vendredi ?",
+          "choices": [
+            "La publication de notes avant et après tutorat.",
+            "La présentation d'un budget détaillé, avant toute décision.",
+            "L'ouverture certaine de trois groupes financés."
+          ],
+          "answer": 1,
+          "explanation": "Le futur présentera annonce une action prévue, distincte d'une décision déjà prise."
+        }
+      ]
+    },
+    {
+      "lesson": 4,
+      "id": "hs3-u01-l04-source01",
+      "title": "Les études que nous comparons",
+      "source": "Dossier pédagogique fictif · Note de recherche pédagogique",
+      "passage": "Deux équipes examinent l'usage des outils de révision dans les écoles. La première suit les élèves d'un lycée où des fiches imprimées sont distribuées chaque semaine. Elle recueille des réponses auprès de 90 élèves, dont 54 disent utiliser les fiches régulièrement. La seconde étudie une application numérique dans un autre lycée; elle obtient 75 réponses, dont 45 indiquent un usage régulier. Les pourcentages sont identiques, mais les questions ne décrivent pas exactement la même activité. Le chercheur dont les travaux sont cités dans la note rappelle que les deux groupes ont été recrutés différemment. La directrice, qui présente les résultats, souhaite comparer également les progrès observés pendant les cours, mais cette mesure ne figure pas dans les deux rapports. Elle conclut que les résultats renseignent sur des usages déclarés et non sur l'efficacité pédagogique des deux outils.",
+      "questions": [
+        {
+          "id": "hs3-u01-l04-read-q01",
+          "prompt": "Pourquoi les pourcentages identiques ne prouvent-ils pas que les outils se valent ?",
+          "choices": [
+            "Les deux études concernent les mêmes élèves et le même exercice.",
+            "Elles comparent des usages déclarés pour des outils et des recrutements différents.",
+            "Les pourcentages ont été inventés et aucune réponse n'a été recueillie."
+          ],
+          "answer": 0,
+          "explanation": "L'égalité de 54/90 et 45/75 ne résout pas les différences de méthode et d'outil."
+        },
+        {
+          "id": "hs3-u01-l04-read-q02",
+          "prompt": "Dans « Le chercheur dont les travaux sont cités », quelle relation exprime « dont » ?",
+          "choices": [
+            "La période à laquelle l'enquête a été publiée.",
+            "L'appartenance des travaux au chercheur.",
+            "Le lieu où les travaux ont été réalisés."
+          ],
+          "answer": 2,
+          "explanation": "Dont remplace ici « les travaux du chercheur »."
+        },
+        {
+          "id": "hs3-u01-l04-read-q03",
+          "prompt": "Que manque-t-il pour comparer l'efficacité pédagogique des outils ?",
+          "choices": [
+            "La preuve que les élèves utilisent les deux outils simultanément.",
+            "Une mesure comparable des progrès d'apprentissage dans les deux lycées.",
+            "La couleur des fiches imprimées et le prix de chaque téléphone."
+          ],
+          "answer": 1,
+          "explanation": "Le texte indique que les progrès ne sont pas mesurés de façon comparable."
+        }
+      ]
+    },
+    {
+      "lesson": 5,
+      "id": "hs3-u01-l05-source01",
+      "title": "Deux enquêtes sur les devoirs",
+      "source": "Dossier pédagogique fictif · Synthèse de deux questionnaires",
+      "passage": "L'enquête A a été menée en octobre auprès de 120 élèves d'un lycée urbain. Elle demande combien de minutes les participants consacrent aux devoirs chaque soir. L'enquête B a interrogé 80 familles d'un collège rural en février. Elle demande combien de soirs par semaine un adulte accompagne les devoirs. Un article local affirme que les deux études se contredisent au sujet du « travail scolaire à la maison ». Pourtant, les chercheurs soulignent qu'elles n'ont ni les mêmes répondants, ni les mêmes périodes, ni les mêmes indicateurs. Dans l'enquête A, 72 élèves déclarent travailler au moins une heure par soir. L'enquête B indique que 44 familles déclarent accompagner les devoirs au moins trois soirs par semaine. Une association propose d'ouvrir un espace d'étude, mais aucun des deux questionnaires ne mesure directement l'effet possible de cette proposition. La synthèse demande donc de distinguer observations, interprétations et recommandations.",
+      "questions": [
+        {
+          "id": "hs3-u01-l05-read-q01",
+          "prompt": "Quelle différence rend la comparaison directe des deux pourcentages problématique ?",
+          "choices": [
+            "Les deux enquêtes mesurent exactement la durée des devoirs chez les mêmes élèves.",
+            "Elles étudient la même question, mais utilisent des titres différents.",
+            "L'une mesure le temps des élèves, l'autre la fréquence d'aide déclarée par des familles."
+          ],
+          "answer": 0,
+          "explanation": "Les répondants, indicateurs et périodes diffèrent; les proportions ne parlent pas de la même variable."
+        },
+        {
+          "id": "hs3-u01-l05-read-q02",
+          "prompt": "Que signifie 72 élèves sur 120 dans l'enquête A ?",
+          "choices": [
+            "72 % des répondants déclarent recevoir une aide parentale quotidienne.",
+            "40 % des familles déclarent participer à un espace d'étude.",
+            "60 % des répondants déclarent au moins une heure de devoirs par soir."
+          ],
+          "answer": 2,
+          "explanation": "72/120 correspond à 60 %, mais concerne le temps déclaré par les élèves."
+        },
+        {
+          "id": "hs3-u01-l05-read-q03",
+          "prompt": "Quelle recommandation reste méthodologiquement défendable ?",
+          "choices": [
+            "Déduire qu'aucun élève n'a besoin d'aide scolaire.",
+            "Affirmer que l'espace d'étude fera forcément progresser les notes.",
+            "Tester l'espace d'étude et définir à l'avance des indicateurs de son effet."
+          ],
+          "answer": 1,
+          "explanation": "Aucune source ne mesure encore l'effet d'un nouvel espace; un essai évalué est une proposition prudente."
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "id": "hs3-u01-l06-source01",
+      "title": "Le forum du conseil des élèves",
+      "source": "Dossier pédagogique fictif · Deux documents pour un débat",
+      "passage": "Le conseil des élèves doit proposer une action contre l'isolement après les cours. Le document A est une enquête volontaire auprès de 60 élèves : 36 souhaitent des ateliers collectifs, 14 préfèrent un espace calme et 10 ne se prononcent pas. Le document B, rédigé par les responsables des activités, évalue les moyens disponibles. Il précise qu'une salle est libre deux après-midi par semaine, mais que l'établissement ne dispose pas de personnel supplémentaire. Lors du forum, Salma propose un atelier de lecture pendant six semaines. Idriss répond que les élèves utilisant les transports scolaires ne pourront peut-être pas rester. Les deux conviennent de recueillir des avis auprès des absents et de mesurer la fréquentation réelle. Le procès-verbal indique clairement qu'il s'agit d'une proposition en discussion : aucune activité nouvelle n'a été officiellement ouverte. La classe prépare une recommandation qui doit tenir compte des deux documents et des élèves non représentés.",
+      "questions": [
+        {
+          "id": "hs3-u01-l06-read-q01",
+          "prompt": "Quel énoncé résume correctement la préférence mesurée dans le document A ?",
+          "choices": [
+            "Les 60 élèves ont demandé un atelier de lecture quotidien.",
+            "36 des 60 répondants préfèrent des ateliers collectifs.",
+            "La majorité des élèves du pays souhaite la même activité."
+          ],
+          "answer": 0,
+          "explanation": "36 parmi 60 répondants favorisent des ateliers; ce n'est pas une statistique nationale."
+        },
+        {
+          "id": "hs3-u01-l06-read-q02",
+          "prompt": "Quelle réserve le document B apporte-t-il au projet ?",
+          "choices": [
+            "Il impose aux familles de financer un nouveau bâtiment.",
+            "Une salle existe à certains horaires, mais aucun personnel supplémentaire n'est prévu.",
+            "Il prouve qu'aucune salle n'est disponible durant l'année."
+          ],
+          "answer": 2,
+          "explanation": "La note mentionne la disponibilité limitée de la salle et l'absence de personnel nouveau."
+        },
+        {
+          "id": "hs3-u01-l06-read-q03",
+          "prompt": "Quelle conclusion est compatible avec les deux sources ?",
+          "choices": [
+            "Les absents sont tous opposés au travail collectif.",
+            "Un essai évalué pourrait être proposé, sous réserve d'accès et de moyens.",
+            "L'atelier a déjà fonctionné pendant six semaines avec succès."
+          ],
+          "answer": 1,
+          "explanation": "Une proposition prudente respecte les contraintes et ne présente pas le projet comme achevé."
+        }
+      ]
+    }
+  ]
+}
