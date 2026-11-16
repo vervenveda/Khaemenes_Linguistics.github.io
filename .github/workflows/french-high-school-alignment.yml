@@ -16,6 +16,9 @@ on:
       - 'scripts/test-french-high-school-unit01-hs4-migration-language-use.mjs'
       - 'scripts/test-french-high-school-unit01-bilingual-editorial-repair.mjs'
       - 'scripts/test-french-high-school-unit01-extended-reading-labs.mjs'
+      - 'scripts/test-french-high-school-unit01-distractor-quality.mjs'
+      - 'scripts/test-french-high-school-unit01-guided-listening-speaking.mjs'
+      - 'data/french-hs3-hs4-unit01-guided-listening-speaking.json'
       - 'data/french-hs3-unit01-extended-reading-lab.json'
       - 'data/french-hs4-unit01-extended-reading-lab.json'
       - 'data/french-high-school-unit01-hs3-hs4-item-topic-crosswalk.json'
@@ -74,6 +77,9 @@ on:
       - 'scripts/test-french-high-school-unit01-hs4-migration-language-use.mjs'
       - 'scripts/test-french-high-school-unit01-bilingual-editorial-repair.mjs'
       - 'scripts/test-french-high-school-unit01-extended-reading-labs.mjs'
+      - 'scripts/test-french-high-school-unit01-distractor-quality.mjs'
+      - 'scripts/test-french-high-school-unit01-guided-listening-speaking.mjs'
+      - 'data/french-hs3-hs4-unit01-guided-listening-speaking.json'
       - 'data/french-hs3-unit01-extended-reading-lab.json'
       - 'data/french-hs4-unit01-extended-reading-lab.json'
       - 'data/french-high-school-unit01-hs3-hs4-item-topic-crosswalk.json'
@@ -177,3 +183,7 @@ jobs:
         run: node --test scripts/test-french-high-school-unit01-bilingual-editorial-repair.mjs
       - name: Verify twelve extended French III-IV readings and 36 formative practice questions
         run: node --test scripts/test-french-high-school-unit01-extended-reading-labs.mjs
+      - name: Guard fourteen targeted French III-IV distractor quality repairs
+        run: node --test scripts/test-french-high-school-unit01-distractor-quality.mjs
+      - name: Verify twelve teacher-led French III-IV oral and listening practice activities
+        run: node --test scripts/test-french-high-school-unit01-guided-listening-speaking.mjs
