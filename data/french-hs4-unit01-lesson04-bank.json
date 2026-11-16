@@ -42,7 +42,7 @@
       "domain": "language-use",
       "prompt": "Interpreting a fictional family's departure: which English translation preserves the uncertainty of « Il aurait quitté la ville »?",
       "choices": [
-        "He was expected to leave the city.",
+        "He was expected to leave the city under the proposed relocation plan.",
         "He reportedly left the city.",
         "He would leave the city if the conditions changed."
       ],
