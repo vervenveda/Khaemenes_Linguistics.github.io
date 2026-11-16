@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs2",
+  "unit": 1,
+  "lesson": 2,
+  "status": "authoring-review-not-published",
+  "title": "Passé composé with avoir and être; agreement",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs2-u01-l02-q001",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Complete: « Hier, j'___ un documentaire. »",
+      "choices": [
+        "ai regardé",
+        "suis regardé",
+        "avais regarder"
+      ],
+      "answer": 0,
+      "explanation": "Regarder forms the passé composé with avoir: j'ai regardé."
+    },
+    {
+      "id": "hs2-u01-l02-q002",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Complete: « Elle ___ au théâtre samedi. »",
+      "choices": [
+        "a allée",
+        "est allé",
+        "est allée"
+      ],
+      "answer": 2,
+      "explanation": "Aller takes être and the feminine singular participle allée."
+    },
+    {
+      "id": "hs2-u01-l02-q003",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Choose the correct masculine plural agreement: « Les garçons sont ___. »",
+      "choices": [
+        "parti",
+        "partis",
+        "parties"
+      ],
+      "answer": 1,
+      "explanation": "With être, the participle agrees in masculine plural: partis."
+    },
+    {
+      "id": "hs2-u01-l02-q004",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Choose the correct feminine plural agreement: « Elles sont ___ tôt. »",
+      "choices": [
+        "arrivées",
+        "arrivés",
+        "arrivée"
+      ],
+      "answer": 0,
+      "explanation": "With être, arrivées agrees with the feminine plural subject."
+    },
+    {
+      "id": "hs2-u01-l02-q005",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Choose the passé composé of prendre with nous.",
+      "choices": [
+        "Nous sommes pris.",
+        "Nous avons prendu.",
+        "Nous avons pris."
+      ],
+      "answer": 2,
+      "explanation": "Prendre takes avoir and its past participle is pris."
+    },
+    {
+      "id": "hs2-u01-l02-q006",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Complete the negative: « Elle ___ pas fini ses devoirs. »",
+      "choices": [
+        "ne a",
+        "n'a",
+        "n'est"
+      ],
+      "answer": 1,
+      "explanation": "Ne becomes n' before a vowel and surrounds the auxiliary with pas."
+    },
+    {
+      "id": "hs2-u01-l02-q007",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Choose the correct compound past of se lever for a girl.",
+      "choices": [
+        "Elle s'est levée.",
+        "Elle s'a levé.",
+        "Elle est se levée."
+      ],
+      "answer": 0,
+      "explanation": "The reflexive verb uses s'est and the participle agrees here: levée."
+    },
+    {
+      "id": "hs2-u01-l02-q008",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Complete: « Vous ___ vu ce film ? »",
+      "choices": [
+        "êtes",
+        "avons",
+        "avez"
+      ],
+      "answer": 2,
+      "explanation": "Voir takes avoir and vous uses avez as the auxiliary."
+    },
+    {
+      "id": "hs2-u01-l02-q009",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Choose the correct passé composé of écrire for je.",
+      "choices": [
+        "J'ai écrivé.",
+        "J'ai écrit.",
+        "Je suis écrit."
+      ],
+      "answer": 1,
+      "explanation": "Écrire uses avoir and its past participle is écrit."
+    },
+    {
+      "id": "hs2-u01-l02-q010",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Luc a pris le train, puis il est arrivé à Dijon. » Which auxiliary appears with arriver?",
+      "choices": [
+        "être",
+        "avoir",
+        "aller"
+      ],
+      "answer": 0,
+      "explanation": "Est is a form of être in il est arrivé."
+    },
+    {
+      "id": "hs2-u01-l02-q011",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Elles sont sorties à midi. » What does the ending -es indicate here?",
+      "choices": [
+        "Masculine singular agreement.",
+        "An infinitive ending.",
+        "Feminine plural agreement."
+      ],
+      "answer": 2,
+      "explanation": "Sorties agrees with feminine plural elles."
+    },
+    {
+      "id": "hs2-u01-l02-q012",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Nous avons acheté des billets. » What did they purchase?",
+      "choices": [
+        "Suitcases.",
+        "Tickets.",
+        "Meals."
+      ],
+      "answer": 1,
+      "explanation": "Acheter des billets means to buy tickets."
+    },
+    {
+      "id": "hs2-u01-l02-q013",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Maxime n'a pas oublié son sac. » What does the negative mean?",
+      "choices": [
+        "Maxime did not forget the bag.",
+        "Maxime has lost the bag.",
+        "Maxime will forget the bag."
+      ],
+      "answer": 0,
+      "explanation": "Ne ... pas negates the completed event of forgetting."
+    },
+    {
+      "id": "hs2-u01-l02-q014",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Elle est rentrée avant huit heures. » When did she return?",
+      "choices": [
+        "After eight o'clock.",
+        "At midnight exactly.",
+        "Before eight o'clock."
+      ],
+      "answer": 2,
+      "explanation": "Avant huit heures means before eight o'clock."
+    },
+    {
+      "id": "hs2-u01-l02-q015",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Nous nous sommes rencontrés en juin. » What event is expressed?",
+      "choices": [
+        "We are meeting tomorrow.",
+        "We met in June.",
+        "We left in January."
+      ],
+      "answer": 1,
+      "explanation": "Nous nous sommes rencontrés expresses a completed meeting."
+    },
+    {
+      "id": "hs2-u01-l02-q016",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « J'ai déjà lu cette histoire. » What does déjà contribute?",
+      "choices": [
+        "The action has already happened.",
+        "The action will never happen.",
+        "The action is occurring for the first time now."
+      ],
+      "answer": 0,
+      "explanation": "Déjà indicates that reading happened already."
+    },
+    {
+      "id": "hs2-u01-l02-q017",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Les filles sont descendues du bus. » What grammatical feature is visible?",
+      "choices": [
+        "A masculine singular participle.",
+        "An infinitive after avoir.",
+        "The feminine plural participle descended with être."
+      ],
+      "answer": 2,
+      "explanation": "Descendues is feminine plural, agreeing with les filles."
+    },
+    {
+      "id": "hs2-u01-l02-q018",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Il a eu peur, mais il a continué. » Which auxiliary is used twice?",
+      "choices": [
+        "faire",
+        "avoir",
+        "être"
+      ],
+      "answer": 1,
+      "explanation": "Both a eu and a continué use forms of avoir as auxiliary."
+    },
+    {
+      "id": "hs2-u01-l02-q019",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You describe a woman who left yesterday. Choose the correct sentence.",
+      "choices": [
+        "Elle est partie hier.",
+        "Elle a partie hier.",
+        "Elle est parti hier."
+      ],
+      "answer": 0,
+      "explanation": "Partir uses être, with feminine singular agreement partie."
+    },
+    {
+      "id": "hs2-u01-l02-q020",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You describe two boys who visited a museum. Which is correct?",
+      "choices": [
+        "Ils sont visité le musée.",
+        "Ils ont visités le musée.",
+        "Ils ont visité le musée."
+      ],
+      "answer": 2,
+      "explanation": "Visiter takes avoir; its participle does not agree with its preceding subject."
+    },
+    {
+      "id": "hs2-u01-l02-q021",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You need to say you did not understand. Choose the correct sentence.",
+      "choices": [
+        "Je ne suis pas compris.",
+        "Je n'ai pas compris.",
+        "Je n'ai compris pas."
+      ],
+      "answer": 1,
+      "explanation": "Comprendre uses avoir and the negative brackets the auxiliary."
+    },
+    {
+      "id": "hs2-u01-l02-q022",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "A student writes « Elles sont arrivé ». Which correction is appropriate?",
+      "choices": [
+        "Elles sont arrivées.",
+        "Elles ont arrivées.",
+        "Elles sont arrivés."
+      ],
+      "answer": 0,
+      "explanation": "Arrivées agrees with the feminine plural subject elles."
+    },
+    {
+      "id": "hs2-u01-l02-q023",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You need to ask a friend whether they have finished. Which is correct?",
+      "choices": [
+        "Tu es terminé ?",
+        "Tu as terminer ?",
+        "Tu as terminé ?"
+      ],
+      "answer": 2,
+      "explanation": "Terminer normally takes avoir and the past participle terminé."
+    },
+    {
+      "id": "hs2-u01-l02-q024",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "Two girls say they got up early. Choose the accurate sentence.",
+      "choices": [
+        "Nous sommes levé tôt.",
+        "Nous nous sommes levées tôt.",
+        "Nous nous avons levées tôt."
+      ],
+      "answer": 1,
+      "explanation": "The reflexive construction uses être with feminine plural agreement."
+    },
+    {
+      "id": "hs2-u01-l02-q025",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "A student writes « J'ai prendu le bus ». Choose the correct revision.",
+      "choices": [
+        "J'ai pris le bus.",
+        "Je suis pris le bus.",
+        "J'ai prendre le bus."
+      ],
+      "answer": 0,
+      "explanation": "The irregular past participle of prendre is pris."
+    },
+    {
+      "id": "hs2-u01-l02-q026",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You are describing a girl and a boy who arrived. Choose the conventional agreement.",
+      "choices": [
+        "Ils sont arrivées.",
+        "Ils ont arrivés.",
+        "Ils sont arrivés."
+      ],
+      "answer": 2,
+      "explanation": "Mixed-gender plural subjects conventionally take masculine plural agreement."
+    },
+    {
+      "id": "hs2-u01-l02-q027",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You want to combine two completed events in order. Which sentence is grammatical?",
+      "choices": [
+        "J'ai préparer mon sac, puis je suis sortis.",
+        "J'ai préparé mon sac, puis je suis sorti.",
+        "Je suis préparé mon sac, puis j'ai sorti."
+      ],
+      "answer": 1,
+      "explanation": "Préparer uses avoir, and sortir in intransitive movement use can take être."
+    }
+  ]
+}
