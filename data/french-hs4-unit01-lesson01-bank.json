@@ -267,11 +267,11 @@
       "prompt": "Migration archive analysis: you are examining a fictional historical letter written by a government official about a displaced community. What should you establish first?",
       "choices": [
         "Its date, author, intended audience and institutional context.",
-        "Only whether its handwriting is attractive.",
-        "That its claims are automatically neutral."
+        "Its intended audience and a later museum caption, without recording the letter's original date.",
+        "Its date and the later history of the community, assuming the institution spoke for everyone."
       ],
       "answer": 0,
-      "explanation": "Provenance and audience help situate the purpose and perspective of the source."
+      "explanation": "The correct response documents the original source's provenance, audience and institutional setting without substituting a later interpretation."
     },
     {
       "id": "hs4-u01-l01-q020",
