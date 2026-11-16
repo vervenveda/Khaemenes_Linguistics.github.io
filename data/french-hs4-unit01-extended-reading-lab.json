@@ -241,7 +241,7 @@
             "La lettre évoque une expérience vécue; la liste consigne des renseignements administratifs."
           ],
           "answer": 2,
-          "explanation": "Les documents ont des fonctions et des limites distinctes."
+          "explanation": "La lettre transmet un vécu subjectif et des difficultés linguistiques, tandis que la liste fournit principalement des dates et des noms sans expliquer les motifs du départ."
         },
         {
           "id": "hs4-u01-l06-read-q03",
@@ -252,7 +252,7 @@
             "Identifier les scènes jouées et séparer leur statut des images d'archives."
           ],
           "answer": 1,
-          "explanation": "Un montage clair distingue images d'époque et reconstruction."
+          "explanation": "Une présentation transparente sépare les images prises à l'époque des reconstitutions jouées pour le film et signale explicitement leur différence de provenance."
         }
       ]
     }
