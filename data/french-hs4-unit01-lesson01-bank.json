@@ -264,7 +264,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "transfer",
-      "prompt": "You are analyzing a historical letter written by an official. What should you establish first?",
+      "prompt": "Migration archive analysis: you are examining a fictional historical letter written by a government official about a displaced community. What should you establish first?",
       "choices": [
         "Its date, author, intended audience and institutional context.",
         "Only whether its handwriting is attractive.",
