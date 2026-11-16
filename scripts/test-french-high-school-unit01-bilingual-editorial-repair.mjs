@@ -47,8 +47,9 @@ for(const course of ["hs3","hs4"]){
   for(const [lesson,num,expected] of fixes[course]){
    const b=JSON.parse(readFileSync("data/french-"+course+"-unit01-lesson0"+lesson+"-bank.json","utf8"));
    const q=b.questions[num-1],row=cross.courses[course].lessons[lesson-1].questions[num-1];
-   if(expected!==null)assert.ok(q.choices.includes(expected)||q.choices[q.answer]===expected,
-     "Corrected key not present for "+q.id);
+   if(expected!==null&&expected!=="consultent")assert.equal(q.choices[q.answer],expected,
+     "Corrected answer key mismatch for "+q.id);
+   if(expected==="consultent")assert.equal(q.choices[q.answer],"consultent");
    assert.equal(row.correctAnswer,q.choices[q.answer]);
    assert.ok(q.explanation.length>=35);
   }
