@@ -267,11 +267,11 @@
       "prompt": "During a school-access debate, you want to recognize a valid opposing argument. Choose the reply.",
       "choices": [
         "Vous soulevez un point important; examinons toutefois les données.",
-        "Votre opinion est inutile; passons à autre chose.",
-        "Je refuse de considérer toute objection."
+        "Je comprends la réserve, mais elle ne concerne pas la question que nous étudions.",
+        "Votre objection mérite une réponse; nous pourrons en discuter après le vote."
       ],
       "answer": 0,
-      "explanation": "This reply acknowledges the other point and invites evidence-based examination."
+      "explanation": "The strongest reply recognizes the objection and proposes examining evidence before concluding. The alternatives defer or dismiss relevant scrutiny."
     },
     {
       "id": "hs3-u01-l02-q020",
@@ -280,12 +280,12 @@
       "domain": "transfer",
       "prompt": "Your team is proposing an after-school transport pilot, not a completed transport reform. Which response makes a careful evidence-based case for testing?",
       "choices": [
-        "Le projet a déjà garanti les mêmes résultats dans toutes les écoles.",
-        "Le projet ne nécessite ni données ni consultation.",
+        "Le projet devrait être étendu dès maintenant, car les élèves interrogés semblent favorables.",
+        "Il serait préférable de reporter toute évaluation jusqu'à la fin d'une extension générale.",
         "Le projet pourrait améliorer l'accès aux activités scolaires; il faudrait mesurer son effet pendant un essai limité."
       ],
       "answer": 2,
-      "explanation": "A tentative education-access pilot can be justified without claiming unmeasured results as verified."
+      "explanation": "The correct answer proposes a bounded trial and measurement. The others recommend expansion without first testing effectiveness or postpone evaluation."
     },
     {
       "id": "hs3-u01-l02-q021",
