@@ -376,14 +376,14 @@
       "unit": 1,
       "lesson": 2,
       "domain": "transfer",
-      "prompt": "You want to combine two completed events in order. Which sentence is grammatical?",
+      "prompt": "A boy describes packing his bag and then leaving. Which sequence correctly reports the completed events?",
       "choices": [
         "J'ai préparer mon sac, puis je suis sortis.",
         "J'ai préparé mon sac, puis je suis sorti.",
         "Je suis préparé mon sac, puis j'ai sorti."
       ],
       "answer": 1,
-      "explanation": "Préparer uses avoir, and sortir in intransitive movement use can take être."
+      "explanation": "Préparer takes avoir, and the movement use of sortir takes être; sorti agrees with a male speaker."
     }
   ]
 }
