@@ -1,0 +1,158 @@
+{
+  "schema": "khaemenes.french.unit01.integrated-evidence-bridge.v1",
+  "course": "hs2",
+  "status": "pilot-teacher-review-no-official-grade",
+  "gradeAuthority": "none",
+  "lessons": [
+    {
+      "lesson": 1,
+      "id": "hs2-u01-l01-bridge01",
+      "focus": "Background and event",
+      "retrieve": "Citez deux actions à l'imparfait et deux événements ponctuels au passé composé.",
+      "interpret": "Expliquez comment la pluie et la préparation du sac donnent le contexte de l'appel.",
+      "listen": "Écoutez Ana et Malik; repérez un événement qui interrompt une action en cours.",
+      "create": "Écrivez 80 à 100 mots d'un petit incident imaginaire : situation, interruption, recherche et dénouement. Racontez-le à l'oral.",
+      "feedback": "L'imparfait présente un cadre ou une habitude; le passé composé fait avancer la narration. Distinguez le fait observé de la supposition.",
+      "bridge": "À la prochaine leçon, vérifiez les auxiliaires et les accords dans un récit de voyage au passé composé.",
+      "criteria": [
+        "J'attribue chaque détail au document ou à la personne qui l'énonce",
+        "J'emploie les temps du passé ou les pronoms avec cohérence",
+        "J'explique une différence entre les faits et les interprétations",
+        "Je révise mon texte et peux en présenter l'idée principale oralement"
+      ],
+      "steps": [
+        "Find details in the reading",
+        "Explain the meaning at your level",
+        "Listen and find a matching detail",
+        "Write and speak in French",
+        "Use your checklist to improve",
+        "Connect to the next lesson"
+      ]
+    },
+    {
+      "lesson": 2,
+      "id": "hs2-u01-l02-bridge01",
+      "focus": "A completed journey",
+      "retrieve": "Relevez les verbes sont arrivées, ont pris et sont entrées ainsi que leurs sujets.",
+      "interpret": "Expliquez l'accord des participes avec être et les actions racontées avec avoir.",
+      "listen": "Écoutez Léa et Zoé décrire leur trajet et identifiez un ordre chronologique.",
+      "create": "Écrivez 90 à 110 mots sur un voyage fictif avec quatre verbes au passé composé, dont deux avec être et leurs accords.",
+      "feedback": "Les voyageuses sont arrivées et entrées : être permet l'accord avec le sujet. Ont pris emploie avoir.",
+      "bridge": "Dans la leçon suivante, utilisez l'imparfait pour décrire une habitude puis le passé composé pour raconter une rupture.",
+      "criteria": [
+        "J'attribue chaque détail au document ou à la personne qui l'énonce",
+        "J'emploie les temps du passé ou les pronoms avec cohérence",
+        "J'explique une différence entre les faits et les interprétations",
+        "Je révise mon texte et peux en présenter l'idée principale oralement"
+      ],
+      "steps": [
+        "Find details in the reading",
+        "Explain the meaning at your level",
+        "Listen and find a matching detail",
+        "Write and speak in French",
+        "Use your checklist to improve",
+        "Connect to the next lesson"
+      ]
+    },
+    {
+      "lesson": 3,
+      "id": "hs2-u01-l03-bridge01",
+      "focus": "Habit and interruption",
+      "retrieve": "Repérez les habitudes de Malik avant la perte de son sac, puis l'événement précis.",
+      "interpret": "Expliquez pourquoi allait, retrouvait et savait ne jouent pas le même rôle que a perdu.",
+      "listen": "Écoutez le dialogue de Malik et Inès et identifiez les étapes de la recherche.",
+      "create": "Rédigez 100 à 120 mots : une habitude passée, un incident et une résolution. Racontez la scène avec les temps appropriés.",
+      "feedback": "L'habitude se décrit généralement à l'imparfait; l'incident de perte est marqué au passé composé. Les deux temps coopèrent.",
+      "bridge": "À la prochaine leçon, reprenez un court récit et remplacez des répétitions de noms par des pronoms objets.",
+      "criteria": [
+        "J'attribue chaque détail au document ou à la personne qui l'énonce",
+        "J'emploie les temps du passé ou les pronoms avec cohérence",
+        "J'explique une différence entre les faits et les interprétations",
+        "Je révise mon texte et peux en présenter l'idée principale oralement"
+      ],
+      "steps": [
+        "Find details in the reading",
+        "Explain the meaning at your level",
+        "Listen and find a matching detail",
+        "Write and speak in French",
+        "Use your checklist to improve",
+        "Connect to the next lesson"
+      ]
+    },
+    {
+      "lesson": 4,
+      "id": "hs2-u01-l04-bridge01",
+      "focus": "Pronouns and references",
+      "retrieve": "Relevez deux occurrences de les et indiquez précisément les objets repris.",
+      "interpret": "Expliquez la différence entre les, lui et leur, ainsi que l'accord avec un objet direct antéposé.",
+      "listen": "Écoutez Noémie et Léa; identifiez l'objet donné et la personne qui le reçoit.",
+      "create": "Écrivez 100 à 130 mots d'une histoire de photos fictives. Remplacez au moins trois répétitions avec les, lui ou leur.",
+      "feedback": "Les reprend les photos et lui renvoie à Léa dans le récit. Les pronoms doivent avoir un antécédent compréhensible.",
+      "bridge": "Dans la leçon suivante, comparez deux témoins d'un même événement sans fusionner leurs perceptions.",
+      "criteria": [
+        "J'attribue chaque détail au document ou à la personne qui l'énonce",
+        "J'emploie les temps du passé ou les pronoms avec cohérence",
+        "J'explique une différence entre les faits et les interprétations",
+        "Je révise mon texte et peux en présenter l'idée principale oralement"
+      ],
+      "steps": [
+        "Find details in the reading",
+        "Explain the meaning at your level",
+        "Listen and find a matching detail",
+        "Write and speak in French",
+        "Use your checklist to improve",
+        "Connect to the next lesson"
+      ]
+    },
+    {
+      "lesson": 5,
+      "id": "hs2-u01-l05-bridge01",
+      "focus": "Compare two accounts",
+      "retrieve": "Citez une information apportée seulement par Léa et une rapportée seulement par Samir.",
+      "interpret": "Expliquez pourquoi leurs perceptions sont différentes sans conclure automatiquement que l'un ment.",
+      "listen": "Écoutez les deux souvenirs et distinguez ce qui est observé de ce qui reste inconnu.",
+      "create": "Écrivez 120 à 150 mots comparant deux témoignages fictifs au passé. Signalez une information non vérifiée et justifiez vos temps.",
+      "feedback": "Deux récits partiels d'un même événement peuvent être compatibles. La précision vient de l'attribution des détails à chaque voix.",
+      "bridge": "Dans le défi final, reconstituez un trajet en respectant les preuves, les moments et les zones d'incertitude.",
+      "criteria": [
+        "J'attribue chaque détail au document ou à la personne qui l'énonce",
+        "J'emploie les temps du passé ou les pronoms avec cohérence",
+        "J'explique une différence entre les faits et les interprétations",
+        "Je révise mon texte et peux en présenter l'idée principale oralement"
+      ],
+      "steps": [
+        "Find details in the reading",
+        "Explain the meaning at your level",
+        "Listen and find a matching detail",
+        "Write and speak in French",
+        "Use your checklist to improve",
+        "Connect to the next lesson"
+      ]
+    },
+    {
+      "lesson": 6,
+      "id": "hs2-u01-l06-bridge01",
+      "focus": "Reconstruct the travel notebook",
+      "retrieve": "Relevez l'heure sur le billet, ce que Camille a observé et où se trouvait le carnet.",
+      "interpret": "Distinguez un billet daté, le souvenir limité de Camille et la découverte finale dans le livre.",
+      "listen": "Écoutez le dialogue sur le carnet disparu et identifiez la succession des actions.",
+      "create": "Rédigez 150 à 180 mots pour reconstituer le voyage; présentez oralement la chronologie en distinguant certitudes et hypothèses.",
+      "feedback": "Le billet contient l'horaire; Camille sait seulement ce qu'elle a vu. La preuve finale vient du carnet retrouvé entre les pages.",
+      "bridge": "Pour la suite du cours, préparez un nouveau récit avec deux sources et des pronoms clairement référencés.",
+      "criteria": [
+        "J'attribue chaque détail au document ou à la personne qui l'énonce",
+        "J'emploie les temps du passé ou les pronoms avec cohérence",
+        "J'explique une différence entre les faits et les interprétations",
+        "Je révise mon texte et peux en présenter l'idée principale oralement"
+      ],
+      "steps": [
+        "Find details in the reading",
+        "Explain the meaning at your level",
+        "Listen and find a matching detail",
+        "Write and speak in French",
+        "Use your checklist to improve",
+        "Connect to the next lesson"
+      ]
+    }
+  ]
+}
