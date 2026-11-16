@@ -34,6 +34,8 @@ Each lesson/domain cell must have **at least one authored reserve item above the
 - Return a draft, nonofficial selection. It does not grade learners or write attempts, student records, course completion, certificates, teacher notes or parent exports.
 - `inspectBalancedFrenchUnit01Draw` inspects coverage without disclosing answer keys.
 
+The companion `gradeBalancedFrenchUnit01Attempt` function rechecks the exact 50-question matrix, rejects out-of-scope items and invalid response indices, and returns a **nonofficial** formative result only. It cannot update the Hall learner record.
+
 ## Quality and release safeguards
 
 **Authoring complete does not mean eligible for administration.** Current banks have an assistant draft editorial pass but no independent qualified linguistic sign-off. The engine has no per-item *editorially approved* flag, topic coverage, calibrated difficulty metadata, item exposure limits beyond prioritizing unseen items, or live learner-scoped attempt tracking. It does not test listening, oral conversation or original writing. It is not connected to the current Hall manual-score or historic completion authority.
