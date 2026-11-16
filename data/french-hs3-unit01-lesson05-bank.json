@@ -82,14 +82,14 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "School attendance study: which sentence appropriately limits the finding to the surveyed settings?",
+      "prompt": "A study observed increased library attendance in three schools, without examining the rest of the country. Which conclusion stays within the source's scope?",
       "choices": [
         "La hausse restera identique pour toujours.",
         "Dans les trois écoles étudiées, la fréquentation de la bibliothèque a augmenté.",
         "La fréquentation de toutes les bibliothèques scolaires du pays a augmenté."
       ],
       "answer": 1,
-      "explanation": "This confines an observed library-attendance finding to three schools rather than extrapolating to a nation."
+      "explanation": "The correct conclusion describes rising library attendance in only the three observed schools; it does not generalize to other institutions."
     },
     {
       "id": "hs3-u01-l05-q007",
