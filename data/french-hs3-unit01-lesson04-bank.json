@@ -138,21 +138,21 @@
       "unit": 1,
       "lesson": 4,
       "domain": "interpretation",
-      "prompt": "Read: « Le programme qui cible les petites villes reste expérimental. » What is experimental?",
+      "prompt": "School support source: « Le programme qui cible les petits lycées reste expérimental. » What is experimental?",
       "choices": [
-        "The program targeting small towns.",
-        "All small towns in the country.",
-        "A finished national reform."
+        "The experimental program targeting small high schools.",
+        "All towns outside the school district.",
+        "All published evidence about schools."
       ],
       "answer": 0,
-      "explanation": "Qui cible modifies le programme, which reste expérimental."
+      "explanation": "Qui cible les petits lycées modifies le programme; reste expérimental describes that program."
     },
     {
       "id": "hs3-u01-l04-q011",
       "unit": 1,
       "lesson": 4,
       "domain": "interpretation",
-      "prompt": "Read: « Les articles que Sarah a lus citent des chiffres différents. » What did Sarah read?",
+      "prompt": "Education literature review: « Les articles que Sarah a lus citent des chiffres différents sur les élèves. » What did Sarah read?",
       "choices": [
         "The statistics themselves only.",
         "The authors' letters.",
@@ -166,7 +166,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "interpretation",
-      "prompt": "Read: « La région où nous avons enquêté compte peu d'habitants. » What does où identify?",
+      "prompt": "School survey location: « La région où nous avons enquêté compte peu de lycées. » What does où identify?",
       "choices": [
         "The publication date.",
         "The surveyed region.",
@@ -180,21 +180,21 @@
       "unit": 1,
       "lesson": 4,
       "domain": "interpretation",
-      "prompt": "Read: « Les associations dont le rapport parle ont demandé une réunion. » Which organizations?",
+      "prompt": "School report: « Les associations de parents dont le rapport parle ont demandé une réunion. » Which associations are mentioned?",
       "choices": [
-        "Those discussed by the report.",
-        "All associations everywhere.",
-        "Only the report's authors."
+        "The parent associations discussed in the report.",
+        "All educational organizations in the country.",
+        "The authors of the school report."
       ],
       "answer": 0,
-      "explanation": "Dont links the associations to the report's discussion."
+      "explanation": "Dont links the parent associations to the report discussing them."
     },
     {
       "id": "hs3-u01-l04-q014",
       "unit": 1,
       "lesson": 4,
       "domain": "interpretation",
-      "prompt": "Read: « L'expert qui présente l'étude ne l'a pas rédigée. » What distinction appears?",
+      "prompt": "Education research presentation: « L'expert qui présente l'étude sur le tutorat ne l'a pas rédigée. » What distinction appears?",
       "choices": [
         "The expert wrote and presented the study.",
         "No study was presented.",
@@ -264,7 +264,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "transfer",
-      "prompt": "You want to identify a report you read. Choose a precise sentence.",
+      "prompt": "You read a school assessment report and want to identify it without repeating its name. Choose a precise relative-clause sentence.",
       "choices": [
         "Le rapport que j'ai lu présente trois hypothèses.",
         "Le rapport qui j'ai lu présente trois hypothèses.",
@@ -278,7 +278,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "transfer",
-      "prompt": "You want to mention the author whose research was cited. Choose the phrasing.",
+      "prompt": "You want to mention the author whose school education research was cited. Choose the appropriate phrasing.",
       "choices": [
         "L'autrice que les travaux ont été cités.",
         "L'autrice où les travaux ont été cités.",
@@ -292,7 +292,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "transfer",
-      "prompt": "You need to describe a district where the survey happened.",
+      "prompt": "You are describing the district where a school attendance survey took place. Choose an accurate où-clause.",
       "choices": [
         "Le quartier dont l'enquête a eu lieu.",
         "Le quartier où l'enquête a eu lieu.",
@@ -306,7 +306,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "transfer",
-      "prompt": "You are writing about policies that affect students. Choose a grammatical clause.",
+      "prompt": "You are writing about policies that affect students in public schools. Choose a grammatical relative clause.",
       "choices": [
         "Les politiques qui concernent les élèves.",
         "Les politiques que concernent les élèves.",
@@ -320,7 +320,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "transfer",
-      "prompt": "You want to refer to two studies you compared. Which is correct?",
+      "prompt": "You compared two studies on classroom participation. Which sentence is grammatically correct?",
       "choices": [
         "Les deux études qui j'ai comparé.",
         "Les deux études dont j'ai comparée.",
