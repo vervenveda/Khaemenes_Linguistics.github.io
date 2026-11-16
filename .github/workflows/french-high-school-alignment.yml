@@ -11,6 +11,7 @@ on:
       - 'assets/french-high-school-assessment-contract.mjs'
       - 'scripts/test-french-high-school-assessment-contract.mjs'
       - 'scripts/test-french-high-school-authored-unit01-lesson01.mjs'
+      - 'scripts/test-french-high-school-lesson01-editorial-regressions.mjs'
       - 'data/french-hs1-unit01-lesson01-bank.json'
       - 'data/french-hs2-unit01-lesson01-bank.json'
       - 'data/french-hs3-unit01-lesson01-bank.json'
@@ -25,6 +26,7 @@ on:
       - 'assets/french-high-school-assessment-contract.mjs'
       - 'scripts/test-french-high-school-assessment-contract.mjs'
       - 'scripts/test-french-high-school-authored-unit01-lesson01.mjs'
+      - 'scripts/test-french-high-school-lesson01-editorial-regressions.mjs'
       - 'data/french-hs1-unit01-lesson01-bank.json'
       - 'data/french-hs2-unit01-lesson01-bank.json'
       - 'data/french-hs3-unit01-lesson01-bank.json'
@@ -53,3 +55,5 @@ jobs:
         run: node --test scripts/test-french-high-school-assessment-contract.mjs
       - name: Validate authored Unit 01 Lesson 01 question banks for all four grades
         run: node --test scripts/test-french-high-school-authored-unit01-lesson01.mjs
+      - name: Guard corrected ambiguity and question fairness across four grades
+        run: node --test scripts/test-french-high-school-lesson01-editorial-regressions.mjs
