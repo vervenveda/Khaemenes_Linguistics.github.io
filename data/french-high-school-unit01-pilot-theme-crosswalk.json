@@ -1,0 +1,249 @@
+{
+  "schema": "khaemenes.french.high-school.pilot-official-theme-crosswalk.v1",
+  "status": "draft-review-required-not-authoritative",
+  "purpose": "Map pilot lesson topics to official Hall themes without remapping learner achievements or assuming a six-week phase equals a lesson.",
+  "hallPhaseSequence": [
+    "Input & Modeling",
+    "Vocabulary / Script",
+    "Structure & Patterns",
+    "Interpretive Lab",
+    "Interpersonal Lab",
+    "Presentational Performance"
+  ],
+  "pilotLessonsAreOfficialWeeks": false,
+  "courses": {
+    "hs1": {
+      "themes": [
+        "identity",
+        "school/work",
+        "food",
+        "city life",
+        "travel",
+        "traditions"
+      ],
+      "lessons": [
+        {
+          "officialUnits": [
+            1
+          ],
+          "status": "within-primary-theme",
+          "note": "Introductions and greetings directly support the identity unit."
+        },
+        {
+          "officialUnits": [
+            1
+          ],
+          "status": "within-primary-theme",
+          "note": "Spelling one's name, accents and clarification support identity exchanges."
+        },
+        {
+          "officialUnits": [
+            1
+          ],
+          "status": "within-primary-theme",
+          "note": "Family description expands the identity theme through descriptive agreement."
+        },
+        {
+          "officialUnits": [
+            2
+          ],
+          "status": "cross-unit-extension",
+          "note": "Classroom present tense belongs primarily to the Hall's school/work theme (Unit 02)."
+        },
+        {
+          "officialUnits": [
+            3
+          ],
+          "status": "cross-unit-extension",
+          "note": "Food and café exchanges belong primarily to the Hall's food theme (Unit 03)."
+        },
+        {
+          "officialUnits": [
+            1,
+            2,
+            3
+          ],
+          "status": "cross-unit-integration",
+          "note": "The welcome and café mission combines identity, school/work and food. It is not an official Unit 01 final."
+        }
+      ]
+    },
+    "hs2": {
+      "themes": [
+        "past experiences",
+        "home/community",
+        "health",
+        "media",
+        "services",
+        "travel problems"
+      ],
+      "lessons": [
+        {
+          "officialUnits": [
+            1
+          ],
+          "status": "within-primary-theme",
+          "note": "Past-event narration directly fits past experiences."
+        },
+        {
+          "officialUnits": [
+            1
+          ],
+          "status": "within-primary-theme",
+          "note": "Passé composé and agreement are core supports for past experiences."
+        },
+        {
+          "officialUnits": [
+            1
+          ],
+          "status": "within-primary-theme",
+          "note": "Imparfait provides habits, settings and contrast for recounting experiences."
+        },
+        {
+          "officialUnits": [
+            1
+          ],
+          "status": "within-primary-theme",
+          "note": "Pronouns help avoid repetition when retelling personal experiences."
+        },
+        {
+          "officialUnits": [
+            1
+          ],
+          "status": "within-primary-theme",
+          "note": "Comparing personal narratives fits the first official theme."
+        },
+        {
+          "officialUnits": [
+            1,
+            6
+          ],
+          "status": "cross-unit-integration",
+          "note": "The travel notebook reinforces past experiences with a context also associated with later travel problems."
+        }
+      ]
+    },
+    "hs3": {
+      "themes": [
+        "education",
+        "environment",
+        "technology",
+        "arts",
+        "food systems",
+        "community issues"
+      ],
+      "lessons": [
+        {
+          "officialUnits": [
+            1,
+            6
+          ],
+          "status": "context-revision-required",
+          "note": "Claims and evidence need examples anchored to education; general community cases also match later community issues."
+        },
+        {
+          "officialUnits": [
+            1,
+            6
+          ],
+          "status": "context-revision-required",
+          "note": "Debate connectors fit education, but source scenarios must refer explicitly to education rather than generic policy."
+        },
+        {
+          "officialUnits": [
+            1,
+            6
+          ],
+          "status": "context-revision-required",
+          "note": "Future and conditional forms are transferable; the proposed pilot must be placed in an education context."
+        },
+        {
+          "officialUnits": [
+            1,
+            6
+          ],
+          "status": "context-revision-required",
+          "note": "Relative clauses fit source-based education arguments, but present draft examples range beyond the first theme."
+        },
+        {
+          "officialUnits": [
+            1,
+            6
+          ],
+          "status": "context-revision-required",
+          "note": "Source comparisons should use schooling data and caution rather than generic neighborhood service claims."
+        },
+        {
+          "officialUnits": [
+            1,
+            6
+          ],
+          "status": "cross-unit-integration",
+          "note": "Community Proposal Forum integrates education with later community issues; its official unit mapping is unresolved."
+        }
+      ]
+    },
+    "hs4": {
+      "themes": [
+        "identity & migration",
+        "history/memory",
+        "science",
+        "literature/film",
+        "civic life",
+        "global issues"
+      ],
+      "lessons": [
+        {
+          "officialUnits": [
+            1,
+            2
+          ],
+          "status": "context-revision-required",
+          "note": "Memory and source synthesis need explicit identity/migration framing; historical memory is the Hall's second theme."
+        },
+        {
+          "officialUnits": [
+            1,
+            2
+          ],
+          "status": "context-revision-required",
+          "note": "Provenance work spans migration testimonies and history/memory; original examples need a consistent migration context."
+        },
+        {
+          "officialUnits": [
+            1,
+            2
+          ],
+          "status": "context-revision-required",
+          "note": "Historical counterfactuals are mainly history/memory; tie exercises to migration and identity where appropriate."
+        },
+        {
+          "officialUnits": [
+            1,
+            4
+          ],
+          "status": "cross-unit-integration",
+          "note": "Register and translation shape identity/migration narratives and later literature/film analysis."
+        },
+        {
+          "officialUnits": [
+            1,
+            2,
+            4
+          ],
+          "status": "cross-unit-integration",
+          "note": "Archival, documentary and literary study crosses identity/migration, history/memory and literature/film."
+        },
+        {
+          "officialUnits": [
+            1,
+            2,
+            4
+          ],
+          "status": "cross-unit-integration",
+          "note": "Many Voices Exhibit is a multi-theme performance task, not a certified Unit 01 assessment."
+        }
+      ]
+    }
+  }
+}
