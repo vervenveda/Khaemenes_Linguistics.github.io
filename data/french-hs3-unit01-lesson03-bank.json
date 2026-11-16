@@ -5,14 +5,14 @@
   "lesson": 3,
   "status": "authoring-review-not-published",
   "title": "Future and conditional for proposals and uncertainty",
-  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "editorialReview": "assistant-contextual-pass-independent-review-pending",
   "questions": [
     {
       "id": "hs3-u01-l03-q001",
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Complete the futur simple: « Demain, nous ___ les résultats ».",
+      "prompt": "School tutoring results: complete the futur simple « Demain, nous ___ les résultats du tutorat ».",
       "choices": [
         "examinerons",
         "examinerions",
@@ -26,7 +26,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Choose the conditional for a cautious proposal: « Nous ___ commencer par un essai ».",
+      "prompt": "Student-support proposal: choose the conditional « Nous ___ commencer par un essai de l'atelier de lecture ».",
       "choices": [
         "pourrons",
         "pouvions",
@@ -40,7 +40,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Complete: « L'an prochain, elle ___ davantage de données ».",
+      "prompt": "School improvement report: complete « L'an prochain, elle ___ davantage de données sur les élèves ».",
       "choices": [
         "avait",
         "aura",
@@ -54,21 +54,21 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Which sentence gives a hypothetical result?",
+      "prompt": "Hypothetical school staffing: which sentence uses si + imperfect and conditional to describe a possible staffing increase?",
       "choices": [
         "Si le budget augmentait, nous embaucherions deux personnes.",
         "Si le budget augmentera, nous embaucherons deux personnes.",
         "Si le budget a augmenté, nous embauchons hier."
       ],
       "answer": 0,
-      "explanation": "Si plus imperfect and present conditional expresses a hypothetical present situation."
+      "explanation": "The school-staffing scenario uses si + imparfait with a conditional result; the original grammatical correct option is retained."
     },
     {
       "id": "hs3-u01-l03-q005",
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Choose the futur simple of faire for je.",
+      "prompt": "School-council presentation: choose the futur simple of faire for je, in « Demain, je ___ le bilan ».",
       "choices": [
         "ferais",
         "faisais",
@@ -82,7 +82,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Choose the conditional form of être with vous.",
+      "prompt": "School consultation: choose the conditional form of être with vous, in « Vous ___ disponibles pour une réunion ? ».",
       "choices": [
         "étiez",
         "seriez",
@@ -96,7 +96,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Complete a real future possibility: « Si nous obtenons un financement, nous ___ l'étude ».",
+      "prompt": "School library trial: complete « Si nous obtenons un financement, nous ___ l'étude sur la fréquentation ».",
       "choices": [
         "poursuivrons",
         "poursuivrions",
@@ -110,21 +110,21 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Which choice expresses uncertainty rather than a guarantee?",
+      "prompt": "Which school-access proposal expresses uncertainty rather than a guarantee?",
       "choices": [
-        "Cette politique améliorera forcément l'accès partout.",
-        "Cette politique a amélioré toutes les situations.",
-        "Cette politique pourrait améliorer l'accès."
+        "Cette politique scolaire améliorera forcément l'accès partout.",
+        "Cette politique scolaire a amélioré toutes les situations.",
+        "Cette politique scolaire pourrait améliorer l'accès."
       ],
       "answer": 2,
-      "explanation": "Pourrait presents a possibility without claiming universal success."
+      "explanation": "Pourrait qualifies a proposed effect on access to schooling rather than guaranteeing success for every learner."
     },
     {
       "id": "hs3-u01-l03-q009",
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Choose the future simple stem of venir in « Ils ___ demain ».",
+      "prompt": "School visit: choose the future simple of venir with ils in « Les intervenants ___ demain ».",
       "choices": [
         "viendraient",
         "viendront",
