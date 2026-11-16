@@ -5,14 +5,14 @@
   "lesson": 1,
   "status": "authoring-review-not-published",
   "title": "Evidence-based opinions and respectful debate",
-  "editorialReview": "assistant-editorial-pass-complete-independent-review-pending",
+  "editorialReview": "assistant-contextual-pass-independent-review-pending",
   "questions": [
     {
       "id": "hs3-u01-l01-q001",
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Choose the connector introducing a concession: « ___ le coût, ce projet mérite un essai. »",
+      "prompt": "School-improvement debate: choose the connector introducing a concession: « ___ le coût du soutien scolaire, ce projet mérite un essai. »",
       "choices": [
         "Malgré",
         "Parce que",
@@ -26,7 +26,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Choose the verb after « Il faut que nous ___ des sources fiables. »",
+      "prompt": "A student council needs reliable sources about education: choose the verb after « Il faut que nous ___ des sources fiables sur les besoins des élèves. »",
       "choices": [
         "consultons",
         "consulterons",
@@ -40,7 +40,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Complete: « Si nous avions plus de temps, nous ___ les résultats. »",
+      "prompt": "School-library evaluation: complete « Si nous avions plus de temps, nous ___ les résultats de l'enquête scolaire. »",
       "choices": [
         "comparons hier",
         "comparerions",
@@ -54,7 +54,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Which relative pronoun replaces the subject in « Le document ___ explique ce phénomène »?",
+      "prompt": "School research: which relative pronoun replaces the subject in « Le document sur l'éducation ___ explique ce phénomène »?",
       "choices": [
         "qui",
         "que",
@@ -68,7 +68,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Which relative pronoun introduces a direct object? « L'article ___ j'ai lu »",
+      "prompt": "School reading assignment: which relative pronoun introduces the direct object? « L'article sur le tutorat ___ j'ai lu »",
       "choices": [
         "qui",
         "où",
@@ -82,21 +82,21 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Which sentence makes a measured claim rather than an absolute one?",
+      "prompt": "Which school-library proposal makes a measured claim rather than an absolute one?",
       "choices": [
-        "Tout le monde sait que cette solution est parfaite.",
-        "Cette solution pourrait réduire les déchets.",
-        "Cette solution élimine toujours tous les déchets."
+        "Tout le monde sait que le soutien scolaire garantit la réussite.",
+        "Le tutorat pourrait améliorer l'accès à l'aide scolaire.",
+        "Le tutorat garantit toujours la réussite de tous."
       ],
       "answer": 1,
-      "explanation": "Pourrait expresses a qualified possibility rather than certainty."
+      "explanation": "Pourrait makes the possible effect of school tutoring conditional rather than presenting academic success as guaranteed."
     },
     {
       "id": "hs3-u01-l01-q007",
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Complete the causal link: « Je soutiens cette proposition ___ son coût est raisonnable. »",
+      "prompt": "Education-funding debate: complete « Je soutiens cette proposition de tutorat ___ son coût est raisonnable. »",
       "choices": [
         "parce que",
         "donc",
@@ -110,7 +110,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Choose the expression that introduces evidence.",
+      "prompt": "During a school-board debate, choose the expression that introduces evidence rather than unsupported conviction.",
       "choices": [
         "À mon avis seulement,",
         "Sans aucune information,",
@@ -124,14 +124,14 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Which version presents contrasting opinions with a grammatically appropriate connector?",
+      "prompt": "School-council dialogue: which version presents contrasting opinions with a grammatically appropriate connector?",
       "choices": [
-        "Certains approuvent; parce que d'autres hésitent.",
-        "Certains approuvent; cependant, d'autres hésitent.",
-        "Certains approuvent; par conséquent, d'autres hésitent."
+        "Certains parents approuvent; parce que d'autres hésitent.",
+        "Certains parents approuvent le tutorat; cependant, d'autres hésitent.",
+        "Certains parents approuvent; par conséquent, d'autres hésitent."
       ],
       "answer": 1,
-      "explanation": "Cependant explicitly contrasts the supporters and those who hesitate; the other connectors express consequence or cause."
+      "explanation": "Cependant expresses a genuine contrast between groups' views on tutoring; it does not assert a causal relationship."
     },
     {
       "id": "hs3-u01-l01-q010",
