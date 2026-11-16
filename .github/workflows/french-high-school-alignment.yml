@@ -16,6 +16,12 @@ on:
       - 'scripts/test-french-high-school-authored-unit01-lesson03.mjs'
       - 'scripts/test-french-high-school-authored-unit01-lesson04.mjs'
       - 'scripts/test-french-high-school-authored-unit01-lesson05.mjs'
+      - 'scripts/test-french-high-school-authored-unit01-lesson06.mjs'
+      - 'scripts/test-french-high-school-unit01-six-lesson-integrity.mjs'
+      - 'data/french-hs1-unit01-lesson06-bank.json'
+      - 'data/french-hs2-unit01-lesson06-bank.json'
+      - 'data/french-hs3-unit01-lesson06-bank.json'
+      - 'data/french-hs4-unit01-lesson06-bank.json'
       - 'data/french-hs1-unit01-lesson05-bank.json'
       - 'data/french-hs2-unit01-lesson05-bank.json'
       - 'data/french-hs3-unit01-lesson05-bank.json'
@@ -51,6 +57,12 @@ on:
       - 'scripts/test-french-high-school-authored-unit01-lesson03.mjs'
       - 'scripts/test-french-high-school-authored-unit01-lesson04.mjs'
       - 'scripts/test-french-high-school-authored-unit01-lesson05.mjs'
+      - 'scripts/test-french-high-school-authored-unit01-lesson06.mjs'
+      - 'scripts/test-french-high-school-unit01-six-lesson-integrity.mjs'
+      - 'data/french-hs1-unit01-lesson06-bank.json'
+      - 'data/french-hs2-unit01-lesson06-bank.json'
+      - 'data/french-hs3-unit01-lesson06-bank.json'
+      - 'data/french-hs4-unit01-lesson06-bank.json'
       - 'data/french-hs1-unit01-lesson05-bank.json'
       - 'data/french-hs2-unit01-lesson05-bank.json'
       - 'data/french-hs3-unit01-lesson05-bank.json'
@@ -105,3 +117,7 @@ jobs:
         run: node --test scripts/test-french-high-school-authored-unit01-lesson04.mjs
       - name: Verify synchronized authored French I-IV Lesson 05 banks
         run: node --test scripts/test-french-high-school-authored-unit01-lesson05.mjs
+      - name: Validate Unit 01 Lesson 06 integration missions for all four courses
+        run: node --test scripts/test-french-high-school-authored-unit01-lesson06.mjs
+      - name: Audit complete six-lesson Unit 01 authored banks for four grades
+        run: node --test scripts/test-french-high-school-unit01-six-lesson-integrity.mjs
