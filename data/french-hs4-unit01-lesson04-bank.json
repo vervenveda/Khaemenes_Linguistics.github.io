@@ -12,7 +12,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Which form best fits a formal academic report?",
+      "prompt": "Formal interpretation of a translated Francophone migration testimony: which formulation best fits an academic report?",
       "choices": [
         "Les résultats appellent une interprétation prudente.",
         "Ces chiffres, c'est du grand n'importe quoi.",
@@ -26,7 +26,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Choose a neutral attribution for a contested historical claim.",
+      "prompt": "Disputed historical interpretation of a migration policy: choose a neutral attribution that does not assert scholarly consensus.",
       "choices": [
         "La réforme a certainement échoué parce que je le dis.",
         "Tous les historiens savent forcément la vérité.",
@@ -40,7 +40,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Which translation preserves the conditional uncertainty in « Il aurait quitté la ville »?",
+      "prompt": "Interpreting a fictional family's departure: which English translation preserves the uncertainty of « Il aurait quitté la ville »?",
       "choices": [
         "He must leave the city tomorrow.",
         "He reportedly left the city.",
@@ -54,7 +54,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Which French expression introduces an explicit qualification?",
+      "prompt": "Unverified migration-archive metadata: which French expression introduces an explicit qualification?",
       "choices": [
         "Sous réserve de vérification,",
         "Sans aucune nuance possible,",
@@ -68,7 +68,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Choose the formal revision of « Ce document dit plein de trucs ».",
+      "prompt": "Editing an informal note about a migrant's personal documents: which formal French revision of « Ce document dit plein de trucs » is most appropriate?",
       "choices": [
         "Ce document raconte un tas de machins.",
         "Ce document balance des trucs.",
@@ -82,7 +82,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Which phrase signals a translator's intervention transparently?",
+      "prompt": "A bilingual migration-exhibit translation note: which phrase transparently identifies the translator's intervention?",
       "choices": [
         "Texte source consulté, sans l'avoir vu.",
         "Traduction de l'auteur; nuance discutée en note.",
@@ -96,7 +96,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Choose the correct scholarly use of a quotation.",
+      "prompt": "In a scholarly exhibit on displacement, which construction uses a quotation with necessary interpretive context?",
       "choices": [
         "L'historienne écrit « transition », terme qu'elle définit ensuite.",
         "L'historienne écrit « transition », preuve de tous les faits.",
@@ -110,7 +110,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Which formulation differentiates fact from interpretation?",
+      "prompt": "Fictional dated migrant-arrival record with disputed causes: which formulation separates a documented date from interpretation?",
       "choices": [
         "La date est connue, donc toutes les causes sont certaines.",
         "Une date attestée rend inutile toute enquête.",
@@ -124,7 +124,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Choose an idiomatic translation of « pourtant » in an argument.",
+      "prompt": "Comparing conflicting migration memoir accounts: which English connector best translates « pourtant » to introduce a counterpoint?",
       "choices": [
         "therefore",
         "however",
