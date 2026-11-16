@@ -11,7 +11,7 @@ test("all 12 embedded bridges match canonical data exactly",()=>{
  assert.deepEqual(embedded,master);
  assert.equal(master.status,"pilot-teacher-review-no-official-grade");
  assert.equal(master.gradeAuthority,"none");
- assert.deepEqual(Object.keys(master.courses),["hs3","hs4"]);
+ assert.deepEqual(Object.keys(master.courses),["hs1","hs2","hs3","hs4"]);
 });
 for(const course of ["hs3","hs4"]){
  test(course+" six bridges connect evidence, source limits, oral interpretation and authentic original work",()=>{
