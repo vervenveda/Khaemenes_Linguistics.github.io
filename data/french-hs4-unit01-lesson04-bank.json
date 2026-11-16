@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs4",
+  "unit": 1,
+  "lesson": 4,
+  "status": "authoring-review-not-published",
+  "title": "Register, translation choices and editorial revision",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs4-u01-l04-q001",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Which form best fits a formal academic report?",
+      "choices": [
+        "Les résultats appellent une interprétation prudente.",
+        "Ces chiffres, c'est du grand n'importe quoi.",
+        "C'est évident pour tout le monde."
+      ],
+      "answer": 0,
+      "explanation": "A measured, impersonal tone suits academic reporting."
+    },
+    {
+      "id": "hs4-u01-l04-q002",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Choose a neutral attribution for a contested historical claim.",
+      "choices": [
+        "La réforme a certainement échoué parce que je le dis.",
+        "Tous les historiens savent forcément la vérité.",
+        "Selon l'auteur, la réforme aurait échoué."
+      ],
+      "answer": 2,
+      "explanation": "Selon l'auteur attributes the position rather than asserting consensus."
+    },
+    {
+      "id": "hs4-u01-l04-q003",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Which translation preserves the conditional uncertainty in « Il aurait quitté la ville »?",
+      "choices": [
+        "He must leave the city tomorrow.",
+        "He reportedly left the city.",
+        "He definitely left the city."
+      ],
+      "answer": 1,
+      "explanation": "The conditional can mark reported, unconfirmed past information."
+    },
+    {
+      "id": "hs4-u01-l04-q004",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Which French expression introduces an explicit qualification?",
+      "choices": [
+        "Sous réserve de vérification,",
+        "Sans aucune nuance possible,",
+        "De façon incontestable,"
+      ],
+      "answer": 0,
+      "explanation": "Sous réserve de vérification signals that a claim needs confirmation."
+    },
+    {
+      "id": "hs4-u01-l04-q005",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Choose the formal revision of « Ce document dit plein de trucs ».",
+      "choices": [
+        "Ce document raconte un tas de machins.",
+        "Ce document balance des trucs.",
+        "Ce document présente plusieurs arguments."
+      ],
+      "answer": 2,
+      "explanation": "Présente plusieurs arguments is precise and appropriate for formal analysis."
+    },
+    {
+      "id": "hs4-u01-l04-q006",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Which phrase signals a translator's intervention transparently?",
+      "choices": [
+        "Texte source consulté, sans l'avoir vu.",
+        "Traduction de l'auteur; nuance discutée en note.",
+        "Citation originale inchangée, bien que réécrite."
+      ],
+      "answer": 1,
+      "explanation": "Explicitly identifying the translation and its note preserves accountability."
+    },
+    {
+      "id": "hs4-u01-l04-q007",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Choose the correct scholarly use of a quotation.",
+      "choices": [
+        "L'historienne écrit « transition », terme qu'elle définit ensuite.",
+        "L'historienne écrit « transition », preuve de tous les faits.",
+        "Le mot « transition » démontre sans contexte la causalité."
+      ],
+      "answer": 0,
+      "explanation": "A quotation needs its authorial context and interpretation."
+    },
+    {
+      "id": "hs4-u01-l04-q008",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Which formulation differentiates fact from interpretation?",
+      "choices": [
+        "La date est connue, donc toutes les causes sont certaines.",
+        "Une date attestée rend inutile toute enquête.",
+        "La date est attestée; ses causes restent discutées."
+      ],
+      "answer": 2,
+      "explanation": "Documented chronology does not settle contested causation."
+    },
+    {
+      "id": "hs4-u01-l04-q009",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Choose an idiomatic translation of « pourtant » in an argument.",
+      "choices": [
+        "therefore",
+        "however",
+        "because"
+      ],
+      "answer": 1,
+      "explanation": "Pourtant marks contrast or an unexpected counterpoint."
+    },
+    {
+      "id": "hs4-u01-l04-q010",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « L'éditeur a modernisé l'orthographe sans le signaler ». What is the issue?",
+      "choices": [
+        "Readers may mistake edited spelling for the original.",
+        "The document necessarily contains no useful history.",
+        "No editorial choice was made."
+      ],
+      "answer": 0,
+      "explanation": "Unsignaled modernization obscures features of the source text."
+    },
+    {
+      "id": "hs4-u01-l04-q011",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Le mot république est traduit par state sans commentaire ». What should be checked?",
+      "choices": [
+        "Whether all political nouns have one exact equivalent.",
+        "Whether translation has no interpretive choices.",
+        "Whether political meaning was altered in context."
+      ],
+      "answer": 2,
+      "explanation": "An institutional term may lose its specific nuance in translation."
+    },
+    {
+      "id": "hs4-u01-l04-q012",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « La transcription omet les hésitations de l'entretien ». What might change?",
+      "choices": [
+        "Every recorded fact becomes false.",
+        "How the speaker's uncertainty or fluency is perceived.",
+        "The interview's publication year automatically."
+      ],
+      "answer": 1,
+      "explanation": "Removing hesitations may change perceived speech characteristics."
+    },
+    {
+      "id": "hs4-u01-l04-q013",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Le rapport emploie le conditionnel pour rapporter une rumeur ». How should readers interpret it?",
+      "choices": [
+        "As information not yet established.",
+        "As a certain first-hand observation.",
+        "As an imperative instruction."
+      ],
+      "answer": 0,
+      "explanation": "Conditional reporting can signal uncertainty and attribution."
+    },
+    {
+      "id": "hs4-u01-l04-q014",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « L'auteur utilise nous sans préciser son public ». What is unclear?",
+      "choices": [
+        "Whether nous has a plural form.",
+        "Whether the word refers only to the future.",
+        "Who is included by the pronoun."
+      ],
+      "answer": 2,
+      "explanation": "The referent of nous affects group identity and claimed authority."
+    },
+    {
+      "id": "hs4-u01-l04-q015",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Les sous-titres simplifient un terme culturel sans note ». What concern follows?",
+      "choices": [
+        "The original must contain no cultural context.",
+        "A culturally specific distinction may be lost.",
+        "Subtitles cannot communicate any meaning."
+      ],
+      "answer": 1,
+      "explanation": "Simplification may erase cultural nuance when no note explains it."
+    },
+    {
+      "id": "hs4-u01-l04-q016",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Une citation est détachée de sa réponse initiale ». What should be examined?",
+      "choices": [
+        "The surrounding exchange and original question.",
+        "Only the font of the quoted phrase.",
+        "Whether the citation contains a long word."
+      ],
+      "answer": 0,
+      "explanation": "Dialogue context affects the meaning of a selected quotation."
+    },
+    {
+      "id": "hs4-u01-l04-q017",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Le témoignage emploie un dialecte local dans l'enregistrement ». What principle is important?",
+      "choices": [
+        "Correct every variety to one prestige accent without notice.",
+        "Assume every speaker shares the same dialect.",
+        "Describe the variety without treating it as defective French."
+      ],
+      "answer": 2,
+      "explanation": "Language varieties have social and historical contexts deserving respect."
+    },
+    {
+      "id": "hs4-u01-l04-q018",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Le titre anglais est plus accusateur que le titre français ». What might this alter?",
+      "choices": [
+        "Whether the article contains paragraphs.",
+        "The perceived stance of the publication.",
+        "The original date of the historical event."
+      ],
+      "answer": 1,
+      "explanation": "A more accusatory title can change perceived editorial framing."
+    },
+    {
+      "id": "hs4-u01-l04-q019",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "An archival source contains an offensive historical term. Which editorial action is responsible?",
+      "choices": [
+        "Quote only as needed, contextualize it, and avoid adopting its viewpoint.",
+        "Erase the source's context and repeat the term as neutral.",
+        "Treat offensive wording as proof of objective description."
+      ],
+      "answer": 0,
+      "explanation": "Contextualized, limited quotation documents harmful language without endorsement."
+    },
+    {
+      "id": "hs4-u01-l04-q020",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You find two translations of a politically important sentence. What should you do?",
+      "choices": [
+        "Choose the one that best supports your conclusion without disclosure.",
+        "Combine both into a fabricated quotation.",
+        "Compare both with the source wording and explain differences."
+      ],
+      "answer": 2,
+      "explanation": "Translation comparisons require source checking and transparent explanation."
+    },
+    {
+      "id": "hs4-u01-l04-q021",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "An interview uses informal speech in French. Which transcription policy is best?",
+      "choices": [
+        "Remove all signs of the speaker's language variety.",
+        "Preserve meaningful features and explain any normalization.",
+        "Silently rewrite every statement as formal literary prose."
+      ],
+      "answer": 1,
+      "explanation": "Transparent transcription protects speaker voice and documentary accuracy."
+    },
+    {
+      "id": "hs4-u01-l04-q022",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "A museum label describes one contested interpretation as universally accepted. Which revision is strongest?",
+      "choices": [
+        "Cette interprétation est défendue par certains chercheurs, mais reste discutée.",
+        "Cette interprétation est vraie pour toujours et pour tous.",
+        "Toute autre interprétation est interdite."
+      ],
+      "answer": 0,
+      "explanation": "Attribution and the acknowledgment of debate improve scholarly accuracy."
+    },
+    {
+      "id": "hs4-u01-l04-q023",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You translate « mémoire » in a discussion of collective history. What should guide the choice?",
+      "choices": [
+        "Always use one English word regardless of context.",
+        "Replace the term with an unrelated modern slogan.",
+        "Its historical context and whether memory or remembrance is intended."
+      ],
+      "answer": 2,
+      "explanation": "Mémoire may require context-sensitive translation depending on its use."
+    },
+    {
+      "id": "hs4-u01-l04-q024",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "A documentary narrator claims to speak for a community. What should the analysis ask?",
+      "choices": [
+        "Whether a formal voice guarantees community consent.",
+        "Whose voices are included and who authorized the representation?",
+        "Whether the narrator has the longest speaking time."
+      ],
+      "answer": 1,
+      "explanation": "Representation depends on whose perspectives are present and claimed authority."
+    },
+    {
+      "id": "hs4-u01-l04-q025",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "An edited historical letter uses square brackets to fill a missing name. What is the best interpretation?",
+      "choices": [
+        "The bracketed text is an editorial addition, not original wording.",
+        "The bracketed text is always handwritten in the original.",
+        "The brackets prove the name was never uncertain."
+      ],
+      "answer": 0,
+      "explanation": "Scholarly brackets can distinguish editorial supplementation from source text."
+    },
+    {
+      "id": "hs4-u01-l04-q026",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You must present an uncertain source attribution. Which French sentence fits?",
+      "choices": [
+        "Cette autrice a forcément écrit le texte, sans source.",
+        "Aucune attribution n'a jamais besoin d'être justifiée.",
+        "Le texte est attribué à cette autrice, mais l'identification reste incertaine."
+      ],
+      "answer": 2,
+      "explanation": "Attribué à and reste incertaine preserve uncertainty about authorship."
+    },
+    {
+      "id": "hs4-u01-l04-q027",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "Your report quotes a witness after translating their words. Which note is most responsible?",
+      "choices": [
+        "Citation incontestable parce que traduite.",
+        "Citation traduite; texte original et choix de traduction disponibles en annexe.",
+        "Citation originale, même si elle a été modifiée sans mention."
+      ],
+      "answer": 1,
+      "explanation": "Identifying translation and providing the source text allows critical review."
+    }
+  ]
+}
