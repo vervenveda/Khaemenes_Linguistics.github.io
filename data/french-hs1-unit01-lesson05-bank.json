@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs1",
+  "unit": 1,
+  "lesson": 5,
+  "status": "authoring-review-not-published",
+  "title": "Food, quantities and polite everyday exchanges",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs1-u01-l05-q001",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Complete the request: « Je ___ un chocolat chaud, s'il vous plaît. »",
+      "choices": [
+        "voudrais",
+        "voudrait",
+        "voudrions"
+      ],
+      "answer": 0,
+      "explanation": "Je voudrais is a polite first-person conditional request."
+    },
+    {
+      "id": "hs1-u01-l05-q002",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose the correct partitive for masculine singular café: « ___ café ».",
+      "choices": [
+        "de la",
+        "des",
+        "du"
+      ],
+      "answer": 2,
+      "explanation": "Du is the masculine singular partitive before café."
+    },
+    {
+      "id": "hs1-u01-l05-q003",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose the correct partitive: « Je mange ___ soupe. »",
+      "choices": [
+        "des",
+        "de la",
+        "du"
+      ],
+      "answer": 1,
+      "explanation": "Soupe is feminine singular; de la indicates an unspecified quantity."
+    },
+    {
+      "id": "hs1-u01-l05-q004",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose the article before the vowel in « ___ eau ».",
+      "choices": [
+        "de l'",
+        "du",
+        "de la"
+      ],
+      "answer": 0,
+      "explanation": "De l' precedes a vowel sound in eau."
+    },
+    {
+      "id": "hs1-u01-l05-q005",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Complete a negative quantity: « Je ne bois pas ___ lait. »",
+      "choices": [
+        "du",
+        "des",
+        "de"
+      ],
+      "answer": 2,
+      "explanation": "In a simple negation, partitive du generally becomes de."
+    },
+    {
+      "id": "hs1-u01-l05-q006",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose the correct count: « Je prends ___ croissants. »",
+      "choices": [
+        "du",
+        "deux",
+        "de la"
+      ],
+      "answer": 1,
+      "explanation": "Deux is a numeral used for countable plural croissants."
+    },
+    {
+      "id": "hs1-u01-l05-q007",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Complete: « L'addition, ___ vous plaît. »",
+      "choices": [
+        "s'il",
+        "si il",
+        "sa il"
+      ],
+      "answer": 0,
+      "explanation": "S'il vous plaît is the standard polite expression."
+    },
+    {
+      "id": "hs1-u01-l05-q008",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Which question asks for the price?",
+      "choices": [
+        "Ça va comment ?",
+        "Il est où ?",
+        "Ça coûte combien ?"
+      ],
+      "answer": 2,
+      "explanation": "Ça coûte combien asks how much an item costs."
+    },
+    {
+      "id": "hs1-u01-l05-q009",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose the polite response to « Vous désirez ? »",
+      "choices": [
+        "Vous êtes une salade, merci.",
+        "Je voudrais une salade, merci.",
+        "Je suis une salade, merci."
+      ],
+      "answer": 1,
+      "explanation": "Je voudrais politely states what the customer wants."
+    },
+    {
+      "id": "hs1-u01-l05-q010",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Le menu du jour propose une soupe et un sandwich. » What is offered?",
+      "choices": [
+        "Soup and a sandwich.",
+        "Two desserts.",
+        "Coffee and juice."
+      ],
+      "answer": 0,
+      "explanation": "Une soupe et un sandwich are explicitly listed."
+    },
+    {
+      "id": "hs1-u01-l05-q011",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « La boulangerie ferme à dix-huit heures. » What time does it close?",
+      "choices": [
+        "At 8 a.m.",
+        "At noon.",
+        "At 6 p.m."
+      ],
+      "answer": 2,
+      "explanation": "Dix-huit heures corresponds to 18:00 or 6 p.m."
+    },
+    {
+      "id": "hs1-u01-l05-q012",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Il reste trois pommes, mais il n'y a plus de bananes. » Which fruit is unavailable?",
+      "choices": [
+        "Both fruits.",
+        "Bananas.",
+        "Apples."
+      ],
+      "answer": 1,
+      "explanation": "Il n'y a plus de bananes means no bananas remain."
+    },
+    {
+      "id": "hs1-u01-l05-q013",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Maya préfère le thé sans sucre. » What does Maya avoid?",
+      "choices": [
+        "Sugar in her tea.",
+        "All hot beverages.",
+        "Tea itself."
+      ],
+      "answer": 0,
+      "explanation": "Sans sucre means without sugar."
+    },
+    {
+      "id": "hs1-u01-l05-q014",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Le plat coûte douze euros et la boisson trois euros. » What is the drink's price?",
+      "choices": [
+        "Twelve euros.",
+        "Fifteen euros.",
+        "Three euros."
+      ],
+      "answer": 2,
+      "explanation": "La boisson trois euros explicitly prices the drink."
+    },
+    {
+      "id": "hs1-u01-l05-q015",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Nous partageons une tarte après le déjeuner. » When is the tart eaten?",
+      "choices": [
+        "During breakfast.",
+        "After lunch.",
+        "Before breakfast."
+      ],
+      "answer": 1,
+      "explanation": "Après le déjeuner indicates after lunch."
+    },
+    {
+      "id": "hs1-u01-l05-q016",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Je suis allergique aux noix. » What is important to understand?",
+      "choices": [
+        "The speaker has a nut allergy.",
+        "The speaker dislikes all vegetables.",
+        "The speaker is asking for more nuts."
+      ],
+      "answer": 0,
+      "explanation": "Allergique aux noix communicates a dietary safety concern."
+    },
+    {
+      "id": "hs1-u01-l05-q017",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Le serveur apporte deux verres d'eau. » How many glasses are brought?",
+      "choices": [
+        "One glass.",
+        "Three glasses.",
+        "Two glasses."
+      ],
+      "answer": 2,
+      "explanation": "Deux verres d'eau means two glasses of water."
+    },
+    {
+      "id": "hs1-u01-l05-q018",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Pour emporter » on a café sign. What service is offered?",
+      "choices": [
+        "A cooking class.",
+        "Takeaway food or drink.",
+        "Table service only."
+      ],
+      "answer": 1,
+      "explanation": "Pour emporter denotes an order intended to take away."
+    },
+    {
+      "id": "hs1-u01-l05-q019",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You order a glass of water politely. Which request works?",
+      "choices": [
+        "Un verre d'eau, s'il vous plaît.",
+        "Une verre du eau, s'il vous plaît.",
+        "Je suis eau, s'il vous plaît."
+      ],
+      "answer": 0,
+      "explanation": "Un verre d'eau is the idiomatic expression for a glass of water."
+    },
+    {
+      "id": "hs1-u01-l05-q020",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A server asks « Sur place ou à emporter ? » You want to eat there. Choose the reply.",
+      "choices": [
+        "À emporter, merci.",
+        "Je suis sur place demain.",
+        "Sur place, merci."
+      ],
+      "answer": 2,
+      "explanation": "Sur place means consuming the order at the establishment."
+    },
+    {
+      "id": "hs1-u01-l05-q021",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You cannot eat nuts. Which sentence should you say before ordering?",
+      "choices": [
+        "Je suis allergique au pain, donc ajoutez des noix.",
+        "Je suis allergique aux noix. Est-ce que ce plat en contient ?",
+        "Je veux beaucoup de noix, merci."
+      ],
+      "answer": 1,
+      "explanation": "The first option communicates the allergy and asks whether the dish contains nuts."
+    },
+    {
+      "id": "hs1-u01-l05-q022",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A customer wants the bill. Which phrase is appropriate?",
+      "choices": [
+        "L'addition, s'il vous plaît.",
+        "Le dictionnaire, s'il vous plaît.",
+        "Le devoir, s'il vous plaît."
+      ],
+      "answer": 0,
+      "explanation": "L'addition is the restaurant bill."
+    },
+    {
+      "id": "hs1-u01-l05-q023",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You want two baguettes rather than an unspecified quantity of bread.",
+      "choices": [
+        "Je voudrais du deux baguettes.",
+        "Je voudrais de la baguettes.",
+        "Je voudrais deux baguettes."
+      ],
+      "answer": 2,
+      "explanation": "Deux explicitly counts two baguettes without a partitive."
+    },
+    {
+      "id": "hs1-u01-l05-q024",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A café menu lists one sandwich at six euros. You buy two. What is the food total?",
+      "choices": [
+        "Dix-huit euros.",
+        "Douze euros.",
+        "Six euros."
+      ],
+      "answer": 1,
+      "explanation": "Two sandwiches at six euros each cost twelve euros."
+    },
+    {
+      "id": "hs1-u01-l05-q025",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You want to ask whether a soup is vegetarian. What do you ask?",
+      "choices": [
+        "Est-ce que cette soupe est végétarienne ?",
+        "Où est mon dictionnaire ?",
+        "La soupe est-elle une heure ?"
+      ],
+      "answer": 0,
+      "explanation": "The first question directly asks if the soup is vegetarian."
+    },
+    {
+      "id": "hs1-u01-l05-q026",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "The menu says « épuisé » beside the cake. What is the appropriate interpretation?",
+      "choices": [
+        "The cake is free.",
+        "The cake is extra spicy.",
+        "The cake is sold out."
+      ],
+      "answer": 2,
+      "explanation": "Épuisé on a menu means the item is unavailable or sold out."
+    },
+    {
+      "id": "hs1-u01-l05-q027",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A classmate confuses « du pain » with « deux pains ». Which explanation is correct?",
+      "choices": [
+        "Du pain always means no bread.",
+        "Du pain is an unspecified amount; deux pains counts two loaves.",
+        "Both expressions always mean exactly two loaves."
+      ],
+      "answer": 1,
+      "explanation": "The partitive du differs from the numerical determiner deux."
+    }
+  ]
+}
