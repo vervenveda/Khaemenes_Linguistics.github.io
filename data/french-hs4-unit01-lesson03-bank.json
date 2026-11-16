@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs4",
+  "unit": 1,
+  "lesson": 3,
+  "status": "authoring-review-not-published",
+  "title": "Past conditional and complex historical hypotheticals",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs4-u01-l03-q001",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete the past counterfactual: « Si l'archive avait été conservée, nous ___ comparer les versions ».",
+      "choices": [
+        "aurions pu",
+        "avons pu",
+        "pourrons"
+      ],
+      "answer": 0,
+      "explanation": "Si plus plus-que-parfait takes conditionnel passé in the unreal past result."
+    },
+    {
+      "id": "hs4-u01-l03-q002",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Choose the past conditional of être for elle.",
+      "choices": [
+        "elle serait",
+        "elle était",
+        "elle aurait été"
+      ],
+      "answer": 2,
+      "explanation": "Aurait été is the conditional past of être, while serait is present conditional."
+    },
+    {
+      "id": "hs4-u01-l03-q003",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Which sentence has coherent hypothetical past tenses?",
+      "choices": [
+        "Si les archives seront accessibles, l'enquête aurait avancé hier.",
+        "Si les archives avaient été accessibles, l'enquête aurait avancé.",
+        "Si les archives seraient accessibles, l'enquête avait avancé."
+      ],
+      "answer": 1,
+      "explanation": "A past counterfactual uses plus-que-parfait in the si-clause and conditional past in the result."
+    },
+    {
+      "id": "hs4-u01-l03-q004",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete: « Les témoins auraient ___ un autre itinéraire ».",
+      "choices": [
+        "suivi",
+        "suivis",
+        "suivre"
+      ],
+      "answer": 0,
+      "explanation": "Suivi is the past participle of suivre after auraient."
+    },
+    {
+      "id": "hs4-u01-l03-q005",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Which construction expresses a speculative past cause?",
+      "choices": [
+        "L'absence de registres retardera forcément l'identification hier.",
+        "L'absence de registres avait retarder l'identification.",
+        "L'absence de registres aurait retardé l'identification."
+      ],
+      "answer": 2,
+      "explanation": "Aurait retardé is past conditional and marks a tentative explanation."
+    },
+    {
+      "id": "hs4-u01-l03-q006",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Choose the correct agreement: « Les lettres que l'historienne aurait ___ ».",
+      "choices": [
+        "consultés",
+        "consultées",
+        "consulté"
+      ],
+      "answer": 1,
+      "explanation": "With avoir, the past participle agrees with a preceding direct object: les lettres que."
+    },
+    {
+      "id": "hs4-u01-l03-q007",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete the contrary-to-fact conclusion: « Sans ce document, nous n'___ pas compris la chronologie ».",
+      "choices": [
+        "aurions",
+        "avons",
+        "aurons"
+      ],
+      "answer": 0,
+      "explanation": "N'aurions pas compris forms the negative conditional past of comprendre."
+    },
+    {
+      "id": "hs4-u01-l03-q008",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Which phrase separates an author's assertion from established evidence?",
+      "choices": [
+        "La date est définitivement prouvée par l'affirmation seule.",
+        "Toute source doit accepter cette date.",
+        "L'auteur aurait affirmé cette date, sans pièce justificative conservée."
+      ],
+      "answer": 2,
+      "explanation": "Aurait affirmé and the qualification signal a reported, unverified claim."
+    },
+    {
+      "id": "hs4-u01-l03-q009",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Choose the grammatical past hypothetical: « Si elle était venue, elle ___ le débat ».",
+      "choices": [
+        "avait entendra",
+        "aurait entendu",
+        "entendrait hier"
+      ],
+      "answer": 1,
+      "explanation": "Si elle était venue has plus-que-parfait; aurait entendu gives the hypothetical past result."
+    },
+    {
+      "id": "hs4-u01-l03-q010",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Si la réunion avait été ouverte, davantage de riverains auraient pu intervenir. » What is asserted?",
+      "choices": [
+        "More residents could hypothetically have spoken.",
+        "The meeting was definitely public.",
+        "All residents actually spoke."
+      ],
+      "answer": 0,
+      "explanation": "The sentence imagines an alternative past, not a verified event."
+    },
+    {
+      "id": "hs4-u01-l03-q011",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Le manuscrit aurait disparu lors du déménagement. » What does the conditional signal?",
+      "choices": [
+        "A guaranteed cause verified by several records.",
+        "A disappearance scheduled for the future.",
+        "An unconfirmed account of the disappearance."
+      ],
+      "answer": 2,
+      "explanation": "Aurait disparu can mark reported or uncertain past information."
+    },
+    {
+      "id": "hs4-u01-l03-q012",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « L'historien soutient que l'accord aurait évité la crise. » How should the claim be treated?",
+      "choices": [
+        "As proof that the crisis never occurred.",
+        "As the historian's counterfactual interpretation.",
+        "As a direct recording of an avoided event."
+      ],
+      "answer": 1,
+      "explanation": "Aurait évité describes a hypothetical outcome attributed to the historian."
+    },
+    {
+      "id": "hs4-u01-l03-q013",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Sans les témoignages, la date serait restée inconnue. » Which role do the testimonies play?",
+      "choices": [
+        "They are presented as enabling the date to become known.",
+        "They prove every witness had identical memories.",
+        "They are described as irrelevant."
+      ],
+      "answer": 0,
+      "explanation": "Sans les témoignages frames the counterfactual absence of supporting testimony."
+    },
+    {
+      "id": "hs4-u01-l03-q014",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Elle serait partie avant l'annonce, selon une note non datée. » What remains uncertain?",
+      "choices": [
+        "Whether any announcement was ever made.",
+        "Whether the sentence contains a verb.",
+        "Her departure timing and the note's chronology."
+      ],
+      "answer": 2,
+      "explanation": "The conditional report and undated note limit chronological certainty."
+    },
+    {
+      "id": "hs4-u01-l03-q015",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Si le conseil avait consulté les habitants, la décision aurait peut-être changé. » What does peut-être add?",
+      "choices": [
+        "A claim that consultations were certainly held.",
+        "Explicit uncertainty about the alternative outcome.",
+        "A guarantee that the decision did change."
+      ],
+      "answer": 1,
+      "explanation": "Peut-être reinforces the hypothetical and non-certain nature of the result."
+    },
+    {
+      "id": "hs4-u01-l03-q016",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Le chercheur avait supposé une erreur; de nouveaux registres l'ont ensuite contredit. » What happened to the hypothesis?",
+      "choices": [
+        "Later evidence challenged it.",
+        "Later evidence necessarily confirmed it.",
+        "No new sources were found."
+      ],
+      "answer": 0,
+      "explanation": "Ont contredit shows that subsequent records opposed the earlier hypothesis."
+    },
+    {
+      "id": "hs4-u01-l03-q017",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Le texte distingue les faits attestés des événements qui auraient pu se produire. » What distinction is being made?",
+      "choices": [
+        "Two groups of equally documented events.",
+        "Present observations versus future appointments.",
+        "Verified facts versus possible alternatives."
+      ],
+      "answer": 2,
+      "explanation": "Attestés denotes documented events; auraient pu se produire denotes hypothetical possibilities."
+    },
+    {
+      "id": "hs4-u01-l03-q018",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Selon une chronique tardive, le chef aurait changé de position. » Which source caution is relevant?",
+      "choices": [
+        "Every later chronicle is necessarily invented.",
+        "A later account reports an uncertain change.",
+        "A contemporaneous signed recording proves the change."
+      ],
+      "answer": 1,
+      "explanation": "The report uses a late source and the conditional rather than a verified assertion."
+    },
+    {
+      "id": "hs4-u01-l03-q019",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "An exhibit imagines what could have happened if a treaty had failed. Which caption is responsible?",
+      "choices": [
+        "Scénario contrefactuel : si le traité avait échoué, le conflit aurait pu durer.",
+        "Fait établi : le traité a échoué et le conflit a duré.",
+        "Archive sonore d'un conflit imaginaire."
+      ],
+      "answer": 0,
+      "explanation": "The first label explicitly identifies an alternative scenario as counterfactual."
+    },
+    {
+      "id": "hs4-u01-l03-q020",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "You are revising an unsupported causal claim. Which formulation is most careful?",
+      "choices": [
+        "Cette absence explique nécessairement toute la décision.",
+        "Les sources manquantes prouvent une seule cause.",
+        "Il est possible que cette absence ait influencé la décision; les sources restent lacunaires."
+      ],
+      "answer": 2,
+      "explanation": "Il est possible que expresses uncertainty and notes missing evidence."
+    },
+    {
+      "id": "hs4-u01-l03-q021",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "A student's essay asserts that one document alone proves a lost political motive. What revision helps?",
+      "choices": [
+        "Inventer une autre citation pour corroborer l'idée.",
+        "Présenter l'hypothèse et expliquer les limites de ce document.",
+        "Remplacer l'hypothèse par une certitude absolue."
+      ],
+      "answer": 1,
+      "explanation": "A single document may support a hypothesis without proving an inaccessible motive."
+    },
+    {
+      "id": "hs4-u01-l03-q022",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "A historian compares an event with a plausible alternative path. Which language signals the alternative?",
+      "choices": [
+        "La situation aurait pu évoluer autrement si le gouvernement avait agi plus tôt.",
+        "La situation évoluait toujours ainsi sans exception.",
+        "La situation évoluera certainement hier."
+      ],
+      "answer": 0,
+      "explanation": "Past conditional plus plus-que-parfait expresses an unreal past alternative."
+    },
+    {
+      "id": "hs4-u01-l03-q023",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "You discover a report using « serait arrivé » without a supporting source. What should your annotation state?",
+      "choices": [
+        "Événement directement observé et certain.",
+        "Événement futur définitivement fixé.",
+        "Information rapportée, à corroborer par d'autres sources."
+      ],
+      "answer": 2,
+      "explanation": "The reported conditional calls for corroboration rather than automatic acceptance."
+    },
+    {
+      "id": "hs4-u01-l03-q024",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "Which sentence accurately separates evidence and speculation about an archive fire?",
+      "choices": [
+        "Tous les effets politiques sont prouvés par une hypothèse.",
+        "L'incendie est attesté; ses effets politiques auraient été plus limités avec d'autres décisions.",
+        "L'incendie n'a jamais existé parce qu'un effet alternatif est imaginé."
+      ],
+      "answer": 1,
+      "explanation": "The fire can be documented while a different political outcome remains hypothetical."
+    },
+    {
+      "id": "hs4-u01-l03-q025",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "An author interprets a hypothetical alternative as inevitable. What response is methodologically sound?",
+      "choices": [
+        "Identifier les hypothèses et examiner d'autres issues plausibles.",
+        "Accepter que toute alternative soit une certitude.",
+        "Supprimer les données qui contredisent l'alternative."
+      ],
+      "answer": 0,
+      "explanation": "Counterfactual analysis should identify assumptions and competing plausible outcomes."
+    },
+    {
+      "id": "hs4-u01-l03-q026",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "A museum needs a caption for a reconstruction of an unrealized plan. Which wording fits?",
+      "choices": [
+        "Photographie d'une construction achevée, si elle n'a jamais existé.",
+        "Témoignage direct d'un bâtiment hypothétique.",
+        "Reconstitution d'un projet envisagé mais jamais réalisé."
+      ],
+      "answer": 2,
+      "explanation": "The caption distinguishes a reconstruction of an unrealized project from documentary evidence."
+    },
+    {
+      "id": "hs4-u01-l03-q027",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "You are comparing two historical counterfactuals. Which method is most defensible?",
+      "choices": [
+        "Traiter les deux scénarios comme des événements avérés.",
+        "Évaluer les hypothèses de départ et les sources mobilisées par chaque auteur.",
+        "Choisir le récit le plus dramatique sans lire ses sources."
+      ],
+      "answer": 1,
+      "explanation": "Critically comparing premises and sources is more defensible than presenting alternatives as facts."
+    }
+  ]
+}
