@@ -12,7 +12,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Which text is most likely an archival primary source for an event?",
+      "prompt": "Fictional Francophone migration archive: which document is most likely a primary source for a particular departure?",
       "choices": [
         "A contemporary witness's dated letter.",
         "A modern novel inspired by the event.",
@@ -26,7 +26,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Which description best distinguishes historical fiction from documentary testimony?",
+      "prompt": "Identity and migration literature: which comparison distinguishes fictionalized exile from a person's documented recollections?",
       "choices": [
         "Fiction and testimony always have identical evidentiary status.",
         "Every novel is a verbatim transcript.",
@@ -40,7 +40,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Choose the careful description of a staged documentary scene.",
+      "prompt": "A migration documentary uses actors to stage a family's departure. Which French description labels the reconstruction responsibly?",
       "choices": [
         "Un témoignage spontané joué par des acteurs.",
         "Une reconstitution fondée sur des sources identifiées.",
@@ -54,7 +54,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "What should accompany a quotation from an archival letter?",
+      "prompt": "Citing a fictional migrant's dated archival letter: what contextual and provenance details should accompany the quotation?",
       "choices": [
         "Author, date, archive reference and relevant context.",
         "Only a decorative illustration.",
@@ -68,7 +68,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Choose a balanced literary interpretation.",
+      "prompt": "Reading a novel about intergenerational migration memory: choose a balanced interpretation of the narrator's relationship to the author.",
       "choices": [
         "Le narrateur et l'auteur sont toujours la même personne.",
         "Toute fiction est un document officiel.",
@@ -82,7 +82,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Which phrase marks uncertainty in source attribution?",
+      "prompt": "A migration-family manuscript has disputed authorship. Which French phrase accurately signals uncertainty about its attribution?",
       "choices": [
         "L'attribution ne nécessite jamais de justification.",
         "Ce manuscrit serait attribuable à une autrice encore débattue.",
@@ -96,7 +96,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Choose the appropriate formal comparison.",
+      "prompt": "Comparing a migration documentary with a contemporary administrative record: which formal French sentence respects their different genres?",
       "choices": [
         "Le film dramatise la scène que l'archive décrit sobrement.",
         "Le film prouve que l'archive est sans valeur.",
@@ -110,7 +110,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "What is a transparent editorial practice for an abridged source?",
+      "prompt": "An archival letter about exile is abridged for an exhibit. What editorial practice transparently reports omitted text?",
       "choices": [
         "Hide omissions and call the excerpt complete.",
         "Replace missing sentences with invented quotations.",
@@ -124,7 +124,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Choose a responsible thesis about two cultural representations.",
+      "prompt": "Comparing two cultural depictions of belonging after migration: choose a responsible, nonuniversalizing interpretive thesis.",
       "choices": [
         "Aucune perspective ne peut être contestée.",
         "Les deux œuvres donnent des perspectives différentes sur la mémoire familiale.",
