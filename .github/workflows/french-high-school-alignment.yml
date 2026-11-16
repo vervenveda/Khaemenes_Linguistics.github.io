@@ -10,6 +10,8 @@ on:
       - 'scripts/test-french-high-school-unit01-lesson01-canonical-layout.mjs'
       - 'scripts/test-french-high-school-unit01-pilot-crosswalk.mjs'
       - 'scripts/test-french-high-school-unit01-education-migration-context.mjs'
+      - 'scripts/test-french-high-school-unit01-hs3-hs4-item-crosswalk.mjs'
+      - 'data/french-high-school-unit01-hs3-hs4-item-topic-crosswalk.json'
       - 'data/french-high-school-unit01-pilot-theme-crosswalk.json'
       - 'scripts/test-french-high-school-four-grade-alignment.mjs'
       - 'scripts/test-french-four-grade-score-input.mjs'
@@ -59,6 +61,8 @@ on:
       - 'scripts/test-french-high-school-unit01-lesson01-canonical-layout.mjs'
       - 'scripts/test-french-high-school-unit01-pilot-crosswalk.mjs'
       - 'scripts/test-french-high-school-unit01-education-migration-context.mjs'
+      - 'scripts/test-french-high-school-unit01-hs3-hs4-item-crosswalk.mjs'
+      - 'data/french-high-school-unit01-hs3-hs4-item-topic-crosswalk.json'
       - 'data/french-high-school-unit01-pilot-theme-crosswalk.json'
       - 'scripts/test-french-high-school-four-grade-alignment.mjs'
       - 'scripts/test-french-four-grade-score-input.mjs'
@@ -147,3 +151,5 @@ jobs:
         run: node --test scripts/test-french-high-school-unit01-pilot-crosswalk.mjs
       - name: Check French III education and French IV identity-migration pilot instruction
         run: node --test scripts/test-french-high-school-unit01-education-migration-context.mjs
+      - name: Validate 324 French III-IV item classifications without approving exams
+        run: node --test scripts/test-french-high-school-unit01-hs3-hs4-item-crosswalk.mjs
