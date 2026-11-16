@@ -9,7 +9,7 @@ for(const course of FRENCH_HS_COURSES){
   const bank=JSON.parse(readFileSync("data/french-"+course+"-unit01-lesson05-bank.json","utf8"));
   assert.equal(bank.course,course);
   assert.equal(bank.unit,1);
-  assert.equal(bank.lesson,2);
+  assert.equal(bank.lesson,5);
   assert.equal(bank.status,"authoring-review-not-published");
   assert.equal(bank.editorialReview,"assistant-initial-editorial-pass-independent-review-pending");
   assert.equal(bank.questions.length,27);
