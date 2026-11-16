@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs3",
+  "unit": 1,
+  "lesson": 3,
+  "status": "authoring-review-not-published",
+  "title": "Future and conditional for proposals and uncertainty",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs3-u01-l03-q001",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete the futur simple: « Demain, nous ___ les résultats ».",
+      "choices": [
+        "examinerons",
+        "examinerions",
+        "examinions"
+      ],
+      "answer": 0,
+      "explanation": "Examinerons is the future simple with nous, describing a future plan."
+    },
+    {
+      "id": "hs3-u01-l03-q002",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Choose the conditional for a cautious proposal: « Nous ___ commencer par un essai ».",
+      "choices": [
+        "pourrons",
+        "pouvions",
+        "pourrions"
+      ],
+      "answer": 2,
+      "explanation": "Pourrions is conditional and softens a proposed action."
+    },
+    {
+      "id": "hs3-u01-l03-q003",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete: « L'an prochain, elle ___ davantage de données ».",
+      "choices": [
+        "avait",
+        "aura",
+        "aurait"
+      ],
+      "answer": 1,
+      "explanation": "Aura is the future simple of avoir with elle."
+    },
+    {
+      "id": "hs3-u01-l03-q004",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Which sentence gives a hypothetical result?",
+      "choices": [
+        "Si le budget augmentait, nous embaucherions deux personnes.",
+        "Si le budget augmentera, nous embaucherons deux personnes.",
+        "Si le budget a augmenté, nous embauchons hier."
+      ],
+      "answer": 0,
+      "explanation": "Si plus imperfect and present conditional expresses a hypothetical present situation."
+    },
+    {
+      "id": "hs3-u01-l03-q005",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Choose the futur simple of faire for je.",
+      "choices": [
+        "ferais",
+        "faisais",
+        "ferai"
+      ],
+      "answer": 2,
+      "explanation": "Ferai is the future simple; ferais is conditional."
+    },
+    {
+      "id": "hs3-u01-l03-q006",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Choose the conditional form of être with vous.",
+      "choices": [
+        "étiez",
+        "seriez",
+        "serez"
+      ],
+      "answer": 1,
+      "explanation": "Seriez is the present conditional of être for vous."
+    },
+    {
+      "id": "hs3-u01-l03-q007",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete a real future possibility: « Si nous obtenons un financement, nous ___ l'étude ».",
+      "choices": [
+        "poursuivrons",
+        "poursuivrions",
+        "poursuivions"
+      ],
+      "answer": 0,
+      "explanation": "With a possible future condition in the present, the result may take future simple."
+    },
+    {
+      "id": "hs3-u01-l03-q008",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Which choice expresses uncertainty rather than a guarantee?",
+      "choices": [
+        "Cette politique améliorera forcément l'accès partout.",
+        "Cette politique a amélioré toutes les situations.",
+        "Cette politique pourrait améliorer l'accès."
+      ],
+      "answer": 2,
+      "explanation": "Pourrait presents a possibility without claiming universal success."
+    },
+    {
+      "id": "hs3-u01-l03-q009",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Choose the future simple stem of venir in « Ils ___ demain ».",
+      "choices": [
+        "viendraient",
+        "viendront",
+        "veniront"
+      ],
+      "answer": 1,
+      "explanation": "Viendront is the irregular future simple of venir with ils."
+    },
+    {
+      "id": "hs3-u01-l03-q010",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « En 2030, la ville construira deux écoles ». What is described?",
+      "choices": [
+        "A projected future construction.",
+        "A completed construction last year.",
+        "A conditional wish only."
+      ],
+      "answer": 0,
+      "explanation": "Construira is future simple and points to a future action."
+    },
+    {
+      "id": "hs3-u01-l03-q011",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Cette option serait moins coûteuse, selon l'estimation ». What is the claim's strength?",
+      "choices": [
+        "A guarantee that costs can never change.",
+        "A report of a completed past purchase.",
+        "A qualified estimate rather than established certainty."
+      ],
+      "answer": 2,
+      "explanation": "Serait is conditional, and selon l'estimation attributes a projected comparison."
+    },
+    {
+      "id": "hs3-u01-l03-q012",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Si la fréquentation baissait, le service pourrait fermer ». What scenario is considered?",
+      "choices": [
+        "Use is certain to rise.",
+        "A hypothetical drop in use might lead to closure.",
+        "The service has already closed."
+      ],
+      "answer": 1,
+      "explanation": "Baissait plus pourrait presents a hypothetical condition and possibility."
+    },
+    {
+      "id": "hs3-u01-l03-q013",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Le comité rendra sa décision vendredi ». When is the decision expected?",
+      "choices": [
+        "On Friday in the future.",
+        "Last Friday without exception.",
+        "Every Friday in the past."
+      ],
+      "answer": 0,
+      "explanation": "Rendra is future simple and refers to the upcoming decision."
+    },
+    {
+      "id": "hs3-u01-l03-q014",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Nous aimerions entendre les habitants avant de décider ». What attitude is expressed?",
+      "choices": [
+        "A command that forbids consultation.",
+        "Proof that consultation is finished.",
+        "A courteous wish to consult residents."
+      ],
+      "answer": 2,
+      "explanation": "Aimerions expresses a polite, conditional wish."
+    },
+    {
+      "id": "hs3-u01-l03-q015",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « L'étude prévoit une hausse, mais ses hypothèses restent fragiles ». What caution matters?",
+      "choices": [
+        "No forecast has been made.",
+        "A forecast depends on uncertain assumptions.",
+        "The predicted increase has already occurred."
+      ],
+      "answer": 1,
+      "explanation": "Prévoit marks a projection and fragiles qualifies the assumptions."
+    },
+    {
+      "id": "hs3-u01-l03-q016",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Le projet devra respecter les règles locales ». What obligation is stated?",
+      "choices": [
+        "A future requirement to comply with local rules.",
+        "A report that rules were abolished.",
+        "A proposal to ignore local rules."
+      ],
+      "answer": 0,
+      "explanation": "Devra is the future simple of devoir and signals an obligation."
+    },
+    {
+      "id": "hs3-u01-l03-q017",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Sans aide, plusieurs familles ne pourraient pas participer ». What limits participation?",
+      "choices": [
+        "An automatic prohibition on all families.",
+        "Proof that the families already participated.",
+        "The absence of assistance."
+      ],
+      "answer": 2,
+      "explanation": "Sans aide frames a hypothetical barrier; pourraient is conditional."
+    },
+    {
+      "id": "hs3-u01-l03-q018",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Le conseil étudiera deux scénarios avant de voter ». What is planned first?",
+      "choices": [
+        "Cancelling the decision without discussion.",
+        "Comparing two scenarios.",
+        "Holding the vote before examining anything."
+      ],
+      "answer": 1,
+      "explanation": "Étudiera deux scénarios precedes avant de voter."
+    },
+    {
+      "id": "hs3-u01-l03-q019",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "A town wants to announce a scheduled public meeting. Choose the accurate form.",
+      "choices": [
+        "La réunion aura lieu mardi prochain.",
+        "La réunion aurait lieu hier à coup sûr.",
+        "La réunion avait lieu demain."
+      ],
+      "answer": 0,
+      "explanation": "Aura lieu is future simple and suits a scheduled future event."
+    },
+    {
+      "id": "hs3-u01-l03-q020",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "You want to recommend a pilot rather than demand immediate adoption. Choose the formulation.",
+      "choices": [
+        "Nous devons adopter cette mesure partout sans test.",
+        "Nous avons testé cette mesure demain.",
+        "Nous pourrions tester cette mesure pendant un mois."
+      ],
+      "answer": 2,
+      "explanation": "Pourrions introduces a tentative pilot proposal."
+    },
+    {
+      "id": "hs3-u01-l03-q021",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "You are drafting an uncertain cost projection. Which sentence is proportionate?",
+      "choices": [
+        "Les dépenses ont déjà été calculées pour l'éternité.",
+        "Les dépenses pourraient augmenter selon les scénarios retenus.",
+        "Les dépenses augmenteront forcément dans tous les cas."
+      ],
+      "answer": 1,
+      "explanation": "Conditional pourraient and the scenario qualification avoid claiming certainty."
+    },
+    {
+      "id": "hs3-u01-l03-q022",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "Your team expects to present findings next week. Choose the suitable tense.",
+      "choices": [
+        "Nous présenterons nos résultats la semaine prochaine.",
+        "Nous présenterions nos résultats l'an dernier.",
+        "Nous présentions nos résultats demain sans contexte."
+      ],
+      "answer": 0,
+      "explanation": "Présenterons is future simple, matching la semaine prochaine."
+    },
+    {
+      "id": "hs3-u01-l03-q023",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "A proposal depends on an unlikely funding increase. Choose the hypothetical construction.",
+      "choices": [
+        "Si nous aurons plus de moyens, nous élargirons le programme.",
+        "Si nous avions plus de moyens, nous élargirons hier.",
+        "Si nous avions plus de moyens, nous élargirions le programme."
+      ],
+      "answer": 2,
+      "explanation": "Imperfect in the si-clause and conditional in the result mark hypothetical circumstances."
+    },
+    {
+      "id": "hs3-u01-l03-q024",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "You want to invite another viewpoint politely. Which question is appropriate?",
+      "choices": [
+        "Vous expliquerez hier votre réserve ?",
+        "Pourriez-vous expliquer votre réserve ?",
+        "Expliquez immédiatement sans discussion !"
+      ],
+      "answer": 1,
+      "explanation": "Pourriez-vous uses conditional to make a courteous request."
+    },
+    {
+      "id": "hs3-u01-l03-q025",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "You must distinguish a target from a verified outcome. Which phrasing works?",
+      "choices": [
+        "L'équipe espère réduire les délais; les résultats seront mesurés ensuite.",
+        "L'équipe a déjà prouvé toutes les améliorations futures.",
+        "L'équipe réduira forcément tous les délais."
+      ],
+      "answer": 0,
+      "explanation": "Espère describes the target; seront mesurés indicates later evidence gathering."
+    },
+    {
+      "id": "hs3-u01-l03-q026",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "A report predicts that the plan may help rural users. Which wording shows appropriate uncertainty?",
+      "choices": [
+        "Ce plan garantira l'accès universel dès demain.",
+        "Ce plan a rendu tous les services accessibles depuis toujours.",
+        "Ce plan pourrait faciliter l'accès dans certaines zones rurales."
+      ],
+      "answer": 2,
+      "explanation": "Pourrait and certaines zones scope the prediction appropriately."
+    },
+    {
+      "id": "hs3-u01-l03-q027",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "You need a conditional counterproposal during debate. Choose the best option.",
+      "choices": [
+        "À votre place, je prévoira une consultation publique.",
+        "À votre place, je prévoirais aussi une consultation publique.",
+        "À votre place, je prévois hier une consultation publique."
+      ],
+      "answer": 1,
+      "explanation": "Prévoirais is the conditional, expressing a suggested alternative."
+    }
+  ]
+}
