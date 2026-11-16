@@ -1,15 +1,15 @@
 # French I–IV · Unit 01 synchronized question-bank development
 
-**Status:** Authored Lesson 01–03 question banks on `main` across all four grades. First assistant editorial pass completed; independent linguistic/editorial review and browser QA outstanding. No new learner mastery route is published.
+**Status:** Authored Lesson 01–04 question banks on `main` across all four grades. First assistant editorial pass completed; independent linguistic/editorial review and browser QA outstanding. No new learner mastery route is published.
 
 Four high-school courses remain independent in academic difficulty but move through the same *repair milestones*. The existing 36-week, six-theme Hall curricula and all stored learner records remain intact.
 
 | Grade | Lesson 01 authored | Lesson 02 | Lesson 03 | Lesson 04 | Lesson 05 | Lesson 06 |
 | --- | --- | --- | --- | --- | --- | --- |
-| French I | 27 draft questions | 27 draft questions | 27 draft questions | Planned | Planned | Planned |
-| French II | 27 draft questions | 27 draft questions | 27 draft questions | Planned | Planned | Planned |
-| French III | 27 draft questions | 27 draft questions | 27 draft questions | Planned | Planned | Planned |
-| French IV | 27 draft questions | 27 draft questions | 27 draft questions | Planned | Planned | Planned |
+| French I | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | Planned | Planned |
+| French II | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | Planned | Planned |
+| French III | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | Planned | Planned |
+| French IV | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | Planned | Planned |
 
 ## Paired lesson targets (proposed; does not override existing curricula)
 
@@ -58,19 +58,23 @@ Four high-school courses remain independent in academic difficulty but move thro
 - `data/french-hs1-unit01-lesson01-bank.json`
 - `data/french-hs1-unit01-lesson02-bank.json`
 - `data/french-hs1-unit01-lesson03-bank.json`
+- `data/french-hs1-unit01-lesson04-bank.json`
 - `data/french-hs2-unit01-lesson01-bank.json`
 - `data/french-hs2-unit01-lesson02-bank.json`
 - `data/french-hs2-unit01-lesson03-bank.json`
+- `data/french-hs2-unit01-lesson04-bank.json`
 - `data/french-hs3-unit01-lesson01-bank.json`
 - `data/french-hs3-unit01-lesson02-bank.json`
 - `data/french-hs3-unit01-lesson03-bank.json`
+- `data/french-hs3-unit01-lesson04-bank.json`
 - `data/french-hs4-unit01-lesson01-bank.json`
 - `data/french-hs4-unit01-lesson02-bank.json`
 - `data/french-hs4-unit01-lesson03-bank.json`
+- `data/french-hs4-unit01-lesson04-bank.json`
 
 Every question-bank file is marked `authoring-review-not-published`. Assistant editorial passes and independent linguistic review are separate fields; none has been certified by an independent reviewer. The CI tests evaluate structural integrity; they do not certify linguistic accuracy or educational quality.
 
-**Unit 01 bank counts at this checkpoint:** Lessons 01–03 = 81 authored questions per grade, 324 across French I–IV. Lesson 03 is covered by `scripts/test-french-high-school-authored-unit01-lesson03.mjs`. Formal assessment gates remain withheld.
+**Unit 01 bank counts at this checkpoint:** Lessons 01–04 = 108 authored questions per grade, 432 across French I–IV. Lesson 04 is covered by `scripts/test-french-high-school-authored-unit01-lesson04.mjs`. Formal assessment gates remain withheld.
 
 ## Lesson 03 checkpoint
 - French I: descriptive adjective gender/number agreement and family references.
@@ -79,3 +83,11 @@ Every question-bank file is marked `authoring-review-not-published`. Assistant e
 - French IV: past conditional, historical counterfactuals and clear evidence boundaries.
 
 All four banks remain unpublished. Source-level validation alone does not establish instructional completeness or independent linguistic review.
+
+## Lesson 04 checkpoint
+- French I: present-tense classroom verbs, requests and instructions.
+- French II: direct/indirect object pronouns, y/en, pronoun position and preceding direct-object agreement.
+- French III: relative pronouns qui, que, où and dont, plus source-linked syntactic precision.
+- French IV: formal register, translation uncertainty, speaker representation and editorial provenance.
+
+All Lesson 04 banks are new drafts. Independent linguistic review, lesson-by-lesson teaching alignment, learner trials, browser testing and formal authority linkage remain outstanding.
