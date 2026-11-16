@@ -1,0 +1,220 @@
+{
+  "schema": "khaemenes.french.unit01-guided-listening-speaking.v1",
+  "status": "formative-teacher-partner-read-not-recorded",
+  "officialListeningCertified": false,
+  "approach": "A teacher or learning partner reads the original French script; learners listen before revealing transcript. Spoken responses are reviewed by a person, not automatically assessed.",
+  "courses": {
+    "hs3": {
+      "lessonActivities": [
+        {
+          "lesson": 1,
+          "id": "hs3-u01-l01-oral01",
+          "title": "La bibliothèque et l'autobus",
+          "transcript": "Conseillère : « La bibliothèque reste ouverte jusqu'à dix-sept heures, mais le dernier autobus part à seize heures trente. » Élève : « Les ateliers sont utiles, pourtant certains élèves ne peuvent pas y participer. » Conseillère : « Pourriez-vous proposer une solution sans supposer que tous les élèves ont les mêmes besoins ? » Élève : « Nous pourrions tester un atelier plus tôt et demander l'avis des familles. Il faudrait ensuite comparer la participation. »",
+          "comprehension": [
+            "Quelle difficulté d'accès empêche certains élèves de rester à la bibliothèque ?",
+            "Quelle solution provisoire l'élève suggère-t-il ?"
+          ],
+          "oralTask": "En binôme, défendez une proposition différente en français. Répondez à une objection sur le transport et formulez une mesure de réussite.",
+          "reviewCriteria": [
+            "Understands two source-specific details without first reading the transcript",
+            "Responds appropriately in French with an understandable message",
+            "Uses the lesson's target language and distinguishes fact from uncertainty",
+            "Can revise after teacher or partner feedback"
+          ]
+        },
+        {
+          "lesson": 2,
+          "id": "hs3-u01-l02-oral01",
+          "title": "Le projet de navette",
+          "transcript": "Parent : « Je suis favorable à une navette après les cours, car je termine mon travail à dix-huit heures. » Enseignante : « Je comprends cet argument, cependant nous ne connaissons pas encore les frais d'entretien. » Élève : « Le sondage a reçu quarante-huit réponses, mais notre lycée compte beaucoup plus d'élèves. » Parent : « Alors, plutôt que de promettre le succès du projet, demandons un essai limité et une nouvelle consultation. »",
+          "comprehension": [
+            "Quelle dépense manque encore à l'estimation ?",
+            "Pourquoi ne peut-on pas généraliser le sondage à tout le lycée ?"
+          ],
+          "oralTask": "Jouez une réunion de conseil scolaire. Reformulez l'objection d'un parent avant de proposer un pilote limité.",
+          "reviewCriteria": [
+            "Understands two source-specific details without first reading the transcript",
+            "Responds appropriately in French with an understandable message",
+            "Uses the lesson's target language and distinguishes fact from uncertainty",
+            "Can revise after teacher or partner feedback"
+          ]
+        },
+        {
+          "lesson": 3,
+          "id": "hs3-u01-l03-oral01",
+          "title": "Le financement du tutorat",
+          "transcript": "Proviseur : « Vendredi, nous présenterons les résultats du groupe pilote. » Élève : « Est-ce que nous ouvrirons trois groupes dès lundi ? » Proviseur : « Pas encore. Si nous obtenions les fonds nécessaires, nous pourrions les ouvrir. » Élève : « Les notes des participants ont-elles été comparées ? » Proviseur : « Non, nous avons seulement mesuré leur présence et recueilli leur satisfaction. Notre conclusion devra rester prudente. »",
+          "comprehension": [
+            "Quel événement est annoncé comme prévu ?",
+            "Quelles données le groupe pilote n'a-t-il pas mesurées ?"
+          ],
+          "oralTask": "Proposez oralement un essai de tutorat en utilisant si + imparfait et le conditionnel; distinguez un objectif d'un résultat établi.",
+          "reviewCriteria": [
+            "Understands two source-specific details without first reading the transcript",
+            "Responds appropriately in French with an understandable message",
+            "Uses the lesson's target language and distinguishes fact from uncertainty",
+            "Can revise after teacher or partner feedback"
+          ]
+        },
+        {
+          "lesson": 4,
+          "id": "hs3-u01-l04-oral01",
+          "title": "Une enquête comparable ?",
+          "transcript": "Chercheuse : « Voici le lycée où nous avons interrogé quatre-vingt-dix élèves. » Enseignant : « Et le rapport que vous avez comparé concerne-t-il les mêmes activités ? » Chercheuse : « Non. L'autre équipe étudiait une application, tandis que nous analysions des fiches imprimées. » Enseignant : « Le chercheur dont vous citez les travaux juge-t-il les méthodes comparables ? » Chercheuse : « Pas entièrement. Les deux enquêtes mesurent des usages déclarés, pas encore les progrès scolaires. »",
+          "comprehension": [
+            "Quel est le point commun entre les deux enquêtes ?",
+            "Pourquoi ne peut-on pas encore comparer leur efficacité pédagogique ?"
+          ],
+          "oralTask": "Présentez une source éducative à votre partenaire avec qui, que, où et dont; corrigez ensemble une attribution ambiguë.",
+          "reviewCriteria": [
+            "Understands two source-specific details without first reading the transcript",
+            "Responds appropriately in French with an understandable message",
+            "Uses the lesson's target language and distinguishes fact from uncertainty",
+            "Can revise after teacher or partner feedback"
+          ]
+        },
+        {
+          "lesson": 5,
+          "id": "hs3-u01-l05-oral01",
+          "title": "Deux questionnaires distincts",
+          "transcript": "Journaliste : « Soixante pour cent des élèves du premier lycée disent travailler au moins une heure par soir. » Chercheuse : « Attention, le second questionnaire ne mesure pas le temps des devoirs. Il demande aux familles combien de soirs elles accompagnent leur enfant. » Journaliste : « Puis-je conclure que l'aide familiale a diminué ? » Chercheuse : « Non, les répondants, les périodes et les indicateurs sont différents. Il faudrait recueillir des données comparables. »",
+          "comprehension": [
+            "Quelle variable mesure le deuxième questionnaire ?",
+            "Quelle conclusion la chercheuse refuse-t-elle ?"
+          ],
+          "oralTask": "Expliquez à un journaliste fictif pourquoi deux pourcentages semblables ne prouvent pas une même réalité éducative.",
+          "reviewCriteria": [
+            "Understands two source-specific details without first reading the transcript",
+            "Responds appropriately in French with an understandable message",
+            "Uses the lesson's target language and distinguishes fact from uncertainty",
+            "Can revise after teacher or partner feedback"
+          ]
+        },
+        {
+          "lesson": 6,
+          "id": "hs3-u01-l06-oral01",
+          "title": "Au forum des élèves",
+          "transcript": "Salma : « Je propose un atelier de lecture deux fois par semaine. » Idriss : « C'est une idée intéressante, mais le dernier autobus part tôt. » Salma : « Nous pourrions commencer plus tôt et consulter les élèves absents du questionnaire. » Idriss : « D'accord, à condition d'évaluer aussi l'accès et la disponibilité du personnel. » Présidente : « Le conseil n'a pas encore approuvé le projet. Rédigeons une recommandation qui distingue les avis recueillis des effets à vérifier. »",
+          "comprehension": [
+            "Le projet a-t-il déjà été approuvé ?",
+            "Quelles deux contraintes les élèves souhaitent-ils vérifier ?"
+          ],
+          "oralTask": "Organisez un mini-forum de trois minutes. Soutenez une proposition, formulez une réserve et concluez sans annoncer de résultats imaginaires.",
+          "reviewCriteria": [
+            "Understands two source-specific details without first reading the transcript",
+            "Responds appropriately in French with an understandable message",
+            "Uses the lesson's target language and distinguishes fact from uncertainty",
+            "Can revise after teacher or partner feedback"
+          ]
+        }
+      ]
+    },
+    "hs4": {
+      "lessonActivities": [
+        {
+          "lesson": 1,
+          "id": "hs4-u01-l01-oral01",
+          "title": "Un nom dans le registre",
+          "transcript": "Archiviste : « Ce registre de notre exercice fictif indique une arrivée en 1934, mais il ne précise pas les motifs du départ. » Descendante : « Une lettre de famille parle de solitude et de difficultés à faire prononcer notre nom. » Archiviste : « Nous devons distinguer les informations administratives de cette expérience personnelle. » Descendante : « Et la légende ajoutée quarante ans plus tard ne devrait pas présenter chaque voyage comme volontaire. »",
+          "comprehension": [
+            "Quel renseignement le registre ne fournit-il pas ?",
+            "Quelle difficulté identitaire apparaît dans la lettre ?"
+          ],
+          "oralTask": "En deux voix, proposez une notice muséale qui distingue fait enregistré, mémoire familiale et interprétation tardive.",
+          "reviewCriteria": [
+            "Understands two source-specific details without first reading the transcript",
+            "Responds appropriately in French with an understandable message",
+            "Uses the lesson's target language and distinguishes fact from uncertainty",
+            "Can revise after teacher or partner feedback"
+          ]
+        },
+        {
+          "lesson": 2,
+          "id": "hs4-u01-l02-oral01",
+          "title": "Une photographie sans noms",
+          "transcript": "Conservatrice : « Cette photographie fictive date de 1928. Aucun nom n'a été identifié. » Visiteur : « Pourtant, la légende dit qu'une famille découvre la liberté. » Conservatrice : « Cette phrase a été ajoutée en 1978; ce n'est pas une citation des voyageurs. » Visiteur : « La lettre exposée à côté concerne-t-elle ces personnes ? » Conservatrice : « Nous l'ignorons. Elle apporte un autre témoignage, sans permettre d'identifier les personnes photographiées. »",
+          "comprehension": [
+            "Qui a ajouté la légende, et à quelle époque ?",
+            "Pourquoi la lettre ne prouve-t-elle pas l'identité des voyageurs ?"
+          ],
+          "oralTask": "Présentez à haute voix une photographie et sa provenance. Répondez à une question critique sans inventer de noms.",
+          "reviewCriteria": [
+            "Understands two source-specific details without first reading the transcript",
+            "Responds appropriately in French with an understandable message",
+            "Uses the lesson's target language and distinguishes fact from uncertainty",
+            "Can revise after teacher or partner feedback"
+          ]
+        },
+        {
+          "lesson": 3,
+          "id": "hs4-u01-l03-oral01",
+          "title": "La réunion qui n'a pas eu lieu",
+          "transcript": "Historienne : « Le procès-verbal décrit un déplacement décidé sans intervention consignée des familles. » Étudiant : « Si elles avaient été consultées, elles auraient pu proposer un autre itinéraire. » Historienne : « Peut-être, mais cela reste une hypothèse. » Étudiant : « Les transports disponibles auraient aussi limité les choix. » Historienne : « Exactement. Une hypothèse défendable doit respecter le contexte et ne pas se présenter comme un témoignage. »",
+          "comprehension": [
+            "Quel élément est documenté par le procès-verbal ?",
+            "Quelle partie de la discussion est explicitement hypothétique ?"
+          ],
+          "oralTask": "Exposez deux scénarios contrefactuels en français et expliquez quel document permettrait de les étudier.",
+          "reviewCriteria": [
+            "Understands two source-specific details without first reading the transcript",
+            "Responds appropriately in French with an understandable message",
+            "Uses the lesson's target language and distinguishes fact from uncertainty",
+            "Can revise after teacher or partner feedback"
+          ]
+        },
+        {
+          "lesson": 4,
+          "id": "hs4-u01-l04-oral01",
+          "title": "Avons dû partir",
+          "transcript": "Traductrice : « La témoin dit : “Nous avons dû partir”. Une première version anglaise dit “We had to leave”. » Commissaire : « Une autre traduction propose “We chose to leave”. » Traductrice : « Cela change la nécessité en décision volontaire. Nous devons signaler cette nuance. » Commissaire : « Et l'expression régionale qu'elle utilise ? » Traductrice : « Je préfère la conserver avec une note plutôt que d'effacer sa manière de parler. »",
+          "comprehension": [
+            "Pourquoi la deuxième traduction change-t-elle le sens du témoignage ?",
+            "Quelle solution est retenue pour l'expression régionale ?"
+          ],
+          "oralTask": "Jouez un dialogue entre traducteur et commissaire d'exposition, puis justifiez une décision de traduction avec nuance.",
+          "reviewCriteria": [
+            "Understands two source-specific details without first reading the transcript",
+            "Responds appropriately in French with an understandable message",
+            "Uses the lesson's target language and distinguishes fact from uncertainty",
+            "Can revise after teacher or partner feedback"
+          ]
+        },
+        {
+          "lesson": 5,
+          "id": "hs4-u01-l05-oral01",
+          "title": "Trois genres, trois limites",
+          "transcript": "Guide : « Le registre administratif date l'arrivée du groupe. Les images du documentaire, en revanche, ont été jouées par des comédiens. » Visiteuse : « Et le poème sur la frontière ? » Guide : « Il exprime une mémoire symbolique, pas une description précise d'un passage frontalier. » Visiteuse : « Alors, lequel dit la vérité ? » Guide : « Il faut identifier ce que chaque genre peut montrer, ses limites et les voix qui restent absentes. »",
+          "comprehension": [
+            "Quelle information le registre peut-il établir directement ?",
+            "Pourquoi les scènes du film et le poème ne sont-ils pas des preuves de même nature ?"
+          ],
+          "oralTask": "Effectuez une visite commentée de deux minutes, en distinguant archive, reconstitution et métaphore.",
+          "reviewCriteria": [
+            "Understands two source-specific details without first reading the transcript",
+            "Responds appropriately in French with an understandable message",
+            "Uses the lesson's target language and distinguishes fact from uncertainty",
+            "Can revise after teacher or partner feedback"
+          ]
+        },
+        {
+          "lesson": 6,
+          "id": "hs4-u01-l06-oral01",
+          "title": "Des parcours différents",
+          "transcript": "Commissaire : « Nous voulions écrire : “Tous les migrants ont vécu la même histoire”. » Élève : « Mais la lettre ne représente qu'une famille et le registre ne décrit pas les sentiments. » Commissaire : « Le documentaire contient aussi des scènes reconstituées. » Élève : « Présentons plutôt des parcours différents et expliquons les choix de traduction. » Commissaire : « D'accord. Nous préciserons ce qui est documenté, ce qui est raconté et ce qui reste incertain. »",
+          "comprehension": [
+            "Pourquoi la formule initiale généralise-t-elle à tort ?",
+            "Quelles informations doivent être signalées au public ?"
+          ],
+          "oralTask": "Présentez une conclusion curatoriale nuancée avec deux sources fictives et une limite de représentation.",
+          "reviewCriteria": [
+            "Understands two source-specific details without first reading the transcript",
+            "Responds appropriately in French with an understandable message",
+            "Uses the lesson's target language and distinguishes fact from uncertainty",
+            "Can revise after teacher or partner feedback"
+          ]
+        }
+      ]
+    }
+  }
+}
