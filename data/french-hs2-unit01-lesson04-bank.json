@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs2",
+  "unit": 1,
+  "lesson": 4,
+  "status": "authoring-review-not-published",
+  "title": "Object pronouns in personal stories",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs2-u01-l04-q001",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Replace the direct object: « Je regarde le film. »",
+      "choices": [
+        "Je le regarde.",
+        "Je lui regarde.",
+        "Je y regarde."
+      ],
+      "answer": 0,
+      "explanation": "Le is the masculine singular direct-object pronoun before regarde."
+    },
+    {
+      "id": "hs2-u01-l04-q002",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Replace « Marie »: « Tu connais Marie ? »",
+      "choices": [
+        "Tu lui connais ?",
+        "Tu les connais ?",
+        "Tu la connais ?"
+      ],
+      "answer": 2,
+      "explanation": "Connaître takes a direct object: la replaces Marie."
+    },
+    {
+      "id": "hs2-u01-l04-q003",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Replace the indirect object: « Je téléphone à Paul. »",
+      "choices": [
+        "Je y téléphone.",
+        "Je lui téléphone.",
+        "Je le téléphone."
+      ],
+      "answer": 1,
+      "explanation": "Téléphoner à takes an indirect object pronoun: lui."
+    },
+    {
+      "id": "hs2-u01-l04-q004",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Complete: « Nous écrivons à nos parents. Nous ___ écrivons. »",
+      "choices": [
+        "leur",
+        "les",
+        "lui"
+      ],
+      "answer": 0,
+      "explanation": "Leur replaces an indirect plural recipient, à nos parents."
+    },
+    {
+      "id": "hs2-u01-l04-q005",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Complete the negative: « Je ___ vois pas. » referring to two people.",
+      "choices": [
+        "les ne",
+        "ne leur",
+        "ne les"
+      ],
+      "answer": 2,
+      "explanation": "Ne precedes the object pronoun and the verb: je ne les vois pas."
+    },
+    {
+      "id": "hs2-u01-l04-q006",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Choose the correct pronoun placement in a compound tense.",
+      "choices": [
+        "Je ai rencontré le hier.",
+        "Je l'ai rencontré hier.",
+        "J'ai le rencontré hier."
+      ],
+      "answer": 1,
+      "explanation": "The object pronoun precedes the auxiliary in passé composé."
+    },
+    {
+      "id": "hs2-u01-l04-q007",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Choose the past participle agreement: « Les lettres ? Je les ai ___. »",
+      "choices": [
+        "écrites",
+        "écrit",
+        "écrits"
+      ],
+      "answer": 0,
+      "explanation": "With avoir, the past participle agrees with a preceding direct object: les lettres."
+    },
+    {
+      "id": "hs2-u01-l04-q008",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Which replacement means 'I speak to her'?",
+      "choices": [
+        "Je la parle.",
+        "Je le parle.",
+        "Je lui parle."
+      ],
+      "answer": 2,
+      "explanation": "Parler à quelqu'un requires an indirect object pronoun, lui."
+    },
+    {
+      "id": "hs2-u01-l04-q009",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Replace « à Paris » with an adverbial pronoun: « Nous allons à Paris. »",
+      "choices": [
+        "Nous le allons.",
+        "Nous y allons.",
+        "Nous en allons."
+      ],
+      "answer": 1,
+      "explanation": "Y replaces a destination introduced by à."
+    },
+    {
+      "id": "hs2-u01-l04-q010",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Léa lui envoie une carte. » Who is the recipient?",
+      "choices": [
+        "The person represented by lui.",
+        "The postcard itself.",
+        "Léa as the sender."
+      ],
+      "answer": 0,
+      "explanation": "Lui represents the indirect recipient of the card."
+    },
+    {
+      "id": "hs2-u01-l04-q011",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Ils les ont retrouvées. » What can the -ées ending indicate here?",
+      "choices": [
+        "A masculine singular indirect object.",
+        "A future-tense subject.",
+        "A preceding feminine plural direct object."
+      ],
+      "answer": 2,
+      "explanation": "Retrouvées agrees with a preceding feminine plural direct object les."
+    },
+    {
+      "id": "hs2-u01-l04-q012",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Elle ne lui a pas répondu. » What did not happen?",
+      "choices": [
+        "She did not visit a place.",
+        "She did not reply to that person.",
+        "She did not see a film."
+      ],
+      "answer": 1,
+      "explanation": "Répondre à takes lui, and the negative surrounds the auxiliary."
+    },
+    {
+      "id": "hs2-u01-l04-q013",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « J'y suis allé samedi. » What can y refer to?",
+      "choices": [
+        "A place previously mentioned.",
+        "A person spoken to directly.",
+        "A plural object of acheter."
+      ],
+      "answer": 0,
+      "explanation": "Y often refers to a place introduced by à or another location phrase."
+    },
+    {
+      "id": "hs2-u01-l04-q014",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Elle en parle souvent. » What can en replace?",
+      "choices": [
+        "A person directly seen.",
+        "A location introduced by à.",
+        "A topic introduced by de."
+      ],
+      "answer": 2,
+      "explanation": "En can replace de plus a topic in parler de."
+    },
+    {
+      "id": "hs2-u01-l04-q015",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Nous la connaissions depuis longtemps. » What is la here?",
+      "choices": [
+        "A first-person plural subject.",
+        "A feminine singular direct-object pronoun.",
+        "A definite article before a noun."
+      ],
+      "answer": 1,
+      "explanation": "La stands alone before connaissions as a direct-object pronoun."
+    },
+    {
+      "id": "hs2-u01-l04-q016",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Les photos, je les ai prises hier. » What explains prises?",
+      "choices": [
+        "Agreement with the preceding feminine plural object.",
+        "Agreement with je as singular.",
+        "Agreement with hier as an adverb."
+      ],
+      "answer": 0,
+      "explanation": "Les refers to photos, preceding avoir and requiring feminine plural agreement."
+    },
+    {
+      "id": "hs2-u01-l04-q017",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Nous leur avons donné les clés. » Who received the keys?",
+      "choices": [
+        "The keys themselves.",
+        "The speaker only.",
+        "The people represented by leur."
+      ],
+      "answer": 2,
+      "explanation": "Leur marks the indirect recipients of the keys."
+    },
+    {
+      "id": "hs2-u01-l04-q018",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Je ne l'ai pas reconnue. » What can the -e in reconnue indicate?",
+      "choices": [
+        "A future perfect construction.",
+        "A feminine singular direct object placed before avoir.",
+        "A masculine plural subject."
+      ],
+      "answer": 1,
+      "explanation": "The past participle agrees with a preceding feminine singular direct object."
+    },
+    {
+      "id": "hs2-u01-l04-q019",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "A friend asks « Tu connais cette chanson ? » Choose a reply using a pronoun.",
+      "choices": [
+        "Oui, je la connais.",
+        "Oui, je lui connais.",
+        "Oui, je les connais."
+      ],
+      "answer": 0,
+      "explanation": "Chanson is feminine singular and the direct object becomes la."
+    },
+    {
+      "id": "hs2-u01-l04-q020",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You call two friends. Replace « à mes amis » in « Je parle à mes amis ».",
+      "choices": [
+        "Je les parle.",
+        "Je lui parle.",
+        "Je leur parle."
+      ],
+      "answer": 2,
+      "explanation": "À mes amis is plural indirect recipient; leur replaces it."
+    },
+    {
+      "id": "hs2-u01-l04-q021",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "Correct: « J'ai les vus hier ».",
+      "choices": [
+        "Je leur ai vus hier.",
+        "Je les ai vus hier.",
+        "Je ai les vus hier."
+      ],
+      "answer": 1,
+      "explanation": "Les must precede the auxiliary ai for a direct object."
+    },
+    {
+      "id": "hs2-u01-l04-q022",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You visited the museum yesterday and want to avoid repeating its name.",
+      "choices": [
+        "J'y suis allé hier.",
+        "Je le suis allé hier.",
+        "J'en suis allé hier."
+      ],
+      "answer": 0,
+      "explanation": "Y can replace the previously mentioned museum as a destination."
+    },
+    {
+      "id": "hs2-u01-l04-q023",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You discuss a project often. Replace « de ce projet » in « Nous parlons de ce projet ».",
+      "choices": [
+        "Nous y parlons.",
+        "Nous le parlons.",
+        "Nous en parlons."
+      ],
+      "answer": 2,
+      "explanation": "En replaces a de-phrase in parler de."
+    },
+    {
+      "id": "hs2-u01-l04-q024",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "A student writes « Je ne vois les pas ». Which correction works?",
+      "choices": [
+        "Je ne leur vois pas.",
+        "Je ne les vois pas.",
+        "Je les ne vois pas."
+      ],
+      "answer": 1,
+      "explanation": "The object pronoun follows ne and precedes the conjugated verb."
+    },
+    {
+      "id": "hs2-u01-l04-q025",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "Replace a previously mentioned girl in « J'ai rencontré cette fille ».",
+      "choices": [
+        "Je l'ai rencontrée.",
+        "Je lui ai rencontrée.",
+        "Je l'ai rencontré."
+      ],
+      "answer": 0,
+      "explanation": "The feminine direct object l' is before avoir, requiring rencontrée."
+    },
+    {
+      "id": "hs2-u01-l04-q026",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You thank your teacher by speaking to her: choose the correct object.",
+      "choices": [
+        "Je la dis merci.",
+        "Je les dis merci.",
+        "Je lui dis merci."
+      ],
+      "answer": 2,
+      "explanation": "Dire merci à quelqu'un takes the indirect pronoun lui."
+    },
+    {
+      "id": "hs2-u01-l04-q027",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "Two girls were seen yesterday. Which sentence uses correct agreement?",
+      "choices": [
+        "Je leur ai vues hier.",
+        "Je les ai vues hier.",
+        "Je les ai vus hier."
+      ],
+      "answer": 1,
+      "explanation": "Les replaces a feminine plural direct object before avoir, so vues agrees."
+    }
+  ]
+}
