@@ -1,0 +1,260 @@
+{
+  "schema": "khaemenes.french.unit01.extended-reading-lab.v1",
+  "course": "hs1",
+  "status": "formative-pilot-no-official-grade",
+  "fictionalSources": true,
+  "lessons": [
+    {
+      "lesson": 1,
+      "id": "hs1-u01-l01-source01",
+      "title": "Bienvenue en classe",
+      "source": "Document pédagogique fictif · La première rencontre",
+      "passage": "Bonjour ! Je m'appelle Lina. J'ai quatorze ans et je suis nouvelle dans cette classe de français. Le professeur s'appelle Monsieur Diallo. Il dit : « Bonjour à tous ! Comment vous appelez-vous ? » Je réponds : « Je m'appelle Lina. Enchantée, Monsieur. » Mon camarade Jules dit : « Salut, je m'appelle Jules. » Je dis bonjour au professeur et salut à Jules. Notre salle est la salle douze. Je demande : « Pardon, pouvez-vous répéter le numéro ? » Monsieur Diallo répond lentement : « Douze. » Maintenant, je comprends et je peux me présenter avec politesse.",
+      "questions": [
+        {
+          "id": "hs1-u01-l01-read-q01",
+          "prompt": "Comment s'appelle la nouvelle élève ?",
+          "choices": [
+            "Lina, qui rejoint la classe de français.",
+            "Jules, qui accueille sa camarade.",
+            "Madame Diallo, qui enseigne la classe."
+          ],
+          "answer": 0,
+          "explanation": "Le texte dit « Je m'appelle Lina » au début de la présentation."
+        },
+        {
+          "id": "hs1-u01-l01-read-q02",
+          "prompt": "À qui Lina dit-elle « Salut » ?",
+          "choices": [
+            "À son professeur, Monsieur Diallo.",
+            "À Jules, son camarade de classe.",
+            "À toute l'école dans le couloir."
+          ],
+          "answer": 1,
+          "explanation": "Lina emploie bonjour pour le professeur et salut pour son camarade Jules."
+        },
+        {
+          "id": "hs1-u01-l01-read-q03",
+          "prompt": "Pourquoi Lina demande-t-elle de répéter ?",
+          "choices": [
+            "Elle veut apprendre l'âge de Jules.",
+            "Elle cherche le nom du professeur.",
+            "Elle n'a pas compris le numéro de la salle."
+          ],
+          "answer": 2,
+          "explanation": "La réponse « Douze » montre que Lina vérifie le numéro de la salle."
+        }
+      ]
+    },
+    {
+      "lesson": 2,
+      "id": "hs1-u01-l02-source01",
+      "title": "Comment écrire Chloé ?",
+      "source": "Document pédagogique fictif · Les lettres et les accents",
+      "passage": "Je m'appelle Chloé. Mon prénom commence par C et se termine par É. Aujourd'hui, le professeur nous demande d'épeler nos prénoms. Je dis : « C – H – L – O – É ». Mon amie Zoé dit : « Z – O – É ». Le professeur explique que l'accent fait partie de l'écriture du prénom. Jules écrit d'abord « Chloe » sur sa feuille. Je lui montre mon badge : « Regarde, il y a un accent aigu sur le e final. » Jules corrige son texte et me remercie. Quand une personne parle trop vite, je peux demander : « Pouvez-vous répéter plus lentement, s'il vous plaît ? » Nous apprenons à écouter, à épeler et à vérifier les lettres.",
+      "questions": [
+        {
+          "id": "hs1-u01-l02-read-q01",
+          "prompt": "Quelle lettre termine le prénom de Chloé ?",
+          "choices": [
+            "É, un e avec accent aigu.",
+            "E, un e sans aucun accent.",
+            "O, la lettre avant le e final."
+          ],
+          "answer": 0,
+          "explanation": "Le texte épelle le prénom C – H – L – O – É."
+        },
+        {
+          "id": "hs1-u01-l02-read-q02",
+          "prompt": "Pourquoi Jules corrige-t-il « Chloe » ?",
+          "choices": [
+            "Il veut changer le prénom en Zoé.",
+            "Il doit ajouter l'accent aigu sur le e final.",
+            "Il a oublié la première lettre du prénom."
+          ],
+          "answer": 1,
+          "explanation": "Le badge de Chloé indique une lettre accentuée à la fin."
+        },
+        {
+          "id": "hs1-u01-l02-read-q03",
+          "prompt": "Que peut-on dire si quelqu'un épelle trop vite ?",
+          "choices": [
+            "Je ne veux plus écrire mon prénom.",
+            "J'ai déjà compris toutes les lettres.",
+            "Pouvez-vous répéter plus lentement, s'il vous plaît ?"
+          ],
+          "answer": 2,
+          "explanation": "Cette formule polie demande une répétition à un rythme plus lent."
+        }
+      ]
+    },
+    {
+      "lesson": 3,
+      "id": "hs1-u01-l03-source01",
+      "title": "Ma famille imaginaire",
+      "source": "Document pédagogique fictif · Décrire des personnes",
+      "passage": "Voici ma famille imaginaire. Je m'appelle Sara. Ma mère s'appelle Amira et mon père s'appelle Karim. J'ai deux sœurs et un frère. Mes sœurs s'appellent Inès et Lila. Elles sont grandes et gentilles. Mon frère Adam est petit et sportif. Nous avons aussi un chien blanc. Le chien s'appelle Moka. Le dimanche, ma famille mange ensemble dans la cuisine. Je présente les personnes avec « voici » et « il y a ». Je fais attention aux adjectifs : mon frère est petit, mais mes sœurs sont grandes. Ce sont des personnes différentes, et leurs descriptions ne sont pas les mêmes. Je peux parler de ma famille ou d'une famille inventée.",
+      "questions": [
+        {
+          "id": "hs1-u01-l03-read-q01",
+          "prompt": "Combien de sœurs Sara présente-t-elle ?",
+          "choices": [
+            "Une sœur et deux frères.",
+            "Deux sœurs, Inès et Lila.",
+            "Trois sœurs et aucun frère."
+          ],
+          "answer": 0,
+          "explanation": "Sara dit clairement : « J'ai deux sœurs et un frère. »"
+        },
+        {
+          "id": "hs1-u01-l03-read-q02",
+          "prompt": "Quel adjectif décrit correctement les deux sœurs ?",
+          "choices": [
+            "Grandes, avec l'accord féminin pluriel.",
+            "Grand, au masculin singulier.",
+            "Petite, au féminin singulier."
+          ],
+          "answer": 1,
+          "explanation": "« Elles sont grandes » s'accorde avec deux personnes au féminin pluriel."
+        },
+        {
+          "id": "hs1-u01-l03-read-q03",
+          "prompt": "Quel animal appartient à la famille imaginaire ?",
+          "choices": [
+            "Un chat gris appelé Moka.",
+            "Un cheval blanc appelé Karim.",
+            "Un chien blanc qui s'appelle Moka."
+          ],
+          "answer": 2,
+          "explanation": "La famille présente un chien blanc nommé Moka."
+        }
+      ]
+    },
+    {
+      "lesson": 4,
+      "id": "hs1-u01-l04-source01",
+      "title": "Une journée au lycée",
+      "source": "Document pédagogique fictif · Les habitudes scolaires",
+      "passage": "Je suis élève au lycée des Fleurs. Le lundi, je commence les cours à neuf heures. Le professeur écrit une consigne au tableau, puis nous ouvrons nos cahiers. Mon amie Zoé lit la première phrase. Je cherche mon stylo dans mon sac et j'écoute. Aujourd'hui, nous apprenons le français. À dix heures, nous faisons une pause. Je dis : « Je ne comprends pas la dernière consigne. Pouvez-vous répéter, s'il vous plaît ? » Le professeur explique lentement et me donne un exemple. Après la pause, nous travaillons en petits groupes. J'aime la classe parce que nous pouvons poser des questions et nous entraider.",
+      "questions": [
+        {
+          "id": "hs1-u01-l04-read-q01",
+          "prompt": "À quelle heure les cours commencent-ils ?",
+          "choices": [
+            "À huit heures, avant l'arrivée du professeur.",
+            "À neuf heures, le lundi matin.",
+            "À dix heures, après la pause."
+          ],
+          "answer": 0,
+          "explanation": "Le texte dit : « Le lundi, je commence les cours à neuf heures. »"
+        },
+        {
+          "id": "hs1-u01-l04-read-q02",
+          "prompt": "Que fait le professeur au début du cours ?",
+          "choices": [
+            "Il écrit une consigne au tableau.",
+            "Il ferme les cahiers des élèves.",
+            "Il prépare le déjeuner de la classe."
+          ],
+          "answer": 1,
+          "explanation": "Le professeur écrit la consigne et les élèves ouvrent leurs cahiers."
+        },
+        {
+          "id": "hs1-u01-l04-read-q03",
+          "prompt": "Que demande l'élève quand la consigne est difficile ?",
+          "choices": [
+            "De quitter la classe immédiatement.",
+            "De choisir un autre cours demain.",
+            "De répéter et d'expliquer la consigne."
+          ],
+          "answer": 2,
+          "explanation": "La demande « Pouvez-vous répéter ? » aide l'élève à comprendre."
+        }
+      ]
+    },
+    {
+      "lesson": 5,
+      "id": "hs1-u01-l05-source01",
+      "title": "Au café du quartier",
+      "source": "Document pédagogique fictif · Commander avec politesse",
+      "passage": "Après les cours, je vais au petit café avec mon amie Lina. La serveuse dit : « Bonjour, vous désirez ? » Je réponds : « Je voudrais une soupe, s'il vous plaît. » Lina demande un croissant et un verre d'eau. La soupe coûte six euros et le croissant coûte deux euros. La serveuse demande : « Est-ce que vous voulez autre chose ? » Je dis : « Non merci. » Avant de commander, je demande aussi : « Est-ce que la soupe contient des noix ? » La serveuse consulte la liste des ingrédients. Elle me répond qu'il faut vérifier auprès de la cuisine. J'attends sa réponse avant de manger. Nous remercions la serveuse et nous payons notre commande.",
+      "questions": [
+        {
+          "id": "hs1-u01-l05-read-q01",
+          "prompt": "Que commande Lina au café ?",
+          "choices": [
+            "Une soupe et un jus de pomme.",
+            "Deux soupes et un gâteau.",
+            "Un croissant et un verre d'eau."
+          ],
+          "answer": 0,
+          "explanation": "Le texte distingue la soupe du narrateur et le croissant avec l'eau pour Lina."
+        },
+        {
+          "id": "hs1-u01-l05-read-q02",
+          "prompt": "Combien coûte la soupe ?",
+          "choices": [
+            "Six euros, selon le menu décrit.",
+            "Deux euros, comme le croissant.",
+            "Huit euros, sans autre détail."
+          ],
+          "answer": 1,
+          "explanation": "La phrase « La soupe coûte six euros » donne le prix."
+        },
+        {
+          "id": "hs1-u01-l05-read-q03",
+          "prompt": "Pourquoi la serveuse consulte-t-elle la liste des ingrédients ?",
+          "choices": [
+            "Pour annoncer l'heure de fermeture.",
+            "Pour vérifier si la soupe contient des noix.",
+            "Pour calculer le prix du croissant."
+          ],
+          "answer": 2,
+          "explanation": "La question sur les noix nécessite une vérification avant de répondre."
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "id": "hs1-u01-l06-source01",
+      "title": "Le bureau d'accueil et le café",
+      "source": "Document pédagogique fictif · Mission de bienvenue",
+      "passage": "Samira accueille deux nouveaux élèves à l'école. Elle dit : « Bonjour ! Je m'appelle Samira. Et vous ? » Un garçon répond : « Je m'appelle Jules. » Son amie dit : « Moi, c'est Lina. » Samira demande leurs noms pour préparer des badges. Elle épelle lentement « S – A – M – I – R – A ». Jules demande le numéro de la salle de français. Samira répond : « Salle douze, près de la bibliothèque. » À midi, le groupe visite un café voisin. Jules dit poliment : « Je voudrais deux croissants et de l'eau, s'il vous plaît. » Lina pose une question sur les ingrédients. Tous remercient la serveuse. Chaque personne a participé à la conversation.",
+      "questions": [
+        {
+          "id": "hs1-u01-l06-read-q01",
+          "prompt": "Où se trouve la salle de français ?",
+          "choices": [
+            "Près de la bibliothèque, dans la salle douze.",
+            "Dans le café, à côté de la caisse.",
+            "Dans la salle vingt, au deuxième étage."
+          ],
+          "answer": 0,
+          "explanation": "Samira indique la salle douze près de la bibliothèque."
+        },
+        {
+          "id": "hs1-u01-l06-read-q02",
+          "prompt": "Quelle expression Jules utilise-t-il pour commander ?",
+          "choices": [
+            "Je veux absolument tout le menu.",
+            "Je voudrais deux croissants et de l'eau, s'il vous plaît.",
+            "Vous devez me donner votre prénom."
+          ],
+          "answer": 1,
+          "explanation": "« Je voudrais… s'il vous plaît » est une formule polie au café."
+        },
+        {
+          "id": "hs1-u01-l06-read-q03",
+          "prompt": "Quelle compétence relie l'accueil et le café ?",
+          "choices": [
+            "Faire des calculs avancés de géométrie.",
+            "Raconter une longue histoire au passé.",
+            "Écouter, répondre et demander une précision poliment."
+          ],
+          "answer": 2,
+          "explanation": "Les deux situations demandent de se présenter, de comprendre et de communiquer avec respect."
+        }
+      ]
+    }
+  ]
+}
