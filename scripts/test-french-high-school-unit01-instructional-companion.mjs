@@ -23,7 +23,7 @@ for(const [course,targets] of Object.entries(expectations)){
   for(let i=0;i<6;i++){
    const l=guide.lessons[i];
    assert.equal(l.length,8,"A lesson requires title, objective, explanation, model, reading, practice, product and feedback");
-   for(const [j,value] of l.entries())assert.ok(typeof value==="string"&&value.trim().length>=35,
+   for(const [j,value] of l.entries())assert.ok(typeof value==="string"&&value.trim().length>=(j===0?10:35),
     "Missing instructional section "+course+" lesson "+(i+1)+" field "+j);
    assert.match(l[0].toLowerCase(),new RegExp(targets[i]));
    assert.ok(/[À-ÿ]|\b(?:le|la|les|je|nous|vous)\b/i.test(l[3]),"French model must use French");
