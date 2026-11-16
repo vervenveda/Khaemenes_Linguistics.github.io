@@ -5,14 +5,14 @@
   "lesson": 2,
   "status": "authoring-review-not-published",
   "title": "Claims, reasons, transitions and counterarguments",
-  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "editorialReview": "assistant-contextual-pass-independent-review-pending",
   "questions": [
     {
       "id": "hs3-u01-l02-q001",
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Choose the connector introducing a supporting reason: « Je défends cette solution ___ son efficacité est documentée. »",
+      "prompt": "School-access debate: choose the supporting-reason connector: « Je défends cette solution de soutien scolaire ___ son efficacité est documentée. »",
       "choices": [
         "parce que",
         "cependant",
@@ -26,7 +26,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Choose the connector signaling a consequence: « Le coût baisse; ___, le projet devient accessible. »",
+      "prompt": "School supplies program: choose the consequence connector: « Le coût du matériel baisse; ___, le projet devient accessible. »",
       "choices": [
         "en revanche",
         "bien que",
@@ -40,7 +40,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Select the concessive clause with correct subjunctive: « ___ les résultats soient limités, ils méritent examen. »",
+      "prompt": "School survey report: complete the concession « ___ les résultats de l'enquête soient limités, ils méritent examen. »",
       "choices": [
         "Ainsi",
         "Bien que",
@@ -54,7 +54,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Choose an expression that attributes evidence rather than personal conviction.",
+      "prompt": "Before proposing changes to school tutoring, choose an expression that attributes evidence rather than personal conviction.",
       "choices": [
         "D'après l'étude citée,",
         "Je suis certain sans preuve que",
@@ -68,7 +68,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Which formulation most clearly qualifies a claim?",
+      "prompt": "School attendance report: which formulation most clearly qualifies a claim based on the available data?",
       "choices": [
         "Les données prouvent toutes les causes.",
         "La tendance est certaine pour toujours.",
@@ -82,7 +82,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Choose the counterargument introduction: « ___, cette solution risque d'exclure certains usagers. »",
+      "prompt": "School transport plan: choose a counterargument introduction: « ___, cette solution risque d'exclure certains élèves. »",
       "choices": [
         "En effet",
         "Toutefois",
@@ -96,7 +96,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Choose the comparative structure: « Cette mesure est ___ coûteuse que l'autre. »",
+      "prompt": "Compare two school-support measures: « Cette mesure éducative est ___ coûteuse que l'autre. »",
       "choices": [
         "moins",
         "donc",
@@ -110,21 +110,21 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Which sentence correctly distinguishes cause and result?",
+      "prompt": "School bus proposal: which sentence correctly distinguishes a school-related cause and its consequence?",
       "choices": [
-        "La route a fermé; parce que, le bus a été dévié.",
-        "La route a fermé; en raison de, le bus a été dévié.",
-        "La route a fermé; par conséquent, le bus a été dévié."
+        "Le bus scolaire a été annulé; parce que, les élèves sont arrivés en retard.",
+        "Le bus scolaire a été annulé; en raison de, les élèves sont arrivés en retard.",
+        "Le bus scolaire a été annulé; par conséquent, les élèves sont arrivés en retard."
       ],
       "answer": 2,
-      "explanation": "Par conséquent links the closing of the road to the resulting diversion."
+      "explanation": "Par conséquent links the school bus cancellation to the students' late arrival as a stated consequence."
     },
     {
       "id": "hs3-u01-l02-q009",
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Complete a cautious recommendation: « Nous ___ examiner d'autres options. »",
+      "prompt": "At a school-board meeting, complete the cautious recommendation: « Nous ___ examiner d'autres options pour les élèves. »",
       "choices": [
         "devrait",
         "devrions",
