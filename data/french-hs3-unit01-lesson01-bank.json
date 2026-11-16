@@ -138,7 +138,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "interpretation",
-      "prompt": "Read: « L'enquête porte sur 80 élèves d'un seul lycée. » Which limitation matters?",
+      "prompt": "School research reading: « L'enquête porte sur 80 élèves d'un seul lycée. » Which limitation matters for a wider education conclusion?",
       "choices": [
         "The sample may not represent all students.",
         "Every student in the country was surveyed.",
@@ -152,21 +152,21 @@
       "unit": 1,
       "lesson": 1,
       "domain": "interpretation",
-      "prompt": "Read: « La mairie affirme que les pistes cyclables ont accru les déplacements à vélo. » Who makes the claim?",
+      "prompt": "School leadership report: « La direction du lycée affirme que le nouveau tutorat améliore la participation des élèves. » Who makes the claim?",
       "choices": [
-        "Every cyclist.",
-        "The author of an anonymous diary.",
-        "The municipal government."
+        "The municipal government.",
+        "The students surveyed.",
+        "The school leadership."
       ],
       "answer": 2,
-      "explanation": "La mairie identifies the municipality as the source of the assertion."
+      "explanation": "La direction du lycée identifies school leadership as the source; the reading does not establish the claim as fact."
     },
     {
       "id": "hs3-u01-l01-q012",
       "unit": 1,
       "lesson": 1,
       "domain": "interpretation",
-      "prompt": "Read: « Le rapport indique une baisse de 12 %, mais ne précise pas la période. » What's missing?",
+      "prompt": "Education report: « Le rapport indique une baisse de 12 % de l'absentéisme scolaire, mais ne précise pas la période. » What detail is missing?",
       "choices": [
         "Whether there was a decrease.",
         "The time period of the reported decrease.",
@@ -180,21 +180,21 @@
       "unit": 1,
       "lesson": 1,
       "domain": "interpretation",
-      "prompt": "Read: « Plusieurs habitants sont favorables au projet; d'autres craignent une hausse des loyers. » What tension is present?",
+      "prompt": "School funding discussion: « Plusieurs familles soutiennent le tutorat; d'autres craignent une hausse des frais scolaires. » What tension appears?",
       "choices": [
-        "Support for the project versus concern about housing costs.",
-        "Everyone opposes the project.",
-        "The project has already reduced rents."
+        "Support for the school tutoring program versus concern about increased school costs.",
+        "Agreement that school fees are harmless.",
+        "Disagreement about a housing project."
       ],
       "answer": 0,
-      "explanation": "The two groups have different judgments and priorities."
+      "explanation": "Several families support tutoring, while others worry about rising school-related costs."
     },
     {
       "id": "hs3-u01-l01-q014",
       "unit": 1,
       "lesson": 1,
       "domain": "interpretation",
-      "prompt": "Read: « La chercheuse distingue corrélation et causalité. » What distinction is implied?",
+      "prompt": "Education study reading: « La chercheuse distingue corrélation et causalité entre fréquentation de la bibliothèque et réussite. » What distinction is implied?",
       "choices": [
         "Any correlation always establishes a cause.",
         "Causality means merely comparing two labels.",
@@ -264,7 +264,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "transfer",
-      "prompt": "You need to disagree respectfully during a class debate. Choose the best reply.",
+      "prompt": "At a school-council debate about a tutoring report, you need to disagree respectfully. Choose the best reply.",
       "choices": [
         "Je comprends votre point de vue, mais les chiffres suggèrent autre chose.",
         "Vous avez tort, point final.",
@@ -278,7 +278,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "transfer",
-      "prompt": "A classmate claims a trend based on two examples. Which response encourages stronger reasoning?",
+      "prompt": "A classmate infers a school-wide reading trend from two pupils. Which response encourages stronger educational reasoning?",
       "choices": [
         "Deux exemples prouvent toujours la règle.",
         "Les chiffres ne sont jamais utiles.",
@@ -292,7 +292,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "transfer",
-      "prompt": "You are writing a balanced conclusion. Which sentence works best?",
+      "prompt": "You must conclude an argument about school transport access while acknowledging its cost. Which sentence works best?",
       "choices": [
         "Aucune objection n'est possible.",
         "Bien que la mesure ait des avantages, son coût mérite une analyse.",
@@ -306,7 +306,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "transfer",
-      "prompt": "You must attribute a finding to a report. Which phrasing is most careful?",
+      "prompt": "You must attribute a school-access finding to a written report. Which phrasing is most careful?",
       "choices": [
         "D'après le rapport, les résultats varient selon les régions.",
         "Toutes les régions ont exactement les mêmes résultats.",
@@ -320,7 +320,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "transfer",
-      "prompt": "Your argument needs a consequence rather than a cause. Choose the transition.",
+      "prompt": "Your school-improvement argument needs a consequence rather than a cause. Choose the transition.",
       "choices": [
         "Parce que",
         "En raison de",
