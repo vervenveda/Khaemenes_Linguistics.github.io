@@ -1,0 +1,260 @@
+{
+  "schema": "khaemenes.french.unit01.extended-reading-lab.v1",
+  "course": "hs2",
+  "status": "formative-pilot-no-official-grade",
+  "fictionalSources": true,
+  "lessons": [
+    {
+      "lesson": 1,
+      "id": "hs2-u01-l01-source01",
+      "title": "Une histoire sous la pluie",
+      "source": "Document pédagogique fictif · Raconter un événement passé",
+      "passage": "Hier soir, Ana préparait son sac pour un voyage à Lyon. Il pleuvait et le vent soufflait contre les fenêtres. À dix-neuf heures, son téléphone a sonné. C'était son cousin Malik, qui lui demandait si elle avait gardé le billet de train. Ana a cherché dans son manteau et elle a trouvé une enveloppe. Elle pensait que son billet se trouvait à l'intérieur, mais l'enveloppe contenait seulement une photo. Elle a donc envoyé un message à Malik. Pendant qu'elle attendait sa réponse, la pluie continuait. Finalement, Malik a retrouvé le billet dans un livre posé sur la table. Ana a ri : toute la soirée, elle cherchait un document qui était devant elle.",
+      "questions": [
+        {
+          "id": "hs2-u01-l01-read-q01",
+          "prompt": "Quel fait fait avancer l'histoire après la description du temps ?",
+          "choices": [
+            "La pluie tombait toujours devant les fenêtres.",
+            "Ana préparait souvent son sac le soir.",
+            "Le téléphone a sonné à dix-neuf heures."
+          ],
+          "answer": 0,
+          "explanation": "Le passé composé introduit l'appel comme événement ponctuel dans le contexte à l'imparfait."
+        },
+        {
+          "id": "hs2-u01-l01-read-q02",
+          "prompt": "Que contenait l'enveloppe trouvée par Ana ?",
+          "choices": [
+            "Une photographie, pas le billet recherché.",
+            "Le billet de train et une carte de Lyon.",
+            "Un message que Malik avait déjà envoyé."
+          ],
+          "answer": 1,
+          "explanation": "Ana découvre une photo dans l'enveloppe, alors que le billet était ailleurs."
+        },
+        {
+          "id": "hs2-u01-l01-read-q03",
+          "prompt": "Où se trouvait finalement le billet ?",
+          "choices": [
+            "Dans la poche du manteau d'Ana.",
+            "Dans un livre posé sur la table.",
+            "Dans une enveloppe chez le cousin Malik."
+          ],
+          "answer": 2,
+          "explanation": "Malik retrouve le billet dans un livre sur la table."
+        }
+      ]
+    },
+    {
+      "lesson": 2,
+      "id": "hs2-u01-l02-source01",
+      "title": "Arrivées à Lyon",
+      "source": "Document pédagogique fictif · Le passé composé",
+      "passage": "Samedi, Léa et Zoé sont arrivées à Lyon par le train du matin. Elles ont pris un bus pour rejoindre leur tante. Avant de partir, elles avaient acheté une petite carte de la ville. Léa l'a rangée dans son sac, mais Zoé voulait la regarder pendant le trajet. Elles se sont arrêtées devant la gare et ont demandé leur chemin. Une passante leur a répondu avec gentillesse. Les deux voyageuses sont ensuite entrées dans un musée. Le soir, elles ont raconté leur journée à leur tante. Dans leur journal, elles ont écrit : « Nous sommes arrivées tôt, nous avons pris le bus et nous avons visité le musée. » Leur récit contient plusieurs actions achevées.",
+      "questions": [
+        {
+          "id": "hs2-u01-l02-read-q01",
+          "prompt": "Pourquoi écrit-on « arrivées » au féminin pluriel ?",
+          "choices": [
+            "Parce que le mot Lyon est féminin.",
+            "Parce que le sujet Léa et Zoé est féminin pluriel avec être.",
+            "Parce que le verbe prendre utilise le même accord."
+          ],
+          "answer": 0,
+          "explanation": "Avec être, le participe passé s'accorde ici avec le sujet féminin pluriel."
+        },
+        {
+          "id": "hs2-u01-l02-read-q02",
+          "prompt": "Quel transport prennent-elles après le train ?",
+          "choices": [
+            "Le bus pour retrouver leur tante.",
+            "Un bateau pour traverser la ville.",
+            "Un taxi pour se rendre à l'aéroport."
+          ],
+          "answer": 1,
+          "explanation": "Le texte indique qu'elles ont pris un bus après leur arrivée."
+        },
+        {
+          "id": "hs2-u01-l02-read-q03",
+          "prompt": "Que font les deux voyageuses le soir ?",
+          "choices": [
+            "Elles repartent immédiatement pour Paris.",
+            "Elles achètent une nouvelle carte au musée.",
+            "Elles racontent leur journée à leur tante."
+          ],
+          "answer": 2,
+          "explanation": "Elles rapportent les événements achevés de la journée."
+        }
+      ]
+    },
+    {
+      "lesson": 3,
+      "id": "hs2-u01-l03-source01",
+      "title": "Les jeudis de Malik",
+      "source": "Document pédagogique fictif · Imparfait et événement",
+      "passage": "Quand Malik était plus jeune, il allait à l'école à pied chaque matin. Le jeudi, il retrouvait sa cousine Inès devant la boulangerie. Ils parlaient de leurs cours et achetaient parfois un petit pain. Un jeudi de novembre, Malik a perdu son sac en chemin. Il pleuvait, les rues étaient bruyantes et il ne savait plus où chercher. Inès l'a aidé à refaire son trajet. Ils sont retournés à la boulangerie, puis à l'arrêt du bus. Un employé a finalement retrouvé le sac sous un banc. Malik était soulagé et il a remercié Inès. Depuis ce jour, il vérifie toujours qu'il a son sac avant de partir.",
+      "questions": [
+        {
+          "id": "hs2-u01-l03-read-q01",
+          "prompt": "Quelle action est une habitude ancienne de Malik ?",
+          "choices": [
+            "Il a perdu son sac un jeudi précis.",
+            "Il allait à l'école à pied chaque matin.",
+            "Un employé a retrouvé le sac sous un banc."
+          ],
+          "answer": 0,
+          "explanation": "« Allait » à l'imparfait marque ici une habitude répétée."
+        },
+        {
+          "id": "hs2-u01-l03-read-q02",
+          "prompt": "Quel fait ponctuel change la journée de novembre ?",
+          "choices": [
+            "Malik a perdu son sac en chemin.",
+            "Malik retrouvait sa cousine chaque jeudi.",
+            "Les rues étaient souvent bruyantes."
+          ],
+          "answer": 1,
+          "explanation": "Le passé composé « a perdu » introduit l'incident précis."
+        },
+        {
+          "id": "hs2-u01-l03-read-q03",
+          "prompt": "Où le sac est-il retrouvé ?",
+          "choices": [
+            "À la boulangerie derrière la caisse.",
+            "Dans la classe de Malik après les cours.",
+            "Sous un banc près de l'arrêt du bus."
+          ],
+          "answer": 2,
+          "explanation": "Un employé retrouve le sac sous un banc après leur recherche."
+        }
+      ]
+    },
+    {
+      "lesson": 4,
+      "id": "hs2-u01-l04-source01",
+      "title": "Les photos pour Léa",
+      "source": "Document pédagogique fictif · Pronoms objets",
+      "passage": "Hier, Noémie a trouvé deux photos anciennes dans un cahier. Elle voulait les montrer à son amie Léa. D'abord, elle les a nettoyées doucement, puis elle les a rangées dans une enveloppe. Quand Léa est arrivée, Noémie lui a donné l'enveloppe. Léa a ouvert celle-ci et a regardé les deux images. Elle a demandé : « Est-ce que tu peux me les envoyer aussi ? » Noémie a répondu : « Oui, je te les enverrai demain. » Elles ont discuté des personnes sur les photos, mais elles ne connaissaient pas tous les noms. Noémie a donc écrit à sa grand-mère pour obtenir plus de renseignements. Celle-ci lui a répondu qu'elle chercherait dans ses souvenirs.",
+      "questions": [
+        {
+          "id": "hs2-u01-l04-read-q01",
+          "prompt": "Dans « elle les a nettoyées », que remplace « les » ?",
+          "choices": [
+            "Les deux photos retrouvées par Noémie.",
+            "Les deux amies dans la conversation.",
+            "Les noms de toutes les personnes photographiées."
+          ],
+          "answer": 0,
+          "explanation": "Le pronom « les » reprend les deux photos, complément d'objet direct."
+        },
+        {
+          "id": "hs2-u01-l04-read-q02",
+          "prompt": "Dans « Noémie lui a donné l'enveloppe », qui est « lui » ?",
+          "choices": [
+            "La grand-mère qui reçoit une lettre.",
+            "Léa, qui reçoit l'enveloppe.",
+            "La personne représentée sur une photo."
+          ],
+          "answer": 1,
+          "explanation": "« Lui » renvoie à Léa comme destinataire de l'enveloppe."
+        },
+        {
+          "id": "hs2-u01-l04-read-q03",
+          "prompt": "Pourquoi Noémie écrit-elle à sa grand-mère ?",
+          "choices": [
+            "Pour demander un nouveau cahier.",
+            "Pour l'inviter au musée de Lyon.",
+            "Pour apprendre les noms des personnes photographiées."
+          ],
+          "answer": 2,
+          "explanation": "Les amies cherchent des renseignements absents des photos."
+        }
+      ]
+    },
+    {
+      "lesson": 5,
+      "id": "hs2-u01-l05-source01",
+      "title": "Deux versions d'une arrivée",
+      "source": "Document pédagogique fictif · Comparer des récits",
+      "passage": "Léa écrit dans un message : « Je marchais vers la gare quand mon téléphone a sonné. J'ai accéléré, mais le bus était déjà parti. » Samir écrit dans son journal : « J'attendais Léa devant la gare. Il pleuvait. Elle est arrivée après vingt minutes et semblait inquiète. » Les deux documents racontent le même matin, mais pas le même point de vue. Léa décrit son trajet et l'appel qui l'a surprise. Samir explique ce qu'il observait pendant qu'il attendait. Aucun des deux textes ne précise l'heure exacte à laquelle le bus est parti. Pour comprendre l'histoire, les élèves doivent distinguer les informations communes, les impressions personnelles et les faits qui restent inconnus.",
+      "questions": [
+        {
+          "id": "hs2-u01-l05-read-q01",
+          "prompt": "Quel élément est commun aux deux témoignages ?",
+          "choices": [
+            "Les deux personnes ont entendu le même appel.",
+            "Le bus est parti exactement à huit heures.",
+            "Léa se dirige vers la gare et Samir l'y attend."
+          ],
+          "answer": 0,
+          "explanation": "Les deux récits situent la rencontre à la gare avec des perspectives différentes."
+        },
+        {
+          "id": "hs2-u01-l05-read-q02",
+          "prompt": "Pourquoi les deux versions ne sont-elles pas identiques ?",
+          "choices": [
+            "Chaque auteur raconte une partie différente de l'expérience.",
+            "Un des auteurs invente nécessairement toute l'histoire.",
+            "Léa et Samir parlent de deux villes éloignées."
+          ],
+          "answer": 1,
+          "explanation": "Léa raconte son trajet, tandis que Samir raconte son attente."
+        },
+        {
+          "id": "hs2-u01-l05-read-q03",
+          "prompt": "Quelle information reste inconnue après comparaison ?",
+          "choices": [
+            "L'identité de Samir dans le récit.",
+            "L'heure exacte du départ du bus.",
+            "Le fait qu'il pleuvait ce matin-là."
+          ],
+          "answer": 2,
+          "explanation": "Le texte souligne qu'aucune source ne précise l'heure exacte du départ."
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "id": "hs2-u01-l06-source01",
+      "title": "Le carnet de voyage disparu",
+      "source": "Document pédagogique fictif · Mission de reconstitution",
+      "passage": "Élise préparait un voyage et notait les horaires dans un petit carnet bleu. Le lundi, son billet indiquait un départ à huit heures quinze. Elle attendait le train quand son amie Camille lui a téléphoné. Après l'appel, Élise a rangé son billet, puis elle est montée dans le train. Le soir, elle a découvert que son carnet avait disparu. Camille lui a envoyé un message : « Je t'ai vue avec ton carnet à la gare, mais je ne sais pas où tu l'as posé ensuite. » Une autre amie se souvenait qu'Élise avait sorti un livre pendant le trajet. Élise a comparé ces souvenirs avec son billet, puis elle a cherché dans son sac. Elle a finalement retrouvé le carnet entre les pages du livre.",
+      "questions": [
+        {
+          "id": "hs2-u01-l06-read-q01",
+          "prompt": "Quel document indique l'heure du départ ?",
+          "choices": [
+            "Le billet du train, qui mentionne huit heures quinze.",
+            "Le journal de Camille, qui raconte la soirée.",
+            "Le message d'une amie, qui ne donne aucun horaire."
+          ],
+          "answer": 0,
+          "explanation": "L'heure de départ est inscrite sur le billet du train."
+        },
+        {
+          "id": "hs2-u01-l06-read-q02",
+          "prompt": "Que sait réellement Camille ?",
+          "choices": [
+            "Elle a retrouvé le carnet dans le livre.",
+            "Elle a vu Élise avec le carnet à la gare, sans connaître la suite.",
+            "Elle connaît précisément chaque geste d'Élise dans le train."
+          ],
+          "answer": 1,
+          "explanation": "Camille distingue ce qu'elle a vu de ce qu'elle ignore."
+        },
+        {
+          "id": "hs2-u01-l06-read-q03",
+          "prompt": "Où Élise retrouve-t-elle son carnet ?",
+          "choices": [
+            "Sous le siège du train après l'arrivée.",
+            "Dans une enveloppe près de la gare.",
+            "Entre les pages du livre rangé dans son sac."
+          ],
+          "answer": 2,
+          "explanation": "Le récit se termine quand Élise retrouve le carnet dans son livre."
+        }
+      ]
+    }
+  ]
+}
