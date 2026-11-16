@@ -11,7 +11,7 @@ function extract(){
 }
 const p=extract();
 const expectations={
- hs1:["greeting","accent","family","class","food","mission"],
+ hs1:["greeting","accent","family","school","food","mission"],
  hs2:["past","agreement","imparfait","pronoun","narrative","mission"],
  hs3:["evidence","counterargument","conditional","relative","sources","mission"],
  hs4:["memory","provenance","counterfactual","translation","archive","mission"]
