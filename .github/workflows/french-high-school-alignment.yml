@@ -15,6 +15,9 @@ on:
       - 'scripts/test-french-high-school-unit01-hs3-education-interpretive-transfer.mjs'
       - 'scripts/test-french-high-school-unit01-hs4-migration-language-use.mjs'
       - 'scripts/test-french-high-school-unit01-bilingual-editorial-repair.mjs'
+      - 'scripts/test-french-high-school-unit01-extended-reading-labs.mjs'
+      - 'data/french-hs3-unit01-extended-reading-lab.json'
+      - 'data/french-hs4-unit01-extended-reading-lab.json'
       - 'data/french-high-school-unit01-hs3-hs4-item-topic-crosswalk.json'
       - 'data/french-high-school-unit01-pilot-theme-crosswalk.json'
       - 'scripts/test-french-high-school-four-grade-alignment.mjs'
@@ -70,6 +73,9 @@ on:
       - 'scripts/test-french-high-school-unit01-hs3-education-interpretive-transfer.mjs'
       - 'scripts/test-french-high-school-unit01-hs4-migration-language-use.mjs'
       - 'scripts/test-french-high-school-unit01-bilingual-editorial-repair.mjs'
+      - 'scripts/test-french-high-school-unit01-extended-reading-labs.mjs'
+      - 'data/french-hs3-unit01-extended-reading-lab.json'
+      - 'data/french-hs4-unit01-extended-reading-lab.json'
       - 'data/french-high-school-unit01-hs3-hs4-item-topic-crosswalk.json'
       - 'data/french-high-school-unit01-pilot-theme-crosswalk.json'
       - 'scripts/test-french-high-school-four-grade-alignment.mjs'
@@ -169,3 +175,5 @@ jobs:
         run: node --test scripts/test-french-high-school-unit01-hs4-migration-language-use.mjs
       - name: Verify French III-IV bilingual editorial corrections and all 324 draft keys
         run: node --test scripts/test-french-high-school-unit01-bilingual-editorial-repair.mjs
+      - name: Verify twelve extended French III-IV readings and 36 formative practice questions
+        run: node --test scripts/test-french-high-school-unit01-extended-reading-labs.mjs
