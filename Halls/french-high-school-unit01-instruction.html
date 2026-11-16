@@ -88,6 +88,7 @@ function renderIntegratedEvidenceBridge(index){
  '<h4>2 · Compare with listening</h4><p>'+escapeHtml(bridge.listen)+'</p>'+
  '<h4>3 · Create and speak</h4><p>'+escapeHtml(bridge.create)+'</p>'+
  '<label for="'+id+'-draft">My original French response and revision</label><textarea id="'+id+'-draft" placeholder="Write in French. Revise after discussing your reasoning with a teacher or partner."></textarea>'+
+ '<div class="lesson-actions"><button type="button" data-bridge-export="'+course+'" data-lesson="'+index+'">Export my practice notes (.txt)</button></div>'+ 
  '<h4>4 · My self-review checklist</h4><div class="bridge-criteria">'+criteria+'</div>'+
  '<details><summary>Open guidance after your first attempt</summary><p>'+escapeHtml(bridge.feedback)+'</p></details>'+
  '<h4>Next lesson connection</h4><p>'+escapeHtml(bridge.bridge)+'</p>'+
@@ -170,6 +171,36 @@ lessons.addEventListener("click",event=>{
  stopGuidedSpeech();
  status.textContent="Playing local synthetic French voice. This does not verify listening proficiency.";
  window.speechSynthesis.speak(utterance);
+});
+
+// User-initiated browser download only. No background save or learner-profile mutation.
+lessons.addEventListener("click",event=>{
+ const button=event.target.closest("button[data-bridge-export]");
+ if(!button||!lessons.contains(button))return;
+ const course=button.dataset.bridgeExport,lesson=Number(button.dataset.lesson);
+ if(course!==grade.value||!Object.hasOwn(evidenceBridges.courses,course)||!Number.isInteger(lesson)||lesson<0||lesson>5)return;
+ const card=button.closest(".bridge-lab"),bridge=evidenceBridges.courses[course].lessons[lesson];
+ if(!card||!bridge)return;
+ const note=card.querySelector('[id="'+course+'-bridge-'+lesson+'-notes"]')?.value??"";
+ const draft=card.querySelector('[id="'+course+'-bridge-'+lesson+'-draft"]')?.value??"";
+ const content=[
+  "Khaemenes Academy · French "+(course==="hs3"?"III":"IV")+" · Unit 01 · Lesson "+(lesson+1),
+  "Formative practice notes — not an official grade",
+  "Focus: "+bridge.focus,
+  "",
+  "Source evidence and limitations:",
+  note,
+  "",
+  "Original French response and revision:",
+  draft,
+  "",
+  "Review guidance: "+bridge.feedback
+ ].join("\n");
+ const file=new Blob([content],{type:"text/plain;charset=utf-8"});
+ const url=URL.createObjectURL(file),link=document.createElement("a");
+ link.href=url;link.download=course+"-unit01-lesson"+String(lesson+1).padStart(2,"0")+"-practice.txt";
+ document.body.append(link);link.click();link.remove();
+ setTimeout(()=>URL.revokeObjectURL(url),1000);
 });
 
 document.getElementById("closeAll").addEventListener("click",()=>{for(const d of lessons.querySelectorAll("details"))d.open=false;});
