@@ -280,12 +280,12 @@
       "domain": "transfer",
       "prompt": "A classmate infers a school-wide reading trend from two pupils. Which response encourages stronger educational reasoning?",
       "choices": [
-        "Peut-on comparer les deux exemples avec les résultats d'une autre classe avant de conclure ?",
+        "Peut-on demander une seconde fois leur avis aux deux mêmes élèves avant de généraliser ?",
         "Deux exemples suffisent à confirmer une tendance pour tout le lycée.",
         "Peut-on examiner un échantillon plus large ?"
       ],
       "answer": 2,
-      "explanation": "The keyed question explicitly asks for a larger sample; checking a second class could also improve reasoning, so compare the scope carefully."
+      "explanation": "Repeatedly questioning the same two pupils still does not justify a claim about the entire school; sampling a larger, more representative group is preferable."
     },
     {
       "id": "hs3-u01-l01-q021",
