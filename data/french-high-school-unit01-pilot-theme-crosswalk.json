@@ -139,7 +139,7 @@
             6
           ],
           "status": "context-revision-required",
-          "note": "Claims and evidence need examples anchored to education; general community cases also match later community issues."
+          "note": "Claims and evidence need examples anchored to education; general community cases also match later community issues. Pilot teaching model and tasks now explicitly reflect education and school settings; individual drafted assessment items still require independent topic-by-topic review."
         },
         {
           "officialUnits": [
@@ -147,7 +147,7 @@
             6
           ],
           "status": "context-revision-required",
-          "note": "Debate connectors fit education, but source scenarios must refer explicitly to education rather than generic policy."
+          "note": "Debate connectors fit education, but source scenarios must refer explicitly to education rather than generic policy. Pilot teaching model and tasks now explicitly reflect education and school settings; individual drafted assessment items still require independent topic-by-topic review."
         },
         {
           "officialUnits": [
@@ -155,7 +155,7 @@
             6
           ],
           "status": "context-revision-required",
-          "note": "Future and conditional forms are transferable; the proposed pilot must be placed in an education context."
+          "note": "Future and conditional forms are transferable; the proposed pilot must be placed in an education context. Pilot teaching model and tasks now explicitly reflect education and school settings; individual drafted assessment items still require independent topic-by-topic review."
         },
         {
           "officialUnits": [
@@ -163,7 +163,7 @@
             6
           ],
           "status": "context-revision-required",
-          "note": "Relative clauses fit source-based education arguments, but present draft examples range beyond the first theme."
+          "note": "Relative clauses fit source-based education arguments, but present draft examples range beyond the first theme. Pilot teaching model and tasks now explicitly reflect education and school settings; individual drafted assessment items still require independent topic-by-topic review."
         },
         {
           "officialUnits": [
@@ -171,7 +171,7 @@
             6
           ],
           "status": "context-revision-required",
-          "note": "Source comparisons should use schooling data and caution rather than generic neighborhood service claims."
+          "note": "Source comparisons should use schooling data and caution rather than generic neighborhood service claims. Pilot teaching model and tasks now explicitly reflect education and school settings; individual drafted assessment items still require independent topic-by-topic review."
         },
         {
           "officialUnits": [
@@ -179,7 +179,7 @@
             6
           ],
           "status": "cross-unit-integration",
-          "note": "Community Proposal Forum integrates education with later community issues; its official unit mapping is unresolved."
+          "note": "Community Proposal Forum integrates education with later community issues; its official unit mapping is unresolved. Pilot teaching model and tasks now explicitly reflect education and school settings; individual drafted assessment items still require independent topic-by-topic review."
         }
       ]
     },
@@ -199,7 +199,7 @@
             2
           ],
           "status": "context-revision-required",
-          "note": "Memory and source synthesis need explicit identity/migration framing; historical memory is the Hall's second theme."
+          "note": "Memory and source synthesis need explicit identity/migration framing; historical memory is the Hall's second theme. Pilot teaching model and tasks now explicitly reflect identity and migration narratives; individual drafted assessment items still require independent topic-by-topic review."
         },
         {
           "officialUnits": [
@@ -207,7 +207,7 @@
             2
           ],
           "status": "context-revision-required",
-          "note": "Provenance work spans migration testimonies and history/memory; original examples need a consistent migration context."
+          "note": "Provenance work spans migration testimonies and history/memory; original examples need a consistent migration context. Pilot teaching model and tasks now explicitly reflect identity and migration narratives; individual drafted assessment items still require independent topic-by-topic review."
         },
         {
           "officialUnits": [
@@ -215,7 +215,7 @@
             2
           ],
           "status": "context-revision-required",
-          "note": "Historical counterfactuals are mainly history/memory; tie exercises to migration and identity where appropriate."
+          "note": "Historical counterfactuals are mainly history/memory; tie exercises to migration and identity where appropriate. Pilot teaching model and tasks now explicitly reflect identity and migration narratives; individual drafted assessment items still require independent topic-by-topic review."
         },
         {
           "officialUnits": [
@@ -223,7 +223,7 @@
             4
           ],
           "status": "cross-unit-integration",
-          "note": "Register and translation shape identity/migration narratives and later literature/film analysis."
+          "note": "Register and translation shape identity/migration narratives and later literature/film analysis. Pilot teaching model and tasks now explicitly reflect identity and migration narratives; individual drafted assessment items still require independent topic-by-topic review."
         },
         {
           "officialUnits": [
@@ -232,7 +232,7 @@
             4
           ],
           "status": "cross-unit-integration",
-          "note": "Archival, documentary and literary study crosses identity/migration, history/memory and literature/film."
+          "note": "Archival, documentary and literary study crosses identity/migration, history/memory and literature/film. Pilot teaching model and tasks now explicitly reflect identity and migration narratives; individual drafted assessment items still require independent topic-by-topic review."
         },
         {
           "officialUnits": [
@@ -241,9 +241,11 @@
             4
           ],
           "status": "cross-unit-integration",
-          "note": "Many Voices Exhibit is a multi-theme performance task, not a certified Unit 01 assessment."
+          "note": "Many Voices Exhibit is a multi-theme performance task, not a certified Unit 01 assessment. Pilot teaching model and tasks now explicitly reflect identity and migration narratives; individual drafted assessment items still require independent topic-by-topic review."
         }
       ]
     }
-  }
+  },
+  "instructionalContextRevision": "french-iii-education-and-french-iv-identity-migration-pilot-models-revised-2026-11-15",
+  "assessmentQuestionAlignment": "pending-item-level-crosswalk-and-qualified-linguistic-review"
 }
