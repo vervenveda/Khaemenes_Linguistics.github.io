@@ -49,8 +49,8 @@ test("revised thematic screening still cannot promote draft items to official ex
  assert.equal(count("hs3","primary"),120);
  assert.equal(count("hs3","later-unit"),10);
  assert.equal(count("hs3","requires-rewrite"),0);
- assert.equal(count("hs4","primary"),111);
- assert.equal(count("hs4","later-unit"),13);
+ assert.equal(count("hs4","primary"),114);
+ assert.equal(count("hs4","later-unit"),12);
  assert.ok(count("hs3","primary")>=67);
  assert.ok(count("hs4","primary")>=67);
  assert.equal(crosswalk.officialUnit01Eligible,false);
