@@ -43,25 +43,25 @@
       "prompt": "A migration documentary uses actors to stage a family's departure. Which French description labels the reconstruction responsibly?",
       "choices": [
         "Un témoignage spontané joué par des acteurs.",
-        "Une reconstitution fondée sur des sources identifiées.",
+        "Une scène reconstituée par des acteurs, distincte des images d'archive.",
         "Une archive filmée directement lors d'un événement non enregistré."
       ],
       "answer": 1,
-      "explanation": "Reconstitution identifies staging rather than an original recording."
+      "explanation": "Reconstituée identifies actors' staged representation and explicitly distinguishes it from contemporaneous documentary footage without presuming the sources are independently established."
     },
     {
       "id": "hs4-u01-l05-q004",
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Citing a fictional migrant's dated archival letter: what contextual and provenance details should accompany the quotation?",
+      "prompt": "A teaching exhibit quotes a fictional migrant's dated letter, with no confirmed real archive deposit. What provenance information should accompany it?",
       "choices": [
-        "Author, date, archive reference and relevant context.",
+        "Named fictional author, fictional date, teaching-source identifier and relevant context.",
         "Only a decorative illustration.",
         "A guarantee that the author represented everyone."
       ],
       "answer": 0,
-      "explanation": "Provenance and context allow the quotation to be assessed."
+      "explanation": "A clearly fictional instructional source needs identifiable fictional author and date, teaching-source reference and context; do not imply a real archival accession exists."
     },
     {
       "id": "hs4-u01-l05-q005",
@@ -85,11 +85,11 @@
       "prompt": "A migration-family manuscript has disputed authorship. Which French phrase accurately signals uncertainty about its attribution?",
       "choices": [
         "L'attribution ne nécessite jamais de justification.",
-        "Ce manuscrit serait attribuable à une autrice encore débattue.",
+        "L'attribution de ce manuscrit à cette autrice reste débattue.",
         "L'autrice est certainement identifiée sans indice."
       ],
       "answer": 1,
-      "explanation": "Conditional phrasing conveys an attribution still under examination."
+      "explanation": "Reste débattue grammatically modifies the attribution itself rather than awkwardly describing the author as debated."
     },
     {
       "id": "hs4-u01-l05-q007",
