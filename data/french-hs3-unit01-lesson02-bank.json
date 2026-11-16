@@ -138,7 +138,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "interpretation",
-      "prompt": "Read « Certains soutiennent la réforme, tandis que d'autres y voient un risque. » What opposition appears?",
+      "prompt": "School reform discussion: « Certains soutiennent les nouveaux horaires scolaires, tandis que d'autres y voient un risque. » What opposition appears?",
       "choices": [
         "Support for the reform versus concern about risk.",
         "Unanimous support for the reform.",
@@ -152,7 +152,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "interpretation",
-      "prompt": "Read « Le rapport repose sur un sondage mené auprès de 40 habitants. » What population is actually observed?",
+      "prompt": "Education research: « Le rapport repose sur un sondage mené auprès de 40 habitants du quartier scolaire. » What population was actually observed?",
       "choices": [
         "The entire national population.",
         "Every inhabitant of the region.",
@@ -166,21 +166,21 @@
       "unit": 1,
       "lesson": 2,
       "domain": "interpretation",
-      "prompt": "Read « La baisse des déchets coïncide avec la campagne; la causalité reste à établir. » What is not proven?",
+      "prompt": "School initiative: « La baisse des absences coïncide avec le programme de tutorat; la causalité reste à établir. » What has not been proven?",
       "choices": [
-        "That a campaign occurred.",
-        "That the campaign caused the reduction.",
-        "That waste was reduced."
+        "That the school recorded an attendance change.",
+        "That the tutoring initiative caused the reduction in school absences.",
+        "That the school has any pupils."
       ],
       "answer": 1,
-      "explanation": "Coïncide indicates temporal association, not established causality."
+      "explanation": "The overlap between the tutoring initiative and fewer absences is not itself proof of causation."
     },
     {
       "id": "hs3-u01-l02-q013",
       "unit": 1,
       "lesson": 2,
       "domain": "interpretation",
-      "prompt": "Read « L'initiative coûte moins cher au départ; néanmoins, l'entretien est plus onéreux. » What caveat is introduced?",
+      "prompt": "School computer-lab proposal: « L'initiative coûte moins cher au départ; néanmoins, l'entretien est plus onéreux. » Which caveat is introduced?",
       "choices": [
         "Long-term maintenance may be expensive.",
         "The initial price was higher.",
@@ -194,7 +194,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "interpretation",
-      "prompt": "Read « Les témoignages se contredisent sur l'heure de l'incident. » What differs?",
+      "prompt": "Two school incident reports: « Les témoignages se contredisent sur l'heure de l'incident au lycée. » What differs?",
       "choices": [
         "The location of every interview.",
         "Whether any incident occurred.",
@@ -264,7 +264,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "transfer",
-      "prompt": "During a debate, you want to recognize a valid opposing argument. Choose the reply.",
+      "prompt": "During a school-access debate, you want to recognize a valid opposing argument. Choose the reply.",
       "choices": [
         "Vous soulevez un point important; examinons toutefois les données.",
         "Votre opinion est inutile; passons à autre chose.",
@@ -278,21 +278,21 @@
       "unit": 1,
       "lesson": 2,
       "domain": "transfer",
-      "prompt": "You must explain why a proposal deserves testing. Which is most persuasive?",
+      "prompt": "Your team is proposing an after-school transport pilot, not a completed transport reform. Which response makes a careful evidence-based case for testing?",
       "choices": [
-        "Le projet réussira nécessairement dans tous les pays.",
-        "Je préfère le projet parce que son nom est joli.",
-        "Le projet pourrait réduire le trafic, comme le suggèrent deux études locales."
+        "Le projet a déjà garanti les mêmes résultats dans toutes les écoles.",
+        "Le projet ne nécessite ni données ni consultation.",
+        "Le projet pourrait améliorer l'accès aux activités scolaires; il faudrait mesurer son effet pendant un essai limité."
       ],
       "answer": 2,
-      "explanation": "The first claim is qualified and refers to relevant evidence."
+      "explanation": "A tentative education-access pilot can be justified without claiming unmeasured results as verified."
     },
     {
       "id": "hs3-u01-l02-q021",
       "unit": 1,
       "lesson": 2,
       "domain": "transfer",
-      "prompt": "A teammate confuses correlation with causation. Which response is careful?",
+      "prompt": "A classmate says library attendance caused higher grades because the two increased together. Which response is careful?",
       "choices": [
         "Une corrélation rend inutile toute comparaison.",
         "L'association observée ne suffit pas à prouver une cause.",
@@ -306,7 +306,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "transfer",
-      "prompt": "Your concluding paragraph must link evidence to a proposal. Which phrase best fits?",
+      "prompt": "Your school's concluding paragraph must connect limited evidence to a proposed reading-support pilot. Which phrase best fits?",
       "choices": [
         "Compte tenu de ces résultats, un essai limité semble justifié.",
         "Ces résultats interdisent toute évaluation future.",
@@ -320,7 +320,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "transfer",
-      "prompt": "Your argument must introduce an objection respectfully. Which is strongest?",
+      "prompt": "In a school funding debate, your argument must introduce an objection respectfully. Which is strongest?",
       "choices": [
         "Aucune critique ne mérite de réponse.",
         "Les opposants n'ont jamais de raisons.",
