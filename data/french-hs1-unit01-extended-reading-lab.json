@@ -103,7 +103,7 @@
             "Deux sœurs, Inès et Lila.",
             "Trois sœurs et aucun frère."
           ],
-          "answer": 0,
+          "answer": 1,
           "explanation": "Sara dit clairement : « J'ai deux sœurs et un frère. »"
         },
         {
@@ -114,7 +114,7 @@
             "Grand, au masculin singulier.",
             "Petite, au féminin singulier."
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "« Elles sont grandes » s'accorde avec deux personnes au féminin pluriel."
         },
         {
@@ -145,7 +145,7 @@
             "À neuf heures, le lundi matin.",
             "À dix heures, après la pause."
           ],
-          "answer": 0,
+          "answer": 1,
           "explanation": "Le texte dit : « Le lundi, je commence les cours à neuf heures. »"
         },
         {
@@ -156,7 +156,7 @@
             "Il ferme les cahiers des élèves.",
             "Il prépare le déjeuner de la classe."
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "Le professeur écrit la consigne et les élèves ouvrent leurs cahiers."
         },
         {
@@ -187,7 +187,7 @@
             "Deux soupes et un gâteau.",
             "Un croissant et un verre d'eau."
           ],
-          "answer": 0,
+          "answer": 2,
           "explanation": "Le texte distingue la soupe du narrateur et le croissant avec l'eau pour Lina."
         },
         {
@@ -198,7 +198,7 @@
             "Deux euros, comme le croissant.",
             "Huit euros, sans autre détail."
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "La phrase « La soupe coûte six euros » donne le prix."
         },
         {
@@ -209,7 +209,7 @@
             "Pour vérifier si la soupe contient des noix.",
             "Pour calculer le prix du croissant."
           ],
-          "answer": 2,
+          "answer": 1,
           "explanation": "La question sur les noix nécessite une vérification avant de répondre."
         }
       ]
