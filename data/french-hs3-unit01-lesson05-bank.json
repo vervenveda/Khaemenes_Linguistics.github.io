@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs3",
+  "unit": 1,
+  "lesson": 5,
+  "status": "authoring-review-not-published",
+  "title": "Compare contrasting short sources and evaluate evidence",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs3-u01-l05-q001",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Two articles use different sample sizes. What must a fair comparison note?",
+      "choices": [
+        "The populations and sampling methods differ.",
+        "The larger article title proves stronger findings.",
+        "Both samples automatically describe every citizen."
+      ],
+      "answer": 0,
+      "explanation": "Sample design affects what conclusions can be compared."
+    },
+    {
+      "id": "hs3-u01-l05-q002",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Which formulation attributes a claim to a specific source?",
+      "choices": [
+        "Il est évident que tout le monde a gagné.",
+        "Les effets sont connus sans enquête.",
+        "Selon le rapport municipal, l'accès a progressé."
+      ],
+      "answer": 2,
+      "explanation": "Selon le rapport municipal makes source attribution explicit."
+    },
+    {
+      "id": "hs3-u01-l05-q003",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose a cautious contrast between two reports.",
+      "choices": [
+        "Tout désaccord prouve que les deux sont faux.",
+        "L'un constate une hausse; l'autre ne la retrouve pas.",
+        "Les deux rapports sont identiques par définition."
+      ],
+      "answer": 1,
+      "explanation": "The wording distinguishes the findings without inventing a cause."
+    },
+    {
+      "id": "hs3-u01-l05-q004",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Which connector introduces a counterpoint?",
+      "choices": [
+        "En revanche,",
+        "Par conséquent,",
+        "Notamment,"
+      ],
+      "answer": 0,
+      "explanation": "En revanche contrasts one source's conclusion with another."
+    },
+    {
+      "id": "hs3-u01-l05-q005",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Which question examines methodological differences?",
+      "choices": [
+        "Quel rapport a le papier le plus brillant ?",
+        "Quel auteur écrit le plus de pages ?",
+        "Les deux études utilisent-elles les mêmes définitions ?"
+      ],
+      "answer": 2,
+      "explanation": "Comparable definitions matter when interpreting conflicting findings."
+    },
+    {
+      "id": "hs3-u01-l05-q006",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Which sentence appropriately limits a finding?",
+      "choices": [
+        "La hausse restera identique pour toujours.",
+        "Dans les trois quartiers étudiés, la fréquentation a augmenté.",
+        "La fréquentation a augmenté dans tous les pays."
+      ],
+      "answer": 1,
+      "explanation": "The first statement limits its scope to the three studied neighborhoods."
+    },
+    {
+      "id": "hs3-u01-l05-q007",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose a reasoned response to incompatible measurements.",
+      "choices": [
+        "Comparer les dates et les indicateurs retenus.",
+        "Choisir automatiquement les chiffres les plus élevés.",
+        "Supprimer le rapport le plus ancien sans examen."
+      ],
+      "answer": 0,
+      "explanation": "Different time windows and indicators may explain discrepancies."
+    },
+    {
+      "id": "hs3-u01-l05-q008",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Which phrase introduces a source limitation?",
+      "choices": [
+        "Par conséquent, les résultats sont infaillibles.",
+        "En effet, toute critique est impossible.",
+        "Toutefois, l'échantillon est restreint."
+      ],
+      "answer": 2,
+      "explanation": "Toutefois flags a limitation that qualifies the evidence."
+    },
+    {
+      "id": "hs3-u01-l05-q009",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose the balanced conclusion.",
+      "choices": [
+        "Une seule source suffit à tout prouver.",
+        "Les données suggèrent une tendance, à vérifier ailleurs.",
+        "La tendance vaut sans exception pour tous."
+      ],
+      "answer": 1,
+      "explanation": "A cautious conclusion acknowledges uncertainty and generalizability limits."
+    },
+    {
+      "id": "hs3-u01-l05-q010",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Source A: « 60 % des 50 répondants utilisent le service ». How many respondents is that?",
+      "choices": [
+        "Thirty respondents.",
+        "Sixty respondents.",
+        "Fifty-five respondents."
+      ],
+      "answer": 0,
+      "explanation": "Sixty percent of fifty equals thirty."
+    },
+    {
+      "id": "hs3-u01-l05-q011",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Source B: « 60 % des 500 répondants utilisent le service ». What changes versus A?",
+      "choices": [
+        "The percentage becomes one hundred percent.",
+        "The finding is automatically true for everyone.",
+        "The sample count is larger, though representativeness still requires review."
+      ],
+      "answer": 2,
+      "explanation": "The same percentage with more respondents does not by itself prove representativeness."
+    },
+    {
+      "id": "hs3-u01-l05-q012",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Source A concerns 2021; B concerns 2025. What must be considered?",
+      "choices": [
+        "The earlier report has no usable information.",
+        "The observations refer to different years.",
+        "The reports must refer to the same period."
+      ],
+      "answer": 1,
+      "explanation": "Temporal change may explain differences between findings."
+    },
+    {
+      "id": "hs3-u01-l05-q013",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "A text says « l'association affirme » while another says « les données montrent ». What differs?",
+      "choices": [
+        "One attributes a claim, the other presents a data-based interpretation.",
+        "Both always identify direct experimental proof.",
+        "Neither expression provides any information."
+      ],
+      "answer": 0,
+      "explanation": "Reporting verbs convey different kinds of claims and warrants."
+    },
+    {
+      "id": "hs3-u01-l05-q014",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "One source surveys students and another surveys parents. What is a key difference?",
+      "choices": [
+        "The school cannot have families.",
+        "The two groups must give identical answers.",
+        "The populations being asked are not identical."
+      ],
+      "answer": 2,
+      "explanation": "Distinct respondent groups may have different views and experiences."
+    },
+    {
+      "id": "hs3-u01-l05-q015",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "An infographic omits the denominator for percentages. What cannot be checked?",
+      "choices": [
+        "Whether any color appears.",
+        "What total population each percentage represents.",
+        "Whether the infographic uses text."
+      ],
+      "answer": 1,
+      "explanation": "Percentages need a denominator for reliable interpretation."
+    },
+    {
+      "id": "hs3-u01-l05-q016",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "A newspaper column defends a policy; a statistical report measures participation. What differs?",
+      "choices": [
+        "The text genres and purposes.",
+        "Both texts are automatically surveys.",
+        "The opinion column is necessarily a law."
+      ],
+      "answer": 0,
+      "explanation": "A column argues; a report may describe measured outcomes."
+    },
+    {
+      "id": "hs3-u01-l05-q017",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "A report describes correlation but its headline says « causes ». What concern arises?",
+      "choices": [
+        "The headline is automatically confirmed.",
+        "Correlation proves every cause.",
+        "The headline overstates causal evidence."
+      ],
+      "answer": 2,
+      "explanation": "Observational association alone does not establish causation."
+    },
+    {
+      "id": "hs3-u01-l05-q018",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Two sources disagree on costs, but one includes maintenance. What explains the gap?",
+      "choices": [
+        "Neither report can discuss money.",
+        "They calculate different cost categories.",
+        "Maintenance is always free."
+      ],
+      "answer": 1,
+      "explanation": "Comparisons must account for included and excluded expenses."
+    },
+    {
+      "id": "hs3-u01-l05-q019",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You compare two reports in class. Which opening avoids false equivalence?",
+      "choices": [
+        "Les études examinent des contextes différents et ne répondent pas exactement à la même question.",
+        "Les études ont des titres différents donc l'une ment.",
+        "Toute divergence disparaît si l'on arrondit les chiffres."
+      ],
+      "answer": 0,
+      "explanation": "Their distinct questions and contexts should be stated before comparing."
+    },
+    {
+      "id": "hs3-u01-l05-q020",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "One author cites an interview; the other cites administrative records. What should you do?",
+      "choices": [
+        "Declare interviews universally invalid.",
+        "Assume administrative records capture every experience.",
+        "Explain how the evidence types support different claims."
+      ],
+      "answer": 2,
+      "explanation": "Evidence types answer different questions and have different limitations."
+    },
+    {
+      "id": "hs3-u01-l05-q021",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You want to make a comparison table. Which headings are most useful?",
+      "choices": [
+        "Author's age and length of title only.",
+        "Source, date, sample, measure, conclusion and limitation.",
+        "Cover color, page count and favorite font only."
+      ],
+      "answer": 1,
+      "explanation": "A sound comparison tracks methodology, findings and limits."
+    },
+    {
+      "id": "hs3-u01-l05-q022",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You notice that a study uses an outdated definition. How should you proceed?",
+      "choices": [
+        "Clarify the definition before comparing its figures.",
+        "Copy the numbers without a caveat.",
+        "Conclude the study must be fabricated."
+      ],
+      "answer": 0,
+      "explanation": "Definition shifts can undermine direct comparability."
+    },
+    {
+      "id": "hs3-u01-l05-q023",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "Which sentence fairly acknowledges a counterclaim?",
+      "choices": [
+        "Le second rapport est absurde parce qu'il diverge.",
+        "Une étude contraire doit être supprimée.",
+        "Le second rapport observe un effet différent, mais sa période est plus courte."
+      ],
+      "answer": 2,
+      "explanation": "The shorter observation window is a relevant limitation, not a reason for dismissal."
+    },
+    {
+      "id": "hs3-u01-l05-q024",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A press release quotes only the best-performing group. What should you seek?",
+      "choices": [
+        "No further information, because the quote is positive.",
+        "The results for all measured groups and any selection criteria.",
+        "Only the photograph accompanying the release."
+      ],
+      "answer": 1,
+      "explanation": "Selective reporting can misrepresent the full dataset."
+    },
+    {
+      "id": "hs3-u01-l05-q025",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "Two authors interpret the same numbers differently. What is the next step?",
+      "choices": [
+        "Identify their assumptions and inferential steps.",
+        "Assume both interpretations are proven.",
+        "Choose the writer with the stronger adjectives."
+      ],
+      "answer": 0,
+      "explanation": "Interpretations can diverge through different assumptions."
+    },
+    {
+      "id": "hs3-u01-l05-q026",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A student claims a nationwide effect based on one city. Which revision is fair?",
+      "choices": [
+        "Dans toutes les villes, le même effet est certain.",
+        "Cette étude prouve le résultat pour chaque pays.",
+        "Dans cette ville, les résultats indiquent un effet possible."
+      ],
+      "answer": 2,
+      "explanation": "A one-city study cannot establish universal nationwide effects."
+    },
+    {
+      "id": "hs3-u01-l05-q027",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You need a synthesis rather than a summary of one source. Which is best?",
+      "choices": [
+        "Je préfère le style du deuxième auteur.",
+        "Les deux sources constatent une hausse, mais divergent sur ses causes possibles.",
+        "La première source a cinq pages."
+      ],
+      "answer": 1,
+      "explanation": "Synthesis connects agreement and disagreement across sources."
+    }
+  ]
+}
