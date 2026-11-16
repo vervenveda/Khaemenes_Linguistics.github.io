@@ -2,7 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
 import {FRENCH_HS_COURSES,examBlueprint,gradeAttempt} from "../assets/french-high-school-assessment-contract.mjs";
-import {FRENCH_UNIT01_DOMAINS,FRENCH_UNIT01_DOMAIN_TOTALS,FRENCH_UNIT01_LESSON_QUOTAS,validateBalancedFrenchUnit01,drawBalancedFrenchUnit01,inspectBalancedFrenchUnit01Draw} from "../assets/french-high-school-unit01-balanced-exam.mjs";
+import {FRENCH_UNIT01_DOMAINS,FRENCH_UNIT01_DOMAIN_TOTALS,FRENCH_UNIT01_LESSON_QUOTAS,validateBalancedFrenchUnit01,drawBalancedFrenchUnit01,inspectBalancedFrenchUnit01Draw,gradeBalancedFrenchUnit01Attempt} from "../assets/french-high-school-unit01-balanced-exam.mjs";
 
 function load(course){
  return Array.from({length:6},(_,i)=>JSON.parse(readFileSync(
@@ -30,6 +30,14 @@ for(const course of FRENCH_HS_COURSES){
   assert.deepEqual(report.counts,FRENCH_UNIT01_LESSON_QUOTAS.map(row=>[...row]));
   assert.deepEqual(report.domainTotals,[17,17,16]);
   assert.equal(first.length,50);
+  assert.equal(gradeBalancedFrenchUnit01Attempt(course,first,first.map(q=>q.answer)).passed,true);
+  assert.equal(gradeBalancedFrenchUnit01Attempt(course,first,first.map(q=>q.answer)).gradingAuthority,
+   "formative-only-no-learner-record-write");
+  assert.throws(()=>gradeBalancedFrenchUnit01Attempt(course,first.slice(1),first.slice(1).map(q=>q.answer)),/Unbalanced/);
+  assert.throws(()=>gradeBalancedFrenchUnit01Attempt(course,
+   [{...first[0],id:"hs5-u01-l01-q999"},...first.slice(1)],first.map(q=>q.answer)),/wrong-course/);
+  assert.throws(()=>gradeBalancedFrenchUnit01Attempt(course,first,first.map((q,i)=>i===0?99:q.answer)),/invalid Unit 01 responses/);
+
   assert.equal(gradeAttempt(bp,first,first.map(q=>q.answer)).score,50);
   assert.equal(gradeAttempt(bp,first,first.map(q=>(q.answer+1)%q.choices.length)).passed,false);
   assert.equal(gradeAttempt(bp,first,first.map((q,i)=>i<40?q.answer:(q.answer+1)%q.choices.length)).passed,true);
