@@ -96,14 +96,14 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Fictional relocation consultation: complete « Il aurait fallu que les autorités ___ les résidents avant le déplacement. »",
+      "prompt": "Fictional migration consultation proposed for the present: complete « Il faudrait que les autorités ___ les résidents avant tout déplacement. »",
       "choices": [
         "consultent",
         "consulteront",
         "consulter"
       ],
       "answer": 0,
-      "explanation": "Il aurait fallu que calls for a subjunctive clause; consultent is the present subjunctive form."
+      "explanation": "Il faudrait que requires a subjunctive complement; consultent is the present subjunctive of consulter for les autorités."
     },
     {
       "id": "hs4-u01-l01-q008",
