@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs1",
+  "unit": 1,
+  "lesson": 2,
+  "status": "authoring-review-not-published",
+  "title": "Alphabet sounds, accents and clear introductions",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs1-u01-l02-q001",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which written form has an acute accent on e?",
+      "choices": [
+        "école",
+        "père",
+        "forêt"
+      ],
+      "answer": 0,
+      "explanation": "École begins with é, which has an acute accent."
+    },
+    {
+      "id": "hs1-u01-l02-q002",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Choose the correctly accented word for 'father'.",
+      "choices": [
+        "pére",
+        "pêre",
+        "père"
+      ],
+      "answer": 2,
+      "explanation": "The French word père contains a grave accent on è."
+    },
+    {
+      "id": "hs1-u01-l02-q003",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which French word includes a cedilla?",
+      "choices": [
+        "gârcon",
+        "garçon",
+        "garcon"
+      ],
+      "answer": 1,
+      "explanation": "Garçon uses ç before o to represent the /s/ sound."
+    },
+    {
+      "id": "hs1-u01-l02-q004",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Select the spelling that uses a diaeresis.",
+      "choices": [
+        "Noël",
+        "Noel",
+        "Nöel"
+      ],
+      "answer": 0,
+      "explanation": "Noël uses ë to signal separate vowel sounds."
+    },
+    {
+      "id": "hs1-u01-l02-q005",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which French letter name is normally pronounced /ʒi/?",
+      "choices": [
+        "G",
+        "I",
+        "J"
+      ],
+      "answer": 2,
+      "explanation": "The French name for J is pronounced /ʒi/; G is /ʒe/."
+    },
+    {
+      "id": "hs1-u01-l02-q006",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which French letter name is normally pronounced /ʒe/?",
+      "choices": [
+        "K",
+        "G",
+        "J"
+      ],
+      "answer": 1,
+      "explanation": "The French name for G is /ʒe/, unlike the name for J."
+    },
+    {
+      "id": "hs1-u01-l02-q007",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which sequence spells the name 'Léa' letter by letter?",
+      "choices": [
+        "L – É – A",
+        "L – E – O",
+        "L – A – É"
+      ],
+      "answer": 0,
+      "explanation": "Léa has the letter sequence L followed by É then A."
+    },
+    {
+      "id": "hs1-u01-l02-q008",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which French question asks how to spell a word?",
+      "choices": [
+        "Comment ça se prononce ?",
+        "Comment ça va ?",
+        "Comment ça s'écrit ?"
+      ],
+      "answer": 2,
+      "explanation": "Comment ça s'écrit asks about spelling; se prononce asks pronunciation."
+    },
+    {
+      "id": "hs1-u01-l02-q009",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which sentence uses an accent to distinguish 'at/to' from 'has'?",
+      "choices": [
+        "Je vais â Paris.",
+        "Je vais à Paris.",
+        "Je vais a Paris."
+      ],
+      "answer": 1,
+      "explanation": "The preposition à bears a grave accent, unlike the verb form a."
+    },
+    {
+      "id": "hs1-u01-l02-q010",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Maëlle épelle son prénom. » What is Maëlle doing?",
+      "choices": [
+        "Spelling her first name.",
+        "Giving her age.",
+        "Asking for directions."
+      ],
+      "answer": 0,
+      "explanation": "Épeller means to spell a word aloud, and prénom means first name."
+    },
+    {
+      "id": "hs1-u01-l02-q011",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Sur le badge, il y a écrit Élodie. » What does the badge show?",
+      "choices": [
+        "The address of Élodie.",
+        "The age of Élodie.",
+        "The name Élodie."
+      ],
+      "answer": 2,
+      "explanation": "The text says the name Élodie is written on the badge."
+    },
+    {
+      "id": "hs1-u01-l02-q012",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Tu peux répéter plus lentement ? » What does the speaker request?",
+      "choices": [
+        "A louder song.",
+        "A slower repetition.",
+        "A written translation."
+      ],
+      "answer": 1,
+      "explanation": "Répéter plus lentement asks somebody to say it again more slowly."
+    },
+    {
+      "id": "hs1-u01-l02-q013",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Le mot français commence par F. » Which letter begins français?",
+      "choices": [
+        "F",
+        "R",
+        "Ç"
+      ],
+      "answer": 0,
+      "explanation": "Commence par F explicitly identifies the initial letter."
+    },
+    {
+      "id": "hs1-u01-l02-q014",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Il faut ajouter un accent sur le e. » What is missing?",
+      "choices": [
+        "An extra letter at the end.",
+        "A space between two words.",
+        "An accent on the letter e."
+      ],
+      "answer": 2,
+      "explanation": "Ajouter un accent sur le e means add an accent mark to e."
+    },
+    {
+      "id": "hs1-u01-l02-q015",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Je m'appelle Anaïs. » Which mark is visible in the name?",
+      "choices": [
+        "An acute accent on s.",
+        "A diaeresis on ï.",
+        "A cedilla on a."
+      ],
+      "answer": 1,
+      "explanation": "Anaïs is written with a diaeresis on the letter i."
+    },
+    {
+      "id": "hs1-u01-l02-q016",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Mon nom de famille est Dupont. » Which information follows?",
+      "choices": [
+        "The family name.",
+        "The student's age.",
+        "The date of birth."
+      ],
+      "answer": 0,
+      "explanation": "Nom de famille means surname or family name."
+    },
+    {
+      "id": "hs1-u01-l02-q017",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Écrivez votre prénom en majuscules. » What should the learner do?",
+      "choices": [
+        "Write the surname in lowercase.",
+        "Erase the first name.",
+        "Write the first name in capital letters."
+      ],
+      "answer": 2,
+      "explanation": "En majuscules specifies uppercase or capital letters."
+    },
+    {
+      "id": "hs1-u01-l02-q018",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Je n'ai pas compris la dernière lettre. » What was difficult?",
+      "choices": [
+        "The speaker's address.",
+        "The last letter.",
+        "The first sentence."
+      ],
+      "answer": 1,
+      "explanation": "Dernière lettre refers to the final letter in a sequence."
+    },
+    {
+      "id": "hs1-u01-l02-q019",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "A teacher says your name too quickly. Which reply helps without interrupting rudely?",
+      "choices": [
+        "Pouvez-vous répéter plus lentement, s'il vous plaît ?",
+        "Parlez plus vite, maintenant !",
+        "Votre nom est incorrect."
+      ],
+      "answer": 0,
+      "explanation": "Pouvez-vous and s'il vous plaît form a polite request for slower repetition."
+    },
+    {
+      "id": "hs1-u01-l02-q020",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You want to ask a classmate to spell their name. Which is appropriate?",
+      "choices": [
+        "Tu peux changer ton prénom ?",
+        "Tu peux compter ton prénom ?",
+        "Tu peux épeler ton prénom ?"
+      ],
+      "answer": 2,
+      "explanation": "Épeler means to spell; ton prénom means your first name."
+    },
+    {
+      "id": "hs1-u01-l02-q021",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "A student writes 'ecole' but the model reads 'école'. Which revision is needed?",
+      "choices": [
+        "Replace the o with a u.",
+        "Add an acute accent to the first e.",
+        "Add a cedilla to the final e."
+      ],
+      "answer": 1,
+      "explanation": "École requires an acute accent on its initial e."
+    },
+    {
+      "id": "hs1-u01-l02-q022",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You need to spell 'Noël' on a registration form. Which entry is exact?",
+      "choices": [
+        "Noël",
+        "Nöel",
+        "Nóel"
+      ],
+      "answer": 0,
+      "explanation": "The diaeresis belongs on the e in Noël, not on the o."
+    },
+    {
+      "id": "hs1-u01-l02-q023",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You must introduce yourself clearly to a new teacher. Which two sentences work together?",
+      "choices": [
+        "Salut, je suis lundi. I – N – E – S.",
+        "Bonsoir, il s'appelle Inès. I – E – N – S.",
+        "Bonjour, je m'appelle Inès. I – N – È – S."
+      ],
+      "answer": 2,
+      "explanation": "The first option gives an introduction and preserves the accent and letter order."
+    },
+    {
+      "id": "hs1-u01-l02-q024",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You heard « G » but wrote « J » during a spelling exercise. What should you check?",
+      "choices": [
+        "Whether neither letter has a French name.",
+        "The contrast between /ʒe/ and /ʒi/.",
+        "Whether both letter names end in /a/."
+      ],
+      "answer": 1,
+      "explanation": "G and J begin similarly, but their French names use different vowel sounds."
+    },
+    {
+      "id": "hs1-u01-l02-q025",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You want to check the pronunciation rather than the written spelling. What do you ask?",
+      "choices": [
+        "Comment ça se prononce ?",
+        "Comment ça s'écrit ?",
+        "Comment tu t'appelles ?"
+      ],
+      "answer": 0,
+      "explanation": "Se prononce asks how a word is pronounced, unlike s'écrit."
+    },
+    {
+      "id": "hs1-u01-l02-q026",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "A student writes « Je vais a la bibliothèque ». Which correction is justified?",
+      "choices": [
+        "Je vais â la bibliothèque.",
+        "Je vais ä la bibliothèque.",
+        "Je vais à la bibliothèque."
+      ],
+      "answer": 2,
+      "explanation": "The preposition à takes a grave accent in standard French spelling."
+    },
+    {
+      "id": "hs1-u01-l02-q027",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "A classmate says « Je m'appelle Chloé ». What is the best verification question if you missed the spelling?",
+      "choices": [
+        "Tu peux traduire ta ville, s'il te plaît ?",
+        "Tu peux épeler Chloé, s'il te plaît ?",
+        "Tu peux changer de prénom, s'il te plaît ?"
+      ],
+      "answer": 1,
+      "explanation": "Asking someone to spell their name directly addresses uncertainty about letters."
+    }
+  ]
+}
