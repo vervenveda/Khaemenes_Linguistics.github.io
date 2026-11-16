@@ -57,11 +57,11 @@
       "prompt": "Identity and migration documentary: which French sentence transparently acknowledges a translation that changes a political nuance?",
       "choices": [
         "La traduction atténue une nuance du terme original, ce qui mérite une note.",
-        "La traduction est nécessairement identique à chaque nuance.",
-        "Aucun mot politique ne dépend de son contexte."
+        "La traduction privilégie une expression plus fluide, sans indiquer au lecteur la modification du sens.",
+        "La traduction propose une reformulation qui peut masquer l'origine du terme si aucune note n'est ajoutée."
       ],
       "answer": 0,
-      "explanation": "Translation changes should be disclosed, especially for contested terminology."
+      "explanation": "The keyed formulation directly identifies the altered political nuance and requests disclosure; the alternatives either omit disclosure or leave the specific shift unidentified."
     },
     {
       "id": "hs4-u01-l06-q005",
@@ -99,11 +99,11 @@
       "prompt": "Migration oral-history exhibit: which formulation respects one community interview without treating it as everyone's experience?",
       "choices": [
         "Ce témoignage expose une expérience, sans épuiser les perspectives du groupe.",
-        "Ce témoignage décrit forcément chaque membre du groupe.",
-        "Une seule voix remplace toutes les archives."
+        "Ce témoignage peut éclairer la communauté si ses propos sont présentés comme représentatifs de tous.",
+        "Ce témoignage est une source importante; ses conclusions remplacent les récits contradictoires."
       ],
       "answer": 0,
-      "explanation": "One interview does not stand for all people in a community."
+      "explanation": "The best response values one witness while marking the limits of representativeness; neither group generalization nor dismissal of other accounts is justified."
     },
     {
       "id": "hs4-u01-l06-q008",
