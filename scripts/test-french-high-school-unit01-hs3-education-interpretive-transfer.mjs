@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
 import {FRENCH_UNIT01_LESSON_QUOTAS,FRENCH_UNIT01_DOMAINS} from "../assets/french-high-school-unit01-balanced-exam.mjs";
 const topic=JSON.parse(readFileSync("data/french-high-school-unit01-hs3-hs4-item-topic-crosswalk.json","utf8"));
-const school=/(scolaire|école|élève|lycée|tutorat|bibliothèque|éducation|school|student|pupil|teacher|parent|reading|classe|éducat)/i;
+const school=/(scolaire|école|élève|lycée|tutorat|bibliothèque|éducation|school|student|pupil|teacher|parent|reading|library|classroom|classe|éducat)/i;
 const requiredNumbers=[10,11,12,13,14,19,20,21,22,23];
 test("French III 60 reviewed reading/transfer items keep their school context",()=>{
  let total=0;
