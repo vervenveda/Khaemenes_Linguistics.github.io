@@ -12,14 +12,14 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Choose the connector introducing a supporting reason: « Je défends ce projet ___ il réduit le bruit. »",
+      "prompt": "Choose the connector introducing a supporting reason: « Je défends cette solution ___ son efficacité est documentée. »",
       "choices": [
-        "parce qu'",
+        "parce que",
         "cependant",
         "donc"
       ],
       "answer": 0,
-      "explanation": "Parce que introduces a reason, and its final e elides before il."
+      "explanation": "Parce que introduces a reason and correctly precedes the consonant in son efficacité."
     },
     {
       "id": "hs3-u01-l02-q002",
