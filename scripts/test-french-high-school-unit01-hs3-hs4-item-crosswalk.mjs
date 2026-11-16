@@ -46,8 +46,8 @@ test("all 324 French III-IV questions are accounted for exactly once",()=>{
 });
 test("revised thematic screening still cannot promote draft items to official exam status",()=>{
  const count=(course,category)=>crosswalk.courses[course].lessons.flatMap(l=>l.questions).filter(q=>q.category===category).length;
- assert.equal(count("hs3","primary"),69);
- assert.equal(count("hs3","later-unit"),27);
+ assert.equal(count("hs3","primary"),120);
+ assert.equal(count("hs3","later-unit"),10);
  assert.equal(count("hs3","requires-rewrite"),0);
  assert.equal(count("hs4","primary"),68);
  assert.equal(count("hs4","later-unit"),15);
