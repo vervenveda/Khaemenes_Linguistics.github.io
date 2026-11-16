@@ -5,6 +5,8 @@ on:
     branches: [main]
     paths:
       - 'Halls/index.html'
+      - 'Halls/french-high-school-unit01-instruction.html'
+      - 'scripts/test-french-high-school-unit01-instructional-companion.mjs'
       - 'scripts/test-french-high-school-four-grade-alignment.mjs'
       - 'scripts/test-french-four-grade-score-input.mjs'
       - 'scripts/test-french-high-school-assessment-provenance.mjs'
@@ -48,6 +50,8 @@ on:
   pull_request:
     paths:
       - 'Halls/index.html'
+      - 'Halls/french-high-school-unit01-instruction.html'
+      - 'scripts/test-french-high-school-unit01-instructional-companion.mjs'
       - 'scripts/test-french-high-school-four-grade-alignment.mjs'
       - 'scripts/test-french-four-grade-score-input.mjs'
       - 'scripts/test-french-high-school-assessment-provenance.mjs'
@@ -127,3 +131,5 @@ jobs:
         run: node --test scripts/test-french-high-school-unit01-six-lesson-integrity.mjs
       - name: Guard six-lesson and three-domain balance for French I-IV Unit 01
         run: node --test scripts/test-french-high-school-unit01-balanced-exam.mjs
+      - name: Verify accessible four-grade Unit 01 instructional companion and Hall routing
+        run: node --test scripts/test-french-high-school-unit01-instructional-companion.mjs
