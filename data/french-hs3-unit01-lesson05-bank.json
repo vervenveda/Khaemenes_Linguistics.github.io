@@ -138,7 +138,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "interpretation",
-      "prompt": "Source A: « 60 % des 50 répondants utilisent le service ». How many respondents is that?",
+      "prompt": "School-library Source A: « 60 % des 50 élèves interrogés utilisent la bibliothèque. » How many surveyed pupils is that?",
       "choices": [
         "Thirty respondents.",
         "Sixty respondents.",
@@ -152,7 +152,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "interpretation",
-      "prompt": "Source B: « 60 % des 500 répondants utilisent le service ». What changes versus A?",
+      "prompt": "School-library Source B: « 60 % des 500 élèves interrogés utilisent la bibliothèque. » What changes compared with A?",
       "choices": [
         "The percentage becomes one hundred percent.",
         "The finding is automatically true for everyone.",
@@ -166,7 +166,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "interpretation",
-      "prompt": "Source A concerns 2021; B concerns 2025. What must be considered?",
+      "prompt": "School survey A concerns 2021; the school survey B concerns 2025. What must be considered before comparing results?",
       "choices": [
         "The earlier report has no usable information.",
         "The observations refer to different years.",
@@ -180,7 +180,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "interpretation",
-      "prompt": "A text says « l'association affirme » while another says « les données montrent ». What differs?",
+      "prompt": "One school report says « l'association de parents affirme » while another says « les données montrent ». What differs?",
       "choices": [
         "One attributes a claim, the other presents a data-based interpretation.",
         "Both always identify direct experimental proof.",
@@ -194,7 +194,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "interpretation",
-      "prompt": "One source surveys students and another surveys parents. What is a key difference?",
+      "prompt": "One school-library source surveys students and another surveys parents. What population difference matters?",
       "choices": [
         "The school cannot have families.",
         "The two groups must give identical answers.",
@@ -264,21 +264,21 @@
       "unit": 1,
       "lesson": 5,
       "domain": "transfer",
-      "prompt": "You compare two reports in class. Which opening avoids false equivalence?",
+      "prompt": "You compare two school attendance reports in class. Which opening avoids treating incomparable evidence as equivalent?",
       "choices": [
-        "Les études examinent des contextes différents et ne répondent pas exactement à la même question.",
-        "Les études ont des titres différents donc l'une ment.",
-        "Toute divergence disparaît si l'on arrondit les chiffres."
+        "Les études examinent des contextes scolaires différents et ne répondent pas exactement à la même question.",
+        "Les deux écoles ont nécessairement le même résultat.",
+        "Les auteurs ont des titres différents, donc l'un ment."
       ],
       "answer": 0,
-      "explanation": "Their distinct questions and contexts should be stated before comparing."
+      "explanation": "A comparison acknowledges differing school populations and questions rather than claiming equivalence."
     },
     {
       "id": "hs3-u01-l05-q020",
       "unit": 1,
       "lesson": 5,
       "domain": "transfer",
-      "prompt": "One author cites an interview; the other cites administrative records. What should you do?",
+      "prompt": "One education researcher cites an interview with teachers; the other cites school administrative records. What should you do?",
       "choices": [
         "Declare interviews universally invalid.",
         "Assume administrative records capture every experience.",
@@ -292,7 +292,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "transfer",
-      "prompt": "You want to make a comparison table. Which headings are most useful?",
+      "prompt": "You want to make a comparison table for two school studies. Which headings are most useful?",
       "choices": [
         "Author's age and length of title only.",
         "Source, date, sample, measure, conclusion and limitation.",
@@ -306,7 +306,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "transfer",
-      "prompt": "You notice that a study uses an outdated definition. How should you proceed?",
+      "prompt": "A school attendance study uses an outdated definition of regular attendance. How should you proceed?",
       "choices": [
         "Clarify the definition before comparing its figures.",
         "Copy the numbers without a caveat.",
@@ -320,7 +320,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "transfer",
-      "prompt": "Which sentence fairly acknowledges a counterclaim?",
+      "prompt": "One school study reports different findings from another but covers a shorter period. Which sentence fairly acknowledges the counterclaim?",
       "choices": [
         "Le second rapport est absurde parce qu'il diverge.",
         "Une étude contraire doit être supprimée.",
