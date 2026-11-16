@@ -5,14 +5,14 @@
   "lesson": 5,
   "status": "authoring-review-not-published",
   "title": "Compare contrasting short sources and evaluate evidence",
-  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "editorialReview": "assistant-contextual-pass-independent-review-pending",
   "questions": [
     {
       "id": "hs3-u01-l05-q001",
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Two articles use different sample sizes. What must a fair comparison note?",
+      "prompt": "Two school-library survey articles use different sample sizes. What must a fair comparison note?",
       "choices": [
         "The populations and sampling methods differ.",
         "The larger article title proves stronger findings.",
@@ -26,21 +26,21 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Which formulation attributes a claim to a specific source?",
+      "prompt": "School-board report: which formulation correctly attributes a claim to its source?",
       "choices": [
-        "Il est évident que tout le monde a gagné.",
-        "Les effets sont connus sans enquête.",
-        "Selon le rapport municipal, l'accès a progressé."
+        "Il est évident que toutes les écoles ont gagné.",
+        "Les effets sont connus sans enquête scolaire.",
+        "Selon le rapport sur les bibliothèques scolaires, l'accès a progressé."
       ],
       "answer": 2,
-      "explanation": "Selon le rapport municipal makes source attribution explicit."
+      "explanation": "Selon le rapport identifies the educational source rather than claiming a universal unsupported effect."
     },
     {
       "id": "hs3-u01-l05-q003",
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Choose a cautious contrast between two reports.",
+      "prompt": "Comparing two reports about school attendance: choose a cautious contrast.",
       "choices": [
         "Tout désaccord prouve que les deux sont faux.",
         "L'un constate une hausse; l'autre ne la retrouve pas.",
@@ -54,7 +54,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Which connector introduces a counterpoint?",
+      "prompt": "Comparing two school survey findings: which connector introduces a counterpoint?",
       "choices": [
         "En revanche,",
         "Par conséquent,",
@@ -68,7 +68,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Which question examines methodological differences?",
+      "prompt": "Two school studies define educational success differently. Which question examines the methodological difference?",
       "choices": [
         "Quel rapport a le papier le plus brillant ?",
         "Quel auteur écrit le plus de pages ?",
@@ -82,21 +82,21 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Which sentence appropriately limits a finding?",
+      "prompt": "School attendance study: which sentence appropriately limits the finding to the surveyed settings?",
       "choices": [
         "La hausse restera identique pour toujours.",
-        "Dans les trois quartiers étudiés, la fréquentation a augmenté.",
-        "La fréquentation a augmenté dans tous les pays."
+        "Dans les trois écoles étudiées, la fréquentation de la bibliothèque a augmenté.",
+        "La fréquentation de toutes les bibliothèques scolaires du pays a augmenté."
       ],
       "answer": 1,
-      "explanation": "The first statement limits its scope to the three studied neighborhoods."
+      "explanation": "This confines an observed library-attendance finding to three schools rather than extrapolating to a nation."
     },
     {
       "id": "hs3-u01-l05-q007",
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Choose a reasoned response to incompatible measurements.",
+      "prompt": "School survey results conflict because the studies use different measurement periods. Choose a reasoned response.",
       "choices": [
         "Comparer les dates et les indicateurs retenus.",
         "Choisir automatiquement les chiffres les plus élevés.",
@@ -110,7 +110,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Which phrase introduces a source limitation?",
+      "prompt": "A small school survey: which phrase introduces an appropriate source limitation?",
       "choices": [
         "Par conséquent, les résultats sont infaillibles.",
         "En effet, toute critique est impossible.",
@@ -124,7 +124,7 @@
       "unit": 1,
       "lesson": 5,
       "domain": "language-use",
-      "prompt": "Choose the balanced conclusion.",
+      "prompt": "Comparing school tutoring studies: choose a balanced conclusion that does not claim universal success.",
       "choices": [
         "Une seule source suffit à tout prouver.",
         "Les données suggèrent une tendance, à vérifier ailleurs.",
