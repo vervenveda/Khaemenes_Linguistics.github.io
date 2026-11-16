@@ -278,7 +278,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "transfer",
-      "prompt": "You analyze a photograph of a protest. What should you avoid inferring from one image?",
+      "prompt": "Migration-photo interpretation: you analyze a single archival photograph of a fictional family's arrival after displacement. What must you avoid inferring from this one image?",
       "choices": [
         "That the photograph depicts a visible scene.",
         "That the image was captured from a particular viewpoint.",
