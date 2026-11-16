@@ -140,12 +140,12 @@
       "domain": "interpretation",
       "prompt": "Migration counterfactual reading: « Si la réunion sur la relocalisation avait été ouverte, davantage de familles déplacées auraient pu intervenir. » What does the sentence assert?",
       "choices": [
-        "More residents could hypothetically have spoken.",
+        "More displaced families could hypothetically have spoken.",
         "The meeting was definitely public.",
         "All residents actually spoke."
       ],
       "answer": 0,
-      "explanation": "The sentence imagines an alternative past, not a verified event."
+      "explanation": "The unreal past si-clause concerns a relocation meeting; auraient pu expresses a possible alternative, specifically for displaced families."
     },
     {
       "id": "hs4-u01-l03-q011",
