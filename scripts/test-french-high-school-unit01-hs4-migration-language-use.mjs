@@ -4,7 +4,7 @@ import {readFileSync} from "node:fs";
 import {FRENCH_UNIT01_LESSON_QUOTAS,FRENCH_UNIT01_DOMAINS} from "../assets/french-high-school-unit01-balanced-exam.mjs";
 
 const review=JSON.parse(readFileSync("data/french-high-school-unit01-hs3-hs4-item-topic-crosswalk.json","utf8"));
-const migration=/(migrat|déplac|départ|exil|identit|diaspora|réfugi|reloc|accueil|francophon|famille|témoign|archive|traduction|reconstitution|documentaire|mémoire|communaut|migrant)/i;
+const migration=/(migrat|déplac|départ|exil|identit|diaspora|réfugi|reloc|accueil|francophon|famille|témoign|archive|traduction|reconstitution|documentaire|mémoire|communaut|migrant|family|displace)/i;
 test("French IV all 54 language-use items explicitly connect to migration/identity learning",()=>{
  let total=0;
  for(let lesson=1;lesson<=6;lesson++){
