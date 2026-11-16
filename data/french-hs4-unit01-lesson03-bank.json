@@ -138,7 +138,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "interpretation",
-      "prompt": "Read: « Si la réunion avait été ouverte, davantage de riverains auraient pu intervenir. » What is asserted?",
+      "prompt": "Migration counterfactual reading: « Si la réunion sur la relocalisation avait été ouverte, davantage de familles déplacées auraient pu intervenir. » What does the sentence assert?",
       "choices": [
         "More residents could hypothetically have spoken.",
         "The meeting was definitely public.",
