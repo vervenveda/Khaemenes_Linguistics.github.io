@@ -5,14 +5,14 @@
   "lesson": 4,
   "status": "authoring-review-not-published",
   "title": "Relative clauses for precise argumentation",
-  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "editorialReview": "assistant-contextual-pass-independent-review-pending",
   "questions": [
     {
       "id": "hs3-u01-l04-q001",
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Complete: « Le rapport ___ présente les résultats est public. »",
+      "prompt": "School assessment report: complete « Le rapport sur le tutorat ___ présente les résultats est public. »",
       "choices": [
         "qui",
         "que",
@@ -26,7 +26,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Complete: « Les résultats ___ nous avons analysés sont provisoires. »",
+      "prompt": "School survey: complete « Les résultats scolaires ___ nous avons analysés sont provisoires. »",
       "choices": [
         "qui",
         "où",
@@ -40,7 +40,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Complete: « La ville ___ elle habite est proche. »",
+      "prompt": "School enrollment: complete « La ville ___ elle habite offre deux lycées. »",
       "choices": [
         "dont",
         "où",
@@ -54,7 +54,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Complete: « Le chercheur ___ les travaux sont cités »",
+      "prompt": "School research attribution: complete « Le chercheur en éducation ___ les travaux sont cités ».",
       "choices": [
         "dont",
         "qui",
@@ -68,21 +68,21 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Choose a grammatical relative clause:",
+      "prompt": "School support: choose a grammatical relative clause about a possible education measure.",
       "choices": [
-        "Voici une mesure que pourrait fonctionner.",
-        "Voici une mesure dont pourrait fonctionner.",
-        "Voici une mesure qui pourrait fonctionner."
+        "Voici une mesure éducative que pourrait fonctionner.",
+        "Voici une mesure éducative dont pourrait fonctionner.",
+        "Voici une mesure éducative qui pourrait fonctionner."
       ],
       "answer": 2,
-      "explanation": "Qui is subject of pourrait fonctionner."
+      "explanation": "Qui is the relative subject of pourrait fonctionner, with the school-support measure as antecedent."
     },
     {
       "id": "hs3-u01-l04-q006",
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Complete: « C'est l'étude ___ je me souviens. »",
+      "prompt": "School study discussion: complete « C'est l'étude sur l'apprentissage ___ je me souviens. »",
       "choices": [
         "qui",
         "dont",
@@ -96,7 +96,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Complete: « Voici les données ___ nous avons besoin. »",
+      "prompt": "Education research: complete « Voici les données sur les élèves ___ nous avons besoin. »",
       "choices": [
         "dont",
         "que",
@@ -110,7 +110,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Choose the appropriate relative for time: « Le jour ___ la réforme a été votée ».",
+      "prompt": "School reform timeline: choose the appropriate relative for time « Le jour ___ la réforme scolaire a été votée ».",
       "choices": [
         "dont",
         "qui",
@@ -124,7 +124,7 @@
       "unit": 1,
       "lesson": 4,
       "domain": "language-use",
-      "prompt": "Choose correct agreement: « Les analyses que j'ai ___ ».",
+      "prompt": "Education literature review: choose correct agreement « Les analyses scolaires que j'ai ___ ».",
       "choices": [
         "consultés",
         "consultées",
