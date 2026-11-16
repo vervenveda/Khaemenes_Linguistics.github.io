@@ -1,0 +1,260 @@
+{
+  "schema": "khaemenes.french.unit01.extended-reading-lab.v1",
+  "course": "hs4",
+  "status": "formative-pilot-no-official-grade",
+  "fictionalSources": true,
+  "lessons": [
+    {
+      "lesson": 1,
+      "id": "hs4-u01-l01-source01",
+      "title": "Des noms sur un registre",
+      "source": "Archives imaginaires · Étude de cas fictive sur une famille francophone déplacée",
+      "passage": "Dans un registre imaginaire daté de 1934, un agent portuaire inscrit l'arrivée de dix-huit personnes. Il note leurs noms, leurs âges approximatifs et leur lieu de départ, mais ne demande pas pourquoi elles ont quitté leur région. Une lettre fictive rédigée la même année par une jeune femme de cette famille exprime la difficulté de reconstruire des liens dans une ville inconnue. Elle écrit que les nouveaux voisins ont parfois mal prononcé son nom, qu'elle a cherché des personnes parlant sa langue et qu'elle hésite encore à décrire ce déplacement comme un nouveau départ. Quarante ans plus tard, une notice de musée résume le voyage comme une migration volontaire vers de meilleures conditions de vie. Les deux documents initiaux ne permettent pourtant pas d'affirmer que chaque membre de la famille a librement choisi de partir. La classe doit distinguer ce qui est enregistré, ce qui est raconté et ce qui a été interprété après coup.",
+      "questions": [
+        {
+          "id": "hs4-u01-l01-read-q01",
+          "prompt": "Pourquoi la notice du musée dépasse-t-elle les renseignements disponibles ?",
+          "choices": [
+            "Elle reprend uniquement les âges indiqués sur le registre.",
+            "Elle attribue à tous un choix volontaire que les sources ne documentent pas.",
+            "Elle refuse de traduire les noms figurant sur la lettre."
+          ],
+          "answer": 0,
+          "explanation": "Le registre ne rapporte aucun motif, tandis que la lettre exprime une expérience plus complexe."
+        },
+        {
+          "id": "hs4-u01-l01-read-q02",
+          "prompt": "Quelle difficulté d'identité la lettre met-elle notamment en évidence ?",
+          "choices": [
+            "L'absence complète de rencontres dans la ville d'arrivée.",
+            "La transformation du nom et la recherche d'une communauté linguistique.",
+            "La perte de toute information sur la date de départ."
+          ],
+          "answer": 2,
+          "explanation": "Le texte évoque la prononciation du nom et le désir de rencontrer d'autres locuteurs."
+        },
+        {
+          "id": "hs4-u01-l01-read-q03",
+          "prompt": "Quel énoncé respecte le mieux les trois niveaux de source ?",
+          "choices": [
+            "Le registre explique à lui seul pourquoi chaque personne est partie.",
+            "Le registre documente des arrivées, la lettre un vécu, la notice une lecture rétrospective.",
+            "La notice tardive annule la lettre puisque sa date est plus récente."
+          ],
+          "answer": 1,
+          "explanation": "Les trois sources ne remplissent pas le même rôle et ne permettent pas les mêmes affirmations."
+        }
+      ]
+    },
+    {
+      "lesson": 2,
+      "id": "hs4-u01-l02-source01",
+      "title": "La photographie et sa légende",
+      "source": "Dossier de musée fictif · Provenance et migration",
+      "passage": "Une photographie fictive montre plusieurs voyageurs devant un bâtiment portuaire en 1928. La fiche conservée dans les archives ne nomme pas les personnes et n'indique pas leur destination. En 1978, un conservateur ajoute la légende suivante : « Une famille découvre enfin la liberté ». Cette phrase ne figure dans aucun document contemporain associé à l'image. Une correspondance, également fictive, décrit pourtant un trajet marqué par l'incertitude et l'impossibilité de contacter les proches restés au pays. Le musée prépare une nouvelle présentation. Sa conservatrice souhaite conserver la photographie, mais séparer la date de la prise de vue de celle de la légende, expliquer qui a ajouté les mots en 1978 et signaler que l'identité des voyageurs n'est pas établie. Elle propose d'utiliser la lettre comme une perspective supplémentaire, sans supposer que son autrice apparaît nécessairement sur l'image. Le dossier invite les élèves à comparer les supports plutôt qu'à inventer un récit unifié.",
+      "questions": [
+        {
+          "id": "hs4-u01-l02-read-q01",
+          "prompt": "Quelle affirmation relative à la légende de 1978 est étayée ?",
+          "choices": [
+            "Elle rapporte les mots des voyageurs photographiés en 1928.",
+            "Elle identifie avec certitude la famille représentée.",
+            "Elle exprime une interprétation ultérieure non attestée par la fiche contemporaine."
+          ],
+          "answer": 0,
+          "explanation": "La légende est ajoutée cinquante ans plus tard et ses mots n'apparaissent pas dans les pièces d'époque."
+        },
+        {
+          "id": "hs4-u01-l02-read-q02",
+          "prompt": "Pourquoi la lettre ne suffit-elle pas à identifier les voyageurs photographiés ?",
+          "choices": [
+            "Une lettre ne peut jamais être utilisée pour comprendre une époque.",
+            "La correspondance est nécessairement plus récente que la légende de musée.",
+            "Aucun lien documentaire n'établit que son autrice figure sur l'image."
+          ],
+          "answer": 2,
+          "explanation": "Une perspective complémentaire ne prouve pas l'identité des personnes représentées."
+        },
+        {
+          "id": "hs4-u01-l02-read-q03",
+          "prompt": "Quelle nouvelle légende serait la plus rigoureuse ?",
+          "choices": [
+            "« L'autrice de la lettre et ses enfants quittent le port, fait établi. »",
+            "« Une famille libérée, dont le bonheur est incontestable. »",
+            "« Voyageurs non identifiés, photographie de 1928; légende de 1978 ajoutée ultérieurement. »"
+          ],
+          "answer": 1,
+          "explanation": "La proposition distingue la date du document, l'ajout éditorial et l'incertitude d'identification."
+        }
+      ]
+    },
+    {
+      "lesson": 3,
+      "id": "hs4-u01-l03-source01",
+      "title": "Ce qui aurait pu changer",
+      "source": "Atelier historique fictif · Déplacement et contrefactualité",
+      "passage": "Un conseil local fictif décide en 1941 de déplacer plusieurs familles vers une autre commune. Le procès-verbal indique la date du vote et le nombre de membres présents, mais ne reproduit aucune intervention des familles concernées. Plusieurs années plus tard, un auteur écrit : « Si ces familles avaient été consultées, certaines auraient peut-être proposé un autre trajet ». Cette proposition ne décrit pas un événement réellement observé; elle imagine une possibilité à partir d'une absence documentaire. Une autre chercheuse souligne que les propositions éventuelles auraient aussi dépendu des moyens de transport disponibles et des règles alors applicables. La classe compare deux formulations : « Les familles ont choisi un autre trajet » et « Elles auraient pu choisir un autre trajet si elles avaient participé à la décision ». Seule la seconde conserve clairement le caractère hypothétique de cette alternative. Le professeur demande enfin de préciser quels documents supplémentaires pourraient aider à mieux comprendre les choix réellement accessibles, sans transformer une hypothèse en témoignage inventé.",
+      "questions": [
+        {
+          "id": "hs4-u01-l03-read-q01",
+          "prompt": "Dans « certaines auraient peut-être proposé », quel statut possède l'action ?",
+          "choices": [
+            "Une décision directement enregistrée dans le procès-verbal.",
+            "Une possibilité passée qui n'est pas établie comme ayant eu lieu.",
+            "Un engagement futur déjà signé par les familles."
+          ],
+          "answer": 0,
+          "explanation": "Le conditionnel passé avec peut-être présente une alternative non observée."
+        },
+        {
+          "id": "hs4-u01-l03-read-q02",
+          "prompt": "Pourquoi les moyens de transport comptent-ils dans l'analyse ?",
+          "choices": [
+            "Ils rendent inutile toute consultation des documents.",
+            "Ils limitent ce qui aurait concrètement pu être proposé dans le contexte historique.",
+            "Ils prouvent que toutes les familles auraient refusé le déplacement."
+          ],
+          "answer": 2,
+          "explanation": "Une hypothèse défendable doit tenir compte des contraintes et possibilités réelles."
+        },
+        {
+          "id": "hs4-u01-l03-read-q03",
+          "prompt": "Quelle phrase distingue le mieux une hypothèse d'un fait attesté ?",
+          "choices": [
+            "« Les familles proposeront certainement une autre solution en 1941. »",
+            "« Si les familles avaient participé, elles auraient pu proposer une autre solution. »",
+            "« Les familles ont proposé une autre solution, d'après un témoignage inexistant. »"
+          ],
+          "answer": 1,
+          "explanation": "Le conditionnel passé et le plus-que-parfait construisent une alternative explicitement hypothétique."
+        }
+      ]
+    },
+    {
+      "lesson": 4,
+      "id": "hs4-u01-l04-source01",
+      "title": "Traduire la nécessité de partir",
+      "source": "Atelier de traduction fictif · Oralité et identité",
+      "passage": "Une exposition pédagogique prépare la traduction d'un entretien fictif mené avec une femme francophone ayant quitté sa région pendant une crise. Elle dit : « Nous avons dû partir avant la fermeture de la route. » La première traduction proposée est « We had to leave before the road closed ». La seconde dit « We chose to leave before the road closed ». Une note du traducteur précise qu'il a préféré une formulation plus fluide en anglais. Pourtant, le passage du verbe devoir au verbe choisir transforme une contrainte exprimée en décision volontaire. Plus loin, l'interviewée emploie une expression régionale que l'éditeur remplace silencieusement par une tournure standard. La conservatrice demande de présenter la langue de départ, de conserver les indices d'obligation et d'expliquer les normalisations de transcription. Elle rappelle que la parole d'une seule personne ne résume pas toutes les expériences migratoires et qu'une traduction doit rendre visibles ses choix lorsqu'ils influencent l'interprétation de l'identité et de l'agence du témoin.",
+      "questions": [
+        {
+          "id": "hs4-u01-l04-read-q01",
+          "prompt": "Quel changement de sens introduit « We chose to leave » ?",
+          "choices": [
+            "Il conserve exactement l'obligation exprimée par « avons dû ».",
+            "Il précise seulement la date du départ, sans autre effet.",
+            "Il transforme une nécessité exprimée en choix présenté comme volontaire."
+          ],
+          "answer": 0,
+          "explanation": "Choisir remplace devoir et modifie la façon dont la décision de partir est attribuée au témoin."
+        },
+        {
+          "id": "hs4-u01-l04-read-q02",
+          "prompt": "Quelle action éditoriale respecte le mieux l'expression régionale ?",
+          "choices": [
+            "La supprimer sans commentaire pour éviter toute difficulté au lecteur.",
+            "Déclarer la variété régionale fautive et inventer une citation plus élégante.",
+            "La signaler dans le texte ou une note, en expliquant toute normalisation."
+          ],
+          "answer": 2,
+          "explanation": "La transparence protège la voix du témoin sans interdire une explication au lecteur."
+        },
+        {
+          "id": "hs4-u01-l04-read-q03",
+          "prompt": "Pourquoi l'exposition doit-elle éviter de généraliser cet entretien ?",
+          "choices": [
+            "Parce qu'une traduction validée suffit à mesurer toute une population.",
+            "Parce qu'un entretien ne peut jamais être utilisé comme une source.",
+            "Parce qu'il témoigne d'une trajectoire personnelle et non de toutes les migrations."
+          ],
+          "answer": 1,
+          "explanation": "Une voix singulière éclaire une expérience sans représenter automatiquement un groupe entier."
+        }
+      ]
+    },
+    {
+      "lesson": 5,
+      "id": "hs4-u01-l05-source01",
+      "title": "Archives, film et poème",
+      "source": "Parcours d'exposition fictif · Trois genres, une migration",
+      "passage": "Pour un parcours consacré aux migrations francophones, une classe reçoit trois documents fictifs. Le premier est un registre administratif qui indique la date d'arrivée d'un groupe et le nombre de bagages enregistrés. Le second est un court film réalisé plusieurs décennies plus tard : une actrice y lit une lettre tandis que des comédiens rejouent un départ. Le générique mentionne la reconstitution, mais certains spectateurs pensent à tort que les images ont été filmées lors de l'événement. Le troisième document est un poème dont la narratrice compare la frontière à « une porte qui garde les noms ». Cette image suggère un sentiment de perte et de transformation, sans constituer une description littérale d'un poste-frontière. Les élèves doivent rédiger des notices qui distinguent les informations administratives, la mise en scène audiovisuelle et la parole poétique. Ils cherchent également les voix absentes, notamment celles des personnes qui ne figurent ni dans les registres ni dans le récit du film.",
+      "questions": [
+        {
+          "id": "hs4-u01-l05-read-q01",
+          "prompt": "Quelle affirmation sur le film évite la confusion entre archive et représentation ?",
+          "choices": [
+            "Il s'agit d'images tournées au moment du départ parce qu'elles semblent anciennes.",
+            "Les scènes sont jouées ultérieurement et doivent être signalées comme reconstitutions.",
+            "Le registre administratif et les images filmées sont des documents identiques."
+          ],
+          "answer": 0,
+          "explanation": "Le film mobilise des acteurs et une lecture réalisée après l'événement."
+        },
+        {
+          "id": "hs4-u01-l05-read-q02",
+          "prompt": "Comment faut-il interpréter « une porte qui garde les noms » ?",
+          "choices": [
+            "Comme la preuve que chaque voyageur portait le même nom.",
+            "Comme une image poétique des transformations de l'identité et de la mémoire.",
+            "Comme un inventaire exact des pièces conservées au poste-frontière."
+          ],
+          "answer": 2,
+          "explanation": "La métaphore évoque une expérience symbolique, pas un registre d'identité vérifié."
+        },
+        {
+          "id": "hs4-u01-l05-read-q03",
+          "prompt": "Quelle approche convient à une notice comparant les trois documents ?",
+          "choices": [
+            "Écarter le registre puisque les images du film sont plus vivantes.",
+            "Distinguer fait administratif, reconstruction filmée et expression poétique en précisant les limites.",
+            "Présenter le film et le poème comme la confirmation directe de chaque détail du registre."
+          ],
+          "answer": 1,
+          "explanation": "Les trois genres apportent des informations et des expériences de lecture différentes."
+        }
+      ]
+    },
+    {
+      "lesson": 6,
+      "id": "hs4-u01-l06-source01",
+      "title": "Une exposition à plusieurs voix",
+      "source": "Projet curatorial fictif · Migration, mémoire et représentation",
+      "passage": "Le comité d'une exposition scolaire sur la migration examine une lettre familiale fictive, une liste d'arrivées et un documentaire réalisé longtemps après les événements racontés. La lettre évoque l'angoisse de ne pas connaître la langue administrative de la ville d'accueil. La liste signale des dates et des noms, sans expliquer les motifs individuels du départ. Le documentaire associe des images d'archives à de nouvelles scènes mises en scène par des acteurs. Le comité souhaite ouvrir l'exposition par la formule : « Tous les migrants ont vécu la même histoire ». Deux élèves contestent cette phrase, parce qu'aucune source ne représente toutes les personnes concernées. Ils proposent un titre plus limité : « Des traces et des récits de plusieurs parcours ». Ils préparent ensuite des notices qui précisent l'origine des documents, les traductions et les omissions éventuelles. Pour les élèves, un bon travail de synthèse n'est pas celui qui efface les divergences, mais celui qui permet au visiteur de reconnaître des points de vue différents et des informations encore manquantes.",
+      "questions": [
+        {
+          "id": "hs4-u01-l06-read-q01",
+          "prompt": "Pourquoi les élèves contestent-ils « Tous les migrants ont vécu la même histoire » ?",
+          "choices": [
+            "Parce que les listes d'arrivées contiennent nécessairement des erreurs.",
+            "Parce qu'un film ne peut jamais transmettre une expérience humaine.",
+            "Parce qu'aucune des sources étudiées ne permet de généraliser à toutes les personnes."
+          ],
+          "answer": 0,
+          "explanation": "Une famille, une liste et un documentaire tardif ne représentent pas toutes les trajectoires."
+        },
+        {
+          "id": "hs4-u01-l06-read-q02",
+          "prompt": "Quelle différence essentielle sépare la lettre de la liste d'arrivées ?",
+          "choices": [
+            "La liste raconte les sentiments de chaque famille et la lettre ne contient que des nombres.",
+            "Les deux documents expliquent directement pourquoi chaque personne est partie.",
+            "La lettre évoque une expérience vécue; la liste consigne des renseignements administratifs."
+          ],
+          "answer": 2,
+          "explanation": "Les documents ont des fonctions et des limites distinctes."
+        },
+        {
+          "id": "hs4-u01-l06-read-q03",
+          "prompt": "Quelle pratique rendrait la présentation du documentaire plus transparente ?",
+          "choices": [
+            "Réunir toutes les voix en une citation anonyme rédigée par le musée.",
+            "Effacer les noms des acteurs et laisser croire que les images sont originales.",
+            "Identifier les scènes jouées et séparer leur statut des images d'archives."
+          ],
+          "answer": 1,
+          "explanation": "Un montage clair distingue images d'époque et reconstruction."
+        }
+      ]
+    }
+  ]
+}
