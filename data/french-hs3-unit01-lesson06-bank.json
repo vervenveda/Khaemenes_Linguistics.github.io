@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs3",
+  "unit": 1,
+  "lesson": 6,
+  "status": "authoring-review-not-published",
+  "title": "Unit 01 evidence-based debate and research synthesis mission",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs3-u01-l06-q001",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Debate mission: introduce a proposal without promising certain success.",
+      "choices": [
+        "Nous pourrions tester ce programme pendant un trimestre.",
+        "Nous garantissons que le programme réussira partout.",
+        "Ce programme réussira forcément sans évaluation."
+      ],
+      "answer": 0,
+      "explanation": "Pourrions gives a conditional, proportionate recommendation."
+    },
+    {
+      "id": "hs3-u01-l06-q002",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: cite a source rather than state an unsupported opinion.",
+      "choices": [
+        "Je sais que tous les habitants sont satisfaits.",
+        "Tout le monde approuve sans enquête.",
+        "Selon l'enquête régionale, la participation a augmenté."
+      ],
+      "answer": 2,
+      "explanation": "Selon identifies the source and limits the speaker's authority."
+    },
+    {
+      "id": "hs3-u01-l06-q003",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: distinguish future plan from suggestion.",
+      "choices": [
+        "Nous présentions chaque lundi autrefois.",
+        "Nous présenterons les résultats lundi.",
+        "Nous présenterions les résultats si nous avions plus de temps."
+      ],
+      "answer": 1,
+      "explanation": "Présenterons is the future simple for a stated future plan."
+    },
+    {
+      "id": "hs3-u01-l06-q004",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: express a hypothetical funding condition.",
+      "choices": [
+        "Si le budget augmentait, nous élargirions le service.",
+        "Si le budget augmentera, nous élargirons le service.",
+        "Si le budget avait augmenté, nous élargirons hier."
+      ],
+      "answer": 0,
+      "explanation": "Imperfect plus conditional marks a hypothetical present situation."
+    },
+    {
+      "id": "hs3-u01-l06-q005",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: identify the report that you read using a relative clause.",
+      "choices": [
+        "Le rapport qui j'ai lu.",
+        "Le rapport dont j'ai lu.",
+        "Le rapport que j'ai lu."
+      ],
+      "answer": 2,
+      "explanation": "Que serves as direct object of j'ai lu."
+    },
+    {
+      "id": "hs3-u01-l06-q006",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: identify a researcher whose work you cite.",
+      "choices": [
+        "La chercheuse où je cite les travaux.",
+        "La chercheuse dont je cite les travaux.",
+        "La chercheuse que je cite les travaux."
+      ],
+      "answer": 1,
+      "explanation": "Dont replaces de la chercheuse in les travaux de la chercheuse."
+    },
+    {
+      "id": "hs3-u01-l06-q007",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: introduce a fair counterargument.",
+      "choices": [
+        "Toutefois, les coûts d'entretien restent incertains.",
+        "Ces objections sont absurdes et ne méritent rien.",
+        "Tous les coûts ont été prouvés inexistants."
+      ],
+      "answer": 0,
+      "explanation": "Toutefois introduces a specific reservation, not a dismissal."
+    },
+    {
+      "id": "hs3-u01-l06-q008",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: state the limitation of a study of one school.",
+      "choices": [
+        "Cette enquête prouve le résultat pour tout le pays.",
+        "Cette enquête élimine toute incertitude nationale.",
+        "Cette enquête ne permet pas de conclure pour tous les lycées."
+      ],
+      "answer": 2,
+      "explanation": "One school's sample cannot automatically establish national generality."
+    },
+    {
+      "id": "hs3-u01-l06-q009",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: distinguish a correlation claim from a causal claim.",
+      "choices": [
+        "Aucune donnée ne peut être comparée.",
+        "Une hausse parallèle n'établit pas, à elle seule, une cause.",
+        "Deux courbes similaires prouvent toujours une cause."
+      ],
+      "answer": 1,
+      "explanation": "Correlation alone is insufficient for causal inference."
+    },
+    {
+      "id": "hs3-u01-l06-q010",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Source A: « Dans deux quartiers, l'usage du vélo a progressé ». What scope is stated?",
+      "choices": [
+        "Two neighborhoods.",
+        "All neighborhoods nationwide.",
+        "Every region in Europe."
+      ],
+      "answer": 0,
+      "explanation": "Dans deux quartiers explicitly limits the observation."
+    },
+    {
+      "id": "hs3-u01-l06-q011",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Source B: « La ville prévoit un essai en 2027 ». What is the status?",
+      "choices": [
+        "The trial ended in 2027.",
+        "The trial has proven success.",
+        "A future trial is planned."
+      ],
+      "answer": 2,
+      "explanation": "Prévoit indicates a plan, not completed results."
+    },
+    {
+      "id": "hs3-u01-l06-q012",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "An article says « L'étude dont nous parlons est ancienne ». What does dont represent?",
+      "choices": [
+        "The time of publication.",
+        "The study discussed, governed by parler de.",
+        "The author's hometown."
+      ],
+      "answer": 1,
+      "explanation": "Parler de selects dont to identify its topic."
+    },
+    {
+      "id": "hs3-u01-l06-q013",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "One report samples commuters, another students. What is the key limitation?",
+      "choices": [
+        "The samples cover different populations.",
+        "Both necessarily include identical people.",
+        "Neither can contain useful information."
+      ],
+      "answer": 0,
+      "explanation": "Different sampled populations limit direct comparison."
+    },
+    {
+      "id": "hs3-u01-l06-q014",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Source A says 40 of 100 respondents favor the plan. What proportion is that?",
+      "choices": [
+        "60 percent.",
+        "4 percent.",
+        "40 percent."
+      ],
+      "answer": 2,
+      "explanation": "Forty out of one hundred equals forty percent."
+    },
+    {
+      "id": "hs3-u01-l06-q015",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Source B says 30 of 50 respondents favor the plan. What proportion is that?",
+      "choices": [
+        "50 percent.",
+        "60 percent.",
+        "30 percent."
+      ],
+      "answer": 1,
+      "explanation": "Thirty of fifty respondents equals sixty percent."
+    },
+    {
+      "id": "hs3-u01-l06-q016",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "One headline claims 'proven success', but the study measures opinions. What is overstated?",
+      "choices": [
+        "Opinion data alone cannot prove practical effectiveness.",
+        "The study contains no respondent views.",
+        "A headline is never an argument."
+      ],
+      "answer": 0,
+      "explanation": "Opinion surveys assess views, not necessarily measured program effectiveness."
+    },
+    {
+      "id": "hs3-u01-l06-q017",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Les critères qui ont servi à l'évaluation ne sont pas précisés ». What is missing?",
+      "choices": [
+        "Every participant's name.",
+        "The report's publication language.",
+        "The evaluation criteria."
+      ],
+      "answer": 2,
+      "explanation": "Without stated criteria, readers cannot fully assess how findings were evaluated."
+    },
+    {
+      "id": "hs3-u01-l06-q018",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "A report says « Les chiffres seraient sous-estimés ». What is the epistemic status?",
+      "choices": [
+        "A future instruction to gather data.",
+        "A reported possibility or uncertain estimate.",
+        "An uncontested verified numerical correction."
+      ],
+      "answer": 1,
+      "explanation": "Serait is conditional, which can convey uncertainty or reported information."
+    },
+    {
+      "id": "hs3-u01-l06-q019",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "You compare a city survey with a national survey. Choose the careful synthesis.",
+      "choices": [
+        "Les résultats diffèrent, mais les échantillons et contextes ne sont pas identiques.",
+        "Le résultat le plus élevé prouve l'unique vérité.",
+        "Les deux sources sont fausses parce qu'elles divergent."
+      ],
+      "answer": 0,
+      "explanation": "Differences in coverage and sampling can affect comparisons."
+    },
+    {
+      "id": "hs3-u01-l06-q020",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "You want to propose data collection before policy expansion.",
+      "choices": [
+        "Nous devons étendre le projet partout avant toute mesure.",
+        "Des résultats inexistants démontrent déjà la réussite.",
+        "Avant d'élargir le projet, nous devrions mesurer ses effets."
+      ],
+      "answer": 2,
+      "explanation": "The conditional devrions recommends collecting evidence before scaling."
+    },
+    {
+      "id": "hs3-u01-l06-q021",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "In a panel debate, respectfully challenge an unsupported claim.",
+      "choices": [
+        "Toute critique est interdite.",
+        "Sur quelles données repose cette affirmation ?",
+        "Vous n'avez pas le droit de parler."
+      ],
+      "answer": 1,
+      "explanation": "Asking for supporting data is a legitimate evidence-focused challenge."
+    },
+    {
+      "id": "hs3-u01-l06-q022",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "You want to link one measured effect with a future recommendation.",
+      "choices": [
+        "Si ces résultats se confirment, nous envisagerons une extension.",
+        "Si ces résultats se confirmeront, nous envisageons hier.",
+        "Ces résultats prouvent une extension obligatoire partout."
+      ],
+      "answer": 0,
+      "explanation": "Present after si plus future in the main clause expresses a possible future."
+    },
+    {
+      "id": "hs3-u01-l06-q023",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Choose a source-comparison sentence with an accurate relative clause.",
+      "choices": [
+        "Les chiffres qui nous avons vérifiés concernent 2025.",
+        "Les chiffres dont nous avons vérifiés concernent 2025.",
+        "Les chiffres que nous avons vérifiés concernent 2025."
+      ],
+      "answer": 2,
+      "explanation": "Que is the preceding direct object of avons vérifiés and controls plural agreement."
+    },
+    {
+      "id": "hs3-u01-l06-q024",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "A claim about public transport uses only six respondents. Which caution fits?",
+      "choices": [
+        "Le petit groupe garantit l'absence de biais.",
+        "L'échantillon est trop limité pour généraliser sans autre enquête.",
+        "Six personnes prouvent la situation nationale."
+      ],
+      "answer": 1,
+      "explanation": "The small sample does not justify unrestricted generalization."
+    },
+    {
+      "id": "hs3-u01-l06-q025",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "A respondent says the service is cheaper but less accessible. What is the trade-off?",
+      "choices": [
+        "Lower cost versus reduced access.",
+        "Higher cost and wider access.",
+        "No change in either dimension."
+      ],
+      "answer": 0,
+      "explanation": "The statement weighs affordability against accessibility."
+    },
+    {
+      "id": "hs3-u01-l06-q026",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "To end the debate, choose a non-overstated conclusion.",
+      "choices": [
+        "La réussite est désormais garantie pour chaque usager.",
+        "Tout désaccord montre que l'étude est sans intérêt.",
+        "Les premiers indices sont prometteurs, mais une évaluation plus large reste nécessaire."
+      ],
+      "answer": 2,
+      "explanation": "A cautious conclusion acknowledges both promise and evidence limits."
+    },
+    {
+      "id": "hs3-u01-l06-q027",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "You need to distinguish a recommendation from a finding.",
+      "choices": [
+        "La mesure est vérifiée même si aucun essai n'a eu lieu.",
+        "La mesure pourrait être essayée; son efficacité devra ensuite être vérifiée.",
+        "La mesure est déjà efficace car elle pourrait l'être."
+      ],
+      "answer": 1,
+      "explanation": "A proposed trial and a subsequently measured effect are distinct."
+    }
+  ]
+}
