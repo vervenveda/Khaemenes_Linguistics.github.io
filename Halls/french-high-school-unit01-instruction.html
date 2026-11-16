@@ -19,7 +19,7 @@
 .picker{display:flex;gap:12px;align-items:end;flex-wrap:wrap;margin:18px 0}
 .picker label{display:block}
 .picker select{max-width:100%;min-height:44px}
-#overview{max-width:900px;margin:16px auto;text-align:center}
+.practice-reminder{max-width:900px;margin:14px auto;padding:11px 15px;border-left:4px solid #8b733f;background:#eee6d5;font-size:16px}#overview{max-width:900px;margin:16px auto;text-align:center}
 #overview h2{margin-bottom:8px}
 .reading-lab,.oral-lab,.bridge-lab{min-width:0}
 button:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #916c20;outline-offset:3px}
@@ -59,7 +59,7 @@ button:focus-visible,select:focus-visible,a:focus-visible,summary:focus-visible,
 <header><nav><a href="./index.html">Language Halls</a><a href="../">Khaemenes Linguistics</a></nav><div class="eyebrow">Khaemenes Academy · Instructional companion</div><h1>French I–IV · Unit 01</h1><p>Explore · Practice · Create · Check · Reflect</p></header>
 <main><p>This is a provisional six-lesson study companion for the new question-bank sequence. The existing Hall course maps use different theme boundaries, so full instructional alignment is not yet verified. This is practice material, <strong>not</strong> an official exam, certified proficiency result, course completion, or replacement of existing lessons. No profile information is collected.</p>
 <div class="picker"><label for="grade">Choose your French level: </label><select id="grade"><option value="hs1">French I</option><option value="hs2">French II</option><option value="hs3">French III</option><option value="hs4">French IV</option></select> <button id="print" type="button">Print lesson companion</button></div>
-<div id="overview" aria-live="polite"></div><section class="note"><strong>Evidence boundary:</strong> Written reading practice is not proof of listening skill, and multiple-choice answers cannot certify oral proficiency. Use teacher-approved audio, transcripts, supported conversation and reviewed original writing to assess these skills. All examples involving a named person or historical event here are fictional teaching examples unless explicitly indicated otherwise.</section>
+<p class="practice-reminder">Your notes remain only on this page. Use <strong>Export my practice notes</strong> before switching levels, reloading or closing the tab.</p><div id="overview" aria-live="polite"></div><section class="note"><strong>Evidence boundary:</strong> Written reading practice is not proof of listening skill, and multiple-choice answers cannot certify oral proficiency. Use teacher-approved audio, transcripts, supported conversation and reviewed original writing to assess these skills. All examples involving a named person or historical event here are fictional teaching examples unless explicitly indicated otherwise.</section>
 <section class="note" aria-label="Lesson 01 canonical design"><strong>One learning design for all six lessons:</strong> Every lesson follows the same Lesson 01 blueprint: an objective, clear teaching explanation, original French model, interpretation check, corrected practice, independent creation and reflection. Each lesson keeps its own topic and difficulty. Sections stay expandable to avoid overwhelming the learner.</section>
 <div class="lesson-actions"><button type="button" id="openAll">Expand all lesson sections</button><button type="button" id="closeAll">Collapse lesson sections</button></div>
 <nav class="lesson-jump" id="lessonJump" aria-label="Jump to lesson"></nav><div id="lessons"></div><section class="note"><strong>Learning record:</strong> Work in your normal learner workspace or print this companion. This reference page does not save answers or change existing Academy grades. Parents and teachers can review completed work with the student.</section></main>
@@ -257,8 +257,37 @@ lessons.addEventListener("click",event=>{
 });
 
 document.getElementById("closeAll").addEventListener("click",()=>{for(const d of lessons.querySelectorAll("details"))d.open=false;});
-function selectFromHash(){const id=location.hash.replace("#","");if(Object.hasOwn(packs,id)){grade.value=id;render();}}
-grade.addEventListener("change",()=>{location.hash=grade.value;render()});
+let activeGrade=grade.value;
+function hasUnsavedPractice(){return [...lessons.querySelectorAll(".bridge-lab textarea")].some(field=>field.value.trim().length>0);}
+function confirmPracticeExit(){
+ if(!hasUnsavedPractice())return true;
+ return window.confirm("Your French practice notes are not automatically saved. Export your notes before changing levels. Continue and discard the current on-page draft?");
+}
+function selectFromHash(){
+ const id=location.hash.replace("#","");
+ if(!Object.hasOwn(packs,id)||id===activeGrade)return;
+ if(!confirmPracticeExit()){
+  history.replaceState(null,"","#"+activeGrade);
+  grade.value=activeGrade;
+  return;
+ }
+ grade.value=id;
+ activeGrade=id;
+ render();
+}
+grade.addEventListener("change",()=>{
+ const next=grade.value;
+ if(next===activeGrade)return;
+ if(!confirmPracticeExit()){grade.value=activeGrade;return;}
+ activeGrade=next;
+ location.hash=next;
+ render();
+});
+window.addEventListener("beforeunload",event=>{
+ if(!hasUnsavedPractice())return;
+ event.preventDefault();
+ event.returnValue="";
+});
 window.addEventListener("hashchange",selectFromHash);
 function preparePrint(target){
  document.body.classList.toggle("print-one",Boolean(target));
