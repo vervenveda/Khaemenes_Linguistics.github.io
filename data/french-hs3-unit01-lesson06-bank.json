@@ -5,14 +5,14 @@
   "lesson": 6,
   "status": "authoring-review-not-published",
   "title": "Unit 01 evidence-based debate and research synthesis mission",
-  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "editorialReview": "assistant-contextual-pass-independent-review-pending",
   "questions": [
     {
       "id": "hs3-u01-l06-q001",
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Debate mission: introduce a proposal without promising certain success.",
+      "prompt": "School-improvement forum: introduce a tentative reading-support proposal without promising certain success.",
       "choices": [
         "Nous pourrions tester ce programme pendant un trimestre.",
         "Nous garantissons que le programme réussira partout.",
@@ -26,21 +26,21 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: cite a source rather than state an unsupported opinion.",
+      "prompt": "School debate mission: cite a school survey rather than state an unsupported opinion.",
       "choices": [
-        "Je sais que tous les habitants sont satisfaits.",
-        "Tout le monde approuve sans enquête.",
-        "Selon l'enquête régionale, la participation a augmenté."
+        "Je sais que tous les élèves sont satisfaits.",
+        "Tous les élèves approuvent sans enquête.",
+        "Selon l'enquête scolaire, la participation des élèves a augmenté."
       ],
       "answer": 2,
-      "explanation": "Selon identifies the source and limits the speaker's authority."
+      "explanation": "Selon l'enquête scolaire attributes a bounded observation to a named evidence type and avoids universal claims."
     },
     {
       "id": "hs3-u01-l06-q003",
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: distinguish future plan from suggestion.",
+      "prompt": "Student council mission: distinguish a scheduled future presentation from a hypothetical proposal.",
       "choices": [
         "Nous présentions chaque lundi autrefois.",
         "Nous présenterons les résultats lundi.",
@@ -54,7 +54,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: express a hypothetical funding condition.",
+      "prompt": "School funding mission: express a hypothetical funding condition using the imperfect and conditional.",
       "choices": [
         "Si le budget augmentait, nous élargirions le service.",
         "Si le budget augmentera, nous élargirons le service.",
@@ -68,7 +68,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: identify the report that you read using a relative clause.",
+      "prompt": "Library report mission: identify the school report that you read using a relative clause.",
       "choices": [
         "Le rapport qui j'ai lu.",
         "Le rapport dont j'ai lu.",
@@ -82,7 +82,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: identify a researcher whose work you cite.",
+      "prompt": "Education researcher mission: identify a scholar whose work you cite using dont.",
       "choices": [
         "La chercheuse où je cite les travaux.",
         "La chercheuse dont je cite les travaux.",
@@ -96,21 +96,21 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: introduce a fair counterargument.",
+      "prompt": "Student-support forum: introduce a fair counterargument to a school program.",
       "choices": [
-        "Toutefois, les coûts d'entretien restent incertains.",
-        "Ces objections sont absurdes et ne méritent rien.",
-        "Tous les coûts ont été prouvés inexistants."
+        "Toutefois, les coûts de l'atelier après les cours restent incertains.",
+        "Ces objections scolaires sont absurdes et ne méritent rien.",
+        "Tous les coûts du projet éducatif ont été prouvés inexistants."
       ],
       "answer": 0,
-      "explanation": "Toutefois introduces a specific reservation, not a dismissal."
+      "explanation": "Toutefois introduces the specific school-program cost concern instead of dismissing a counterargument."
     },
     {
       "id": "hs3-u01-l06-q008",
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: state the limitation of a study of one school.",
+      "prompt": "Education pilot mission: state the generalization limits of a study of one school.",
       "choices": [
         "Cette enquête prouve le résultat pour tout le pays.",
         "Cette enquête élimine toute incertitude nationale.",
@@ -124,7 +124,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: distinguish a correlation claim from a causal claim.",
+      "prompt": "School research mission: distinguish a correlation between reading attendance and grades from a causal claim.",
       "choices": [
         "Aucune donnée ne peut être comparée.",
         "Une hausse parallèle n'établit pas, à elle seule, une cause.",
