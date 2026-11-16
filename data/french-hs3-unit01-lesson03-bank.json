@@ -113,7 +113,7 @@
       "prompt": "Which school-access proposal expresses uncertainty rather than a guarantee?",
       "choices": [
         "Cette politique scolaire améliorera probablement l'accès dans toutes les régions.",
-        "Cette politique scolaire améliorerait l'accès si le budget était déjà confirmé.",
+        "Si le budget était confirmé, cette politique garantirait l'accès à tous les élèves.",
         "Cette politique scolaire pourrait améliorer l'accès."
       ],
       "answer": 2,
