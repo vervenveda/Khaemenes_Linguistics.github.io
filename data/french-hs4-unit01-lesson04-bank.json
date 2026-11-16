@@ -72,10 +72,10 @@
       "choices": [
         "Ce document raconte un tas de machins.",
         "Ce document balance des trucs.",
-        "Ce document présente plusieurs arguments."
+        "Ce document présente plusieurs éléments."
       ],
       "answer": 2,
-      "explanation": "Présente plusieurs arguments is precise and appropriate for formal analysis."
+      "explanation": "Présente plusieurs éléments preserves the nonspecific sense of plein de trucs while removing the informal expression and using an appropriate formal register."
     },
     {
       "id": "hs4-u01-l04-q006",
@@ -85,11 +85,11 @@
       "prompt": "A bilingual migration-exhibit translation note: which phrase transparently identifies the translator's intervention?",
       "choices": [
         "Texte source consulté, sans l'avoir vu.",
-        "Traduction de l'auteur; nuance discutée en note.",
+        "Traduction proposée par l'éditeur; nuance expliquée en note.",
         "Citation originale inchangée, bien que réécrite."
       ],
       "answer": 1,
-      "explanation": "Explicitly identifying the translation and its note preserves accountability."
+      "explanation": "The note explicitly identifies the editorial translation and discloses the consequential change in nuance rather than implying the witness supplied the translation."
     },
     {
       "id": "hs4-u01-l04-q007",
