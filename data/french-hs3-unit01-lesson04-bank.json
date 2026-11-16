@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs3",
+  "unit": 1,
+  "lesson": 4,
+  "status": "authoring-review-not-published",
+  "title": "Relative clauses for precise argumentation",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs3-u01-l04-q001",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Complete: « Le rapport ___ présente les résultats est public. »",
+      "choices": [
+        "qui",
+        "que",
+        "dont"
+      ],
+      "answer": 0,
+      "explanation": "Qui serves as the subject of présente."
+    },
+    {
+      "id": "hs3-u01-l04-q002",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Complete: « Les résultats ___ nous avons analysés sont provisoires. »",
+      "choices": [
+        "qui",
+        "où",
+        "que"
+      ],
+      "answer": 2,
+      "explanation": "Que is the direct object of avons analysés."
+    },
+    {
+      "id": "hs3-u01-l04-q003",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Complete: « La ville ___ elle habite est proche. »",
+      "choices": [
+        "dont",
+        "où",
+        "que"
+      ],
+      "answer": 1,
+      "explanation": "Où introduces a place associated with habiter."
+    },
+    {
+      "id": "hs3-u01-l04-q004",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Complete: « Le chercheur ___ les travaux sont cités »",
+      "choices": [
+        "dont",
+        "qui",
+        "où"
+      ],
+      "answer": 0,
+      "explanation": "Dont expresses the relationship les travaux du chercheur."
+    },
+    {
+      "id": "hs3-u01-l04-q005",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Choose a grammatical relative clause:",
+      "choices": [
+        "Voici une mesure que pourrait fonctionner.",
+        "Voici une mesure dont pourrait fonctionner.",
+        "Voici une mesure qui pourrait fonctionner."
+      ],
+      "answer": 2,
+      "explanation": "Qui is subject of pourrait fonctionner."
+    },
+    {
+      "id": "hs3-u01-l04-q006",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Complete: « C'est l'étude ___ je me souviens. »",
+      "choices": [
+        "qui",
+        "dont",
+        "que"
+      ],
+      "answer": 1,
+      "explanation": "Se souvenir de requires dont to represent de l'étude."
+    },
+    {
+      "id": "hs3-u01-l04-q007",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Complete: « Voici les données ___ nous avons besoin. »",
+      "choices": [
+        "dont",
+        "que",
+        "où"
+      ],
+      "answer": 0,
+      "explanation": "Avoir besoin de requires dont for its complement."
+    },
+    {
+      "id": "hs3-u01-l04-q008",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Choose the appropriate relative for time: « Le jour ___ la réforme a été votée ».",
+      "choices": [
+        "dont",
+        "qui",
+        "où"
+      ],
+      "answer": 2,
+      "explanation": "Où can refer to a time such as the day of a vote."
+    },
+    {
+      "id": "hs3-u01-l04-q009",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Choose correct agreement: « Les analyses que j'ai ___ ».",
+      "choices": [
+        "consultés",
+        "consultées",
+        "consulté"
+      ],
+      "answer": 1,
+      "explanation": "Consultées agrees with preceding feminine plural direct object les analyses."
+    },
+    {
+      "id": "hs3-u01-l04-q010",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Le programme qui cible les petites villes reste expérimental. » What is experimental?",
+      "choices": [
+        "The program targeting small towns.",
+        "All small towns in the country.",
+        "A finished national reform."
+      ],
+      "answer": 0,
+      "explanation": "Qui cible modifies le programme, which reste expérimental."
+    },
+    {
+      "id": "hs3-u01-l04-q011",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Les articles que Sarah a lus citent des chiffres différents. » What did Sarah read?",
+      "choices": [
+        "The statistics themselves only.",
+        "The authors' letters.",
+        "The articles."
+      ],
+      "answer": 2,
+      "explanation": "Que represents les articles as the object of a lus."
+    },
+    {
+      "id": "hs3-u01-l04-q012",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « La région où nous avons enquêté compte peu d'habitants. » What does où identify?",
+      "choices": [
+        "The publication date.",
+        "The surveyed region.",
+        "The researchers' names."
+      ],
+      "answer": 1,
+      "explanation": "Où connects the inquiry to a particular region."
+    },
+    {
+      "id": "hs3-u01-l04-q013",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Les associations dont le rapport parle ont demandé une réunion. » Which organizations?",
+      "choices": [
+        "Those discussed by the report.",
+        "All associations everywhere.",
+        "Only the report's authors."
+      ],
+      "answer": 0,
+      "explanation": "Dont links the associations to the report's discussion."
+    },
+    {
+      "id": "hs3-u01-l04-q014",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « L'expert qui présente l'étude ne l'a pas rédigée. » What distinction appears?",
+      "choices": [
+        "The expert wrote and presented the study.",
+        "No study was presented.",
+        "Presenting a study is not the same as writing it."
+      ],
+      "answer": 2,
+      "explanation": "Qui identifies the presenter, while ne l'a pas rédigée denies authorship."
+    },
+    {
+      "id": "hs3-u01-l04-q015",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Les données que nous possédons ne concernent que 2024. » What limitation is explicit?",
+      "choices": [
+        "No data were collected.",
+        "The data cover only 2024.",
+        "The data cover every year."
+      ],
+      "answer": 1,
+      "explanation": "Ne ... que restricts the scope to 2024."
+    },
+    {
+      "id": "hs3-u01-l04-q016",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « La source dont dépend la conclusion n'est pas accessible. » What concern arises?",
+      "choices": [
+        "The supporting source cannot be checked.",
+        "The conclusion has no connection to a source.",
+        "All source material is public."
+      ],
+      "answer": 0,
+      "explanation": "Dont dépend links the conclusion to a source that is inaccessible."
+    },
+    {
+      "id": "hs3-u01-l04-q017",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Le village où se déroule l'enquête est éloigné. » What is remote?",
+      "choices": [
+        "The survey author.",
+        "Every participant's home.",
+        "The village."
+      ],
+      "answer": 2,
+      "explanation": "Où se déroule l'enquête modifies village."
+    },
+    {
+      "id": "hs3-u01-l04-q018",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Les mesures qui coûtent moins cher ne sont pas toujours les plus justes. » What is argued?",
+      "choices": [
+        "Cost has never been measured.",
+        "Lower cost does not necessarily mean greater fairness.",
+        "The cheapest policies are always the fairest."
+      ],
+      "answer": 1,
+      "explanation": "The relative clause identifies cheaper measures, while ne ... pas toujours limits the claim."
+    },
+    {
+      "id": "hs3-u01-l04-q019",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You want to identify a report you read. Choose a precise sentence.",
+      "choices": [
+        "Le rapport que j'ai lu présente trois hypothèses.",
+        "Le rapport qui j'ai lu présente trois hypothèses.",
+        "Le rapport où j'ai lu présente trois hypothèses."
+      ],
+      "answer": 0,
+      "explanation": "Que represents the report as the direct object of ai lu."
+    },
+    {
+      "id": "hs3-u01-l04-q020",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You want to mention the author whose research was cited. Choose the phrasing.",
+      "choices": [
+        "L'autrice que les travaux ont été cités.",
+        "L'autrice où les travaux ont été cités.",
+        "L'autrice dont les travaux ont été cités."
+      ],
+      "answer": 2,
+      "explanation": "Dont expresses whose works were cited."
+    },
+    {
+      "id": "hs3-u01-l04-q021",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You need to describe a district where the survey happened.",
+      "choices": [
+        "Le quartier dont l'enquête a eu lieu.",
+        "Le quartier où l'enquête a eu lieu.",
+        "Le quartier que l'enquête a eu lieu."
+      ],
+      "answer": 1,
+      "explanation": "Où connects the event to its location."
+    },
+    {
+      "id": "hs3-u01-l04-q022",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You are writing about policies that affect students. Choose a grammatical clause.",
+      "choices": [
+        "Les politiques qui concernent les élèves.",
+        "Les politiques que concernent les élèves.",
+        "Les politiques dont concernent les élèves."
+      ],
+      "answer": 0,
+      "explanation": "Qui is subject of concernent, referring to politiques."
+    },
+    {
+      "id": "hs3-u01-l04-q023",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You want to refer to two studies you compared. Which is correct?",
+      "choices": [
+        "Les deux études qui j'ai comparé.",
+        "Les deux études dont j'ai comparée.",
+        "Les deux études que j'ai comparées."
+      ],
+      "answer": 2,
+      "explanation": "Que is the object of ai comparées; the participle agrees with études."
+    },
+    {
+      "id": "hs3-u01-l04-q024",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You need to avoid repeating « du projet » after « les effets ». Which sentence works?",
+      "choices": [
+        "Le projet où nous examinons les effets.",
+        "Le projet dont nous examinons les effets.",
+        "Le projet que nous examinons les effets."
+      ],
+      "answer": 1,
+      "explanation": "Dont links les effets du projet to the preceding noun."
+    },
+    {
+      "id": "hs3-u01-l04-q025",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "An argument needs to identify a recommendation that could help. Choose the correct clause.",
+      "choices": [
+        "Une recommandation qui pourrait aider les familles.",
+        "Une recommandation que pourrait aider les familles.",
+        "Une recommandation dont pourrait aider les familles."
+      ],
+      "answer": 0,
+      "explanation": "Qui is the relative-clause subject of pourrait aider."
+    },
+    {
+      "id": "hs3-u01-l04-q026",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You want to cite the year when a policy began.",
+      "choices": [
+        "L'année qui la politique a commencé.",
+        "L'année dont la politique a commencé.",
+        "L'année où la politique a commencé."
+      ],
+      "answer": 2,
+      "explanation": "Où refers to the time the policy began."
+    },
+    {
+      "id": "hs3-u01-l04-q027",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "Revise « C'est la question. Nous parlons de cette question. » into one sentence.",
+      "choices": [
+        "C'est la question qui nous parlons.",
+        "C'est la question dont nous parlons.",
+        "C'est la question que nous parlons."
+      ],
+      "answer": 1,
+      "explanation": "Parler de takes dont as the relative complement."
+    }
+  ]
+}
