@@ -14,6 +14,11 @@ on:
       - 'scripts/test-french-high-school-lesson01-editorial-regressions.mjs'
       - 'scripts/test-french-high-school-authored-unit01-lesson02.mjs'
       - 'scripts/test-french-high-school-authored-unit01-lesson03.mjs'
+      - 'scripts/test-french-high-school-authored-unit01-lesson04.mjs'
+      - 'data/french-hs1-unit01-lesson04-bank.json'
+      - 'data/french-hs2-unit01-lesson04-bank.json'
+      - 'data/french-hs3-unit01-lesson04-bank.json'
+      - 'data/french-hs4-unit01-lesson04-bank.json'
       - 'data/french-hs1-unit01-lesson03-bank.json'
       - 'data/french-hs2-unit01-lesson03-bank.json'
       - 'data/french-hs3-unit01-lesson03-bank.json'
@@ -39,6 +44,11 @@ on:
       - 'scripts/test-french-high-school-lesson01-editorial-regressions.mjs'
       - 'scripts/test-french-high-school-authored-unit01-lesson02.mjs'
       - 'scripts/test-french-high-school-authored-unit01-lesson03.mjs'
+      - 'scripts/test-french-high-school-authored-unit01-lesson04.mjs'
+      - 'data/french-hs1-unit01-lesson04-bank.json'
+      - 'data/french-hs2-unit01-lesson04-bank.json'
+      - 'data/french-hs3-unit01-lesson04-bank.json'
+      - 'data/french-hs4-unit01-lesson04-bank.json'
       - 'data/french-hs1-unit01-lesson03-bank.json'
       - 'data/french-hs2-unit01-lesson03-bank.json'
       - 'data/french-hs3-unit01-lesson03-bank.json'
@@ -81,3 +91,5 @@ jobs:
         run: node --test scripts/test-french-high-school-authored-unit01-lesson02.mjs
       - name: Validate Unit 01 Lesson 03 banks for French I-IV
         run: node --test scripts/test-french-high-school-authored-unit01-lesson03.mjs
+      - name: Verify synchronized authored French I-IV Lesson 04 banks
+        run: node --test scripts/test-french-high-school-authored-unit01-lesson04.mjs
