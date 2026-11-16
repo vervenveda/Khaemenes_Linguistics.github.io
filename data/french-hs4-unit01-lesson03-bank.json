@@ -12,7 +12,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Complete the past counterfactual: « Si l'archive avait été conservée, nous ___ comparer les versions ».",
+      "prompt": "Comparing lost letters from a fictional displaced family: complete « Si l'archive familiale avait été conservée, nous ___ comparer les versions ».",
       "choices": [
         "aurions pu",
         "avons pu",
@@ -26,7 +26,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Choose the past conditional of être for elle.",
+      "prompt": "Fictional migration memoir analysis: choose the past conditional of être for elle when discussing an unverified past circumstance.",
       "choices": [
         "elle serait",
         "elle était",
@@ -40,7 +40,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Which sentence has coherent hypothetical past tenses?",
+      "prompt": "Fictional refugee archive: which sentence has coherent tenses for a past hypothetical about archival access?",
       "choices": [
         "Si les archives seront accessibles, l'enquête aurait avancé hier.",
         "Si les archives avaient été accessibles, l'enquête aurait avancé.",
@@ -54,7 +54,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Complete: « Les témoins auraient ___ un autre itinéraire ».",
+      "prompt": "Fictional testimony about a migration journey: complete « Les témoins auraient ___ un autre itinéraire ».",
       "choices": [
         "suivi",
         "suivis",
@@ -68,7 +68,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Which construction expresses a speculative past cause?",
+      "prompt": "Lost migration documentation: which construction expresses a speculative past cause rather than a documented fact?",
       "choices": [
         "L'absence de registres retardera forcément l'identification hier.",
         "L'absence de registres avait retarder l'identification.",
@@ -82,7 +82,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Choose the correct agreement: « Les lettres que l'historienne aurait ___ ».",
+      "prompt": "Fictional family letters: choose the correct past-participle agreement « Les lettres de migrants que l'historienne aurait ___ ».",
       "choices": [
         "consultés",
         "consultées",
@@ -96,7 +96,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Complete the contrary-to-fact conclusion: « Sans ce document, nous n'___ pas compris la chronologie ».",
+      "prompt": "Migration chronology without the family's departure record: complete « Sans ce document, nous n'___ pas compris la chronologie ».",
       "choices": [
         "aurions",
         "avons",
@@ -110,7 +110,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Which phrase separates an author's assertion from established evidence?",
+      "prompt": "A fictional migration chronicler supplies no corroborating record. Which phrase separates the chronicler's assertion from established evidence?",
       "choices": [
         "La date est définitivement prouvée par l'affirmation seule.",
         "Toute source doit accepter cette date.",
@@ -124,7 +124,7 @@
       "unit": 1,
       "lesson": 3,
       "domain": "language-use",
-      "prompt": "Choose the grammatical past hypothetical: « Si elle était venue, elle ___ le débat ».",
+      "prompt": "Fictional migration debate: choose the grammatical past hypothetical « Si elle était venue à la réunion sur l'exil, elle ___ le débat ».",
       "choices": [
         "avait entendra",
         "aurait entendu",
