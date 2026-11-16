@@ -1,15 +1,15 @@
 # French I–IV · Unit 01 synchronized question-bank development
 
-**Status:** Authored first-lesson question banks on `main`; independent linguistic/editorial review and browser QA outstanding. No new learner mastery route is published.
+**Status:** Authored Lesson 01 and Lesson 02 question banks on `main` across all four grades. First assistant editorial pass completed; independent linguistic/editorial review and browser QA outstanding. No new learner mastery route is published.
 
 Four high-school courses remain independent in academic difficulty but move through the same *repair milestones*. The existing 36-week, six-theme Hall curricula and all stored learner records remain intact.
 
 | Grade | Lesson 01 authored | Lesson 02 | Lesson 03 | Lesson 04 | Lesson 05 | Lesson 06 |
 | --- | --- | --- | --- | --- | --- | --- |
-| French I | 27 draft questions | Planned | Planned | Planned | Planned | Planned |
-| French II | 27 draft questions | Planned | Planned | Planned | Planned | Planned |
-| French III | 27 draft questions | Planned | Planned | Planned | Planned | Planned |
-| French IV | 27 draft questions | Planned | Planned | Planned | Planned | Planned |
+| French I | 27 draft questions | 27 draft questions | Planned | Planned | Planned | Planned |
+| French II | 27 draft questions | 27 draft questions | Planned | Planned | Planned | Planned |
+| French III | 27 draft questions | 27 draft questions | Planned | Planned | Planned | Planned |
+| French IV | 27 draft questions | 27 draft questions | Planned | Planned | Planned | Planned |
 
 ## Paired lesson targets (proposed; does not override existing curricula)
 
@@ -56,8 +56,14 @@ Four high-school courses remain independent in academic difficulty but move thro
 
 ## Published authored data
 - `data/french-hs1-unit01-lesson01-bank.json`
+- `data/french-hs1-unit01-lesson02-bank.json`
 - `data/french-hs2-unit01-lesson01-bank.json`
+- `data/french-hs2-unit01-lesson02-bank.json`
 - `data/french-hs3-unit01-lesson01-bank.json`
+- `data/french-hs3-unit01-lesson02-bank.json`
 - `data/french-hs4-unit01-lesson01-bank.json`
+- `data/french-hs4-unit01-lesson02-bank.json`
 
-Every question-bank file is explicitly marked `authoring-review-not-published` and `pending-independent-linguistic-review`. The CI test evaluates structural integrity; it does not certify linguistic accuracy or educational quality.
+Every question-bank file is marked `authoring-review-not-published`. Assistant editorial passes and independent linguistic review are separate fields; none has been certified by an independent reviewer. The CI tests evaluate structural integrity; they do not certify linguistic accuracy or educational quality.
+
+**Unit 01 bank counts at this checkpoint:** Lessons 01–02 = 54 authored questions per grade, 216 across French I–IV. Lesson 02 is covered by `scripts/test-french-high-school-authored-unit01-lesson02.mjs`. Formal assessment gates remain withheld.
