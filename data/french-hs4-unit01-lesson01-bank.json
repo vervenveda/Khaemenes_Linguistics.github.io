@@ -12,7 +12,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Complete the counterfactual: « Si le débat avait été public, davantage d'habitants ___ participé. »",
+      "prompt": "Fictional migration-policy hearing: complete the counterfactual « Si le débat sur l'accueil des familles avait été public, davantage d'habitants ___ participé. »",
       "choices": [
         "auraient",
         "avaient",
@@ -26,7 +26,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Quelle formulation convient à un rapport qui distingue l'observation de la certitude ?",
+      "prompt": "Fictional Francophone migration survey: quelle formulation convient à un rapport qui distingue l'observation de la certitude ?",
       "choices": [
         "Les résultats démontrent sans réserve la même évolution partout.",
         "Il est incontestable que cette évolution durera toujours.",
@@ -40,7 +40,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Quelle phrase exprime une concession hypothétique avec cohérence temporelle ?",
+      "prompt": "Fictional identity and migration policy: quelle phrase exprime une concession hypothétique avec cohérence temporelle ?",
       "choices": [
         "Quand bien même cette mesure serait adoptée, des obstacles ont disparu demain.",
         "Quand bien même cette mesure serait adoptée, des obstacles subsisteraient.",
@@ -54,7 +54,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Choose the correct relative construction: « Les auteurs ___ les travaux sont cités »",
+      "prompt": "Migration-memory scholarship: choose the correct relative construction « Les auteurs qui étudient l'exil ___ les travaux sont cités ».",
       "choices": [
         "dont",
         "que",
@@ -68,7 +68,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Which sentence uses the passive voice correctly?",
+      "prompt": "Historical migration petition: which sentence uses the French passive voice correctly when describing an association's challenge to a decision?",
       "choices": [
         "La décision a contesté par plusieurs associations.",
         "La décision était contester par les associations.",
@@ -82,7 +82,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Choose the connector most appropriate for presenting a qualification.",
+      "prompt": "Migration testimony synthesis: choose the connector most appropriate for qualifying a generalization drawn from one family's account.",
       "choices": [
         "Par exemple,",
         "Néanmoins,",
@@ -96,7 +96,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Complete: « Il aurait fallu que les autorités ___ les résidents. »",
+      "prompt": "Fictional relocation consultation: complete « Il aurait fallu que les autorités ___ les résidents avant le déplacement. »",
       "choices": [
         "consultent",
         "consulteront",
@@ -110,7 +110,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Which sentence distinguishes possibility from established fact?",
+      "prompt": "Fictional migration register with incomplete totals: which sentence distinguishes possible undercounting from established fact?",
       "choices": [
         "Les chiffres ont forcément été sous-estimés.",
         "Il est certain sans preuve que les chiffres sont faux.",
@@ -124,7 +124,7 @@
       "unit": 1,
       "lesson": 1,
       "domain": "language-use",
-      "prompt": "Which revision avoids an unsupported universal claim?",
+      "prompt": "Comparing Francophone migrant testimonies: which revision avoids an unsupported claim that every migrant had the same experience?",
       "choices": [
         "Aucun contre-exemple n'existe dans le monde.",
         "Dans les sources étudiées, plusieurs exemples vont dans ce sens.",
