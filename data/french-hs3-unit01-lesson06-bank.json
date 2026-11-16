@@ -138,35 +138,35 @@
       "unit": 1,
       "lesson": 6,
       "domain": "interpretation",
-      "prompt": "Source A: « Dans deux quartiers, l'usage du vélo a progressé ». What scope is stated?",
+      "prompt": "School improvement Source A: « Dans deux quartiers scolaires, la fréquentation de la bibliothèque a progressé. » What scope is stated?",
       "choices": [
-        "Two neighborhoods.",
-        "All neighborhoods nationwide.",
-        "Every region in Europe."
+        "Two school neighborhoods.",
+        "All schools in France.",
+        "Every student surveyed nationwide."
       ],
       "answer": 0,
-      "explanation": "Dans deux quartiers explicitly limits the observation."
+      "explanation": "Dans deux quartiers scolaires explicitly limits the school library observation to two neighborhoods."
     },
     {
       "id": "hs3-u01-l06-q011",
       "unit": 1,
       "lesson": 6,
       "domain": "interpretation",
-      "prompt": "Source B: « La ville prévoit un essai en 2027 ». What is the status?",
+      "prompt": "School pilot Source B: « La ville prévoit un essai de tutorat en 2027. » What is the status of the proposed pilot?",
       "choices": [
-        "The trial ended in 2027.",
-        "The trial has proven success.",
-        "A future trial is planned."
+        "A tutoring program confirmed successful in 2027.",
+        "A trial completed before the report.",
+        "A planned future school tutoring trial."
       ],
       "answer": 2,
-      "explanation": "Prévoit indicates a plan, not completed results."
+      "explanation": "Prévoit announces a future tutoring pilot; it does not report a completed or successful program."
     },
     {
       "id": "hs3-u01-l06-q012",
       "unit": 1,
       "lesson": 6,
       "domain": "interpretation",
-      "prompt": "An article says « L'étude dont nous parlons est ancienne ». What does dont represent?",
+      "prompt": "Education journal article: « L'étude sur la réussite scolaire dont nous parlons est ancienne. » What does dont represent?",
       "choices": [
         "The time of publication.",
         "The study discussed, governed by parler de.",
@@ -180,7 +180,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "interpretation",
-      "prompt": "One report samples commuters, another students. What is the key limitation?",
+      "prompt": "A school-access report surveys commuting parents; another surveys secondary students. What is the main comparison limitation?",
       "choices": [
         "The samples cover different populations.",
         "Both necessarily include identical people.",
@@ -194,7 +194,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "interpretation",
-      "prompt": "Source A says 40 of 100 respondents favor the plan. What proportion is that?",
+      "prompt": "School support Source A says 40 of 100 surveyed pupils favor the tutoring program. What proportion is that?",
       "choices": [
         "60 percent.",
         "4 percent.",
@@ -264,7 +264,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "transfer",
-      "prompt": "You compare a city survey with a national survey. Choose the careful synthesis.",
+      "prompt": "You compare a city-wide school survey and a national education survey. Choose a cautious synthesis.",
       "choices": [
         "Les résultats diffèrent, mais les échantillons et contextes ne sont pas identiques.",
         "Le résultat le plus élevé prouve l'unique vérité.",
@@ -278,7 +278,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "transfer",
-      "prompt": "You want to propose data collection before policy expansion.",
+      "prompt": "Before expanding a school reading initiative, you want to recommend collecting evidence about its effect. Which formulation works?",
       "choices": [
         "Nous devons étendre le projet partout avant toute mesure.",
         "Des résultats inexistants démontrent déjà la réussite.",
@@ -292,7 +292,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "transfer",
-      "prompt": "In a panel debate, respectfully challenge an unsupported claim.",
+      "prompt": "A student council panel cites a claim without sources about school tutoring. How can you respectfully challenge it?",
       "choices": [
         "Toute critique est interdite.",
         "Sur quelles données repose cette affirmation ?",
@@ -306,7 +306,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "transfer",
-      "prompt": "You want to link one measured effect with a future recommendation.",
+      "prompt": "You need to connect verified pilot findings with a possible future extension to other schools. Which construction is grammatical?",
       "choices": [
         "Si ces résultats se confirment, nous envisagerons une extension.",
         "Si ces résultats se confirmeront, nous envisageons hier.",
@@ -320,7 +320,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "transfer",
-      "prompt": "Choose a source-comparison sentence with an accurate relative clause.",
+      "prompt": "You are comparing school attendance sources and need an accurate relative clause. Which sentence works?",
       "choices": [
         "Les chiffres qui nous avons vérifiés concernent 2025.",
         "Les chiffres dont nous avons vérifiés concernent 2025.",
