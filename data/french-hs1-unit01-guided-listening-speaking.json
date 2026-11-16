@@ -1,0 +1,110 @@
+{
+  "schema": "khaemenes.french.unit01-guided-listening-speaking.v1",
+  "course": "hs1",
+  "status": "formative-teacher-partner-read-not-recorded",
+  "officialListeningCertified": false,
+  "lessonActivities": [
+    {
+      "lesson": 1,
+      "id": "hs1-u01-l01-oral01",
+      "title": "Bonjour et enchanté",
+      "transcript": "Professeur : « Bonjour ! Je m'appelle Monsieur Diallo. » Lina : « Bonjour, Monsieur. Je m'appelle Lina. » Jules : « Salut, Lina ! Moi, c'est Jules. » Professeur : « Nous sommes dans la salle douze. » Lina : « Pardon, pouvez-vous répéter le numéro ? » Professeur : « Bien sûr : douze. » Lina : « Merci ! »",
+      "comprehension": [
+        "Comment s'appelle le professeur ?",
+        "Quel numéro de salle le professeur répète-t-il ?"
+      ],
+      "oralTask": "Présentez-vous avec bonjour, votre prénom et une formule polie. Posez une question à votre partenaire.",
+      "reviewCriteria": [
+        "Identifie deux détails simples dans le dialogue",
+        "Prononce les mots et les formules de manière compréhensible",
+        "Répond avec une phrase courte adaptée à la situation",
+        "Essaie une correction après un conseil bienveillant"
+      ]
+    },
+    {
+      "lesson": 2,
+      "id": "hs1-u01-l02-oral01",
+      "title": "Épeler doucement",
+      "transcript": "Chloé : « Bonjour. Je m'appelle Chloé. » Jules : « Comment ça s'écrit ? » Chloé : « C, H, L, O, É. » Jules : « Je n'ai pas compris la dernière lettre. » Chloé : « C'est un e avec un accent aigu : é. » Jules : « Merci. Et Zoé ? » Chloé : « Z, O, É. »",
+      "comprehension": [
+        "Quelle lettre accentuée termine les deux prénoms ?",
+        "Pourquoi Chloé répète-t-elle la dernière lettre ?"
+      ],
+      "oralTask": "Épelez votre prénom lentement. Demandez de répéter une lettre et vérifiez l'orthographe de votre partenaire.",
+      "reviewCriteria": [
+        "Identifie deux détails simples dans le dialogue",
+        "Prononce les mots et les formules de manière compréhensible",
+        "Répond avec une phrase courte adaptée à la situation",
+        "Essaie une correction après un conseil bienveillant"
+      ]
+    },
+    {
+      "lesson": 3,
+      "id": "hs1-u01-l03-oral01",
+      "title": "Voici ma famille",
+      "transcript": "Sara : « Bonjour, voici ma famille imaginaire. J'ai deux sœurs et un frère. » Lina : « Comment s'appellent tes sœurs ? » Sara : « Inès et Lila. Elles sont grandes. » Lina : « Et ton frère ? » Sara : « Adam est petit et sportif. » Lina : « Vous avez un animal ? » Sara : « Oui, un chien blanc. Il s'appelle Moka. »",
+      "comprehension": [
+        "Combien de sœurs Sara a-t-elle ?",
+        "Quel adjectif décrit le frère Adam ?"
+      ],
+      "oralTask": "Présentez deux personnes d'une famille réelle ou imaginaire. Accordez un adjectif avec chaque personne.",
+      "reviewCriteria": [
+        "Identifie deux détails simples dans le dialogue",
+        "Prononce les mots et les formules de manière compréhensible",
+        "Répond avec une phrase courte adaptée à la situation",
+        "Essaie une correction après un conseil bienveillant"
+      ]
+    },
+    {
+      "lesson": 4,
+      "id": "hs1-u01-l04-oral01",
+      "title": "Une consigne en classe",
+      "transcript": "Professeur : « Bonjour, ouvrez vos cahiers, s'il vous plaît. » Zoé : « Nous commençons à quelle heure ? » Professeur : « À neuf heures. » Lina : « Excusez-moi, je ne comprends pas la consigne. » Professeur : « Écrivez trois phrases sur votre journée. » Lina : « Merci. Maintenant, je comprends. » Zoé : « Nous pouvons travailler ensemble après la pause ? » Professeur : « Oui, à dix heures. »",
+      "comprehension": [
+        "À quelle heure la classe commence-t-elle ?",
+        "Que demande le professeur après la question de Lina ?"
+      ],
+      "oralTask": "Jouez un court dialogue en classe. Demandez une clarification et décrivez deux activités au présent.",
+      "reviewCriteria": [
+        "Identifie deux détails simples dans le dialogue",
+        "Prononce les mots et les formules de manière compréhensible",
+        "Répond avec une phrase courte adaptée à la situation",
+        "Essaie une correction après un conseil bienveillant"
+      ]
+    },
+    {
+      "lesson": 5,
+      "id": "hs1-u01-l05-oral01",
+      "title": "Une commande polie",
+      "transcript": "Serveuse : « Bonjour, vous désirez ? » Lina : « Je voudrais un croissant et un verre d'eau, s'il vous plaît. » Jules : « Et moi, une soupe. Elle coûte combien ? » Serveuse : « Six euros. » Jules : « Est-ce qu'elle contient des noix ? » Serveuse : « Je dois vérifier la liste des ingrédients. » Jules : « Merci, j'attends votre réponse. »",
+      "comprehension": [
+        "Combien coûte la soupe ?",
+        "Pourquoi la serveuse doit-elle vérifier la liste ?"
+      ],
+      "oralTask": "Jouez une commande avec deux articles, un prix et une question polie. Attendez la réponse avant de conclure.",
+      "reviewCriteria": [
+        "Identifie deux détails simples dans le dialogue",
+        "Prononce les mots et les formules de manière compréhensible",
+        "Répond avec une phrase courte adaptée à la situation",
+        "Essaie une correction après un conseil bienveillant"
+      ]
+    },
+    {
+      "lesson": 6,
+      "id": "hs1-u01-l06-oral01",
+      "title": "Accueil et café",
+      "transcript": "Samira : « Bonjour ! Je m'appelle Samira. Et vous ? » Jules : « Moi, c'est Jules. Où est la salle de français ? » Samira : « C'est la salle douze, près de la bibliothèque. » Lina : « Merci ! Après les cours, nous allons au café ? » Jules : « Oui. Je voudrais deux croissants. » Lina : « Et je voudrais de l'eau, s'il vous plaît. » Samira : « Très bien, à bientôt ! »",
+      "comprehension": [
+        "Où se trouve la salle de français ?",
+        "Que commande Jules au café ?"
+      ],
+      "oralTask": "Jouez une mission de bienvenue : présentez-vous, demandez un lieu et commandez un article avec politesse.",
+      "reviewCriteria": [
+        "Identifie deux détails simples dans le dialogue",
+        "Prononce les mots et les formules de manière compréhensible",
+        "Répond avec une phrase courte adaptée à la situation",
+        "Essaie une correction après un conseil bienveillant"
+      ]
+    }
+  ]
+}
