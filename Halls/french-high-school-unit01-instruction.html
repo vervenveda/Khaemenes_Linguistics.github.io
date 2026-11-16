@@ -62,7 +62,7 @@ function renderGuidedListeningSpeaking(index){
  '<p class="oral-caveat">Guided teacher/partner practice · Not an audio recording or an official listening score. Ask your partner to read the dialogue aloud before showing the transcript.</p>'+
  '<p><strong>Listen first:</strong> Without viewing the text, listen twice and note two details in your usual Academy workspace. A teacher or partner can adjust pace and repeat on request.</p>'+
  '<div class="lesson-actions"><button type="button" data-oral-play="'+course+'" data-lesson="'+index+'">Play French voice preview</button><button type="button" data-oral-stop="'+course+'">Stop voice</button></div>'+
- '<p class="oral-caveat">Optional device-generated voice only, if your browser supports French speech. Synthetic playback is not a human recording or a graded listening test.</p>'+
+ '<p class="oral-caveat">Optional locally installed French voice only. Remote speech services are not used. Synthetic playback is not a human recording or a graded listening test.</p>'+
  '<p class="oral-caveat" role="status" aria-live="polite" data-oral-status>Ask a teacher or partner to read aloud, or try the optional device voice preview.</p>'+
  '<details><summary>Reveal the French transcript after listening</summary><div class="oral-transcript" lang="fr">'+escapeHtml(activity.transcript)+'</div></details>'+
  '<p><strong>Answer from listening:</strong></p><ol>'+questions+'</ol>'+
@@ -118,7 +118,7 @@ lessons.addEventListener("click",event=>{
  }
 });
 
-// Browser-native French speech is optional, generated locally by the device when supported.
+// Browser-native speech is optional and allowed ONLY for a voice flagged localService.
 // It never sends the transcript to our server, captures microphones, or grades listening.
 function stopGuidedSpeech(){
  if("speechSynthesis" in window)window.speechSynthesis.cancel();
@@ -139,12 +139,13 @@ lessons.addEventListener("click",event=>{
  const utterance=new SpeechSynthesisUtterance(listeningSpeakingPack.courses[course].lessonActivities[lesson].transcript);
  utterance.lang="fr-FR";utterance.rate=0.86;
  const voices=window.speechSynthesis.getVoices();
- const voice=voices.find(v=>v.lang&&v.lang.toLowerCase().startsWith("fr"));
- if(voice)utterance.voice=voice;
+ const voice=voices.find(v=>v.localService===true&&v.lang&&v.lang.toLowerCase().startsWith("fr"));
+ if(!voice){status.textContent="No local French voice is installed. Speech playback is withheld; ask a partner to read the dialogue.";return;}
+ utterance.voice=voice;
  utterance.onend=()=>{if(status.isConnected)status.textContent="Voice preview finished. Respond in French, then reveal the transcript to check.";};
  utterance.onerror=()=>{if(status.isConnected)status.textContent="French voice preview did not play. Use a partner or the accessible transcript.";};
  stopGuidedSpeech();
- status.textContent="Playing optional synthetic French voice. This does not verify listening proficiency.";
+ status.textContent="Playing local synthetic French voice. This does not verify listening proficiency.";
  window.speechSynthesis.speak(utterance);
 });
 
