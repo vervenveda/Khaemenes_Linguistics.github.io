@@ -208,14 +208,14 @@
       "unit": 1,
       "lesson": 6,
       "domain": "interpretation",
-      "prompt": "Source B says 30 of 50 respondents favor the plan. What proportion is that?",
+      "prompt": "School support Source B says 30 of 50 pupils support the proposed tutoring plan. What proportion is that?",
       "choices": [
         "50 percent.",
         "60 percent.",
         "30 percent."
       ],
       "answer": 1,
-      "explanation": "Thirty of fifty respondents equals sixty percent."
+      "explanation": "Thirty of fifty surveyed pupils is 60 percent; the question reports opinion rather than a measured effect of tutoring."
     },
     {
       "id": "hs3-u01-l06-q016",
