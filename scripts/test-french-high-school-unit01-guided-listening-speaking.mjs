@@ -37,6 +37,12 @@ test("listening/speaking lab is supplemental, accessible and requires human feed
  assert.ok(page.includes("Reveal the French transcript after listening"));
  assert.ok(page.includes("Teacher or partner review criteria"));
  assert.ok(page.includes("not count that as assessed listening"));
+ assert.ok(page.includes("data-oral-play"));
+ assert.ok(page.includes("data-oral-stop"));
+ assert.ok(page.includes("SpeechSynthesisUtterance"));
+ assert.ok(page.includes("v.localService===true"));
+ assert.ok(page.includes("No local French voice is installed"));
+ assert.ok(page.includes("stopGuidedSpeech()"));
  assert.ok(page.includes('lang="fr"'));
  assert.doesNotMatch(page,/\blocalStorage\b|\bsessionStorage\b|\bindexedDB\b|\bfetch\(/);
  assert.doesNotMatch(page,/\bMediaRecorder\b|\bgetUserMedia\b|\bgradeAttempt\(/);
