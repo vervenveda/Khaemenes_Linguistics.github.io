@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs1",
+  "unit": 1,
+  "lesson": 3,
+  "status": "authoring-review-not-published",
+  "title": "People, family and descriptive adjective agreement",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs1-u01-l03-q001",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete: « Ma sœur est ___ ». Choose the feminine form of petit.",
+      "choices": [
+        "petite",
+        "petit",
+        "petits"
+      ],
+      "answer": 0,
+      "explanation": "Petite adds -e to agree with the feminine singular noun sœur."
+    },
+    {
+      "id": "hs1-u01-l03-q002",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Choose the masculine plural adjective: « Mes cousins sont ___ ».",
+      "choices": [
+        "sportives",
+        "sportif",
+        "sportifs"
+      ],
+      "answer": 2,
+      "explanation": "Sportifs agrees with the masculine plural noun cousins."
+    },
+    {
+      "id": "hs1-u01-l03-q003",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete: « Une voiture ___ ».",
+      "choices": [
+        "rougée",
+        "rouge",
+        "rouges"
+      ],
+      "answer": 1,
+      "explanation": "Rouge has the same masculine and feminine singular form."
+    },
+    {
+      "id": "hs1-u01-l03-q004",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete: « Mon frère a les yeux ___ ».",
+      "choices": [
+        "bleus",
+        "bleu",
+        "bleues"
+      ],
+      "answer": 0,
+      "explanation": "Bleus agrees with masculine plural yeux."
+    },
+    {
+      "id": "hs1-u01-l03-q005",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Choose the correct feminine article: « ___ amie arrive ».",
+      "choices": [
+        "Un",
+        "Des",
+        "Une"
+      ],
+      "answer": 2,
+      "explanation": "Une is the feminine singular indefinite article; amie is feminine."
+    },
+    {
+      "id": "hs1-u01-l03-q006",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete: « Il a ___ sœur ».",
+      "choices": [
+        "des",
+        "une",
+        "un"
+      ],
+      "answer": 1,
+      "explanation": "Sœur is a feminine singular noun, so the indefinite article is une."
+    },
+    {
+      "id": "hs1-u01-l03-q007",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Which phrase agrees correctly with the feminine plural noun filles?",
+      "choices": [
+        "Les filles sont gentilles.",
+        "Les filles sont gentil.",
+        "Les filles sont gentils."
+      ],
+      "answer": 0,
+      "explanation": "Gentilles has feminine plural -es agreeing with filles."
+    },
+    {
+      "id": "hs1-u01-l03-q008",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Which adjective is correct with « un garçon »?",
+      "choices": [
+        "heureuse",
+        "heureuses",
+        "heureux"
+      ],
+      "answer": 2,
+      "explanation": "Heureux is the masculine singular form; heureuse is feminine."
+    },
+    {
+      "id": "hs1-u01-l03-q009",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "language-use",
+      "prompt": "Complete: « Nous avons deux chats ___ ».",
+      "choices": [
+        "noir",
+        "noirs",
+        "noire"
+      ],
+      "answer": 1,
+      "explanation": "Noirs takes the masculine plural -s for chats."
+    },
+    {
+      "id": "hs1-u01-l03-q010",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Mon père est grand et ma mère est grande. » What changes?",
+      "choices": [
+        "The adjective agrees with the person described.",
+        "The word for father changes gender.",
+        "Both people have different heights."
+      ],
+      "answer": 0,
+      "explanation": "Grand becomes grande for the feminine noun mère."
+    },
+    {
+      "id": "hs1-u01-l03-q011",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Léo a un petit frère et deux grandes sœurs. » How many sisters does Léo have?",
+      "choices": [
+        "One sister.",
+        "Three sisters.",
+        "Two sisters."
+      ],
+      "answer": 2,
+      "explanation": "Deux grandes sœurs identifies two sisters."
+    },
+    {
+      "id": "hs1-u01-l03-q012",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Les robes sont vertes, mais le pantalon est noir. » Which clothing is green?",
+      "choices": [
+        "Both items.",
+        "The dresses.",
+        "The trousers."
+      ],
+      "answer": 1,
+      "explanation": "Vertes agrees with feminine plural robes."
+    },
+    {
+      "id": "hs1-u01-l03-q013",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Elle est brune et son frère est blond. » Who is blond?",
+      "choices": [
+        "Her brother.",
+        "She is.",
+        "Both siblings."
+      ],
+      "answer": 0,
+      "explanation": "Son frère est blond directly identifies her brother."
+    },
+    {
+      "id": "hs1-u01-l03-q014",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Mes parents sont patients. » How many parents are included?",
+      "choices": [
+        "Exactly one parent.",
+        "No family members.",
+        "At least two people."
+      ],
+      "answer": 2,
+      "explanation": "Parents is plural and patients agrees in the plural."
+    },
+    {
+      "id": "hs1-u01-l03-q015",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Cette maison est ancienne. » What is described?",
+      "choices": [
+        "An expensive bicycle.",
+        "A house that is old.",
+        "A newly built apartment."
+      ],
+      "answer": 1,
+      "explanation": "Ancienne is the feminine adjective modifying maison."
+    },
+    {
+      "id": "hs1-u01-l03-q016",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Mes amies sont françaises. » What does françaises tell you?",
+      "choices": [
+        "The friends are described as French.",
+        "The friends are all teachers.",
+        "The friends are studying French tomorrow."
+      ],
+      "answer": 0,
+      "explanation": "Françaises is the feminine plural nationality adjective."
+    },
+    {
+      "id": "hs1-u01-l03-q017",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « La petite fille porte un chapeau rouge. » Which item is red?",
+      "choices": [
+        "The girl's shoes.",
+        "The house.",
+        "The hat."
+      ],
+      "answer": 2,
+      "explanation": "Rouge modifies the noun chapeau."
+    },
+    {
+      "id": "hs1-u01-l03-q018",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "interpretation",
+      "prompt": "Read: « Mon oncle est calme, mais mes cousines sont bruyantes. » Who is noisy?",
+      "choices": [
+        "Everyone in the family.",
+        "The female cousins.",
+        "The uncle."
+      ],
+      "answer": 1,
+      "explanation": "Bruyantes agrees with feminine plural cousines."
+    },
+    {
+      "id": "hs1-u01-l03-q019",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "Describe one female friend as kind. Which sentence is correct?",
+      "choices": [
+        "Mon amie est gentille.",
+        "Mon amie est gentil.",
+        "Mon amie sont gentilles."
+      ],
+      "answer": 0,
+      "explanation": "Amie is feminine singular and takes est gentille."
+    },
+    {
+      "id": "hs1-u01-l03-q020",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "Two girls are tall. Which sentence is correct?",
+      "choices": [
+        "Elles sont grands.",
+        "Elles est grande.",
+        "Elles sont grandes."
+      ],
+      "answer": 2,
+      "explanation": "Elles needs sont and the feminine plural grandes."
+    },
+    {
+      "id": "hs1-u01-l03-q021",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "You have one black cat and the cat is female. Choose the correct description.",
+      "choices": [
+        "Mon chatte est noirs.",
+        "Ma chatte est noire.",
+        "Ma chatte est noir."
+      ],
+      "answer": 1,
+      "explanation": "Chatte is feminine singular, taking ma and noire."
+    },
+    {
+      "id": "hs1-u01-l03-q022",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "A child describes two brothers as funny. Choose the best sentence.",
+      "choices": [
+        "Mes frères sont amusants.",
+        "Mes frères est amusante.",
+        "Ma frères sont amusantes."
+      ],
+      "answer": 0,
+      "explanation": "Frères is masculine plural; mes, sont and amusants agree."
+    },
+    {
+      "id": "hs1-u01-l03-q023",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "You are introducing your grandmother. Which is correct?",
+      "choices": [
+        "C'est mon grand-mère.",
+        "Ce sont ma grand-mère.",
+        "C'est ma grand-mère."
+      ],
+      "answer": 2,
+      "explanation": "Grand-mère is feminine singular and takes ma."
+    },
+    {
+      "id": "hs1-u01-l03-q024",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "A student writes « une fille intelligent ». What is the correction?",
+      "choices": [
+        "Un fille intelligent.",
+        "Une fille intelligente.",
+        "Une fille intelligents."
+      ],
+      "answer": 1,
+      "explanation": "Intelligente agrees with the feminine singular noun fille."
+    },
+    {
+      "id": "hs1-u01-l03-q025",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "You are describing several red apples. Which phrase works?",
+      "choices": [
+        "Des pommes rouges.",
+        "Des pommes rouge.",
+        "Des pomme rouges."
+      ],
+      "answer": 0,
+      "explanation": "Pommes is plural and rouge becomes rouges."
+    },
+    {
+      "id": "hs1-u01-l03-q026",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "Your two female classmates are tired. Choose the correct sentence.",
+      "choices": [
+        "Mes camarades sont fatigués.",
+        "Mes camarades est fatiguée.",
+        "Mes camarades sont fatiguées."
+      ],
+      "answer": 2,
+      "explanation": "With the specified female group, fatiguées is feminine plural."
+    },
+    {
+      "id": "hs1-u01-l03-q027",
+      "unit": 1,
+      "lesson": 3,
+      "domain": "transfer",
+      "prompt": "A boy introduces his two younger sisters. Which phrase is correct?",
+      "choices": [
+        "Ma deux petite sœurs.",
+        "Mes deux petites sœurs.",
+        "Mes deux petits sœurs."
+      ],
+      "answer": 1,
+      "explanation": "Petites agrees with feminine plural sœurs; mes is plural."
+    }
+  ]
+}
