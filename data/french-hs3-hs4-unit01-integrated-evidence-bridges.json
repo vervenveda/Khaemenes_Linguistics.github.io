@@ -1,0 +1,316 @@
+{
+  "schema": "khaemenes.french.unit01-integrated-evidence-bridge.v1",
+  "status": "pilot-teacher-review-no-official-grade",
+  "purpose": "Connect short instruction, extended reading, listening, speaking, original written evidence and next-lesson retrieval in one continuous learning sequence.",
+  "gradeAuthority": "none",
+  "courses": {
+    "hs3": {
+      "lessons": [
+        {
+          "lesson": 1,
+          "id": "hs3-u01-l01-bridge01",
+          "focus": "Claims versus measured outcomes",
+          "retrieve": "Citez le comptage des entrées à la bibliothèque et expliquez pourquoi il ne représente pas 67 élèves différents.",
+          "interpret": "Distinguez le témoignage des élèves du résultat non mesuré sur les notes. Formulez une conclusion limitée.",
+          "listen": "Comparez la contrainte du dernier autobus dans le dialogue à la difficulté d'accès évoquée dans le bulletin.",
+          "create": "Rédigez une proposition de 110 à 140 mots au conseil des élèves : situation, donnée précise, limite et essai mesurable.",
+          "feedback": "Un nombre de visites n'est pas un nombre de personnes. Aucun progrès scolaire n'a été mesuré. Une proposition ne doit pas être présentée comme un résultat.",
+          "bridge": "Avant la leçon suivante : identifiez une objection liée au coût ou à l'accessibilité, puis cherchez la donnée qui permettrait de l'étudier.",
+          "criteria": [
+            "Cite le chiffre 42 puis 67 sans le transformer en nombre de personnes",
+            "Distingue fréquentation et réussite scolaire",
+            "Propose une mesure accessible aux élèves dépendant du transport",
+            "Utilise une concession ou un conditionnel en français"
+          ],
+          "steps": [
+            "Retrieve evidence from the source passage",
+            "Explain what the evidence does and does not show",
+            "Compare with the guided listening dialogue",
+            "Write an original response and discuss it aloud",
+            "Use four review criteria to revise",
+            "Carry one idea into the next lesson"
+          ]
+        },
+        {
+          "lesson": 2,
+          "id": "hs3-u01-l02-bridge01",
+          "focus": "Counterarguments and equitable access",
+          "retrieve": "Relevez les 31 réponses favorables sur 48 et nommez le coût absent du devis.",
+          "interpret": "Expliquez pourquoi un sondage volontaire de 48 personnes ne prouve pas l'opinion des 390 élèves.",
+          "listen": "Dans le dialogue, identifiez la réserve de l'enseignante et la réponse qui propose une consultation.",
+          "create": "Écrivez 130 à 160 mots : pour ou contre un essai de navette, avec un argument, une objection reconnue et deux critères d'évaluation.",
+          "feedback": "Une majorité des répondants n'est pas une majorité de l'établissement. Un devis partiel n'est pas le coût total du service.",
+          "bridge": "Préparez une phrase hypothétique avec si + imparfait et conditionnel pour la proposition de financement de la leçon suivante.",
+          "criteria": [
+            "Reconnaît les limites de l'échantillon volontaire",
+            "Intègre entretien et horaires dans l'argument",
+            "Répond respectueusement à un contreargument",
+            "Propose un essai limité plutôt qu'un succès garanti"
+          ],
+          "steps": [
+            "Retrieve evidence from the source passage",
+            "Explain what the evidence does and does not show",
+            "Compare with the guided listening dialogue",
+            "Write an original response and discuss it aloud",
+            "Use four review criteria to revise",
+            "Carry one idea into the next lesson"
+          ]
+        },
+        {
+          "lesson": 3,
+          "id": "hs3-u01-l03-bridge01",
+          "focus": "Planned, conditional and verified actions",
+          "retrieve": "Identifiez les douze participants du pilote et les variables effectivement enregistrées.",
+          "interpret": "Distinguez le futur d'annonce de vendredi du financement et de l'ouverture de groupes non confirmés.",
+          "listen": "Dans le dialogue, relevez la phrase conditionnelle du proviseur et expliquez sa valeur hypothétique.",
+          "create": "Élaborez un message scolaire de 130 à 160 mots comprenant une action future annoncée, un scénario si + imparfait/conditionnel et un résultat encore à mesurer.",
+          "feedback": "Le groupe pilote renseigne sur présence et satisfaction, pas sur les gains de notes. La présentation du budget n'est pas un accord de financement.",
+          "bridge": "Pour la leçon suivante, définissez la source que vous citeriez pour comparer deux méthodes de tutorat et le pronom relatif approprié.",
+          "criteria": [
+            "Distingue projet, condition et observation",
+            "Utilise une hypothèse grammaticalement cohérente",
+            "N'invente aucun progrès scolaire démontré",
+            "Nomme les mesures nécessaires pour décider"
+          ],
+          "steps": [
+            "Retrieve evidence from the source passage",
+            "Explain what the evidence does and does not show",
+            "Compare with the guided listening dialogue",
+            "Write an original response and discuss it aloud",
+            "Use four review criteria to revise",
+            "Carry one idea into the next lesson"
+          ]
+        },
+        {
+          "lesson": 4,
+          "id": "hs3-u01-l04-bridge01",
+          "focus": "Relative clauses and research attribution",
+          "retrieve": "Relevez les deux dénominateurs et les réponses d'usage des outils : 54/90 et 45/75.",
+          "interpret": "Expliquez pourquoi 60 % dans les deux groupes ne prouve pas la même efficacité pédagogique.",
+          "listen": "Identifiez dans le dialogue une phrase avec où, que ou dont et précisez son antécédent.",
+          "create": "Rédigez une synthèse de 150 à 180 mots citant les deux enquêtes, avec qui, que, où et dont employés correctement.",
+          "feedback": "Les pourcentages mesurent des usages déclarés, pas des progrès. Dont remplace une relation avec de; qui et que ont des fonctions différentes.",
+          "bridge": "À la leçon suivante, vérifiez si deux enquêtes scolaires portent vraiment sur le même indicateur avant d'en comparer les pourcentages.",
+          "criteria": [
+            "Calcule et contextualise les deux rapports 60 %",
+            "Différencie outil et recrutement des populations",
+            "Emploie au moins trois relatives avec antécédents clairs",
+            "Évite une conclusion causale ou générale non justifiée"
+          ],
+          "steps": [
+            "Retrieve evidence from the source passage",
+            "Explain what the evidence does and does not show",
+            "Compare with the guided listening dialogue",
+            "Write an original response and discuss it aloud",
+            "Use four review criteria to revise",
+            "Carry one idea into the next lesson"
+          ]
+        },
+        {
+          "lesson": 5,
+          "id": "hs3-u01-l05-bridge01",
+          "focus": "Compare measures rather than headlines",
+          "retrieve": "Citez ce que mesurent exactement les deux enquêtes : durée des devoirs chez les élèves et fréquence d'accompagnement par les familles.",
+          "interpret": "Expliquez pourquoi 72/120 et 44/80 ne démontrent aucune évolution du même phénomène.",
+          "listen": "Dans l'entretien audio guidé, repérez l'avertissement sur les groupes et les indicateurs distincts.",
+          "create": "Composez 170 à 210 mots : tableau comparatif de deux sources et proposition d'un espace d'étude à évaluer, en séparant résultats et hypothèses.",
+          "feedback": "Il serait erroné de comparer 60 % et 55 % comme s'il s'agissait d'une même variable, d'un même groupe ou d'une chronologie contrôlée.",
+          "bridge": "Préparez deux questions de consultation qui pourraient éclairer les non-répondants avant le débat final du conseil scolaire.",
+          "criteria": [
+            "Nomme groupes, périodes et variables",
+            "Calcule 60 % et 55 % avec unités correctes",
+            "Présente une conclusion prudente",
+            "Conçoit une prochaine mesure sans prétendre connaître son effet"
+          ],
+          "steps": [
+            "Retrieve evidence from the source passage",
+            "Explain what the evidence does and does not show",
+            "Compare with the guided listening dialogue",
+            "Write an original response and discuss it aloud",
+            "Use four review criteria to revise",
+            "Carry one idea into the next lesson"
+          ]
+        },
+        {
+          "lesson": 6,
+          "id": "hs3-u01-l06-bridge01",
+          "focus": "Integrate evidence in a respectful forum",
+          "retrieve": "Détaillez les 36, 14 et 10 réponses sur 60, ainsi que les limites de disponibilité de la salle.",
+          "interpret": "Distinguez une recommandation discutée d'une activité déjà ouverte; montrez la contrainte du transport.",
+          "listen": "À partir du dialogue du forum, identifiez la concession d'Idriss et la proposition de Salma.",
+          "create": "Produisez une recommandation de 220 à 280 mots et présentez oralement 90 secondes avec une objection, une réponse sourcée et un projet d'évaluation.",
+          "feedback": "Le conseil n'a pas approuvé l'atelier. Ne confondez pas préférences des répondants, accès des absents et résultats non encore observés.",
+          "bridge": "Transfert final : indiquez quelles affirmations de votre proposition viennent de chaque source, et lesquelles restent des hypothèses.",
+          "criteria": [
+            "Intègre les deux documents sans généralisation",
+            "Répond à une objection relative aux horaires ou au personnel",
+            "Propose un essai mesurable et accessible",
+            "Utilise connecteurs, attribution et conditionnel avec précision"
+          ],
+          "steps": [
+            "Retrieve evidence from the source passage",
+            "Explain what the evidence does and does not show",
+            "Compare with the guided listening dialogue",
+            "Write an original response and discuss it aloud",
+            "Use four review criteria to revise",
+            "Carry one idea into the next lesson"
+          ]
+        }
+      ]
+    },
+    "hs4": {
+      "lessons": [
+        {
+          "lesson": 1,
+          "id": "hs4-u01-l01-bridge01",
+          "focus": "Administrative traces and individual identity",
+          "retrieve": "Distinguez le nombre d'arrivées consigné en 1934 des sentiments exprimés dans la lettre.",
+          "interpret": "Montrez pourquoi la légende tardive ne prouve pas le caractère volontaire de tous les départs.",
+          "listen": "Dans le dialogue entre archiviste et descendante, repérez ce qui relève d'un document et ce qui relève d'un vécu.",
+          "create": "Rédigez une notice bilingue de 160 à 200 mots distinguant registre fictif, lettre fictive et interprétation ajoutée.",
+          "feedback": "Un registre ne documente pas les motivations individuelles; une lettre ne représente pas toutes les personnes déplacées.",
+          "bridge": "À la leçon suivante, demandez qui a créé une légende et combien d'années après l'image d'origine elle a été rédigée.",
+          "criteria": [
+            "Documente les trois provenances sans les confondre",
+            "Ne transforme pas un récit personnel en vérité universelle",
+            "Explique une dimension de l'identité linguistique",
+            "Signale le caractère fictif des sources utilisées"
+          ],
+          "steps": [
+            "Retrieve evidence from the source passage",
+            "Explain what the evidence does and does not show",
+            "Compare with the guided listening dialogue",
+            "Write an original response and discuss it aloud",
+            "Use four review criteria to revise",
+            "Carry one idea into the next lesson"
+          ]
+        },
+        {
+          "lesson": 2,
+          "id": "hs4-u01-l02-bridge01",
+          "focus": "Provenance and retrospective captions",
+          "retrieve": "Indiquez la date de la photographie (1928) et de sa légende (1978).",
+          "interpret": "Expliquez pourquoi le courrier voisin n'identifie pas automatiquement les personnes représentées sur l'image.",
+          "listen": "Dans le dialogue de la conservatrice, relevez l'absence de noms et le statut tardif de la légende.",
+          "create": "Concevez deux légendes de 90 mots : d'abord une légende trop affirmative, puis sa correction avec attribution et limites.",
+          "feedback": "Une légende de musée ultérieure est une intervention éditoriale; elle ne peut pas être présentée comme le propos contemporain des voyageurs.",
+          "bridge": "Proposez une hypothèse sur ce qui aurait pu être documenté si davantage de témoignages contemporains avaient survécu, en la marquant explicitement.",
+          "criteria": [
+            "Sépare correctement les dates de production",
+            "Ne suppose pas l'identité des voyageurs",
+            "Identifie le statut éditorial de la légende",
+            "Rédige une correction neutre et fondée sur les pièces présentées"
+          ],
+          "steps": [
+            "Retrieve evidence from the source passage",
+            "Explain what the evidence does and does not show",
+            "Compare with the guided listening dialogue",
+            "Write an original response and discuss it aloud",
+            "Use four review criteria to revise",
+            "Carry one idea into the next lesson"
+          ]
+        },
+        {
+          "lesson": 3,
+          "id": "hs4-u01-l03-bridge01",
+          "focus": "Past counterfactual without invented testimony",
+          "retrieve": "Identifiez ce que le procès-verbal fictif établit réellement sur le vote et les participants.",
+          "interpret": "Distinguez faits attestés, absence de traces de consultation et scénario alternatif.",
+          "listen": "Repérez si + plus-que-parfait et le conditionnel passé dans le dialogue de l'historienne.",
+          "create": "Écrivez 180 à 220 mots distinguant deux contrefactuels et leurs hypothèses, avec au moins deux limites documentaires.",
+          "feedback": "Avoir pu proposer ne prouve pas qu'une proposition a été formulée. Une hypothèse doit tenir compte des transports et des contraintes du contexte.",
+          "bridge": "Pour la leçon suivante, examinez comment un changement de traduction pourrait attribuer injustement un choix à une personne déplacée.",
+          "criteria": [
+            "Emploie si + plus-que-parfait et conditionnel passé",
+            "N'invente pas de citation attribuée aux familles",
+            "Évalue des contraintes plausibles du contexte",
+            "Distingue les différents statuts des sources"
+          ],
+          "steps": [
+            "Retrieve evidence from the source passage",
+            "Explain what the evidence does and does not show",
+            "Compare with the guided listening dialogue",
+            "Write an original response and discuss it aloud",
+            "Use four review criteria to revise",
+            "Carry one idea into the next lesson"
+          ]
+        },
+        {
+          "lesson": 4,
+          "id": "hs4-u01-l04-bridge01",
+          "focus": "Translation, agency and register",
+          "retrieve": "Citez les deux versions anglaises de avons dû partir et comparez leur sens.",
+          "interpret": "Analysez ce que l'effacement de la variété régionale fait perdre à l'identité de la personne qui parle.",
+          "listen": "Dans le dialogue de la traductrice, identifiez le point de désaccord et l'alternative proposée.",
+          "create": "Écrivez une note bilingue de 180 à 240 mots défendant un choix de traduction, avec texte source, nuance et intervention éditoriale.",
+          "feedback": "Devoir partir exprime une nécessité; choisir de partir implique un choix. Il faut annoncer toute normalisation de registre qui affecte l'interprétation.",
+          "bridge": "Pour le travail sur les médias de la leçon suivante, distinguez ce qu'un sous-titre, une reconstitution et un poème peuvent prouver.",
+          "criteria": [
+            "Préserve l'agence et les nuances de modalité",
+            "Documente les décisions du traducteur",
+            "Respecte les variétés de français",
+            "Évite de généraliser un témoignage individuel"
+          ],
+          "steps": [
+            "Retrieve evidence from the source passage",
+            "Explain what the evidence does and does not show",
+            "Compare with the guided listening dialogue",
+            "Write an original response and discuss it aloud",
+            "Use four review criteria to revise",
+            "Carry one idea into the next lesson"
+          ]
+        },
+        {
+          "lesson": 5,
+          "id": "hs4-u01-l05-bridge01",
+          "focus": "Three genres with distinct evidence",
+          "retrieve": "Indiquez ce que le registre peut établir et ce que le film reconstitue avec des acteurs.",
+          "interpret": "Expliquez la valeur symbolique de la porte qui garde les noms sans la traiter comme un fait administratif.",
+          "listen": "Dans l'échange entre guide et visiteuse, identifiez les limites de chaque genre.",
+          "create": "Rédigez une analyse de 230 à 280 mots comparant registre, film et poème, avec trois attributions et une perspective absente.",
+          "feedback": "Une reconstitution n'est pas une prise de vue d'époque; une métaphore n'est pas un registre; l'archive ne raconte pas tout le vécu.",
+          "bridge": "Préparez pour la leçon finale une phrase de cartel distinguant clairement une trace officielle d'une représentation artistique.",
+          "criteria": [
+            "Distingue preuve documentaire, jeu d'acteur et symbole",
+            "Ne prend pas une scène fabriquée pour une archive",
+            "Reconnaît les voix manquantes",
+            "Compare les genres sans hiérarchie artificielle de témoignage"
+          ],
+          "steps": [
+            "Retrieve evidence from the source passage",
+            "Explain what the evidence does and does not show",
+            "Compare with the guided listening dialogue",
+            "Write an original response and discuss it aloud",
+            "Use four review criteria to revise",
+            "Carry one idea into the next lesson"
+          ]
+        },
+        {
+          "lesson": 6,
+          "id": "hs4-u01-l06-bridge01",
+          "focus": "Ethical multi-voice exhibition synthesis",
+          "retrieve": "Citez les rôles distincts de la lettre, de la liste d'arrivées et du documentaire.",
+          "interpret": "Expliquez pourquoi tous les migrants ont vécu la même histoire est impossible à justifier.",
+          "listen": "Dans le dialogue curatorial, repérez la formulation corrigée et la prudence sur les traductions.",
+          "create": "Présentez une exposition bilingue de 300 à 400 mots et une présentation orale de deux minutes; distinguez trace, récit, montage et lacune.",
+          "feedback": "La synthèse doit garder la pluralité des trajectoires. Toute reconstitution, traduction ou omission doit être déclarée; une source fictive ne peut pas être présentée comme un document authentique.",
+          "bridge": "Transfert final : annotez une source nouvelle avec provenance, point de vue, incertitude, décision de traduction et limites éthiques.",
+          "criteria": [
+            "Attribue les trois types de source de façon explicite",
+            "N'invente aucune voix ni citation réelle",
+            "Déclare traductions, coupes et reconstitutions",
+            "Conclut sans effacer les divergences ou généraliser les parcours"
+          ],
+          "steps": [
+            "Retrieve evidence from the source passage",
+            "Explain what the evidence does and does not show",
+            "Compare with the guided listening dialogue",
+            "Write an original response and discuss it aloud",
+            "Use four review criteria to revise",
+            "Carry one idea into the next lesson"
+          ]
+        }
+      ]
+    }
+  }
+}
