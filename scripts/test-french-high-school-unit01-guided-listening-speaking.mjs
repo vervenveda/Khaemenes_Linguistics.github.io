@@ -10,7 +10,7 @@ test("teacher-led dialogue packets exactly match published static companion cont
  assert.deepEqual(embedded,data);
  assert.equal(data.status,"formative-teacher-partner-read-not-recorded");
  assert.equal(data.officialListeningCertified,false);
- assert.deepEqual(Object.keys(data.courses),["hs3","hs4"]);
+ assert.deepEqual(Object.keys(data.courses),["hs1","hs2","hs3","hs4"]);
 });
 for(const course of ["hs3","hs4"]){
  test(course+" six dialogues supply two comprehension questions and an oral task",()=>{
