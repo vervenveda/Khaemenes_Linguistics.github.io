@@ -12,7 +12,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Which source is most clearly a primary account of a council meeting?",
+      "prompt": "Fictional migration archive: which source is most clearly a primary account of an official meeting about a family's relocation?",
       "choices": [
         "The original dated meeting minutes.",
         "A recent textbook summary of the meeting.",
@@ -26,7 +26,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Which sentence accurately qualifies the authority of a memoir?",
+      "prompt": "Migration memoir review: which sentence accurately qualifies a displaced person's memoir without making it speak for an entire community?",
       "choices": [
         "Ce témoignage prouve la pensée de chaque habitant.",
         "Tout souvenir personnel est nécessairement exact.",
@@ -40,7 +40,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Which verb best attributes a source's position without endorsing it?",
+      "prompt": "Migration research writing: which verb best attributes a source's statement about displacement without endorsing it as proven?",
       "choices": [
         "garantit",
         "affirme",
@@ -54,7 +54,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Choose the construction for citing a newspaper's reported claim.",
+      "prompt": "Fictional Francophone migration news archive: choose the construction for citing a newspaper's reported claim.",
       "choices": [
         "Selon le journal de l'époque,",
         "En sachant sans source que",
@@ -68,7 +68,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Which detail belongs in a source-provenance note?",
+      "prompt": "Cataloging a fictional family-migration letter: which details belong in its archival provenance note?",
       "choices": [
         "Only the favorite passage of the reader.",
         "Only the number of adjectives in the text.",
@@ -82,7 +82,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Which phrasing avoids treating one interview as a universal history?",
+      "prompt": "Migration oral history: which phrasing avoids treating one interview about exile as the entire diaspora's history?",
       "choices": [
         "Un seul entretien exclut toute autre perspective.",
         "L'entretien donne accès à une trajectoire parmi d'autres.",
@@ -96,7 +96,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Choose the best description of an editorial's purpose.",
+      "prompt": "Reading an editorial on identity and migration policy: choose the most accurate description of its argumentative purpose.",
       "choices": [
         "Défendre une interprétation auprès d'un public.",
         "Fournir uniquement des mesures sans choix de cadrage.",
@@ -110,7 +110,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Which form marks uncertainty about an archival dating?",
+      "prompt": "An undated fictional migration register is provisionally placed near 1920. Which French form marks uncertainty about the date?",
       "choices": [
         "Le document a été rédigé sans aucun doute en 1920.",
         "Le document sera certainement rédigé hier.",
@@ -124,7 +124,7 @@
       "unit": 1,
       "lesson": 2,
       "domain": "language-use",
-      "prompt": "Which sentence appropriately differentiates publication date and event date?",
+      "prompt": "An imagined Francophone migration memoir was published in 1980 but describes events of 1955. Which sentence correctly distinguishes the two dates?",
       "choices": [
         "Un texte publié plus tard ne peut évoquer le passé.",
         "Publié en 1980, le récit revient sur les événements de 1955.",
