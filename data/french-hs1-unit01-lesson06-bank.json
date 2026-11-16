@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs1",
+  "unit": 1,
+  "lesson": 6,
+  "status": "authoring-review-not-published",
+  "title": "Unit 01 integrated communication mission and correction review",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs1-u01-l06-q001",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: you greet a new teacher at 9 a.m. Choose the opening.",
+      "choices": [
+        "Bonjour, Madame.",
+        "Bonne nuit, Madame.",
+        "Salut, mec !"
+      ],
+      "answer": 0,
+      "explanation": "Bonjour and Madame provide a suitable polite daytime greeting."
+    },
+    {
+      "id": "hs1-u01-l06-q002",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: your name is Camille. Which sentence introduces you?",
+      "choices": [
+        "Il s'appelle Camille.",
+        "Tu t'appelles Camille.",
+        "Je m'appelle Camille."
+      ],
+      "answer": 2,
+      "explanation": "Je m'appelle gives the speaker's own name."
+    },
+    {
+      "id": "hs1-u01-l06-q003",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: you need to spell « Inès ». Select the correct sequence.",
+      "choices": [
+        "I – E – N – S",
+        "I – N – È – S",
+        "I – N – É – S"
+      ],
+      "answer": 1,
+      "explanation": "Inès has four letters, including an è with a grave accent."
+    },
+    {
+      "id": "hs1-u01-l06-q004",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: describe one female student as kind.",
+      "choices": [
+        "Elle est gentille.",
+        "Elle est gentil.",
+        "Elle sont gentilles."
+      ],
+      "answer": 0,
+      "explanation": "Gentille agrees with feminine singular elle; est is singular."
+    },
+    {
+      "id": "hs1-u01-l06-q005",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: describe two red apples.",
+      "choices": [
+        "Deux pomme rouge.",
+        "Deux pommes rouge.",
+        "Deux pommes rouges."
+      ],
+      "answer": 2,
+      "explanation": "Pommes is plural; rouges agrees with the plural noun."
+    },
+    {
+      "id": "hs1-u01-l06-q006",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: a friend needs your pen. Which classroom response is useful?",
+      "choices": [
+        "Voici mes stylo.",
+        "Voici mon stylo.",
+        "Voici ma stylo."
+      ],
+      "answer": 1,
+      "explanation": "Stylo is masculine singular, so mon is appropriate."
+    },
+    {
+      "id": "hs1-u01-l06-q007",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: you want the teacher to repeat the instruction. Choose politely.",
+      "choices": [
+        "Pouvez-vous répéter la consigne, s'il vous plaît ?",
+        "Répète sans merci, vite !",
+        "Pouvez-tu répéter la consigne ?"
+      ],
+      "answer": 0,
+      "explanation": "Pouvez-vous and s'il vous plaît suit polite classroom register."
+    },
+    {
+      "id": "hs1-u01-l06-q008",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: you are ordering water in a café. Choose the idiomatic phrase.",
+      "choices": [
+        "Une verre du eau, s'il vous plaît.",
+        "Un eau de verre, s'il vous plaît.",
+        "Un verre d'eau, s'il vous plaît."
+      ],
+      "answer": 2,
+      "explanation": "Un verre d'eau is a glass of water; de elides before eau."
+    },
+    {
+      "id": "hs1-u01-l06-q009",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: you say you have no milk. Which expression works?",
+      "choices": [
+        "Je ne ai pas lait.",
+        "Je n'ai pas de lait.",
+        "Je n'ai pas du lait, en général."
+      ],
+      "answer": 1,
+      "explanation": "Under simple negation, the partitive normally becomes de."
+    },
+    {
+      "id": "hs1-u01-l06-q010",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read the note: « Bonjour, je suis Nina. Je suis nouvelle dans la classe. » What is new?",
+      "choices": [
+        "Nina is new to the class.",
+        "Nina is the new teacher.",
+        "Nina is leaving tomorrow."
+      ],
+      "answer": 0,
+      "explanation": "Nouvelle dans la classe identifies Nina as newly joining the class."
+    },
+    {
+      "id": "hs1-u01-l06-q011",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Tom a un frère et deux sœurs. » How many sisters are mentioned?",
+      "choices": [
+        "One.",
+        "Three.",
+        "Two."
+      ],
+      "answer": 2,
+      "explanation": "Deux sœurs means two sisters."
+    },
+    {
+      "id": "hs1-u01-l06-q012",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Les cahiers sont bleus, les trousses sont vertes. » What is green?",
+      "choices": [
+        "The desks.",
+        "The pencil cases.",
+        "The notebooks."
+      ],
+      "answer": 1,
+      "explanation": "Trousses are the feminine plural items described as vertes."
+    },
+    {
+      "id": "hs1-u01-l06-q013",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Nous commençons le cours à dix heures. » When does class begin?",
+      "choices": [
+        "At ten o'clock.",
+        "At noon.",
+        "At eight o'clock."
+      ],
+      "answer": 0,
+      "explanation": "Dix heures corresponds to ten o'clock."
+    },
+    {
+      "id": "hs1-u01-l06-q014",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Le professeur écrit au tableau et les élèves écoutent. » Who is listening?",
+      "choices": [
+        "Only the teacher.",
+        "The principal.",
+        "The pupils."
+      ],
+      "answer": 2,
+      "explanation": "Les élèves écoutent is the subject and action pair."
+    },
+    {
+      "id": "hs1-u01-l06-q015",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Au café, le sandwich coûte six euros; le jus coûte trois euros. » What costs three?",
+      "choices": [
+        "Both items.",
+        "The juice.",
+        "The sandwich."
+      ],
+      "answer": 1,
+      "explanation": "Le jus coûte trois euros explicitly identifies the drink's price."
+    },
+    {
+      "id": "hs1-u01-l06-q016",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Je voudrais une salade sans fromage. » What ingredient is excluded?",
+      "choices": [
+        "Cheese.",
+        "Salad greens.",
+        "Bread."
+      ],
+      "answer": 0,
+      "explanation": "Sans fromage means without cheese."
+    },
+    {
+      "id": "hs1-u01-l06-q017",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « La boulangerie n'a plus de croissants. » What is unavailable?",
+      "choices": [
+        "Bread in general.",
+        "Coffee.",
+        "Croissants."
+      ],
+      "answer": 2,
+      "explanation": "N'a plus de croissants indicates the bakery has run out of croissants."
+    },
+    {
+      "id": "hs1-u01-l06-q018",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Après le déjeuner, nous retournons en classe. » What happens next?",
+      "choices": [
+        "They leave for the airport.",
+        "They return to class.",
+        "They begin breakfast."
+      ],
+      "answer": 1,
+      "explanation": "Après le déjeuner means after lunch, followed by returning to class."
+    },
+    {
+      "id": "hs1-u01-l06-q019",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Integration: you meet a classmate and ask their name informally.",
+      "choices": [
+        "Comment tu t'appelles ?",
+        "Comment je t'appelle demain ?",
+        "Comment ils s'appelle ?"
+      ],
+      "answer": 0,
+      "explanation": "Comment tu t'appelles is an informal question asking a person's name."
+    },
+    {
+      "id": "hs1-u01-l06-q020",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Integration: your teacher asks how you are. Give a suitable response.",
+      "choices": [
+        "Je m'appelle bien, merci.",
+        "J'habite très bien, merci.",
+        "Je vais bien, merci. Et vous ?"
+      ],
+      "answer": 2,
+      "explanation": "Je vais bien answers the question, and Et vous returns it politely."
+    },
+    {
+      "id": "hs1-u01-l06-q021",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Integration: you and a classmate study together. Which sentence works?",
+      "choices": [
+        "Nous étudiez ensemble.",
+        "Nous étudions ensemble.",
+        "Nous étudie ensemble."
+      ],
+      "answer": 1,
+      "explanation": "Nous takes the -ons present-tense ending in étudions."
+    },
+    {
+      "id": "hs1-u01-l06-q022",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Integration: you have two sisters. Which phrase fits?",
+      "choices": [
+        "J'ai deux sœurs.",
+        "Je suis deux sœurs.",
+        "J'ai deux sœur."
+      ],
+      "answer": 0,
+      "explanation": "Avoir expresses having siblings; sœurs must be plural."
+    },
+    {
+      "id": "hs1-u01-l06-q023",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Integration: you order two croissants. Which request is clear?",
+      "choices": [
+        "Je voudrais du deux croissants.",
+        "Je suis deux croissants, merci.",
+        "Je voudrais deux croissants, s'il vous plaît."
+      ],
+      "answer": 2,
+      "explanation": "Je voudrais is polite, and deux counts the croissants."
+    },
+    {
+      "id": "hs1-u01-l06-q024",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Integration: a café item contains a food that gives you an allergy. Which action is responsible?",
+      "choices": [
+        "Assume every dessert has identical ingredients.",
+        "State the allergy and ask about ingredients before ordering.",
+        "Guess the ingredients from the name."
+      ],
+      "answer": 1,
+      "explanation": "Clear allergy communication and confirmation is safer than assuming."
+    },
+    {
+      "id": "hs1-u01-l06-q025",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Integration: correct « Elles est très gentils ».",
+      "choices": [
+        "Elles sont très gentilles.",
+        "Elles est très gentilles.",
+        "Elles sont très gentil."
+      ],
+      "answer": 0,
+      "explanation": "Elles requires sont and feminine plural gentilles."
+    },
+    {
+      "id": "hs1-u01-l06-q026",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Integration: the bill is eight euros, and you hand over ten. How much change is due?",
+      "choices": [
+        "Trois euros.",
+        "Dix-huit euros.",
+        "Deux euros."
+      ],
+      "answer": 2,
+      "explanation": "Ten euros minus an eight-euro bill leaves two euros."
+    },
+    {
+      "id": "hs1-u01-l06-q027",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Integration: you did not hear a word's spelling. Which question clarifies it?",
+      "choices": [
+        "Comment ça habite ?",
+        "Comment ça s'écrit ?",
+        "Comment ça coûte ?"
+      ],
+      "answer": 1,
+      "explanation": "Comment ça s'écrit asks how the word is written or spelled."
+    }
+  ]
+}
