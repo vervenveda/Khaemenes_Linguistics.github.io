@@ -29,6 +29,7 @@ for(const course of ["hs3","hs4"]){
     assert.equal(row.correctAnswer,q.choices[q.answer]);
     assert.equal(row.sourceBank,path);
     assert.equal(row.draftLesson,number);
+    assert.equal(row.domain,q.domain);
     assert.ok(categories.includes(row.category));
     assert.equal(row.review,"independent-review-pending");
     assert.ok(row.taughtPilotObjective.length>10);
