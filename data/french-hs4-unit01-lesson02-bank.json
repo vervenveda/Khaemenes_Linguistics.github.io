@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs4",
+  "unit": 1,
+  "lesson": 2,
+  "status": "authoring-review-not-published",
+  "title": "Primary and secondary evidence, viewpoint and provenance",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs4-u01-l02-q001",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which source is most clearly a primary account of a council meeting?",
+      "choices": [
+        "The original dated meeting minutes.",
+        "A recent textbook summary of the meeting.",
+        "A later commentary about the meeting."
+      ],
+      "answer": 0,
+      "explanation": "Original contemporaneous minutes are a primary record of the proceedings."
+    },
+    {
+      "id": "hs4-u01-l02-q002",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which sentence accurately qualifies the authority of a memoir?",
+      "choices": [
+        "Ce témoignage prouve la pensée de chaque habitant.",
+        "Tout souvenir personnel est nécessairement exact.",
+        "Ce témoignage éclaire une expérience personnelle sans représenter toutes les voix."
+      ],
+      "answer": 2,
+      "explanation": "A personal testimony illuminates one perspective without universal representation."
+    },
+    {
+      "id": "hs4-u01-l02-q003",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which verb best attributes a source's position without endorsing it?",
+      "choices": [
+        "garantit",
+        "affirme",
+        "démontre définitivement"
+      ],
+      "answer": 1,
+      "explanation": "Affirme attributes an assertion without asserting that it is proven."
+    },
+    {
+      "id": "hs4-u01-l02-q004",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Choose the construction for citing a newspaper's reported claim.",
+      "choices": [
+        "Selon le journal de l'époque,",
+        "En sachant sans source que",
+        "Puisque tout le monde pense que"
+      ],
+      "answer": 0,
+      "explanation": "Selon explicitly identifies the source of a historical claim."
+    },
+    {
+      "id": "hs4-u01-l02-q005",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which detail belongs in a source-provenance note?",
+      "choices": [
+        "Only the favorite passage of the reader.",
+        "Only the number of adjectives in the text.",
+        "Date, creator, intended audience and archival reference."
+      ],
+      "answer": 2,
+      "explanation": "Date, creator, audience and archive reference support traceability."
+    },
+    {
+      "id": "hs4-u01-l02-q006",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which phrasing avoids treating one interview as a universal history?",
+      "choices": [
+        "Un seul entretien exclut toute autre perspective.",
+        "L'entretien donne accès à une trajectoire parmi d'autres.",
+        "L'entretien raconte nécessairement toutes les trajectoires."
+      ],
+      "answer": 1,
+      "explanation": "The phrase parmi d'autres explicitly limits representativeness."
+    },
+    {
+      "id": "hs4-u01-l02-q007",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Choose the best description of an editorial's purpose.",
+      "choices": [
+        "Défendre une interprétation auprès d'un public.",
+        "Fournir uniquement des mesures sans choix de cadrage.",
+        "Remplacer les archives administratives."
+      ],
+      "answer": 0,
+      "explanation": "An editorial typically advances an interpretation for an audience."
+    },
+    {
+      "id": "hs4-u01-l02-q008",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which form marks uncertainty about an archival dating?",
+      "choices": [
+        "Le document a été rédigé sans aucun doute en 1920.",
+        "Le document sera certainement rédigé hier.",
+        "Le document aurait été rédigé vers 1920."
+      ],
+      "answer": 2,
+      "explanation": "Conditional auraient/aurait and vers indicate a tentative date."
+    },
+    {
+      "id": "hs4-u01-l02-q009",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which sentence appropriately differentiates publication date and event date?",
+      "choices": [
+        "Un texte publié plus tard ne peut évoquer le passé.",
+        "Publié en 1980, le récit revient sur les événements de 1955.",
+        "Les événements ont forcément eu lieu en 1980."
+      ],
+      "answer": 1,
+      "explanation": "Publication year and described event year need not be the same."
+    },
+    {
+      "id": "hs4-u01-l02-q010",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Cette photographie a été légendée trente ans après sa prise. » What is the relevant caution?",
+      "choices": [
+        "The later caption may reflect a different context from the original image.",
+        "The camera could not have existed at the original date.",
+        "The later caption is automatically fraudulent."
+      ],
+      "answer": 0,
+      "explanation": "A caption added decades later may introduce retrospective interpretation."
+    },
+    {
+      "id": "hs4-u01-l02-q011",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « La lettre était destinée au préfet, non au grand public. » What can affect its tone?",
+      "choices": [
+        "The letter's paper color alone.",
+        "The number of characters in the author's surname.",
+        "The intended administrative recipient."
+      ],
+      "answer": 2,
+      "explanation": "Audience affects register and what the writer chooses to say."
+    },
+    {
+      "id": "hs4-u01-l02-q012",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « L'archive conserve les décisions officielles, mais peu de réactions des riverains. » What limitation is identified?",
+      "choices": [
+        "Proof that nobody lived nearby.",
+        "A shortage of residents' perspectives.",
+        "A complete absence of official decisions."
+      ],
+      "answer": 1,
+      "explanation": "The archive documents authorities more extensively than neighboring residents."
+    },
+    {
+      "id": "hs4-u01-l02-q013",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Ce récit a été traduit du créole vers le français. » What should a critic investigate?",
+      "choices": [
+        "How translation choices may alter nuance or register.",
+        "Whether all languages have identical connotations.",
+        "Whether translation removes the need for context."
+      ],
+      "answer": 0,
+      "explanation": "Translation can change connotation and should be assessed transparently."
+    },
+    {
+      "id": "hs4-u01-l02-q014",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Le document est signé, mais son auteur réel demeure contesté. » What remains uncertain?",
+      "choices": [
+        "Whether a signature appears.",
+        "Whether the document has words.",
+        "Who actually authored the document."
+      ],
+      "answer": 2,
+      "explanation": "A signature exists, but the real author's identity is disputed."
+    },
+    {
+      "id": "hs4-u01-l02-q015",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Deux historiens situent la réforme à des dates différentes. » What should be compared?",
+      "choices": [
+        "Only their academic titles.",
+        "Their definitions of the reform and cited evidence.",
+        "Only the fonts in their publications."
+      ],
+      "answer": 1,
+      "explanation": "Different event boundaries or source evidence may explain conflicting dates."
+    },
+    {
+      "id": "hs4-u01-l02-q016",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « L'entretien a été monté pour réduire sa durée. » What is important to know?",
+      "choices": [
+        "Which passages were selected or omitted.",
+        "That no original recording could exist.",
+        "That editing necessarily falsifies every statement."
+      ],
+      "answer": 0,
+      "explanation": "Editing choices can affect emphasis without automatically proving deception."
+    },
+    {
+      "id": "hs4-u01-l02-q017",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Le journal parle de 'progrès' sans expliquer qui en profite. » What question emerges?",
+      "choices": [
+        "Whether the word progrès contains an accent.",
+        "How many pages the journal contains.",
+        "For whom is the development described as progress?"
+      ],
+      "answer": 2,
+      "explanation": "The term progrès may privilege a particular group's perspective."
+    },
+    {
+      "id": "hs4-u01-l02-q018",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Une source coloniale décrit la région comme 'vide', tandis que des témoignages évoquent des habitants. » What is the strongest reading?",
+      "choices": [
+        "The witnesses are irrelevant because the archive is official.",
+        "The sources make conflicting claims that require contextual scrutiny.",
+        "The first source is necessarily comprehensive."
+      ],
+      "answer": 1,
+      "explanation": "Conflicting accounts call for attention to perspectives, interests and evidence."
+    },
+    {
+      "id": "hs4-u01-l02-q019",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You cite a wartime leaflet. Which note most improves traceability?",
+      "choices": [
+        "Indicate its date, issuer, archive collection and page or identifier.",
+        "Describe the paper as attractive without a citation.",
+        "State that the leaflet speaks for an entire population."
+      ],
+      "answer": 0,
+      "explanation": "A precise source citation allows others to locate and assess the leaflet."
+    },
+    {
+      "id": "hs4-u01-l02-q020",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You analyze a photograph of a protest. What should you avoid inferring from one image?",
+      "choices": [
+        "That the photograph depicts a visible scene.",
+        "That the image was captured from a particular viewpoint.",
+        "That every participant shared a single motive."
+      ],
+      "answer": 2,
+      "explanation": "One photograph does not establish all participants' intentions."
+    },
+    {
+      "id": "hs4-u01-l02-q021",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You compare a contemporary letter with a memoir written fifty years later. What deserves emphasis?",
+      "choices": [
+        "The assumption that all firsthand texts are identical.",
+        "The different times and purposes of each account.",
+        "The assumption that later memoirs always tell lies."
+      ],
+      "answer": 1,
+      "explanation": "Production timing and genre affect context and interpretation."
+    },
+    {
+      "id": "hs4-u01-l02-q022",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "A translated speech omits a culturally specific term. What is a responsible editorial response?",
+      "choices": [
+        "Note the omission and consult the original where possible.",
+        "Invent a replacement quotation without attribution.",
+        "Assume the omitted term had no meaning."
+      ],
+      "answer": 0,
+      "explanation": "Transparency about translation omissions preserves interpretive accountability."
+    },
+    {
+      "id": "hs4-u01-l02-q023",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "An official report omits a community's testimony. How do you address the gap?",
+      "choices": [
+        "Write invented testimony to fill the silence.",
+        "Declare the community had no views.",
+        "Seek additional community sources and explicitly identify the omission."
+      ],
+      "answer": 2,
+      "explanation": "Source triangulation and explicit recognition of gaps avoid fabricated evidence."
+    },
+    {
+      "id": "hs4-u01-l02-q024",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You are distinguishing an author's claim from established fact. Which framing fits?",
+      "choices": [
+        "Toutes les sources doivent confirmer cet auteur.",
+        "L'auteur soutient que cette réforme fut bénéfique; d'autres sources la contestent.",
+        "La réforme fut bénéfique pour tout le monde parce que l'auteur l'affirme."
+      ],
+      "answer": 1,
+      "explanation": "Soutient que attributes the argument and acknowledges contesting evidence."
+    },
+    {
+      "id": "hs4-u01-l02-q025",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "Two archives disagree about the number of participants. What should you investigate?",
+      "choices": [
+        "Their counting methods, dates and definitions of participation.",
+        "The order of letters in each archive's name.",
+        "Which archive has the shorter title."
+      ],
+      "answer": 0,
+      "explanation": "Disagreement may stem from different definitions, methods or reporting times."
+    },
+    {
+      "id": "hs4-u01-l02-q026",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You must distinguish a reconstruction from direct testimony in a documentary. What label works?",
+      "choices": [
+        "Enregistrement direct d'un événement non filmé.",
+        "Témoignage spontané de tous les participants.",
+        "Scène reconstituée à partir de sources citées."
+      ],
+      "answer": 2,
+      "explanation": "Reconstitution clearly separates dramatization from direct recording."
+    },
+    {
+      "id": "hs4-u01-l02-q027",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "A museum label declares a single interpretation settled despite disputed scholarship. What revision is strongest?",
+      "choices": [
+        "Attribuer toutes les interprétations à un seul témoin.",
+        "Présenter les principales interprétations et les sources qui les soutiennent.",
+        "Supprimer toute référence à l'incertitude historique."
+      ],
+      "answer": 1,
+      "explanation": "A fair label presents supported interpretations and their evidentiary limits."
+    }
+  ]
+}
