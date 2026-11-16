@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs2",
+  "unit": 1,
+  "lesson": 5,
+  "status": "authoring-review-not-published",
+  "title": "Reading narratives and comparing personal experiences",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs2-u01-l05-q001",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "In a narrative, which tense presents the setting? « Il ___ quand la porte s'est ouverte. »",
+      "choices": [
+        "pleuvait",
+        "a plu",
+        "pleuvra"
+      ],
+      "answer": 0,
+      "explanation": "Pleuvait describes ongoing weather while the door-opening is bounded."
+    },
+    {
+      "id": "hs2-u01-l05-q002",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Complete the completed action: « Soudain, Clara ___ son téléphone. »",
+      "choices": [
+        "perdait chaque soir",
+        "perdra demain",
+        "a perdu"
+      ],
+      "answer": 2,
+      "explanation": "A perdu is a completed past event introduced by soudain."
+    },
+    {
+      "id": "hs2-u01-l05-q003",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose the sequence: « Il ___ à la gare puis ___ le train. »",
+      "choices": [
+        "arrivait; prend demain",
+        "est arrivé; a pris",
+        "a arrivé; est pris"
+      ],
+      "answer": 1,
+      "explanation": "Arriver takes être, while prendre uses avoir in the compound past."
+    },
+    {
+      "id": "hs2-u01-l05-q004",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Complete a former routine: « Autrefois, nous ___ le dimanche chez nos cousins. »",
+      "choices": [
+        "déjeunions",
+        "avons déjeuné une fois",
+        "déjeunerons"
+      ],
+      "answer": 0,
+      "explanation": "Déjeunions in the imperfect expresses a past habit."
+    },
+    {
+      "id": "hs2-u01-l05-q005",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Which clause clearly marks an interruption?",
+      "choices": [
+        "Je lirai quand le téléphone sonnait hier.",
+        "J'ai lu tous les soirs demain.",
+        "Je lisais quand le téléphone a sonné."
+      ],
+      "answer": 2,
+      "explanation": "Lisais is an ongoing background action; a sonné interrupts it."
+    },
+    {
+      "id": "hs2-u01-l05-q006",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Complete the past description: « Les rues ___ calmes avant la fête. »",
+      "choices": [
+        "seront",
+        "étaient",
+        "ont été soudain"
+      ],
+      "answer": 1,
+      "explanation": "Étaient describes a continuing condition in the past."
+    },
+    {
+      "id": "hs2-u01-l05-q007",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose the correct completed departure for two girls:",
+      "choices": [
+        "Elles sont parties à huit heures.",
+        "Elles ont parties à huit heures.",
+        "Elles sont partis à huit heures."
+      ],
+      "answer": 0,
+      "explanation": "Partir uses être and parties agrees with feminine plural elles."
+    },
+    {
+      "id": "hs2-u01-l05-q008",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Which connector marks the next narrative event?",
+      "choices": [
+        "Autrefois,",
+        "Habituellement,",
+        "Puis,"
+      ],
+      "answer": 2,
+      "explanation": "Puis indicates a subsequent event in a sequence."
+    },
+    {
+      "id": "hs2-u01-l05-q009",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose a correct past negative: « Nous ___ rien entendu. »",
+      "choices": [
+        "avons ne",
+        "n'avons",
+        "ne sommes"
+      ],
+      "answer": 1,
+      "explanation": "N'avons rien entendu correctly negates entendre with avoir."
+    },
+    {
+      "id": "hs2-u01-l05-q010",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « À sept heures, Léa préparait son sac lorsque son père a appelé. » What was underway?",
+      "choices": [
+        "Léa was preparing her bag.",
+        "Her father was already packing.",
+        "Léa had finished school."
+      ],
+      "answer": 0,
+      "explanation": "Préparait describes the ongoing action at the moment of the call."
+    },
+    {
+      "id": "hs2-u01-l05-q011",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Chaque hiver, Samir allait au village; en 2022, il est resté en ville. » What changed?",
+      "choices": [
+        "He went to the village for the first time in 2022.",
+        "He moved permanently to the village.",
+        "He stayed in town during 2022 instead of taking his customary trip."
+      ],
+      "answer": 2,
+      "explanation": "Chaque hiver frames a habit; est resté introduces a particular exception."
+    },
+    {
+      "id": "hs2-u01-l05-q012",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Le bus avait dix minutes de retard, alors nous avons marché. » Why did they walk?",
+      "choices": [
+        "Because the bus arrived early.",
+        "Because the bus was late.",
+        "Because they had no destination."
+      ],
+      "answer": 1,
+      "explanation": "Alors links the ten-minute delay to their decision to walk."
+    },
+    {
+      "id": "hs2-u01-l05-q013",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Zoé lisait un message, mais son frère écrivait une lettre. » Who wrote?",
+      "choices": [
+        "Zoé's brother.",
+        "Zoé.",
+        "Both were writing letters."
+      ],
+      "answer": 0,
+      "explanation": "Écrivait une lettre refers to son frère, whereas Zoé was reading."
+    },
+    {
+      "id": "hs2-u01-l05-q014",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Il faisait nuit quand la lumière s'est allumée. » What changed at that moment?",
+      "choices": [
+        "Night ended immediately everywhere.",
+        "The speaker went to bed.",
+        "A light came on."
+      ],
+      "answer": 2,
+      "explanation": "S'est allumée marks the light switching on."
+    },
+    {
+      "id": "hs2-u01-l05-q015",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Nous avions faim, donc nous sommes entrés dans une boulangerie. » What motivated entry?",
+      "choices": [
+        "They had finished breakfast.",
+        "They were hungry.",
+        "They were looking for a library."
+      ],
+      "answer": 1,
+      "explanation": "Avions faim describes the state that explains entering a bakery."
+    },
+    {
+      "id": "hs2-u01-l05-q016",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Elle n'a jamais oublié cette journée. » What does jamais mean here?",
+      "choices": [
+        "Never.",
+        "Sometimes.",
+        "Tomorrow."
+      ],
+      "answer": 0,
+      "explanation": "Ne ... jamais means the remembering lapse did not occur."
+    },
+    {
+      "id": "hs2-u01-l05-q017",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Après avoir perdu ses clés, Hugo a téléphoné à sa sœur. » Which happened first?",
+      "choices": [
+        "His sister lost her phone.",
+        "Hugo called before the keys were lost.",
+        "Hugo lost his keys."
+      ],
+      "answer": 2,
+      "explanation": "Après avoir perdu explicitly orders the loss before the phone call."
+    },
+    {
+      "id": "hs2-u01-l05-q018",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « La rue était vide, mais soudain un vélo est apparu. » What was unexpected?",
+      "choices": [
+        "The bicycle had been there all morning.",
+        "A bicycle appeared on the empty street.",
+        "The street became a river."
+      ],
+      "answer": 1,
+      "explanation": "Soudain introduces the sudden appearance against an empty-street background."
+    },
+    {
+      "id": "hs2-u01-l05-q019",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A learner summarizes « Je marchais quand je suis tombé ». Which summary is accurate?",
+      "choices": [
+        "The speaker was walking when a fall occurred.",
+        "The speaker fell every day while walking.",
+        "The speaker plans to fall tomorrow."
+      ],
+      "answer": 0,
+      "explanation": "Marchais indicates ongoing movement; suis tombé a completed fall."
+    },
+    {
+      "id": "hs2-u01-l05-q020",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You write about a repeated childhood activity. Which is best?",
+      "choices": [
+        "Samedi dernier, j'ai rendu visite à ma tante.",
+        "Samedi prochain, je rendrai visite à ma tante.",
+        "Tous les samedis, je rendais visite à ma tante."
+      ],
+      "answer": 2,
+      "explanation": "Tous les samedis plus imperfect expresses repetition."
+    },
+    {
+      "id": "hs2-u01-l05-q021",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A story needs one completed event after background weather. Choose the best.",
+      "choices": [
+        "Il a plu chaque demain quand nous partirons.",
+        "Il pleuvait quand nous avons quitté la maison.",
+        "Il pleuvra quand nous quittions hier."
+      ],
+      "answer": 1,
+      "explanation": "The imperfect provides background and avons quitté marks the event."
+    },
+    {
+      "id": "hs2-u01-l05-q022",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A student writes « Elles ont arrivées hier ». Correct the narrative.",
+      "choices": [
+        "Elles sont arrivées hier.",
+        "Elles ont arrivé hier.",
+        "Elles sont arrivé hier."
+      ],
+      "answer": 0,
+      "explanation": "Arriver forms the compound past with être, including feminine plural agreement."
+    },
+    {
+      "id": "hs2-u01-l05-q023",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "Two stories differ: one says « il attendait », the other « il a attendu vingt minutes ». What differs?",
+      "choices": [
+        "The first is in the future; the second is present.",
+        "Both necessarily describe repeated weekly habits.",
+        "The first presents background; the second frames a bounded wait."
+      ],
+      "answer": 2,
+      "explanation": "Imperfect versus a bounded passé composé frame the waiting differently."
+    },
+    {
+      "id": "hs2-u01-l05-q024",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You must connect a cause and a response. Which is coherent?",
+      "choices": [
+        "Puisque le train annulera hier, nous avons taxis.",
+        "Comme le train était annulé, nous avons pris un taxi.",
+        "Le train sera annulé hier, donc nous prenions demain."
+      ],
+      "answer": 1,
+      "explanation": "The ongoing cancellation context explains the completed decision to take a taxi."
+    },
+    {
+      "id": "hs2-u01-l05-q025",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A narrative says « Elle dormait lorsqu'un bruit l'a réveillée ». What is the second event?",
+      "choices": [
+        "A noise woke her up.",
+        "She started a new job.",
+        "She turned off the radio."
+      ],
+      "answer": 0,
+      "explanation": "L'a réveillée is the completed interruption of dormait."
+    },
+    {
+      "id": "hs2-u01-l05-q026",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You need to correct an invented detail in a source-based retelling. Which choice is best?",
+      "choices": [
+        "Add colorful dialogue as if directly quoted.",
+        "Invent the traveler's motive to make the story exciting.",
+        "Keep only events supported by the source and label uncertainties."
+      ],
+      "answer": 2,
+      "explanation": "A source-based retelling must distinguish evidence from invented narrative."
+    },
+    {
+      "id": "hs2-u01-l05-q027",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You compare two descriptions of a journey. Which question checks the timeline?",
+      "choices": [
+        "Quel récit a le titre le plus court ?",
+        "Quels événements se produisent avant et après l'arrivée ?",
+        "Quelle police de caractères est la plus jolie ?"
+      ],
+      "answer": 1,
+      "explanation": "Before-and-after event ordering tests comprehension of narrative chronology."
+    }
+  ]
+}
