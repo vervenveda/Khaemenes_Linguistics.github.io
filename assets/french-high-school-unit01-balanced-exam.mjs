@@ -1,6 +1,6 @@
 // Four-grade French Unit 01 assessment balancing, version 1.
 // Pure draft-only sampling. It never reads/writes learner records or grants course completion.
-import {FRENCH_HS_COURSES,examBlueprint,validateAssessmentBank} from "./french-high-school-assessment-contract.mjs";
+import {FRENCH_HS_COURSES,examBlueprint,validateAssessmentBank,gradeAttempt} from "./french-high-school-assessment-contract.mjs";
 
 export const FRENCH_UNIT01_BALANCE_SCHEMA="khaemenes.french.high-school.unit01-balance.v1";
 export const FRENCH_UNIT01_DOMAINS=Object.freeze(["language-use","interpretation","transfer"]);
@@ -86,4 +86,19 @@ export function inspectBalancedFrenchUnit01Draw(draw){
  }
  const balanced=draw.length===50&&ids.size===50&&counts.every((r,l)=>r.every((n,d)=>n===FRENCH_UNIT01_LESSON_QUOTAS[l][d]));
  return {balanced,counts,total:draw.length,domainTotals:FRENCH_UNIT01_DOMAINS.map((_,d)=>counts.reduce((s,row)=>s+row[d],0))};
+}
+
+// Nonofficial scoring also requires a balanced, correctly scoped attempt;
+// callers cannot bypass the drawing contract by submitting any 50 items.
+export function gradeBalancedFrenchUnit01Attempt(course,draw,answers){
+ const bp=examBlueprint(course,"unit",{unit:1});
+ const report=inspectBalancedFrenchUnit01Draw(draw);
+ if(!report.balanced||draw.some(q=>!isBankItem(q,course)))
+  throw Error("Unbalanced or wrong-course Unit 01 attempt withheld");
+ if(!Array.isArray(answers)||answers.length!==draw.length||
+  answers.some((answer,i)=>!Number.isInteger(answer)||answer<0||answer>=draw[i].choices.length))
+  throw Error("Incomplete or invalid Unit 01 responses");
+ const result=gradeAttempt(bp,draw,answers);
+ return Object.freeze({...result,gradingAuthority:"formative-only-no-learner-record-write",
+  balancingSchema:FRENCH_UNIT01_BALANCE_SCHEMA});
 }
