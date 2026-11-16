@@ -84,12 +84,12 @@
       "domain": "language-use",
       "prompt": "Which school-library proposal makes a measured claim rather than an absolute one?",
       "choices": [
-        "Tout le monde sait que le soutien scolaire garantit la réussite.",
+        "Selon trois enseignants, le dispositif améliore déjà les notes de l'ensemble des élèves.",
         "Le tutorat pourrait améliorer l'accès à l'aide scolaire.",
-        "Le tutorat garantit toujours la réussite de tous."
+        "Le tutorat a amélioré les notes des participants; les notes n'ont pourtant pas été mesurées."
       ],
       "answer": 1,
-      "explanation": "Pourrait makes the possible effect of school tutoring conditional rather than presenting academic success as guaranteed."
+      "explanation": "Pourrait marks an unverified possible benefit; the other versions overstate a limited group or claim results without measuring grades."
     },
     {
       "id": "hs3-u01-l01-q007",
@@ -126,12 +126,12 @@
       "domain": "language-use",
       "prompt": "School-council dialogue: which version presents contrasting opinions with a grammatically appropriate connector?",
       "choices": [
-        "Certains parents approuvent; parce que d'autres hésitent.",
+        "Certains parents approuvent le tutorat parce que d'autres hésitent.",
         "Certains parents approuvent le tutorat; cependant, d'autres hésitent.",
-        "Certains parents approuvent; par conséquent, d'autres hésitent."
+        "Certains parents approuvent le tutorat; par conséquent, d'autres hésitent."
       ],
       "answer": 1,
-      "explanation": "Cependant expresses a genuine contrast between groups' views on tutoring; it does not assert a causal relationship."
+      "explanation": "Cependant marks the contrast between simultaneous positions. Parce que invents a causal reason, while par conséquent presents reluctance as a consequence."
     },
     {
       "id": "hs3-u01-l01-q010",
@@ -280,12 +280,12 @@
       "domain": "transfer",
       "prompt": "A classmate infers a school-wide reading trend from two pupils. Which response encourages stronger educational reasoning?",
       "choices": [
-        "Deux exemples prouvent toujours la règle.",
-        "Les chiffres ne sont jamais utiles.",
+        "Peut-on comparer les deux exemples avec les résultats d'une autre classe avant de conclure ?",
+        "Deux exemples suffisent à confirmer une tendance pour tout le lycée.",
         "Peut-on examiner un échantillon plus large ?"
       ],
       "answer": 2,
-      "explanation": "A larger sample can help evaluate whether a pattern is general."
+      "explanation": "The keyed question explicitly asks for a larger sample; checking a second class could also improve reasoning, so compare the scope carefully."
     },
     {
       "id": "hs3-u01-l01-q021",
