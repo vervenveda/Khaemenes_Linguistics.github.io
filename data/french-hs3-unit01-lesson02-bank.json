@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs3",
+  "unit": 1,
+  "lesson": 2,
+  "status": "authoring-review-not-published",
+  "title": "Claims, reasons, transitions and counterarguments",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs3-u01-l02-q001",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Choose the connector introducing a supporting reason: « Je défends ce projet ___ il réduit le bruit. »",
+      "choices": [
+        "parce qu'",
+        "cependant",
+        "donc"
+      ],
+      "answer": 0,
+      "explanation": "Parce que introduces a reason, and its final e elides before il."
+    },
+    {
+      "id": "hs3-u01-l02-q002",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Choose the connector signaling a consequence: « Le coût baisse; ___, le projet devient accessible. »",
+      "choices": [
+        "en revanche",
+        "bien que",
+        "par conséquent"
+      ],
+      "answer": 2,
+      "explanation": "Par conséquent introduces a consequence of the falling cost."
+    },
+    {
+      "id": "hs3-u01-l02-q003",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Select the concessive clause with correct subjunctive: « ___ les résultats soient limités, ils méritent examen. »",
+      "choices": [
+        "Ainsi",
+        "Bien que",
+        "Parce que"
+      ],
+      "answer": 1,
+      "explanation": "Bien que takes the subjunctive and introduces a concession."
+    },
+    {
+      "id": "hs3-u01-l02-q004",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Choose an expression that attributes evidence rather than personal conviction.",
+      "choices": [
+        "D'après l'étude citée,",
+        "Je suis certain sans preuve que",
+        "Tout le monde reconnaît forcément que"
+      ],
+      "answer": 0,
+      "explanation": "D'après l'étude identifies the source of the claim."
+    },
+    {
+      "id": "hs3-u01-l02-q005",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which formulation most clearly qualifies a claim?",
+      "choices": [
+        "Les données prouvent toutes les causes.",
+        "La tendance est certaine pour toujours.",
+        "Les données semblent indiquer une tendance."
+      ],
+      "answer": 2,
+      "explanation": "Semblent indiquer signals a measured interpretation."
+    },
+    {
+      "id": "hs3-u01-l02-q006",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Choose the counterargument introduction: « ___, cette solution risque d'exclure certains usagers. »",
+      "choices": [
+        "En effet",
+        "Toutefois",
+        "Par exemple"
+      ],
+      "answer": 1,
+      "explanation": "Toutefois introduces a reservation about a preceding proposal."
+    },
+    {
+      "id": "hs3-u01-l02-q007",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Choose the comparative structure: « Cette mesure est ___ coûteuse que l'autre. »",
+      "choices": [
+        "moins",
+        "donc",
+        "malgré"
+      ],
+      "answer": 0,
+      "explanation": "Moins ... que expresses a comparison of lower cost."
+    },
+    {
+      "id": "hs3-u01-l02-q008",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Which sentence correctly distinguishes cause and result?",
+      "choices": [
+        "La route a fermé; parce que, le bus a été dévié.",
+        "La route a fermé; en raison de, le bus a été dévié.",
+        "La route a fermé; par conséquent, le bus a été dévié."
+      ],
+      "answer": 2,
+      "explanation": "Par conséquent links the closing of the road to the resulting diversion."
+    },
+    {
+      "id": "hs3-u01-l02-q009",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "language-use",
+      "prompt": "Complete a cautious recommendation: « Nous ___ examiner d'autres options. »",
+      "choices": [
+        "devrait",
+        "devrions",
+        "devons toujours sans exception"
+      ],
+      "answer": 1,
+      "explanation": "The conditional devrions expresses a measured recommendation with nous."
+    },
+    {
+      "id": "hs3-u01-l02-q010",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Certains soutiennent la réforme, tandis que d'autres y voient un risque. » What opposition appears?",
+      "choices": [
+        "Support for the reform versus concern about risk.",
+        "Unanimous support for the reform.",
+        "A unanimous refusal to discuss the reform."
+      ],
+      "answer": 0,
+      "explanation": "Tandis que contrasts supporters with those who perceive risk."
+    },
+    {
+      "id": "hs3-u01-l02-q011",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Le rapport repose sur un sondage mené auprès de 40 habitants. » What population is actually observed?",
+      "choices": [
+        "The entire national population.",
+        "Every inhabitant of the region.",
+        "Forty surveyed residents."
+      ],
+      "answer": 2,
+      "explanation": "Auprès de 40 habitants limits the reported sample to forty people."
+    },
+    {
+      "id": "hs3-u01-l02-q012",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « La baisse des déchets coïncide avec la campagne; la causalité reste à établir. » What is not proven?",
+      "choices": [
+        "That a campaign occurred.",
+        "That the campaign caused the reduction.",
+        "That waste was reduced."
+      ],
+      "answer": 1,
+      "explanation": "Coïncide indicates temporal association, not established causality."
+    },
+    {
+      "id": "hs3-u01-l02-q013",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « L'initiative coûte moins cher au départ; néanmoins, l'entretien est plus onéreux. » What caveat is introduced?",
+      "choices": [
+        "Long-term maintenance may be expensive.",
+        "The initial price was higher.",
+        "Maintenance is free."
+      ],
+      "answer": 0,
+      "explanation": "Néanmoins qualifies the initial cost advantage with a later expense."
+    },
+    {
+      "id": "hs3-u01-l02-q014",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Les témoignages se contredisent sur l'heure de l'incident. » What differs?",
+      "choices": [
+        "The location of every interview.",
+        "Whether any incident occurred.",
+        "The time of the incident."
+      ],
+      "answer": 2,
+      "explanation": "Sur l'heure identifies time as the disputed detail."
+    },
+    {
+      "id": "hs3-u01-l02-q015",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « Selon les auteurs, les chiffres sont provisoires. » How should the conclusion be treated?",
+      "choices": [
+        "As unrelated to the authors.",
+        "As subject to revision.",
+        "As unchangeable forever."
+      ],
+      "answer": 1,
+      "explanation": "Provisoires means preliminary and subject to further review."
+    },
+    {
+      "id": "hs3-u01-l02-q016",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « La solution est efficace pour ce quartier, mais son transfert ailleurs reste incertain. » What is uncertain?",
+      "choices": [
+        "Whether it will work in other places.",
+        "Whether it worked in the named neighborhood.",
+        "Whether the neighborhood exists."
+      ],
+      "answer": 0,
+      "explanation": "Transfert ailleurs refers to applying the result in a different context."
+    },
+    {
+      "id": "hs3-u01-l02-q017",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « L'auteur concède un avantage avant de présenter une objection. » What argumentative move is described?",
+      "choices": [
+        "Giving no consideration to other views.",
+        "Replacing all evidence with slogans.",
+        "Acknowledging a strength before a counterpoint."
+      ],
+      "answer": 2,
+      "explanation": "Concéder recognizes a point before responding with a reservation."
+    },
+    {
+      "id": "hs3-u01-l02-q018",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "interpretation",
+      "prompt": "Read « L'enquête mesure la satisfaction, non les résultats scolaires. » Which claim would exceed the evidence?",
+      "choices": [
+        "It does not directly measure grades.",
+        "It proves an improvement in grades.",
+        "It measures participants' satisfaction."
+      ],
+      "answer": 1,
+      "explanation": "Satisfaction data cannot alone establish an improvement in academic results."
+    },
+    {
+      "id": "hs3-u01-l02-q019",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "During a debate, you want to recognize a valid opposing argument. Choose the reply.",
+      "choices": [
+        "Vous soulevez un point important; examinons toutefois les données.",
+        "Votre opinion est inutile; passons à autre chose.",
+        "Je refuse de considérer toute objection."
+      ],
+      "answer": 0,
+      "explanation": "This reply acknowledges the other point and invites evidence-based examination."
+    },
+    {
+      "id": "hs3-u01-l02-q020",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You must explain why a proposal deserves testing. Which is most persuasive?",
+      "choices": [
+        "Le projet réussira nécessairement dans tous les pays.",
+        "Je préfère le projet parce que son nom est joli.",
+        "Le projet pourrait réduire le trafic, comme le suggèrent deux études locales."
+      ],
+      "answer": 2,
+      "explanation": "The first claim is qualified and refers to relevant evidence."
+    },
+    {
+      "id": "hs3-u01-l02-q021",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "A teammate confuses correlation with causation. Which response is careful?",
+      "choices": [
+        "Une corrélation rend inutile toute comparaison.",
+        "L'association observée ne suffit pas à prouver une cause.",
+        "Les deux événements sont liés, donc l'un cause forcément l'autre."
+      ],
+      "answer": 1,
+      "explanation": "A statistical association does not by itself establish causation."
+    },
+    {
+      "id": "hs3-u01-l02-q022",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "Your concluding paragraph must link evidence to a proposal. Which phrase best fits?",
+      "choices": [
+        "Compte tenu de ces résultats, un essai limité semble justifié.",
+        "Ces résultats interdisent toute évaluation future.",
+        "Il est impossible de vérifier cette proposition."
+      ],
+      "answer": 0,
+      "explanation": "Compte tenu de draws a proportionate conclusion from cited results."
+    },
+    {
+      "id": "hs3-u01-l02-q023",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "Your argument must introduce an objection respectfully. Which is strongest?",
+      "choices": [
+        "Aucune critique ne mérite de réponse.",
+        "Les opposants n'ont jamais de raisons.",
+        "On pourrait objecter que le financement reste incertain."
+      ],
+      "answer": 2,
+      "explanation": "On pourrait objecter introduces a legitimate counterargument."
+    },
+    {
+      "id": "hs3-u01-l02-q024",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You discover that two sources use different definitions of success. What should you do?",
+      "choices": [
+        "Garder uniquement la définition la plus favorable.",
+        "Clarifier les critères avant de comparer les conclusions.",
+        "Additionner les résultats sans comparer les critères."
+      ],
+      "answer": 1,
+      "explanation": "Shared definitions are needed before comparing conclusions."
+    },
+    {
+      "id": "hs3-u01-l02-q025",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You need a contrast rather than an additional example. Choose the transition.",
+      "choices": [
+        "En revanche,",
+        "Par exemple,",
+        "Notamment,"
+      ],
+      "answer": 0,
+      "explanation": "En revanche introduces contrast between the two points."
+    },
+    {
+      "id": "hs3-u01-l02-q026",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "A source does not report its sample size. Which question best tests reliability?",
+      "choices": [
+        "Quelle couleur possède la couverture du rapport ?",
+        "Pourquoi le titre est-il si court ?",
+        "Combien de personnes ont participé à l'enquête ?"
+      ],
+      "answer": 2,
+      "explanation": "The number of respondents affects interpretation and representativeness."
+    },
+    {
+      "id": "hs3-u01-l02-q027",
+      "unit": 1,
+      "lesson": 2,
+      "domain": "transfer",
+      "prompt": "You are revising an exaggerated assertion. Which version is appropriately bounded?",
+      "choices": [
+        "L'évolution est impossible à discuter puisqu'elle me plaît.",
+        "Dans les deux écoles observées, la fréquentation semble avoir augmenté.",
+        "Dans toutes les écoles du monde, la fréquentation augmente toujours."
+      ],
+      "answer": 1,
+      "explanation": "The limited evidence supports a bounded statement about the two observed schools."
+    }
+  ]
+}
