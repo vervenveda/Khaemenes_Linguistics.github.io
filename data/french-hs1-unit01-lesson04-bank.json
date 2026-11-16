@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs1",
+  "unit": 1,
+  "lesson": 4,
+  "status": "authoring-review-not-published",
+  "title": "School routines, classroom language and basic present tense",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs1-u01-l04-q001",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Complete the classroom request: « Je ___ une question. »",
+      "choices": [
+        "pose",
+        "poses",
+        "posons"
+      ],
+      "answer": 0,
+      "explanation": "Je takes pose in the present tense of poser."
+    },
+    {
+      "id": "hs1-u01-l04-q002",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Choose the correct classroom instruction: « ___ votre livre, s'il vous plaît. »",
+      "choices": [
+        "Ouvres",
+        "Ouvrons",
+        "Ouvrez"
+      ],
+      "answer": 2,
+      "explanation": "Ouvrez is the vous imperative of ouvrir, appropriate for a class."
+    },
+    {
+      "id": "hs1-u01-l04-q003",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Complete: « Nous ___ français aujourd'hui. »",
+      "choices": [
+        "étudie",
+        "étudions",
+        "étudiez"
+      ],
+      "answer": 1,
+      "explanation": "Étudions is the present-tense nous form of étudier."
+    },
+    {
+      "id": "hs1-u01-l04-q004",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Which sentence uses avoir correctly with tu?",
+      "choices": [
+        "Tu as un cahier.",
+        "Tu a un cahier.",
+        "Tu avez un cahier."
+      ],
+      "answer": 0,
+      "explanation": "Tu as is the second-person singular form of avoir."
+    },
+    {
+      "id": "hs1-u01-l04-q005",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Complete: « Les élèves ___ la leçon. »",
+      "choices": [
+        "écoute",
+        "écoutons",
+        "écoutent"
+      ],
+      "answer": 2,
+      "explanation": "Écoutent agrees with plural les élèves."
+    },
+    {
+      "id": "hs1-u01-l04-q006",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Choose the correct present tense: « Je ___ mon devoir. »",
+      "choices": [
+        "finissons",
+        "finis",
+        "finit"
+      ],
+      "answer": 1,
+      "explanation": "Finis is the first-person singular present of finir."
+    },
+    {
+      "id": "hs1-u01-l04-q007",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Complete: « Vous ___ la date au tableau. »",
+      "choices": [
+        "écrivez",
+        "écrit",
+        "écrivons"
+      ],
+      "answer": 0,
+      "explanation": "Écrivez agrees with vous in the present tense."
+    },
+    {
+      "id": "hs1-u01-l04-q008",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Choose the correct negative sentence.",
+      "choices": [
+        "Je comprends ne pas.",
+        "Je pas ne comprends.",
+        "Je ne comprends pas."
+      ],
+      "answer": 2,
+      "explanation": "Ne and pas normally surround the conjugated verb in simple present."
+    },
+    {
+      "id": "hs1-u01-l04-q009",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "language-use",
+      "prompt": "Complete: « Il ___ son dictionnaire à l'école. »",
+      "choices": [
+        "apportez",
+        "apporte",
+        "apportons"
+      ],
+      "answer": 1,
+      "explanation": "Apporte is the third-person singular form of apporter."
+    },
+    {
+      "id": "hs1-u01-l04-q010",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « La professeure explique et les élèves prennent des notes. » Who writes notes?",
+      "choices": [
+        "The students.",
+        "The teacher only.",
+        "The principal."
+      ],
+      "answer": 0,
+      "explanation": "Les élèves prennent des notes identifies the students."
+    },
+    {
+      "id": "hs1-u01-l04-q011",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Nous commençons à huit heures. » When does class start?",
+      "choices": [
+        "At six o'clock.",
+        "At nine o'clock.",
+        "At eight o'clock."
+      ],
+      "answer": 2,
+      "explanation": "À huit heures expresses the starting time."
+    },
+    {
+      "id": "hs1-u01-l04-q012",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Je ne trouve pas mon stylo. » What problem is described?",
+      "choices": [
+        "The speaker needs a new desk.",
+        "The speaker cannot find a pen.",
+        "The speaker has finished writing."
+      ],
+      "answer": 1,
+      "explanation": "Ne trouve pas expresses inability to find the pen."
+    },
+    {
+      "id": "hs1-u01-l04-q013",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Tu peux répéter la consigne ? » What is requested?",
+      "choices": [
+        "Repeat the instruction.",
+        "Close the door.",
+        "Write a new exercise."
+      ],
+      "answer": 0,
+      "explanation": "Répéter la consigne asks someone to repeat the instruction."
+    },
+    {
+      "id": "hs1-u01-l04-q014",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Vous devez rendre le travail vendredi. » When is the assignment due?",
+      "choices": [
+        "Monday.",
+        "Wednesday.",
+        "Friday."
+      ],
+      "answer": 2,
+      "explanation": "Vendredi is Friday; rendre le travail indicates handing in work."
+    },
+    {
+      "id": "hs1-u01-l04-q015",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Les enfants rangent leurs affaires avant la pause. » What happens before break?",
+      "choices": [
+        "They leave for a trip.",
+        "They put away their things.",
+        "They eat lunch."
+      ],
+      "answer": 1,
+      "explanation": "Rangent leurs affaires means put belongings away."
+    },
+    {
+      "id": "hs1-u01-l04-q016",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Elle lit une page, puis répond aux questions. » Which task comes first?",
+      "choices": [
+        "Reading a page.",
+        "Answering questions.",
+        "Checking the grade."
+      ],
+      "answer": 0,
+      "explanation": "Puis indicates that answering follows reading."
+    },
+    {
+      "id": "hs1-u01-l04-q017",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Le professeur parle doucement pour aider la classe. » How does the teacher speak?",
+      "choices": [
+        "Very quickly.",
+        "Without speaking.",
+        "Softly or gently."
+      ],
+      "answer": 2,
+      "explanation": "Doucement describes a soft or gentle manner."
+    },
+    {
+      "id": "hs1-u01-l04-q018",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "interpretation",
+      "prompt": "Read: « Je travaille avec ma partenaire aujourd'hui. » How is the learner working?",
+      "choices": [
+        "With three teachers.",
+        "With a partner.",
+        "Completely alone."
+      ],
+      "answer": 1,
+      "explanation": "Avec ma partenaire means with my partner."
+    },
+    {
+      "id": "hs1-u01-l04-q019",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You need permission to ask a question politely. Which sentence fits?",
+      "choices": [
+        "Est-ce que je peux poser une question ?",
+        "Est-ce que je posez une question ?",
+        "Je poser une question ?"
+      ],
+      "answer": 0,
+      "explanation": "Est-ce que je peux ... ? forms a polite request."
+    },
+    {
+      "id": "hs1-u01-l04-q020",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You need a sheet of paper. What do you ask?",
+      "choices": [
+        "Avez-vous un repas, s'il vous plaît ?",
+        "Êtes-vous un papier, s'il vous plaît ?",
+        "Avez-vous une feuille de papier, s'il vous plaît ?"
+      ],
+      "answer": 2,
+      "explanation": "Une feuille de papier is a sheet of paper."
+    },
+    {
+      "id": "hs1-u01-l04-q021",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "A friend asks what you are doing. You are reading. Choose the reply.",
+      "choices": [
+        "Je lit mon livre.",
+        "Je lis mon livre.",
+        "Je lisez mon livre."
+      ],
+      "answer": 1,
+      "explanation": "Je lis is the correct first-person present of lire."
+    },
+    {
+      "id": "hs1-u01-l04-q022",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You and a friend are studying. Which sentence includes you both?",
+      "choices": [
+        "Nous étudions ensemble.",
+        "Nous étudiez ensemble.",
+        "Je étudions ensemble."
+      ],
+      "answer": 0,
+      "explanation": "Nous étudions agrees in person and number."
+    },
+    {
+      "id": "hs1-u01-l04-q023",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You want a classmate to speak more slowly. Which is best?",
+      "choices": [
+        "Peux-tu parler plus vite encore ?",
+        "Tu parles plus fort hier ?",
+        "Peux-tu parler plus lentement ?"
+      ],
+      "answer": 2,
+      "explanation": "Plus lentement means more slowly and the request is grammatical."
+    },
+    {
+      "id": "hs1-u01-l04-q024",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "A teacher gives an instruction to several students: which works?",
+      "choices": [
+        "Écrivons ton nom en haut de la page.",
+        "Écrivez votre nom en haut de la page.",
+        "Écris votre nom en haut de la page."
+      ],
+      "answer": 1,
+      "explanation": "Écrivez agrees with the plural/polite vous audience."
+    },
+    {
+      "id": "hs1-u01-l04-q025",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You did not understand the task. Choose the suitable reply.",
+      "choices": [
+        "Je ne comprends pas la consigne.",
+        "Je comprends toujours tout.",
+        "Je ne comprends la consigne pas."
+      ],
+      "answer": 0,
+      "explanation": "Je ne comprends pas appropriately expresses uncertainty."
+    },
+    {
+      "id": "hs1-u01-l04-q026",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "You need to say that class ends at three o'clock. Choose the sentence.",
+      "choices": [
+        "Le cours finissent à quinze heures.",
+        "Le cours finissons à quinze heures.",
+        "Le cours finit à quinze heures."
+      ],
+      "answer": 2,
+      "explanation": "Singular le cours takes finit, and quinze heures is 3 p.m."
+    },
+    {
+      "id": "hs1-u01-l04-q027",
+      "unit": 1,
+      "lesson": 4,
+      "domain": "transfer",
+      "prompt": "A student writes « Elles parle français ». What correction is needed?",
+      "choices": [
+        "Elles parlons français.",
+        "Elles parlent français.",
+        "Elles parles français."
+      ],
+      "answer": 1,
+      "explanation": "Elles takes the plural verb ending -ent: parlent."
+    }
+  ]
+}
