@@ -20,6 +20,7 @@ on:
       - 'scripts/test-french-high-school-unit01-guided-listening-speaking.mjs'
       - 'scripts/test-french-high-school-unit01-integrated-evidence-bridges.mjs'
       - 'scripts/test-french-high-school-unit01-hs1-hs2-four-skills.mjs'
+      - 'scripts/test-french-high-school-unit01-responsive-print-ux.mjs'
       - 'data/french-hs1-unit01-extended-reading-lab.json'
       - 'data/french-hs2-unit01-extended-reading-lab.json'
       - 'data/french-hs1-unit01-guided-listening-speaking.json'
@@ -90,6 +91,7 @@ on:
       - 'scripts/test-french-high-school-unit01-guided-listening-speaking.mjs'
       - 'scripts/test-french-high-school-unit01-integrated-evidence-bridges.mjs'
       - 'scripts/test-french-high-school-unit01-hs1-hs2-four-skills.mjs'
+      - 'scripts/test-french-high-school-unit01-responsive-print-ux.mjs'
       - 'data/french-hs1-unit01-extended-reading-lab.json'
       - 'data/french-hs2-unit01-extended-reading-lab.json'
       - 'data/french-hs1-unit01-guided-listening-speaking.json'
@@ -209,3 +211,5 @@ jobs:
         run: node --test scripts/test-french-high-school-unit01-integrated-evidence-bridges.mjs
       - name: Check French I-II 12 foundational four-skill lessons and 36 accurate reading keys
         run: node --test scripts/test-french-high-school-unit01-hs1-hs2-four-skills.mjs
+      - name: Guard French I-IV readable layouts, scoped printing, navigation and student draft safety
+        run: node --test scripts/test-french-high-school-unit01-responsive-print-ux.mjs
