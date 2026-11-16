@@ -19,7 +19,7 @@
             "Ana préparait souvent son sac le soir.",
             "Le téléphone a sonné à dix-neuf heures."
           ],
-          "answer": 0,
+          "answer": 2,
           "explanation": "Le passé composé introduit l'appel comme événement ponctuel dans le contexte à l'imparfait."
         },
         {
@@ -30,7 +30,7 @@
             "Le billet de train et une carte de Lyon.",
             "Un message que Malik avait déjà envoyé."
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "Ana découvre une photo dans l'enveloppe, alors que le billet était ailleurs."
         },
         {
@@ -41,7 +41,7 @@
             "Dans un livre posé sur la table.",
             "Dans une enveloppe chez le cousin Malik."
           ],
-          "answer": 2,
+          "answer": 1,
           "explanation": "Malik retrouve le billet dans un livre sur la table."
         }
       ]
@@ -61,7 +61,7 @@
             "Parce que le sujet Léa et Zoé est féminin pluriel avec être.",
             "Parce que le verbe prendre utilise le même accord."
           ],
-          "answer": 0,
+          "answer": 1,
           "explanation": "Avec être, le participe passé s'accorde ici avec le sujet féminin pluriel."
         },
         {
@@ -72,7 +72,7 @@
             "Un bateau pour traverser la ville.",
             "Un taxi pour se rendre à l'aéroport."
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "Le texte indique qu'elles ont pris un bus après leur arrivée."
         },
         {
@@ -103,7 +103,7 @@
             "Il allait à l'école à pied chaque matin.",
             "Un employé a retrouvé le sac sous un banc."
           ],
-          "answer": 0,
+          "answer": 1,
           "explanation": "« Allait » à l'imparfait marque ici une habitude répétée."
         },
         {
@@ -114,7 +114,7 @@
             "Malik retrouvait sa cousine chaque jeudi.",
             "Les rues étaient souvent bruyantes."
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "Le passé composé « a perdu » introduit l'incident précis."
         },
         {
@@ -187,7 +187,7 @@
             "Le bus est parti exactement à huit heures.",
             "Léa se dirige vers la gare et Samir l'y attend."
           ],
-          "answer": 0,
+          "answer": 2,
           "explanation": "Les deux récits situent la rencontre à la gare avec des perspectives différentes."
         },
         {
@@ -198,7 +198,7 @@
             "Un des auteurs invente nécessairement toute l'histoire.",
             "Léa et Samir parlent de deux villes éloignées."
           ],
-          "answer": 1,
+          "answer": 0,
           "explanation": "Léa raconte son trajet, tandis que Samir raconte son attente."
         },
         {
@@ -209,7 +209,7 @@
             "L'heure exacte du départ du bus.",
             "Le fait qu'il pleuvait ce matin-là."
           ],
-          "answer": 2,
+          "answer": 1,
           "explanation": "Le texte souligne qu'aucune source ne précise l'heure exacte du départ."
         }
       ]
