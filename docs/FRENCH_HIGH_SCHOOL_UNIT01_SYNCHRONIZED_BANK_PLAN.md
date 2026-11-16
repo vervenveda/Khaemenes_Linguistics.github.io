@@ -1,15 +1,15 @@
 # French I–IV · Unit 01 synchronized question-bank development
 
-**Status:** Authored Lesson 01–04 question banks on `main` across all four grades. First assistant editorial pass completed; independent linguistic/editorial review and browser QA outstanding. No new learner mastery route is published.
+**Status:** Authored Lesson 01–05 question banks on `main` across all four grades. First assistant editorial pass completed; independent linguistic/editorial review and browser QA outstanding. No new learner mastery route is published.
 
 Four high-school courses remain independent in academic difficulty but move through the same *repair milestones*. The existing 36-week, six-theme Hall curricula and all stored learner records remain intact.
 
 | Grade | Lesson 01 authored | Lesson 02 | Lesson 03 | Lesson 04 | Lesson 05 | Lesson 06 |
 | --- | --- | --- | --- | --- | --- | --- |
-| French I | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | Planned | Planned |
-| French II | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | Planned | Planned |
-| French III | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | Planned | Planned |
-| French IV | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | Planned | Planned |
+| French I | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | Planned |
+| French II | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | Planned |
+| French III | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | Planned |
+| French IV | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | 27 draft questions | Planned |
 
 ## Paired lesson targets (proposed; does not override existing curricula)
 
@@ -59,22 +59,26 @@ Four high-school courses remain independent in academic difficulty but move thro
 - `data/french-hs1-unit01-lesson02-bank.json`
 - `data/french-hs1-unit01-lesson03-bank.json`
 - `data/french-hs1-unit01-lesson04-bank.json`
+- `data/french-hs1-unit01-lesson05-bank.json`
 - `data/french-hs2-unit01-lesson01-bank.json`
 - `data/french-hs2-unit01-lesson02-bank.json`
 - `data/french-hs2-unit01-lesson03-bank.json`
 - `data/french-hs2-unit01-lesson04-bank.json`
+- `data/french-hs2-unit01-lesson05-bank.json`
 - `data/french-hs3-unit01-lesson01-bank.json`
 - `data/french-hs3-unit01-lesson02-bank.json`
 - `data/french-hs3-unit01-lesson03-bank.json`
 - `data/french-hs3-unit01-lesson04-bank.json`
+- `data/french-hs3-unit01-lesson05-bank.json`
 - `data/french-hs4-unit01-lesson01-bank.json`
 - `data/french-hs4-unit01-lesson02-bank.json`
 - `data/french-hs4-unit01-lesson03-bank.json`
 - `data/french-hs4-unit01-lesson04-bank.json`
+- `data/french-hs4-unit01-lesson05-bank.json`
 
 Every question-bank file is marked `authoring-review-not-published`. Assistant editorial passes and independent linguistic review are separate fields; none has been certified by an independent reviewer. The CI tests evaluate structural integrity; they do not certify linguistic accuracy or educational quality.
 
-**Unit 01 bank counts at this checkpoint:** Lessons 01–04 = 108 authored questions per grade, 432 across French I–IV. Lesson 04 is covered by `scripts/test-french-high-school-authored-unit01-lesson04.mjs`. Formal assessment gates remain withheld.
+**Unit 01 bank counts at this checkpoint:** Lessons 01–05 = 135 authored questions per grade, 540 across French I–IV. Lesson 05 is covered by `scripts/test-french-high-school-authored-unit01-lesson05.mjs`. Formal assessment gates remain withheld.
 
 ## Lesson 03 checkpoint
 - French I: descriptive adjective gender/number agreement and family references.
@@ -91,3 +95,11 @@ All four banks remain unpublished. Source-level validation alone does not establ
 - French IV: formal register, translation uncertainty, speaker representation and editorial provenance.
 
 All Lesson 04 banks are new drafts. Independent linguistic review, lesson-by-lesson teaching alignment, learner trials, browser testing and formal authority linkage remain outstanding.
+
+## Lesson 05 checkpoint
+- French I: food, counting, partitives, dietary requests and café etiquette.
+- French II: connected past narratives and timeline reasoning.
+- French III: contrasting sources, sample size, causal caution and synthesis.
+- French IV: archival, documentary and literary perspectives, responsible quotation and representation.
+
+All Lesson 05 banks remain unpublished. Source-level verification has not replaced independent French-language editorial review or live-browser tests.
