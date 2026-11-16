@@ -12,7 +12,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Source mission: choose a defensible description of a council's original minutes.",
+      "prompt": "Many Voices migration exhibit: choose a defensible description of original council minutes concerning a fictional relocation.",
       "choices": [
         "Un procès-verbal contemporain, à interpréter dans son contexte institutionnel.",
         "Un témoignage représentant nécessairement tous les habitants.",
@@ -26,7 +26,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: distinguish a memoir from a historical novel.",
+      "prompt": "Migration-memory synthesis: distinguish a survivor's memoir of displacement from a novel inspired by migration.",
       "choices": [
         "Les deux genres offrent nécessairement des citations directes des mêmes événements.",
         "Un roman est toujours un registre administratif.",
@@ -40,7 +40,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: make a careful hypothetical past inference.",
+      "prompt": "Fictional family migration records: choose a careful hypothetical past inference about what a surviving archive might have shown.",
       "choices": [
         "Les archives imaginaires prouvent ce qui s'est passé.",
         "Si les archives avaient survécu, nous aurions pu comparer les versions.",
@@ -54,7 +54,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: acknowledge that an English subtitle changes a political nuance.",
+      "prompt": "Identity and migration documentary: which French sentence transparently acknowledges a translation that changes a political nuance?",
       "choices": [
         "La traduction atténue une nuance du terme original, ce qui mérite une note.",
         "La traduction est nécessairement identique à chaque nuance.",
@@ -68,7 +68,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: attribute a disputed historical claim rather than endorse it.",
+      "prompt": "Fictional relocation chronicles disagree: which expression attributes the disputed report rather than endorsing it?",
       "choices": [
         "Il est incontestable que la réunion fut annulée sans source.",
         "La chronique représente automatiquement chaque témoin.",
@@ -82,7 +82,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: describe a documentary re-enactment responsibly.",
+      "prompt": "A migrant family's departure is staged in a documentary. Which French description distinguishes re-enactment from original footage?",
       "choices": [
         "Une preuve audiovisuelle originale créée après les faits.",
         "Une scène reconstituée, distincte des archives d'époque.",
@@ -96,7 +96,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: avoid treating one community interview as universal.",
+      "prompt": "Migration oral-history exhibit: which formulation respects one community interview without treating it as everyone's experience?",
       "choices": [
         "Ce témoignage expose une expérience, sans épuiser les perspectives du groupe.",
         "Ce témoignage décrit forcément chaque membre du groupe.",
@@ -110,7 +110,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: identify an editorial omission in a quoted text.",
+      "prompt": "Editing a translated migrant testimony for an exhibit: which French practice clearly identifies omitted source text?",
       "choices": [
         "Les omissions sont cachées pour faciliter une conclusion.",
         "Des paroles inexistantes sont ajoutées entre guillemets.",
@@ -124,7 +124,7 @@
       "unit": 1,
       "lesson": 6,
       "domain": "language-use",
-      "prompt": "Mission: formulate a balanced comparative thesis.",
+      "prompt": "Migration and belonging exhibit: choose a balanced thesis contrasting official archives and personal poetic memory.",
       "choices": [
         "Le poème rend toute archive nécessairement fausse.",
         "L'archive précise les décisions, tandis que le poème révèle une mémoire subjective.",
