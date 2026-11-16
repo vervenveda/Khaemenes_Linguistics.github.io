@@ -1,0 +1,110 @@
+{
+  "schema": "khaemenes.french.unit01-guided-listening-speaking.v1",
+  "course": "hs2",
+  "status": "formative-teacher-partner-read-not-recorded",
+  "officialListeningCertified": false,
+  "lessonActivities": [
+    {
+      "lesson": 1,
+      "id": "hs2-u01-l01-oral01",
+      "title": "Un appel sous la pluie",
+      "transcript": "Ana : « Hier, je préparais mon sac quand mon téléphone a sonné. » Malik : « Tu cherchais ton billet ? » Ana : « Oui, et il pleuvait dehors. J'ai trouvé une enveloppe, mais elle contenait une photo. » Malik : « J'ai vu ton billet dans un livre sur la table. » Ana : « Ah, merci ! Pendant que j'attendais ta réponse, je cherchais partout. » Malik : « Heureusement, tu l'as retrouvé avant le départ. »",
+      "comprehension": [
+        "Qu'est-ce qu'Ana faisait quand le téléphone a sonné ?",
+        "Où était finalement le billet ?"
+      ],
+      "oralTask": "Racontez un événement interrompant une action en cours avec imparfait et passé composé.",
+      "reviewCriteria": [
+        "Identifie les actions et les détails du dialogue",
+        "Distingue imparfait et passé composé dans son récit",
+        "Utilise les pronoms ou les accords visés par la leçon",
+        "Révise son récit après une question du partenaire"
+      ]
+    },
+    {
+      "lesson": 2,
+      "id": "hs2-u01-l02-oral01",
+      "title": "Le trajet de Léa",
+      "transcript": "Léa : « Samedi, Zoé et moi sommes arrivées à Lyon. » Tante : « Vous avez pris un taxi ? » Léa : « Non, nous avons pris le bus. » Zoé : « Et nous avons acheté une carte. » Tante : « Vous avez visité le musée ? » Zoé : « Oui, nous sommes entrées dans le musée après midi. » Léa : « Le soir, nous avons écrit notre journée dans un journal. » Tante : « Vous avez fait beaucoup de choses ! »",
+      "comprehension": [
+        "Quel transport les deux voyageuses ont-elles pris ?",
+        "Pourquoi dit-on « arrivées » et « entrées » ?"
+      ],
+      "oralTask": "Racontez trois actions terminées au passé composé, dont une avec être et un accord correct.",
+      "reviewCriteria": [
+        "Identifie les actions et les détails du dialogue",
+        "Distingue imparfait et passé composé dans son récit",
+        "Utilise les pronoms ou les accords visés par la leçon",
+        "Révise son récit après une question du partenaire"
+      ]
+    },
+    {
+      "lesson": 3,
+      "id": "hs2-u01-l03-oral01",
+      "title": "Le sac perdu",
+      "transcript": "Malik : « Avant, j'allais à l'école à pied. Le jeudi, je retrouvais Inès. » Inès : « Un jour, tu as perdu ton sac sous la pluie. » Malik : « Oui, je ne savais plus où chercher. » Inès : « Nous sommes retournés à la boulangerie, puis à l'arrêt du bus. » Malik : « Un employé a trouvé mon sac sous un banc. » Inès : « Maintenant, tu vérifies toujours ton sac ! »",
+      "comprehension": [
+        "Quelle habitude Malik décrit-il au début ?",
+        "Quel événement ponctuel change la journée ?"
+      ],
+      "oralTask": "Racontez une habitude passée et un événement inattendu, puis expliquez votre choix des temps.",
+      "reviewCriteria": [
+        "Identifie les actions et les détails du dialogue",
+        "Distingue imparfait et passé composé dans son récit",
+        "Utilise les pronoms ou les accords visés par la leçon",
+        "Révise son récit après une question du partenaire"
+      ]
+    },
+    {
+      "lesson": 4,
+      "id": "hs2-u01-l04-oral01",
+      "title": "Les photos de Noémie",
+      "transcript": "Noémie : « J'ai trouvé deux photos anciennes. Je les ai nettoyées. » Léa : « Tu peux me les montrer ? » Noémie : « Bien sûr. Je t'ai apporté l'enveloppe. » Léa : « Merci. Et les personnes sur les photos ? » Noémie : « Je ne connais pas tous leurs noms. J'ai écrit à ma grand-mère. » Léa : « Elle t'a répondu ? » Noémie : « Pas encore, mais je lui ai envoyé les images. »",
+      "comprehension": [
+        "À quoi renvoie le pronom « les » ?",
+        "À qui Noémie a-t-elle écrit ?"
+      ],
+      "oralTask": "Reformulez quatre phrases en remplaçant les noms par les pronoms objets qui conviennent.",
+      "reviewCriteria": [
+        "Identifie les actions et les détails du dialogue",
+        "Distingue imparfait et passé composé dans son récit",
+        "Utilise les pronoms ou les accords visés par la leçon",
+        "Révise son récit après une question du partenaire"
+      ]
+    },
+    {
+      "lesson": 5,
+      "id": "hs2-u01-l05-oral01",
+      "title": "Deux souvenirs",
+      "transcript": "Léa : « Je marchais vers la gare quand mon téléphone a sonné. » Samir : « Moi, je t'attendais devant la gare. Il pleuvait. » Léa : « Le bus était déjà parti, alors j'ai marché plus vite. » Samir : « Tu es arrivée vingt minutes plus tard et tu semblais inquiète. » Léa : « Nous avons vécu la même matinée, mais nous n'avons pas vu les mêmes détails. »",
+      "comprehension": [
+        "Quel événement Léa raconte-t-elle que Samir n'a pas observé ?",
+        "Quel détail Samir peut-il confirmer ?"
+      ],
+      "oralTask": "Comparez deux souvenirs : dites ce que chacun sait, et ce qu'aucun récit ne prouve.",
+      "reviewCriteria": [
+        "Identifie les actions et les détails du dialogue",
+        "Distingue imparfait et passé composé dans son récit",
+        "Utilise les pronoms ou les accords visés par la leçon",
+        "Révise son récit après une question du partenaire"
+      ]
+    },
+    {
+      "lesson": 6,
+      "id": "hs2-u01-l06-oral01",
+      "title": "Le carnet retrouvé",
+      "transcript": "Élise : « Lundi, j'attendais le train. Mon billet indiquait huit heures quinze. » Camille : « Je t'ai vue avec ton carnet à la gare. » Élise : « Après ton appel, j'ai rangé mon billet, puis mon carnet a disparu. » Camille : « Je ne sais pas où tu l'as posé. » Élise : « Une amie m'a dit que j'avais sorti un livre pendant le trajet. J'ai cherché et j'ai retrouvé le carnet entre les pages. » Camille : « Quelle bonne nouvelle ! »",
+      "comprehension": [
+        "Quelle information Camille connaît-elle avec certitude ?",
+        "Où Élise a-t-elle retrouvé le carnet ?"
+      ],
+      "oralTask": "Reconstituez la chronologie à l'oral, en distinguant les preuves et les souvenirs incertains.",
+      "reviewCriteria": [
+        "Identifie les actions et les détails du dialogue",
+        "Distingue imparfait et passé composé dans son récit",
+        "Utilise les pronoms ou les accords visés par la leçon",
+        "Révise son récit après une question du partenaire"
+      ]
+    }
+  ]
+}
