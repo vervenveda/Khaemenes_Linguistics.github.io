@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
 
 const html=readFileSync("Halls/french-high-school-unit01-instruction.html","utf8");
-const a=html.indexOf("const packs="),b=html.indexOf(";\nfunction escapeHtml",a);
+const a=html.indexOf("const packs="),b=html.indexOf(";\nconst themeCrosswalk",a);
 assert.ok(a>=0&&b>a,"Lesson bank data must be present");
 const packs=JSON.parse(html.slice(a+"const packs=".length,b));
 const headings=[
