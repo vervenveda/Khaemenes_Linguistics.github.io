@@ -42,12 +42,12 @@
       "domain": "language-use",
       "prompt": "Interpreting a fictional family's departure: which English translation preserves the uncertainty of « Il aurait quitté la ville »?",
       "choices": [
-        "He must leave the city tomorrow.",
+        "He was expected to leave the city.",
         "He reportedly left the city.",
-        "He definitely left the city."
+        "He would leave the city if the conditions changed."
       ],
       "answer": 1,
-      "explanation": "The conditional can mark reported, unconfirmed past information."
+      "explanation": "Here the isolated past conditional may signal an unconfirmed report; 'reportedly' expresses that evidentiary reading without imposing a condition not present."
     },
     {
       "id": "hs4-u01-l04-q004",
@@ -84,12 +84,12 @@
       "domain": "language-use",
       "prompt": "A bilingual migration-exhibit translation note: which phrase transparently identifies the translator's intervention?",
       "choices": [
-        "Texte source consulté, sans l'avoir vu.",
+        "Traduction révisée par l'éditeur, sans indication des nuances modifiées.",
         "Traduction proposée par l'éditeur; nuance expliquée en note.",
-        "Citation originale inchangée, bien que réécrite."
+        "Traduction établie d'après le texte source, sans préciser l'intervention éditoriale."
       ],
       "answer": 1,
-      "explanation": "The note explicitly identifies the editorial translation and discloses the consequential change in nuance rather than implying the witness supplied the translation."
+      "explanation": "The chosen note both identifies the editorial translator and explains a specific change in nuance; the others disclose less."
     },
     {
       "id": "hs4-u01-l04-q007",
