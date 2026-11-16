@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs4",
+  "unit": 1,
+  "lesson": 5,
+  "status": "authoring-review-not-published",
+  "title": "Compare archival, documentary and literary representations",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs4-u01-l05-q001",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Which text is most likely an archival primary source for an event?",
+      "choices": [
+        "A contemporary witness's dated letter.",
+        "A modern novel inspired by the event.",
+        "A recent textbook overview."
+      ],
+      "answer": 0,
+      "explanation": "A firsthand letter created at the time can be primary evidence for the writer's account."
+    },
+    {
+      "id": "hs4-u01-l05-q002",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Which description best distinguishes historical fiction from documentary testimony?",
+      "choices": [
+        "Fiction and testimony always have identical evidentiary status.",
+        "Every novel is a verbatim transcript.",
+        "A novel may reconstruct imagined experience, while testimony records a person's account."
+      ],
+      "answer": 2,
+      "explanation": "Genres differ in their claims to direct evidence and reconstruction."
+    },
+    {
+      "id": "hs4-u01-l05-q003",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose the careful description of a staged documentary scene.",
+      "choices": [
+        "Un témoignage spontané joué par des acteurs.",
+        "Une reconstitution fondée sur des sources identifiées.",
+        "Une archive filmée directement lors d'un événement non enregistré."
+      ],
+      "answer": 1,
+      "explanation": "Reconstitution identifies staging rather than an original recording."
+    },
+    {
+      "id": "hs4-u01-l05-q004",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "What should accompany a quotation from an archival letter?",
+      "choices": [
+        "Author, date, archive reference and relevant context.",
+        "Only a decorative illustration.",
+        "A guarantee that the author represented everyone."
+      ],
+      "answer": 0,
+      "explanation": "Provenance and context allow the quotation to be assessed."
+    },
+    {
+      "id": "hs4-u01-l05-q005",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose a balanced literary interpretation.",
+      "choices": [
+        "Le narrateur et l'auteur sont toujours la même personne.",
+        "Toute fiction est un document officiel.",
+        "Le narrateur présente une mémoire fragmentaire, qui ne se confond pas nécessairement avec celle de l'auteur."
+      ],
+      "answer": 2,
+      "explanation": "Narrator and author are distinct analytical roles unless evidence says otherwise."
+    },
+    {
+      "id": "hs4-u01-l05-q006",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Which phrase marks uncertainty in source attribution?",
+      "choices": [
+        "L'attribution ne nécessite jamais de justification.",
+        "Ce manuscrit serait attribuable à une autrice encore débattue.",
+        "L'autrice est certainement identifiée sans indice."
+      ],
+      "answer": 1,
+      "explanation": "Conditional phrasing conveys an attribution still under examination."
+    },
+    {
+      "id": "hs4-u01-l05-q007",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose the appropriate formal comparison.",
+      "choices": [
+        "Le film dramatise la scène que l'archive décrit sobrement.",
+        "Le film prouve que l'archive est sans valeur.",
+        "Les deux supports sont nécessairement identiques."
+      ],
+      "answer": 0,
+      "explanation": "Dramatization and description can present one event differently without invalidating either."
+    },
+    {
+      "id": "hs4-u01-l05-q008",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "What is a transparent editorial practice for an abridged source?",
+      "choices": [
+        "Hide omissions and call the excerpt complete.",
+        "Replace missing sentences with invented quotations.",
+        "Mark omitted passages and explain selection criteria."
+      ],
+      "answer": 2,
+      "explanation": "An explicit abridgment disclosure keeps selection decisions visible."
+    },
+    {
+      "id": "hs4-u01-l05-q009",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "language-use",
+      "prompt": "Choose a responsible thesis about two cultural representations.",
+      "choices": [
+        "Aucune perspective ne peut être contestée.",
+        "Les deux œuvres donnent des perspectives différentes sur la mémoire familiale.",
+        "Les œuvres prouvent une seule mémoire universelle."
+      ],
+      "answer": 1,
+      "explanation": "The bounded thesis compares representations without universalizing them."
+    },
+    {
+      "id": "hs4-u01-l05-q010",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Le registre note des départs, mais pas les raisons individuelles. » What is missing?",
+      "choices": [
+        "The travelers' stated personal motives.",
+        "The fact that departures were recorded.",
+        "The existence of the register."
+      ],
+      "answer": 0,
+      "explanation": "An administrative record of departures need not document why each person left."
+    },
+    {
+      "id": "hs4-u01-l05-q011",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Le film intègre un journal intime lu par une comédienne. » What should viewers distinguish?",
+      "choices": [
+        "The actor as necessarily the diary's author.",
+        "The reading as an unedited original voice recording.",
+        "The diary text from the performance of its reading."
+      ],
+      "answer": 2,
+      "explanation": "An actor's performance is a mediation of the written source."
+    },
+    {
+      "id": "hs4-u01-l05-q012",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « L'écrivain transforme un quartier réel en lieu symbolique. » Which reading is careful?",
+      "choices": [
+        "The neighborhood cannot exist historically.",
+        "The literary setting may evoke reality without reproducing every fact.",
+        "Every plot event happened exactly as narrated."
+      ],
+      "answer": 1,
+      "explanation": "Literary symbolism should not be confused with documentary precision."
+    },
+    {
+      "id": "hs4-u01-l05-q013",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « La photographie est datée de 1930, mais sa légende date de 1980. » What is the source distinction?",
+      "choices": [
+        "The image and its caption were produced in different periods.",
+        "The caption was written before the photograph.",
+        "The photograph cannot be used for study."
+      ],
+      "answer": 0,
+      "explanation": "A later caption can reflect retrospective framing."
+    },
+    {
+      "id": "hs4-u01-l05-q014",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « L'archive conserve surtout des voix administratives. » Which perspective may be underrepresented?",
+      "choices": [
+        "The administrators whose reports survive.",
+        "Every official whose documents are held.",
+        "People discussed by officials but not heard directly."
+      ],
+      "answer": 2,
+      "explanation": "Institutional selection can leave community perspectives underdocumented."
+    },
+    {
+      "id": "hs4-u01-l05-q015",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Le personnage affirme se souvenir parfaitement de son enfance. » Which literary question is relevant?",
+      "choices": [
+        "Does a claim to memory prove the novel is nonfiction?",
+        "Is the narrator reliable in the text's narrative design?",
+        "Does the character therefore speak for every child?"
+      ],
+      "answer": 1,
+      "explanation": "Literary analysis examines narrative reliability, not just asserted certainty."
+    },
+    {
+      "id": "hs4-u01-l05-q016",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Le sous-titrage ne rend pas le jeu de mots du dialogue original. » What may be lost?",
+      "choices": [
+        "Humor and layered meanings carried by language.",
+        "The video's publication date.",
+        "Whether any actors appear."
+      ],
+      "answer": 0,
+      "explanation": "Wordplay can be difficult to carry across languages in subtitles."
+    },
+    {
+      "id": "hs4-u01-l05-q017",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Le documentaire juxtapose deux témoignages contradictoires. » What follows?",
+      "choices": [
+        "One witness is automatically lying.",
+        "All testimony must be discarded.",
+        "The viewer should compare viewpoints and supporting details."
+      ],
+      "answer": 2,
+      "explanation": "Contradiction warrants analysis rather than an automatic verdict."
+    },
+    {
+      "id": "hs4-u01-l05-q018",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "interpretation",
+      "prompt": "Read: « Une chanson évoque l'exil par des images poétiques. » How should it be approached?",
+      "choices": [
+        "As an exact transcript of every migrant's story.",
+        "As an artistic representation that may carry cultural memory.",
+        "As a literal immigration database."
+      ],
+      "answer": 1,
+      "explanation": "Poetic imagery communicates experience without being a population register."
+    },
+    {
+      "id": "hs4-u01-l05-q019",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You must cite a novel's account of an historical event. Which qualification fits?",
+      "choices": [
+        "Présenter la scène comme une représentation littéraire, à comparer avec les archives.",
+        "Présenter tous les dialogues inventés comme des citations historiques.",
+        "Supprimer la distinction entre fiction et archive."
+      ],
+      "answer": 0,
+      "explanation": "Fiction can illuminate perspectives but requires a clear evidentiary boundary."
+    },
+    {
+      "id": "hs4-u01-l05-q020",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A museum label uses a later photograph to illustrate an earlier event. What should it disclose?",
+      "choices": [
+        "The image was captured during the earlier event.",
+        "Photographs have no dates worth reporting.",
+        "The image is illustrative and was taken after the event."
+      ],
+      "answer": 2,
+      "explanation": "Chronological disclosure prevents misleading viewers about direct evidence."
+    },
+    {
+      "id": "hs4-u01-l05-q021",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "Two archives use different names for the same community. Which strategy is most responsible?",
+      "choices": [
+        "Erase all terms without explaining the sources.",
+        "Explain historical terminology and consult community self-descriptions.",
+        "Assume official labels never change."
+      ],
+      "answer": 1,
+      "explanation": "Naming practices carry historical power and require context."
+    },
+    {
+      "id": "hs4-u01-l05-q022",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "You are analyzing a film that recreates a courtroom speech. What should you verify?",
+      "choices": [
+        "Whether a contemporaneous transcript supports the dialogue.",
+        "Whether the actor has a convincing accent only.",
+        "Whether the scene has dramatic lighting."
+      ],
+      "answer": 0,
+      "explanation": "A cinematic reconstruction must not be mistaken for a verbatim record."
+    },
+    {
+      "id": "hs4-u01-l05-q023",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A literary narrator uses « nous » without specifying the group. What question matters?",
+      "choices": [
+        "Whether every reader is necessarily addressed.",
+        "Whether plural pronouns have no rhetorical effect.",
+        "Who is included or excluded by the collective voice?"
+      ],
+      "answer": 2,
+      "explanation": "The scope of nous shapes collective identity and representation."
+    },
+    {
+      "id": "hs4-u01-l05-q024",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A text was translated from another language. What is a sound comparison method?",
+      "choices": [
+        "Assume translation erases the source culture.",
+        "Identify shifts in register, connotation and omitted context.",
+        "Treat every translation as mechanically identical."
+      ],
+      "answer": 1,
+      "explanation": "Translation can shift meaning, so comparing with the original is useful."
+    },
+    {
+      "id": "hs4-u01-l05-q025",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A documentary uses archival audio over unrelated images. What should a reviewer ask?",
+      "choices": [
+        "Whether the montage implies a connection not documented by the source.",
+        "Whether every photograph must have sound.",
+        "Whether audio alone proves the images' provenance."
+      ],
+      "answer": 0,
+      "explanation": "Editing can suggest relationships the original sources do not establish."
+    },
+    {
+      "id": "hs4-u01-l05-q026",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "A family history includes conflicting memories of a journey. Which presentation is ethical?",
+      "choices": [
+        "Blend them into one fabricated unanimous quotation.",
+        "Delete disagreements without disclosure.",
+        "Attribute each account and acknowledge the unresolved differences."
+      ],
+      "answer": 2,
+      "explanation": "Attribution and transparency preserve divergent testimony."
+    },
+    {
+      "id": "hs4-u01-l05-q027",
+      "unit": 1,
+      "lesson": 5,
+      "domain": "transfer",
+      "prompt": "Your conclusion compares an archive, film and poem about migration. Which is strongest?",
+      "choices": [
+        "Le poème invalide automatiquement toute archive.",
+        "L'archive documente des faits administratifs, tandis que le film et le poème proposent d'autres mises en récit.",
+        "Les trois œuvres prouvent chaque détail historique à l'identique."
+      ],
+      "answer": 1,
+      "explanation": "Synthesis distinguishes evidence types and artistic narratives without collapsing them."
+    }
+  ]
+}
