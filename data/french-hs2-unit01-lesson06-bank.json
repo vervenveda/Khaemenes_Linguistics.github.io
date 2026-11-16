@@ -1,0 +1,389 @@
+{
+  "schema": "khaemenes.french.high-school.question-bank.v1",
+  "course": "hs2",
+  "unit": 1,
+  "lesson": 6,
+  "status": "authoring-review-not-published",
+  "title": "Unit 01 integrated past-event storytelling and correction mission",
+  "editorialReview": "assistant-initial-editorial-pass-independent-review-pending",
+  "questions": [
+    {
+      "id": "hs2-u01-l06-q001",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: describe a repeated childhood summer activity.",
+      "choices": [
+        "Chaque été, nous allions au lac.",
+        "Chaque été, nous sommes allés une seule fois au lac.",
+        "Demain, nous irons au lac."
+      ],
+      "answer": 0,
+      "explanation": "Imparfait allions with chaque été describes a repeated past habit."
+    },
+    {
+      "id": "hs2-u01-l06-q002",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: narrate the moment the bus arrived during an ongoing wait.",
+      "choices": [
+        "Nous attendrons quand le bus arrivait hier.",
+        "Nous avons attendu quand le bus arrivera demain.",
+        "Nous attendions quand le bus est arrivé."
+      ],
+      "answer": 2,
+      "explanation": "Attendions is ongoing past background; est arrivé marks the completed event."
+    },
+    {
+      "id": "hs2-u01-l06-q003",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: describe two girls who returned at six.",
+      "choices": [
+        "Elles sont rentrés à six heures.",
+        "Elles sont rentrées à six heures.",
+        "Elles ont rentrées à six heures."
+      ],
+      "answer": 1,
+      "explanation": "Intransitive rentrer takes être, with feminine plural agreement rentrées."
+    },
+    {
+      "id": "hs2-u01-l06-q004",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: replace « ce film » after « J'ai vu ce film ».",
+      "choices": [
+        "Je l'ai vu.",
+        "Je lui ai vu.",
+        "Je l'ai vue."
+      ],
+      "answer": 0,
+      "explanation": "Film is masculine singular direct object; l' comes before auxiliary ai."
+    },
+    {
+      "id": "hs2-u01-l06-q005",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: replace « à mes cousins » in « J'écris à mes cousins ».",
+      "choices": [
+        "Je les écris.",
+        "Je lui écris.",
+        "Je leur écris."
+      ],
+      "answer": 2,
+      "explanation": "Écrire à quelqu'un takes an indirect pronoun; plural recipients take leur."
+    },
+    {
+      "id": "hs2-u01-l06-q006",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: you went to Lyon. Replace the destination in « Je suis allé à Lyon ».",
+      "choices": [
+        "Je le suis allé.",
+        "J'y suis allé.",
+        "J'en suis allé."
+      ],
+      "answer": 1,
+      "explanation": "Y can stand for the previously mentioned destination Lyon."
+    },
+    {
+      "id": "hs2-u01-l06-q007",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: express a past ongoing weather condition.",
+      "choices": [
+        "Il faisait froid.",
+        "Il fera froid demain.",
+        "Il a froid maintenant."
+      ],
+      "answer": 0,
+      "explanation": "Faisait describes the weather in the imperfect."
+    },
+    {
+      "id": "hs2-u01-l06-q008",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: give two sequential completed actions by a male speaker.",
+      "choices": [
+        "J'ai fermé la porte, puis j'ai parti.",
+        "Je fermerai la porte, puis je suis parti hier demain.",
+        "J'ai fermé la porte, puis je suis parti."
+      ],
+      "answer": 2,
+      "explanation": "Fermer takes avoir and partir takes être with masculine singular parti."
+    },
+    {
+      "id": "hs2-u01-l06-q009",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "language-use",
+      "prompt": "Mission: correct « Les lettres, je les ai écrit ».",
+      "choices": [
+        "Les lettres, je les ai écrits.",
+        "Les lettres, je les ai écrites.",
+        "Les lettres, je leur ai écrit."
+      ],
+      "answer": 1,
+      "explanation": "A preceding feminine plural direct object les lettres triggers écrites."
+    },
+    {
+      "id": "hs2-u01-l06-q010",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Pendant que Maya écrivait, son frère a frappé. » What was underway?",
+      "choices": [
+        "Maya was writing.",
+        "Her brother was writing.",
+        "Both were traveling."
+      ],
+      "answer": 0,
+      "explanation": "Écrivait is the ongoing action when her brother knocked."
+    },
+    {
+      "id": "hs2-u01-l06-q011",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Avant 2020, ils vivaient à Tours; ils ont déménagé ensuite. » What changed?",
+      "choices": [
+        "Their names.",
+        "Their native language.",
+        "Their place of residence."
+      ],
+      "answer": 2,
+      "explanation": "Vivaient marks former residence and ont déménagé a later move."
+    },
+    {
+      "id": "hs2-u01-l06-q012",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Jeanne s'est levée, a pris son sac puis est sortie. » What happened second?",
+      "choices": [
+        "She got up.",
+        "She took her bag.",
+        "She left the building."
+      ],
+      "answer": 1,
+      "explanation": "The sequence places a pris son sac between getting up and going out."
+    },
+    {
+      "id": "hs2-u01-l06-q013",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Je ne leur ai pas répondu. » Who did not receive a reply?",
+      "choices": [
+        "The plural recipients represented by leur.",
+        "A singular film.",
+        "The speaker themself."
+      ],
+      "answer": 0,
+      "explanation": "Leur is an indirect-object pronoun indicating multiple recipients."
+    },
+    {
+      "id": "hs2-u01-l06-q014",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Le chemin était étroit; soudain, la roue a glissé. » What is background?",
+      "choices": [
+        "The wheel slipped suddenly.",
+        "A future repair occurred.",
+        "The path was narrow."
+      ],
+      "answer": 2,
+      "explanation": "Était étroit gives a past state, while a glissé is a bounded event."
+    },
+    {
+      "id": "hs2-u01-l06-q015",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Elle en a parlé après la réunion. » What can en represent?",
+      "choices": [
+        "A place introduced by à.",
+        "A previously mentioned topic introduced by de.",
+        "A person addressed directly."
+      ],
+      "answer": 1,
+      "explanation": "En often replaces de plus a topic in parler de."
+    },
+    {
+      "id": "hs2-u01-l06-q016",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Les clés, elle les a retrouvées près du banc. » What does retrouvées agree with?",
+      "choices": [
+        "Les clés, a feminine plural direct object.",
+        "Elle, a singular subject.",
+        "Le banc, a masculine noun."
+      ],
+      "answer": 0,
+      "explanation": "Preceding direct object les clés requires feminine plural participle agreement."
+    },
+    {
+      "id": "hs2-u01-l06-q017",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Tous les mercredis, ils déjeunaient chez leur tante. » What is the frequency?",
+      "choices": [
+        "Once next Wednesday.",
+        "Every day in the future.",
+        "Every Wednesday in the past."
+      ],
+      "answer": 2,
+      "explanation": "Tous les mercredis plus imperfect describes a recurring past activity."
+    },
+    {
+      "id": "hs2-u01-l06-q018",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "interpretation",
+      "prompt": "Read: « Hugo était fatigué, pourtant il a continué. » What contrast emerges?",
+      "choices": [
+        "He had never been tired.",
+        "He continued despite fatigue.",
+        "He stopped before beginning."
+      ],
+      "answer": 1,
+      "explanation": "Pourtant contrasts the continuing action with his fatigue."
+    },
+    {
+      "id": "hs2-u01-l06-q019",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Retell a past experience with one setting and one event. Choose the best.",
+      "choices": [
+        "Il pleuvait lorsque nous sommes arrivés au village.",
+        "Il pleuvra lorsque nous arrivions hier.",
+        "Il a plu demain lorsque nous arriverons hier."
+      ],
+      "answer": 0,
+      "explanation": "Imperfect establishes the setting and passé composé the arrival."
+    },
+    {
+      "id": "hs2-u01-l06-q020",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Repair a mixed-gender plural agreement in « Nous sommes arrivées » said by a girl and a boy.",
+      "choices": [
+        "Nous sommes arrivée.",
+        "Nous avons arrivés.",
+        "Nous sommes arrivés."
+      ],
+      "answer": 2,
+      "explanation": "Conventional mixed-gender plural agreement is arrivés with être."
+    },
+    {
+      "id": "hs2-u01-l06-q021",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Replace the direct object « les photos » in a past-tense sentence.",
+      "choices": [
+        "Je les ai pris hier.",
+        "Je les ai prises hier.",
+        "Je leur ai prises hier."
+      ],
+      "answer": 1,
+      "explanation": "Les is a preceding feminine plural direct object; prises agrees with photos."
+    },
+    {
+      "id": "hs2-u01-l06-q022",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Explain an earlier habit and a one-time exception.",
+      "choices": [
+        "Je prenais le train chaque jour, mais hier j'ai marché.",
+        "Je prendrai le train hier et je marche demain.",
+        "Je prends le train chaque hier."
+      ],
+      "answer": 0,
+      "explanation": "Prenais marks a former habit; ai marché marks the specific exception."
+    },
+    {
+      "id": "hs2-u01-l06-q023",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "You want to say you talked to your grandmother yesterday using a pronoun.",
+      "choices": [
+        "Je la ai parlé hier.",
+        "Je l'ai parlé hier.",
+        "Je lui ai parlé hier."
+      ],
+      "answer": 2,
+      "explanation": "Parler à quelqu'un takes the indirect pronoun lui, before auxiliary ai."
+    },
+    {
+      "id": "hs2-u01-l06-q024",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "A classmate confuses « elle avait » and « elle a eu ». Which distinction is best?",
+      "choices": [
+        "Avait is plural and a eu is infinitive.",
+        "Avait can describe a past state; a eu can frame a bounded occurrence.",
+        "Both are always future tense."
+      ],
+      "answer": 1,
+      "explanation": "Imperfect and passé composé give distinct past-time viewpoints."
+    },
+    {
+      "id": "hs2-u01-l06-q025",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "A source narrative gives no reason for the traveler leaving. What should the retelling do?",
+      "choices": [
+        "Report the departure without inventing a motive.",
+        "Invent a dramatic personal reason.",
+        "Present a guessed motive as a quotation."
+      ],
+      "answer": 0,
+      "explanation": "Source-based narratives should distinguish events from unsupported interpretations."
+    },
+    {
+      "id": "hs2-u01-l06-q026",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "A diary describes an event but omits the date. Which note is responsible?",
+      "choices": [
+        "L'événement s'est produit le 1er juin sans preuve.",
+        "La date est certaine parce que le journal existe.",
+        "La date exacte n'est pas précisée dans le journal."
+      ],
+      "answer": 2,
+      "explanation": "An undated source does not establish an exact day."
+    },
+    {
+      "id": "hs2-u01-l06-q027",
+      "unit": 1,
+      "lesson": 6,
+      "domain": "transfer",
+      "prompt": "Choose a concise synthesis of actions and feelings in a past story.",
+      "choices": [
+        "Nous avions inquiets, puis nous sommes trouver.",
+        "Nous étions inquiets, mais nous avons trouvé notre chemin.",
+        "Nous serons inquiets hier et nous trouvions demain."
+      ],
+      "answer": 1,
+      "explanation": "Étions expresses a past state; avons trouvé a completed discovery."
+    }
+  ]
+}
