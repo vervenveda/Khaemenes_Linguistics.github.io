@@ -49,6 +49,12 @@ test("Lesson 01 blueprint remains one renderer, with no stored or automatically 
  assert.ok(html.includes("Evidence notes and source attribution"));
  assert.ok(html.includes("My original French response and revision"));
  assert.ok(html.includes("No responses, checklist selections or scores are transmitted or saved automatically"));
+ assert.ok(html.includes("data-bridge-export"));
+ assert.ok(html.includes("Export my practice notes (.txt)"));
+ assert.ok(html.includes("URL.createObjectURL(file)"));
+ assert.ok(html.includes("URL.revokeObjectURL(url)"));
+ assert.ok(html.includes("not an official grade"));
+ assert.ok(html.includes("button.closest(\".bridge-lab\")"));
  assert.ok(html.includes("p.lessons.map(renderLesson).join"));
  assert.doesNotMatch(html,/\blocalStorage\b|\bsessionStorage\b|\bindexedDB\b|\bfetch\(/);
  assert.doesNotMatch(html,/\bgradeAttempt\(|\bsubmitAssessment\(|\bgetUserMedia\b/);
