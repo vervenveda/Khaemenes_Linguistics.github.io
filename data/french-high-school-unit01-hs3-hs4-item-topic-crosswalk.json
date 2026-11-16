@@ -16,7 +16,7 @@
     "later-unit": "Its explicit scenario belongs more naturally to a different Hall theme; retain for later-unit review instead of promoting it into Unit 01.",
     "requires-rewrite": "A narrow or ambiguous contextual/linguistic presentation deserves a targeted rewrite before any Unit 01 eligibility decision."
   },
-  "classificationMethod": "Each prompt reviewed in context; conservative theme fit labels, with transfer as nonapproved default. Prompt and keyed response are included for traceability. No learner score, syllabus or question bank is modified. Domain labels are copied from bank source to expose blueprint coverage gaps. French III language-use items received education-context edits on 2026-11-15; primary is provisional thematic screening, not independent review or automatic eligibility. 2026-11-15 follow-up: 60 French III interpretation and application questions (10 per lesson) revised and provisionally rescreened as primary; original bank IDs and keyed option positions remain intact. 2026-11-15 French IV: 54 language-use prompts contextually revised and rescreened to provisional primary; no source answers or indices changed. Three targeted French IV source interpretation/transfer prompts were also contextualized to satisfy the preliminary one-item-per-cell reserve threshold; no independent approval is implied.",
+  "classificationMethod": "Each prompt reviewed in context; conservative theme fit labels, with transfer as nonapproved default. Prompt and keyed response are included for traceability. No learner score, syllabus or question bank is modified. Domain labels are copied from bank source to expose blueprint coverage gaps. French III language-use items received education-context edits on 2026-11-15; primary is provisional thematic screening, not independent review or automatic eligibility. 2026-11-15 follow-up: 60 French III interpretation and application questions (10 per lesson) revised and provisionally rescreened as primary; original bank IDs and keyed option positions remain intact. 2026-11-15 French IV: 54 language-use prompts contextually revised and rescreened to provisional primary; no source answers or indices changed. Three targeted French IV source interpretation/transfer prompts were also contextualized to satisfy the preliminary one-item-per-cell reserve threshold; no independent approval is implied. 2026-11-15 accuracy corrections: ten items received targeted explanation, qualification, evidentiary or keyed-text improvements. Their review status remains independent-review-pending; no status is promoted.",
   "courses": {
     "hs3": {
       "theme": "education",
@@ -1410,12 +1410,13 @@
               "category": "primary",
               "review": "independent-review-pending",
               "sourceBank": "data/french-hs3-unit01-lesson05-bank.json",
-              "prompt": "School attendance study: which sentence appropriately limits the finding to the surveyed settings?",
+              "prompt": "A study observed increased library attendance in three schools, without examining the rest of the country. Which conclusion stays within the source's scope?",
               "correctAnswer": "Dans les trois écoles étudiées, la fréquentation de la bibliothèque a augmenté.",
               "draftLesson": 5,
               "taughtPilotObjective": "school surveys and source comparison",
               "rationale": "Revised to explicitly situate its grammar, argumentation or source attribution in the educational Unit 01 theme. This is thematic screening only; educator quality and instructional alignment review pending.",
-              "domain": "language-use"
+              "domain": "language-use",
+              "editorialCorrection": "assistant-accuracy-and-fairness-correction-2026-11-15"
             },
             {
               "id": "hs3-u01-l05-q007",
@@ -1848,12 +1849,13 @@
               "category": "transfer",
               "review": "independent-review-pending",
               "sourceBank": "data/french-hs3-unit01-lesson06-bank.json",
-              "prompt": "Source B says 30 of 50 respondents favor the plan. What proportion is that?",
+              "prompt": "School support Source B says 30 of 50 pupils support the proposed tutoring plan. What proportion is that?",
               "correctAnswer": "60 percent.",
               "draftLesson": 6,
               "taughtPilotObjective": "school improvement forum",
               "rationale": "Assesses a broadly reusable grammar, evidence or interpretive skill but lacks sufficient Unit 01 topic anchoring for automatic exam eligibility.",
-              "domain": "interpretation"
+              "domain": "interpretation",
+              "editorialCorrection": "assistant-accuracy-and-fairness-correction-2026-11-15"
             },
             {
               "id": "hs3-u01-l06-q016",
@@ -2087,12 +2089,13 @@
               "category": "primary",
               "review": "independent-review-pending",
               "sourceBank": "data/french-hs4-unit01-lesson01-bank.json",
-              "prompt": "Fictional relocation consultation: complete « Il aurait fallu que les autorités ___ les résidents avant le déplacement. »",
+              "prompt": "Fictional migration consultation proposed for the present: complete « Il faudrait que les autorités ___ les résidents avant tout déplacement. »",
               "correctAnswer": "consultent",
               "draftLesson": 1,
               "taughtPilotObjective": "identity and migration memory",
               "rationale": "Language-use prompt explicitly contextualized in fictional identity and migration evidence, testimony, translation or source criticism. Provisional thematic fit only, not independent linguistic approval.",
-              "domain": "language-use"
+              "domain": "language-use",
+              "editorialCorrection": "assistant-accuracy-and-fairness-correction-2026-11-15"
             },
             {
               "id": "hs4-u01-l01-q008",
@@ -2434,7 +2437,8 @@
               "draftLesson": 2,
               "taughtPilotObjective": "migration-source provenance",
               "rationale": "Language-use prompt explicitly contextualized in fictional identity and migration evidence, testimony, translation or source criticism. Provisional thematic fit only, not independent linguistic approval.",
-              "domain": "language-use"
+              "domain": "language-use",
+              "editorialCorrection": "assistant-accuracy-and-fairness-correction-2026-11-15"
             },
             {
               "id": "hs4-u01-l02-q009",
@@ -2784,11 +2788,12 @@
               "review": "independent-review-pending",
               "sourceBank": "data/french-hs4-unit01-lesson03-bank.json",
               "prompt": "Migration counterfactual reading: « Si la réunion sur la relocalisation avait été ouverte, davantage de familles déplacées auraient pu intervenir. » What does the sentence assert?",
-              "correctAnswer": "More residents could hypothetically have spoken.",
+              "correctAnswer": "More displaced families could hypothetically have spoken.",
               "draftLesson": 3,
               "taughtPilotObjective": "migration counterfactuals",
               "rationale": "Fictional migration and displacement source question contextualized to preserve Unit 01 identity/migration focus, while retaining its original domain and keyed choice. Independent review pending.",
-              "domain": "interpretation"
+              "domain": "interpretation",
+              "editorialCorrection": "assistant-accuracy-and-fairness-correction-2026-11-15"
             },
             {
               "id": "hs4-u01-l03-q011",
@@ -3054,11 +3059,12 @@
               "review": "independent-review-pending",
               "sourceBank": "data/french-hs4-unit01-lesson04-bank.json",
               "prompt": "Editing an informal note about a migrant's personal documents: which formal French revision of « Ce document dit plein de trucs » is most appropriate?",
-              "correctAnswer": "Ce document présente plusieurs arguments.",
+              "correctAnswer": "Ce document présente plusieurs éléments.",
               "draftLesson": 4,
               "taughtPilotObjective": "migrant identity, translation and register",
               "rationale": "Language-use prompt explicitly contextualized in fictional identity and migration evidence, testimony, translation or source criticism. Provisional thematic fit only, not independent linguistic approval.",
-              "domain": "language-use"
+              "domain": "language-use",
+              "editorialCorrection": "assistant-accuracy-and-fairness-correction-2026-11-15"
             },
             {
               "id": "hs4-u01-l04-q006",
@@ -3066,11 +3072,12 @@
               "review": "independent-review-pending",
               "sourceBank": "data/french-hs4-unit01-lesson04-bank.json",
               "prompt": "A bilingual migration-exhibit translation note: which phrase transparently identifies the translator's intervention?",
-              "correctAnswer": "Traduction de l'auteur; nuance discutée en note.",
+              "correctAnswer": "Traduction proposée par l'éditeur; nuance expliquée en note.",
               "draftLesson": 4,
               "taughtPilotObjective": "migrant identity, translation and register",
               "rationale": "Language-use prompt explicitly contextualized in fictional identity and migration evidence, testimony, translation or source criticism. Provisional thematic fit only, not independent linguistic approval.",
-              "domain": "language-use"
+              "domain": "language-use",
+              "editorialCorrection": "assistant-accuracy-and-fairness-correction-2026-11-15"
             },
             {
               "id": "hs4-u01-l04-q007",
@@ -3360,23 +3367,25 @@
               "review": "independent-review-pending",
               "sourceBank": "data/french-hs4-unit01-lesson05-bank.json",
               "prompt": "A migration documentary uses actors to stage a family's departure. Which French description labels the reconstruction responsibly?",
-              "correctAnswer": "Une reconstitution fondée sur des sources identifiées.",
+              "correctAnswer": "Une scène reconstituée par des acteurs, distincte des images d'archive.",
               "draftLesson": 5,
               "taughtPilotObjective": "migration representations across media",
               "rationale": "Language-use prompt explicitly contextualized in fictional identity and migration evidence, testimony, translation or source criticism. Provisional thematic fit only, not independent linguistic approval.",
-              "domain": "language-use"
+              "domain": "language-use",
+              "editorialCorrection": "assistant-accuracy-and-fairness-correction-2026-11-15"
             },
             {
               "id": "hs4-u01-l05-q004",
               "category": "primary",
               "review": "independent-review-pending",
               "sourceBank": "data/french-hs4-unit01-lesson05-bank.json",
-              "prompt": "Citing a fictional migrant's dated archival letter: what contextual and provenance details should accompany the quotation?",
-              "correctAnswer": "Author, date, archive reference and relevant context.",
+              "prompt": "A teaching exhibit quotes a fictional migrant's dated letter, with no confirmed real archive deposit. What provenance information should accompany it?",
+              "correctAnswer": "Named fictional author, fictional date, teaching-source identifier and relevant context.",
               "draftLesson": 5,
               "taughtPilotObjective": "migration representations across media",
               "rationale": "Language-use prompt explicitly contextualized in fictional identity and migration evidence, testimony, translation or source criticism. Provisional thematic fit only, not independent linguistic approval.",
-              "domain": "language-use"
+              "domain": "language-use",
+              "editorialCorrection": "assistant-accuracy-and-fairness-correction-2026-11-15"
             },
             {
               "id": "hs4-u01-l05-q005",
@@ -3396,11 +3405,12 @@
               "review": "independent-review-pending",
               "sourceBank": "data/french-hs4-unit01-lesson05-bank.json",
               "prompt": "A migration-family manuscript has disputed authorship. Which French phrase accurately signals uncertainty about its attribution?",
-              "correctAnswer": "Ce manuscrit serait attribuable à une autrice encore débattue.",
+              "correctAnswer": "L'attribution de ce manuscrit à cette autrice reste débattue.",
               "draftLesson": 5,
               "taughtPilotObjective": "migration representations across media",
               "rationale": "Language-use prompt explicitly contextualized in fictional identity and migration evidence, testimony, translation or source criticism. Provisional thematic fit only, not independent linguistic approval.",
-              "domain": "language-use"
+              "domain": "language-use",
+              "editorialCorrection": "assistant-accuracy-and-fairness-correction-2026-11-15"
             },
             {
               "id": "hs4-u01-l05-q007",
