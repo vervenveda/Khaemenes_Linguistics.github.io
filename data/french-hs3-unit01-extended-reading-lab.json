@@ -73,7 +73,7 @@
             "Il ne comprend pas encore l'entretien annuel du véhicule."
           ],
           "answer": 2,
-          "explanation": "L'entretien annuel est expressément absent du devis initial."
+          "explanation": "Le coût d'entretien annuel est expressément absent du devis initial, qui ne porte que sur le chauffeur et le carburant."
         },
         {
           "id": "hs3-u01-l02-read-q03",
@@ -119,7 +119,7 @@
         },
         {
           "id": "hs3-u01-l03-read-q03",
-          "prompt": "Quel fait est annoncé pour vendredi ?",
+          "prompt": "D'après la lettre du proviseur, quelle action précise est annoncée pour vendredi, avant une éventuelle décision de financement ?",
           "choices": [
             "La publication de notes avant et après tutorat.",
             "La présentation d'un budget détaillé, avant toute décision.",
@@ -153,11 +153,11 @@
           "prompt": "Dans « Le chercheur dont les travaux sont cités », quelle relation exprime « dont » ?",
           "choices": [
             "La période à laquelle l'enquête a été publiée.",
-            "L'appartenance des travaux au chercheur.",
-            "Le lieu où les travaux ont été réalisés."
+            "Le lieu précis où les travaux de l'équipe ont été réalisés.",
+            "La période pendant laquelle cette enquête a été publiée."
           ],
           "answer": 2,
-          "explanation": "Dont remplace ici « les travaux du chercheur »."
+          "explanation": "Dans la construction « les travaux du chercheur », dont remplace le complément introduit par de et exprime le lien avec son auteur."
         },
         {
           "id": "hs3-u01-l04-read-q03",
