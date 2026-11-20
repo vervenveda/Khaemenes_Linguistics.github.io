@@ -1,76 +1,75 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>High School Language Directory · Khaemenes Linguistics</title>
-<meta name="description" content="Choose French 101 and 102 or Spanish 101 and 102, with verified Grade 9 course preferences.">
-<style>
-:root{--charcoal:#243038;--cream:#fffdf5;--parchment:#eee5d4;--khaki:#d6c4a1}
-*{box-sizing:border-box}html{overflow-y:auto}body{margin:0;background:var(--parchment);color:var(--charcoal);font:400 16px/1.5 Nunito,Arial,sans-serif}a,button{font:inherit}
-main{width:min(1120px,calc(100% - 24px));margin:24px auto 48px}
-header{background:var(--charcoal);color:var(--cream);padding:33px 22px;text-align:center;border-radius:7px}
-header .eyebrow{font:400 33px Cinzel,Georgia,serif;color:var(--khaki);margin:0}
-header h1{font:400 clamp(34px,5vw,66px)/1.12 Cinzel,Georgia,serif;margin:12px 0}
-header p{font-size:24px;margin:12px auto}
-.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;min-width:120px;padding:8px 13px;border:3px solid var(--charcoal);border-radius:7px;background:var(--charcoal);color:var(--cream);text-align:center;text-decoration:none;cursor:pointer}
-header .btn,.btn.cream{background:var(--cream);color:var(--charcoal)}
-.btn:focus-visible{outline:3px solid var(--khaki);outline-offset:3px}
-section{padding:20px 0}h2{font:400 33px/1.3 Cinzel,Georgia,serif;text-align:center;margin:0 0 13px}
-.intro,.status{max-width:850px;margin:10px auto 20px;text-align:center}
-.status{border:3px solid var(--charcoal);background:var(--cream);padding:12px;border-radius:7px}
-.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
-.card{display:flex;flex-direction:column;gap:11px;padding:20px;border:3px solid var(--charcoal);border-radius:7px;background:var(--cream);min-width:0}
-.card h3{font:400 24px/1.3 Cinzel,Georgia,serif;margin:0}
-.card p{margin:0}.card .actions{margin-top:auto;justify-content:stretch}.card .btn{flex:1 1 155px}
-.tags{font-size:16px;color:var(--charcoal)}footer{background:var(--charcoal);color:var(--cream);padding:25px;text-align:center}
-@media(max-width:670px){.grid{grid-template-columns:1fr}header p{font-size:18px}header .eyebrow{font-size:24px}}
+<meta name="description" content="Seven High School world languages: French, Spanish, Arabic, Russian, Mandarin, German and Japanese.">
+<style>:root{--charcoal:#243038;--cream:#fffdf5;--parchment:#eee5d4;--khaki:#d6c4a1}
+*{box-sizing:border-box}html{overflow-y:auto}body{margin:0;background:var(--parchment);color:var(--charcoal);font:400 16px/1.55 Nunito,Arial,sans-serif}a,button{font:inherit}
+main{width:min(1200px,calc(100% - 24px));margin:24px auto 48px}header{background:var(--charcoal);color:var(--cream);padding:33px 22px;text-align:center;border-radius:7px}
+.eyebrow{font:400 33px/1.3 Cinzel,Georgia,serif;color:var(--khaki);margin:0}h1{font:400 clamp(36px,5vw,66px)/1.15 Cinzel,Georgia,serif;margin:12px 0}header .descriptor{font-size:24px;margin:12px auto 20px}
+.actions,.course-links{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:7px 13px;border:3px solid var(--charcoal);border-radius:7px;background:var(--charcoal);color:var(--cream);text-align:center;text-decoration:none;cursor:pointer;font-size:16px}.btn.cream,header .btn{background:var(--cream);color:var(--charcoal)}.btn:focus-visible{outline:3px solid var(--khaki);outline-offset:3px}
+section{margin:24px 0}h2{font:400 33px/1.3 Cinzel,Georgia,serif;text-align:center;margin:0 0 13px}.intro,.selection-status{max-width:900px;margin:10px auto 20px;text-align:center}.selection-status{border:3px solid var(--charcoal);background:var(--cream);padding:12px;border-radius:7px}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.language-card{display:flex;flex-direction:column;gap:9px;padding:19px;background:var(--cream);border:3px solid var(--charcoal);border-radius:7px;min-width:0}.language-card h3{font:400 24px/1.3 Cinzel,Georgia,serif;margin:0}.language-card p{margin:0}.language-card .native{font-size:20px}.language-card .status-line{font-size:16px;color:var(--charcoal);text-decoration:underline;text-decoration-color:var(--khaki);text-underline-offset:4px}.course-links{margin-top:auto;justify-content:stretch;padding-top:11px}.course-links .btn{flex:1 1 160px;max-width:100%;overflow-wrap:anywhere}footer{text-align:center;padding:25px;background:var(--charcoal);color:var(--cream)}
+@media(max-width:690px){.grid{grid-template-columns:1fr}header .descriptor{font-size:18px}.eyebrow{font-size:24px}}
 </style></head><body>
-<main><header><p class="eyebrow">Khaemenes Academy</p><h1>Language Directory</h1><p>French and Spanish · 101 / 102</p>
-<nav class="actions"><a class="btn" id="backProfile" href="https://vervenveda.com/Khaemenes_High.github.io/grades/grade-09/student-profile/schedule/">Back to My Schedule</a><a class="btn" href="../">Language Hall</a></nav>
-</header>
-<section><h2>Choose a Language</h2><p class="intro">Select your language for your High School Schedule, then open the appropriate curriculum. Only the verified Academy learner's preference is updated; a language choice never awards course credit.</p><div id="selectionStatus" class="status" role="status">Checking learner profile and language preferences…</div></section>
-<section aria-label="French and Spanish levels"><div class="grid">
-<article class="card"><h3>French 101</h3><p class="tags">Established program · Start here</p><p>Open the most developed French learning application and begin with its own lessons and mastery requirements.</p><div class="actions"><button class="btn" type="button" data-choice="french" data-go="f101">Choose French &amp; Open 101</button></div></article>
-<article class="card"><h3>French 102</h3><p class="tags">18-week Language Hall course workspace</p><p>Follow-on French course planning and performance evidence in the Linguistics Hall; separate dedicated lesson-app parity is not yet verified.</p><div class="actions"><button class="btn" type="button" data-choice="french" data-go="f102">Choose French &amp; Open 102</button></div></article>
-<article class="card"><h3>Spanish 101</h3><p class="tags">Language Hall course workspace</p><p>Spanish beginning-course workspace. A dedicated Spanish 101 lesson engine has not been verified as complete.</p><div class="actions"><button class="btn" type="button" data-choice="spanish" data-go="s101">Choose Spanish &amp; Open 101</button></div></article>
-<article class="card"><h3>Spanish 102</h3><p class="tags">Language Hall course workspace</p><p>Spanish continuing-course workspace. A dedicated Spanish 102 lesson engine has not been verified as complete.</p><div class="actions"><button class="btn" type="button" data-choice="spanish" data-go="s102">Choose Spanish &amp; Open 102</button></div></article>
-</div></section></main><footer>Khaemenes Academy · Linguistics · Sovereign Learning</footer>
+<main><header><p class="eyebrow">Khaemenes Academy</p><h1>Language Directory</h1><p class="descriptor">Seven World Languages · Find Your Learning Path</p>
+<nav class="actions" aria-label="Language directory navigation"><a class="btn" id="backProfile" href="https://vervenveda.com/Khaemenes_High.github.io/grades/grade-09/student-profile/schedule/">Back to My Schedule</a><a class="btn" href="../">Language Hall</a></nav></header>
+<section aria-labelledby="aboutLanguage"><h2 id="aboutLanguage">Choose Your Language</h2><p class="intro">Select a course experience below. The language preference belongs to your registered student and grade. Course levels are selected inside their existing curriculum systems; choosing a language never awards mastery or credit.</p><p class="selection-status" id="selectionStatus" role="status" aria-live="polite">Checking your Academy profile…</p></section>
+<section aria-label="Seven language pathways"><div class="grid"><article class="language-card" data-language="french"><h3>French</h3><p class="native" lang="fr">Français</p><p class="status-line">Dedicated French 101 app</p><p>French 101 has its own lesson application. French 102 and later levels are available as Hall course workspaces; course parity varies.</p><div class="course-links"><button type="button" class="btn" data-choice="french" data-go="f101">French 101 · lesson app</button><button type="button" class="btn cream" data-choice="french" data-go="f102">French 102 · Hall</button></div></article>
+<article class="language-card" data-language="spanish"><h3>Spanish</h3><p class="native" lang="es">Español</p><p class="status-line">Foundation lessons + formal Hall</p><p>Explore 21 Foundation lessons and checkpoints. Spanish 101 and 102 are course workspaces in the formal Hall, not certified dedicated lesson engines.</p><div class="course-links"><button type="button" class="btn" data-choice="spanish" data-go="spanish-world">Spanish Foundations</button><button type="button" class="btn cream" data-choice="spanish" data-go="s101">Spanish 101</button><button type="button" class="btn cream" data-choice="spanish" data-go="s102">Spanish 102</button></div></article>
+<article class="language-card" data-language="arabic"><h3>Arabic</h3><p class="native" lang="ar">العربية</p><p class="status-line">Arabic I · 32-week instructional draft</p><p>A full 32-week Year I navigator with weekly instructional drafts, formative quizzes, and applied practice. Secure exams and final credit review remain pending.</p><div class="course-links"><button type="button" class="btn" data-choice="arabic" data-go="arabic1">Arabic I · 32 weeks</button><button type="button" class="btn cream" data-choice="arabic" data-go="arabic-world">Arabic Learning World</button></div></article>
+<article class="language-card" data-language="russian"><h3>Russian</h3><p class="native" lang="ru">Русский</p><p class="status-line">Russian I · 32-week instructional draft</p><p>A full 32-week Year I navigator with weekly instructional drafts, formative quizzes, and practice apps. Secure exams and final credit review remain pending.</p><div class="course-links"><button type="button" class="btn" data-choice="russian" data-go="russian1">Russian I · 32 weeks</button><button type="button" class="btn cream" data-choice="russian" data-go="russian-world">Russian Conversation</button></div></article>
+<article class="language-card" data-language="mandarin"><h3>Mandarin Chinese</h3><p class="native" lang="zh">普通话</p><p class="status-line">21 Foundation lessons + four checkpoints</p><p>Mandarin tones, pinyin, characters, guided foundation lessons and unit checkpoints. High School and 101–202 courses are defined in the formal Hall.</p><div class="course-links"><button type="button" class="btn" data-choice="mandarin" data-go="mandarin-world">Mandarin Foundations</button><button type="button" class="btn cream" data-choice="mandarin" data-go="mandarin-hs1">High School I · Hall</button></div></article>
+<article class="language-card" data-language="german"><h3>German</h3><p class="native" lang="de">Deutsch</p><p class="status-line">Formal Hall + German hub</p><p>The Hall defines High School I–IV and 101–202; supplementary German hub and practice apps support exploration.</p><div class="course-links"><button type="button" class="btn" data-choice="german" data-go="german-hub">German Hub</button><button type="button" class="btn cream" data-choice="german" data-go="german-hs1">High School I · Hall</button></div></article>
+<article class="language-card" data-language="japanese"><h3>Japanese</h3><p class="native" lang="ja">日本語</p><p class="status-line">21 Foundation lessons + four checkpoints</p><p>Japanese guided foundation lessons and unit checkpoints. The formal High School and 101–202 ladders are in the Hall.</p><div class="course-links"><button type="button" class="btn" data-choice="japanese" data-go="japanese-world">Japanese Foundations</button><button type="button" class="btn cream" data-choice="japanese" data-go="japanese-hs1">High School I · Hall</button></div></article><article class="language-card guidance"><h3>Choosing Your Path</h3><p>Seven languages, one Academy learner profile. Choose an available experience to save your language preference and open its course or practice space.</p><p>Foundation work and course outlines are not automatic academic credit. Formal course mastery stays with the existing Linguistics Hall and teacher-reviewed records.</p><div class="course-links"><a class="btn cream" href="../">View All Hall Courses</a><a class="btn" id="returnFromGuide" href="https://vervenveda.com/Khaemenes_High.github.io/grades/grade-09/student-profile/schedule/">Back to Schedule</a></div></article></div></section></main>
+<footer>Verve N Veda · Khaemenes Academy · Linguistics</footer>
 <script src="https://vervenveda.com/Khaemenes_High.github.io/courses/shared/course-entry-contract.js"></script>
 <script src="https://vervenveda.com/Khaemenes_High.github.io/courses/shared/high-school-course-pins.js"></script>
 <script src="https://vervenveda.com/Khaemenes_High.github.io/grades/shared/high-school-profile-grade-context.js"></script>
-<script>
-(()=>{"use strict";
+<script>(()=>{"use strict";
 const pins=window.KhaemenesHighCoursePins,contract=window.KhaemenesCourseEntryContract;
-const status=document.getElementById("selectionStatus"),params=new URLSearchParams(location.search);
+const gradeCtx=window.KhaemenesHighProfileGradeContext;
+const status=document.getElementById("selectionStatus");
+const params=new URLSearchParams(location.search);
 const grade=["09","10","11","12"].includes(params.get("grade"))?params.get("grade"):"09";
-const routes={
- f101:"https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/French_101_index.html",
- f102:"https://vervenveda.com/Khaemenes_Linguistics.github.io/Halls/index.html?language=french&course=102",
- s101:"https://vervenveda.com/Khaemenes_Linguistics.github.io/Halls/index.html?language=spanish&course=101",
- s102:"https://vervenveda.com/Khaemenes_Linguistics.github.io/Halls/index.html?language=spanish&course=102"
-};
-const back=new URL("https://vervenveda.com/Khaemenes_High.github.io/grades/grade-"+grade+"/student-profile/schedule/");
-document.getElementById("backProfile").href=back.href;
-for(const [key,address] of Object.entries(routes)){
- const route=new URL(address);route.searchParams.set("source","khaemenes-high-grade"+grade);
- route.searchParams.set("return",back.href);routes[key]=route.href;
-}
+const home="https://vervenveda.com/Khaemenes_High.github.io/grades/grade-"+grade+"/student-profile/schedule/";
+document.getElementById("backProfile").href=home;
+document.getElementById("returnFromGuide").href=home;
+const routes={"f101":"../../apps/French_101_index.html","f102":"../index.html?language=french&course=102","s101":"../index.html?language=spanish&course=101","s102":"../index.html?language=spanish&course=102","spanish-world":"../../apps/language-worlds/spanish/","arabic1":"../courses/arabic-1/","arabic-world":"../../apps/arabic-learning-worlds/","russian1":"../courses/russian-1/","russian-world":"../../apps/russian-conversation-world/","mandarin-world":"../../apps/language-worlds/mandarin/","mandarin-hs1":"../index.html?language=mandarin&course=hs1","german-hub":"../../apps/German_hub_index.html","german-hs1":"../index.html?language=german&course=hs1","japanese-world":"../../apps/language-worlds/japanese/","japanese-hs1":"../index.html?language=japanese&course=hs1"};
 function active(){
- const profile=contract?.readAcademyProfile?.(),ctx=window.KhaemenesHighProfileGradeContext?.active?.();
- return profile&&pins?.activeLearner?.()===profile.learnerId&&ctx?.grade===grade&&ctx?.learnerId===profile.learnerId?profile:null;
+ const profile=contract?.readAcademyProfile?.(),context=gradeCtx?.active?.(),pinLearner=pins?.activeLearner?.();
+ return profile&&context?.grade===grade&&context.learnerId===profile.learnerId&&pinLearner===profile.learnerId?profile:null;
 }
-function refresh(){const profile=active(),selected=pins?.readLanguageChoices?.()?.[String(Number(grade))]||"none";status.textContent=profile?"Registered learner: "+profile.name+" · Selected language: "+selected+".":"Select your registered Academy learner to save a personal course choice. Course previews remain accessible.";}
-document.querySelectorAll("[data-choice]").forEach(btn=>btn.addEventListener("click",()=>{
- const profile=active();if(!profile){status.textContent="A verified Academy learner is required to save this language choice. Return to your Student Profile first.";return;}
- const language=btn.dataset.choice;
- const choices={...pins.readLanguageChoices(),[String(Number(grade))]:language};
- if(!pins.writeLanguageChoices(choices)){status.textContent="Language choice was not saved. Your previous selection has been retained.";return;}
+function selection(){
+ const p=active(),choice=pins?.readLanguageChoices?.()?.[String(Number(grade))]||null;
+ status.textContent=p?"Registered learner: "+p.name+" · Grade "+Number(grade)+" · "+(choice?"Selected language: "+choice+".":"No language selected yet."):"Select your registered Grade "+Number(grade)+" Academy learner to save a choice. Public course pages are separately accessible through the Language Hall.";
+ document.querySelectorAll("[data-language]").forEach(card=>card.setAttribute("data-selected",String(!!p&&card.dataset.language===choice)));
+}
+function selectedCourseLink(key){
+ const source=routes[key];if(!source)return null;
+ const destination=new URL(source,location.href);
+ if(destination.protocol!=="https:"||destination.hostname!=="vervenveda.com"||!destination.pathname.startsWith("/Khaemenes_Linguistics.github.io/"))return null;
+ destination.searchParams.set("source","khaemenes-high-grade"+grade);
+ destination.searchParams.set("return",home);
+ return destination.href;
+}
+document.querySelectorAll("button[data-choice]").forEach(button=>button.addEventListener("click",()=>{
+ const learner=active();
+ if(!learner){status.textContent="The registered Academy learner for Grade "+Number(grade)+" is required to save a selection. Nothing was changed.";return}
+ const language=button.dataset.choice;
+ const destination=selectedCourseLink(button.dataset.go);
+ if(!destination){status.textContent="That course route is unavailable. Your choice was not changed.";return}
+ const selections=pins.readLanguageChoices?.()||{};
+ if(!pins.writeLanguageChoices({...selections,[String(Number(grade))]:language})){
+  status.textContent="Could not verify the saved language preference. Your previous choice remains intact.";return;
+ }
+ if(pins.readLanguageChoices?.()?.[String(Number(grade))]!==language){
+  status.textContent="Language choice verification failed. Please return to your Schedule.";return;
+ }
  window.dispatchEvent(new CustomEvent("khaemenes-high-language-choices-changed"));
- const route=routes[btn.dataset.go];
- if(route)location.assign(route);
+ location.assign(destination);
 }));
-refresh();
-})();
-</script>
+selection();
+})();</script>
 <script src="https://vervenveda.com/assets/vnv-333-ticker.js"></script>
 <script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js" data-vnv-ticker-autopopulate></script>
 <script src="https://vervenveda.com/assets/vnv-header-autopopulate.js"></script>
