@@ -1,0 +1,16 @@
+import fs from "node:fs";import path from "node:path";import {fileURLToPath} from "node:url";
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),"..");
+const read=p=>fs.readFileSync(path.join(root,p),"utf8");
+const check=(ok,msg)=>{if(!ok)throw Error("Linguistics directory regression: "+msg)};
+const p="Halls/high-school-language-directory/index.html",s=read(p),hall=read("Halls/index.html");
+check(hall.includes('href="./high-school-language-directory/"'),"main Hall has navigable directory");
+for(const title of ["French 101","French 102","Spanish 101","Spanish 102"])check(s.includes("<h3>"+title+"</h3>"),title+" course card");
+for(const level of ["language=french&course=102","language=spanish&course=101","language=spanish&course=102"])check(s.includes(level),level+" Hall workspace");
+check(s.includes("apps/French_101_index.html"),"French 101 direct lesson application");
+check(s.includes("KhaemenesHighProfileGradeContext"),"verified enrolled-grade guard");
+check(s.includes("pins.writeLanguageChoices"),"canonical learner-scoped language preference");
+check(s.includes('[String(Number(grade))]:language'),"grade-specific preference without grade 9 leakage");
+check(s.includes("khaemenes-high-grade")&&s.includes('route.searchParams.set("return",back.href)'),"return path preserved");
+check(!s.includes("writeJSON(")&&!s.includes("mastery:true"),"directory does not award grades or mastery");
+check(s.includes("--charcoal:#243038;--cream:#fffdf5"),"canonical palette");
+console.log("LINGUISTICS HIGH SCHOOL LANGUAGE DIRECTORY: PASS (4 course doors, grade-scoped choices, canonical Hall).");
