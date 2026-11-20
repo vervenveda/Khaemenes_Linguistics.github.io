@@ -1,0 +1,21 @@
+name: High School Language Directory Contract
+on:
+  pull_request:
+    paths:
+      - "Halls/high-school-language-directory/**"
+      - "Halls/index.html"
+      - "tests/validate-high-school-language-directory.mjs"
+      - ".github/workflows/high-school-language-directory.yml"
+  push:
+    paths:
+      - "Halls/high-school-language-directory/**"
+      - "Halls/index.html"
+      - "tests/validate-high-school-language-directory.mjs"
+      - ".github/workflows/high-school-language-directory.yml"
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify sovereign source contracts
+        run: node tests/validate-high-school-language-directory.mjs
