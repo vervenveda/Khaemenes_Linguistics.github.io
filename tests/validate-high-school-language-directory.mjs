@@ -9,7 +9,7 @@ const s=read(dir),hall=read("Halls/index.html");
 check(hall.includes('href="./high-school-language-directory/"'),"Linguistics Hall directory entry");
 for(const language of ["French","Spanish","Arabic","Russian","Mandarin Chinese","German","Japanese"])
  check(s.includes("<h3>"+language+"</h3>"),language+" language card");
-check((s.match(/class="language-card"/g)||[]).length===8,"seven languages and one pathway guide balanced in 2x4 grid");
+check((s.match(/class="language-card(?: guidance)?"/g)||[]).length===8,"seven languages and one pathway guide balanced in 2x4 grid");
 check(s.includes("grid-template-columns:repeat(2,minmax(0,1fr))"),"symmetrical 2-column card grid");
 check(s.includes("--charcoal:#243038;--cream:#fffdf5"),"VNV cream/charcoal palette");
 check(s.includes("border:3px solid var(--charcoal);border-radius:7px"),"3px charcoal borders and 7px radius");
