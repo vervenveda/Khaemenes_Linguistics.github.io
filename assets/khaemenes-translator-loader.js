@@ -10,6 +10,7 @@ const definitions=[
  ["campus","khaemenes-campus-phrases.js",()=>!!root.KhaemenesSovereignSeeds],
  ["dictionary","sovereign-dictionary.generated.js",()=>!!root.KhaemenesSovereignDictionary],
  ["lexicon","khaemenes-lexicon-expansion.js",()=>!!root.KhaemenesLexiconExpansion],
+ ["higherLearningLexicon","khaemenes-higher-learning-lexicon.js",()=>!!root.KhaemenesHigherLearningLexicon],
  ["transliteration","khaemenes-transliteration.js",()=>!!root.KhaemenesTransliteration],
  ["core","khaemenes-interlingual-core.js",()=>!!root.KhaemenesSovereignTranslate],
  ["reviewPolicy","khaemenes-review-policy.js",()=>!!root.KhaemenesReviewPolicy]
@@ -29,9 +30,9 @@ async function ensure({full=false,upgradeLegacyCore=false}={}){
  active=(async()=>{
   const records=[];
   for(const [key,file,ready] of definitions){
-   if(!full&&["dictionary","lexicon","transliteration"].includes(key))continue;
+   if(!full&&["dictionary","lexicon","higherLearningLexicon","transliteration"].includes(key))continue;
    const coreUpgrade=key==="core"&&upgradeLegacyCore&&typeof root.KhaemenesSovereignTranslate?.listLocalEntries!=="function";
-   if(coreUpgrade&&full&&records.some(r=>["dictionary","lexicon","transliteration"].includes(r.key)&&!["existing","loaded"].includes(r.state))){records.push({key,state:"skipped-incomplete-resources"});continue}
+   if(coreUpgrade&&full&&records.some(r=>["dictionary","lexicon","higherLearningLexicon","transliteration"].includes(r.key)&&!["existing","loaded"].includes(r.state))){records.push({key,state:"skipped-incomplete-resources"});continue}
    if(ready()&&!coreUpgrade){records.push({key,state:"existing"});continue}
    try{await loadFile(file);records.push({key,state:ready()?"loaded":"loaded-no-global"})}
    catch(error){records.push({key,state:"unavailable",reason:error.message})}
