@@ -302,6 +302,8 @@ body :is(button,a,select,input,textarea){font-size:max(16px,1em)}
 .vnv-skip:focus{left:10px}
 .vnv-translator-breadcrumb{padding:11px 18px;background:#fff8e9;color:#252b2b;text-align:center;border-bottom:1px solid #b48b45;font-size:16px}
 .vnv-translator-breadcrumb a{color:#252b2b}
+/* The canonical language switch is offered through the lower-left universal toolbar, not as a third top strip. */
+body > #vnv-language-switch{display:none!important}
 main.shell{padding-top:0}
 main .hero{background:#252b2b;color:#fff8e9;padding:66px clamp(18px,3vw,44px) 74px;width:100vw;position:relative;left:50%;margin:0 0 0 -50vw;text-align:center}
 main .hero .eyebrow{font:400 33px/1.2 var(--serif);color:#fff8e9;letter-spacing:.01em;text-transform:none}
