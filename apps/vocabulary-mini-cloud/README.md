@@ -7,7 +7,7 @@ Do not describe this page as a working cloud until the writer, private repositor
 
 - Master translator and dictionary: `apps/translator.html`, `data/sovereign-dictionary.v1.json`.
 - Encryption implementation: `apps/vocabulary-mini-cloud/index.html` (Web Crypto API within HTML).
-- Durable destination: GitHub encrypted JSON object, written **only through a trusted authenticated server-side GitHub App bridge**.
+- Durable destination: encrypted JSON objects in the **private** `artist1970/creative-spark.github.io` repository, written **only through a trusted authenticated server-side GitHub App bridge**. The implementation source lives at `integrations/linguistics-vocabulary/github-vault-writer.mjs` in Creative Spark; it is not deployed as a browser endpoint.
 - Public GitHub Pages hosts static client code only. The user passphrase, decrypted vocabulary, private data and GitHub credentials must never be written into HTML, repository source, telemetry, query parameters or logs.
 - No browser `localStorage`, `sessionStorage`, `IndexedDB`, cookies, CacheStorage or filesystem fallback.
 - The mini cloud records new terms as **unreviewed**. It must never automatically rewrite the published canonical dictionary. Editorial approval and a separate provenance-aware publication process are required.
@@ -35,13 +35,13 @@ The trusted writer must:
 
 1. Authenticate each read and write using a server-held GitHub App installation credential or equivalent restricted server-side authority. **Never embed a PAT or GitHub secret in the page.**
 2. Authorize the exact private repo, immutable namespace and caller-specific object path. Reject path traversal and arbitrary repository writes.
-3. Allow only the encrypted envelope schema and enforce a size cap. Never accept plaintext vocabulary.
+3. Allow only the encrypted envelope schema and enforce a size cap; store records in the private Creative Spark namespace, not the public Linguistics repository. Never accept plaintext vocabulary.
 4. Verify the SHA-256 digest of the exact serialized envelope and compare revisions atomically to avoid lost updates.
 5. After GitHub confirms a commit, re-read the committed bytes and verify their digest before returning a durable receipt; protect against replay.
 6. Enforce rate limits, audit changes without logging plaintext, and support explicit recovery/rotation procedures.
 7. Deny unauthenticated requests, stale revisions and failed readbacks. Never fall back to local browser storage or pretend GitHub accepted a save.
 
-GitHub commit histories persist old encrypted revisions. Encryption protects plaintext confidentiality under the stated passphrase assumptions, but does not prevent traffic/metadata disclosure or erase older commits. Use a dedicated **private** record repository if vocabulary provenance is sensitive.
+GitHub commit histories persist old encrypted revisions. Encryption protects plaintext confidentiality under the stated passphrase assumptions, but does not prevent traffic/metadata disclosure or erase older commits. Use the verified **private Creative Spark** record repository and keep identity HMAC paths opaque; ciphertext revisions remain visible to authorized collaborators.
 
 ## Browser encryption contract
 
