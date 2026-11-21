@@ -78,3 +78,24 @@ test("explicit feedback changes bounded suggestion bias but never allows publica
  assert.equal(a.list()[0].learningBias,-0.12);
  assert.equal(a.status().cloudWrites,0);
 });
+
+test("repeated uncorroborated machine output does not increase translation certainty",()=>{
+ const a=lab(()=>null);a.optIn(true);
+ const record={...entry,providerTier:"online-machine-draft",providerSource:"MyMemory"};
+ const first=a.observe(record).candidate;
+ for(let i=0;i<35;i++)a.observe(record);
+ const last=a.list()[0];
+ assert.equal(last.confidence,first.confidence);
+ assert.equal(last.providerTier,"online-machine-draft");
+ assert.equal(last.providerSource,"MyMemory");
+ assert.equal(last.observations,12);
+ assert.equal(last.promotionAllowed,false);
+});
+test("unknown evidence tier is withheld and reviewed source is distinguished",()=>{
+ const a=lab(()=>({translation:"bonjour",source:"sovereign-local-reviewed"}));a.optIn(true);
+ assert.equal(a.observe({...entry,providerTier:"private-learner"}).ok,false);
+ const trusted=a.observe({...entry,providerTier:"offline-reviewed",providerSource:"sovereign-local-reviewed"});
+ assert.equal(trusted.ok,true);
+ assert.equal(trusted.candidate.providerTier,"offline-reviewed");
+ assert.equal(trusted.candidate.promotionAllowed,false);
+});
