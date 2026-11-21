@@ -303,7 +303,7 @@ body :is(button,a,select,input,textarea){font-size:max(16px,1em)}
 .vnv-translator-breadcrumb{padding:11px 18px;background:#fff8e9;color:#252b2b;text-align:center;border-bottom:1px solid #b48b45;font-size:16px}
 .vnv-translator-breadcrumb a{color:#252b2b}
 main.shell{padding-top:0}
-main .hero{background:#252b2b;color:#fff8e9;padding:66px clamp(18px,3vw,44px) 74px;margin:0 calc((100vw - 100%) / -2) 0;text-align:center}
+main .hero{background:#252b2b;color:#fff8e9;padding:66px clamp(18px,3vw,44px) 74px;width:100vw;position:relative;left:50%;margin:0 0 0 -50vw;text-align:center}
 main .hero .eyebrow{font:400 33px/1.2 var(--serif);color:#fff8e9;letter-spacing:.01em;text-transform:none}
 main .hero h1{font:400 66px/1.14 var(--serif);color:#fff8e9;margin:14px auto 0}
 main .hero p{font:400 24px/1.5 var(--sans);color:#fff8e9;max-width:860px}
@@ -354,7 +354,7 @@ main .footer{background:#252b2b;color:#fff8e9;text-align:center;border-radius:7p
   </section>
   <nav class="vnv-translator-doors" aria-label="Translator access">
     <a href="#translatorWorkspace">Translate</a>
-    <a href="#dictionaryStudio">Dictionary &amp; Thesaurus</a>
+    <a href="#dictionaryTitle">Dictionary &amp; Thesaurus</a>
     <a href="#candidateLearningHeading">Teacher Study Lab</a>
   </nav>
   <section class="vnv-translator-intro" aria-labelledby="aboutTranslator">
@@ -529,7 +529,7 @@ main .footer{background:#252b2b;color:#fff8e9;text-align:center;border-radius:7p
     </div>
     <section class="dictionary-portal" aria-labelledby="dictionaryTitle">
       <div class="dictionary-heading">
-        <h2 id="dictionaryTitle">Sovereign Reference Dictionary</h2>
+        <h2 id="dictionaryTitle" data-vnv-dictionary-anchor>Sovereign Reference Dictionary</h2>
         <p>Search definitions, pronunciation, word origins and genuine bilingual vocabulary from Arcade, Preschool and ARSHIF. Every record retains its public source. Storybird prompts are separate and never represented as dictionary definitions.</p>
       </div>
       <div class="dictionary-controls">
@@ -1638,7 +1638,7 @@ window.KhaemenesClassToolsConfigV1={
  toggleLabel:"Tools",ariaLabel:"Sovereign Translator tools",
  tools:[
   {type:"link",label:"Translate",sub:"Translation workspace",href:"#translatorWorkspace"},
-  {type:"link",label:"Dictionary",sub:"Source-attributed dictionary",href:"#dictionaryStudio"},
+  {type:"link",label:"Dictionary",sub:"Source-attributed dictionary",href:"#dictionaryTitle"},
   {type:"link",label:"Teacher",sub:"Candidate study lab",href:"#candidateLearningHeading"},
   {type:"translator",label:"Language",sub:"Change page language"},
   {type:"link",label:"Academy",sub:"Khaemenes Academy",href:"https://vervenveda.com/Khaemenes_Academy.github.io/"},
