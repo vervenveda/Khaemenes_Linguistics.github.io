@@ -36,7 +36,7 @@ No guessing between two non-English languages. One-word mappings can be polysemo
 5. Once approved, add an entry with explicit provenance and editorial status to the **canonical JSON**, regenerate the browser bundle and tests, and update the service-worker cache version.
 6. Existing games and ARSHIF original source records must never be silently overwritten to make a consolidated dictionary.
 
-**Bundle transition note:** The current v1 browser bundle was generated before a correction to 37 bilingual-only records. The small `assets/sovereign-dictionary-v1-errata.js` aligns runtime data with the canonical JSON. The dictionary integrity workflow asserts exact equality **after** applying that overlay. Replace both bundle and overlay with a single regenerated artifact at the next controlled build, never delete the overlay alone.
+**Bundle transition note (2026-11-21):** The offline bundle has now been regenerated directly from canonical JSON and independently checked for exact equality **before** any errata. The old errata remains idempotently loaded for older service-worker caches and other consumers. The source-to-bundle generator and CI drift check are now authoritative; retire the old overlay only after validating cache propagation and every referencing page.
 
 ## Verification
 - `.github/workflows/sovereign-dictionary-integrity.yml`: counts, source provenance, exact effective canonical bundle, bilingual precision, related-term links, browser-local draft safeguards.
