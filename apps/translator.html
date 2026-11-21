@@ -853,6 +853,7 @@ let sessionOnlineConsent = false;
 let pendingOnlineAction = null;
 let lessonContext = null;
 let reviewSnapshot = null;
+let translationEvidence = null;
 
 function readJSON(key, fallback){
   try{
@@ -935,6 +936,7 @@ function translationContext(){
 }
 function invalidateTranslation(){
  onlineRequestGuard.invalidate();
+ translationEvidence=null;
  reviewSnapshot=null;
  els.reviewText.value="";
  els.reviewAttestation.checked=false;
@@ -1061,10 +1063,12 @@ function updateLiteraryPanels(){
 
 async function translateOffline(){
   onlineRequestGuard.invalidate();
+  translationEvidence=null;
   updateDirections();
   const from=els.from.value,to=els.to.value,text=cleanText(els.input.value);
   if(!text){setStatus("Enter text to translate.","bad");return}
   if(from===to){
+    translationEvidence=null;
     els.output.textContent=text;
     setStatus("Source and target languages are the same.","good");
     afterTranslation();
@@ -1072,6 +1076,8 @@ async function translateOffline(){
   }
   const hit=lookupOffline(from,to,text);
   if(hit?.translation){
+    translationEvidence={providerTier:hit.verified===true?"offline-reviewed":"offline-source-draft",
+      providerSource:typeof hit.source==="string"?hit.source:"sovereign-offline"};
     els.output.textContent=hit.translation;
     const label=hit.reviewStatus==="self-reviewed"?"Personally reviewed local pair.":
       hit.reviewStatus==="imported-self-reviewed"?"Trusted imported review (user-confirmed).":
@@ -1079,6 +1085,7 @@ async function translateOffline(){
       "Sovereign campus or vocabulary draft · review before formal use.";
     setStatus(label,"good");
   }else{
+    translationEvidence=null;
     els.output.textContent="No exact verified translation is stored locally for this text.";
     els.output.lang="en";els.output.dir="ltr";
     setStatus("Offline Library miss. Use a saved pair, import a language pack, or explicitly choose Online Translation.","bad");
@@ -1106,6 +1113,7 @@ async function translateOnline(){
     return;
   }
   if(from===to){
+    translationEvidence=null;
     els.output.textContent=text; setStatus("Source and target languages are the same.","good"); afterTranslation(); return;
   }
   if(!sessionOnlineConsent){
@@ -1119,6 +1127,7 @@ async function translateOnline(){
   if(cache.entries[ck]?.translation){
     if(!stillCurrent())return;
     els.output.textContent=cache.entries[ck].translation;
+    translationEvidence={providerTier:"online-memory-draft",providerSource:"MyMemory"};
     updateDirections();
     setStatus("Machine-generated draft loaded from the local online cache. Review before relying on or saving it.","good");
     afterTranslation();
@@ -1139,11 +1148,13 @@ async function translateOnline(){
     cache.entries[ck]={translation:translated,savedAt:nowIso(),provider:"MyMemory"};
     setCache(cache);
     els.output.textContent=translated;
+    translationEvidence={providerTier:"online-machine-draft",providerSource:"MyMemory"};
     updateDirections();
     setStatus("Machine-generated draft received and cached locally. Review it carefully before using “Save Verified Pair.”","good");
   }catch(error){
     if(!stillCurrent())return;
     els.output.textContent="";
+    translationEvidence=null;
     setStatus("Online translation failed: "+String(error?.message||error).slice(0,180),"bad");
   }finally{onlineRequestGuard.finish(request)}
   if(stillCurrent())afterTranslation();
@@ -1157,12 +1168,14 @@ function afterTranslation(){
   if(purpose==="learn")updateKnownTerms();
   if(purpose==="literary")updateLiteraryPanels();
   const candidate=cleanText(els.output.textContent);
-  reviewSnapshot={source:cleanText(els.input.value),from:els.from.value,to:els.to.value,output:candidate};
+  reviewSnapshot={source:cleanText(els.input.value),from:els.from.value,to:els.to.value,output:candidate,
+    providerTier:translationEvidence?.providerTier||null};
   els.reviewText.value=(!candidate||candidate==="Working…"||candidate.startsWith("No exact verified translation"))?"":candidate;
   els.reviewAttestation.checked=false;
-  if(candidate&&candidate!=="Working…"&&!candidate.startsWith("No exact verified translation")){
+  if(translationEvidence&&candidate&&candidate!=="Working…"&&!candidate.startsWith("No exact verified translation")){
     window.KhaemenesTranslationCandidateTeachingUI?.capture({from:els.from.value,to:els.to.value,
-      source:reviewSnapshot.source,translation:candidate,origin:"public-ui"});
+      source:reviewSnapshot.source,translation:candidate,origin:"public-ui",
+      providerTier:translationEvidence.providerTier,providerSource:translationEvidence.providerSource});
   }
 }
 
@@ -1178,7 +1191,7 @@ function saveCurrentPair(){
   setStatus("Please read and confirm the translation-review checkbox before saving.","bad");return;
  }
  const result=saveVerifiedPair(els.from.value,els.to.value,src,dst,{
-  reviewConfirmed:true,source:els.service.value==="online"?"edited-online-draft":"edited-sovereign-or-manual",
+  reviewConfirmed:true,source:reviewSnapshot.providerTier?.startsWith("online-")?"edited-online-draft":"edited-sovereign-or-manual",
   purpose,reviewNote:dst===reviewSnapshot.output?"Compared against original source":"Corrected the original suggestion"
  });
  if(result.ok){
