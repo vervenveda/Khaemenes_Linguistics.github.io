@@ -16,6 +16,7 @@ on:
       - 'scripts/audit-translation-trust.mjs'
       - 'service-worker.js'
       - 'apps/translator.html'
+      - 'apps/translator-entry.html'
       - 'scripts/audit-dictionary.mjs'
       - '.github/workflows/sovereign-dictionary-integrity.yml'
   workflow_dispatch:
