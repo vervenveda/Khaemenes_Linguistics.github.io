@@ -9,7 +9,8 @@ const SEED=root.KhaemenesSovereignSeeds||{phrases:{}};
 const DICTIONARY=root.KhaemenesSovereignDictionary||{entries:[],creativeVocabulary:[]};
 const dictionaryEntries=[
  ...(Array.isArray(DICTIONARY.entries)?DICTIONARY.entries:[]),
- ...(Array.isArray(root.KhaemenesLexiconExpansion?.entries)?root.KhaemenesLexiconExpansion.entries:[])
+ ...(Array.isArray(root.KhaemenesLexiconExpansion?.entries)?root.KhaemenesLexiconExpansion.entries:[]),
+ ...(Array.isArray(root.KhaemenesHigherLearningLexicon?.entries)?root.KhaemenesHigherLearningLexicon.entries:[])
 ];
 const fold=text=>String(text||"").normalize("NFKD").replace(/[\u0300-\u036f]/g,"").trim().toLowerCase();
 function publicEntry(entry){
