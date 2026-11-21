@@ -16,10 +16,22 @@ function display(){
  for(const item of lab.list({limit})){
   const li=document.createElement("li");
   const verdict=lab.recommend({from:item.from,to:item.to,source:item.source});
-  li.textContent=item.source+" → "+item.translation+" ("+item.from+" / "+item.to+") · "+
-    item.observations+" observation(s) · "+
+  const description=document.createElement("span");
+  description.textContent=item.source+" → "+item.translation+" ("+item.from+" / "+item.to+") · "+
+    item.observations+" observation(s) · bias "+(item.learningBias||0).toFixed(2)+" · "+
     (verdict.decision==="WITHHOLD"?"Teacher WITHHOLD": "Teacher suggestion for human review")+
     (item.conflict?" · dictionary conflict":"");
+  li.appendChild(description);
+  for(const [label,outcome] of [["Helpful","helpful"],["Needs correction","incorrect"]]){
+   const button=document.createElement("button");button.type="button";button.className="secondary";
+   button.textContent=label+" (advisory)";
+   button.addEventListener("click",()=>{
+    lab.feedback({from:item.from,to:item.to,source:item.source,translation:item.translation,
+     outcome,explicitReview:true});
+    display();
+   });
+   li.appendChild(button);
+  }
   list.appendChild(li);
  }
 }
