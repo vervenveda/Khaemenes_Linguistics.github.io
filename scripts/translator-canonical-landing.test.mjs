@@ -54,3 +54,22 @@ test("original translator functionality, offline dictionary and Teacher review s
  }
  assert.match(html,/class="footer"/);
 });
+
+test("translator entry uses canonical VNV components, three doors and four symmetrical features",async()=>{
+ const entry=await readFile(new URL("../apps/translator-entry.html",import.meta.url),"utf8");
+ const loaded=[...entry.matchAll(/<script\\b[^>]*\\bsrc="([^"]+)"/g)].map(x=>x[1]);
+ const uses=x=>loaded.filter(v=>v.includes(x)).length;
+ for(const x of ["vnv-dual-ticker-v1.js","vnv-ecosystem-menu.js","vnv-class-tools-toolbar.js","vnv-ecosystem-toolbar.js","vnv-language.js"])
+  assert.equal(uses(x),1,"Missing or duplicate canonical asset: "+x);
+ assert.match(entry,/data-vnv-ecosystem-slot/);
+ assert.match(entry,/type:"translator",label:"Language"/);
+ assert.match(entry,/\\.hero \\.eyebrow\\{font:400 33px/);
+ assert.match(entry,/\\.hero h1\\{font:400 66px/);
+ assert.match(entry,/\\.hero \\.descriptor\\{font:400 24px/);
+ assert.match(entry,/\\.features\\{display:grid;grid-template-columns:repeat\\(2,minmax\\(0,1fr\\)\\)/);
+ const doors=entry.match(/<nav class="access"[\\s\\S]*?<\\/nav>/)?.[0];
+ assert.equal((doors?.match(/<a /g)||[]).length,3);
+ assert.equal((entry.match(/class="feature"/g)||[]).length,4);
+ assert.match(entry,/body > #vnv-language-switch\\{display:none!important\\}/);
+ assert.match(entry,/translator\\.html#candidateLearningHeading/);
+});
