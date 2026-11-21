@@ -7,6 +7,8 @@
 (function(root){"use strict";
 const MAX=240, MAX_PHRASE=120, REJECT=Object.freeze({ok:false,status:"withheld"});
 const LANG=/^[a-z]{2,8}(?:-[a-z0-9]{2,8})?$/i;
+const EVIDENCE_TIERS=new Set(["unattributed","offline-reviewed","offline-source-draft","online-machine-draft","online-memory-draft"]);
+const machineTier=t=>t==="online-machine-draft"||t==="online-memory-draft";
 const normalize=s=>typeof s==="string"?s.normalize("NFC").trim():"";
 const safe=s=>!!s&&s.length<=MAX_PHRASE&&!/[\r\n<>\u0000-\u001f]/.test(s)&&
  !/(?:\b\d{3}[-. ]?\d{2}[-. ]?\d{4}\b|\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b|(?:api[_-]?key|password|passphrase|secret|token)\s*[:=])/i.test(s);
@@ -21,8 +23,8 @@ function optIn(value){
  if(!enabled)candidates.clear();
  return status();
 }
-function observe({from,to,source,translation,origin="public-ui",reviewConfirmed=false}={}){
- if(!enabled||origin!=="public-ui"||reviewConfirmed===true){stats.withheld++;return REJECT}
+function observe({from,to,source,translation,origin="public-ui",providerTier="unattributed",providerSource=null,reviewConfirmed=false}={}){
+ if(!enabled||origin!=="public-ui"||reviewConfirmed===true||!EVIDENCE_TIERS.has(providerTier)){stats.withheld++;return REJECT}
  from=normalize(from).toLowerCase();to=normalize(to).toLowerCase();
  source=normalize(source);translation=normalize(translation);
  if(!LANG.test(from)||!LANG.test(to)||from===to||!safe(source)||!safe(translation)){
@@ -38,8 +40,12 @@ function observe({from,to,source,translation,origin="public-ui",reviewConfirmed=
  const n=Math.min(12,(earlier?.observations||0)+1);
  const conflict=!!(found&&!identical);
  // Repetition is weak evidence only; never a trust or review grant.
- const confidence=Math.max(0,Math.min(0.85,0.2+Math.log2(1+n)*0.08+(identical?0.18:0)-(conflict?0.18:0)));
- const candidate={from,to,source,translation,origin,observations:n,confidence:Number(confidence.toFixed(3)),
+ // Repeated machine responses are frequency observations, NOT corroboration of correctness.
+ const repetition=machineTier(providerTier)?0:Math.log2(1+n)*0.08;
+ const confidence=Math.max(0,Math.min(0.85,0.2+repetition+(identical?0.18:0)-(conflict?0.18:0)));
+ const candidate={from,to,source,translation,origin,providerTier,
+  providerSource:typeof providerSource==="string"?providerSource.slice(0,75):null,
+  observations:n,confidence:Number(confidence.toFixed(3)),
   learningBias:earlier?.learningBias??0,feedbackCount:earlier?.feedbackCount??0,
   dictionaryMatch:!!identical,dictionarySource:typeof found?.source==="string"?found.source:null,
   conflict,reviewStatus:"candidate-unreviewed",promotionAllowed:false};
@@ -88,5 +94,5 @@ function reviewedProposal({from,to,source,translation,reviewConfirmed=false,revi
   record:approved,requiresExistingReviewSave:true};
 }
 function clear(){candidates.clear();return status()}
-root.KhaemenesTranslationCandidateLab=Object.freeze({version:"1.2.0",optIn,observe,list,status,recommend,feedback,reviewedProposal,clear});
+root.KhaemenesTranslationCandidateLab=Object.freeze({version:"1.3.0",optIn,observe,list,status,recommend,feedback,reviewedProposal,clear});
 })(window);
