@@ -22,7 +22,7 @@ User-initiated translation in Sovereign Translator
    └── opt-in checked? → short text / PII and markup safeguards
                            │
                            ├── existing dictionary lookup (READ ONLY)
-                           ├── bounded 240-record in-memory pattern counts
+                           ├── bounded 240-record in-memory pattern counts and explicit feedback
                            ├── advisory laNGgwij-inspired arbitration
                            │    ├── low score or near tie → WITHHOLD
                            │    └── clear score → SUGGEST FOR HUMAN REVIEW
@@ -38,7 +38,7 @@ User-initiated translation in Sovereign Translator
 New modules:
 - `assets/khaemenes-translation-candidate-lab.js`: `optIn`, `observe`, `list`, `recommend`, `reviewedProposal`, `clear`, `status`. Reuses the exact `KhaemenesSovereignTranslate.lookupLocal` core read-only. Bounded to 240 distinct candidate records per tab, caps repeats at 12, scores never establish translation correctness or review authority, blocks oversized/PII-like/markup/private-origin observations.
 - `assets/khaemenes-translation-teacher-arbiter.js`: separate advisory `WITHHOLD` or `SUGGEST_FOR_REVIEW`, thresholds drawn from the current Teacher policy, never automatic publication and no native execution.
-- `assets/khaemenes-translation-candidate-ui.js`: opt-in checkbox (OFF by default), memory-only candidate list and Clear Candidate Memory. No localStorage, cookies, network calls, GitHub writes or persistent learning log.
+- `assets/khaemenes-translation-candidate-ui.js`: opt-in checkbox (OFF by default), memory-only candidate list, explicit **Helpful**/**Needs correction** buttons and Clear Candidate Memory. Feedback is bounded to ±0.12 and does not approve publication. No localStorage, cookies, network calls, GitHub writes or persistent learning log.
 - `apps/translator.html`: contains the opt-in **Teacher's Translation Study Lab** adjacent to the pre-existing Translation Review. Its existing `afterTranslation()` reports a successful user-initiated on-page translation to the study lab only when enabled. Existing review/save behavior remains the only path to a personally reviewed local pair.
 
 **Not implemented / deliberately not claimed:** automatic capture of every ecosystem page's translations, background scraping of pages, automatic persistent recording of raw translations, bulk import or replacement of canonical JSON, automatic encryption of candidates into the Mac GitHub vault, independent native laNGgwij execution/authorization, or autonomous language-model training. The public domain cannot silently write to a loopback-only private owner vault or bypass the new one-time pairing flow. A future cross-page bridge requires explicit opt-in, page eligibility and text minimization, origin trust, reviewed schema mapping, and an owner-authorized encrypted transport contract.
@@ -46,7 +46,7 @@ New modules:
 ## Sovereignty and learning safeguards
 
 1. Missing translation stays missing. Exact source lookup remains authoritative for observed source metadata, not an inferred language answer.
-2. Repeated machine drafts or page observations can improve **candidate priority only**, never certify semantic accuracy, override reviewed pairs, or change canonical entries.
+2. Repeated machine drafts, owner-marked helpful/incorrect feedback, or page observations can improve **candidate priority only**, never certify semantic accuracy, override reviewed pairs, or change canonical entries.
 3. Source attribution and conflicts are displayed. laNGgwij-inspired uncertainty leads to WITHHOLD.
 4. No learner records, private input fields, account IDs, secrets, authentication text or unsolicited page content should be ingested. The initial bounded filter is a defense-in-depth candidate, not a complete PII detector; only explicitly user-requested public text is eligible.
 5. The candidate lab retains **no browser persistence**. Closing a tab or unchecking the opt-in control erases candidate history. Existing reviewed-pair browser storage belongs to the prior translator and must not be mislabeled as the private GitHub vocabulary cloud.
@@ -66,6 +66,6 @@ node scripts/audit-dictionary.mjs
 node scripts/audit-translation-trust.mjs
 ```
 
-The existing public dictionary integrity workflow includes the new regression tests. **Do not call the new tests PASS or UI acceptance complete until execution results have been observed.** Separately test the public translator in browser: no candidate before opt-in; one short offline translation after opt-in; WITHHOLD or advisory output only; clearing/disabling removes observations; manual reviewed-pair save remains explicitly required.
+The existing public dictionary integrity workflow includes the new regression tests (currently 9 candidate tests and 7 arbiter tests). **Do not call the new tests PASS or UI acceptance complete until execution results have been observed.** Separately test the public translator in browser: no candidate before opt-in; one short offline translation after opt-in; WITHHOLD or advisory output only; clearing/disabling removes observations; manual reviewed-pair save remains explicitly required.
 
 **Original private Creative Spark Mac vault:** untouched; it continues using the separately approved and pinned `apps/vocabulary-mini-cloud/index.html` source. Do not restart that vault to deploy this public translator feature.
