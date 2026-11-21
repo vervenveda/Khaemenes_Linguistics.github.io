@@ -1458,7 +1458,7 @@ function populateDictionary(){
  const generated=window.KhaemenesSovereignDictionary;
  const expansion=window.KhaemenesLexiconExpansion;
  label.textContent=stats.allRecords+" source records ("+stats.definedEntries+" definition-bearing; "+stats.translationOnlyEntries+" translation-only), "+stats.creativeVocabulary+" Storybird creative items. Source: "+(generated?.canonical||"local dictionary")+"; lexicon expansion "+(expansion?.entries?.length||0)+" records. Offline; unreviewed source entries are not verified translations.";
- const domains=[...new Set([...(generated?.entries||[]),...(expansion?.entries||[])].map(e=>e.domain).filter(Boolean))].sort();
+ const domains=[...new Set([...(generated?.entries||[]),...(expansion?.entries||[]),...(window.KhaemenesHigherLearningLexicon?.entries||[])].map(e=>e.domain).filter(Boolean))].sort();
  const select=$("dictionaryDomain");
  select.querySelectorAll('option:not([value=""])').forEach(option=>option.remove());
  for(const domain of domains){const option=document.createElement("option");option.value=domain;option.textContent=domain.replace(/[-_]/g," ");select.append(option)}
