@@ -934,12 +934,13 @@ function clearOnlineCache(){
 function translationContext(){
  return {from:els.from.value,to:els.to.value,text:cleanText(els.input.value),service:els.service.value};
 }
-function invalidateTranslation(){
+function invalidateTranslation({preserveOutput=false}={}){
  onlineRequestGuard.invalidate();
  translationEvidence=null;
  reviewSnapshot=null;
  els.reviewText.value="";
  els.reviewAttestation.checked=false;
+ if(!preserveOutput)els.output.textContent="";
 }
 function cacheKey(from,to,text){return `${pairKey(from,to)}::${exactKey(text)}`}
 
@@ -1161,7 +1162,7 @@ async function translateOnline(){
   if(stillCurrent())afterTranslation();
 }
 async function runTranslation(){
-  onlineRequestGuard.invalidate();
+  invalidateTranslation();
   if(els.service.value==="offline") return translateOffline();
   return translateOnline();
 }
@@ -1340,7 +1341,7 @@ els.input.addEventListener("input",()=>{invalidateTranslation();updateKnownTerms
 els.service.addEventListener("change",()=>{invalidateTranslation();closeConsent();applyService()});
 
 $("swapBtn").addEventListener("click",()=>{
-  invalidateTranslation();
+  invalidateTranslation({preserveOutput:true});
   const a=els.from.value;els.from.value=els.to.value;els.to.value=a;
   const current=cleanText(els.output.textContent);
   if(current && !/^No exact verified translation/.test(current)){
