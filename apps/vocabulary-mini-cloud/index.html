@@ -53,7 +53,7 @@ main{width:min(840px,calc(100% - 28px));margin:24px auto 55px}.panel{padding:22p
    The bridge MUST verify the SHA-256, enforce CAS, and never return plaintext.
 */
 (()=>{"use strict";
-const NS="linguistics.vocabulary.v1",REPOSITORY="vervenveda/Khaemenes_Linguistics.github.io",MAX=4000,ITER=310000;
+const NS="linguistics.vocabulary.v1",REPOSITORY="artist1970/creative-spark.github.io",MAX=4000,ITER=310000;
 const $=id=>document.getElementById(id),encoder=new TextEncoder(),decoder=new TextDecoder();
 let collection=[],identity="",revision=-1,secret="",connected=false,busy=false;
 function status(msg,error=false){$("vaultStatus").textContent=msg;$("vaultStatus").dataset.error=String(error)}
