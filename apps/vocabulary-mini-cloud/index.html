@@ -35,6 +35,17 @@ main{width:min(840px,calc(100% - 28px));margin:24px auto 55px}.panel{padding:22p
 <div class="actions"><button id="saveVocabulary" disabled type="button">Encrypt and Save to GitHub</button></div>
 <p class="muted">New entries are unreviewed. This candidate does not scrape learner responses or automatically publish dictionary entries.</p>
 </section>
+<section class="panel" aria-labelledby="archiveHeading">
+<h2 id="archiveHeading">Import a Dictionary Word · Owner Review</h2>
+<p class="muted">Search the Creative Spark archive for an exact bilingual word. Results are source-attributed, unreviewed and never imported automatically. Select one candidate, inspect the filled fields, then use the existing Encrypt and Save button.</p>
+<div class="grid">
+<div class="field"><label for="archiveWord">Dictionary headword</label><input id="archiveWord" maxlength="120" autocomplete="off" placeholder="Enter one word"></div>
+<div class="field"><label for="archiveLanguage">Target language code</label><input id="archiveLanguage" maxlength="24" value="fr" autocomplete="off"></div>
+</div>
+<div class="actions"><button id="archiveSearch" type="button" disabled>Find Source Translations</button></div>
+<p id="archiveStatus" role="status" aria-live="polite">Unlock and pair the local vault before searching.</p>
+<div id="archiveResults" aria-label="Unreviewed dictionary source candidates"></div>
+</section>
 <section class="panel" aria-labelledby="recordHeading">
 <h2 id="recordHeading">Private vocabulary collection</h2>
 <p id="wordCount">0 retained vocabulary pairs</p><ul id="vocabularyList"></ul>
@@ -55,7 +66,7 @@ main{width:min(840px,calc(100% - 28px));margin:24px auto 55px}.panel{padding:22p
 (()=>{"use strict";
 const NS="linguistics.vocabulary.v1",REPOSITORY="artist1970/creative-spark.github.io",MAX=4000,ITER=310000;
 const $=id=>document.getElementById(id),encoder=new TextEncoder(),decoder=new TextDecoder();
-let collection=[],identity="",revision=-1,secret="",connected=false,busy=false;
+let collection=[],identity="",revision=-1,secret="",connected=false,busy=false,selectedArchiveCandidate=null;
 function status(msg,error=false){$("vaultStatus").textContent=msg;$("vaultStatus").dataset.error=String(error)}
 function base64(bytes){let out="";for(const n of bytes)out+=String.fromCharCode(n);return btoa(out)}
 function bytes(value){return Uint8Array.from(atob(value),c=>c.charCodeAt(0))}
@@ -68,8 +79,8 @@ function bridge(){const b=window.KhaemenesVocabularyGitHubBridge;if(!b||typeof b
 async function authorized(){const b=bridge(),r=await b.status({namespace:NS});if(r?.authenticated!==true||r?.authorized!==true||r?.repository!==REPOSITORY||r?.namespace!==NS||!r?.identity||typeof r.identity!=="string")throw Error("GitHub cloud authentication, repository scope, or authorization failed.");return {b,r}}
 function validLanguage(code){return /^[a-z]{2,8}(?:-[a-z0-9]{2,8})?$/.test(code)}
 function render(){const list=$("vocabularyList");list.replaceChildren();$("wordCount").textContent=collection.length+" retained vocabulary pairs";for(const e of collection.slice(-100).reverse()){const li=document.createElement("li");li.textContent=e.word+" → "+e.translation+" · "+e.sourceLanguage+" / "+e.targetLanguage+" · "+e.reviewStatus;list.append(li)}}
-function lock(){collection=[];identity="";revision=-1;secret="";connected=false;$("vaultPassphrase").value="";$("saveVocabulary").disabled=true;render();status("Locked. No decrypted vocabulary is retained in persistent browser storage.")}
-function toggle(value){busy=value;$("connectCloud").disabled=value;$("lockCloud").disabled=value;$("saveVocabulary").disabled=value||!connected}
+function lock(){collection=[];identity="";revision=-1;secret="";connected=false;$("vaultPassphrase").value="";$("saveVocabulary").disabled=true;$("archiveSearch").disabled=true;selectedArchiveCandidate=null;$("archiveResults").replaceChildren();render();status("Locked. No decrypted vocabulary is retained in persistent browser storage.")}
+function toggle(value){busy=value;$("connectCloud").disabled=value;$("lockCloud").disabled=value;$("saveVocabulary").disabled=value||!connected;$("archiveSearch").disabled=value||!connected}
 async function connect(){if(busy)return;toggle(true);try{
  const pass=$("vaultPassphrase").value;if(pass.length<12)throw Error("Passphrase requires at least 12 characters.");
  const {b,r}=await authorized();const read=await b.get({namespace:NS,identity:r.identity});
@@ -83,14 +94,55 @@ async function save(){if(busy||!connected)return;toggle(true);try{
  const id=[sourceLanguage,targetLanguage,word.normalize("NFKC").toLowerCase()].join("|");
  if(collection.some(e=>[e.sourceLanguage,e.targetLanguage,e.word.normalize("NFKC").toLowerCase()].join("|")===id))throw Error("That vocabulary pair is already recorded.");
  if(collection.length>=MAX)throw Error("Vocabulary cloud capacity reached.");
- const next=[...collection,{word,translation,sourceLanguage,targetLanguage,reviewStatus:"unreviewed",provenance:"manual-input",addedAt:new Date().toISOString()}];
+ const next=[...collection,{word,translation,sourceLanguage,targetLanguage,reviewStatus:"unreviewed",provenance:selectedArchiveCandidate&&selectedArchiveCandidate.word===word&&selectedArchiveCandidate.translation===translation&&selectedArchiveCandidate.sourceLanguage===sourceLanguage&&selectedArchiveCandidate.targetLanguage===targetLanguage?"creative-spark-unified-dictionary:linguistics-reference":"manual-input",addedAt:new Date().toISOString()}];
  const blob=await seal({schema:NS,entries:next},secret),sha256=await hash(blob);
  const written=await b.put({namespace:NS,identity,expectedRevision:revision,blob,sha256});
  if(written?.authenticated!==true||written?.durable!==true||written?.namespace!==NS||written?.identity!==identity||written?.sha256!==sha256||!Number.isSafeInteger(written?.revision)||written.revision<=revision)throw Error("GitHub write receipt was not authenticated or durable.");
  const checked=await b.get({namespace:NS,identity});
  if(checked?.authenticated!==true||checked?.revision!==written.revision||checked?.identity!==identity||await hash(checked.blob)!==sha256)throw Error("GitHub ciphertext readback failed; save not verified.");
- collection=next;revision=written.revision;render();$("word").value="";$("translation").value="";status("New vocabulary encrypted and independently verified against GitHub readback.");
+ collection=next;revision=written.revision;render();$("word").value="";$("translation").value="";selectedArchiveCandidate=null;status("New vocabulary encrypted and independently verified against GitHub readback.");
  }catch(e){status(e.message||"Save not confirmed.",true)}finally{toggle(false)}}
+async function searchArchive(){
+ if(busy||!connected)return;
+ $("archiveResults").replaceChildren();
+ $("archiveStatus").textContent="Checking exact archived source entries…";
+ const word=$("archiveWord").value.trim(),targetLanguage=$("archiveLanguage").value.trim().toLowerCase();
+ if(!/^[\\p{L}\\p{M}'’-]+$/u.test(word)||word.length>120||!validLanguage(targetLanguage)){
+  $("archiveStatus").textContent="Enter one headword and a valid target language code.";return;
+ }
+ toggle(true);
+ try{
+  const {b,r}=await authorized();
+  if(r.identity!==identity)throw Error("Owner identity changed.");
+  if(typeof b.archiveLookup!=="function")throw Error("Updated local terminal archive lookup not available. Leave the existing vault unchanged.");
+  const response=await b.archiveLookup({word,targetLanguage});
+  if(!Array.isArray(response?.entries)||response.entries.length>25||response.reviewStatus!=="unreviewed")throw Error("Invalid archive lookup response.");
+  $("archiveStatus").textContent=response.entries.length+" unreviewed source translation candidates found. Select individually; nothing has been saved.";
+  for(const row of response.entries){
+   if(row?.approvedForVault!==false||row?.collection!=="linguistics-reference"||row.word!==word||row.targetLanguage!==targetLanguage||!row.isExactSourceBilingual)continue;
+   const wrapper=document.createElement("div");wrapper.className="panel";
+   const description=document.createElement("p");
+   description.textContent=row.word+" → "+row.translation+" · "+row.sourceLanguage+" / "+row.targetLanguage+" · Unreviewed";
+   const source=document.createElement("small");
+   source.textContent="Source: "+String(row.provenance?.repository||"unknown")+" / "+String(row.provenance?.path||"unknown");
+   const choose=document.createElement("button");choose.type="button";choose.textContent="Select this candidate for review";
+   choose.addEventListener("click",()=>{
+    selectedArchiveCandidate={word:row.word,translation:row.translation,sourceLanguage:row.sourceLanguage,targetLanguage:row.targetLanguage};
+    $("word").value=row.word;$("translation").value=row.translation;
+    $("sourceLanguage").value=row.sourceLanguage;$("targetLanguage").value=row.targetLanguage;
+    $("archiveStatus").textContent="Candidate selected but NOT saved. Review all four fields, then explicitly click Encrypt and Save to GitHub.";
+    $("word").focus();
+   });
+   wrapper.append(description,source,document.createElement("br"),choose);
+   $("archiveResults").append(wrapper);
+  }
+ }catch(e){$("archiveStatus").textContent=e.message||"Archive search unavailable. No changes were made."}
+ finally{toggle(false)}
+}
+$("archiveSearch").addEventListener("click",searchArchive);
+for(const field of ["word","translation","sourceLanguage","targetLanguage"]){
+ $(field).addEventListener("input",()=>{selectedArchiveCandidate=null});
+}
 $("connectCloud").addEventListener("click",connect);$("saveVocabulary").addEventListener("click",save);$("lockCloud").addEventListener("click",lock);addEventListener("pagehide",lock,{once:true});render();status("Encrypted storage ready, but the authenticated GitHub writer has not been commissioned; saving remains disabled.");
 })();
 </script>
