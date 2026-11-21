@@ -99,3 +99,15 @@ test("unknown evidence tier is withheld and reviewed source is distinguished",()
  assert.equal(trusted.candidate.providerTier,"offline-reviewed");
  assert.equal(trusted.candidate.promotionAllowed,false);
 });
+
+test("mixed provider tier cannot inherit machine frequency or review bias",()=>{
+ const a=lab(()=>null);a.optIn(true);
+ const machine={...entry,providerTier:"online-machine-draft",providerSource:"MyMemory"};
+ for(let i=0;i<10;i++)a.observe(machine);
+ a.feedback({...entry,outcome:"helpful",explicitReview:true});
+ const next=a.observe({...entry,providerTier:"offline-source-draft",providerSource:"source-vocabulary-draft"}).candidate;
+ assert.equal(next.observations,1);
+ assert.equal(next.learningBias,0);
+ assert.equal(next.providerTier,"offline-source-draft");
+ assert.equal(next.promotionAllowed,false);
+});
