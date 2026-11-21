@@ -1,0 +1,39 @@
+name: Pierre Translator Mentor Bridge
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'index.html'
+      - 'apps/translator.html'
+      - 'apps/translator-entry.html'
+      - 'assets/pierre-core-profile.v1.json'
+      - 'assets/pierre-translator-mentor-v1.js'
+      - 'scripts/pierre-translator-mentor.test.mjs'
+      - '.github/workflows/pierre-translator-mentor.yml'
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'apps/translator.html'
+      - 'apps/translator-entry.html'
+      - 'assets/pierre-core-profile.v1.json'
+      - 'assets/pierre-translator-mentor-v1.js'
+      - 'scripts/pierre-translator-mentor.test.mjs'
+      - '.github/workflows/pierre-translator-mentor.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  source-pinned-direct-mentor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax-validate mentor bridge
+        run: node --check assets/pierre-translator-mentor-v1.js
+      - name: Test Pierre mentor routes and no-transfer contract
+        run: node --test scripts/pierre-translator-mentor.test.mjs
