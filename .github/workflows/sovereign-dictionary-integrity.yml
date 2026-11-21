@@ -7,6 +7,11 @@ on:
       - 'assets/sovereign-dictionary.generated.js'
       - 'assets/khaemenes-interlingual-core.js'
       - 'assets/khaemenes-review-policy.js'
+      - 'assets/khaemenes-translation-candidate-lab.js'
+      - 'assets/khaemenes-translation-teacher-arbiter.js'
+      - 'assets/khaemenes-translation-candidate-ui.js'
+      - 'scripts/translation-candidate-lab.test.mjs'
+      - 'scripts/translation-teacher-arbiter.test.mjs'
       - 'scripts/audit-translation-trust.mjs'
       - 'service-worker.js'
       - 'apps/translator.html'
@@ -25,3 +30,5 @@ jobs:
         run: node scripts/audit-dictionary.mjs
       - name: Verify reviewed translation import and promotion safety
         run: node scripts/audit-translation-trust.mjs
+      - name: Verify opt-in observation and laNGgwij-inspired WITHHOLD behavior
+        run: node --test scripts/translation-candidate-lab.test.mjs scripts/translation-teacher-arbiter.test.mjs
