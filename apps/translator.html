@@ -312,6 +312,52 @@ html body :is(.workspace,.study-panel,.literary-panel,.translation-review) butto
   font-weight:400;
 }
 
+/* Accessible form contrast: explicit native appearance avoids OS dark inputs with dark text.
+   Scope to the actual translation workspace; do not restyle global VNV toolbars. */
+html{color-scheme:light}
+html body main :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),textarea,select),
+html body .dialog :is(input:not([type="checkbox"]):not([type="radio"]):not([type="file"]),textarea,select){
+  color-scheme:light;
+  background-color:#fffaf0!important;
+  color:#252b2b!important;
+  -webkit-text-fill-color:#252b2b!important;
+  caret-color:#252b2b;
+  border:1px solid #a89a79;
+  border-radius:7px;
+  opacity:1;
+}
+html body main :is(input,textarea)::placeholder,
+html body .dialog :is(input,textarea)::placeholder{
+  color:#555c57!important;
+  -webkit-text-fill-color:#555c57!important;
+  opacity:1;
+}
+html body main select option,
+html body .dialog select option{
+  background-color:#fffaf0!important;
+  color:#252b2b!important;
+}
+html body main :is(input:not([type="checkbox"]):not([type="radio"]),textarea,select):focus-visible{
+  outline:3px solid #b48b45;
+  outline-offset:2px;
+}
+html body main :is(.btn,.mode-tab,.swap,.thesaurus-workspace button,.translation-review button,.lexicon-drafts button){
+  font-size:16px;
+  font-weight:400;
+}
+html body main :is(.btn:not(.ghost):not(.gold):not(.secondary),.mode-tab[aria-selected="true"]),
+html body main .translation-review #candidateLearningClear{
+  background:#252b2b!important;
+  color:#fff8e9!important;
+  -webkit-text-fill-color:#fff8e9!important;
+}
+html body main :is(.btn:not(.ghost):not(.gold):not(.secondary),.mode-tab[aria-selected="true"]):is(:hover,:focus-visible),
+html body main .translation-review #candidateLearningClear:is(:hover,:focus-visible){
+  background:#353d3d!important;
+  color:#fff8e9!important;
+  -webkit-text-fill-color:#fff8e9!important;
+}
+
 /* Canonical VNV gateway chrome alignment — page-specific presentation, no new ticker/menu/toolbar runtime. */
 :root{--radius:7px;--radius-large:7px}
 body{font-size:16px;line-height:1.6}
@@ -440,7 +486,7 @@ main .footer{background:#252b2b;color:#fff8e9;text-align:center;border-radius:7p
     </div>
 
     <div class="actions">
-      <button class="btn" id="translateBtn" type="button">Translate</button>
+      <button class="btn" id="translateBtn" type="button">Enter Translation</button>
       <button class="btn secondary" id="saveBtn" type="button">Save My Reviewed Pair</button>
       <button class="btn ghost" id="copyBtn" type="button">Copy Translation</button>
       <button class="btn ghost" id="clearBtn" type="button">Clear</button>
