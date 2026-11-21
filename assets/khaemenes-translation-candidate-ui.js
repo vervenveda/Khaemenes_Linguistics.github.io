@@ -18,7 +18,7 @@ function display(){
   const verdict=lab.recommend({from:item.from,to:item.to,source:item.source});
   const description=document.createElement("span");
   description.textContent=item.source+" → "+item.translation+" ("+item.from+" / "+item.to+") · "+
-    item.observations+" observation(s) · bias "+(item.learningBias||0).toFixed(2)+" · "+
+    item.observations+" observation(s) · "+item.providerTier+" · bias "+(item.learningBias||0).toFixed(2)+" · "+
     (verdict.decision==="WITHHOLD"?"Teacher WITHHOLD": "Teacher suggestion for human review")+
     (item.conflict?" · dictionary conflict":"");
   li.appendChild(description);
@@ -38,8 +38,8 @@ function display(){
 enabled.addEventListener("change",()=>{lab.optIn(enabled.checked);display()});
 clear.addEventListener("click",()=>{enabled.checked=false;lab.optIn(false);display()});
 root.KhaemenesTranslationCandidateTeachingUI=Object.freeze({
- capture({from,to,source,translation,origin="public-ui"}={}){
-  const outcome=lab.observe({from,to,source,translation,origin});
+ capture({from,to,source,translation,origin="public-ui",providerTier="unattributed",providerSource=null}={}){
+  const outcome=lab.observe({from,to,source,translation,origin,providerTier,providerSource});
   display();
   return outcome;
  },
