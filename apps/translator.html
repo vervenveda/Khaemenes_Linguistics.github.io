@@ -397,6 +397,13 @@ main .hero .context{color:#252b2b}
 main .footer{background:#252b2b;color:#fff8e9;text-align:center;border-radius:7px;padding:30px 20px;font-size:16px}
 @media(max-width:700px){.vnv-translator-doors{grid-template-columns:1fr}.vnv-translator-features{grid-template-columns:repeat(2,minmax(0,1fr))}.vnv-translator-features>div{padding:16px}.site-header .brand strong{font-size:18px}main .hero h1{font-size:clamp(44px,10vw,66px)}}
 @media(max-width:430px){.vnv-translator-features{grid-template-columns:1fr}main .hero .eyebrow{font-size:28px}main .hero p{font-size:21px}}
+
+/* 2026-11-21: explicit contrast for all Translator editing surfaces. */
+html body main :is(input:not([type="checkbox"]):not([type="radio"]),textarea,select){background:#fff8e9;color:#252b2b;-webkit-text-fill-color:#252b2b;border:1px solid #8b806b;border-radius:7px;opacity:1}
+html body main :is(input,textarea)::placeholder{color:#59534b;opacity:1}
+html body main select option{background:#fff8e9;color:#252b2b}
+html body main :is(.btn:not(.ghost):not(.secondary):not(.gold),.vnv-translator-doors a){background:#252b2b;color:#fff8e9;-webkit-text-fill-color:#fff8e9}
+html body main :is(.btn:not(.ghost):not(.secondary):not(.gold),.vnv-translator-doors a):is(:hover,:focus-visible){background:#353d3d;color:#fff8e9;-webkit-text-fill-color:#fff8e9}
 </style>
   <script src="/Khaemenes_Linguistics.github.io/assets/linguistics-global-standard-v1.js" defer data-linguistics-global-standard="16-33-66-chrome"></script>
 </head>
@@ -1745,8 +1752,17 @@ window.KhaemenesInterlingual = Object.freeze({
 
 <!-- Reuse the exact canonical gateway owners, not local competing implementations. -->
 <script src="https://vervenveda.com/assets/vnv-ecosystem-menu.js" defer></script>
-<script src="https://vervenveda.com/Khaemenes_High.github.io/assets/vnv-dual-ticker-v1.js" defer></script>
-<script src="https://vervenveda.com/Khaemenes_Linguistics.github.io/assets/khaemenes-translator-loader.js?v=1.1.1" defer></script>
+<script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js" defer></script>
+<script src="https://vervenveda.com/assets/vnv-333-ticker.js" defer></script>
+<script defer>
+document.addEventListener("DOMContentLoaded",()=>{
+  if(!document.getElementById("vnvTickerAutoPopulate") && window.VNV_TICKER?.autoPopulate){
+    window.VNV_TICKER.autoPopulate({label:"Sovereign Translator · Explore",before:".site-header",max:12});
+  }
+  window.VNV333Ticker?.mount?.();
+},{once:true});
+</script>
+<!-- Translator loader already initialized from ../assets/khaemenes-translator-loader.js above. -->
 <script>
 window.KhaemenesClassToolsConfigV1={
  id:"sovereign-translator",
@@ -1765,7 +1781,7 @@ window.KhaemenesClassToolsConfigV1={
 </script>
 <script src="https://vervenveda.com/assets/vnv-class-tools-toolbar.js?v=1.6.1" defer></script>
 <!-- VNV_OFFICIAL_SITE_TRANSLATOR -->
-<script defer src="../assets/vnv-language.js?v=20261108-cream-controls"></script>
+<script defer src="../assets/vnv-language.js?v=20261121-half-height"></script>
 <script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
 </body>
 </html>
