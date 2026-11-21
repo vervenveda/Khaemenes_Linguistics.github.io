@@ -37,7 +37,7 @@ function observe({from,to,source,translation,origin="public-ui",providerTier="un
  const identical=found&&normalize(found.translation)===translation;
  const identity=key(from,to,source,translation);
  const earlier=candidates.get(identity);
- const n=Math.min(12,(earlier?.observations||0)+1);
+ const n=Math.min(12,(earlier?.providerTier===providerTier?earlier.observations:0)+1);
  const conflict=!!(found&&!identical);
  // Repetition is weak evidence only; never a trust or review grant.
  // Repeated machine responses are frequency observations, NOT corroboration of correctness.
@@ -46,7 +46,8 @@ function observe({from,to,source,translation,origin="public-ui",providerTier="un
  const candidate={from,to,source,translation,origin,providerTier,
   providerSource:typeof providerSource==="string"?providerSource.slice(0,75):null,
   observations:n,confidence:Number(confidence.toFixed(3)),
-  learningBias:earlier?.learningBias??0,feedbackCount:earlier?.feedbackCount??0,
+  learningBias:earlier?.providerTier===providerTier?(earlier.learningBias||0):0,
+  feedbackCount:earlier?.providerTier===providerTier?(earlier.feedbackCount||0):0,
   dictionaryMatch:!!identical,dictionarySource:typeof found?.source==="string"?found.source:null,
   conflict,reviewStatus:"candidate-unreviewed",promotionAllowed:false};
  if(candidates.has(identity))candidates.delete(identity);
