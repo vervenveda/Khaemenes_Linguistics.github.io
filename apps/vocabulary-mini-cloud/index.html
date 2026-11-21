@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+<title>Encrypted Vocabulary Mini Cloud | Khaemenes Linguistics</title>
+<style>
+:root{--char:#252b2b;--cream:#fff8e9;--paper:#f5f0e4;--gold:#b48b45;--ink:#202824;font-family:"Brandon Grotesque",Nunito,Arial,sans-serif;color:var(--ink);background:var(--paper)}
+*{box-sizing:border-box}body{margin:0;min-width:300px;font:400 16px/1.5 "Brandon Grotesque",Nunito,Arial,sans-serif}
+header{background:var(--char);color:var(--cream);text-align:center;padding:25px 14px;border-bottom:2px solid var(--gold)}.eyebrow{margin:0;font:400 24px Cinzel,Georgia,serif}h1{margin:7px 0;font:400 clamp(28px,5vw,44px) Cinzel,Georgia,serif}header p{margin:5px auto;max-width:760px}
+main{width:min(840px,calc(100% - 28px));margin:24px auto 55px}.panel{padding:22px;margin:16px 0;background:#fffdf8;border:1px solid #d2c4ac;border-radius:7px}h2{margin:0 0 12px;font:400 24px Cinzel,Georgia,serif}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.field{display:flex;flex-direction:column;gap:5px}label{font-size:16px}input{width:100%;padding:10px 12px;min-height:44px;border:1px solid #827967;border-radius:7px;background:#fff;color:var(--ink);font:inherit}button,.action{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 16px;background:var(--char);color:var(--cream);border:1px solid var(--char);border-radius:7px;font:400 16px/1.3 "Brandon Grotesque",Nunito,Arial,sans-serif;cursor:pointer;text-decoration:none}button:disabled{cursor:not-allowed;opacity:.55}.actions{display:flex;flex-wrap:wrap;gap:11px;margin-top:14px}.secondary{background:#fffdf8;color:var(--ink)}a{color:#264e63}a:focus-visible,button:focus-visible,input:focus-visible{outline:3px solid var(--gold);outline-offset:2px}#vaultStatus[data-error=true]{color:#87302a}#vaultStatus{padding:14px;border:1px solid #c9ba9c;border-radius:7px;background:#fff6e4}small,.muted{color:#56645f}ul{padding-left:20px}li{padding:7px 0;border-bottom:1px solid #eee5d6}footer{text-align:center;background:var(--char);color:var(--cream);padding:23px 12px}footer a{color:var(--cream)}@media(max-width:640px){.grid{grid-template-columns:1fr}.panel{padding:16px}}
+</style>
+</head>
+<body>
+<header><p class="eyebrow">Khaemenes Academy · Linguistics</p><h1>Encrypted Vocabulary Mini Cloud</h1><p>Private vocabulary review · encrypted in this page · GitHub ciphertext storage only</p></header>
+<main>
+<p id="vaultStatus" role="status" aria-live="polite" data-error="false">Checking authorized GitHub cloud connection…</p>
+<section class="panel" aria-labelledby="connectHeading">
+<h2 id="connectHeading">Unlock encrypted vocabulary</h2>
+<p class="muted">This page never saves words, passphrases, keys or decrypted data to localStorage, IndexedDB, cookies or sessionStorage. A trusted GitHub bridge is required for durable saving.</p>
+<div class="field"><label for="vaultPassphrase">Encryption passphrase (minimum 12 characters)</label><input id="vaultPassphrase" type="password" autocomplete="off" minlength="12" spellcheck="false"></div>
+<div class="actions"><button id="connectCloud" type="button">Connect GitHub Vault</button><button id="lockCloud" type="button" class="secondary">Lock and clear memory</button></div>
+</section>
+<section class="panel" aria-labelledby="newHeading">
+<h2 id="newHeading">Add vocabulary for review</h2>
+<div class="grid">
+<div class="field"><label for="word">Encountered word</label><input id="word" maxlength="120" autocomplete="off"></div>
+<div class="field"><label for="translation">Proposed translation or meaning</label><input id="translation" maxlength="500" autocomplete="off"></div>
+<div class="field"><label for="sourceLanguage">Source language code</label><input id="sourceLanguage" value="en" maxlength="24" autocomplete="off"></div>
+<div class="field"><label for="targetLanguage">Target language code</label><input id="targetLanguage" value="fr" maxlength="24" autocomplete="off"></div>
+</div>
+<div class="actions"><button id="saveVocabulary" disabled type="button">Encrypt and Save to GitHub</button></div>
+<p class="muted">New entries are unreviewed. This candidate does not scrape learner responses or automatically publish dictionary entries.</p>
+</section>
+<section class="panel" aria-labelledby="recordHeading">
+<h2 id="recordHeading">Private vocabulary collection</h2>
+<p id="wordCount">0 retained vocabulary pairs</p><ul id="vocabularyList"></ul>
+</section>
+<p class="muted">The bridge must authenticate the owner, enforce repository/path scope and revision checks, and return authoritative readback receipts. Without it, this interface fails closed. This is not a commissioned cloud connection.</p>
+<p><a href="../translator.html">Return to the Sovereign Translator</a></p>
+</main><footer>Khaemenes Academy · Encrypted Vocabulary Mini Cloud · No browser persistence</footer>
+<script>
+/* Encryption executes in this HTML page. No third-party libraries or browser persistence.
+   Only encrypted envelopes cross a separately authorized GitHub write bridge.
+   Required injected API: window.KhaemenesVocabularyGitHubBridge
+   .status({namespace}) -> {authenticated:true,repository,namespace,identity,authorized:true}
+   .get({namespace,identity}) -> {authenticated:true,namespace,identity,revision,blob}
+   .put({namespace,identity,expectedRevision,blob,sha256}) ->
+       {authenticated:true,durable:true,namespace,identity,revision,sha256}
+   The bridge MUST verify the SHA-256, enforce CAS, and never return plaintext.
+*/
+(()=>{"use strict";
+const NS="linguistics.vocabulary.v1",REPOSITORY="vervenveda/Khaemenes_Linguistics.github.io",MAX=4000,ITER=310000;
+const $=id=>document.getElementById(id),encoder=new TextEncoder(),decoder=new TextDecoder();
+let collection=[],identity="",revision=-1,secret="",connected=false,busy=false;
+function status(msg,error=false){$("vaultStatus").textContent=msg;$("vaultStatus").dataset.error=String(error)}
+function base64(bytes){let out="";for(const n of bytes)out+=String.fromCharCode(n);return btoa(out)}
+function bytes(value){return Uint8Array.from(atob(value),c=>c.charCodeAt(0))}
+function random(n){const out=new Uint8Array(n);crypto.getRandomValues(out);return out}
+async function derive(pass,salt){const key=await crypto.subtle.importKey("raw",encoder.encode(pass),"PBKDF2",false,["deriveKey"]);return crypto.subtle.deriveKey({name:"PBKDF2",salt,iterations:ITER,hash:"SHA-256"},key,{name:"AES-GCM",length:256},false,["encrypt","decrypt"])}
+async function seal(value,pass){const salt=random(16),iv=random(12),key=await derive(pass,salt),plain=encoder.encode(JSON.stringify(value));if(plain.byteLength>750000)throw Error("Encrypted record size limit exceeded");const encrypted=await crypto.subtle.encrypt({name:"AES-GCM",iv,additionalData:encoder.encode(NS)},key,plain);return {schema:"khaemenes-encrypted-vocabulary-v1",algorithm:"AES-256-GCM",kdf:"PBKDF2-HMAC-SHA256",iterations:ITER,salt:base64(salt),iv:base64(iv),ciphertext:base64(new Uint8Array(encrypted))}}
+async function unseal(blob,pass){if(blob===null)return {schema:NS,entries:[]};if(!blob||blob.schema!=="khaemenes-encrypted-vocabulary-v1"||blob.algorithm!=="AES-256-GCM"||blob.kdf!=="PBKDF2-HMAC-SHA256"||blob.iterations!==ITER)throw Error("Unrecognized encrypted vocabulary blob");const key=await derive(pass,bytes(blob.salt));const plain=await crypto.subtle.decrypt({name:"AES-GCM",iv:bytes(blob.iv),additionalData:encoder.encode(NS)},key,bytes(blob.ciphertext));const obj=JSON.parse(decoder.decode(plain));if(obj.schema!==NS||!Array.isArray(obj.entries)||obj.entries.length>MAX)throw Error("Invalid decrypted vocabulary structure");return obj}
+async function hash(value){const digest=await crypto.subtle.digest("SHA-256",encoder.encode(JSON.stringify(value)));return [...new Uint8Array(digest)].map(x=>x.toString(16).padStart(2,"0")).join("")}
+function bridge(){const b=window.KhaemenesVocabularyGitHubBridge;if(!b||typeof b.status!=="function"||typeof b.get!=="function"||typeof b.put!=="function")throw Error("GitHub encrypted storage bridge is not configured. No data was stored.");return b}
+async function authorized(){const b=bridge(),r=await b.status({namespace:NS});if(r?.authenticated!==true||r?.authorized!==true||r?.repository!==REPOSITORY||r?.namespace!==NS||!r?.identity||typeof r.identity!=="string")throw Error("GitHub cloud authentication, repository scope, or authorization failed.");return {b,r}}
+function validLanguage(code){return /^[a-z]{2,8}(?:-[a-z0-9]{2,8})?$/.test(code)}
+function render(){const list=$("vocabularyList");list.replaceChildren();$("wordCount").textContent=collection.length+" retained vocabulary pairs";for(const e of collection.slice(-100).reverse()){const li=document.createElement("li");li.textContent=e.word+" → "+e.translation+" · "+e.sourceLanguage+" / "+e.targetLanguage+" · "+e.reviewStatus;list.append(li)}}
+function lock(){collection=[];identity="";revision=-1;secret="";connected=false;$("vaultPassphrase").value="";$("saveVocabulary").disabled=true;render();status("Locked. No decrypted vocabulary is retained in persistent browser storage.")}
+function toggle(value){busy=value;$("connectCloud").disabled=value;$("lockCloud").disabled=value;$("saveVocabulary").disabled=value||!connected}
+async function connect(){if(busy)return;toggle(true);try{
+ const pass=$("vaultPassphrase").value;if(pass.length<12)throw Error("Passphrase requires at least 12 characters.");
+ const {b,r}=await authorized();const read=await b.get({namespace:NS,identity:r.identity});
+ if(read?.authenticated!==true||read?.namespace!==NS||read?.identity!==r.identity||!Number.isSafeInteger(read?.revision)||read.revision<0)throw Error("Invalid GitHub ciphertext read receipt");
+ const data=await unseal(read.blob??null,pass);collection=data.entries;identity=r.identity;revision=read.revision;secret=pass;connected=true;$("vaultPassphrase").value="";render();status("Authorized encrypted GitHub vocabulary collection opened.");
+ }catch(e){lock();status(e.message||"Failed to connect.",true)}finally{toggle(false)}}
+async function save(){if(busy||!connected)return;toggle(true);try{
+ const {b,r}=await authorized();if(r.identity!==identity)throw Error("Authenticated identity changed. Save denied.");
+ const word=$("word").value.trim(),translation=$("translation").value.trim(),sourceLanguage=$("sourceLanguage").value.trim().toLowerCase(),targetLanguage=$("targetLanguage").value.trim().toLowerCase();
+ if(!word||!translation||word.length>120||translation.length>500||!validLanguage(sourceLanguage)||!validLanguage(targetLanguage))throw Error("Enter valid vocabulary and language codes.");
+ const id=[sourceLanguage,targetLanguage,word.normalize("NFKC").toLowerCase()].join("|");
+ if(collection.some(e=>[e.sourceLanguage,e.targetLanguage,e.word.normalize("NFKC").toLowerCase()].join("|")===id))throw Error("That vocabulary pair is already recorded.");
+ if(collection.length>=MAX)throw Error("Vocabulary cloud capacity reached.");
+ const next=[...collection,{word,translation,sourceLanguage,targetLanguage,reviewStatus:"unreviewed",provenance:"manual-input",addedAt:new Date().toISOString()}];
+ const blob=await seal({schema:NS,entries:next},secret),sha256=await hash(blob);
+ const written=await b.put({namespace:NS,identity,expectedRevision:revision,blob,sha256});
+ if(written?.authenticated!==true||written?.durable!==true||written?.namespace!==NS||written?.identity!==identity||written?.sha256!==sha256||!Number.isSafeInteger(written?.revision)||written.revision<=revision)throw Error("GitHub write receipt was not authenticated or durable.");
+ const checked=await b.get({namespace:NS,identity});
+ if(checked?.authenticated!==true||checked?.revision!==written.revision||checked?.identity!==identity||await hash(checked.blob)!==sha256)throw Error("GitHub ciphertext readback failed; save not verified.");
+ collection=next;revision=written.revision;render();$("word").value="";$("translation").value="";status("New vocabulary encrypted and independently verified against GitHub readback.");
+ }catch(e){status(e.message||"Save not confirmed.",true)}finally{toggle(false)}}
+$("connectCloud").addEventListener("click",connect);$("saveVocabulary").addEventListener("click",save);$("lockCloud").addEventListener("click",lock);addEventListener("pagehide",lock,{once:true});render();status("Encrypted storage ready, but the authenticated GitHub writer has not been commissioned; saving remains disabled.");
+})();
+</script>
+</body></html>
