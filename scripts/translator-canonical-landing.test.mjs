@@ -73,3 +73,13 @@ test("translator entry uses canonical VNV components, three doors and four symme
  assert.match(entry,/body > #vnv-language-switch\{display:none!important\}/);
  assert.match(entry,/translator\.html#candidateLearningHeading/);
 });
+
+test("charcoal translator buttons retain cream text in default hover and focus states",()=>{
+ assert.match(html,/\.btn:not\(\.ghost\):not\(\.gold\):not\(\.secondary\)/);
+ assert.match(html,/\.mode-tab\[aria-selected="true"\]/);
+ assert.match(html,/background:#252b2b!important;/);
+ assert.match(html,/background:#353d3d!important;/);
+ assert.match(html,/color:#fff8e9!important;/);
+ assert.match(html,/\.btn\.ghost,html body \.btn\.gold/);
+ assert.match(html,/\.btn\.secondary\{color:#fff8e9!important\}/);
+});
