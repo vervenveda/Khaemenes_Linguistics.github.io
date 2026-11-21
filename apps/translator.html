@@ -932,7 +932,7 @@ function clearOnlineCache(){
  updateStats();
 }
 function translationContext(){
- return {from:els.from.value,to:els.to.value,text:cleanText(els.input.value),service:els.service.value};
+ return {from:els.from.value,to:els.to.value,text:cleanText(els.input.value),service:els.service.value,purpose};
 }
 function invalidateTranslation({preserveOutput=false}={}){
  onlineRequestGuard.invalidate();
@@ -1123,7 +1123,7 @@ async function translateOnline(){
     return;
   }
 
-  const request=onlineRequestGuard.start({from,to,text,service:"online"});
+  const request=onlineRequestGuard.start({from,to,text,service:"online",purpose});
   const stillCurrent=()=>onlineRequestGuard.isCurrent(request,translationContext());
   const cache=getCache(), ck=cacheKey(from,to,text);
   if(cache.entries[ck]?.translation){
@@ -1333,6 +1333,7 @@ updateStats();
 initializeContext();
 
 document.querySelectorAll(".mode-tab").forEach(btn=>btn.addEventListener("click",()=>{
+  invalidateTranslation();closeConsent();
   purpose=btn.dataset.purpose;applyPurpose();
 }));
 els.from.addEventListener("change",()=>{invalidateTranslation();updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels()});
