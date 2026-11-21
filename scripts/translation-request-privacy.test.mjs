@@ -63,3 +63,20 @@ test("Teacher observation carries provider tier and manually reviewed save retai
  assert.match(page,/providerTier:hit\.verified===true\?"offline-reviewed":"offline-source-draft"/);
  assert.match(page,/reviewSnapshot\.providerTier\?\.startsWith\("online-"\)/);
 });
+
+test("new offline cache version includes the request guard and Teacher evidence modules",async()=>{
+ const worker=await readFile(new URL("../service-worker.js",import.meta.url),"utf8");
+ assert.match(worker,/polyglot-v1\.5\.11-translator-trust-20261121/);
+ for(const resource of ["khaemenes-translation-request-guard.js","khaemenes-translation-candidate-lab.js",
+  "khaemenes-translation-teacher-arbiter.js","khaemenes-translation-candidate-ui.js",
+  "sovereign-dictionary.generated.js"]){
+  assert.ok(worker.includes(resource),"missing offline resource "+resource);
+ }
+});
+test("editing context clears previously displayed translation and review authority",()=>{
+ assert.match(page,/function invalidateTranslation\(\{preserveOutput=false\}=\{\}\)/);
+ assert.match(page,/if\(!preserveOutput\)els\.output\.textContent=""/);
+ assert.match(page,/async function runTranslation\(\)\{\s*invalidateTranslation\(\)/);
+ assert.match(page,/onlineRequestGuard\.start\(\{from,to,text,service:"online",purpose\}\)/);
+ assert.match(page,/invalidateTranslation\(\{preserveOutput:true\}\)/);
+});
