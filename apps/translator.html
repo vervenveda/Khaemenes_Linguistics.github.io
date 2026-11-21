@@ -284,6 +284,34 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
+/* High-contrast charcoal controls: never inherit dark text onto dark backgrounds.
+   Keep cream / gold controls dark and preserve disabled semantics. */
+html body :is(.workspace,.study-panel,.literary-panel,.translation-review,.dictionary-panel,.thesaurus-workspace,.dictionary-results,.actions,.service-row) .btn:not(.ghost):not(.gold):not(.secondary),
+html body .vnv-translator-doors a,
+html body .mode-tab[aria-selected="true"]{
+  background:#252b2b!important;
+  color:#fff8e9!important;
+  border-color:#b48b45!important;
+  font-weight:400;
+}
+html body :is(.workspace,.study-panel,.literary-panel,.translation-review,.dictionary-panel,.thesaurus-workspace,.dictionary-results,.actions,.service-row) .btn:not(.ghost):not(.gold):not(.secondary):is(:hover,:focus-visible),
+html body .vnv-translator-doors a:is(:hover,:focus-visible),
+html body .mode-tab[aria-selected="true"]:is(:hover,:focus-visible){
+  background:#353d3d!important;
+  color:#fff8e9!important;
+  border-color:#d8b975!important;
+}
+html body .btn.secondary{color:#fff8e9!important}
+html body .btn.ghost,html body .btn.gold,
+html body .mode-tab:not([aria-selected="true"]){color:#252b2b}
+html[data-theme="dark"] body .btn.ghost,
+html[data-theme="dark"] body .mode-tab:not([aria-selected="true"]){color:var(--ink)}
+html body .vnv-translator-doors a:visited{color:#fff8e9!important}
+html body :is(.workspace,.study-panel,.literary-panel,.translation-review) button:not(.btn):not(.mode-tab):not(.swap):not([disabled]){
+  /* Existing button backgrounds remain authoritative; no forced text for pale controls. */
+  font-weight:400;
+}
+
 /* Canonical VNV gateway chrome alignment — page-specific presentation, no new ticker/menu/toolbar runtime. */
 :root{--radius:7px;--radius-large:7px}
 body{font-size:16px;line-height:1.6}
