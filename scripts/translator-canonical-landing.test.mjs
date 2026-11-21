@@ -83,3 +83,21 @@ test("charcoal translator buttons retain cream text in default hover and focus s
  assert.match(html,/\.btn\.ghost,html body \.btn\.gold/);
  assert.match(html,/\.btn\.secondary\{color:#fff8e9!important\}/);
 });
+
+test("translator editable fields use legible light appearance and explicit dark text",()=>{
+ assert.match(html,/html\{color-scheme:light\}/);
+ assert.match(html,/input:not\(\[type="checkbox"\]\):not\(\[type="radio"\]\):not\(\[type="file"\]\),textarea,select/);
+ assert.match(html,/background-color:#fffaf0!important;/);
+ assert.match(html,/color:#252b2b!important;/);
+ assert.match(html,/-webkit-text-fill-color:#252b2b!important;/);
+ assert.match(html,/::placeholder/);
+ assert.match(html,/-webkit-text-fill-color:#555c57!important;/);
+ assert.match(html,/main select option/);
+ assert.match(html,/caret-color:#252b2b/);
+});
+test("translation submit is distinguishable from manually reviewed save",()=>{
+ assert.match(html,/<button class="btn" id="translateBtn" type="button">Enter Translation<\/button>/);
+ assert.match(html,/<button class="btn secondary" id="saveBtn" type="button">Save My Reviewed Pair<\/button>/);
+ assert.match(html,/\.translation-review #candidateLearningClear/);
+ assert.match(html,/-webkit-text-fill-color:#fff8e9!important;/);
+});
