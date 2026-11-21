@@ -6,7 +6,7 @@
 ## Permanent sources of truth
 
 - `data/sovereign-dictionary.v1.json`: canonical source-attributed dictionary (434 entries; 397 with definitions, 37 bilingual words without source definitions) and 553 distinct Storybird creative terms.
-- `assets/sovereign-dictionary.generated.js`: public offline browser distribution. The separate `assets/sovereign-dictionary-v1-errata.js` currently applies the known bilingual metadata correction. The integrity workflow compares the *effective* bundle with canonical JSON. Regenerate the bundle and remove the errata together at a later maintenance checkpoint.
+- `assets/sovereign-dictionary.generated.js`: public offline browser distribution. The browser bundle was regenerated directly from canonical JSON on 2026-11-21 and the integrity workflow now checks **standalone pre-errata equality** as well as effective compatibility. The separate `assets/sovereign-dictionary-v1-errata.js` remains only as an idempotent compatibility layer for older cached consumers; remove it after verifying all consumers and service-worker cache transitions.
 - `assets/khaemenes-campus-phrases.js`: curated but **not independently verified** 13-language public interface translations.
 - `assets/khaemenes-interlingual-core.js`: exact-match dictionary, thesaurus and bilingual lookup API, no network.
 - `assets/khaemenes-review-policy.js`: explicit local review record creation and guarded library-import logic.
