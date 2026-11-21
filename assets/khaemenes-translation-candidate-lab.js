@@ -53,6 +53,14 @@ function list({limit=25}={}){
  return [...candidates.values()].sort((a,b)=>b.confidence-a.confidence||b.observations-a.observations)
   .slice(0,max).map(snapshot);
 }
+function recommend({from,to,source}={}){
+ const arbiter=root.KhaemenesTranslationTeacherArbiter;
+ if(!enabled||typeof arbiter?.arbitrate!=="function")return {decision:"WITHHOLD",reason:"not-enabled-or-arbiter-missing",selected:null};
+ from=normalize(from).toLowerCase();to=normalize(to).toLowerCase();source=normalize(source);
+ const matches=[...candidates.values()].filter(x=>x.from===from&&x.to===to&&x.source===source)
+  .map(x=>({source:x.source,translation:x.translation,confidence:x.confidence,learningBias:0}));
+ return arbiter.arbitrate(matches);
+}
 function reviewedProposal({from,to,source,translation,reviewConfirmed=false,reviewNote=""}={}){
  if(!enabled||reviewConfirmed!==true)return REJECT;
  const id=key(normalize(from).toLowerCase(),normalize(to).toLowerCase(),normalize(source),normalize(translation));
@@ -68,5 +76,5 @@ function reviewedProposal({from,to,source,translation,reviewConfirmed=false,revi
   record:approved,requiresExistingReviewSave:true};
 }
 function clear(){candidates.clear();return status()}
-root.KhaemenesTranslationCandidateLab=Object.freeze({version:"1.0.0",optIn,observe,list,status,reviewedProposal,clear});
+root.KhaemenesTranslationCandidateLab=Object.freeze({version:"1.1.0",optIn,observe,list,status,recommend,reviewedProposal,clear});
 })(window);
