@@ -283,29 +283,65 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
   opacity:.65;
 }
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+
+/* Canonical VNV gateway chrome alignment — page-specific presentation, no new ticker/menu/toolbar runtime. */
+:root{--radius:7px;--radius-large:7px}
+body{font-size:16px;line-height:1.6}
+body :is(button,select,textarea,input,.workspace,.mode-tabs,.pane,.dialog,.translation-review,.study-panel,.literary-panel,.context,.vnv-translator-features>div){border-radius:7px}
+body :is(button,a,select,input,textarea){font-size:max(16px,1em)}
+.site-header{position:relative;top:auto;width:100%;background:#252b2b;color:#fff8e9;border-bottom:2px solid #b48b45;backdrop-filter:none}
+.site-header .header-inner{width:100%;max-width:none;margin:0;padding:10px clamp(16px,3vw,44px);min-height:66px;justify-content:space-between}
+.site-header .brand{color:#fff8e9;text-decoration:none}
+.site-header .seal{border-radius:7px;border-color:#b48b45;color:#fff8e9;box-shadow:none;font:400 24px var(--serif)}
+.site-header .brand strong{color:#fff8e9;font:400 22px/1.2 var(--serif)}
+.site-header .brand small{color:#fff8e9;font:400 12px/1.3 var(--sans);letter-spacing:.05em}
+.site-header .header-actions{display:flex;align-items:center;justify-content:flex-end}
+.site-header .header-actions button{width:44px;height:44px;min-height:44px;border:1px solid #b48b45;background:#252b2b;color:#fff8e9;border-radius:7px}
+.site-header .header-actions .vnv-eco-label{display:none}
+.vnv-skip{position:absolute;left:-9999px;top:7px;z-index:2147483600;background:#252b2b;color:#fff8e9;padding:9px;border-radius:7px}
+.vnv-skip:focus{left:10px}
+.vnv-translator-breadcrumb{padding:11px 18px;background:#fff8e9;color:#252b2b;text-align:center;border-bottom:1px solid #b48b45;font-size:16px}
+.vnv-translator-breadcrumb a{color:#252b2b}
+main.shell{padding-top:0}
+main .hero{background:#252b2b;color:#fff8e9;padding:66px clamp(18px,3vw,44px) 74px;margin:0 calc((100vw - 100%) / -2) 0;text-align:center}
+main .hero .eyebrow{font:400 33px/1.2 var(--serif);color:#fff8e9;letter-spacing:.01em;text-transform:none}
+main .hero h1{font:400 66px/1.14 var(--serif);color:#fff8e9;margin:14px auto 0}
+main .hero p{font:400 24px/1.5 var(--sans);color:#fff8e9;max-width:860px}
+main .hero .context{color:#252b2b}
+.vnv-translator-doors{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:920px;margin:33px auto}
+.vnv-translator-doors a{display:flex;align-items:center;justify-content:center;min-height:55px;padding:11px 15px;text-align:center;background:#252b2b;color:#fff8e9;border:1px solid #b48b45;border-radius:7px;text-decoration:none;font:400 16px/1.35 var(--sans)}
+.vnv-translator-doors a:hover{background:#353d3d}
+.vnv-translator-intro{margin:34px auto 45px;text-align:center}
+.vnv-translator-intro h2{font:400 33px/1.25 var(--serif)}
+.vnv-translator-intro>p{max-width:810px;margin:13px auto 27px;font-size:17px}
+.vnv-translator-features{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.vnv-translator-features>div{min-width:0;min-height:135px;padding:24px 18px;background:#fff8e9;border:1px solid #c9b894;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px}
+.vnv-translator-features strong{font:400 22px/1.25 var(--serif);color:#252b2b}
+.vnv-translator-features span{font:400 16px/1.55 var(--sans);color:#252b2b}
+main .footer{background:#252b2b;color:#fff8e9;text-align:center;border-radius:7px;padding:30px 20px;font-size:16px}
+@media(max-width:700px){.vnv-translator-doors{grid-template-columns:1fr}.vnv-translator-features{grid-template-columns:repeat(2,minmax(0,1fr))}.vnv-translator-features>div{padding:16px}.site-header .brand strong{font-size:18px}main .hero h1{font-size:clamp(44px,10vw,66px)}}
+@media(max-width:430px){.vnv-translator-features{grid-template-columns:1fr}main .hero .eyebrow{font-size:28px}main .hero p{font-size:21px}}
 </style>
   <script src="/Khaemenes_Linguistics.github.io/assets/linguistics-global-standard-v1.js" defer data-linguistics-global-standard="16-33-66-chrome"></script>
 </head>
 <body>
-<div class="top-ribbon">Khaemenes Academy Linguistics · Offline first · Translation is a tool, not a substitute for interpretation</div>
-
-<header class="site-header">
-  <div class="shell header-inner">
-    <a class="brand" href="../" aria-label="Khaemenes Linguistics home">
-      <span class="seal">K</span>
-      <span><strong>Polyglot</strong><small>Khaemenes Linguistics</small></span>
-    </a>
-    <div class="header-actions">
-      <button class="icon-button" id="themeBtn" type="button" title="Toggle theme" aria-label="Toggle theme">◐</button>
-      <a class="icon-button" href="../" title="Linguistics home" aria-label="Linguistics home" style="display:grid;place-items:center;text-decoration:none">⌂</a>
-    </div>
-  </div>
+<a class="vnv-skip" href="#main">Skip to translator</a>
+<header class="site-header" aria-label="Khaemenes Academy official header">
+ <div class="header-inner">
+  <a class="brand" href="https://vervenveda.com/Khaemenes_Academy.github.io/" aria-label="Khaemenes Academy home">
+   <span class="seal" aria-hidden="true">K</span>
+   <span><strong>Khaemenes Academy</strong><small>World Language Campus</small></span>
+  </a>
+  <div class="header-actions" data-vnv-ecosystem-slot aria-label="Ecosystem menu"></div>
+ </div>
 </header>
+<button id="themeBtn" type="button" hidden aria-label="Change translator theme">Change theme</button>
+<nav class="vnv-translator-breadcrumb" aria-label="Breadcrumb"><a href="https://vervenveda.com/">Verve N Veda</a> · <a href="../">Linguistics</a> · <span aria-current="page">Sovereign Translator</span></nav>
 
-<main class="shell">
-  <section class="hero">
-    <div class="eyebrow">Sovereign Interlingual Tool · v2.7</div>
-    <h1>Multilingual Translator</h1>
+<main class="shell" id="main">
+  <section class="hero" aria-labelledby="translatorHeroTitle">
+    <div class="eyebrow">Khaemenes Academy</div>
+    <h1 id="translatorHeroTitle">Sovereign Translator</h1>
     <p>
       Translate privately from your local library, study language relationships, or compare literary meaning across languages.
       Online translation is optional and never automatic. The local interlingual library now spans 100+ modern, Indigenous, regional, and heritage language options.
@@ -316,6 +352,21 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
       <div class="context-meta" id="contextMeta"></div>
     </div>
   </section>
+  <nav class="vnv-translator-doors" aria-label="Translator access">
+    <a href="#translatorWorkspace">Translate</a>
+    <a href="#dictionaryStudio">Dictionary &amp; Thesaurus</a>
+    <a href="#candidateLearningHeading">Teacher Study Lab</a>
+  </nav>
+  <section class="vnv-translator-intro" aria-labelledby="aboutTranslator">
+    <h2 id="aboutTranslator">About the Sovereign Translator</h2>
+    <p>An offline-first translation, dictionary and language-learning workspace. Exact source matches and personally reviewed pairs remain separate from tentative learning candidates.</p>
+    <div class="vnv-translator-features">
+      <div><strong>Translation Workspace</strong><span>Language comparison with explicit consent for optional external translation.</span></div>
+      <div><strong>Dictionary &amp; Thesaurus</strong><span>Source-attributed definitions and related expressions.</span></div>
+      <div><strong>Bilingual Learning</strong><span>Reading, pronunciation and vocabulary practice.</span></div>
+      <div><strong>Teacher Study Lab</strong><span>Opt-in observations, bounded feedback and WITHHOLD arbitration.</span></div>
+    </div>
+  </section>
 
   <nav class="mode-tabs" aria-label="Translator purpose">
     <button class="mode-tab" type="button" data-purpose="translate" aria-selected="true">Translate</button>
@@ -323,7 +374,7 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
     <button class="mode-tab" type="button" data-purpose="literary" aria-selected="false">Literary Compare</button>
   </nav>
 
-  <section class="workspace" aria-label="Interlingual workspace">
+  <section class="workspace" id="translatorWorkspace" aria-label="Interlingual workspace">
     <div class="control-grid">
       <div class="field">
         <label for="langFrom">From</label>
@@ -1575,6 +1626,28 @@ window.KhaemenesInterlingual = Object.freeze({
 });
 })();
 </script>
+
+<!-- Reuse the exact canonical gateway owners, not local competing implementations. -->
+<script src="https://vervenveda.com/assets/vnv-ecosystem-menu.js" defer></script>
+<script src="https://vervenveda.com/Khaemenes_High.github.io/assets/vnv-dual-ticker-v1.js" defer></script>
+<script src="https://vervenveda.com/Khaemenes_Linguistics.github.io/assets/khaemenes-translator-loader.js?v=1.1.1" defer></script>
+<script>
+window.KhaemenesClassToolsConfigV1={
+ id:"sovereign-translator",
+ match:()=>/\/Khaemenes_Linguistics\.github\.io\/apps\/translator\.html$/.test(location.pathname),
+ toggleLabel:"Tools",ariaLabel:"Sovereign Translator tools",
+ tools:[
+  {type:"link",label:"Translate",sub:"Translation workspace",href:"#translatorWorkspace"},
+  {type:"link",label:"Dictionary",sub:"Source-attributed dictionary",href:"#dictionaryStudio"},
+  {type:"link",label:"Teacher",sub:"Candidate study lab",href:"#candidateLearningHeading"},
+  {type:"translator",label:"Language",sub:"Change page language"},
+  {type:"link",label:"Academy",sub:"Khaemenes Academy",href:"https://vervenveda.com/Khaemenes_Academy.github.io/"},
+  {type:"action",label:"Theme",sub:"Change theme",action:"theme"}
+ ],
+ actions:{theme:()=>document.getElementById("themeBtn")?.click()}
+};
+</script>
+<script src="https://vervenveda.com/assets/vnv-class-tools-toolbar.js?v=1.6.1" defer></script>
 <!-- VNV_OFFICIAL_SITE_TRANSLATOR -->
 <script defer src="../assets/vnv-language.js?v=20261108-cream-controls"></script>
 <script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
