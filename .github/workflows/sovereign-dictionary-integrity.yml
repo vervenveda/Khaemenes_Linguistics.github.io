@@ -20,6 +20,7 @@ on:
       - 'apps/translator.html'
       - 'apps/translator-entry.html'
       - 'scripts/audit-dictionary.mjs'
+      - 'scripts/build-sovereign-dictionary.mjs'
       - '.github/workflows/sovereign-dictionary-integrity.yml'
   workflow_dispatch:
 permissions:
@@ -30,6 +31,8 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+      - name: Verify deterministic canonical dictionary build
+        run: node scripts/build-sovereign-dictionary.mjs
       - name: Verify public dictionary sources, offline API and bilingual safeguards
         run: node scripts/audit-dictionary.mjs
       - name: Verify reviewed translation import and promotion safety
