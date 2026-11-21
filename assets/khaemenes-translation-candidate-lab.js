@@ -40,6 +40,7 @@ function observe({from,to,source,translation,origin="public-ui",reviewConfirmed=
  // Repetition is weak evidence only; never a trust or review grant.
  const confidence=Math.max(0,Math.min(0.85,0.2+Math.log2(1+n)*0.08+(identical?0.18:0)-(conflict?0.18:0)));
  const candidate={from,to,source,translation,origin,observations:n,confidence:Number(confidence.toFixed(3)),
+  learningBias:earlier?.learningBias??0,feedbackCount:earlier?.feedbackCount??0,
   dictionaryMatch:!!identical,dictionarySource:typeof found?.source==="string"?found.source:null,
   conflict,reviewStatus:"candidate-unreviewed",promotionAllowed:false};
  if(candidates.has(identity))candidates.delete(identity);
@@ -53,12 +54,23 @@ function list({limit=25}={}){
  return [...candidates.values()].sort((a,b)=>b.confidence-a.confidence||b.observations-a.observations)
   .slice(0,max).map(snapshot);
 }
+function feedback({from,to,source,translation,outcome,explicitReview=false}={}){
+ if(!enabled||explicitReview!==true||!["helpful","incorrect"].includes(outcome))return REJECT;
+ const id=key(normalize(from).toLowerCase(),normalize(to).toLowerCase(),normalize(source),normalize(translation));
+ const record=candidates.get(id);
+ if(!record)return REJECT;
+ const adjustment=outcome==="helpful"?0.03:-0.05;
+ const learningBias=Number(Math.max(-0.12,Math.min(0.12,(record.learningBias||0)+adjustment)).toFixed(3));
+ const updated={...record,learningBias,feedbackCount:Math.min(20,(record.feedbackCount||0)+1)};
+ candidates.set(id,updated);
+ return {ok:true,status:"feedback-advisory-only",candidate:snapshot(updated)};
+}
 function recommend({from,to,source}={}){
  const arbiter=root.KhaemenesTranslationTeacherArbiter;
  if(!enabled||typeof arbiter?.arbitrate!=="function")return {decision:"WITHHOLD",reason:"not-enabled-or-arbiter-missing",selected:null};
  from=normalize(from).toLowerCase();to=normalize(to).toLowerCase();source=normalize(source);
  const matches=[...candidates.values()].filter(x=>x.from===from&&x.to===to&&x.source===source)
-  .map(x=>({source:x.source,translation:x.translation,confidence:x.confidence,learningBias:0}));
+  .map(x=>({source:x.source,translation:x.translation,confidence:x.confidence,learningBias:x.learningBias||0}));
  return arbiter.arbitrate(matches);
 }
 function reviewedProposal({from,to,source,translation,reviewConfirmed=false,reviewNote=""}={}){
@@ -76,5 +88,5 @@ function reviewedProposal({from,to,source,translation,reviewConfirmed=false,revi
   record:approved,requiresExistingReviewSave:true};
 }
 function clear(){candidates.clear();return status()}
-root.KhaemenesTranslationCandidateLab=Object.freeze({version:"1.1.0",optIn,observe,list,status,recommend,reviewedProposal,clear});
+root.KhaemenesTranslationCandidateLab=Object.freeze({version:"1.2.0",optIn,observe,list,status,recommend,feedback,reviewedProposal,clear});
 })(window);
