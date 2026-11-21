@@ -66,3 +66,15 @@ test("requires current dictionary adapter and no guessing",()=>{
  assert.equal(a.list().length,0);
  assert.equal(b.observe({...entry,translation:""}).ok,false);
 });
+
+test("explicit feedback changes bounded suggestion bias but never allows publication",()=>{
+ const a=lab(()=>({translation:"bonjour",source:"sovereign-dictionary"}));a.optIn(true);
+ assert.equal(a.feedback({...entry,outcome:"helpful"}).ok,false);
+ a.observe(entry);
+ for(let i=0;i<20;i++)assert.equal(a.feedback({...entry,outcome:"helpful",explicitReview:true}).ok,true);
+ assert.equal(a.list()[0].learningBias,0.12);
+ assert.equal(a.list()[0].promotionAllowed,false);
+ for(let i=0;i<20;i++)a.feedback({...entry,outcome:"incorrect",explicitReview:true});
+ assert.equal(a.list()[0].learningBias,-0.12);
+ assert.equal(a.status().cloudWrites,0);
+});
