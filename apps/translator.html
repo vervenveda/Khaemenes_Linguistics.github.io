@@ -1520,7 +1520,9 @@ function dictionaryLookup(){
    const hit=lookupOffline(els.from.value,els.to.value,e.term);
    if(hit?.translation){
     els.output.textContent=hit.translation;
-    translationEvidence={...hit};
+    translationEvidence={providerTier:hit.verified===true?"offline-reviewed":"offline-source-draft",
+      providerSource:typeof hit.source==="string"?hit.source:"sovereign-dictionary"};
+    afterTranslation();
     setStatus(hit.verified===true?"Exact reviewed translation found.":"Dictionary-linked bilingual vocabulary is a source draft, not a verified sentence translation.","good");
    }else{
     setStatus("Dictionary headword selected. No exact local translation exists for this language pair; choose Translate to request lookup.","");
