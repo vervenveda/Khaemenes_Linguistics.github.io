@@ -688,6 +688,7 @@ main .footer{background:#252b2b;color:#fff8e9;text-align:center;border-radius:7p
 <script src="../assets/khaemenes-transliteration.js"></script>
 <script src="../assets/khaemenes-review-policy.js"></script>
 <script src="../assets/khaemenes-translator-loader.js"></script>
+<script src="../assets/khaemenes-translation-request-guard.js"></script>
 <script src="../assets/khaemenes-translation-teacher-arbiter.js"></script>
 <script src="../assets/khaemenes-translation-candidate-lab.js"></script>
 <script src="../assets/khaemenes-translation-candidate-ui.js"></script>
@@ -701,6 +702,10 @@ const LS_LIBRARY = "khaemenes_interlingual_library_v2";
 const LS_CACHE = "khaemenes_interlingual_cache_v2";
 const LS_PREFS = "khaemenes_interlingual_prefs_v2";
 const MAX_CACHE_ENTRIES = 120;
+const onlineRequestGuard=window.KhaemenesTranslationRequestGuard.createTranslationRequestGuard();
+let transientOnlineCache={schema:"khaemenes-interlingual-cache",version:2,entries:{}};
+// Clear previously persisted machine drafts only, without touching reviewed pairs or dictionary drafts.
+try{localStorage.removeItem(LS_CACHE)}catch{}
 const MAX_LIBRARY_PAIRS = 5000;
 const EXTERNAL_API = "https://api.mymemory.translated.net/get";
 
@@ -913,18 +918,26 @@ function saveVerifiedPair(from,to,source,translated,meta={}){
  catch{return {ok:false,reason:"storage-unavailable"}}
 }
 
-function getCache(){
-  const cache=readJSON(LS_CACHE,{schema:"khaemenes-interlingual-cache",version:2,entries:{}});
-  if(!cache.entries || typeof cache.entries!=="object") cache.entries={};
-  return cache;
-}
+function getCache(){return transientOnlineCache}
 function setCache(cache){
   const rows=Object.entries(cache.entries || {}).sort((a,b)=>
     String(b[1]?.savedAt||"").localeCompare(String(a[1]?.savedAt||""))
   ).slice(0,MAX_CACHE_ENTRIES);
-  cache.entries=Object.fromEntries(rows);
-  writeJSON(LS_CACHE,cache);
+  transientOnlineCache={schema:"khaemenes-interlingual-cache",version:2,entries:Object.fromEntries(rows)};
   updateStats();
+}
+function clearOnlineCache(){
+ transientOnlineCache={schema:"khaemenes-interlingual-cache",version:2,entries:{}};
+ updateStats();
+}
+function translationContext(){
+ return {from:els.from.value,to:els.to.value,text:cleanText(els.input.value),service:els.service.value};
+}
+function invalidateTranslation(){
+ onlineRequestGuard.invalidate();
+ reviewSnapshot=null;
+ els.reviewText.value="";
+ els.reviewAttestation.checked=false;
 }
 function cacheKey(from,to,text){return `${pairKey(from,to)}::${exactKey(text)}`}
 
@@ -1001,7 +1014,7 @@ function updateStats(){
   const pairs=allLibraryEntries().length;
   const cache=Object.keys(getCache().entries || {}).length;
   const seed=window.KhaemenesSovereignTranslate?.stats();
-  els.stats.textContent=`${pairs} local pairs · ${seed?.campusDraftPairs||0} offline campus phrases (${seed?.campusLanguages||0} languages) · ${cache} optional online drafts cached`;
+  els.stats.textContent=`${pairs} local pairs · ${seed?.campusDraftPairs||0} offline campus phrases (${seed?.campusLanguages||0} languages) · ${cache} temporary online drafts (memory only)`;
 }
 
 function knownTermsForText(text,from,to){
@@ -1047,6 +1060,7 @@ function updateLiteraryPanels(){
 }
 
 async function translateOffline(){
+  onlineRequestGuard.invalidate();
   updateDirections();
   const from=els.from.value,to=els.to.value,text=cleanText(els.input.value);
   if(!text){setStatus("Enter text to translate.","bad");return}
@@ -1099,8 +1113,11 @@ async function translateOnline(){
     return;
   }
 
+  const request=onlineRequestGuard.start({from,to,text,service:"online"});
+  const stillCurrent=()=>onlineRequestGuard.isCurrent(request,translationContext());
   const cache=getCache(), ck=cacheKey(from,to,text);
   if(cache.entries[ck]?.translation){
+    if(!stillCurrent())return;
     els.output.textContent=cache.entries[ck].translation;
     updateDirections();
     setStatus("Machine-generated draft loaded from the local online cache. Review before relying on or saving it.","good");
@@ -1112,9 +1129,11 @@ async function translateOnline(){
     els.output.textContent="Working…";els.output.lang="en";els.output.dir="ltr";
     setStatus("Sending this text to MyMemory for translation…","bad");
     const url=`${EXTERNAL_API}?q=${encodeURIComponent(text)}&langpair=${encodeURIComponent(from)}|${encodeURIComponent(to)}`;
-    const res=await fetch(url,{method:"GET",credentials:"omit",cache:"no-store",headers:{"Accept":"application/json"}});
+    const res=await fetch(url,{method:"GET",credentials:"omit",cache:"no-store",signal:request.signal,headers:{"Accept":"application/json"}});
+    if(!stillCurrent())return;
     if(!res.ok) throw new Error(`HTTP ${res.status}`);
     const data=await res.json();
+    if(!stillCurrent())return;
     const translated=cleanText(data?.responseData?.translatedText);
     if(!translated) throw new Error("No translation returned.");
     cache.entries[ck]={translation:translated,savedAt:nowIso(),provider:"MyMemory"};
@@ -1123,12 +1142,14 @@ async function translateOnline(){
     updateDirections();
     setStatus("Machine-generated draft received and cached locally. Review it carefully before using “Save Verified Pair.”","good");
   }catch(error){
+    if(!stillCurrent())return;
     els.output.textContent="";
-    setStatus(`Online translation failed: ${String(error?.message||error).slice(0,180)}`,"bad");
-  }
-  afterTranslation();
+    setStatus("Online translation failed: "+String(error?.message||error).slice(0,180),"bad");
+  }finally{onlineRequestGuard.finish(request)}
+  if(stillCurrent())afterTranslation();
 }
 async function runTranslation(){
+  onlineRequestGuard.invalidate();
   if(els.service.value==="offline") return translateOffline();
   return translateOnline();
 }
@@ -1179,6 +1200,7 @@ async function copyTranslation(){
   }
 }
 function clearWorkspace(){
+  invalidateTranslation();
   els.input.value="";els.output.textContent="";els.notes.value="";
   reviewSnapshot=null;els.reviewText.value="";els.reviewAttestation.checked=false;
   updateKnownTerms();updateLiteraryPanels();
@@ -1231,6 +1253,7 @@ function safeContext(value={}){
 }
 function applyLessonContext(raw){
   const ctx=safeContext(raw);
+  invalidateTranslation();
   const has=Object.values(ctx).some(Boolean);
   if(!has) return;
   lessonContext=ctx;
@@ -1297,12 +1320,13 @@ initializeContext();
 document.querySelectorAll(".mode-tab").forEach(btn=>btn.addEventListener("click",()=>{
   purpose=btn.dataset.purpose;applyPurpose();
 }));
-els.from.addEventListener("change",()=>{els.reviewAttestation.checked=false;updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels()});
-els.to.addEventListener("change",()=>{els.reviewAttestation.checked=false;updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels()});
-els.input.addEventListener("input",()=>{els.reviewAttestation.checked=false;updateKnownTerms();updateLiteraryPanels()});
-els.service.addEventListener("change",()=>{els.reviewAttestation.checked=false;applyService()});
+els.from.addEventListener("change",()=>{invalidateTranslation();updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels()});
+els.to.addEventListener("change",()=>{invalidateTranslation();updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels()});
+els.input.addEventListener("input",()=>{invalidateTranslation();updateKnownTerms();updateLiteraryPanels()});
+els.service.addEventListener("change",()=>{invalidateTranslation();applyService()});
 
 $("swapBtn").addEventListener("click",()=>{
+  invalidateTranslation();
   const a=els.from.value;els.from.value=els.to.value;els.to.value=a;
   const current=cleanText(els.output.textContent);
   if(current && !/^No exact verified translation/.test(current)){
@@ -1502,7 +1526,7 @@ $("importFile").addEventListener("change",event=>{
   event.target.value="";
 });
 $("clearCacheBtn").addEventListener("click",()=>{
-  localStorage.removeItem(LS_CACHE);updateStats();setStatus("Online translation cache cleared.","good");
+  invalidateTranslation();clearOnlineCache();setStatus("Temporary online drafts cleared from memory.","good");
 });
 $("clearLibraryBtn").addEventListener("click",()=>{
   const count=allLibraryEntries().length;
