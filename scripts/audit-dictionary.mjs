@@ -11,6 +11,8 @@ const sandbox={window:{}};
 vm.runInNewContext(read("assets/sovereign-dictionary.generated.js"),sandbox,{timeout:1500});
 const bundled=sandbox.window.KhaemenesSovereignDictionary;
 const fail=message=>{throw Error("DICTIONARY_INTEGRITY=FAIL "+message)};
+if(JSON.stringify(source)!==JSON.stringify(bundled))fail("unpatched browser bundle differs from canonical JSON");
+// Legacy errata stays idempotent during the service-worker/consumer transition.
 vm.runInNewContext(read("assets/sovereign-dictionary-v1-errata.js"),sandbox,{timeout:1500});
 if(JSON.stringify(source)!==JSON.stringify(bundled))fail("effective browser bundle differs from canonical JSON");
 if(source.schema!=="khaemenes-sovereign-dictionary"||source.version!==1)fail("schema/version");
