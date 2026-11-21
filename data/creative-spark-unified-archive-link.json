@@ -1,0 +1,21 @@
+{
+  "schema": "khaemenes-linguistics-creative-spark-archive-link",
+  "version": 1,
+  "established": "2026-11-21",
+  "archiveRepository": "artist1970/creative-spark.github.io",
+  "manifestPath": "Dictionary/archive/manifest.json",
+  "searchModulePath": "Dictionary/unified-dictionary-archive.mjs",
+  "archivedDictionaryPath": "Dictionary/archive/linguistics-sovereign-dictionary-v1.json",
+  "archivedLexiconPath": "Dictionary/archive/linguistics-academic-lexicon-v1.json",
+  "sourceOfTruthForPublishedDictionary": "data/sovereign-dictionary.v1.json",
+  "operationalStatus": "local-Linguistics-dictionary-remains-active",
+  "archiveStatus": "repository-snapshot-verified",
+  "macEncryptedMiniCloudStatus": "not-connected-or-commissioned-from-this-repository",
+  "policy": {
+    "reviewRequiredBeforePromotion": true,
+    "pageTranslationCandidatesUnreviewed": true,
+    "noPrivateTextMigration": true,
+    "doNotInferWordsFromSentences": true,
+    "authenticatedTerminalImportRequired": true
+  }
+}
