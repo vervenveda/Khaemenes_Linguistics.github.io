@@ -1104,6 +1104,7 @@ function closeConsent(){
   pendingOnlineAction=null;
 }
 async function translateOnline(){
+  if(els.service.value!=="online")return;
   updateDirections();
   const from=els.from.value,to=els.to.value,text=cleanText(els.input.value);
   if(!text){setStatus("Enter text to translate.","bad");return}
@@ -1336,7 +1337,7 @@ document.querySelectorAll(".mode-tab").forEach(btn=>btn.addEventListener("click"
 els.from.addEventListener("change",()=>{invalidateTranslation();updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels()});
 els.to.addEventListener("change",()=>{invalidateTranslation();updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels()});
 els.input.addEventListener("input",()=>{invalidateTranslation();updateKnownTerms();updateLiteraryPanels()});
-els.service.addEventListener("change",()=>{invalidateTranslation();applyService()});
+els.service.addEventListener("change",()=>{invalidateTranslation();closeConsent();applyService()});
 
 $("swapBtn").addEventListener("click",()=>{
   invalidateTranslation();
@@ -1554,7 +1555,7 @@ els.consentCheck.addEventListener("change",()=>{
   els.consentContinue.disabled=!els.consentCheck.checked;
 });
 els.consentContinue.addEventListener("click",()=>{
-  if(!els.consentCheck.checked) return;
+  if(!els.consentCheck.checked||els.service.value!=="online") return;
   sessionOnlineConsent=true;
   const action=pendingOnlineAction;
   closeConsent();
