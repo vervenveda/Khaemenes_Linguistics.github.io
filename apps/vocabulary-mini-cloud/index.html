@@ -107,7 +107,7 @@ async function searchArchive(){
  $("archiveResults").replaceChildren();
  $("archiveStatus").textContent="Checking exact archived source entries…";
  const word=$("archiveWord").value.trim(),targetLanguage=$("archiveLanguage").value.trim().toLowerCase();
- if(!/^[\\p{L}\\p{M}'’-]+$/u.test(word)||word.length>120||!validLanguage(targetLanguage)){
+ if(!/^[\p{L}\p{M}'’-]+$/u.test(word)||word.length>120||!validLanguage(targetLanguage)){
   $("archiveStatus").textContent="Enter one headword and a valid target language code.";return;
  }
  toggle(true);
