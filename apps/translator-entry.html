@@ -41,6 +41,10 @@ a{color:inherit}
 body > #vnv-language-switch{display:none!important}
 @media(max-width:740px){.access{grid-template-columns:1fr}.features{grid-template-columns:repeat(2,minmax(0,1fr))}.brand .name{font-size:18px}.hero h1{font-size:clamp(44px,11vw,66px)}}
 @media(max-width:460px){.features{grid-template-columns:1fr}.hero .eyebrow{font-size:28px}.hero .descriptor{font-size:21px}}
+
+/* Unified VNV control contrast. */
+.access a:is(:visited,:hover,:focus-visible){color:#fff8e9;-webkit-text-fill-color:#fff8e9}
+.access a:hover{background:#353d3d}
 </style>
 </head>
 <body data-vnv-ticker-label="Sovereign Translator">
@@ -76,7 +80,16 @@ body > #vnv-language-switch{display:none!important}
 </main>
 <footer class="footer">Khaemenes Academy · Sovereign Translator · Verve N Veda</footer>
 <script src="https://vervenveda.com/assets/vnv-ecosystem-menu.js" defer></script>
-<script src="https://vervenveda.com/Khaemenes_High.github.io/assets/vnv-dual-ticker-v1.js" defer></script>
+<script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js" defer></script>
+<script src="https://vervenveda.com/assets/vnv-333-ticker.js" defer></script>
+<script defer>
+document.addEventListener("DOMContentLoaded",()=>{
+  if(!document.getElementById("vnvTickerAutoPopulate") && window.VNV_TICKER?.autoPopulate){
+    window.VNV_TICKER.autoPopulate({label:"Sovereign Translator · Explore",before:".site-header",max:12});
+  }
+  window.VNV333Ticker?.mount?.();
+},{once:true});
+</script>
 <script src="https://vervenveda.com/Khaemenes_Linguistics.github.io/assets/khaemenes-translator-loader.js?v=1.1.1" defer></script>
 <script>
 window.KhaemenesClassToolsConfigV1={
