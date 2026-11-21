@@ -125,6 +125,34 @@ function lookupThesaurus(word,{limit=35,includeReverse=true}={}){
  const related=[...links.values()].sort((a,b)=>(Number(b.direct)-Number(a.direct))||a.term.localeCompare(b.term)).slice(0,max);
  return {headword:word,sourceRecords,related,status:related.length?"source-linked":"no-source-linked-terms",notice:"Source-listed related expressions, not guaranteed interchangeable synonyms or antonyms."};
 }
+/* Read-only shared-origin archive of public page translation candidates.
+ * The authored dictionary stays canonical; machine suggestions never become definitions.
+ * Exact words can be looked up directly, and contextual phrases are examples only. */
+function searchPageTranslations(query,{limit=20,language=""}={}){
+ const wanted=fold(query);
+ if(wanted.length<2)return [];
+ let rows;
+ try{rows=JSON.parse(root.localStorage.getItem("vnv_page_dictionary_candidates_v1")||"{}")}catch{return []}
+ if(!rows||typeof rows!=="object"||Array.isArray(rows))return [];
+ const result=[];
+ const max=Math.min(50,Math.max(1,Number(limit)||20));
+ for(const row of Object.values(rows).slice(-900)){
+  if(!row||row.status!=="unreviewed-page-translation"||row.from!=="en"||typeof row.source!=="string"||typeof row.translation!=="string")continue;
+  if(language&&row.to!==language)continue;
+  const a=fold(row.source),b=fold(row.translation);
+  const exact=a===wanted||b===wanted;
+  const word=row.kind==="word-candidate";
+  if(!exact&&!a.includes(wanted)&&!b.includes(wanted))continue;
+  result.push({source:row.source,translation:row.translation,from:"en",to:row.to,
+   kind:word?"word-candidate":"contextual-phrase",
+   status:"unreviewed-page-translation",page:typeof row.page==="string"?row.page:"",
+   savedAt:row.savedAt||null,verified:false,exact});
+ }
+ result.sort((a,b)=>Number(b.exact)-Number(a.exact)||
+  Number(b.kind==="word-candidate")-Number(a.kind==="word-candidate")||
+  String(b.savedAt||"").localeCompare(String(a.savedAt||"")));
+ return result.slice(0,max);
+}
 function thesaurusStats(){
  let withLinks=0,links=0;const unique=new Set();
  for(const entry of dictionaryEntries){
@@ -219,6 +247,7 @@ root.KhaemenesSovereignTranslate=Object.freeze({
  lookupLocal,
  lookupDefinition,
  searchDictionary,
+ searchPageTranslations,
  listLocalEntries,
  saveLocalEntry,
  removeLocalEntry,
