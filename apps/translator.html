@@ -373,6 +373,15 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
       <label class="translation-review-check"><input type="checkbox" id="reviewAttestation"> I have checked the translation against its source and approve this wording for my local reference library.</label>
       <p class="dictionary-hint" id="reviewHelp">Nothing is sent to a server. Unchecked results stay drafts and cannot override a saved reviewed pair.</p>
     </section>
+    <section class="translation-review" aria-labelledby="candidateLearningHeading">
+      <h2 id="candidateLearningHeading">Teacher's Translation Study Lab</h2>
+      <p>Opt-in, memory-only practice inspired by Affix Six, Checkers Variant Lab and laNGgwij Teacher arbitration. Observes only short translations requested here; it never reads other pages, saves private learner text, or modifies the dictionary or encrypted vault.</p>
+      <label class="translation-review-check"><input id="candidateLearningOptIn" type="checkbox"> Enable translation learning observations for this tab (off by default)</label>
+      <p id="candidateLearningStatus" role="status" aria-live="polite">Learning observation disabled.</p>
+      <ul id="candidateLearningList" aria-label="Unreviewed translation study candidates"></ul>
+      <button id="candidateLearningClear" type="button" class="secondary">Clear Candidate Memory</button>
+      <p class="dictionary-hint">Teacher may SUGGEST or WITHHOLD; only the existing Translation Review and Save My Reviewed Pair controls can approve a pair in your browser-local library. No candidate is automatically uploaded to GitHub.</p>
+    </section>
 
     <div id="studyPanel" class="study-panel" hidden>
       <h2>Language Learning</h2>
@@ -552,6 +561,9 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 <script src="../assets/khaemenes-transliteration.js"></script>
 <script src="../assets/khaemenes-review-policy.js"></script>
 <script src="../assets/khaemenes-translator-loader.js"></script>
+<script src="../assets/khaemenes-translation-teacher-arbiter.js"></script>
+<script src="../assets/khaemenes-translation-candidate-lab.js"></script>
+<script src="../assets/khaemenes-translation-candidate-ui.js"></script>
 <script>window.KhaemenesTranslatorLoader?.ensure({full:true}).catch(()=>{});</script>
 <script>
 (() => {
@@ -1000,6 +1012,10 @@ function afterTranslation(){
   reviewSnapshot={source:cleanText(els.input.value),from:els.from.value,to:els.to.value,output:candidate};
   els.reviewText.value=(!candidate||candidate==="Working…"||candidate.startsWith("No exact verified translation"))?"":candidate;
   els.reviewAttestation.checked=false;
+  if(candidate&&candidate!=="Working…"&&!candidate.startsWith("No exact verified translation")){
+    window.KhaemenesTranslationCandidateTeachingUI?.capture({from:els.from.value,to:els.to.value,
+      source:reviewSnapshot.source,translation:candidate,origin:"public-ui"});
+  }
 }
 
 function saveCurrentPair(){
