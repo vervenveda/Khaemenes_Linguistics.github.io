@@ -12,6 +12,7 @@ on:
       - 'assets/khaemenes-translation-candidate-ui.js'
       - 'scripts/translation-candidate-lab.test.mjs'
       - 'scripts/translation-teacher-arbiter.test.mjs'
+      - 'scripts/translator-canonical-landing.test.mjs'
       - 'scripts/audit-translation-trust.mjs'
       - 'service-worker.js'
       - 'apps/translator.html'
@@ -31,4 +32,4 @@ jobs:
       - name: Verify reviewed translation import and promotion safety
         run: node scripts/audit-translation-trust.mjs
       - name: Verify opt-in observation and laNGgwij-inspired WITHHOLD behavior
-        run: node --test scripts/translation-candidate-lab.test.mjs scripts/translation-teacher-arbiter.test.mjs
+        run: node --test scripts/translation-candidate-lab.test.mjs scripts/translation-teacher-arbiter.test.mjs scripts/translator-canonical-landing.test.mjs
