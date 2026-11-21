@@ -190,6 +190,7 @@ textarea{min-height:170px;resize:vertical;line-height:1.65}
 .checkline{display:flex;gap:9px;align-items:flex-start;margin:14px 0}
 .checkline input{margin-top:4px}
 
+.dictionary-page-memory-heading{grid-column:1/-1;text-align:center;margin:18px 0 2px;font:400 24px/1.4 Cinzel,Georgia,serif;color:#252b2b}
 /* Sovereign reference dictionary uses existing parchment and 7px-control standards */
 .dictionary-portal{margin-top:20px;padding:18px;border:1px solid var(--line-strong);border-radius:7px;background:var(--paper-bright)}
 .dictionary-heading{text-align:center}.dictionary-heading h2{font:500 24px var(--serif);margin:0 0 7px}
@@ -1475,7 +1476,11 @@ function dictionaryLookup(){
  const creative=$("dictionaryCreative").checked;
  const domain=$("dictionaryDomain").value;
  const matches=api.searchDictionary(query,{limit:24,domain,includeCreative:creative});
- if(!matches.length){dictionaryCell(root,"p","No matching local entry yet. An empty result does not mean a translation exists.");return}
+ const savedPagePairs=domain?[]:(api.searchPageTranslations?.(query,{limit:20})||[]);
+ if(!matches.length&&!savedPagePairs.length){
+  dictionaryCell(root,"p","No matching local entry yet. An empty result does not mean a translation exists.");
+  return;
+ }
  for(const e of matches){
   const card=document.createElement("article");card.className="dictionary-entry";
   dictionaryCell(card,"h3",e.term);
@@ -1529,6 +1534,38 @@ function dictionaryLookup(){
    }
   });
   actions.append(use);card.append(actions);root.append(card);
+ }
+ if(savedPagePairs.length){
+  const heading=document.createElement("h3");
+  heading.className="dictionary-page-memory-heading";
+  heading.textContent="Saved Page Translation Candidates · "+savedPagePairs.length;
+  root.append(heading);
+  dictionaryCell(root,"p","These are browser-local public-page translation examples, not approved dictionary definitions. Sentences provide context; they do not establish a translation for each individual word.","dictionary-meta");
+  for(const row of savedPagePairs){
+   const card=document.createElement("article");card.className="dictionary-entry";
+   dictionaryCell(card,"h3",row.source);
+   dictionaryCell(card,"p",row.translation);
+   dictionaryCell(card,"p",row.from+" → "+row.to+" · "+(row.kind==="word-candidate"?"Exact word candidate":"Contextual phrase")+
+    " · Unreviewed page translation","dictionary-meta");
+   if(row.page)dictionaryCell(card,"p","Public page source: "+row.page,"dictionary-meta");
+   const actions=document.createElement("div");actions.className="dictionary-actions";
+   const use=document.createElement("button");use.className="btn ghost";use.type="button";
+   use.textContent="Compare in Translator";
+   use.addEventListener("click",()=>{
+    els.from.value="en";
+    if(LANGUAGES.some(x=>x.code===row.to))els.to.value=row.to;
+    els.input.value=row.source;
+    invalidateTranslation();
+    updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels();
+    els.output.textContent=row.translation;
+    translationEvidence={providerTier:"offline-source-draft",providerSource:"public-page-translation-memory"};
+    afterTranslation();
+    setStatus("Unreviewed page-translation candidate. Compare meaning and context before saving as a reviewed pair.","");
+    document.getElementById("translatorWorkspace")?.scrollIntoView({behavior:"smooth",block:"start"});
+    els.input.focus({preventScroll:true});
+   });
+   actions.append(use);card.append(actions);root.append(card);
+  }
  }
 }
 
