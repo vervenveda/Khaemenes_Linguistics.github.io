@@ -1447,10 +1447,18 @@ function populateDictionary(){
  const api=window.KhaemenesSovereignTranslate;
  const stats=api?.dictionaryStats?.();
  const label=$("dictionaryStats");
- if(!stats||stats.allRecords!==434){label.textContent="Offline dictionary unavailable. Other translation tools remain usable.";return}
- label.textContent=stats.allRecords+" source records ("+stats.definedEntries+" with definitions; "+stats.translationOnlyEntries+" translation-only), "+stats.creativeVocabulary+" separate Storybird creative items. No network required.";
- const domains=[...new Set((window.KhaemenesSovereignDictionary?.entries||[]).map(e=>e.domain))].sort();
+ if(!stats||!Number.isFinite(stats.allRecords)||stats.allRecords<1){
+  label.textContent="Offline dictionary resources are unavailable. Translation drafts and your reviewed pairs remain separate.";
+  $("dictionarySearchBtn").disabled=true;
+  return;
+ }
+ $("dictionarySearchBtn").disabled=false;
+ const generated=window.KhaemenesSovereignDictionary;
+ const expansion=window.KhaemenesLexiconExpansion;
+ label.textContent=stats.allRecords+" source records ("+stats.definedEntries+" definition-bearing; "+stats.translationOnlyEntries+" translation-only), "+stats.creativeVocabulary+" Storybird creative items. Source: "+(generated?.canonical||"local dictionary")+"; lexicon expansion "+(expansion?.entries?.length||0)+" records. Offline; unreviewed source entries are not verified translations.";
+ const domains=[...new Set([...(generated?.entries||[]),...(expansion?.entries||[])].map(e=>e.domain).filter(Boolean))].sort();
  const select=$("dictionaryDomain");
+ select.querySelectorAll('option:not([value=""])').forEach(option=>option.remove());
  for(const domain of domains){const option=document.createElement("option");option.value=domain;option.textContent=domain.replace(/[-_]/g," ");select.append(option)}
 }
 function dictionaryCell(parent,tag,value,css=""){
@@ -1461,7 +1469,7 @@ function dictionaryCell(parent,tag,value,css=""){
 function dictionaryLookup(){
  const root=$("dictionaryResults");root.replaceChildren();
  const api=window.KhaemenesSovereignTranslate;
- if(!api?.searchDictionary){dictionaryCell(root,"p","Dictionary unavailable.");return}
+ if(!api?.searchDictionary||!window.KhaemenesSovereignDictionary?.entries?.length){dictionaryCell(root,"p","Canonical Linguistics dictionary is unavailable. No empty or invented results will be shown.");return}
  const query=$("dictionaryQuery").value.trim();
  if(!query){dictionaryCell(root,"p","Enter a word or phrase to explore its source-backed meaning.");return}
  const creative=$("dictionaryCreative").checked;
@@ -1501,7 +1509,23 @@ function dictionaryLookup(){
   }
   const actions=document.createElement("div");actions.className="dictionary-actions";
   const use=document.createElement("button");use.type="button";use.className="btn ghost";use.textContent="Use word in translator";
-  use.addEventListener("click",()=>{els.input.value=e.term;els.input.focus();updateKnownTerms();updateLiteraryPanels()});
+  use.addEventListener("click",()=>{
+   // A dictionary headword is a source-text selection, never an approved translation.
+   els.from.value=e.language&&LANGUAGES.some(x=>x.code===e.language)?e.language:"en";
+   els.input.value=e.term;
+   invalidateTranslation();
+   updateDirections();savePrefs();updateKnownTerms();updateLiteraryPanels();
+   document.getElementById("translatorWorkspace")?.scrollIntoView({behavior:"smooth",block:"start"});
+   els.input.focus({preventScroll:true});
+   const hit=lookupOffline(els.from.value,els.to.value,e.term);
+   if(hit?.translation){
+    els.output.textContent=hit.translation;
+    translationEvidence={...hit};
+    setStatus(hit.verified===true?"Exact reviewed translation found.":"Dictionary-linked bilingual vocabulary is a source draft, not a verified sentence translation.","good");
+   }else{
+    setStatus("Dictionary headword selected. No exact local translation exists for this language pair; choose Translate to request lookup.","");
+   }
+  });
   actions.append(use);card.append(actions);root.append(card);
  }
 }
