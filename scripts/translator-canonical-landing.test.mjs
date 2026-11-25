@@ -6,7 +6,9 @@ const scripts=[...html.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map(x=>x[1]);
 const count=needle=>scripts.filter(x=>x.includes(needle)).length;
 
 test("one official VNV 333 + AutoPopulate ticker guard, no competing local ticker",()=>{
- assert.equal(count("vnv-dual-ticker-v1.js"),1);
+ assert.equal(count("vnv-dual-ticker-v1.js"),0);
+ assert.equal(count("vnv-333-ticker.js"),1);
+ assert.equal(count("vnv-ticker-autopopulate.js"),1);
  assert.equal((html.match(/<div[^>]+id="networkTicker"/g)||[]).length,0);
  assert.equal((html.match(/<div[^>]+id="vnvTickerAutoPopulate"/g)||[]).length,0);
  assert.doesNotMatch(html,/class="top-ribbon"/);
@@ -59,8 +61,9 @@ test("translator entry uses canonical VNV components, three doors and four symme
  const entry=await readFile(new URL("../apps/translator-entry.html",import.meta.url),"utf8");
  const loaded=[...entry.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map(x=>x[1]);
  const uses=x=>loaded.filter(v=>v.includes(x)).length;
- for(const x of ["vnv-dual-ticker-v1.js","vnv-ecosystem-menu.js","vnv-class-tools-toolbar.js","vnv-ecosystem-toolbar.js","vnv-language.js"])
+ for(const x of ["vnv-333-ticker.js","vnv-ticker-autopopulate.js","vnv-ecosystem-menu.js","vnv-class-tools-toolbar.js","vnv-ecosystem-toolbar.js","vnv-language.js"])
   assert.equal(uses(x),1,"Missing or duplicate canonical asset: "+x);
+ assert.equal(uses("vnv-dual-ticker-v1.js"),0);
  assert.match(entry,/data-vnv-ecosystem-slot/);
  assert.match(entry,/type:"translator",label:"Language"/);
  assert.match(entry,/\.hero \.eyebrow\{font:400 33px/);

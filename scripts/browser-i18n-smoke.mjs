@@ -75,9 +75,12 @@ const testCode=String.raw`
       dynamic.textContent="Welcome Home";
       dynamic.setAttribute("aria-label","Open navigation");
       document.body.append(dynamic);
+      const protectedExample=document.createElement("span");protectedExample.lang="fr";protectedExample.textContent="Welcome Home";document.body.append(protectedExample);
+      const privateExample=document.createElement("span");privateExample.dataset.private="";privateExample.textContent="Welcome Home";document.body.append(privateExample);
 
       setTimeout(function(){
-        result.dynamic=dynamic.textContent==="Bienvenidos a casa";
+        result.dynamic=dynamic.textContent==="Bienvenidos";
+        result.nativeAndPrivatePreserved=protectedExample.textContent==="Welcome Home"&&privateExample.textContent==="Welcome Home";
         result.attribute=dynamic.getAttribute("aria-label")==="Abrir navegación";
 
         dynamic.setAttribute("aria-label","Switch color theme");
@@ -114,7 +117,7 @@ const testCode=String.raw`
             api.getLanguage()==="en" &&
             localStorage.getItem(PREF_KEY)==="en";
 
-          dynamic.remove();
+          dynamic.remove();protectedExample.remove();privateExample.remove();
           firstParty.remove();
           thirdParty.remove();
           finish(result);
