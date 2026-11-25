@@ -35,6 +35,15 @@ main{width:min(840px,calc(100% - 28px));margin:24px auto 55px}.panel{padding:22p
 <div class="actions"><button id="saveVocabulary" disabled type="button">Encrypt and Save to GitHub</button></div>
 <p class="muted">New entries are unreviewed. This candidate does not scrape learner responses or automatically publish dictionary entries.</p>
 </section>
+<section class="panel" aria-labelledby="pageReviewHeading">
+<h2 id="pageReviewHeading">Import Page Translation Review Export</h2>
+<p class="muted">Open a VNV page vocabulary review export from this Mac. The file is parsed only in this browser session. Word candidates and contextual phrases remain unreviewed; nothing is encrypted or saved until you explicitly select a word, inspect all fields, and click Encrypt and Save to GitHub.</p>
+<div class="field"><label for="pageReviewFile">Page review export JSON</label><input id="pageReviewFile" type="file" accept=".json,application/json" disabled></div>
+<div class="actions"><button id="clearPageReview" type="button" class="secondary" disabled>Clear Review Export</button></div>
+<p id="pageReviewStatus" role="status" aria-live="polite">Unlock and pair the local vault before opening a page review export.</p>
+<div id="pageReviewWords" aria-label="Unreviewed page word candidates"></div>
+<div id="pageReviewPhrases" aria-label="Contextual phrases retained for review preview only"></div>
+</section>
 <section class="panel" aria-labelledby="archiveHeading">
 <h2 id="archiveHeading">Import a Dictionary Word · Owner Review</h2>
 <p class="muted">Search the Creative Spark archive for an exact bilingual word. Results are source-attributed, unreviewed and never imported automatically. Select one candidate, inspect the filled fields, then use the existing Encrypt and Save button.</p>
@@ -66,7 +75,7 @@ main{width:min(840px,calc(100% - 28px));margin:24px auto 55px}.panel{padding:22p
 (()=>{"use strict";
 const NS="linguistics.vocabulary.v1",REPOSITORY="artist1970/creative-spark.github.io",MAX=4000,ITER=310000;
 const $=id=>document.getElementById(id),encoder=new TextEncoder(),decoder=new TextDecoder();
-let collection=[],identity="",revision=-1,secret="",connected=false,busy=false,selectedArchiveCandidate=null;
+let collection=[],identity="",revision=-1,secret="",connected=false,busy=false,selectedArchiveCandidate=null,selectedPageCandidate=null,pageReview=null;
 function status(msg,error=false){$("vaultStatus").textContent=msg;$("vaultStatus").dataset.error=String(error)}
 function base64(bytes){let out="";for(const n of bytes)out+=String.fromCharCode(n);return btoa(out)}
 function bytes(value){return Uint8Array.from(atob(value),c=>c.charCodeAt(0))}
@@ -79,13 +88,18 @@ function bridge(){const b=window.KhaemenesVocabularyGitHubBridge;if(!b||typeof b
 async function authorized(){const b=bridge(),r=await b.status({namespace:NS});if(r?.authenticated!==true||r?.authorized!==true||r?.repository!==REPOSITORY||r?.namespace!==NS||!r?.identity||typeof r.identity!=="string")throw Error("GitHub cloud authentication, repository scope, or authorization failed.");return {b,r}}
 function validLanguage(code){return /^[a-z]{2,8}(?:-[a-z0-9]{2,8})?$/.test(code)}
 function render(){const list=$("vocabularyList");list.replaceChildren();$("wordCount").textContent=collection.length+" retained vocabulary pairs";for(const e of collection.slice(-100).reverse()){const li=document.createElement("li");li.textContent=e.word+" → "+e.translation+" · "+e.sourceLanguage+" / "+e.targetLanguage+" · "+e.reviewStatus;list.append(li)}}
-function lock(){collection=[];identity="";revision=-1;secret="";connected=false;$("vaultPassphrase").value="";$("saveVocabulary").disabled=true;$("archiveSearch").disabled=true;selectedArchiveCandidate=null;$("archiveResults").replaceChildren();render();status("Locked. No decrypted vocabulary is retained in persistent browser storage.")}
-function toggle(value){busy=value;$("connectCloud").disabled=value;$("lockCloud").disabled=value;$("saveVocabulary").disabled=value||!connected;$("archiveSearch").disabled=value||!connected}
+function clearPageReview(){
+ pageReview=null;selectedPageCandidate=null;
+ $("pageReviewFile").value="";$("pageReviewWords").replaceChildren();$("pageReviewPhrases").replaceChildren();
+ $("pageReviewStatus").textContent=connected?"No page review export loaded.":"Unlock and pair the local vault before opening a page review export.";
+}
+function lock(){collection=[];identity="";revision=-1;secret="";connected=false;$("vaultPassphrase").value="";$("saveVocabulary").disabled=true;$("archiveSearch").disabled=true;$("pageReviewFile").disabled=true;$("clearPageReview").disabled=true;selectedArchiveCandidate=null;clearPageReview();$("archiveResults").replaceChildren();render();status("Locked. No decrypted vocabulary is retained in persistent browser storage.")}
+function toggle(value){busy=value;$("connectCloud").disabled=value;$("lockCloud").disabled=value;$("saveVocabulary").disabled=value||!connected;$("archiveSearch").disabled=value||!connected;$("pageReviewFile").disabled=value||!connected;$("clearPageReview").disabled=value||!connected}
 async function connect(){if(busy)return;toggle(true);try{
  const pass=$("vaultPassphrase").value;if(pass.length<12)throw Error("Passphrase requires at least 12 characters.");
  const {b,r}=await authorized();const read=await b.get({namespace:NS,identity:r.identity});
  if(read?.authenticated!==true||read?.namespace!==NS||read?.identity!==r.identity||!Number.isSafeInteger(read?.revision)||read.revision<0)throw Error("Invalid GitHub ciphertext read receipt");
- const data=await unseal(read.blob??null,pass);collection=data.entries;identity=r.identity;revision=read.revision;secret=pass;connected=true;$("vaultPassphrase").value="";render();status("Authorized encrypted GitHub vocabulary collection opened.");
+ const data=await unseal(read.blob??null,pass);collection=data.entries;identity=r.identity;revision=read.revision;secret=pass;connected=true;$("vaultPassphrase").value="";render();$("pageReviewFile").disabled=false;$("clearPageReview").disabled=false;$("pageReviewStatus").textContent="No page review export loaded.";status("Authorized encrypted GitHub vocabulary collection opened.");
  }catch(e){lock();status(e.message||"Failed to connect.",true)}finally{toggle(false)}}
 async function save(){if(busy||!connected)return;toggle(true);try{
  const {b,r}=await authorized();if(r.identity!==identity)throw Error("Authenticated identity changed. Save denied.");
@@ -94,14 +108,77 @@ async function save(){if(busy||!connected)return;toggle(true);try{
  const id=[sourceLanguage,targetLanguage,word.normalize("NFKC").toLowerCase()].join("|");
  if(collection.some(e=>[e.sourceLanguage,e.targetLanguage,e.word.normalize("NFKC").toLowerCase()].join("|")===id))throw Error("That vocabulary pair is already recorded.");
  if(collection.length>=MAX)throw Error("Vocabulary cloud capacity reached.");
- const next=[...collection,{word,translation,sourceLanguage,targetLanguage,reviewStatus:"unreviewed",provenance:selectedArchiveCandidate&&selectedArchiveCandidate.word===word&&selectedArchiveCandidate.translation===translation&&selectedArchiveCandidate.sourceLanguage===sourceLanguage&&selectedArchiveCandidate.targetLanguage===targetLanguage?"creative-spark-unified-dictionary:linguistics-reference":"manual-input",addedAt:new Date().toISOString()}];
+ const next=[...collection,{word,translation,sourceLanguage,targetLanguage,reviewStatus:"unreviewed",provenance:selectedPageCandidate&&selectedPageCandidate.word===word&&selectedPageCandidate.translation===translation&&selectedPageCandidate.sourceLanguage===sourceLanguage&&selectedPageCandidate.targetLanguage===targetLanguage?"vnv-page-translation:unverified":selectedArchiveCandidate&&selectedArchiveCandidate.word===word&&selectedArchiveCandidate.translation===translation&&selectedArchiveCandidate.sourceLanguage===sourceLanguage&&selectedArchiveCandidate.targetLanguage===targetLanguage?"creative-spark-unified-dictionary:linguistics-reference":"manual-input",addedAt:new Date().toISOString()}];
  const blob=await seal({schema:NS,entries:next},secret),sha256=await hash(blob);
  const written=await b.put({namespace:NS,identity,expectedRevision:revision,blob,sha256});
  if(written?.authenticated!==true||written?.durable!==true||written?.namespace!==NS||written?.identity!==identity||written?.sha256!==sha256||!Number.isSafeInteger(written?.revision)||written.revision<=revision)throw Error("GitHub write receipt was not authenticated or durable.");
  const checked=await b.get({namespace:NS,identity});
  if(checked?.authenticated!==true||checked?.revision!==written.revision||checked?.identity!==identity||await hash(checked.blob)!==sha256)throw Error("GitHub ciphertext readback failed; save not verified.");
- collection=next;revision=written.revision;render();$("word").value="";$("translation").value="";selectedArchiveCandidate=null;status("New vocabulary encrypted and independently verified against GitHub readback.");
+ collection=next;revision=written.revision;render();$("word").value="";$("translation").value="";selectedArchiveCandidate=null;selectedPageCandidate=null;status("New vocabulary encrypted and independently verified against GitHub readback.");
  }catch(e){status(e.message||"Save not confirmed.",true)}finally{toggle(false)}}
+function validPageReviewPath(value){
+ return typeof value==="string"&&value.length<=220&&/^\/(?!\/)[A-Za-z0-9._/-]*$/.test(value)&&
+  !/(?:^|\/)(?:admin|private|account|accounts|profile|student-profile|learner-profile|parent-profile|family|vault|cloud|stos|enrollment|assessment|assessments)(?:\/|$)/i.test(value)&&
+  !value.split("/").some(x=>x.startsWith("."));
+}
+function parsePageReview(raw){
+ if(typeof raw!=="string"||raw.length>2000000)throw Error("Page review export exceeds the 2 MB limit.");
+ let obj;try{obj=JSON.parse(raw)}catch{throw Error("Page review export is not valid JSON.")}
+ if(obj?.schema!=="vnv-page-vocabulary-review-v1"||obj.reviewStatus!=="unreviewed"||obj.approvedForVault!==false||!Array.isArray(obj.entries)||!obj.entries.length||obj.entries.length>900)throw Error("Page review export contract was not recognized.");
+ const words=[],phrases=[],seen=new Set(),word=/^[\p{L}\p{M}'’-]+$/u;
+ for(const r of obj.entries){
+  if(!r||r.from!=="en"||!validLanguage(String(r.to||"").toLowerCase())||r.status!=="unreviewed-page-translation"||r.sourceType!=="public-rendered-text"||
+   typeof r.source!=="string"||typeof r.translation!=="string"||r.source.length<2||r.translation.length<2||r.source.length>280||r.translation.length>280||
+   r.source!==r.source.trim()||r.translation!==r.translation.trim()||r.source===r.translation||!validPageReviewPath(r.page)||
+   /(?:https?:\/\/|www\.|@|\b\d{5,}\b|[\u0000-\u001f\u007f])/i.test(r.source+r.translation))throw Error("Page review export contains a candidate outside the public translation contract.");
+  const single=word.test(r.source)&&word.test(r.translation),kind=single?"word-candidate":"contextual-phrase";
+  if(r.kind!==kind)throw Error("Page review candidate classification mismatch.");
+  const id=["en",String(r.to).toLowerCase(),r.source.normalize("NFKC").toLowerCase()].join("|");
+  if(seen.has(id))throw Error("Page review export contains a duplicate candidate.");
+  seen.add(id);
+  const row=Object.freeze({word:r.source,translation:r.translation,sourceLanguage:"en",targetLanguage:String(r.to).toLowerCase(),reviewStatus:"unreviewed",provenance:"vnv-page-translation:unverified",sourcePage:r.page,kind});
+  (single?words:phrases).push(row);
+ }
+ return Object.freeze({words:Object.freeze(words),phrases:Object.freeze(phrases)});
+}
+function renderPageReview(){
+ $("pageReviewWords").replaceChildren();$("pageReviewPhrases").replaceChildren();
+ if(!pageReview)return;
+ const existing=new Set(collection.map(e=>[e.sourceLanguage,e.targetLanguage,e.word.normalize("NFKC").toLowerCase()].join("|")));
+ const heading=document.createElement("p");heading.textContent=pageReview.words.length+" word candidate(s) ready for owner review.";
+ $("pageReviewWords").append(heading);
+ for(const row of pageReview.words){
+  const id=[row.sourceLanguage,row.targetLanguage,row.word.normalize("NFKC").toLowerCase()].join("|");
+  const wrapper=document.createElement("div");wrapper.className="panel";
+  const description=document.createElement("p");description.textContent=row.word+" → "+row.translation+" · "+row.sourceLanguage+" / "+row.targetLanguage+" · Unreviewed";
+  const source=document.createElement("small");source.textContent="Observed on public page: "+row.sourcePage;
+  const choose=document.createElement("button");choose.type="button";choose.textContent=existing.has(id)?"Already in encrypted collection":"Select this candidate for review";choose.disabled=existing.has(id);
+  choose.addEventListener("click",()=>{
+   selectedArchiveCandidate=null;selectedPageCandidate=row;
+   $("word").value=row.word;$("translation").value=row.translation;$("sourceLanguage").value=row.sourceLanguage;$("targetLanguage").value=row.targetLanguage;
+   $("pageReviewStatus").textContent="Candidate selected but NOT saved. Review all four fields, then explicitly click Encrypt and Save to GitHub.";
+   $("word").focus();
+  });
+  wrapper.append(description,source,document.createElement("br"),choose);$("pageReviewWords").append(wrapper);
+ }
+ if(pageReview.phrases.length){
+  const h=document.createElement("p");h.textContent=pageReview.phrases.length+" contextual phrase(s) are shown for review only and cannot be stored in the vocabulary namespace.";
+  $("pageReviewPhrases").append(h);
+  for(const row of pageReview.phrases.slice(0,50)){const p=document.createElement("p");p.textContent=row.word+" → "+row.translation+" · "+row.targetLanguage+" · "+row.sourcePage;$("pageReviewPhrases").append(p)}
+ }
+}
+async function openPageReview(file){
+ if(!connected)throw Error("Unlock and pair the encrypted vault first.");
+ if(!file||file.size>2*1024*1024)throw Error("Page review export exceeds the 2 MB limit.");
+ pageReview=parsePageReview(await file.text());selectedPageCandidate=null;renderPageReview();
+ $("pageReviewStatus").textContent=pageReview.words.length+" word candidate(s) and "+pageReview.phrases.length+" contextual phrase(s) loaded in memory only. Nothing has been saved.";
+}
+$("pageReviewFile").addEventListener("change",async event=>{
+ try{await openPageReview(event.target.files?.[0])}
+ catch(e){clearPageReview();$("pageReviewStatus").textContent=e.message||"Page review export could not be opened."}
+});
+$("clearPageReview").addEventListener("click",clearPageReview);
+
 async function searchArchive(){
  if(busy||!connected)return;
  $("archiveResults").replaceChildren();
@@ -141,7 +218,7 @@ async function searchArchive(){
 }
 $("archiveSearch").addEventListener("click",searchArchive);
 for(const field of ["word","translation","sourceLanguage","targetLanguage"]){
- $(field).addEventListener("input",()=>{selectedArchiveCandidate=null});
+ $(field).addEventListener("input",()=>{selectedArchiveCandidate=null;selectedPageCandidate=null});
 }
 $("connectCloud").addEventListener("click",connect);$("saveVocabulary").addEventListener("click",save);$("lockCloud").addEventListener("click",lock);addEventListener("pagehide",lock,{once:true});render();status("Encrypted storage ready, but the authenticated GitHub writer has not been commissioned; saving remains disabled.");
 })();

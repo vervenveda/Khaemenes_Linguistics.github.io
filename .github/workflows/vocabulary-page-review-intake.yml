@@ -1,0 +1,25 @@
+name: Vocabulary Page Review Intake Contract
+on:
+  pull_request:
+    paths:
+      - 'apps/vocabulary-mini-cloud/index.html'
+      - 'tests/vocabulary-page-review-intake.test.mjs'
+      - '.github/workflows/vocabulary-page-review-intake.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'apps/vocabulary-mini-cloud/index.html'
+      - 'tests/vocabulary-page-review-intake.test.mjs'
+      - '.github/workflows/vocabulary-page-review-intake.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+      - run: node --test tests/vocabulary-page-review-intake.test.mjs
