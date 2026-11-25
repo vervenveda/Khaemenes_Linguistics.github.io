@@ -51,6 +51,9 @@ function loadCurrent(){
 }
 function saveCurrent(state){
  const d=currentDescriptor(),value=clone(state);
+ const source=value.recordScope;
+ if(source?.type==="learner"&&(d.mode!=="learner"||source.learnerId!==d.id))throw Error("Active learner changed. Reopen the intended learner record before saving; no record was overwritten.");
+ if(source?.type==="legacy-shared"&&d.mode!=="legacy-shared")throw Error("Active learner changed. Reopen the legacy record before saving; no record was overwritten.");
  value.recordScope=d.mode==="learner"
   ?{schema:SCHEMA,type:"learner",learnerId:d.id,learnerLabel:d.label}
   :{schema:SCHEMA,type:"legacy-shared"};

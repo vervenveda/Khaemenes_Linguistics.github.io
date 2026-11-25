@@ -34,6 +34,9 @@ api.openLearner("Bob",fresh);
 check(api.loadCurrent().courses["spanish:ms1"]===undefined,"Bob inherited Alice course evidence");
 api.saveCurrent({...api.loadCurrent(),courses:{"german:ms1":{complete:true}}});
 const bobKey=api.currentKey();
+const beforeBob=localStorage.getItem(bobKey);let staleBlocked=false;
+try{api.saveCurrent(alice)}catch{staleBlocked=true}
+check(staleBlocked&&localStorage.getItem(bobKey)===beforeBob,"Stale named learner state overwrote active learner");
 check(bobKey!==aliceKey,"Alice and Bob keys collided");
 
 api.openById(api.idFor("Alice"));
