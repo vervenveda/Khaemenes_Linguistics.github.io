@@ -9,3 +9,5 @@ Base: 6a64c736d21321e898fd41d8e7718c406eb64873. Review branch; no learner data m
 5. Validate French progression and review scores; maintain historical 10-question lesson, 20-question Unit 01, 24-question Unit 02 and 30-question midterm recognition; never delete recorded scores. Earlier unused assessment selectors retained pending provenance audit; no full browser learner journey claimed. Expand CI to exercise existing bank and mastery tests.
 
 Verification is required before merge. No claims of completed CI/browser certification at authoring time.
+
+Follow-up source verification: historical commit 61a70a7 confirms distinct Unit 01 (20), Unit 02 (24) and midterm (30) totals. Unit 03 and canonical final were not present in that version. Gate-specific compatibility replaces the shared question-count lookup so one gate cannot accept another gate's historical total.

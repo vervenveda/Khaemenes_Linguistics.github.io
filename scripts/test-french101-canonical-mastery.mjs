@@ -127,3 +127,9 @@ test("validated passes preserve supported historic totals and reject invalid mod
  assert.equal(pass({passed:true,score:39,total:50},[20,50]),false);
  assert.equal(pass({passed:true,score:1,total:1},[20,50]),false);
 });
+
+test("historical totals are specific to each academic gate",()=>{
+ const code=html.slice(html.indexOf("function frenchAssessmentPassed("),html.indexOf("function frenchUnit03Key("));
+ const totals=new Function(code+"return frenchPriorTotals")();
+ for(const [key,count,expected] of [["unit01_assessment_v1",50,[20,50]],["unit02_assessment_v1",50,[24,50]],["unit03_assessment_v2",50,[50]],["midterm_v1",150,[30,150]],["final_v2",200,[200]],["lesson01_mastery_v1",20,[10,20]]])assert.deepEqual(totals({passKey:()=>"learner_canonical_"+key,questionCount:count}),expected);
+});

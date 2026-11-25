@@ -1328,7 +1328,7 @@ function frenchAssessmentRun(config){
   evidence.append(element("p","Audio playback and self-ratings do not independently certify listening or speaking."));
   box.append(evidence);
  }
- if(frenchAssessmentPassed(prior,frenchPriorTotals(config.questionCount))){
+ if(frenchAssessmentPassed(prior,frenchPriorTotals(config))){
   const done=element("section");done.className="study-section";
   done.append(element("h3","Mastery recorded"),element("p","Passed: "+prior.score+"/"+prior.total+" ("+Math.round(prior.score/prior.total*100)+"%). Completed "+new Date(prior.completedAt).toLocaleDateString()+". Your earlier result remains protected."));
   addButton(done,"Return to French 101 Journey",backToMenu);box.append(done);showOnly("exam");return;
@@ -1499,12 +1499,17 @@ function frenchCumulativeSet(days,count,avoidIds=[]){
 function frenchAssessmentPassed(record,totals){
  return Boolean(record?.passed===true&&Number.isInteger(record.score)&&Number.isInteger(record.total)&&record.total>0&&record.score<=record.total&&record.score>=Math.ceil(.8*record.total)&&(!totals||totals.includes(record.total))&&(!totals||record.assessmentVersion!=="french101-resumable-v1"||record.total===totals.at(-1)));
 }
-function frenchPriorTotals(questionCount){
- return ({20:[10,20],50:[20,24,50],150:[30,150],200:[200]})[questionCount]||[questionCount];
+function frenchPriorTotals(config){
+ const key=config.passKey();
+ if(/_canonical_lesson\d{2}_mastery_v1$/.test(key))return [10,20];
+ if(key.endsWith("_canonical_unit01_assessment_v1"))return [20,50];
+ if(key.endsWith("_canonical_unit02_assessment_v1"))return [24,50];
+ if(key.endsWith("_canonical_midterm_v1"))return [30,150];
+ return [config.questionCount];
 }
 function frenchUnit03Key(){return learnerKey+"_canonical_unit03_assessment_v2"}
 function frenchFinalKey(){return learnerKey+"_canonical_final_v2"}
-function frenchUnit03Passed(){return frenchAssessmentPassed(frenchAssessmentRead(frenchUnit03Key()))}
+function frenchUnit03Passed(){return frenchAssessmentPassed(frenchAssessmentRead(frenchUnit03Key()),[50])}
 function frenchAllLessonsPassed(){return Array.from({length:18},(_,i)=>i+1).every(canonicalPassed)}
 function frenchUnit02Pool(){
  return [
@@ -1756,8 +1761,8 @@ function buildCanonicalCourseMap(){
    const unitButton=element("button",frenchUnit03Passed()?"Review Unit 03 mastery":"Take Unit 03 Assessment (50)");
    unitButton.type="button";unitButton.disabled=!frenchUnit03Passed()&&!Array.from({length:6},(_,i)=>i+13).every(canonicalPassed);
    unitButton.addEventListener("click",openCanonicalUnit03Assessment);area.append(unitButton);
-   const finalButton=element("button",frenchAssessmentPassed(final)?"Review Final Result":"Take Comprehensive Final (200)");
-   finalButton.type="button";finalButton.disabled=!frenchAssessmentPassed(final)&&(!frenchUnit03Passed()||!frenchAllLessonsPassed());
+   const finalButton=element("button",frenchAssessmentPassed(final,[200])?"Review Final Result":"Take Comprehensive Final (200)");
+   finalButton.type="button";finalButton.disabled=!frenchAssessmentPassed(final,[200])&&(!frenchUnit03Passed()||!frenchAllLessonsPassed());
    finalButton.addEventListener("click",openFrench101CanonicalFinal);area.append(finalButton);
    section.append(area);
   }
