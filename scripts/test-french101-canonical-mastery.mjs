@@ -35,18 +35,21 @@ test("every lesson has a bank of thirty valid graded prompts",()=>{
 });
 test("canonical gate requires independent 80% passes and unit mastery",()=>{
  const snippet=html.slice(html.indexOf("function canonicalKey("),html.indexOf("function canonicalBank("));
- const fn=new Function("learnerKey","frenchAssessmentRead","readFrenchUnit01Assessment","frenchUnit02PassKey","frenchMidtermPassKey",snippet+"return {canonicalAvailable,canonicalPassed}");
+ const validator=html.slice(html.indexOf("function frenchAssessmentPassed("),html.indexOf("function frenchUnit03Key("));
+ const fn=new Function("learnerKey","frenchAssessmentRead","readFrenchUnit01Assessment","frenchUnit02PassKey","frenchMidtermPassKey",validator+snippet+"return {canonicalAvailable,canonicalPassed}");
  const state=new Map();
- const gate=fn("test",key=>key==="u2"?{passed:state.has("u2")}:key==="mid"?{passed:state.has("mid")}:state.get(key)||null,()=>({passed:state.has("u1")}),()=>"u2",()=>"mid");
+ const gate=fn("test",key=>state.get(key)||null,()=>state.get("u1")||null,()=>"u2",()=>"mid");
  assert.equal(gate.canonicalAvailable(1),true);
  assert.equal(gate.canonicalAvailable(2),false);
  for(let i=1;i<=6;i++)state.set("test_canonical_lesson"+String(i).padStart(2,"0")+"_mastery_v1",{passed:true,score:8,total:10});
  assert.equal(gate.canonicalAvailable(7),false);
- state.set("u1",true);assert.equal(gate.canonicalAvailable(7),true);
+ state.set("u1",{passed:true,score:15,total:20});assert.equal(gate.canonicalAvailable(7),false);
+ state.set("u1",{passed:true,score:16,total:20});assert.equal(gate.canonicalAvailable(7),true);
  for(let i=7;i<=12;i++)state.set("test_canonical_lesson"+String(i).padStart(2,"0")+"_mastery_v1",{passed:true,score:8,total:10});
  assert.equal(gate.canonicalAvailable(13),false);
- state.set("u2",true);assert.equal(gate.canonicalAvailable(13),false);
- state.set("mid",true);assert.equal(gate.canonicalAvailable(13),true);
+ state.set("u2",{passed:true,score:40,total:50});assert.equal(gate.canonicalAvailable(13),false);
+ state.set("mid",{passed:true});assert.equal(gate.canonicalAvailable(13),false);
+ state.set("mid",{passed:true,score:120,total:150});assert.equal(gate.canonicalAvailable(13),true);
  state.set("test_canonical_lesson13_mastery_v1",{passed:true,score:7,total:10});assert.equal(gate.canonicalAvailable(14),false);
 });
 
@@ -113,4 +116,14 @@ test("saved drafts can be restored and tampered drafts fail closed",()=>{
  assert.equal(get.frenchAssessmentReadDraft(config).invalid,true);
  saved.orders[0]=[0,1,2];saved.ids[0]="f101-v2-99-0";values.set(get.frenchAssessmentDraftKey(config),JSON.stringify(saved));
  assert.equal(get.frenchAssessmentReadDraft(config).invalid,true);
+});
+
+test("validated passes preserve supported historic totals and reject invalid modern scores",()=>{
+ const validator=html.slice(html.indexOf("function frenchAssessmentPassed("),html.indexOf("function frenchUnit03Key("));
+ const pass=new Function(validator+"return frenchAssessmentPassed")();
+ assert.equal(pass({passed:true,score:16,total:20},[20,50]),true);
+ assert.equal(pass({passed:true,score:40,total:50},[20,50]),true);
+ assert.equal(pass({passed:true,score:16,total:20,assessmentVersion:"french101-resumable-v1"},[20,50]),false);
+ assert.equal(pass({passed:true,score:39,total:50},[20,50]),false);
+ assert.equal(pass({passed:true,score:1,total:1},[20,50]),false);
 });
