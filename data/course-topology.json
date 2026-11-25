@@ -236,7 +236,10 @@
       "lessons": 18,
       "status": "canonical-current-development",
       "legacy_12_level_progress": "preserved",
-      "formal_authority": "v4_five_language"
+      "formal_authority": "v4_five_language",
+      "instructional_modules": 6,
+      "assessed_units": 3,
+      "units_role": "historical instructional module count; assessed units declared separately"
     }
   }
 }

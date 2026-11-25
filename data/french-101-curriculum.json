@@ -228,15 +228,16 @@
     },
     "unit_reviews": {
       "count": 6,
-      "reviewer_role_attributed": true
+      "reviewer_role_attributed": true,
+      "role": "six instructional module reviews; three separate scored unit assessments"
     },
     "checkpoint_after_lesson_6": {
-      "status": "future-versioned-replacement",
+      "status": "implemented-in-source",
       "threshold_percent": 80,
       "legacy_checkpoint_preserved": true
     },
     "midterm_after_lesson_12": {
-      "status": "blueprint-complete-not-yet-live",
+      "status": "implemented-in-source-knowledge-assessment",
       "threshold_percent": 80,
       "skills": [
         "reading",
@@ -246,10 +247,12 @@
         "reviewed-speaking"
       ],
       "blueprint": "data/french-101-midterm-blueprint.json",
-      "assessment_id": "KH-LANG-FR-101-MIDTERM-2026"
+      "assessment_id": "KH-LANG-FR-101-MIDTERM-2026",
+      "question_count": 150,
+      "pass_count": 120
     },
     "final_after_lesson_18": {
-      "status": "blueprint-complete-not-yet-live",
+      "status": "implemented-in-source-knowledge-assessment",
       "threshold_percent": 80,
       "skills": [
         "reading",
@@ -262,9 +265,12 @@
       "legacy_ten_translation_final_preserved": true,
       "blueprint": "data/french-101-final-blueprint.json",
       "assessment_id": "KH-LANG-FR-101-FINAL-2026",
-      "closed_book": true
+      "closed_book": true,
+      "question_count": 200,
+      "pass_count": 160
     },
-    "retry_policy": "below 80% permits correction and parallel retake; earned mastery is never downgraded"
+    "retry_policy": "below 80% permits correction and parallel retake; earned mastery is never downgraded",
+    "performance_evidence": "Independent speaking/listening and writing evidence is separate; knowledge score does not establish oral proficiency."
   },
   "evidence_principles": [
     "Synthetic speech is practice support, not proof of independent listening.",
@@ -278,7 +284,138 @@
     "instructional_spine_complete": true,
     "midterm_boundary_reached": true,
     "final_preparation_complete": true,
-    "next_work": "midterm/final item-bank implementation and full learner-journey QA",
-    "updated_at": "2026-10-29"
-  }
+    "next_work": "Verify full learner journey and independent performance evidence; increase meaningful language exposure.",
+    "updated_at": "2026-11-25"
+  },
+  "instructional_modules": [
+    {
+      "module": 1,
+      "title": "Foundations of French",
+      "lessons": [
+        1,
+        2,
+        3
+      ],
+      "outcomes": [
+        "alphabet and accent awareness",
+        "numbers 0–100",
+        "vowels and subject pronouns"
+      ]
+    },
+    {
+      "module": 2,
+      "title": "First Communication & Structure",
+      "lessons": [
+        4,
+        5,
+        6
+      ],
+      "outcomes": [
+        "greetings and introductions",
+        "first meaningful sentences",
+        "nouns, articles and grammatical gender"
+      ]
+    },
+    {
+      "module": 3,
+      "title": "People & Description",
+      "lessons": [
+        7,
+        8,
+        9
+      ],
+      "outcomes": [
+        "être and avoir",
+        "family, friends and relationships",
+        "colors, shapes and descriptions"
+      ]
+    },
+    {
+      "module": 4,
+      "title": "Everyday Life",
+      "lessons": [
+        10,
+        11,
+        12
+      ],
+      "outcomes": [
+        "dates and time",
+        "food and café communication",
+        "home, school and everyday objects"
+      ]
+    },
+    {
+      "module": 5,
+      "title": "Independent Interaction",
+      "lessons": [
+        13,
+        14,
+        15
+      ],
+      "outcomes": [
+        "questions and negation",
+        "present-tense verbs and routines",
+        "places, directions and transportation"
+      ]
+    },
+    {
+      "module": 6,
+      "title": "Integrated French",
+      "lessons": [
+        16,
+        17,
+        18
+      ],
+      "outcomes": [
+        "reading and listening comprehension",
+        "writing and speaking",
+        "integration, corrections and final preparation"
+      ]
+    }
+  ],
+  "units_role": "historical six-module instructional grouping; not the assessed-unit sequence",
+  "assessed_units": [
+    {
+      "unit": 1,
+      "title": "Foundations",
+      "lessons": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "question_count": 50,
+      "pass_count": 40
+    },
+    {
+      "unit": 2,
+      "title": "Everyday French",
+      "lessons": [
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "question_count": 50,
+      "pass_count": 40
+    },
+    {
+      "unit": 3,
+      "title": "Independent Communication",
+      "lessons": [
+        13,
+        14,
+        15,
+        16,
+        17,
+        18
+      ],
+      "question_count": 50,
+      "pass_count": 40
+    }
+  ]
 }
