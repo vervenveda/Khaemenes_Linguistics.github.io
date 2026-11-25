@@ -66,5 +66,23 @@ check(localStorage.getItem(api.LEGACY_KEY)===null,"Explicit legacy clear failed"
 check(localStorage.getItem(aliceKey)!==null&&localStorage.getItem(bobKey)!==null,"Legacy clear deleted named learners");
 check(localStorage.getItem(api.OLD_V3_KEY)!==null,"Legacy clear deleted V3");
 
+// Two independent tabs share storage, not the opened identity.
+api.openById(api.idFor("Alice"));
+const stale=api.loadCurrent(),backup=api.makeBackup(stale),tab={};
+vm.runInNewContext(code,{window:tab,localStorage,Date,JSON,String,Array,Object,Error});
+const other=tab.KhaemenesV4LearnerScope;
+other.openById(api.idFor("Bob"));
+const before=localStorage.getItem(bobKey);
+for(const [name,op] of [["save",()=>api.saveCurrent(stale)],["backup",()=>api.makeBackup(stale)],["restore",()=>api.restoreBackup(backup)],["undo",()=>api.undoLastRestore()],["clear",()=>api.clearCurrent()],["snapshot",()=>api.assertRecord(stale)]]){
+ let blocked=false;try{op()}catch{blocked=true}check(blocked,"Stale tab "+name+" not blocked");
+}
+check(localStorage.getItem(bobKey)===before,"Stale operations changed Bob");
+api.openLegacy();
+const oldUnscoped=fresh("Legacy");
+other.openById(other.idFor("Bob"));
+let unscopedBlocked=false;try{api.saveCurrent(oldUnscoped)}catch{unscopedBlocked=true}
+check(unscopedBlocked,"Unscoped legacy stale save not blocked");
+api.openById(api.idFor("Alice"));
+check(api.loadCurrent().courses["spanish:ms1"].complete===true,"Explicit reopen lost Alice evidence");
 if(errors.length){console.error("V4_LEARNER_SCOPE=FAIL\n"+errors.map(x=>" - "+x).join("\n"));process.exitCode=1}
 else console.log("V4_LEARNER_SCOPE=PASS; learners-isolated=2; legacy-copy=non-destructive; V3=preserved");

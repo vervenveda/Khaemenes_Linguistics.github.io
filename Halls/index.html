@@ -125,7 +125,7 @@ function hydrate(raw){
  next.profile=Object.assign({learner:"",home:"",teacher:""},next.profile||{});
  if(desc.mode==="learner")next.profile.learner=desc.label;
  next.courses=next.courses||{};next.foundationDone=next.foundationDone||{};next.favorites=next.favorites||{};next.notes=next.notes||{};
- return next;
+ return SCOPE.bindRecord(next,desc);
 }
 let state=hydrate(SCOPE.loadCurrent());
 const handoffParams=new URLSearchParams(location.search);
@@ -142,10 +142,10 @@ if(requestedLanguage&&APP.languages[requestedLanguage]){
 }
 function save(){
  state.updatedAt=new Date().toISOString();
- state=SCOPE.saveCurrent(state);
+ try{state=SCOPE.saveCurrent(state)}catch(e){recordMessage(e.message);throw e}
 }
 window.KhaemenesLanguageAuthorityContext=()=>{
- const record=SCOPE.currentDescriptor();
+ const record=SCOPE.assertRecord(state);
  return {learner:String(state.profile?.learner||"").trim(),language:state.activeLanguage,course:state.activeCourse,courseKey:ckey(),recordScope:record.mode,learnerRecordId:record.id||""};
 };
 function lang(){return APP.languages[state.activeLanguage]||APP.languages.spanish}
@@ -354,7 +354,7 @@ function renderSources(){
 }
 
 function snapshot(){
- const completed=Object.entries(state.courses).filter(([k,v])=>v.complete).map(([k])=>k),record=SCOPE.currentDescriptor();
+ const record=SCOPE.assertRecord(state),completed=Object.entries(state.courses).filter(([k,v])=>v.complete).map(([k])=>k);
  return {schema:"arshif-language-hall-v4",exportedAt:new Date().toISOString(),recordScope:{mode:record.mode,learnerRecordId:record.id||"",learnerLabel:record.label},profile:state.profile,activeLanguage:state.activeLanguage,activeCourse:state.activeCourse,completedCourses:completed,courses:state.courses,foundationDone:state.foundationDone,favorites:Object.keys(state.favorites).filter(k=>state.favorites[k]),notes:state.notes,notebook:state.notebook,legacyV3Preserved:!!state.legacyV3,disclaimer:"Khaemenes internal educational record only. Not an official ACTFL/CEFR/external exam rating, college credit, interpreter credential, teaching license or proof of community authority."}
 }
 function recordMessage(message){const el=$("#learnerRecordMessage");if(el)el.textContent=message}
@@ -478,18 +478,20 @@ function download(name,obj){const b=new Blob([JSON.stringify(obj,null,2)],{type:
 $("#downloadVault").onclick=()=>{const r=SCOPE.currentDescriptor(),suffix=r.mode==="learner"?(r.id||"learner"):"legacy-shared";download(`khaemenes-five-language-v4-${suffix}.json`,snapshot())};
 $("#copySnapshot").onclick=async()=>{const s=snapshot(),txt=`KHAEMENES FIVE-LANGUAGE ACADEMY V4\nRecord: ${s.recordScope.mode==="learner"?s.recordScope.learnerLabel:"Legacy shared V4"}\nLearner: ${s.profile.learner||"—"}\nCurrent: ${APP.languages[s.activeLanguage].name} · ${APP.levels.find(x=>x.id===s.activeCourse).label}\nFormal courses complete: ${s.completedCourses.length}/55\nFoundation modules: ${Object.values(s.foundationDone).filter(Boolean).length}/40\n${s.disclaimer}`;try{await navigator.clipboard.writeText(txt);alert("Snapshot copied.")}catch{prompt("Copy snapshot:",txt)}};
 $("#inspectLegacy").onclick=()=>alert(oldState?`Legacy V3 preserved in its separate key.\nOld target: ${oldState?.profile?.target||"—"}\nOld completed modules: ${Object.values(oldState?.done||{}).filter(Boolean).length}/40\nOld midterm: ${oldState?.midterm??"—"}\nOld final: ${oldState?.final??"—"}`:"No V3 record was found.");
-$("#printRecord").onclick=()=>window.print();
+$("#printRecord").onclick=()=>{try{SCOPE.assertRecord(state);window.print()}catch(e){recordMessage(e.message)}};
 $("#clearV4").onclick=()=>{
  const record=SCOPE.currentDescriptor(),phrase=record.mode==="learner"?"CLEAR LEARNER V4":"CLEAR LEGACY V4";
  const label=record.mode==="learner"?record.label:"the legacy shared V4 record";
  if(prompt(`Type ${phrase} to remove ${label}. Other learner records and the separate V3 record will not be deleted.`)!==phrase)return;
- const result=SCOPE.clearCurrent();
+ let result;
+ try{SCOPE.assertRecord(state);result=SCOPE.clearCurrent()}catch(e){recordMessage(e.message);return}
  state=hydrate(SCOPE.loadCurrent());
  renderAll();
  recordMessage(result.cleared==="learner"?`Cleared ${result.label}. The legacy shared V4 record and other learners remain preserved.`:"Cleared the legacy shared V4 record. Named learner records and V3 remain preserved.");
  window.dispatchEvent(new Event("khaemenes-v4-learner-change"));
 };
 
+window.addEventListener("storage",e=>{if(e.key===SCOPE.ACTIVE_KEY||e.key===null){try{SCOPE.assertCurrent()}catch(err){recordMessage(err.message);resetBackupPreview(err.message)}}});
 function renderAll(){renderAcademy();renderCourse();renderSkills();renderPractice();renderAssess();renderFoundations();renderAtlasFilters();renderAtlas();renderSources();renderVault()}
 renderAll();
 if(requestedAtlasLanguage){

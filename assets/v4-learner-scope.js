@@ -29,7 +29,24 @@ function registry(){
  return r&&typeof r==="object"&&!Array.isArray(r)?r:{};
 }
 function writeRegistry(r){return safeSet(REGISTRY_KEY,JSON.stringify(r))}
-function activeId(){return cleanId(safeGet(ACTIVE_KEY)||"")}
+function sharedActiveId(){return cleanId(safeGet(ACTIVE_KEY)||"")}
+let openedId=sharedActiveId();
+function activeId(){return openedId}
+function assertCurrent(){
+ if(sharedActiveId()!==openedId)throw Error("Another tab changed the active learner. Reopen the intended learner before continuing.");
+ return currentDescriptor();
+}
+function assertRecord(state,d=assertCurrent()){
+ const scope=state?.recordScope;
+ if(!scope||scope.type!==d.mode||(d.mode==="learner"&&scope.learnerId!==d.id))throw Error("Record identity does not match the opened learner. No record was changed.");
+ return d;
+}
+function bindRecord(record,d=currentDescriptor()){
+ if(!record)return record;
+ const prior=record.recordScope;
+ if(prior&&(prior.type!==d.mode||(d.mode==="learner"&&prior.learnerId!==d.id)))throw Error("Stored record scope does not match its storage key.");
+ return {...record,recordScope:{...(prior||{}),schema:SCHEMA,type:d.mode,...(d.mode==="learner"?{learnerId:d.id,learnerLabel:d.label}:{})}};
+}
 function currentKey(){const id=activeId();return id?scopedKey(id):LEGACY_KEY}
 function currentMode(){return activeId()?"learner":"legacy-shared"}
 function currentDescriptor(){
@@ -47,13 +64,10 @@ function touch(id,label,createdAt){
  if(!writeRegistry(r))throw Error("Unable to save learner registry.");
 }
 function loadCurrent(){
- return parse(safeGet(currentKey())||"null",null);
+ const d=assertCurrent();return bindRecord(parse(safeGet(d.key)||"null",null),d);
 }
 function saveCurrent(state){
- const d=currentDescriptor(),value=clone(state);
- const source=value.recordScope;
- if(source?.type==="learner"&&(d.mode!=="learner"||source.learnerId!==d.id))throw Error("Active learner changed. Reopen the intended learner record before saving; no record was overwritten.");
- if(source?.type==="legacy-shared"&&d.mode!=="legacy-shared")throw Error("Active learner changed. Reopen the legacy record before saving; no record was overwritten.");
+ const d=assertRecord(state),value=clone(state);
  value.recordScope=d.mode==="learner"
   ?{schema:SCHEMA,type:"learner",learnerId:d.id,learnerLabel:d.label}
   :{schema:SCHEMA,type:"legacy-shared"};
@@ -76,7 +90,8 @@ function openLearner(label,createRecord){
  }
  touch(id,name,record.createdAt);
  if(!safeSet(ACTIVE_KEY,id))throw Error("Unable to activate learner record.");
- return clone(record);
+ openedId=id;
+ return bindRecord(clone(record));
 }
 function openById(id){
  const learnerId=cleanId(id),r=registry(),entry=r[learnerId];
@@ -85,11 +100,13 @@ function openById(id){
  if(!record)throw Error("Learner record data is missing.");
  touch(learnerId,entry.label,record.createdAt);
  if(!safeSet(ACTIVE_KEY,learnerId))throw Error("Unable to activate learner record.");
- return clone(record);
+ openedId=learnerId;
+ return bindRecord(clone(record));
 }
 function openLegacy(){
- safeRemove(ACTIVE_KEY);
- return parse(safeGet(LEGACY_KEY)||"null",null);
+ if(!safeRemove(ACTIVE_KEY))throw Error("Unable to open legacy record.");
+ openedId="";
+ return bindRecord(parse(safeGet(LEGACY_KEY)||"null",null));
 }
 function legacyRecord(){return parse(safeGet(LEGACY_KEY)||"null",null)}
 function assignLegacy(label){
@@ -106,6 +123,7 @@ function assignLegacy(label){
  if(!safeSet(target,JSON.stringify(copy)))throw Error("Unable to create learner copy.");
  touch(id,name,copy.createdAt);
  if(!safeSet(ACTIVE_KEY,id))throw Error("Learner copy was created but could not be activated.");
+ openedId=id;
  return clone(copy);
 }
 
@@ -132,7 +150,7 @@ function validateStateShape(record){
  return record;
 }
 function makeBackup(state){
- const d=currentDescriptor();
+ const d=assertRecord(state);
  if(d.mode!=="learner"||!d.id)throw Error("Open a named learner record before creating a backup.");
  const record=validateStateShape(clone(state));
  record.profile={...(record.profile||{}),learner:d.label};
@@ -163,7 +181,7 @@ function pushRecovery(id,label,record,reason){
  if(!safeSet(recoveryKey(id),JSON.stringify(list)))throw Error("Unable to save the pre-restore recovery snapshot.");
 }
 function restoreBackup(data){
- const parsed=validateBackup(data),d=currentDescriptor();
+ const parsed=validateBackup(data),d=assertCurrent();
  if(d.mode!=="learner"||!d.id)throw Error("Open the named learner record before restoring a backup.");
  if(parsed.learner.id!==d.id||parsed.learner.label!==d.label)throw Error("Backup belongs to a different learner. No record was changed.");
  const current=parse(safeGet(d.key)||"null",null);
@@ -177,7 +195,7 @@ function restoreBackup(data){
  return clone(restored);
 }
 function undoLastRestore(){
- const d=currentDescriptor();
+ const d=assertCurrent();
  if(d.mode!=="learner"||!d.id)throw Error("Open a named learner record before using restore recovery.");
  const list=recoveryHistory(d.id);
  if(!list.length)throw Error("No pre-restore recovery snapshot is available for this learner.");
@@ -197,13 +215,15 @@ function recoverySummary(){
  return {available:list.length,latest:latest?{savedAt:latest.savedAt,reason:latest.reason}:null};
 }
 function clearCurrent(){
- const d=currentDescriptor();
+ const d=assertCurrent();
  if(d.mode==="learner"){
-  safeRemove(d.key);
-  const r=registry();delete r[d.id];writeRegistry(r);safeRemove(ACTIVE_KEY);
+  if(!safeRemove(d.key))throw Error("Unable to clear the opened learner record.");
+  const r=registry();delete r[d.id];if(!writeRegistry(r))throw Error("Record cleared, but registry update failed.");
+  if(!safeRemove(ACTIVE_KEY))throw Error("Record cleared, but active selection could not be reset.");
+  openedId="";
   return {cleared:"learner",id:d.id,label:d.label,legacyPreserved:safeGet(LEGACY_KEY)!==null};
  }
- safeRemove(LEGACY_KEY);
+ if(!safeRemove(LEGACY_KEY))throw Error("Unable to clear the legacy record.");
  return {cleared:"legacy-shared",legacyPreserved:false};
 }
 function exportRegistry(){
@@ -212,7 +232,7 @@ function exportRegistry(){
 window.KhaemenesV4LearnerScope={
  schema:SCHEMA,LEGACY_KEY,OLD_V3_KEY,ACTIVE_KEY,REGISTRY_KEY,PREFIX,
  clean,cleanId,idFor,scopedKey,registry,list,activeId,currentKey,currentMode,currentDescriptor,
- loadCurrent,saveCurrent,openLearner,openById,openLegacy,legacyRecord,assignLegacy,
+ assertCurrent,assertRecord,bindRecord,loadCurrent,saveCurrent,openLearner,openById,openLegacy,legacyRecord,assignLegacy,
  BACKUP_FORMAT,makeBackup,validateBackup,restoreBackup,undoLastRestore,recoverySummary,
  clearCurrent,exportRegistry
 };
