@@ -42,7 +42,7 @@ test("translator uses request guard across fetch, JSON, cache and review",()=>{
  assert.match(page,/signal:request\.signal/);
  assert.match(page,/if\(!stillCurrent\(\)\)return;/);
  assert.match(page,/onlineRequestGuard\.finish\(request\)/);
- assert.match(page,/function invalidateTranslation\(\)/);
+ assert.match(page,/function invalidateTranslation\(\{preserveOutput=false\}=\{\}\)/);
  assert.match(page,/els\.input\.addEventListener\("input",\(\)=>\{invalidateTranslation\(\)/);
  assert.match(page,/els\.service\.addEventListener\("change",\(\)=>\{invalidateTranslation\(\);closeConsent\(\)/);
  assert.match(page,/function clearWorkspace\(\)\{\s*invalidateTranslation\(\)/);
@@ -79,4 +79,11 @@ test("editing context clears previously displayed translation and review authori
  assert.match(page,/async function runTranslation\(\)\{\s*invalidateTranslation\(\)/);
  assert.match(page,/onlineRequestGuard\.start\(\{from,to,text,service:"online",purpose\}\)/);
  assert.match(page,/invalidateTranslation\(\{preserveOutput:true\}\)/);
+});
+
+test("legacy translator delegates without another persistent cache or external request",async()=>{
+ const legacy=await readFile(new URL("../multilingual-translator_index.html",import.meta.url),"utf8");
+ assert.match(legacy,/location\.replace\(next\.href\)/);
+ assert.match(legacy,/apps\/translator\.html/);
+ assert.doesNotMatch(legacy,/localStorage|fetch\(|LS_CACHE|["']text["']/);
 });

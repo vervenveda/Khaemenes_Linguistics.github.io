@@ -170,7 +170,7 @@
     "compatibility": [
       {
         "path": "multilingual-translator_index.html",
-        "role": "legacy-compatible-translator"
+        "role": "legacy-canonical-forwarder"
       },
       {
         "path": "apps/translator-entry.html",
