@@ -1,9 +1,9 @@
-/* Khaemenes shared translator loader v1.0
+/* Khaemenes shared translator loader v1.1.1
  * Additive and local-first. Runs after pre-existing page engines without replacing them.
  * Loads missing optional vocabulary resources in dependency order; never sends text.
  */
 (function(root){"use strict";
-const VERSION="1.1.0";
+const VERSION="1.1.1";
 const script=document.currentScript;
 const base=new URL(".",script.src);
 const definitions=[
