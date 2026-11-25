@@ -139,7 +139,7 @@ check(cafe.includes("../chroniques-francophones/"),"Café story reader link miss
 check(french.includes("addFrenchGameShelf(box)"),"Academy language-game shelf not wired into lessons");
 check(french.includes("makeListeningPractice(box,level)"),"French lesson must present listening practice");
 check(french.includes('direction:i<3?"fr-en":"en-fr"'),"French quiz must cover both translation directions");
-check(french.includes("matchesTranslation(set[index],input.value)"),"French quiz accepted translations missing");
+check(french.includes("function matchesTranslation(item,value)")&&french.includes("ACCEPTED_TRANSLATIONS[item.fr]")&&french.includes("matchesTranslation(q.item,input.value)")&&french.includes("matchesTranslation(questions[i],input.value)"),"French quiz accepted translations missing");
 check(french.includes("function exportFrenchPortfolio("),"French portfolio export missing");
 check(french.includes("learnerKey+\"_writing_\"+level"),"French learner-specific writing missing");
 check(french.includes("assessmentSession++"),"French stale-assessment guard missing");
@@ -235,7 +235,10 @@ for(const path of ["./apps/French_101_index.html","./apps/chroniques-francophone
  check(existsSync(join(root,path)),"Missing French offline target: "+path);
 }
 const ids=new Set([...home.matchAll(/\bid="([^"]+)"/g)].map(x=>x[1]));
-for(const x of home.matchAll(/href="#([^"]+)"/g))check(ids.has(x[1]),"Missing home anchor #"+x[1]);
+for(const x of home.matchAll(/href="#([^"]+)"/g)){
+ if(x[1]==="theme-toggle"){check(home.includes("function syncThemeControls(")&&home.includes("event.preventDefault()")&&home.includes("applyTheme(next)"),"Theme action handler missing");continue}
+ check(ids.has(x[1]),"Missing home anchor #"+x[1]);
+}
 const scripts=["index.html","apps/French_101_index.html","Halls/index.html","Halls/language-learning-v3_index.html"];
 for(const p of scripts)syntaxCheck(read(p),p);
 try{new vm.Script(language,{filename:"assets/vnv-language.js"})}catch(e){errors.push(e.message)}

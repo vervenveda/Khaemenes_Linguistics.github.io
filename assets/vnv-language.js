@@ -24,15 +24,27 @@ const original=new WeakMap(),lastRendered=new WeakMap(),attributeBase=new WeakMa
 const titleState={source:document.title,rendered:null};
 let coverageScheduled=false;
 /* Translation coverage engine: static and dynamically inserted public UI only. */
-const LANG_CACHE_KEY="vnv_translated_phrases_v2";
+// Historical draft storage is left untouched, but no longer read or written by this engine.
 const SESSION_TRANSLATION_KEY="vnv_public_translation_consent_v1";
-let translationsCache={};
-try{translationsCache=JSON.parse(localStorage.getItem(LANG_CACHE_KEY)||"{}")||{}}catch{}
-let translationBusy=false,translationStop=false;
+let translationsCache=Object.create(null);
+let translationBusy=false,translationStop=false,translationGeneration=0;
+const publicSources=new WeakMap();
+const PAGE_PRIVATE_SELECTOR="form,[contenteditable],[data-private],[data-learner],[data-student],[data-account],[data-i18n-no-online],#adminGate,[autocomplete],dialog,[role='dialog'],[data-vnv-no-dictionary]";
+function capturePublicSources(){
+ for(const el of document.querySelectorAll("[data-i18n-public]")){
+  if(el.children.length||el.closest(PAGE_PRIVATE_SELECTOR)||ignored(el))continue;
+  const sources={text:normalize(el.textContent)};
+  for(const key of ["placeholder","aria-label","title","alt"])if(el.hasAttribute(key))sources[key]=normalize(el.getAttribute(key));
+  publicSources.set(el,sources);
+ }
+}
+function eligiblePublicSource(el,source,key="text"){
+ return !!(el?.isConnected&&el.hasAttribute("data-i18n-public")&&!el.children.length&&!el.closest(PAGE_PRIVATE_SELECTOR)&&!ignored(el)&&publicSources.get(el)?.[key]===normalize(source));
+}
 function getConsent(){try{return sessionStorage.getItem(SESSION_TRANSLATION_KEY)}catch{return null}}
 function setConsent(v){try{sessionStorage.setItem(SESSION_TRANSLATION_KEY,v)}catch{}}
 function requestOnlineConsent(){
- const answer=window.confirm("Complete this public page's untranslated text with MyMemory? Only public page text is sent to the translation service. Learner answers, account data and private workspaces are excluded. Cancel keeps this page offline.");
+ const answer=window.confirm("Translate explicitly marked static public interface text with MyMemory? Unmarked or dynamically changed text, learner answers, account data and private workspaces are excluded. Draft translations remain in this page's memory only. Cancel keeps this page offline.");
  setConsent(answer?"yes":"no");return answer;
 }
 function cacheKey(src,code){return code+"|"+src}
@@ -40,64 +52,29 @@ function cachedTranslation(src,code){return translationsCache[cacheKey(src,code)
 function cacheTranslation(src,code,value){
  if(!value||!value.trim())return;
  translationsCache[cacheKey(src,code)]=value;
- const all=Object.entries(translationsCache);if(all.length>1600)translationsCache=Object.fromEntries(all.slice(-1200));
- try{localStorage.setItem(LANG_CACHE_KEY,JSON.stringify(translationsCache))}catch{}
-}
-/* Public-page translation memory: browser-local dictionary candidates only.
- * Never harvest form fields, editable text, account/learner areas, or private surfaces.
- * Sentence matches are contextual examples, not inferred word translations. */
-const PAGE_PAIRS_KEY="vnv_page_dictionary_candidates_v1";
-const PAGE_PAIRS_MAX=900;
-const PAGE_PRIVATE_SELECTOR="form,[contenteditable],[data-private],[data-learner],[data-student],[data-account],[data-i18n-no-online],#adminGate,[autocomplete],dialog,[role='dialog'],[data-vnv-no-dictionary]";
-function publicDictionarySurface(el){
- if(!el||el.closest(PAGE_PRIVATE_SELECTOR)||ignored(el))return false;
- return !!el.closest("main,header,nav,footer,[role='main']");
-}
-function rememberPagePair(source,translated,element){
- if(lang==="en"||!publicDictionarySurface(element))return;
- const a=normalize(source),b=normalize(translated);
- if(a.length<2||b.length<2||a===b||a.length>280||b.length>280)return;
- // Static/public prose only: never retain emails, identifiers, URL strings, or user text.
- if(/(?:https?:\/\/|www\.|@|\b\d{5,}\b)/i.test(a))return;
- const word=/^[\p{L}\p{M}'’-]+$/u.test(a);
- const k=lang+"|"+a;
- try{
-  const rows=JSON.parse(localStorage.getItem(PAGE_PAIRS_KEY)||"{}");
-  const safe=rows&&typeof rows==="object"&&!Array.isArray(rows)?rows:{};
-  // Do not churn storage for an unchanged saved pair.
-  if(safe[k]?.translation===b)return;
-  delete safe[k];
-  safe[k]={source:a,translation:b,from:"en",to:lang,
-   kind:word?"word-candidate":"contextual-phrase",
-   status:"unreviewed-page-translation",page:location.pathname.slice(0,220),
-   sourceType:"public-rendered-text",savedAt:new Date().toISOString()};
-  const keys=Object.keys(safe);
-  for(const stale of keys.slice(0,Math.max(0,keys.length-PAGE_PAIRS_MAX)))delete safe[stale];
-  localStorage.setItem(PAGE_PAIRS_KEY,JSON.stringify(safe));
- }catch{/* No storage permission or quota: translation remains usable. */}
+ const all=Object.entries(translationsCache);if(all.length>600)translationsCache=Object.assign(Object.create(null),Object.fromEntries(all.slice(-400)));
 }
 function shouldTranslateText(src){return /[\p{L}]/u.test(src) && src.length>=2}
-function translationEvidence(source){
+function translationEvidence(source,allowDraft=false){
  if(lang==="en")return "source-language";
  const hit=window.KhaemenesSovereignTranslate?.lookupLocal?.({from:"en",to:lang,text:source});
  if(hit?.verified===true&&hit.translation)return "locally-reviewed";
  const idx=CODES.indexOf(lang),row=MAP.get(source);
  if(EXPANDED_PHRASES[source]?.[lang]||(row&&idx<7&&row[idx])||(idx>=7&&EXTENDED[source]?.[idx-7])||TITLE_TRANSLATIONS[source]?.[lang]||REVIEWED_PUBLIC_COPY[source]?.[lang])return "curated-public-copy";
  if(/^Open (.+)$/.test(source)&&EXPANDED_PHRASES.Open?.[lang]&&translate(source))return "composed-interface";
- if(hit?.translation)return "unreviewed-source-draft";
- if(cachedTranslation(source,lang))return "machine-or-browser-cache";
+ if(allowDraft&&cachedTranslation(source,lang))return "machine-or-browser-cache";
  return "untranslated";
 }
 function coverage(){
  const missing=new Set();let total=0,covered=0;
  const evidence={"source-language":0,"locally-reviewed":0,"curated-public-copy":0,"composed-interface":0,"unreviewed-source-draft":0,"machine-or-browser-cache":0,"untranslated":0};
- function count(source){const type=translationEvidence(source);total++;evidence[type]++;if(type==="untranslated")missing.add(source);else covered++;}
+ function count(source,eligible){const type=translationEvidence(source,eligible);total++;evidence[type]++;if(type==="untranslated"){if(eligible)missing.add(source)}else covered++;}
 
  const walk=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let n;
  while((n=walk.nextNode())){if(!n.parentElement||ignored(n.parentElement))continue;
   const source=normalize(original.get(n)===undefined?n.nodeValue:original.get(n));
   if(!shouldTranslateText(source))continue;
-  count(source);
+  count(source,eligiblePublicSource(n.parentElement,source));
  }
  for(const el of document.querySelectorAll("[placeholder],[aria-label],[title],[alt]")){
   if(ignored(el))continue;
@@ -105,13 +82,13 @@ function coverage(){
   for(const key of ["placeholder","aria-label","title","alt"]){
    const source=normalize(attrs[key]??el.getAttribute(key)??"");
    if(!shouldTranslateText(source))continue;
-   count(source);
+   count(source,eligiblePublicSource(el,source,key));
   }
  }
  if(shouldTranslateText(titleState.source)){
-  total++;if(lang==="en"||translate(titleState.source))covered++;else missing.add(titleState.source);
+  total++;if(lang==="en"||translate(titleState.source))covered++;
  }
- return {language:lang,total,translated:covered,missing:missing.size,evidence,coverageMeaning:"Source-string lookup categories; not independent human accuracy verification.",samples:[...missing].slice(0,20),untranslated:[...missing]};
+ return {language:lang,total,translated:covered,missing:missing.size,evidence,coverageMeaning:"Source-string lookup categories; missing list and samples contain only explicitly marked static public phrases, not private or dynamic content.",samples:[...missing].slice(0,20),untranslated:[...missing]};
 }
 function updateCoverage(){
  const c=coverage(),labels=CONTROL_LABELS[lang]||CONTROL_LABELS.en;
@@ -182,25 +159,24 @@ async function onlineTranslate(src,target){
 function updateProgress(msg){for(const el of document.querySelectorAll("[data-vnv-coverage]"))el.textContent=msg}
 async function completeMissingTranslations(){
  if(lang==="en"||translationBusy||CURATED_ONLY)return;
- const target=lang;translationBusy=true;translationStop=false;
+ const target=lang,generation=translationGeneration;translationBusy=true;translationStop=false;
  document.querySelectorAll(".vnv-translate-complete").forEach(b=>{b.disabled=true;b.textContent=(CONTROL_LABELS[lang]||CONTROL_LABELS.en)[2]});
  try{
-  const originals=new Set();const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;
+  const originals=new Map();const add=(text,el,key)=>{if(eligiblePublicSource(el,text,key)&&shouldTranslateText(text)&&!translate(text,true)){const items=originals.get(text)||[];items.push({el,key});originals.set(text,items)}};const walker=document.createTreeWalker(document.body,NodeFilter.SHOW_TEXT);let node;
   while((node=walker.nextNode())){
    if(!node.parentElement||ignored(node.parentElement)||node.parentElement.closest("#adminGate,form,[data-private],[data-learner],[data-student],[data-account],[data-i18n-no-online]"))continue;
    const text=normalize(original.get(node)??node.nodeValue);
-   if(shouldTranslateText(text)&&!translate(text))originals.add(text);
+   add(text,node.parentElement,"text");
   }
   for(const el of document.querySelectorAll("[placeholder],[aria-label],[title],[alt]")){
    if(ignored(el)||el.closest("#adminGate,form,[data-private],[data-learner],[data-student],[data-account],[data-i18n-no-online]"))continue;
    const attrs=attributeBase.get(el)||{};
    for(const key of ["placeholder","aria-label","title","alt"]){
     const text=normalize(attrs[key]??el.getAttribute(key)??"");
-    if(shouldTranslateText(text)&&!translate(text))originals.add(text);
+    add(text,el,key);
    }
   }
-  if(shouldTranslateText(titleState.source)&&!translate(titleState.source))originals.add(titleState.source);
-  const remaining=[...originals];if(!remaining.length){updateCoverage();return}
+  const remaining=[...originals.keys()];if(!remaining.length){updateProgress("No eligible untranslated static public phrases on this page.");return}
   let machine=await localTranslator(target),useOnline=false;
   if(!machine){
    if(OFFLINE_ONLY){updateProgress("This Academy Hall protects learner records: only built-in and on-device translations are available.");return}
@@ -210,9 +186,12 @@ async function completeMissingTranslations(){
   }
   let done=0,failed=0;
   for(const text of remaining){
-   if(target!==lang||translationStop)break;
+   if(target!==lang||translationStop||generation!==translationGeneration)break;
+   const stillPublic=()=>originals.get(text).some(({el,key})=>eligiblePublicSource(el,text,key)&&normalize(key==="text"?el.textContent:el.getAttribute(key))===text);
+   if(!stillPublic())continue;
    try{
     const value=useOnline?await onlineTranslate(text,target):await machine.translate(text);
+    if(target!==lang||translationStop||generation!==translationGeneration||!stillPublic())break;
     if(value&&value.trim()&&normalize(value)!==text)cacheTranslation(text,target,value.trim());
     else failed++;
    }catch{failed++}
@@ -231,7 +210,7 @@ const params=new URLSearchParams(location.search);
 const urlLang=params.get(PARAM);
 let lang=CODES.includes(urlLang)?urlLang:(CODES.includes(readPref())?readPref():"en");
 if(urlLang&&CODES.includes(urlLang))storePref(lang);
-function translate(s){
+function translate(s,allowDraft=false){
  const source=normalize(s),idx=CODES.indexOf(lang);
  if(idx===0)return source;
  // Reuse the canonical sovereign Interlingual library. A genuinely reviewed
@@ -250,10 +229,10 @@ function translate(s){
   const match=source.match(/^Open (.+)$/);
   if(match&&EXPANDED_PHRASES.Open?.[lang])return EXPANDED_PHRASES.Open[lang]+" "+(translate(match[1])||match[1]);
  }
- return (sovereign?.translation||cachedTranslation(source,lang));
+ return allowDraft?cachedTranslation(source,lang):null;
 }
 function ignored(el){
- return !!(el&&el.closest("script,style,noscript,svg,math,code,pre,textarea,select,option,form,[lang]:not(html):not([lang=en]),[contenteditable],#adminGate,[data-private],[data-student],[data-learner],[data-i18n-ignore],.world-ribbon,.phrase-main,.phrase-translation,.phrase-language"));
+ return !!(el&&el.closest("script,style,noscript,svg,math,code,pre,textarea,select,option,form,[lang]:not(html):not([lang=en]),[contenteditable],#adminGate,[data-private],[data-student],[data-learner],[data-i18n-ignore],[data-account],[data-i18n-no-online],[data-vnv-no-dictionary],[autocomplete],dialog,[role='dialog'],.world-ribbon,.phrase-main,.phrase-translation,.phrase-language"));
 }
 function textTranslate(n){
  const parent=n.parentElement;
@@ -261,9 +240,8 @@ function textTranslate(n){
  let base=original.get(n);
  if(base===undefined||n.nodeValue!==lastRendered.get(n)){base=n.nodeValue;original.set(n,base)}
  const phrase=normalize(base);if(!phrase)return;
- const replacement=translate(phrase);
+ const replacement=translate(phrase,eligiblePublicSource(parent,phrase));
  const value=replacement?base.replace(phrase,replacement):base;
- if(replacement&&lang!=="en"&&replacement!==phrase)rememberPagePair(phrase,replacement,parent);
  if(n.nodeValue!==value)n.nodeValue=value;
  lastRendered.set(n,value);
 }
@@ -274,7 +252,7 @@ function attrsTranslate(el){
  for(const key of ["placeholder","aria-label","title","alt"]){
   const current=el.getAttribute(key);if(current===null)continue;
   if(!(key in base)||current!==recent[key])base[key]=current;
-  const replacement=translate(base[key]),next=replacement||base[key];
+  const replacement=translate(base[key],eligiblePublicSource(el,base[key],key)),next=replacement||base[key];
   if(current!==next)el.setAttribute(key,next);
   recent[key]=next;
  }
@@ -392,6 +370,7 @@ function updateLabel(){
 }
 async function completeWithInstalledModel(selected,interactive=false){
  if(selected==="en"||!coverage().missing||CURATED_ONLY)return;
+ const generation=translationGeneration;
  let available=false;
  try{
   if(window.Translator?.availability){
@@ -399,7 +378,7 @@ async function completeWithInstalledModel(selected,interactive=false){
    available=state==="available";
   }
  }catch{}
- if(lang!==selected)return;
+ if(lang!==selected||generation!==translationGeneration)return;
  if(available){completeMissingTranslations();return}
  if(OFFLINE_ONLY)return;
  if(getConsent()==="yes"){completeMissingTranslations();return}
@@ -407,7 +386,7 @@ async function completeWithInstalledModel(selected,interactive=false){
 }
 function setLanguage(next,interactive=false){
  if(!CODES.includes(next))return;
- lang=next;storePref(lang);
+ translationGeneration++;lang=next;storePref(lang);
  document.documentElement.lang=lang;
  document.documentElement.dir=lang==="ar"?"rtl":"ltr";
  translationStop=true;
@@ -434,6 +413,7 @@ document.addEventListener("click",event=>{
  link.href=url.href;
 },true);
 function init(){
+ capturePublicSources();
  makeSelector();
  setLanguage(lang);
  const observer=new MutationObserver(records=>{

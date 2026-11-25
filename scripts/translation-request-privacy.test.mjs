@@ -66,7 +66,7 @@ test("Teacher observation carries provider tier and manually reviewed save retai
 
 test("new offline cache version includes the request guard and Teacher evidence modules",async()=>{
  const worker=await readFile(new URL("../service-worker.js",import.meta.url),"utf8");
- assert.match(worker,/polyglot-v1\.5\.12-forensic-20261125/);
+ assert.match(worker,/polyglot-v1\.5\.13-forensic-20261125/);
  for(const resource of ["khaemenes-translation-request-guard.js","khaemenes-translation-candidate-lab.js",
   "khaemenes-translation-teacher-arbiter.js","khaemenes-translation-candidate-ui.js",
   "sovereign-dictionary.generated.js"]){

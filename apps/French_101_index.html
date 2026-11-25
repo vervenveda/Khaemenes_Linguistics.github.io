@@ -1328,7 +1328,7 @@ function frenchAssessmentRun(config){
   evidence.append(element("p","Audio playback and self-ratings do not independently certify listening or speaking."));
   box.append(evidence);
  }
- if(prior?.passed){
+ if(frenchAssessmentPassed(prior,frenchPriorTotals(config))){
   const done=element("section");done.className="study-section";
   done.append(element("h3","Mastery recorded"),element("p","Passed: "+prior.score+"/"+prior.total+" ("+Math.round(prior.score/prior.total*100)+"%). Completed "+new Date(prior.completedAt).toLocaleDateString()+". Your earlier result remains protected."));
   addButton(done,"Return to French 101 Journey",backToMenu);box.append(done);showOnly("exam");return;
@@ -1496,10 +1496,20 @@ function frenchCumulativeSet(days,count,avoidIds=[]){
  if(selected.length!==count||new Set(selected.map(q=>q.id)).size!==count)throw Error("Incorrect exam question count");
  return shuffleQuestions(selected);
 }
-function frenchAssessmentPassed(record){return Boolean(record?.passed===true&&Number.isInteger(record.score)&&Number.isInteger(record.total)&&record.total>0&&record.score<=record.total&&record.score>=Math.ceil(.8*record.total))}
+function frenchAssessmentPassed(record,totals){
+ return Boolean(record?.passed===true&&Number.isInteger(record.score)&&Number.isInteger(record.total)&&record.total>0&&record.score<=record.total&&record.score>=Math.ceil(.8*record.total)&&(!totals||totals.includes(record.total))&&(!totals||record.assessmentVersion!=="french101-resumable-v1"||record.total===totals.at(-1)));
+}
+function frenchPriorTotals(config){
+ const key=config.passKey();
+ if(/_canonical_lesson\d{2}_mastery_v1$/.test(key))return [10,20];
+ if(key.endsWith("_canonical_unit01_assessment_v1"))return [20,50];
+ if(key.endsWith("_canonical_unit02_assessment_v1"))return [24,50];
+ if(key.endsWith("_canonical_midterm_v1"))return [30,150];
+ return [config.questionCount];
+}
 function frenchUnit03Key(){return learnerKey+"_canonical_unit03_assessment_v2"}
 function frenchFinalKey(){return learnerKey+"_canonical_final_v2"}
-function frenchUnit03Passed(){return frenchAssessmentPassed(frenchAssessmentRead(frenchUnit03Key()))}
+function frenchUnit03Passed(){return frenchAssessmentPassed(frenchAssessmentRead(frenchUnit03Key()),[50])}
 function frenchAllLessonsPassed(){return Array.from({length:18},(_,i)=>i+1).every(canonicalPassed)}
 function frenchUnit02Pool(){
  return [
@@ -1531,7 +1541,7 @@ function openCanonicalUnit02Assessment(){
   requirement:"50 balanced questions; at least 40 correct (80%).",
   passKey:frenchUnit02PassKey,attemptKey:frenchUnit02AttemptKey,passCount:40,questionCount:50,
   startLabel:"Begin 50-question Unit 02 assessment",
-  prerequisite:()=>frenchAssessmentPassed(readFrenchUnit01Assessment())&&Array.from({length:6},(_,i)=>i+7).every(canonicalPassed),
+  prerequisite:()=>frenchAssessmentPassed(readFrenchUnit01Assessment(),[20,50])&&Array.from({length:6},(_,i)=>i+7).every(canonicalPassed),
   lockedText:"Pass Unit 01 and Lessons 07–12 before taking Unit 02.",
   performance:{
    title:"Unit 02 independent performance evidence",
@@ -1556,7 +1566,7 @@ function openFrench101CumulativeMidterm(){
   requirement:"150 unique questions; at least 120 correct (80%). Earlier earned midterm passes remain preserved.",
   passKey:frenchMidtermPassKey,attemptKey:frenchMidtermAttemptKey,passCount:120,questionCount:150,
   startLabel:"Begin 150-question cumulative midterm",
-  prerequisite:()=>frenchAssessmentPassed(frenchAssessmentRead(frenchUnit02PassKey()))&&Array.from({length:12},(_,i)=>i+1).every(canonicalPassed),
+  prerequisite:()=>frenchAssessmentPassed(frenchAssessmentRead(frenchUnit02PassKey()),[24,50])&&Array.from({length:12},(_,i)=>i+1).every(canonicalPassed),
   lockedText:"Pass Unit 02 and all twelve lesson quizzes to unlock the cumulative midterm.",
   performance:{
    title:"Midterm integrated performance evidence",
@@ -1575,7 +1585,7 @@ function openCanonicalUnit03Assessment(){
   requirement:"50 balanced questions; at least 40 correct (80%). Written and oral performance evidence is recorded separately.",
   passKey:frenchUnit03Key,attemptKey:()=>learnerKey+"_canonical_unit03_attempts_v2",
   passCount:40,questionCount:50,startLabel:"Begin 50-question Unit 03 assessment",
-  prerequisite:()=>frenchAssessmentPassed(frenchAssessmentRead(frenchMidtermPassKey()))
+  prerequisite:()=>frenchAssessmentPassed(frenchAssessmentRead(frenchMidtermPassKey()),[30,150])
    &&Array.from({length:6},(_,i)=>i+13).every(canonicalPassed),
   lockedText:"Pass all six Unit 03 lesson quizzes and the cumulative midterm first.",
   performance:{title:"Unit 03 independent communication evidence",instructions:"Complete original written transfer and unfamiliar comprehension prompts, and record speaking/listening only when separately observed.",
@@ -1593,7 +1603,7 @@ function openFrench101CanonicalFinal(){
   passKey:frenchFinalKey,attemptKey:()=>learnerKey+"_canonical_final_attempts_v2",
   passCount:160,questionCount:200,startLabel:"Begin 200-question comprehensive final",
   prerequisite:()=>frenchUnit03Passed()&&frenchAllLessonsPassed()
-   &&frenchAssessmentPassed(frenchAssessmentRead(frenchMidtermPassKey())),
+   &&frenchAssessmentPassed(frenchAssessmentRead(frenchMidtermPassKey()),[30,150]),
   lockedText:"Pass all lessons, three unit assessments, and the cumulative midterm first.",
   performance:{title:"Final independent portfolio",instructions:"Save original written work, unfamiliar reading and correction evidence. Listening and speaking must be observed separately before claiming four-skill proficiency.",
    key:()=>learnerKey+"_canonical_final_performance_v2",reviewKey:()=>learnerKey+"_canonical_final_review_v2"},
@@ -1643,7 +1653,7 @@ function frenchUnitMasteryDescription(unit){
  if(unit===3){const r=frenchAssessmentRead(frenchUnit03Key());return frenchUnit03Passed()?"Unit 03 knowledge checkpoint: "+r.score+"/"+r.total+" — passed":"Unit 03 knowledge checkpoint: no recorded passing result for this learner on this browser.";}
  const suffix=unit===1?"_canonical_unit01_assessment_v1":"_canonical_unit02_assessment_v1";
  let p=null;try{p=JSON.parse(safeGet(learnerKey+suffix)||"null")}catch{}
- return p?.passed===true&&Number.isFinite(p.score)&&Number.isFinite(p.total)&&p.total>0&&p.score<=p.total?
+ return frenchAssessmentPassed(p,unit===1?[20,50]:[24,50])?
  "Verified stored knowledge checkpoint: "+p.score+"/"+p.total+" ("+Math.round(100*p.score/p.total)+"%) — passed":
  "Knowledge checkpoint: no recorded passing result for this learner on this browser.";
 }
@@ -1657,10 +1667,10 @@ function buildCanonicalCourseMap(){
  overall.append(element("p","Checklist marks are included in the separate lesson-evidence export; the standard progress JSON restore does not restore them."));
  host.append(overall);
  // Show only the current unit; completed and future unit cards stay hidden.
- const firstUnitReady=Array.from({length:6},(_,i)=>i+1).every(canonicalPassed)&&readFrenchUnit01Assessment()?.passed===true;
+ const firstUnitReady=Array.from({length:6},(_,i)=>i+1).every(canonicalPassed)&&frenchAssessmentPassed(readFrenchUnit01Assessment(),[20,50]);
  const secondUnitReady=Array.from({length:6},(_,i)=>i+7).every(canonicalPassed)
-  &&frenchAssessmentRead(frenchUnit02PassKey())?.passed===true
-  &&frenchAssessmentRead(frenchMidtermPassKey())?.passed===true;
+  &&frenchAssessmentPassed(frenchAssessmentRead(frenchUnit02PassKey()),[24,50])
+  &&frenchAssessmentPassed(frenchAssessmentRead(frenchMidtermPassKey()),[30,150]);
  const currentUnit=!firstUnitReady?1:!secondUnitReady?2:3;
  const currentNote=element("p","Current unit · "+String(currentUnit).padStart(2,"0")+" of 03");
  currentNote.className="french-current-unit-note";host.append(currentNote);
@@ -1731,17 +1741,17 @@ function buildCanonicalCourseMap(){
   if(unit.unit===1){
    const assessment=element("div");assessment.className="french-canonical-assessment";
    const prior=readFrenchUnit01Assessment();
-   assessment.append(element("p",prior?.passed?"Unit 01 mastery recorded · "+prior.score+"/"+prior.total:"Unit 01 assessment · 80% mastery required"));
-   const button=element("button",prior?.passed?"Review Unit 01 mastery":"Take Unit 01 Assessment");button.type="button";button.disabled=!prior?.passed&&!Array.from({length:6},(_,i)=>i+1).every(canonicalPassed);button.addEventListener("click",openCanonicalUnit01Assessment);assessment.append(button);
+   assessment.append(element("p",frenchAssessmentPassed(prior,[20,50])?"Unit 01 mastery recorded · "+prior.score+"/"+prior.total:"Unit 01 assessment · 80% mastery required"));
+   const button=element("button",frenchAssessmentPassed(prior,[20,50])?"Review Unit 01 mastery":"Take Unit 01 Assessment");button.type="button";button.disabled=!frenchAssessmentPassed(prior,[20,50])&&!Array.from({length:6},(_,i)=>i+1).every(canonicalPassed);button.addEventListener("click",openCanonicalUnit01Assessment);assessment.append(button);
    section.append(assessment);
   }
   if(unit.unit===2){
    const assessment=element("div");assessment.className="french-canonical-assessment";
    const unit02=frenchAssessmentRead(frenchUnit02PassKey()),mid=frenchAssessmentRead(frenchMidtermPassKey());
-   assessment.append(element("p",unit02?.passed?"Unit 02 mastery recorded · "+unit02.score+"/"+unit02.total:"Unit 02 assessment · 80% mastery required"));
-   const unitButton=element("button",unit02?.passed?"Review Unit 02 mastery":"Take Unit 02 Assessment");unitButton.type="button";unitButton.disabled=!unit02?.passed&&!Array.from({length:6},(_,i)=>i+7).every(canonicalPassed);unitButton.addEventListener("click",openCanonicalUnit02Assessment);assessment.append(unitButton);
-   const midButton=element("button",mid?.passed?"Review Midterm mastery":"Take Cumulative Midterm");midButton.type="button";midButton.disabled=(!unit02?.passed||!Array.from({length:12},(_,i)=>i+1).every(canonicalPassed))&&!mid?.passed;midButton.addEventListener("click",openFrench101CumulativeMidterm);assessment.append(midButton);
-   if(!unit02?.passed)assessment.append(element("small","Pass Unit 02 to unlock the cumulative midterm."));
+   assessment.append(element("p",frenchAssessmentPassed(unit02,[24,50])?"Unit 02 mastery recorded · "+unit02.score+"/"+unit02.total:"Unit 02 assessment · 80% mastery required"));
+   const unitButton=element("button",frenchAssessmentPassed(unit02,[24,50])?"Review Unit 02 mastery":"Take Unit 02 Assessment");unitButton.type="button";unitButton.disabled=!frenchAssessmentPassed(unit02,[24,50])&&!Array.from({length:6},(_,i)=>i+7).every(canonicalPassed);unitButton.addEventListener("click",openCanonicalUnit02Assessment);assessment.append(unitButton);
+   const midButton=element("button",frenchAssessmentPassed(mid,[30,150])?"Review Midterm mastery":"Take Cumulative Midterm");midButton.type="button";midButton.disabled=(!frenchAssessmentPassed(unit02,[24,50])||!Array.from({length:12},(_,i)=>i+1).every(canonicalPassed))&&!frenchAssessmentPassed(mid,[30,150]);midButton.addEventListener("click",openFrench101CumulativeMidterm);assessment.append(midButton);
+   if(!frenchAssessmentPassed(unit02,[24,50]))assessment.append(element("small","Pass Unit 02 to unlock the cumulative midterm."));
    section.append(assessment);
   }
   if(unit.unit===3){
@@ -1751,8 +1761,8 @@ function buildCanonicalCourseMap(){
    const unitButton=element("button",frenchUnit03Passed()?"Review Unit 03 mastery":"Take Unit 03 Assessment (50)");
    unitButton.type="button";unitButton.disabled=!frenchUnit03Passed()&&!Array.from({length:6},(_,i)=>i+13).every(canonicalPassed);
    unitButton.addEventListener("click",openCanonicalUnit03Assessment);area.append(unitButton);
-   const finalButton=element("button",frenchAssessmentPassed(final)?"Review Final Result":"Take Comprehensive Final (200)");
-   finalButton.type="button";finalButton.disabled=!frenchAssessmentPassed(final)&&(!frenchUnit03Passed()||!frenchAllLessonsPassed());
+   const finalButton=element("button",frenchAssessmentPassed(final,[200])?"Review Final Result":"Take Comprehensive Final (200)");
+   finalButton.type="button";finalButton.disabled=!frenchAssessmentPassed(final,[200])&&(!frenchUnit03Passed()||!frenchAllLessonsPassed());
    finalButton.addEventListener("click",openFrench101CanonicalFinal);area.append(finalButton);
    section.append(area);
   }
@@ -4173,13 +4183,13 @@ function addFrenchLesson18IntegrationDepth(panel){
 }
 /* Canonical 18-lesson mastery gate v1. Protected 12-level records remain separate. */
 function canonicalKey(n){return learnerKey+"_canonical_lesson"+String(n).padStart(2,"0")+"_mastery_v1"}
-function canonicalRecord(n){const r=frenchAssessmentRead(canonicalKey(n));return r?.passed===true&&Number.isInteger(r.score)&&[10,20].includes(r.total)&&r.score>=Math.ceil(r.total*.8)&&r.score<=r.total?r:null}
+function canonicalRecord(n){const r=frenchAssessmentRead(canonicalKey(n));return r&&[10,20].includes(r.total)&&frenchAssessmentPassed(r,[10,20])?r:null}
 function canonicalPassed(n){return Boolean(canonicalRecord(n))}
 function canonicalAvailable(n){
  if(!Number.isInteger(n)||n<1||n>18)return false;
  for(let p=1;p<n;p++)if(!canonicalPassed(p))return false;
- if(n>=7&&!readFrenchUnit01Assessment()?.passed)return false;
- if(n>=13&&(!frenchAssessmentRead(frenchUnit02PassKey())?.passed||!frenchAssessmentRead(frenchMidtermPassKey())?.passed))return false;
+ if(n>=7&&!frenchAssessmentPassed(readFrenchUnit01Assessment(),[20,50]))return false;
+ if(n>=13&&(!frenchAssessmentPassed(frenchAssessmentRead(frenchUnit02PassKey()),[24,50])||!frenchAssessmentPassed(frenchAssessmentRead(frenchMidtermPassKey()),[30,150])))return false;
  return true;
 }
 function canonicalBank(n){return [null,FRENCH_U01_D01_REVIEW_BANK,FRENCH_U01_NUMBERS_QUESTION_BANK,FRENCH_U01_L03_VOWELS_PRONOUNS_BANK,FRENCH_U01_L04_GREETINGS_BANK,FRENCH_U01_L05_SENTENCES_BANK,FRENCH_U01_L06_NOUNS_BANK,FRENCH_U01_L07_VERBS_BANK,FRENCH_U01_L08_FAMILY_BANK,FRENCH_U01_L09_DESCRIPTIONS_BANK,FRENCH_U01_L10_TIME_BANK,FRENCH_U01_L11_CAFE_BANK,FRENCH_U01_L12_OBJECTS_BANK,FRENCH_U01_L13_QUESTIONS_BANK,FRENCH_U01_L14_ROUTINES_BANK,FRENCH_U01_L15_DIRECTIONS_BANK,FRENCH_U01_L16_COMPREHENSION_BANK,FRENCH_U01_L17_PRODUCTION_BANK,FRENCH_U01_L18_INTEGRATION_BANK][n]||[]}
@@ -4218,7 +4228,7 @@ function addUnit01DailySequence(parent){
  const panel=element("article");panel.className="unit01-active-day";panel.style.cssText="max-width:780px;margin:0 auto;line-height:1.65";const navigation=element("div");navigation.style.cssText="display:flex;gap:10px;flex-wrap:wrap;margin:12px 0";const previous=element("button","← Previous Lesson"),next=element("button","Next Lesson →");previous.type=next.type="button";navigation.append(previous,next);const journey=element("p");journey.setAttribute("role","status");const status=element("p");status.setAttribute("role","status");
  function draw(){
   if(!canonicalAvailable(Number(picker.value)))picker.value=String(Array.from({length:18},(_,i)=>i+1).filter(canonicalAvailable).pop()||1);
-  if(!canonicalAvailable(2)){panel.replaceChildren(element("p","Lesson 02 is locked. Complete Lesson 01 and pass its ten-question quiz at 80% before continuing."));previous.disabled=true;next.disabled=true;picker.disabled=true;journey.textContent="French 101 · Lesson 01 mastery required";status.textContent="Return to the course map to take Lesson 01 mastery quiz.";return}
+  if(!canonicalAvailable(2)){panel.replaceChildren(element("p","Lesson 02 is locked. Complete Lesson 01 and pass its 20-question quiz at 80% before continuing. Previously earned valid ten-question passes remain recognized."));previous.disabled=true;next.disabled=true;picker.disabled=true;journey.textContent="French 101 · Lesson 01 mastery required";status.textContent="Return to the course map to take Lesson 01 mastery quiz.";return}
   const d=FRENCH_101_CANONICAL_DAYS.find(x=>String(x.day)===picker.value)||FRENCH_101_CANONICAL_DAYS[0];
   safeSet(lessonSelectionKey(),String(d.day));
   panel.replaceChildren();
@@ -4638,7 +4648,7 @@ function openQuiz(level){
 function openExam(){
  if(!Array.from({length:totalLevels},(_,i)=>i+1).every(i=>progress[i]==="completed")){backToMenu();return}
  const box=$("exam");box.replaceChildren();
- box.append(element("h2","French 101 — Preserved 12-Level Final Exam"),element("p","This compatibility final remains valid for the existing 12-level pathway and previously established certificate route. Answer 10 translation questions from the 12 levels; at least 80% is required. The canonical 18-lesson curriculum will receive a separate integrated final without invalidating this result."));
+ box.append(element("h2","French 101 — Preserved 12-Level Final Exam"),element("p","This compatibility final remains valid for the existing 12-level pathway and previously established certificate route. Answer 10 translation questions from the 12 levels; at least 80% is required. The canonical 18-lesson curriculum has its own separate integrated final; this historical result remains distinct."));
  const pool=Object.values(LESSONS).flat();
  for(let i=pool.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]]}
  const questions=pool.slice(0,10),prompt=element("p");prompt.lang="fr";prompt.style.fontSize="1.2rem";

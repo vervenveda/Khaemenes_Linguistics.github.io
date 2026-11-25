@@ -79,8 +79,12 @@ const testCode=String.raw`
       const privateExample=document.createElement("span");privateExample.dataset.private="";privateExample.textContent="Welcome Home";document.body.append(privateExample);
 
       setTimeout(function(){
-        result.dynamic=dynamic.textContent==="Bienvenidos";
+        result.dynamic=dynamic.textContent==="Bienvenidos a casa";
+        dynamic.dataset.observedTranslation=dynamic.textContent;
         result.nativeAndPrivatePreserved=protectedExample.textContent==="Welcome Home"&&privateExample.textContent==="Welcome Home";
+        const unmarked=document.createElement("p");unmarked.textContent="SYNTHETIC PRIVATE NOTE NOT FOR EXPORT";document.body.append(unmarked);
+        result.unmarkedAuditExcluded=!api.coverage().untranslated.includes(unmarked.textContent);
+        unmarked.remove();
         result.attribute=dynamic.getAttribute("aria-label")==="Abrir navegación";
 
         dynamic.setAttribute("aria-label","Switch color theme");

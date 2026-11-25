@@ -3,10 +3,15 @@ import path from "node:path";
 const root=process.cwd(),errors=[];
 for(const course of ["arabic-1","russian-1"])for(let n=1;n<=32;n++){
  const week=String(n).padStart(2,"0"),p=path.join(root,"Halls/courses",course,"week-"+week,"index.html"),s=fs.readFileSync(p,"utf8");
- if(!s.includes("data-year-i-week-navigation"))errors.push(course+" "+week+" missing navigation");
+ const navs=[...s.matchAll(/<(?:nav|div)\b[^>]*(?:data-year-i-week-navigation|class=["']lesson-navigation["'])[^>]*>[\s\S]*?<\/(?:nav|div)>/gi)].map(m=>m[0]);
+ if(!navs.length)errors.push(course+" "+week+" missing navigation");
+ for(const nav of navs){
+  const expected=["../index.html",...(n>1?["../week-"+String(n-1).padStart(2,"0")+"/index.html"]:[]),...(n<32?["../week-"+String(n+1).padStart(2,"0")+"/index.html"]:[])];
+  for(const href of expected)if(!nav.includes('href="'+href+'"')||!fs.existsSync(path.resolve(path.dirname(p),href)))errors.push(course+" "+week+" invalid navigation target "+href);
+ }
  if(!s.includes('src="../../../../assets/year-i-evidence-journal.js"'))errors.push(course+" "+week+" missing evidence journal");
  if(!s.includes('src="../../../../assets/year-i-teacher-review.js"'))errors.push(course+" "+week+" missing teacher-review companion");
- if(!s.includes('href="../../index.html"'))errors.push(course+" "+week+" missing index");
+ if(!s.includes('href="../index.html"'))errors.push(course+" "+week+" missing index");
  if(n>1&&!s.includes('href="../week-'+String(n-1).padStart(2,"0")+'/index.html"'))errors.push(course+" "+week+" missing previous");
  if(n<32&&!s.includes('href="../week-'+String(n+1).padStart(2,"0")+'/index.html"'))errors.push(course+" "+week+" missing next");
 }

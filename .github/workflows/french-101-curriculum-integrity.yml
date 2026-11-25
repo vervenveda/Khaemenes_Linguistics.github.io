@@ -10,6 +10,7 @@ on:
       - 'data/french-101-midterm-blueprint.json'
       - 'data/course-topology.json'
       - 'scripts/audit-french-101-canonical.mjs'
+      - 'scripts/test-french101-canonical-mastery.mjs'
       - 'docs/FRENCH_101_18_LESSON_CURRICULUM.md'
       - 'docs/FRENCH_101_LESSONS09_12_DEVELOPMENT_AUDIT.md'
       - '.github/workflows/french-101-curriculum-integrity.yml'
@@ -21,6 +22,7 @@ on:
       - 'data/french-101-midterm-blueprint.json'
       - 'data/course-topology.json'
       - 'scripts/audit-french-101-canonical.mjs'
+      - 'scripts/test-french101-canonical-mastery.mjs'
   workflow_dispatch:
 
 permissions:
@@ -36,3 +38,5 @@ jobs:
           node-version: '20'
       - name: Verify canonical French 101 architecture
         run: node scripts/audit-french-101-canonical.mjs
+      - name: Verify mastery records, assessment reserves and resumable state
+        run: node --test scripts/test-french101-canonical-mastery.mjs

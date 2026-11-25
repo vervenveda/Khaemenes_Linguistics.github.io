@@ -13,6 +13,8 @@ function walk(dir){
   count++;
   const relative=path.relative(root,file).split(path.sep).join("/");
   let html=fs.readFileSync(file,"utf8"),next=html;
+  // A compatibility redirect has no independent translation surface.
+  if(relative==="multilingual-translator_index.html"&&/location\.replace\(next\.href\)/.test(html)){count--;continue;}
   if(!/vnv-language\.js(?:[?#]|["'])/i.test(html)){
    // App fragments with no body tag receive an appended standalone script.
    const href=path.posix.relative(path.posix.dirname(relative),"assets/vnv-language.js");
@@ -23,21 +25,20 @@ function walk(dir){
   // Keep only the first canonical interface translator script tag.
   if(next.includes("vnv-language.js")){
    let found=false;
-   next=next.replace(/<script[^>]*src=["'][^"']*vnv-language[.]js["'][^>]*><\/script>/gi,tag=>{
+   next=next.replace(/<script[^>]*src=["'][^"']*vnv-language[.]js(?:[?#][^"']*)?["'][^>]*><\/script>/gi,tag=>{
     if(found)return "";found=true;return tag;
    });
   }
   if(/\bHalls\/courses\/(arabic-1|russian-1)\/week-\d{2}\/index\.html$/.test(relative)){
    const match=relative.match(/(arabic-1|russian-1)\/week-(\d{2})\/index\.html$/);
    const n=Number(match[2]);
-   if(!/data-year-i-week-navigation/.test(next)){
+   if(!/data-year-i-week-navigation|class=["']lesson-navigation["']/.test(next)){
     const nav='<nav data-year-i-week-navigation aria-label="Course week navigation" style="display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:18px auto;padding:10px">'+
       (n>1?'<a href="../week-'+String(n-1).padStart(2,"0")+'/index.html">← Previous week</a>':'')+
       '<a href="../index.html">All course weeks</a>'+
       (n<32?'<a href="../week-'+String(n+1).padStart(2,"0")+'/index.html">Next week →</a>':'')+'</nav>';
-    // All week lesson files live one level below week directory; course index is ../../index.html.
-    const fixed=nav.replace('href="../index.html"','href="../../index.html"');
-    next=next.replace(/<\/body\s*>/i,fixed+'\n</body>');
+    // A week directory is a direct child of its course directory.
+    next=next.replace(/<\/body\s*>/i,nav+'\n</body>');
    }
    if(!next.includes("year-i-evidence-journal.js")){
     next=next.replace(/<\/body\s*>/i,'<script defer src="../../../../assets/year-i-evidence-journal.js"></script>\\n</body>');
