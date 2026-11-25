@@ -79,7 +79,8 @@ const testCode=String.raw`
       const privateExample=document.createElement("span");privateExample.dataset.private="";privateExample.textContent="Welcome Home";document.body.append(privateExample);
 
       setTimeout(function(){
-        result.dynamic=dynamic.textContent==="Bienvenidos";
+        result.dynamic=dynamic.textContent==="Bienvenidos a casa";
+        dynamic.dataset.observedTranslation=dynamic.textContent;
         result.nativeAndPrivatePreserved=protectedExample.textContent==="Welcome Home"&&privateExample.textContent==="Welcome Home";
         result.attribute=dynamic.getAttribute("aria-label")==="Abrir navegación";
 

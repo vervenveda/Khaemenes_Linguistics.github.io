@@ -39,6 +39,8 @@ on:
       - 'scripts/test-foundation-two-learners.mjs'
       - 'assets/foundation-performance-rubric.js'
       - '.github/workflows/linguistics-integrity.yml'
+  pull_request:
+    branches: [main]
   workflow_dispatch:
 permissions:
   contents: read
@@ -49,48 +51,71 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run offline structural integrity checks
+        if: ${{ !cancelled() }}
         run: node scripts/audit-linguistics.mjs
       - name: Validate French German five-bubble source protections
+        if: ${{ !cancelled() }}
         run: node scripts/test-french-german-five-bubbles.mjs
       - name: Test French reader interactions
+        if: ${{ !cancelled() }}
         run: node scripts/test-french-reader.mjs
       - name: Test German Coach learner isolation
+        if: ${{ !cancelled() }}
         run: node scripts/test-german-coach.mjs
       - name: Test German studio interactions
+        if: ${{ !cancelled() }}
         run: node scripts/test-german-studios.mjs
       - name: Verify German portfolio print evidence
+        if: ${{ !cancelled() }}
         run: node scripts/test-german-print.mjs
       - name: Test Russian Conversation World
+        if: ${{ !cancelled() }}
         run: node scripts/test-russian-conversation.mjs
       - name: Test Russian Mastery Constellation
+        if: ${{ !cancelled() }}
         run: node scripts/test-russian-mastery.mjs
       - name: Test Russian learner backup recovery isolation
+        if: ${{ !cancelled() }}
         run: node scripts/test-russian-recovery-flow.mjs
       - name: Test French learner backup recovery isolation
+        if: ${{ !cancelled() }}
         run: node scripts/test-french-recovery-flow.mjs
       - name: Test German learner backup recovery isolation
+        if: ${{ !cancelled() }}
         run: node scripts/test-german-recovery-flow.mjs
       - name: Test Arabic Week 01–02 mastery pilot
+        if: ${{ !cancelled() }}
         run: node scripts/test-arabic-pilot.mjs
       - name: Test Arabic learner mastery map
+        if: ${{ !cancelled() }}
         run: node scripts/test-arabic-mastery-map.mjs
       - name: Verify Foundation Unit 02 curriculum
+        if: ${{ !cancelled() }}
         run: node scripts/test-foundation-unit02.mjs
       - name: Verify language-world entrance routes
+        if: ${{ !cancelled() }}
         run: node scripts/test-language-worlds.mjs
       - name: Verify High School language handoff
+        if: ${{ !cancelled() }}
         run: node scripts/test-high-school-language-handoff.mjs
       - name: Test foundation performance rubrics
+        if: ${{ !cancelled() }}
         run: node scripts/test-foundation-performance.mjs
       - name: Simulate foundation two-learner review isolation
+        if: ${{ !cancelled() }}
         run: node scripts/test-foundation-two-learners.mjs
       - name: Test Unit 01 language checkpoints
+        if: ${{ !cancelled() }}
         run: node scripts/test-unit01-language-checkpoints.mjs
       - name: Test Unit 01 checkpoint two-learner behavior
+        if: ${{ !cancelled() }}
         run: node scripts/test-unit01-checkpoint-behavior.mjs
       - name: Verify three-language Unit 02 protected recovery
+        if: ${{ !cancelled() }}
         run: node scripts/test-foundation-unit02-recovery.mjs
       - name: Test bilingual homeschool portfolios
+        if: ${{ !cancelled() }}
         run: node scripts/test-bilingual-portfolios.mjs
       - name: Verify shared Academy evidence adoption
+        if: ${{ !cancelled() }}
         run: node scripts/test-academy-evidence-links.mjs
