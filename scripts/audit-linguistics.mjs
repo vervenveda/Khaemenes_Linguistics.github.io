@@ -27,7 +27,8 @@ function syntaxCheck(html,path){
 }
 const home=read("index.html"),french=read("apps/French_101_index.html"),hall=read("Halls/index.html"),v3=read("Halls/language-learning-v3_index.html"),language=read("assets/vnv-language.js");
 const apps=jsonScript(home,"appRegistry");
-check(apps.length===29,"Homepage application registry expected 29 current entries");
+const expectedApps=JSON.parse(read("data/course-topology.json")).stats.local_app_registry_count;
+check(Number.isInteger(expectedApps)&&apps.length===expectedApps,"Homepage application registry expected "+expectedApps+" current entries");
 check(new Set(apps.map(app=>app.file)).size===apps.length,"Homepage app registry contains duplicate paths");
 const seen=new Set();
 for(const app of apps){
@@ -243,7 +244,7 @@ if(errors.length){
  console.error("LINGUISTICS_INTEGRITY=FAIL\n"+errors.map(e=>" - "+e).join("\n"));
  process.exitCode=1;
 }else{
- console.log("LINGUISTICS_INTEGRITY=PASS; apps=29, formal=5x11, atlas=206, foundations=40, French=12x5, languages=13");
+ console.log("LINGUISTICS_INTEGRITY=PASS; apps="+apps.length+", formal=5x11, atlas=206, foundations=40, French=12x5, languages=13");
 }
 
 const germanPortfolio=read("apps/german-mastery-constellation/index.html");

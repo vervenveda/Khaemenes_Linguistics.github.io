@@ -19,7 +19,7 @@ Authenticated page integration may expose `window.KhaemenesVocabularyGitHubBridg
 
 ```js
 await bridge.status({namespace:"linguistics.vocabulary.v1"})
-// {authenticated:true,authorized:true,repository:"vervenveda/Khaemenes_Linguistics.github.io",
+// {authenticated:true,authorized:true,repository:"artist1970/creative-spark.github.io",
 //  namespace:"linguistics.vocabulary.v1",identity:"<stable authorized opaque id>"}
 
 await bridge.get({namespace:"linguistics.vocabulary.v1",identity:"<opaque id>"})

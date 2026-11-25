@@ -38,7 +38,7 @@ The campus currently exposes:
 - **7 principal learner-facing language routes**
 - **206 World Language Atlas dossiers**
 - **40 Language Learning Foundations modules**
-- **29 curated local application entries**
+- **30 curated local application entries**
 - complete 32-week Arabic I and Russian I navigators
 - dedicated French and German learner ecosystems
 - Spanish, Mandarin and Japanese Language Worlds
@@ -60,7 +60,7 @@ The repository deliberately distinguishes **formal course authority** from suppl
 | Arabic | `Halls/courses/arabic-1/` | Arabic I |
 | Russian | `Halls/courses/russian-1/` | Russian I |
 
-French and German retain their established browser-local learner records while a deliberate authority bridge is developed. Existing learner data must not be deleted or silently rewritten during that work.
+French and German retain their established browser-local learner records; the review-only authority bridge exposes evidence without awarding formal mastery. Existing learner data must not be deleted or silently rewritten during that work.
 
 ## Preserved Hall generations
 

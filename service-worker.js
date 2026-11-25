@@ -1,7 +1,7 @@
 /* Polyglot — Khaemenes Academy Linguistics Hall
    Static-site service worker. Update CACHE_VERSION whenever core files change. */
 
-const CACHE_VERSION = 'polyglot-v1.5.11-translator-trust-20261121';
+const CACHE_VERSION = 'polyglot-v1.5.12-forensic-20261125';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
