@@ -1,0 +1,15 @@
+import {readFileSync} from "node:fs";
+import assert from "node:assert/strict";
+import vm from "node:vm";
+const source=readFileSync("assets/vnv-language.js","utf8");
+new vm.Script(source);
+assert.match(source,/publicSources\.get\(el\)/);
+assert.match(source,/generation!==translationGeneration/);
+assert.doesNotMatch(source,/localStorage\.(?:getItem|setItem)\((?:LANG_CACHE_KEY|PAGE_PAIRS_KEY)/);
+assert.match(source,/if\(eligible\)missing\.add\(source\)/);
+const worker=readFileSync("service-worker.js","utf8");
+new vm.Script(worker);
+assert.match(worker,/RUNTIME_LIMIT=400/);
+assert.match(worker,/request\.headers\.has\('Authorization'\)/);
+assert.match(worker,/self\.registration\.scope/);
+console.log("PAGE_TRANSLATION_BOUNDARY=PASS (source contract only)");

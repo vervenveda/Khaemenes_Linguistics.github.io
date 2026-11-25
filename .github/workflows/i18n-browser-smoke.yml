@@ -18,5 +18,7 @@ jobs:
     timeout-minutes: 7
     steps:
       - uses: actions/checkout@v4
+      - name: Verify translation and cache source boundaries
+        run: node scripts/page-translation-boundary.test.mjs
       - name: Exercise language switch in headless Chrome
         run: node scripts/browser-i18n-smoke.mjs
