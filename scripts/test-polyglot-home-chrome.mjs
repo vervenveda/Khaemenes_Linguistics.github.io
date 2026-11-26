@@ -1,3 +1,5 @@
 import test from "node:test";import assert from "node:assert/strict";import fs from "node:fs";
 const html=fs.readFileSync("index.html","utf8");
 test("Polyglot has exactly two official ticker providers, no third ribbon and a single-row header",()=>{for(const asset of ["vnv-333-ticker.js","vnv-ticker-autopopulate.js","vnv-header-autopopulate.js","vnv-language.js"]){assert.equal([...html.matchAll(/<script\b[^>]*src="([^"]+)"/g)].filter(m=>m[1].includes(asset)).length,1,asset)}assert.doesNotMatch(html,/<div class="world-ribbon"/);assert.match(html,/actions:\[\]/);assert.match(html,/greetingRoutes\.map/);assert.match(html,/href="#theme-toggle"/)});
+
+test("No legacy menu-injecting support loader or duplicate toolbar compatibility loader",()=>{assert.doesNotMatch(html,/src="[^"]*(?:vnv-support|vnv-ecosystem-menu|khaemenes-landing-toolbar)\.js/);assert.equal([...html.matchAll(/<script\b[^>]*src="([^"]+)"/g)].filter(m=>m[1].includes("vnv-ecosystem-toolbar.js")).length,1);assert.match(html,/id="support"/);assert.match(html,/buy\.stripe\.com/)});
