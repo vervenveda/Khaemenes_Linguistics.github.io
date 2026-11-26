@@ -46,7 +46,10 @@ test("Critical grammar, agreement and source-attribution distinctions are retain
  assert.equal(keyed("hs2",3),"partis");
  assert.equal(keyed("hs2",4),"arrivées");
  assert.equal(keyed("hs3",3),"Bien que");
- assert.equal(keyed("hs3",12),"That the campaign caused the reduction.");
+ assert.equal(keyed("hs3",12),"That the tutoring initiative caused the reduction in school absences.");
+ const causal=load("hs3")[11];
+ assert.match(causal.prompt,/causalité reste à établir/);
+ assert.match(causal.explanation,/not itself proof of causation/);
  assert.equal(keyed("hs4",1),"The original dated meeting minutes.");
  assert.equal(keyed("hs4",8),"Le document aurait été rédigé vers 1920.");
 });

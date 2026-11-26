@@ -43,7 +43,11 @@ for(const [key,program] of Object.entries(hallData.languages||{})){
  for(let i=0;i<(program.stages||[]).length;i++){
   const stage=program.stages[i],weeks=hallData.levels[i]?.weeks||0;
   const themes=stage.themes?.length||0;
-  check((weeks===36&&themes===6)||(weeks===16&&themes===4),key+" stage "+i+" themes mismatch for "+weeks+" weeks");
+  if(key==="french"&&hallData.levels[i]?.id==="101"){
+   const contract=JSON.parse(read("data/course-topology.json")).curriculum_contracts.french_101;
+   const map=JSON.parse(read(contract.path));
+   check(contract.duration_weeks===18&&contract.instructional_modules===6&&themes===map.instructional_modules.length&&map.lessons.length===18,"French 101 canonical 18-week instructional module contract drift");
+  }else check((weeks===36&&themes===6)||(weeks===16&&themes===4),key+" stage "+i+" themes mismatch for "+weeks+" weeks");
  }
 }
 const previous=JSON.parse(v3.match(/<script\s+type="application\/json"[^>]*>([\s\S]*?)<\/script>/)[1]);
@@ -138,13 +142,13 @@ check(cafe.includes("../atelier-des-sons/"),"Café sound studio link missing");
 check(cafe.includes("../chroniques-francophones/"),"Café story reader link missing");
 check(french.includes("addFrenchGameShelf(box)"),"Academy language-game shelf not wired into lessons");
 check(french.includes("makeListeningPractice(box,level)"),"French lesson must present listening practice");
-check(french.includes('direction:i<3?"fr-en":"en-fr"'),"French quiz must cover both translation directions");
+check(french.includes('function selectFrenchQuiz(level)')&&french.includes('[["fr-en",4],["en-fr",4],["listen",2]]')&&french.includes('q.mode==="fr-en"?q.item.fr:q.item.en'),"French quiz must cover both translation directions and listening");
 check(french.includes("function matchesTranslation(item,value)")&&french.includes("ACCEPTED_TRANSLATIONS[item.fr]")&&french.includes("matchesTranslation(q.item,input.value)")&&french.includes("matchesTranslation(questions[i],input.value)"),"French quiz accepted translations missing");
 check(french.includes("function exportFrenchPortfolio("),"French portfolio export missing");
 check(french.includes("learnerKey+\"_writing_\"+level"),"French learner-specific writing missing");
 check(french.includes("assessmentSession++"),"French stale-assessment guard missing");
 check(!french.includes("onclick=\"speakFR("),"French vocabulary must not use inline speaking handlers");
-check(home.includes('src="./assets/vnv-language.js"'),"Homepage must load multilingual interface");
+check(/<script\b[^>]*src=["']\.\/assets\/vnv-language\.js(?:\?[^"']*)?["']/i.test(home),"Homepage must load multilingual interface");
 check(home.includes('href="https://vervenveda.com/Khaemenes_Academy.github.io/"'),"Homepage must link back to Academy");
 check(language.includes('const CODES=["en","es","fr","ar","zh","de","ru","pt","hi","ja","ko","it","bn"]'),"Thirteen expected UI languages must be supported");
 check(language.includes("function coverage()"),"Missing translation coverage report");
