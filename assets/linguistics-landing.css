@@ -9,3 +9,22 @@ body.linguistics-worlds{margin:0;background:#f7f0e6;color:#26353e;font:400 18px/
 .linguistics-worlds main a{color:#355c72}
 .linguistics-worlds main a:focus-visible{outline:3px solid #355c72;outline-offset:4px}
 @media(max-width:255px){.linguistics-worlds main{padding:5px}.linguistics-worlds main :is(header,section){padding:8px}}
+
+/* Shared public language directory variant; never style the mounted header or toolbar. */
+body.linguistics-worlds.linguistics-language-directory{background:#f5f0e4;color:#252b2b;font:400 18px/1.6 Nunito,"Brandon Grotesque",Arial,sans-serif}
+.linguistics-language-directory main{max-width:1000px;padding:16px}
+.linguistics-language-directory main .linguistics-breadcrumb{text-align:center;font-size:16px;margin:0 0 16px;overflow-wrap:anywhere}
+.linguistics-language-directory main .linguistics-hero{background:#292827;color:#fff8e9;text-align:center;border:1px solid #292827;padding:clamp(20px,4vw,40px);border-radius:7px}
+.linguistics-language-directory main .linguistics-eyebrow{font:400 clamp(24px,4vw,33px)/1.2 Cinzel,Georgia,serif;margin:0 0 10px}
+.linguistics-language-directory main .linguistics-hero h1{font:400 clamp(33px,7vw,66px)/1.15 Cinzel,Georgia,serif;margin:0 0 12px;overflow-wrap:anywhere}
+.linguistics-language-directory main .linguistics-hero p:not(.linguistics-eyebrow){font-size:clamp(18px,3vw,24px);margin:8px auto;max-width:760px;overflow-wrap:anywhere}
+.linguistics-language-directory main section{background:#fff8e9;border-color:#c7b69f}
+.linguistics-language-directory main h2{font:400 24px/1.3 Cinzel,Georgia,serif;margin:0 0 12px}
+.linguistics-language-directory main section ul{display:block;list-style:disc;padding-inline-start:24px}
+.linguistics-language-directory main section ol{padding-inline-start:24px}
+.linguistics-language-directory main section li{background:none;border:0;padding:0;margin:8px 0;overflow-wrap:anywhere}
+.linguistics-language-directory main a{color:#355c72;overflow-wrap:anywhere}
+.linguistics-language-directory main small{font-size:16px;color:#465761}
+.linguistics-language-directory main footer{text-align:center;background:#292827;color:#fff8e9;border-radius:7px;padding:16px;font-size:16px}
+@media(max-width:480px){.linguistics-language-directory main{padding:8px}.linguistics-language-directory main section{padding:12px}}
+@media print{body.linguistics-worlds.linguistics-language-directory{background:white}.linguistics-language-directory main :is(header,section,footer){background:white;color:#252b2b;break-inside:avoid}.linguistics-language-directory main .linguistics-hero{background:white;color:#252b2b}}
