@@ -1,0 +1,3 @@
+# Bubble 03A — public landing chrome
+
+Baseline 4e70e32. Align Language Worlds with the gateway header and two ticker providers; remove retired regulator and legacy menu references there. Scope new landing CSS to page main; preserve all learning routes. Port only header-slot positioning into the local hardened translator (do not replace privacy or consent logic). Home version reference updated. Formal Hall remains untouched pending its connect-src none policy review and offline fallback validation. No cloud or student data changes. Existing translator rollout and French validation failures remain separate. Browser certification pending.

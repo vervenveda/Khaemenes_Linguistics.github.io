@@ -322,8 +322,22 @@ html[dir="rtl"] .ecosystem-category-grid > *,html[dir="rtl"] .quick-grid > *,htm
 @media(max-width:480px){#vnv-language-switch{margin:6px auto}#vnv-language-select{min-width:106px}}
 `;
 document.head.append(styles);
+const headerStyles=document.createElement("style");
+headerStyles.textContent=`
+html:root body [data-vnv-language-slot] #vnv-language-switch{box-sizing:border-box;display:flex;flex-flow:row nowrap;justify-content:safe center;align-items:center;height:33px;max-width:100%;margin:0;padding:2px 4px;gap:4px;position:static;overflow-x:auto;overflow-y:hidden;font:400 16px/1.15 Nunito,Arial,sans-serif;background:#292827;color:#f8f0df;border:1px solid #b48b45;border-radius:7px}
+html:root body [data-vnv-language-slot] #vnv-language-switch > :is(select,button){box-sizing:border-box;flex:0 0 auto;height:27px;min-height:27px;padding:1px 6px;font:inherit;background:#f8f0df;color:#292827;border-radius:7px;white-space:nowrap}
+html:root body [data-vnv-language-slot] #vnv-language-switch > label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+`;
+document.head.append(headerStyles);
+function mountHeaderSelector(){
+ const slot=document.querySelector("[data-vnv-language-slot]"),wrap=document.getElementById("vnv-language-switch");
+ if(!slot||!wrap)return false;
+ if(wrap.parentElement!==slot)slot.append(wrap);
+ return true;
+}
+document.addEventListener("vnv:header-ready",mountHeaderSelector);
 function makeSelector(){
- if(document.getElementById("vnv-language-switch"))return;
+ if(document.getElementById("vnv-language-switch")){mountHeaderSelector();return;}
  const wrap=document.createElement("div");wrap.id="vnv-language-switch";wrap.setAttribute("data-i18n-ignore","");
  const label=document.createElement("label");label.htmlFor="vnv-language-select";
  const select=document.createElement("select");select.id="vnv-language-select";
@@ -331,7 +345,8 @@ function makeSelector(){
  for(const c of CODES){const opt=document.createElement("option");opt.value=c;opt.textContent=META[c][0];select.append(opt)}
  select.value=lang;wrap.append(label,select);addCoverageControl(wrap);
  let target;
- if(document.querySelector(".site-header .header-inner")){
+ if(document.querySelector("[data-vnv-language-slot]")){document.querySelector("[data-vnv-language-slot]").append(wrap);}
+ else if(document.querySelector(".site-header .header-inner")){
   const main=document.querySelector("main");
   if(main)main.before(wrap);else document.body.append(wrap);
   const drawer=document.getElementById("menuDrawer");
