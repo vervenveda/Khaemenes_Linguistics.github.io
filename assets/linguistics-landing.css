@@ -1,0 +1,11 @@
+/* Public Linguistics landing layout. Scope every rule to the page-owned main, not ecosystem chrome. */
+body.linguistics-worlds{margin:0;background:#f7f0e6;color:#26353e;font:400 18px/1.6 Nunito,system-ui,sans-serif}
+.linguistics-worlds main,.linguistics-worlds main *{box-sizing:border-box}
+.linguistics-worlds main{max-width:860px;margin:auto;padding:16px}
+.linguistics-worlds main :is(header,section){background:#fffefa;border:1px solid #c7b699;border-radius:7px;padding:18px;margin:12px 0}
+.linguistics-worlds main h1{text-align:center;font:400 clamp(33px,6vw,66px)/1.15 Cinzel,Georgia,serif}
+.linguistics-worlds main ul{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px;padding:0;list-style:none}
+.linguistics-worlds main li{padding:15px;border:1px solid #baaa8e;border-radius:7px;background:#fff}
+.linguistics-worlds main a{color:#355c72}
+.linguistics-worlds main a:focus-visible{outline:3px solid #355c72;outline-offset:4px}
+@media(max-width:255px){.linguistics-worlds main{padding:5px}.linguistics-worlds main :is(header,section){padding:8px}}
