@@ -158,58 +158,86 @@ jobs:
         with:
           node-version: '20'
       - name: Verify four French high-school courses and distinct college routes
+        if: ${{ !cancelled() }}
         run: node scripts/test-french-high-school-four-grade-alignment.mjs
       - name: Guard manual assessment score validity for all four grades
+        if: ${{ !cancelled() }}
         run: node scripts/test-french-four-grade-score-input.mjs
       - name: Guard French I-IV score provenance and historical record disclosure
+        if: ${{ !cancelled() }}
         run: node scripts/test-french-high-school-assessment-provenance.mjs
       - name: Test fail-closed French I-IV assessment contract
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-assessment-contract.mjs
       - name: Validate authored Unit 01 Lesson 01 question banks for all four grades
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-authored-unit01-lesson01.mjs
       - name: Guard corrected ambiguity and question fairness across four grades
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-lesson01-editorial-regressions.mjs
       - name: Validate authored Unit 01 Lesson 02 across French I-IV
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-authored-unit01-lesson02.mjs
       - name: Validate Unit 01 Lesson 03 banks for French I-IV
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-authored-unit01-lesson03.mjs
       - name: Verify synchronized authored French I-IV Lesson 04 banks
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-authored-unit01-lesson04.mjs
       - name: Verify synchronized authored French I-IV Lesson 05 banks
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-authored-unit01-lesson05.mjs
       - name: Validate Unit 01 Lesson 06 integration missions for all four courses
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-authored-unit01-lesson06.mjs
       - name: Audit complete six-lesson Unit 01 authored banks for four grades
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-six-lesson-integrity.mjs
       - name: Guard six-lesson and three-domain balance for French I-IV Unit 01
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-balanced-exam.mjs
       - name: Verify accessible four-grade Unit 01 instructional companion and Hall routing
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-instructional-companion.mjs
       - name: Enforce Lesson 01 canonical structure for all 24 guided lessons
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-lesson01-canonical-layout.mjs
       - name: Preserve original French I-IV Hall themes against pilot crosswalk
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-pilot-crosswalk.mjs
       - name: Check French III education and French IV identity-migration pilot instruction
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-education-migration-context.mjs
       - name: Validate 324 French III-IV item classifications without approving exams
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-hs3-hs4-item-crosswalk.mjs
       - name: Check 54 French III school-context language-use revisions
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-hs3-education-language-use.mjs
       - name: Validate 60 French III education reading and application tasks
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-hs3-education-interpretive-transfer.mjs
       - name: Validate 54 French IV migration-context language-use questions and reserves
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-hs4-migration-language-use.mjs
       - name: Verify French III-IV bilingual editorial corrections and all 324 draft keys
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-bilingual-editorial-repair.mjs
       - name: Verify twelve extended French III-IV readings and 36 formative practice questions
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-extended-reading-labs.mjs
       - name: Guard fourteen targeted French III-IV distractor quality repairs
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-distractor-quality.mjs
       - name: Verify twelve teacher-led French III-IV oral and listening practice activities
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-guided-listening-speaking.mjs
       - name: Verify 12 integrated reading-to-writing and oral-evidence progression bridges
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-integrated-evidence-bridges.mjs
       - name: Check French I-II 12 foundational four-skill lessons and 36 accurate reading keys
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-hs1-hs2-four-skills.mjs
       - name: Guard French I-IV readable layouts, scoped printing, navigation and student draft safety
+        if: ${{ !cancelled() }}
         run: node --test scripts/test-french-high-school-unit01-responsive-print-ux.mjs
