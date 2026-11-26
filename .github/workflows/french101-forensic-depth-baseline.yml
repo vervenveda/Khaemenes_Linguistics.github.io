@@ -1,0 +1,25 @@
+name: French 101 forensic depth baseline
+on:
+  pull_request:
+    paths:
+      - 'apps/French_101_index.html'
+      - 'docs/FRENCH101_FORENSIC_CONSOLIDATION_DEPTH_AUDIT_2026-11-26.md'
+      - 'scripts/test-french101-forensic-depth-baseline.mjs'
+      - '.github/workflows/french101-forensic-depth-baseline.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'apps/French_101_index.html'
+      - 'scripts/test-french101-forensic-depth-baseline.mjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node --test scripts/test-french101-forensic-depth-baseline.mjs
