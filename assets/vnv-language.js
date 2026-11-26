@@ -324,9 +324,11 @@ html[dir="rtl"] .ecosystem-category-grid > *,html[dir="rtl"] .quick-grid > *,htm
 document.head.append(styles);
 const headerStyles=document.createElement("style");
 headerStyles.textContent=`
-html:root body [data-vnv-language-slot] #vnv-language-switch{box-sizing:border-box;display:flex;flex-flow:row nowrap;justify-content:safe center;align-items:center;height:33px;max-width:100%;margin:0;padding:2px 4px;gap:4px;position:static;overflow-x:auto;overflow-y:hidden;font:400 16px/1.15 Nunito,Arial,sans-serif;background:#292827;color:#f8f0df;border:1px solid #b48b45;border-radius:7px}
-html:root body [data-vnv-language-slot] #vnv-language-switch > :is(select,button){box-sizing:border-box;flex:0 0 auto;height:27px;min-height:27px;padding:1px 6px;font:inherit;background:#f8f0df;color:#292827;border-radius:7px;white-space:nowrap}
+html:root body [data-vnv-language-slot] #vnv-language-switch{box-sizing:border-box;display:flex;flex-flow:row nowrap;justify-content:safe center;align-items:center;height:33px;min-height:33px;max-height:33px;max-width:100%;margin:0;padding:0;gap:4px;position:static;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;font:400 16px/1.15 Nunito,Arial,sans-serif;background:transparent;color:inherit;border:0;border-radius:0;box-shadow:none}
+html:root body [data-vnv-language-slot] #vnv-language-switch::-webkit-scrollbar{display:none}
+html:root body [data-vnv-language-slot] #vnv-language-switch > :is(select,button){box-sizing:border-box;flex:0 0 auto;height:33px;min-height:33px;max-height:33px;margin:0;padding:0 7px;font:inherit;background:#f8f0df;color:#292827;border:1px solid #cdbfa8;border-radius:7px;white-space:nowrap;box-shadow:none}
 html:root body [data-vnv-language-slot] #vnv-language-switch > label{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+html:root body [data-vnv-language-slot] #vnv-language-switch > [data-vnv-coverage]{flex:0 0 auto;margin:0;padding:0;white-space:nowrap}
 `;
 document.head.append(headerStyles);
 function mountHeaderSelector(){
