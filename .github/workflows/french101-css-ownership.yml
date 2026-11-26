@@ -1,0 +1,26 @@
+name: French 101 CSS ownership contract
+on:
+  pull_request:
+    paths:
+      - 'apps/French_101_index.html'
+      - 'docs/FRENCH101_CSS_OWNERSHIP_MAP_2026-11-26.md'
+      - 'scripts/test-french101-css-ownership.mjs'
+      - '.github/workflows/french101-css-ownership.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'apps/French_101_index.html'
+      - 'scripts/test-french101-css-ownership.mjs'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  css-ownership:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node --test scripts/test-french101-css-ownership.mjs
+      - run: node --test scripts/test-french101-forensic-depth-baseline.mjs
