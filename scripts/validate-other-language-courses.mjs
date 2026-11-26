@@ -5,7 +5,7 @@ for(const language of languages){
  for(let n=1;n<=20;n++){
   const p=base+"foundation-"+(n===9?"9":String(n).padStart(2,"0"))+".html";
   if(!fs.existsSync(p)){errors.push("Missing "+p);continue}
-  const page=fs.readFileSync(p,"utf8"),scripts=[...page.matchAll(/<script[^>]*src=["'][^"']*vnv-language\.js["'][^>]*>/g)];
+  const page=fs.readFileSync(p,"utf8"),scripts=[...page.matchAll(/<script[^>]*src=["'][^"']*vnv-language\.js(?:[?#][^"']*)?["'][^>]*>/g)];
   if(scripts.length!==1)errors.push(p+" has "+scripts.length+" official translator tags");
   lessons.push(p);
  }

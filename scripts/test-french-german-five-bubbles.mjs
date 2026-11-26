@@ -6,8 +6,14 @@ for(const [name,html,lang] of [["French 101",fr,"fr"],["German Coach",de,"de"]])
  assert.match(html,/vnv-language\.js/,name+" canonical interface translator");
  assert.match(html,/data-i18n-ignore/,name+" protection of target-language lesson examples");
  assert.match(html,/academyAudioStatus/,name+" accessible audio status");
- assert.match(html,/utterance\.onerror/,name+" speech failure fallback");
- assert.match(html,/if\(!voice\)/,name+" missing voice fallback");
+ if(lang==="fr"){
+  assert.match(html,/const phrase=new SpeechSynthesisUtterance\(requested\)/,name+" utterance");
+  assert.match(html,/phrase\.onerror=event=>\{if\(frenchActiveUtterance===phrase\)\{announce\(/,name+" guarded speech error");
+  assert.match(html,/if\(!french\)\{announce\("No French system voice/,name+" missing French voice fallback");
+ }else{
+  assert.match(html,/utterance\.onerror/,name+" speech failure fallback");
+  assert.match(html,/if\(!voice\)/,name+" missing voice fallback");
+ }
  assert.match(html,/serviceWorker\.register/,name+" offline entry");
 }
 assert.match(fr,/function available\(level\)/,"French prerequisite gate");

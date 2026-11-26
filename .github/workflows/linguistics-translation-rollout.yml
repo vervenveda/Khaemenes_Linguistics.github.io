@@ -30,8 +30,11 @@ jobs:
       - name: Verify complete HTML coverage and all 64 weekly routes
         run: node scripts/rollout-linguistics-page-translator.mjs
       - name: Check course navigation and protect language-learning examples
+        if: ${{ !cancelled() }}
         run: node scripts/validate-linguistics-translator-navigation.mjs
       - name: Validate Year I evidence journal
+        if: ${{ !cancelled() }}
         run: node scripts/validate-year-i-evidence-journal.mjs
       - name: Audit additional language courses and deduplicated translator coverage
+        if: ${{ !cancelled() }}
         run: node scripts/validate-other-language-courses.mjs
