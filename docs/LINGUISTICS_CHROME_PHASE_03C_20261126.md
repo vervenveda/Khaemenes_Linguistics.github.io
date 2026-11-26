@@ -1,0 +1,3 @@
+# Bubble 03C — French, German and Russian public entrances
+
+The existing French 101, German Hub and Russian Hub are interactive engines, not static landing pages. Preserve their original paths, storage identity, CSS and assessment logic. Add three lightweight public directories using the same consolidated stylesheet and official chrome as the other language worlds. Only the Language Worlds directory changes its three entry links; direct course routes remain unchanged. Existing target files checked against baseline tree. CI and live browser/offline certification pending. Formal Hall CSP untouched. Service worker precache and offline query routing remain separate work.
