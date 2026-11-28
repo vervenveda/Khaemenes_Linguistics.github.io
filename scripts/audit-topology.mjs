@@ -63,7 +63,7 @@ const frenchHomeTargets=[
  'href="https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/French_101_index.html"'
 ];
 check(frenchHomeTargets.some(target=>home.includes(target)),"French 101 canonical home entry is missing");
-check(home.includes("pointer-events:auto!important"),"Language entry buttons are not explicitly pointer-enabled");
+check(read("assets/polyglot-home.css").includes("pointer-events:auto!important"),"Language entry buttons are not explicitly pointer-enabled");
 check(home.includes(topology.stats.local_app_registry_count+" local language apps"),"Homepage visible app count is stale");
 check(home.includes("Browse "+topology.stats.local_app_registry_count+" local apps"),"Homepage browse-app count is stale");
 

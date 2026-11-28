@@ -1,7 +1,7 @@
 /* Polyglot — Khaemenes Academy Linguistics Hall
    Static-site service worker. Update CACHE_VERSION whenever core files change. */
 
-const CACHE_VERSION = 'polyglot-v1.5.14-topology-20261128';
+const CACHE_VERSION = 'polyglot-v1.5.15-home-theme-20261128';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
@@ -19,6 +19,7 @@ const APP_SHELL = [
   './apps/language-worlds/english-esl/index.html',
   './apps/arabic-learning-worlds/index.html',
   './assets/linguistics-landing.css',
+  './assets/polyglot-home.css',
   './Halls/hall-i18n-pack.js',
   './apps/language-worlds/spanish/index.html',
   './apps/language-worlds/mandarin/index.html',
