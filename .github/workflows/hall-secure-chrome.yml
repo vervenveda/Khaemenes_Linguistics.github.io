@@ -1,0 +1,14 @@
+name: Formal Hall secure chrome contract
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  hall-chrome:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: node --test scripts/test-hall-secure-chrome.mjs
