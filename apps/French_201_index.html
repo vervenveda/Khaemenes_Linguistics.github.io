@@ -108,7 +108,7 @@ details.stage[open]>summary{border-bottom:1px solid var(--line)}
 <p><span class="pill">Six connected lessons</span> <span class="pill">Original intermediate readings</span> <span class="pill">Practice at your own pace</span></p>
 <div class="notice">Foundation pilot: these activities save your own study evidence locally. They do <strong>not</strong> issue official French 201 grades, unlock formal credit, or replace the Academy's existing formal course authority. Lesson and unit mastery assessments will open after their authored question banks and record bridge are validated.</div>
 </section>
-<section class="panel" aria-labelledby="profileTitle">
+<section class="panel" aria-labelledby="profileTitle" data-private>
 <h2 id="profileTitle" style="text-align:center">My French 201 learning desk</h2>
 <p style="text-align:center">Your notes remain in this browser. Select a learner before saving. Your name does not authenticate an Academy account.</p>
 <div class="controls"><label for="learner">Learner label</label><input id="learner" type="text" maxlength="60" placeholder="Learner name (local only)"><button class="primary" id="selectLearner" type="button">Open learning desk</button></div>
@@ -118,13 +118,13 @@ details.stage[open]>summary{border-bottom:1px solid var(--line)}
 <details id="fr201FamilyReport" aria-label="French 201 Lesson 01 student and family report"><summary>Lesson 01 · Student & Family Progress Report</summary><div id="fr201FamilyBody" class="family-body"><p>Open this section to review your current learner's saved work, quiz sessions and results.</p></div></details>
 <div class="actions"><button id="export" type="button">Export My Study Evidence JSON</button><button id="print" type="button">Print Current Lesson</button></div>
 </section>
-<section class="panel" aria-labelledby="unitTitle">
+<section class="panel" aria-labelledby="unitTitle" data-private>
 <p class="eyebrow" style="text-align:center">Unit 01 · Studies, Choices & the Future</p>
 <h2 id="unitTitle" style="text-align:center">Choose a learning adventure</h2>
 <p style="text-align:center">Each lesson follows Discover → Interpret → Guided Practice → Create → Reflect. Lesson 06 brings the unit together in one mission. No timed pressure.</p>
 <div id="lessonButtons" class="lessons" aria-label="French 201 Unit 01 lessons"></div>
 </section>
-<section class="panel" id="lessonPanel" aria-labelledby="activeTitle">
+<section class="panel" id="lessonPanel" aria-labelledby="activeTitle" data-private>
 <div id="loadState" role="status" aria-live="polite">Loading the Unit 01 curriculum…</div>
 <div id="lessonContent" class="lesson-body" hidden></div>
 </section>
@@ -424,5 +424,6 @@ details.stage[open]>summary{border-bottom:1px solid var(--line)}
  }).catch(err=>{$("loadState").textContent="The Unit 01 curriculum could not load. "+err.message+". Reload when the Academy files are available; no learner work has been deleted.";});
 })();
 </script>
+<script defer src="../assets/vnv-language.js"></script>
 </body>
 </html>
