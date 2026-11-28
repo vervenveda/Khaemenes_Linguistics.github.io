@@ -95,6 +95,27 @@ for(const p of topology.offline_policy?.canonical_entrances||[]){
   check(sw.includes("'"+normalized+"'"),"Service worker shell missing canonical entrance: "+p);
 }
 
+
+// Public discovery is separate from academic/learner authority.
+const dirs=topology.public_language_directories||[];
+check(dirs.length===topology.stats.public_language_directories,"Public directory count mismatch");
+check(new Set(dirs.map(d=>d.id)).size===dirs.length,"Duplicate public directory identity");
+const worlds=read(topology.campus.language_worlds);
+for(const d of dirs){
+ check(exists(d.path),"Missing public directory: "+d.path);
+ const url=publicBase+d.path.replace(/index\.html$/,"");
+ check(mentorUrls.has(url),"Mentor missing public directory: "+d.id);
+ const rel=d.path.startsWith("apps/language-worlds/")?d.path.slice("apps/language-worlds/".length):"../"+d.path.slice("apps/".length);
+ check(worlds.includes(rel)||worlds.includes(rel.replace(/index\.html$/,""))||worlds.includes(url),"Language Worlds directory missing: "+d.id);
+ if(d.principal_route){
+  const r=topology.principal_routes.find(r=>r.id===d.principal_route);
+  check(r?.public_entrance===d.path,"Public entrance/authority mismatch: "+d.id);
+ }else{
+  check(d.record_authority===null&&exists(d.learner_experience),"Unclassified directory must not claim authority: "+d.id);
+ }
+}
+for(const r of topology.principal_routes)for(const p of r.supplements||[])check(exists(stripQuery(p)),"Missing supplement: "+p);
+
 if(errors.length){
   console.error("TOPOLOGY_INTEGRITY=FAIL\n"+errors.map(e=>" - "+e).join("\n"));
   process.exitCode=1;

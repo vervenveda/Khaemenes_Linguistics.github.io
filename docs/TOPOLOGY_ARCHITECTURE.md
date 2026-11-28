@@ -121,3 +121,6 @@ Architecture changes should update, in the same change set when applicable:
 - `scripts/audit-topology.mjs`
 
 The topology audit exists specifically to prevent these surfaces from drifting apart again.
+
+## Public entrance registry (2026-11-28)
+Eight language directories are navigation-only surfaces, distinct from seven principal academic routes. French, German and Russian retain their existing direct learning engines and record identities. English / ESL retains its independent course without claiming a newly certified formal authority. Mentor discovery lists public directories alongside existing direct resources. Offline shell reconciliation is a separate repair.

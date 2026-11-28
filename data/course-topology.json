@@ -14,7 +14,8 @@
     "atlas_dossiers": 206,
     "foundation_modules": 40,
     "local_app_registry_count": 30,
-    "principal_language_routes": 7
+    "principal_language_routes": 7,
+    "public_language_directories": 8
   },
   "campus": {
     "home": "index.html",
@@ -63,7 +64,8 @@
       "bridge_status": "experience-does-not-own-formal-completion",
       "supplements": [
         "apps/translator.html"
-      ]
+      ],
+      "public_entrance": "apps/language-worlds/spanish/index.html"
     },
     {
       "id": "french",
@@ -86,7 +88,8 @@
         "apps/translator.html"
       ],
       "bridge_namespace": "khaemenes.courseAuthorityBridge.v1:",
-      "bridge_effect": "evidence-visible-to-formal-authority-without-changing-mastery"
+      "bridge_effect": "evidence-visible-to-formal-authority-without-changing-mastery",
+      "public_entrance": "apps/language-worlds/french/index.html"
     },
     {
       "id": "german",
@@ -105,7 +108,8 @@
         "apps/translator.html"
       ],
       "bridge_namespace": "khaemenes.courseAuthorityBridge.v1:",
-      "bridge_effect": "evidence-visible-to-formal-authority-without-changing-mastery"
+      "bridge_effect": "evidence-visible-to-formal-authority-without-changing-mastery",
+      "public_entrance": "apps/language-worlds/german/index.html"
     },
     {
       "id": "mandarin",
@@ -117,7 +121,8 @@
       "bridge_status": "experience-does-not-own-formal-completion",
       "supplements": [
         "apps/translator.html"
-      ]
+      ],
+      "public_entrance": "apps/language-worlds/mandarin/index.html"
     },
     {
       "id": "japanese",
@@ -129,7 +134,8 @@
       "bridge_status": "experience-does-not-own-formal-completion",
       "supplements": [
         "apps/translator.html"
-      ]
+      ],
+      "public_entrance": "apps/language-worlds/japanese/index.html"
     },
     {
       "id": "arabic",
@@ -143,7 +149,8 @@
         "Halls/courses/arabic-1/mastery-map.html",
         "apps/arabic-learning-worlds/index.html",
         "apps/translator.html"
-      ]
+      ],
+      "public_entrance": "apps/arabic-learning-worlds/index.html"
     },
     {
       "id": "russian",
@@ -159,7 +166,8 @@
         "apps/russian-conversation-world/index.html",
         "apps/russian-mastery-constellation/index.html",
         "apps/translator.html"
-      ]
+      ],
+      "public_entrance": "apps/language-worlds/russian/index.html"
     }
   ],
   "translator_surfaces": {
@@ -241,5 +249,58 @@
       "assessed_units": 3,
       "units_role": "historical instructional module count; assessed units declared separately"
     }
-  }
+  },
+  "public_language_directories": [
+    {
+      "id": "spanish",
+      "path": "apps/language-worlds/spanish/index.html",
+      "role": "public-navigation-only",
+      "principal_route": "spanish"
+    },
+    {
+      "id": "french",
+      "path": "apps/language-worlds/french/index.html",
+      "role": "public-navigation-only",
+      "principal_route": "french"
+    },
+    {
+      "id": "german",
+      "path": "apps/language-worlds/german/index.html",
+      "role": "public-navigation-only",
+      "principal_route": "german"
+    },
+    {
+      "id": "mandarin",
+      "path": "apps/language-worlds/mandarin/index.html",
+      "role": "public-navigation-only",
+      "principal_route": "mandarin"
+    },
+    {
+      "id": "japanese",
+      "path": "apps/language-worlds/japanese/index.html",
+      "role": "public-navigation-only",
+      "principal_route": "japanese"
+    },
+    {
+      "id": "arabic",
+      "path": "apps/arabic-learning-worlds/index.html",
+      "role": "public-navigation-only",
+      "principal_route": "arabic"
+    },
+    {
+      "id": "russian",
+      "path": "apps/language-worlds/russian/index.html",
+      "role": "public-navigation-only",
+      "principal_route": "russian"
+    },
+    {
+      "id": "english-esl",
+      "path": "apps/language-worlds/english-esl/index.html",
+      "role": "public-navigation-only",
+      "principal_route": null,
+      "learner_experience": "apps/ESL_course_index.html",
+      "record_authority": null,
+      "authority_status": "independent-course-classification-pending"
+    }
+  ]
 }
