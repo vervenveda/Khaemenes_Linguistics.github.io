@@ -38,7 +38,7 @@ a{color:inherit}
 .feature strong{font:400 21px/1.25 var(--serif)}
 .feature span{font:400 16px/1.5 var(--sans)}
 .footer{background:var(--charcoal);color:var(--cream);text-align:center;padding:29px 18px;font-size:16px}
-body > #vnv-language-switch{display:none!important}
+/* The shared language module moves its single selector into the official header; keep its body fallback available offline. */
 @media(max-width:740px){.access{grid-template-columns:1fr}.features{grid-template-columns:repeat(2,minmax(0,1fr))}.brand .name{font-size:18px}.hero h1{font-size:clamp(44px,11vw,66px)}}
 @media(max-width:460px){.features{grid-template-columns:1fr}.hero .eyebrow{font-size:28px}.hero .descriptor{font-size:21px}}
 
@@ -49,12 +49,7 @@ body > #vnv-language-switch{display:none!important}
 </head>
 <body data-vnv-ticker-label="Sovereign Translator">
 <a class="skip" href="#main">Skip to content</a>
-<header class="site-header" aria-label="Khaemenes Academy official header">
- <div class="header-inner">
-  <a class="brand" href="https://vervenveda.com/Khaemenes_Academy.github.io/"><span class="mark" aria-hidden="true">K</span><span class="name">Khaemenes Academy</span></a>
-  <div class="header-actions" data-vnv-ecosystem-slot></div>
- </div>
-</header>
+
 <nav class="crumb" aria-label="Breadcrumb"><a href="https://vervenveda.com/">Verve N Veda</a> · <a href="../">Linguistics</a> · <span aria-current="page">Translator</span></nav>
 <main id="main">
  <section class="hero">
@@ -85,17 +80,11 @@ body > #vnv-language-switch{display:none!important}
  </div>
 </main>
 <footer class="footer">Khaemenes Academy · Sovereign Translator · Verve N Veda</footer>
-<script src="https://vervenveda.com/assets/vnv-ecosystem-menu.js" defer></script>
-<script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js" defer></script>
-<script src="https://vervenveda.com/assets/vnv-333-ticker.js" defer></script>
-<script defer>
-document.addEventListener("DOMContentLoaded",()=>{
-  if(!document.getElementById("vnvTickerAutoPopulate") && window.VNV_TICKER?.autoPopulate){
-    window.VNV_TICKER.autoPopulate({label:"Sovereign Translator · Explore",before:".site-header",max:12});
-  }
-  window.VNV333Ticker?.mount?.();
-},{once:true});
-</script>
+<script src="https://vervenveda.com/assets/vnv-333-ticker.js"></script>
+<script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js" data-vnv-ticker-autopopulate></script>
+<script>window.VNV_TICKER?.autoPopulate({label:"Sovereign Translator · Explore",before:".crumb",max:12});</script>
+<script src="https://vervenveda.com/assets/vnv-header-autopopulate.js?v=20261126-compact-header"></script>
+<script>window.VNV_HEADER?.mount({title:"Khaemenes Academy",subtitle:"Sovereign Translator",icon:"K",home:"https://vervenveda.com/",actions:[]});</script>
 <script src="https://vervenveda.com/Khaemenes_Linguistics.github.io/assets/khaemenes-translator-loader.js?v=1.1.1" defer></script>
 <script>
 window.KhaemenesClassToolsConfigV1={
@@ -106,14 +95,13 @@ window.KhaemenesClassToolsConfigV1={
  {type:"link",label:"Dictionary",sub:"Open dictionary",href:"./translator.html#dictionaryTitle"},
  {type:"link",label:"Teacher",sub:"Study candidate learning",href:"./translator.html#candidateLearningHeading"},
  {type:"link",label:"Pierre",sub:"Open language mentor chat",href:"https://artist1970.github.io/Pierre.gihub.io/#talk"},
- {type:"translator",label:"Language",sub:"Change page language"},
  {type:"link",label:"Linguistics",sub:"World Language Campus",href:"../"},
  {type:"link",label:"Legacy",sub:"Older translator reference",href:"../multilingual-translator_index.html"}
  ]
 };
 </script>
 <script src="https://vervenveda.com/assets/vnv-class-tools-toolbar.js?v=1.6.1" defer></script>
-<script src="../assets/vnv-language.js?v=20261121-half-height" defer></script>
+<script src="../assets/vnv-language.js?v=20261126-header-slot" defer></script>
 <script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js" defer></script>
 </body>
 </html>

@@ -378,7 +378,7 @@ body :is(button,a,select,input,textarea){font-size:max(16px,1em)}
 .vnv-translator-breadcrumb{padding:11px 18px;background:#fff8e9;color:#252b2b;text-align:center;border-bottom:1px solid #b48b45;font-size:16px}
 .vnv-translator-breadcrumb a{color:#252b2b}
 /* The canonical language switch is offered through the lower-left universal toolbar, not as a third top strip. */
-body > #vnv-language-switch{display:none!important}
+/* The shared language module moves its single selector into the official header; keep its body fallback available offline. */
 main.shell{padding-top:0}
 main .hero{background:#252b2b;color:#fff8e9;padding:66px clamp(18px,3vw,44px) 74px;width:100vw;position:relative;left:50%;margin:0 0 0 -50vw;text-align:center}
 main .hero .eyebrow{font:400 33px/1.2 var(--serif);color:#fff8e9;letter-spacing:.01em;text-transform:none}
@@ -406,19 +406,10 @@ html body main select option{background:#fff8e9;color:#252b2b}
 html body main :is(.btn:not(.ghost):not(.secondary):not(.gold),.vnv-translator-doors a){background:#252b2b;color:#fff8e9;-webkit-text-fill-color:#fff8e9}
 html body main :is(.btn:not(.ghost):not(.secondary):not(.gold),.vnv-translator-doors a):is(:hover,:focus-visible){background:#353d3d;color:#fff8e9;-webkit-text-fill-color:#fff8e9}
 </style>
-  <script src="/Khaemenes_Linguistics.github.io/assets/linguistics-global-standard-v1.js" defer data-linguistics-global-standard="16-33-66-chrome"></script>
-</head>
+  </head>
 <body>
 <a class="vnv-skip" href="#main">Skip to translator</a>
-<header class="site-header" aria-label="Khaemenes Academy official header">
- <div class="header-inner">
-  <a class="brand" href="https://vervenveda.com/Khaemenes_Academy.github.io/" aria-label="Khaemenes Academy home">
-   <span class="seal" aria-hidden="true">K</span>
-   <span><strong>Khaemenes Academy</strong><small>World Language Campus</small></span>
-  </a>
-  <div class="header-actions" data-vnv-ecosystem-slot aria-label="Ecosystem menu"></div>
- </div>
-</header>
+
 <button id="themeBtn" type="button" hidden aria-label="Change translator theme">Change theme</button>
 <nav class="vnv-translator-breadcrumb" aria-label="Breadcrumb"><a href="https://vervenveda.com/">Verve N Veda</a> · <a href="../">Linguistics</a> · <span aria-current="page">Sovereign Translator</span></nav>
 
@@ -1826,17 +1817,11 @@ window.KhaemenesInterlingual = Object.freeze({
 </script>
 
 <!-- Reuse the exact canonical gateway owners, not local competing implementations. -->
-<script src="https://vervenveda.com/assets/vnv-ecosystem-menu.js" defer></script>
-<script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js" defer></script>
-<script src="https://vervenveda.com/assets/vnv-333-ticker.js" defer></script>
-<script defer>
-document.addEventListener("DOMContentLoaded",()=>{
-  if(!document.getElementById("vnvTickerAutoPopulate") && window.VNV_TICKER?.autoPopulate){
-    window.VNV_TICKER.autoPopulate({label:"Sovereign Translator · Explore",before:".site-header",max:12});
-  }
-  window.VNV333Ticker?.mount?.();
-},{once:true});
-</script>
+<script src="https://vervenveda.com/assets/vnv-333-ticker.js"></script>
+<script src="https://vervenveda.com/assets/vnv-ticker-autopopulate.js" data-vnv-ticker-autopopulate></script>
+<script>window.VNV_TICKER?.autoPopulate({label:"Sovereign Translator · Explore",before:".vnv-translator-breadcrumb",max:12});</script>
+<script src="https://vervenveda.com/assets/vnv-header-autopopulate.js?v=20261126-compact-header"></script>
+<script>window.VNV_HEADER?.mount({title:"Khaemenes Academy",subtitle:"Sovereign Translator",icon:"K",home:"https://vervenveda.com/",actions:[]});</script>
 <script src="../assets/pierre-translator-mentor-v1.js" defer></script>
 <!-- Translator loader already initialized from ../assets/khaemenes-translator-loader.js above. -->
 <script>
@@ -1849,7 +1834,6 @@ window.KhaemenesClassToolsConfigV1={
   {type:"link",label:"Dictionary",sub:"Source-attributed dictionary",href:"#dictionaryTitle"},
   {type:"link",label:"Teacher",sub:"Candidate study lab",href:"#candidateLearningHeading"},
   {type:"link",label:"Pierre",sub:"Open mentor chat",href:"https://artist1970.github.io/Pierre.gihub.io/#talk"},
-  {type:"translator",label:"Language",sub:"Change page language"},
   {type:"link",label:"Academy",sub:"Khaemenes Academy",href:"https://vervenveda.com/Khaemenes_Academy.github.io/"},
   {type:"action",label:"Theme",sub:"Change theme",action:"theme"}
  ],
@@ -1858,7 +1842,7 @@ window.KhaemenesClassToolsConfigV1={
 </script>
 <script src="https://vervenveda.com/assets/vnv-class-tools-toolbar.js?v=1.6.1" defer></script>
 <!-- VNV_OFFICIAL_SITE_TRANSLATOR -->
-<script defer src="../assets/vnv-language.js?v=20261121-half-height"></script>
+<script defer src="../assets/vnv-language.js?v=20261126-header-slot"></script>
 <script src="https://vervenveda.com/assets/vnv-ecosystem-toolbar.js"></script>
 </body>
 </html>

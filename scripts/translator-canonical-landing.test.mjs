@@ -13,18 +13,17 @@ test("one official VNV 333 + AutoPopulate ticker guard, no competing local ticke
  assert.equal((html.match(/<div[^>]+id="vnvTickerAutoPopulate"/g)||[]).length,0);
  assert.doesNotMatch(html,/class="top-ribbon"/);
 });
-test("official full-width Academy header and single ecosystem hamburger provider",()=>{
- assert.equal((html.match(/<header class="site-header"/g)||[]).length,1);
- assert.equal(count("vnv-ecosystem-menu.js"),1);
- assert.match(html,/data-vnv-ecosystem-slot/);
- assert.doesNotMatch(html,/id="menuButton"|id="vnvEcosystemMenuButton"/);
- assert.match(html,/\.site-header\{position:relative;top:auto;width:100%/);
+test("official compact VNV header and single hamburger authority",()=>{
+ assert.equal(count("vnv-header-autopopulate.js"),1);
+ assert.equal(count("vnv-ecosystem-menu.js"),0);
+ assert.doesNotMatch(html,/<header class="site-header"|data-vnv-ecosystem-slot|id="vnvEcosystemMenuButton"/);
+ assert.match(html,/actions:\[\]/);
 });
 test("one lower-left universal toolkit and canonical lower-right ecosystem toolbar",()=>{
  assert.equal(count("vnv-class-tools-toolbar.js"),1);
  assert.equal(count("vnv-ecosystem-toolbar.js"),1);
  assert.match(html,/window\.KhaemenesClassToolsConfigV1=/);
- assert.match(html,/type:"translator",label:"Language"/);
+ assert.doesNotMatch(html,/type:"translator",label:"Language"/);
  assert.equal(count("vnv-language.js"),1);
 });
 test("33/66/24 charcoal hero and 7px corners, symmetric 2x2 features",()=>{
@@ -61,11 +60,13 @@ test("translator entry uses canonical VNV components, three doors and four symme
  const entry=await readFile(new URL("../apps/translator-entry.html",import.meta.url),"utf8");
  const loaded=[...entry.matchAll(/<script\b[^>]*\bsrc="([^"]+)"/g)].map(x=>x[1]);
  const uses=x=>loaded.filter(v=>v.includes(x)).length;
- for(const x of ["vnv-333-ticker.js","vnv-ticker-autopopulate.js","vnv-ecosystem-menu.js","vnv-class-tools-toolbar.js","vnv-ecosystem-toolbar.js","vnv-language.js"])
+ for(const x of ["vnv-333-ticker.js","vnv-ticker-autopopulate.js","vnv-header-autopopulate.js","vnv-class-tools-toolbar.js","vnv-ecosystem-toolbar.js","vnv-language.js"])
   assert.equal(uses(x),1,"Missing or duplicate canonical asset: "+x);
  assert.equal(uses("vnv-dual-ticker-v1.js"),0);
- assert.match(entry,/data-vnv-ecosystem-slot/);
- assert.match(entry,/type:"translator",label:"Language"/);
+ assert.equal(uses("vnv-ecosystem-menu.js"),0);
+ assert.doesNotMatch(entry,/<header class="site-header"|data-vnv-ecosystem-slot/);
+ assert.match(entry,/actions:\[\]/);
+ assert.doesNotMatch(entry,/type:"translator",label:"Language"/);
  assert.match(entry,/\.hero \.eyebrow\{font:400 33px/);
  assert.match(entry,/\.hero h1\{font:400 66px/);
  assert.match(entry,/\.hero \.descriptor\{font:400 24px/);
@@ -73,7 +74,7 @@ test("translator entry uses canonical VNV components, three doors and four symme
  const doors=entry.match(/<nav class="access"[\s\S]*?<\/nav>/)?.[0];
  assert.equal((doors?.match(/<a /g)||[]).length,3);
  assert.equal((entry.match(/class="feature"/g)||[]).length,4);
- assert.match(entry,/body > #vnv-language-switch\{display:none!important\}/);
+ assert.doesNotMatch(entry,/body > #vnv-language-switch\{display:none!important\}/);
  assert.match(entry,/translator\.html#candidateLearningHeading/);
 });
 
