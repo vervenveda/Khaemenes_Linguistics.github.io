@@ -5,7 +5,13 @@ import path from "node:path";
 const root=process.cwd(),apply=process.argv.includes("--apply");
 const skipped=new Set([".git","node_modules","vendor","dist","build"]);
 let count=0,withTranslator=0,changed=0,missingBody=[],weekNav=0;
-const proposedChanges=[];
+const proposedChanges=[], isolatedPages=[];
+let actualTranslatorPages=0;
+const isolationPolicy=new Map([
+ ['Halls/french-high-school-unit01-instruction.html','standalone instructional practice and draft isolation'],
+ ['apps/french-101-worksheets/lesson-01.html','printable instructional worksheet'],
+ ['apps/vocabulary-mini-cloud/index.html','encrypted owner vault']
+]);
 const translatorTags=html=>[...html.matchAll(/<script\b[^>]*\bsrc=["'][^"']*\/vnv-language\.js(?:[?#][^"']*)?["'][^>]*>\s*<\/script>/gi)];
 function walk(dir){
  for(const e of fs.readdirSync(dir,{withFileTypes:true})){
@@ -18,6 +24,12 @@ function walk(dir){
   const reasons=[];
   // A compatibility redirect has no independent translation surface.
   if(relative==="multilingual-translator_index.html"&&/location\.replace\(next\.href\)/.test(html)){count--;continue;}
+  if(isolationPolicy.has(relative)){
+   isolatedPages.push({path:relative,reason:isolationPolicy.get(relative)});
+   if(translatorTags(html).length){changed++;proposedChanges.push({path:relative,reasons:['translator prohibited on isolated surface']});}
+   continue;
+  }
+  if(translatorTags(html).length===1)actualTranslatorPages++;
   if(!translatorTags(html).length){
    reasons.push("missing canonical translator script tag");
    // App fragments with no body tag receive an appended standalone script.
@@ -59,6 +71,6 @@ function walk(dir){
  }
 }
 walk(root);
-console.log(JSON.stringify({htmlPages:count,translatorPages:withTranslator,yearOneWeeks:weekNav,filesModified:changed,proposedChanges,missingBody},null,2));
-if(missingBody.length||withTranslator!==count||weekNav!==64)process.exitCode=1;
-if(!apply&&changed)process.exitCode=1;
+console.log(JSON.stringify({htmlPages:count,translatorPages:actualTranslatorPages,proposedTranslatorPages:withTranslator,isolatedPages,yearOneWeeks:weekNav,filesModified:changed,proposedChanges,missingBody},null,2));
+if(missingBody.length||withTranslator+isolatedPages.length!==count||isolatedPages.length!==isolationPolicy.size||weekNav!==64)process.exitCode=1;
+if((!apply&&changed)||proposedChanges.some(x=>isolationPolicy.has(x.path)))process.exitCode=1;
