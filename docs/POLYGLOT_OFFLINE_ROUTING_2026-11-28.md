@@ -1,0 +1,3 @@
+# Bubble 04 — offline routing
+
+Add five public directories, consolidated CSS and Hall language pack to the static shell. Bump cache version. Normalize known public Hall navigation parameters and directory index aliases for cache lookup only; fetch still receives original request. Reject unknown parameters and duplicate keys. Normalize version query on known precached JS/CSS only. Exclude private vault routes in addition to authorized requests. Existing learner storage is not touched. Static contract tests added; real browser offline upgrade, stale tabs and cross-origin VNV chrome remain unverified.

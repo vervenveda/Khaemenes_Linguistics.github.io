@@ -1,7 +1,7 @@
 /* Polyglot — Khaemenes Academy Linguistics Hall
    Static-site service worker. Update CACHE_VERSION whenever core files change. */
 
-const CACHE_VERSION = 'polyglot-v1.5.13-forensic-20261125';
+const CACHE_VERSION = 'polyglot-v1.5.14-topology-20261128';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const RUNTIME_CACHE = `${CACHE_VERSION}-runtime`;
 
@@ -13,6 +13,13 @@ const APP_SHELL = [
   './assets/v4-learner-scope.js',
   './Halls/index.html',
   './apps/language-worlds/index.html',
+  './apps/language-worlds/french/index.html',
+  './apps/language-worlds/german/index.html',
+  './apps/language-worlds/russian/index.html',
+  './apps/language-worlds/english-esl/index.html',
+  './apps/arabic-learning-worlds/index.html',
+  './assets/linguistics-landing.css',
+  './Halls/hall-i18n-pack.js',
   './apps/language-worlds/spanish/index.html',
   './apps/language-worlds/mandarin/index.html',
   './apps/language-worlds/japanese/index.html',
@@ -78,12 +85,31 @@ self.addEventListener('activate', event => {
 // Runtime entries are bounded; the precached teaching shell is never pruned.
 const RUNTIME_LIMIT=400;
 let cacheQueue=Promise.resolve();
+// Normalize only known public static entrances. Unknown query keys are never cached.
+const PUBLIC_HALL_LANGUAGES=new Set(["spanish","french","german","mandarin","japanese"]);
+const PUBLIC_UI_LANGUAGES=new Set(["en","es","fr","ar","zh","de","ru","pt","hi","ja","ko","it","bn"]);
 function cacheKey(request,url){
  const copy=new URL(url.href);
+ const scope=new URL(self.registration.scope);
+ const relative=copy.pathname.slice(scope.pathname.length);
+ const keys=[...copy.searchParams.keys()];
+ if(new Set(keys).size!==keys.length)return null;
  if(request.mode==='navigate'){
-  if([...copy.searchParams.keys()].some(k=>k!=='lang'))return null;
-  copy.searchParams.delete('lang');
- }else if([...copy.searchParams.keys()].some(k=>k!=='v'))return null;
+  if(copy.searchParams.has('lang')&&!PUBLIC_UI_LANGUAGES.has(copy.searchParams.get('lang')))return null;
+  const hall=relative==='Halls/index.html'||relative==='Halls/';
+  if(keys.some(k=>k!=='lang'&&!(hall&&(k==='language'||k==='course'))))return null;
+  if(hall&&copy.searchParams.has('language')&&!PUBLIC_HALL_LANGUAGES.has(copy.searchParams.get('language')))return null;
+  if(hall&&copy.searchParams.has('course')&&(!copy.searchParams.has('language')||! /^(?:[a-z0-9-]{1,20})$/.test(copy.searchParams.get('course'))))return null;
+  copy.search='';
+  if(relative===''||relative.endsWith('/'))copy.pathname+='index.html';
+ }else{
+  if(keys.some(k=>k!=='v'))return null;
+  // Only local, explicitly precached assets may share a versioned/unversioned key.
+  if(copy.searchParams.has('v')&&!APP_SHELL.includes('./'+relative))return copy.href;
+  if(copy.searchParams.has('v')&&!/\.(?:js|css)$/i.test(relative))return null;
+  copy.searchParams.delete('v');
+ }
+ copy.hash='';
  return copy.href;
 }
 function remember(key,response){
@@ -105,6 +131,7 @@ async function cached(key){
 self.addEventListener('fetch',event=>{
  const request=event.request,url=new URL(request.url);
  if(request.method!=='GET'||url.origin!==self.location.origin||!url.href.startsWith(self.registration.scope)||request.headers.has('Authorization'))return;
+ if(/(?:^|\/)apps\/vocabulary-mini-cloud(?:\/|$)/i.test(url.pathname))return;
  const key=cacheKey(request,url);
  if(!key)return;
  const networkFirst=request.mode==='navigate'||request.destination==='script'||request.destination==='style'||/\.(?:js|mjs|css)$/i.test(url.pathname);
