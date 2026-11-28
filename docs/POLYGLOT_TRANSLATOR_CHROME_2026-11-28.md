@@ -1,0 +1,3 @@
+# Bubble 06 — Sovereign Translator chrome
+
+Both translator entry and workspace use the official compact VNV header, two canonical tickers and one local page translator. Legacy header markup and menu loader removed; offline body language fallback is no longer forcibly hidden. Remove duplicate language tool from lower-left configuration while preserving workspace, dictionary, Teacher, Pierre and theme routes. Existing translation workspace CSS and engine remain intact; full CSS extraction and live visual parity remain pending. Recover stale cache-version assertion with minimum privacy-hardened version check. No dictionary or review data changes.

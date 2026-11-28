@@ -66,7 +66,10 @@ test("Teacher observation carries provider tier and manually reviewed save retai
 
 test("new offline cache version includes the request guard and Teacher evidence modules",async()=>{
  const worker=await readFile(new URL("../service-worker.js",import.meta.url),"utf8");
- assert.match(worker,/polyglot-v1\.5\.13-forensic-20261125/);
+ const version=worker.match(/const CACHE_VERSION = 'polyglot-v(\d+)\.(\d+)\.(\d+)-[^']+';/);
+ assert.ok(version,"versioned Polyglot cache");
+ const [major,minor,patch]=version.slice(1).map(Number);
+ assert.ok(major>1||major===1&&(minor>5||minor===5&&patch>=13),"cache version must not predate privacy hardening");
  for(const resource of ["khaemenes-translation-request-guard.js","khaemenes-translation-candidate-lab.js",
   "khaemenes-translation-teacher-arbiter.js","khaemenes-translation-candidate-ui.js",
   "sovereign-dictionary.generated.js"]){
