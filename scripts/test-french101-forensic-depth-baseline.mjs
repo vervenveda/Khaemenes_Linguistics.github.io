@@ -44,7 +44,9 @@ test("resumable assessment and evidence boundaries remain present",()=>{
 test("consolidation baseline records page complexity without changing it",()=>{
  const styles=[...html.matchAll(/<style(?:\s+id="([^"]+)")?[^>]*>/g)];
  const inlineScripts=[...html.matchAll(/<script(?![^>]+src=)[^>]*>/g)];
- assert.equal(styles.length,45,"style-block count changed; update forensic audit deliberately");
+ // C02 removed the documented empty toolbar-fit block; CSS ownership test guards the active owners.
+ assert.equal(styles.length,44,"style-block count changed; update both ownership and forensic baselines deliberately");
+ assert.ok(!html.includes('id="french101-toolbar-fit"'));
  assert.equal(inlineScripts.length,8,"inline-script count changed; update forensic audit deliberately");
  assert.ok(html.length>800000,"unexpected large page reduction requires forensic review");
 });
