@@ -598,6 +598,151 @@
       "energy": "steady",
       "authorityRole": "canonical-translator",
       "topologyRegistry": "data/course-topology.json"
+    },
+    {
+      "id": "french-public-language-directory",
+      "title": "French Learning World",
+      "description": "Public navigation directory; not an independent academic record authority.",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/language-worlds/french/",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "course-navigation"
+      ],
+      "tags": [
+        "french",
+        "public-directory"
+      ],
+      "mentorEligible": true,
+      "topologyRegistry": "data/course-topology.json"
+    },
+    {
+      "id": "german-public-language-directory",
+      "title": "German Learning World",
+      "description": "Public navigation directory; not an independent academic record authority.",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/language-worlds/german/",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "course-navigation"
+      ],
+      "tags": [
+        "german",
+        "public-directory"
+      ],
+      "mentorEligible": true,
+      "topologyRegistry": "data/course-topology.json"
+    },
+    {
+      "id": "arabic-public-language-directory",
+      "title": "Arabic Learning World",
+      "description": "Public navigation directory; not an independent academic record authority.",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/arabic-learning-worlds/",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "course-navigation"
+      ],
+      "tags": [
+        "arabic",
+        "public-directory"
+      ],
+      "mentorEligible": true,
+      "topologyRegistry": "data/course-topology.json"
+    },
+    {
+      "id": "russian-public-language-directory",
+      "title": "Russian Learning World",
+      "description": "Public navigation directory; not an independent academic record authority.",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/language-worlds/russian/",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "course-navigation"
+      ],
+      "tags": [
+        "russian",
+        "public-directory"
+      ],
+      "mentorEligible": true,
+      "topologyRegistry": "data/course-topology.json"
+    },
+    {
+      "id": "english-esl-public-language-directory",
+      "title": "English / ESL Learning World",
+      "description": "Public navigation directory; not an independent academic record authority.",
+      "url": "https://vervenveda.com/Khaemenes_Linguistics.github.io/apps/language-worlds/english-esl/",
+      "audiences": [
+        "middle",
+        "high",
+        "higher-learning",
+        "adult"
+      ],
+      "roles": [
+        "student",
+        "parent",
+        "educator"
+      ],
+      "domains": [
+        "languages"
+      ],
+      "skills": [
+        "course-navigation"
+      ],
+      "tags": [
+        "english-esl",
+        "public-directory"
+      ],
+      "mentorEligible": true,
+      "topologyRegistry": "data/course-topology.json"
     }
   ],
   "mentorNotes": "Faith-specific language resources are tagged for preference-aware recommendation; the future resolver should honor requiresPreferenceMatch before proactive suggestions. The Sovereign Interlingual Translator is offline-first; its optional MyMemory online mode requires explicit in-page consent before text is sent externally. Canonical course and route authority is declared in data/course-topology.json; mentor discovery should not infer formal completion authority from a supplemental app alone."
